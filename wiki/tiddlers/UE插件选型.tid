@@ -1,0 +1,31 @@
+created: 20250924163150692
+creator: 林一二
+modified: 20250924163256507
+modifier: 林一二
+tags: 客户端
+title: UE插件选型
+
+!! 项目Demo预计依赖
+
+* 二次元角色模型和相关渲染效果库
+** ModularAnimeCharacter
+* 建筑系统，能建设基本的房屋、设备
+** Player Building System V2
+* Buff系统，提供一系列预置常用buff，在UE自带GAS里配表使用
+** [[GAS Companion|https://www.fab.com/zh-cn/listings/72e2bc50-658e-43cd-bd40-535f46d2f113]]
+* 美观的对话UI、对话选项选取
+* 网络请求和提示词拼接相关蓝图库，调用Deepseek接口
+** LEHttp
+* SoLiD服务器调用，往主链测试网铸造铭文
+* AI
+** HTN [[Hierarchical Task Network Planning AI|https://www.fab.com/zh-cn/listings/1423ad9b-9c53-43be-b4c8-af1b655377bf]]
+** 效用系统 UE自带的 [[State Tree Selectors Overview | 虚幻引擎 5.5 文档 | Epic Developer Community|https://dev.epicgames.com/documentation/zh-cn/unreal-engine/state-tree-selectors-overview#statetreeutilityselectors]] 或 [[Wise Feline (Lite Immersive & Emergent Utility AI)|https://www.fab.com/zh-cn/listings/4d4e95e3-4693-4e30-96e8-d0a25c6098e6]]
+
+
+!!! 2D Demo
+
+* PaperZD
+* DragonBones
+** 需要参考 https://github.com/heavybullets/PaperZDForSpine2D 实现 PaperZD 绑定
+
+

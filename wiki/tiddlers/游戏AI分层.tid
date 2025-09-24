@@ -1,0 +1,13 @@
+created: 20250924155813404
+creator: 林一二
+modified: 20250924160033468
+modifier: 林一二
+tags: 游戏AI
+title: 游戏AI分层
+
+```mermaid
+graph LR
+    A[战略层-大语言模型] -->|长期目标| B[战术层-HTN规划]
+    B -->|中期任务| C[执行层-效用系统]
+    C -->|即时动作| D[角色行为树]
+```

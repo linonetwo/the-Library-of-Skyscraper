@@ -1,0 +1,18 @@
+created: 20250924163731115
+creator: 林一二
+modified: 20250924163759883
+modifier: 林一二
+tags: 客户端
+title: 建筑计划和建筑工人
+
+例如 BP_BasicFoundation 添加了 BuildPartPlan 游戏标签，玩家在建筑轮盘里放带有它的蓝图时，玩家角色身上的 BP_PlayerBuildingComponent 里就不会为它加上碰撞。
+
+[img[4ba7324b-2bb6-4401-9b4f-e3eae4c9be40.png]]
+
+现在我要为 NPC 加上自动去建设「建筑计划」的功能，我应该是把相关逻辑加到一个 NPC 身上带着的 Component 里吗，然后在 NPC 身上的决策树里调用 NPC 身上的这个 component 里的逻辑？
+
+创建 NPC 专用建造组件 (BP_NPCBuildingComponent)，方法: ScanForAvailablePlans()，StartBuildingProcess()
+
+在 BP_MasterBuildPart 中新增一个 CalimByBuilder 变量，存储建造它的 NPC Acor 的引用，放在分类「NPC建造」里。
+
+从 BP_NPCBuildingComponent 调用 BP_PlayerBuildingComponent  上的 ChangeResourceAmounts  函数来扣资源，然后调用 BP_MasterBuildPart 上的 IncrementBuildProgress
