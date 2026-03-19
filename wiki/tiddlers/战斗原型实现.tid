@@ -1,6 +1,6 @@
 created: 20260317120000000
 creator: 林一二
-modified: 20260319030008017
+modified: 20260319133551206
 modifier: 林一二
 tags: 战斗系统 客户端
 title: 战斗原型实现
@@ -23,7 +23,7 @@ type: text/vnd.tiddlywiki
 * ''引擎''：UE5
 * ''脚本层''：PuerTS（TypeScript 调用 C++ 提供的战斗 API）
 * ''战斗 AI''：C++ 实现核心战斗 API，TypeScript 实现可热重载的战斗 AI 逻辑
-* ''技能系统''：使用现有的 GAS（Gameplay Ability System）+ [[GAS Companion|https://www.fab.com/zh-cn/listings/72e2bc50-658e-43cd-bd40-535f46d2f113]]
+* ''技能系统''：使用现有的 GAS（Gameplay Ability System）+ PuerTS
 * ''2D 精灵''：PaperZD + DragonBones（参考 [[接入PuerTS]]、[[UE插件选型]]）
 
 PuerTS 的分层设计：
@@ -53,6 +53,8 @@ PuerTS 的分层设计：
 
 * ''体素建筑''：提供立体感，可程序化生成，生成成本低
 * ''背景贴图''：AI 生成的 2D 图片作为地面/墙壁质感
+
+角色移动不基于网格，可以像太空游戏一样在 2D 随意移动，不过会被建筑或障碍物阻挡。
 
 过渡动画实现：
 
@@ -169,4 +171,3 @@ interface BattleState {
 # ''第六步''：实现碰撞触发层级过渡（屏幕空间圆形碰撞 → 地图切换过渡动画）
 # ''第七步''：接入 PuerTS，暴露战斗 API，实现默认 AI 状态机
 # ''第八步''：完整战斗场景测试（4v5，从 L2 超视距到 L4 CQB 全流程）
-debugger eval code:1:9
