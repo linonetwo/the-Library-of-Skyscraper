@@ -1,8 +1,10 @@
+Modern.TiddlyDev#SHA256-Hashed: 0750f885b88a0893f8917c2099051d3263821ed4652f8758a1f42f853ec8f732
 author: Gk0Wk
-description: Essential and powerful plugin manager and library
+core-version: >=5.3.0
+dependents: 
+description: TiddlyWiki Community Plugin Library - Frontend
 list: readme tree
-name: CPL Repo
 plugin-type: plugin
 title: $:/plugins/Gk0Wk/CPL-Repo
 type: application/json
-version: 2025.10.25
+version: 2026.05.26
