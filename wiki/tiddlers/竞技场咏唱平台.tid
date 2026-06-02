@@ -1,0 +1,16 @@
+title: 竞技场咏唱平台
+tags: 竞技场咏唱证明系统 AI生成
+
+咏唱运行时的工程实现。包括平台 API、DI 容器、SourceRef 归因、文件长度损耗、噪声分类和验证服务。
+
+!! 平台职责
+
+| 服务 | 职责 |
+| --- | --- |
+| `ChantContainer` | 依赖注入容器，注册策略、适配器、管线、状态机等组件 |
+| `ChantCodex` | 咏唱 API 文档，包含 archive、hexstone、prayer、index、lattice、artifact、seal 等 API 族 |
+| `ChantClock` | 事件时钟，提供脉冲、窗口、节拍和随机事件 key |
+| `ChantRepository` | 仓储接口，缓存赛周 API 探索结果和咏唱中间产物 |
+| `SourceAttributionService` | 签名归因，把签名绑定到源码文件、类和方法 |
+| `NoiseClassifier` | 噪声分类，把签名分为 effective、supporting、noise、invalid |
+| `QualityAggregator` | 品质聚合，计算文件长度损耗、噪声惩罚和最终品质 |
