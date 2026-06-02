@@ -1,0 +1,111 @@
+title: 竞技场咏唱运行时API
+created: 20260602000000000
+creator: 林一二
+modified: 20260602000000000
+modifier: 林一二
+tags: 竞技场咏唱证明系统 AI生成
+title: 竞技场咏唱运行时API
+
+本条目描述咏唱运行时提供给玩家的 TypeScript API 草案。
+
+技能没有直接代码级 API。玩家编写的咏唱程序通过 DI 容器接入这些 API，生成签名链，平台根据签名链匹配魔法书配方自动触发技能。
+
+!! 核心接口
+
+```ts
+export interface ChantProgram<TParams> {
+  configure(container: ChantContainer): void;
+  run(params: TParams, context: ChantContext): Promise<ChantProof>;
+}
+
+export interface ChantContainer {
+  provide<T>(token: Token<T>, factory: (ctx: ChantContext) => T): void;
+  get<T>(token: Token<T>): T;
+}
+
+export interface ChantContext {
+  codex: ChantCodex;
+  clock: ChantClock;
+  repository: ChantRepository;
+  logger: ChantLogger;
+  rules: ChantRuleSet;
+  equipment: EquippedArtifact[];
+  events: ChantEventRuntime;
+  recipe: ChantRecipeRuntime;
+}
+```
+
+!! 咏唱 API 文档
+
+平台长期稳定提供以下 API 族：
+
+```ts
+export interface ChantCodex {
+  archive: ArchiveApi;
+  hexstone: HexstoneApi;
+  prayer: PrayerApi;
+  index: IndexApi;
+  lattice: LatticeApi;
+  artifact: ArtifactApi;
+  seal: SealApi;
+  areaPower: AreaPowerApi;
+}
+```
+
+每族 API 返回 opaque 中间对象，不能伪造：
+
+```ts
+type PageFragment = Opaque<'PageFragment'>;
+type FacetShard = Opaque<'FacetShard'>;
+type MeterKey = Opaque<'MeterKey'>;
+type BoundVerse = Opaque<'BoundVerse'>;
+type ChantProof = Opaque<'ChantProof'>;
+```
+
+!! 咏唱程序入口
+
+```ts
+export class BlinkStrikeChant implements ChantProgram<BlinkStrikeParams> {
+  configure(container: ChantContainer): void {
+    container.provide(TOKENS.routeStrategy, ctx =>
+      new DistanceRouteStrategy(ctx.rules));
+    container.provide(TOKENS.verseSource, ctx =>
+      new ArchiveVerseAdapter(ctx.codex.archive));
+    container.provide(TOKENS.pulseCollector, ctx =>
+      new MeterPulseCollector(ctx.clock));
+    container.provide(TOKENS.pipeline, ctx =>
+      new ChantPipelineFactory(ctx.codex, ctx.rules).create('mobility'));
+  }
+
+  async run(params: BlinkStrikeParams, context: ChantContext): Promise<ChantProof> {
+    const strategy = context.container.get(TOKENS.routeStrategy);
+    const source = context.container.get(TOKENS.verseSource);
+    const collector = context.container.get(TOKENS.pulseCollector);
+    const pipeline = context.container.get(TOKENS.pipeline);
+
+    collector.subscribe();
+
+    const route = strategy.choose(params);
+    const fragment = await source.nextVerse(route.seed);
+    const pulse = await collector.waitFor(route.requiredPulseFamily);
+    const bound = await pipeline.run({ fragment, pulse, params });
+
+    return context.codex.seal.finalize({
+      route,
+      eventKeys: [pulse],
+      pipelineTrace: bound.trace,
+    });
+  }
+}
+```
+
+!! 与旧 API 的区别
+
+| 旧机制 | 新机制 |
+| --- | --- |
+| `combatRuntime.createIntent()` | 无。玩家不直接创建意图 |
+| `combatRuntime.cast(result)` | 无。平台自动根据签名链匹配配方触发技能 |
+| `CombatResult` 手动构造 | `ChantProof` 由平台 API 生成，不可伪造 |
+| 技能效果由代码决定 | 技能效果由魔法书配方和签名链匹配决定 |
+| 能量池直接扣除 | 能量来源通过咏唱 API 调用自然消耗 |
+

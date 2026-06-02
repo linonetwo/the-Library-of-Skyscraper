@@ -1,0 +1,145 @@
+title: 命令模式与轨迹记录
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 命令模式在咏唱中的作用
+
+命令模式记录咏唱过程中的API调用轨迹，支持服务端重放验证。每个命令产生一个签名，记录输入输出和操作名称。
+
+!! 核心接口
+
+```ts
+export interface ChantCommand {
+  readonly name: string;
+  execute(input: ChantCommandInput): Promise<ChantCommandOutput>;
+}
+
+export interface ChantCommandBus {
+  run(command: ChantCommand, input: ChantCommandInput): Promise<ChantCommandOutput>;
+  getTrace(): ChantCommandTrace[];
+}
+```
+
+!! 具体命令
+
+读取档案片段：
+
+```ts
+export class ReadArchiveCommand implements ChantCommand {
+  readonly name = 'readArchive';
+
+  constructor(private verseSource: VerseSource) {}
+
+  async execute(input: ChantCommandInput): Promise<ChantCommandOutput> {
+    const fragment = await this.verseSource.nextVerse(input.route.seed);
+
+    return {
+      ...input,
+      fragments: [...input.fragments, fragment],
+    };
+  }
+}
+```
+
+绑定索引范围：
+
+```ts
+export class BindIndexCommand implements ChantCommand {
+  readonly name = 'bindIndex';
+
+  constructor(private index: IndexApi) {}
+
+  async execute(input: ChantCommandInput): Promise<ChantCommandOutput> {
+    const citation = await this.index.bindPageRange({
+      fragment: input.latestFragment(),
+      range: input.route.indexRange,
+    });
+
+    return {
+      ...input,
+      citations: [...input.citations, citation],
+    };
+  }
+}
+```
+
+!! 轨迹记录实现
+
+```ts
+export class TracedChantCommandBus implements ChantCommandBus {
+  private trace: ChantCommandTrace[] = [];
+
+  constructor(private logger: ChantLogger) {}
+
+  async run(
+    command: ChantCommand,
+    input: ChantCommandInput,
+  ): Promise<ChantCommandOutput> {
+    const startedAt = performance.now();
+
+    try {
+      const output = await command.execute(input);
+
+      this.trace.push({
+        command: command.name,
+        ok: true,
+        durationMs: performance.now() - startedAt,
+        inputType: typeOfOpaque(input),
+        outputType: typeOfOpaque(output),
+      });
+
+      return output;
+    } catch (error) {
+      this.trace.push({
+        command: command.name,
+        ok: false,
+        durationMs: performance.now() - startedAt,
+        error: String(error),
+      });
+      throw error;
+    }
+  }
+
+  getTrace(): ChantCommandTrace[] {
+    return this.trace;
+  }
+}
+```
+
+!! 签名中的命令信息
+
+```ts
+export interface CommandSignature extends ChantSignature {
+  kind: 'commandTrace';
+  evidence: {
+    commandName: string;
+    durationMs: number;
+    inputType: string;
+    outputType: string;
+  };
+}
+```
+
+!! 使用示例
+
+```ts
+const bus = new TracedChantCommandBus(context.logger);
+
+const readResult = await bus.run(
+  new ReadArchiveCommand(verseSource),
+  { route, fragments: [] },
+);
+
+const bindResult = await bus.run(
+  new BindIndexCommand(context.codex.index),
+  readResult,
+);
+
+const proof = context.proof.seal({
+  commandTrace: bus.getTrace(),
+});
+```
+
+!! 与技能触发的关系
+
+命令轨迹支持可选效果`commandMustBeReplayable`。平台可以重放命令序列验证一致性。
+

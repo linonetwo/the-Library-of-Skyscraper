@@ -1,0 +1,161 @@
+title: 复用与缓存
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 仓储模式在咏唱中的作用
+
+仓储缓存赛周API探索结果和咏唱中间产物，提高稳定性。复用率进入签名品质评分。
+
+!! 核心接口
+
+```ts
+export interface ChantRepository {
+  get<T>(key: string): Promise<T | undefined>;
+  set<T>(key: string, value: T, options?: CacheOptions): Promise<void>;
+  trace(): RepositoryTrace[];
+}
+
+export interface CacheOptions {
+  ttlTicks?: number;
+  tags?: string[];
+}
+```
+
+!! 实现
+
+```ts
+export class InMemoryChantRepository implements ChantRepository {
+  private cache = new Map<string, CacheEntry>();
+  private accessTrace: RepositoryTrace[] = [];
+
+  async get<T>(key: string): Promise<T | undefined> {
+    const entry = this.cache.get(key);
+
+    if (!entry) {
+      this.accessTrace.push({ key, hit: false, at: Date.now() });
+      return undefined;
+    }
+
+    if (entry.expiresAt && entry.expiresAt < Date.now()) {
+      this.cache.delete(key);
+      this.accessTrace.push({ key, hit: false, expired: true, at: Date.now() });
+      return undefined;
+    }
+
+    this.accessTrace.push({ key, hit: true, at: Date.now() });
+    return entry.value as T;
+  }
+
+  async set<T>(
+    key: string,
+    value: T,
+    options?: CacheOptions,
+  ): Promise<void> {
+    this.cache.set(key, {
+      value,
+      expiresAt: options?.ttlTicks
+        ? Date.now() + options.ttlTicks * 16
+        : undefined,
+      tags: options?.tags,
+    });
+  }
+
+  trace(): RepositoryTrace[] {
+    return this.accessTrace;
+  }
+}
+```
+
+!! 缓存咏唱源
+
+```ts
+export class CachedVerseSource implements VerseSource {
+  constructor(
+    private inner: VerseSource,
+    private repository: ChantRepository,
+  ) {}
+
+  async nextVerse(seed: ChantSeed): Promise<PageFragment> {
+    const cacheKey = `verse:${seed.hash}`;
+
+    const cached = await this.repository.get<PageFragment>(cacheKey);
+    if (cached) return cached;
+
+    const fragment = await this.inner.nextVerse(seed);
+    await this.repository.set(cacheKey, fragment, { ttlTicks: 240 });
+
+    return fragment;
+  }
+}
+```
+
+!! 缓存事件收集器
+
+```ts
+export class CachedEventCollector implements EventCollector {
+  constructor(
+    private inner: EventCollector,
+    private repository: ChantRepository,
+  ) {}
+
+  async collect(): Promise<EventKey[]> {
+    const cacheKey = `events:${this.sessionId}`;
+
+    const cached = await this.repository.get<EventKey[]>(cacheKey);
+    if (cached) return cached;
+
+    const keys = this.inner.collect();
+    await this.repository.set(cacheKey, keys, { ttlTicks: 60 });
+
+    return keys;
+  }
+}
+```
+
+!! 签名中的仓储信息
+
+```ts
+export interface RepositorySignature extends ChantSignature {
+  kind: 'repository';
+  evidence: {
+    cacheHit?: boolean;
+    cacheKey: string;
+    ttlTicks?: number;
+  };
+}
+```
+
+!! 使用示例
+
+```ts
+const repository = new InMemoryChantRepository();
+
+const verseSource = new CachedVerseSource(
+  new ArchiveVerseAdapter(codex.archive),
+  repository,
+);
+
+const eventCollector = new CachedEventCollector(
+  new MeterPulseCollector(),
+  repository,
+);
+
+const fragment = await verseSource.nextVerse(seed);
+const events = await eventCollector.collect();
+```
+
+!! 与技能触发的关系
+
+仓储水印证明玩家利用了已有知识。配方可能要求：
+
+```ts
+{
+  id: 'reduceCooldown',
+  sequence: ['stateMachine', 'commandTrace', 'repository', 'decorator'],
+  constraints: {
+    repositoryMustUsePriorKnowledge: true,
+  },
+}
+```
+
+要求缓存命中或复用之前探索的结果。
+

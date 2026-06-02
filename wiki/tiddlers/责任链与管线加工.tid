@@ -1,0 +1,120 @@
+title: 责任链与管线加工
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 责任链与管线在咏唱中的作用
+
+管线把咏唱中间对象逐步加工，每步产生签名。输入输出类型约束确保步骤不能简单重复。
+
+!! 核心接口
+
+```ts
+export interface PipelineStep<I, O> {
+  readonly name: string;
+  handle(input: I, env: ChantEnvironment): Promise<O>;
+}
+
+export interface ChantPipeline {
+  run(input: unknown): Promise<PipelineOutput>;
+}
+```
+
+!! 具体步骤
+
+标准化档案片段：
+
+```ts
+export class NormalizeFragmentStep implements PipelineStep<PageFragment, NormalizedFragment> {
+  readonly name = 'normalizeFragment';
+
+  async handle(
+    input: PageFragment,
+    env: ChantEnvironment,
+  ): Promise<NormalizedFragment> {
+    return env.codex.archive.normalize({
+      fragment: input,
+      rules: env.rules.normalization,
+    });
+  }
+}
+```
+
+折叠蜂解石晶面：
+
+```ts
+export class FoldHexstoneStep implements PipelineStep<NormalizedFragment, FoldedSeal> {
+  readonly name = 'foldHexstone';
+
+  async handle(
+    input: NormalizedFragment,
+    env: ChantEnvironment,
+  ): Promise<FoldedSeal> {
+    return env.codex.hexstone.foldFacet({
+      fragment: input,
+      angle: env.params.angleHint,
+    });
+  }
+}
+```
+
+!! 管线实现
+
+```ts
+export class StandardChantPipeline implements ChantPipeline {
+  constructor(
+    private steps: PipelineStep<unknown, unknown>[],
+    private env: ChantEnvironment,
+  ) {}
+
+  async run(input: unknown): Promise<PipelineOutput> {
+    let current: unknown = input;
+    const trace: PipelineTrace[] = [];
+
+    for (const step of this.steps) {
+      const before = current;
+      current = await step.handle(current, this.env);
+
+      trace.push({
+        step: step.name,
+        inputType: typeOfOpaque(before),
+        outputType: typeOfOpaque(current),
+      });
+    }
+
+    return {
+      output: current as BoundVerse,
+      trace,
+    };
+  }
+}
+```
+
+!! 签名中的管线信息
+
+```ts
+export interface PipelineSignature extends ChantSignature {
+  kind: 'pipeline';
+  evidence: {
+    pipelineStep: string;
+    inputType: string;
+    outputType: string;
+  };
+}
+```
+
+!! 使用示例
+
+```ts
+const pipeline = new StandardChantPipeline([
+  new NormalizeFragmentStep(),
+  new BindIndexRangeStep(),
+  new FoldHexstoneStep(),
+  new SealLineageStep(),
+], context);
+
+const result = await pipeline.run(initialFragment);
+```
+
+!! 反投机
+
+管线步骤有类型约束`PipelineStep<I, O>`。重复同一步骤会导致类型不匹配或输入输出哈希相同，签名进入噪声池。
+

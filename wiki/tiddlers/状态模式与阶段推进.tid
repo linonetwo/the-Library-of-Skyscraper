@@ -1,0 +1,113 @@
+title: 状态模式与阶段推进
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 状态模式在咏唱中的作用
+
+状态模式管理咏唱阶段的合法推进。签名必须在正确的阶段产生，跳过阶段或非法迁移会导致签名降级。
+
+!! 核心接口
+
+```ts
+export type ChantState =
+  | 'idle'
+  | 'prepared'
+  | 'collecting'
+  | 'folding'
+  | 'binding'
+  | 'sealed'
+  | 'failed';
+
+export interface ChantStateMachine {
+  current: ChantState;
+  transition(next: ChantState, input: unknown): Promise<void>;
+  trace(): StateTransitionTrace[];
+}
+```
+
+!! 状态机实现
+
+```ts
+export class StandardChantStateMachine implements ChantStateMachine {
+  current: ChantState = 'idle';
+  private transitions: StateTransitionTrace[] = [];
+
+  async transition(next: ChantState, input: unknown): Promise<void> {
+    if (!this.canTransition(this.current, next, input)) {
+      this.current = 'failed';
+      throw new InvalidChantStateError(this.current, next);
+    }
+
+    this.transitions.push({
+      from: this.current,
+      to: next,
+      at: Date.now(),
+      inputType: typeOf(input),
+    });
+
+    this.current = next;
+  }
+
+  trace(): StateTransitionTrace[] {
+    return this.transitions;
+  }
+
+  private canTransition(from: ChantState, to: ChantState, input: unknown): boolean {
+    if (from === 'idle' && to === 'prepared') return hasValidParams(input);
+    if (from === 'prepared' && to === 'collecting') return hasRoute(input);
+    if (from === 'collecting' && to === 'folding') return hasEventKeys(input);
+    if (from === 'folding' && to === 'binding') return hasFoldedOutput(input);
+    if (from === 'binding' && to === 'sealed') return hasDecoratorOutput(input);
+    return false;
+  }
+}
+```
+
+!! 签名中的状态信息
+
+```ts
+export interface StateSignature extends ChantSignature {
+  kind: 'stateMachine';
+  evidence: {
+    stateTransition: string;
+    fromState: ChantState;
+    toState: ChantState;
+  };
+}
+```
+
+!! 使用示例
+
+```ts
+const stateMachine = new StandardChantStateMachine();
+
+await stateMachine.transition('prepared', { params, route });
+const verse = await verseSource.nextVerse(route.seed);
+
+await stateMachine.transition('collecting', { verse });
+const eventKeys = collector.collect();
+
+await stateMachine.transition('folding', { eventKeys });
+const folded = await pipeline.run({ verse, eventKeys });
+
+await stateMachine.transition('binding', { folded });
+const decorated = await performer.perform({ folded });
+
+await stateMachine.transition('sealed', { decorated });
+```
+
+!! 与技能触发的关系
+
+状态机水印参与可选效果匹配。例如配方要求：
+
+```ts
+{
+  id: 'reduceCooldown',
+  sequence: ['stateMachine', 'commandTrace', 'repository', 'decorator'],
+  constraints: {
+    stateMustAdvance: true,
+  },
+}
+```
+
+要求状态从`collecting`推进到`folding`再到`binding`，每步都产生有效签名。
+

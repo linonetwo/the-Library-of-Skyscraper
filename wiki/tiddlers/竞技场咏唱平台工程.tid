@@ -1,0 +1,264 @@
+title: 竞技场咏唱平台工程
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 签名与源码文件的绑定
+
+咏唱签名必须精确归因到产生它的源码位置。平台通过以下方式实现：
+
+* 玩家提交 TS 源码。
+* 平台编译前扫描 AST，生成 `SourceManifest`。
+* 每个注册到咏唱系统的类、方法、函数都会拿到稳定 `SourceRef`。
+* 平台 SDK 生成签名时，从运行时上下文读取当前 `SourceRef`。
+
+```ts
+export interface SourceRef {
+  modulePath: string;
+  exportName?: string;
+  className?: string;
+  methodName?: string;
+  startLine: number;
+  endLine: number;
+  fileLineCount: number;
+  maxLineLength: number;
+  functionLineCount: number;
+  complexity: number;
+  contentHash: string;
+}
+```
+
+签名中存储：
+
+```ts
+export interface ChantSignature {
+  producer: {
+    objectId: string;
+    sourceRef: SourceRef;
+  };
+  lineage: {
+    inputIds: string[];
+    outputId: string;
+    sourceRefs: SourceRef[];
+  };
+}
+```
+
+!! 技能状态反馈的工程实现
+
+技能释放后的状态反馈不通过独立API返回，而是作为咏唱事件窗口。平台在技能系统内部触发事件，咏唱运行时订阅这些事件。
+
+```ts
+export interface SkillEventRuntime {
+  on(event: 'projectileCollision', handler: (key: EventKey) => void): Subscription;
+  on(event: 'targetHit', handler: (key: EventKey) => void): Subscription;
+  on(event: 'areaDamage', handler: (key: EventKey) => void): Subscription;
+  on(event: 'projectileMovement', handler: (key: EventKey) => void): Subscription;
+}
+```
+
+技能系统触发事件：
+
+```ts
+class ProjectileSkillSystem {
+  constructor(private eventRuntime: SkillEventRuntime) {}
+
+  onCollision(projectileId: string, targetId: string): void {
+    const key = EventKey.generate({ projectileId, targetId, timestamp: Date.now() });
+    this.eventRuntime.emit('projectileCollision', key);
+  }
+
+  onHit(projectileId: string, targetId: string, damage: number): void {
+    const key = EventKey.generate({ projectileId, targetId, damage });
+    this.eventRuntime.emit('targetHit', key);
+  }
+}
+```
+
+!! 环境状态查询的工程实现
+
+环境状态同样通过咏唱API查询，平台在内部维护环境状态缓存。
+
+```ts
+export interface EnvironmentRuntime {
+  queryAreaPower(sector: string): Promise<AreaPowerStatus>;
+  subscribeEnemyPositions(sector: string): Observable<EnemyPosition[]>;
+  readTerrain(coord: Coordinate): Promise<TerrainInfo>;
+  queryNodeStatus(nodeId: string): Promise<NodeStatus>;
+}
+
+class EnvironmentService implements EnvironmentRuntime {
+  private cache = new Map<string, CacheEntry>();
+
+  async queryAreaPower(sector: string): Promise<AreaPowerStatus> {
+    const cached = this.cache.get(`power:${sector}`);
+    if (cached && !cached.expired()) return cached.value;
+    const status = await this.internal.querySectorPower(sector);
+    this.cache.set(`power:${sector}`, { value: status, expiresAt: Date.now() + 5000 });
+    return status;
+  }
+}
+```
+
+!! 运行时 SourceRef 传递
+
+平台控制 DI 容器和咏唱 SDK，通过 `sourceTracked` 包装能力对象：
+
+```ts
+function sourceTracked<T extends object>(
+  instance: T,
+  sourceRef: SourceRef,
+): T {
+  return new Proxy(instance, {
+    get(target, property, receiver) {
+      const value = Reflect.get(target, property, receiver);
+      if (typeof value !== 'function') return value;
+
+      return (...args: unknown[]) => {
+        return SourceContext.run(sourceRef, () =>
+          value.apply(target, args),
+        );
+      };
+    },
+  });
+}
+```
+
+平台 SDK 生成签名时读取当前上下文：
+
+```ts
+class PipelineRuntime {
+  async emitSignature(
+    input: OpaqueSeal,
+    output: OpaqueSeal,
+  ): Promise<ChantSignature> {
+    const sourceRef = SourceContext.current();
+
+    return {
+      kind: 'pipeline',
+      producer: {
+        objectId: SourceContext.objectId(),
+        sourceRef,
+      },
+      lineage: {
+        inputIds: [input.id],
+        outputId: output.id,
+        sourceRefs: [...input.sourceRefs, sourceRef],
+      },
+      quality: 1,
+    };
+  }
+}
+```
+
+这样每个签名自然知道来自哪个文件、哪一行、哪个类、哪个方法。
+
+!! 文件长度损耗
+
+文件长度直接影响该文件产出的签名品质。
+
+```ts
+function fileMultiplier(ref: SourceRef): number {
+  if (ref.fileLineCount <= 180 && ref.maxLineLength <= 100) return 1.05;
+  if (ref.fileLineCount <= 260 && ref.maxLineLength <= 120) return 1.0;
+  if (ref.fileLineCount <= 420) return 0.85;
+  if (ref.fileLineCount <= 650) return 0.65;
+  return 0.4;
+}
+```
+
+签名品质计算：
+
+```ts
+function signatureQuality(signature: ChantSignature): number {
+  const direct = fileMultiplier(signature.producer.sourceRef);
+  const lineage = weightedAverage(
+    signature.lineage.sourceRefs.map(ref => fileMultiplier(ref)),
+  );
+  return signature.quality * direct * (0.8 + 0.2 * lineage);
+}
+```
+
+超长文件产出的签名会整体缩水。如果该文件参与很多血缘链，影响还会扩散到下游签名。
+
+!! 噪声分类的工程实现
+
+噪声池是 verifier 的分类结果，不是抽象概念。
+
+```ts
+export type SignatureClass =
+  | 'effective'
+  | 'supporting'
+  | 'noise'
+  | 'invalid';
+
+export interface ClassifiedSignature {
+  signature: ChantSignature;
+  class: SignatureClass;
+  reasons: string[];
+}
+```
+
+验证流程：
+
+```ts
+const ledger = new SignatureLedger(proof.signatures);
+const matched = patternMatcher.match(ledger, recipe);
+const lineage = lineageVerifier.verify(ledger);
+const source = sourceAttribution.verify(ledger);
+const noise = noiseClassifier.classify({ ledger, matched, lineage, source });
+const score = qualityAggregator.aggregate({ matched, noise, source });
+```
+
+分类规则：
+
+```ts
+class NoiseClassifier {
+  classify(input: ClassifyInput): ClassifiedSignature[] {
+    return input.ledger.signatures.map(signature => {
+      if (!signatureIsAuthentic(signature)) {
+        return invalid(signature, 'signature verification failed');
+      }
+
+      if (input.matched.has(signature.id)) {
+        return effective(signature);
+      }
+
+      if (!signature.lineage.consumedBy && !isAllowedSupportSignature(signature)) {
+        return noise(signature, 'output was never consumed');
+      }
+
+      if (dedupeKeyRepeated(signature, input.ledger)) {
+        return noise(signature, 'dedupe key repeated');
+      }
+
+      if (signature.lineage.inputIds.length > 0 && inputOutputUnchanged(signature)) {
+        return noise(signature, 'no information gain');
+      }
+
+      if (sameSourceSameBehavior(signature, input.ledger)) {
+        return noise(signature, 'same source produced same behavior');
+      }
+
+      return supporting(signature);
+    });
+  }
+}
+```
+
+噪声签名不触发可选效果，并拖低整体证明品质：
+
+```ts
+const noisePenalty = Math.min(0.3, noiseCount / totalCount * 0.5);
+const finalQuality = effectiveQuality * (1 - noisePenalty);
+```
+
+!! 验证服务职责
+
+| 服务 | 职责 |
+| --- | --- |
+| `SourceAttributionService` | 把签名归因到文件、类、方法 |
+| `SignatureLedger` | 保存有序签名数组和索引 |
+| `PatternMatcher` | 匹配三联水印、可选效果、顺序规则 |
+| `LineageVerifier` | 检查前后输入输出和消费关系 |
+| `NoiseClassifier` | 把签名分成 effective / supporting / noise / invalid |
+| `QualityAggregator` | 计算文件长度损耗、噪声惩罚和最终品质 |
+

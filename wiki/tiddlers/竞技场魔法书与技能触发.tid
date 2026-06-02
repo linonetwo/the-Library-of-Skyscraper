@@ -1,0 +1,189 @@
+title: 竞技场魔法书与技能触发
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 魔法书与技能触发方式
+
+技能没有直接代码级API。玩家无法在代码中直接调用 `blink()` 或 `strike()`。所有技能释放都通过签名链模式匹配触发。
+
+魔法书是图书馆中的掉落物品，记载特定技能的触发配方。玩家在游戏内找到魔法书后，得知某个技能需要怎样的签名链模式才能触发。
+
+```ts
+export interface Spellbook {
+  id: string;
+  name: string;
+  skillId: string;
+  triggerRecipes: TriggerRecipe[];
+  discovered: boolean;
+}
+```
+
+!! 触发配方
+
+配方定义签名链中需要匹配的连续片段：
+
+```ts
+export interface TriggerRecipe {
+  id: string;
+  description: string;
+  requiredSequences: SequenceConstraint[];
+  optionalEffects: SequenceConstraint[];
+}
+
+export interface SequenceConstraint {
+  id: string;
+  repeat: number;
+  sequence: WatermarkKind[];
+  constraints: PatternConstraints;
+}
+```
+
+示例：闪现技能配方
+
+```ts
+const blinkRecipe: TriggerRecipe = {
+  id: 'blinkMobility',
+  description: '短距离空间跃迁',
+  requiredSequences: [
+    {
+      id: 'baseActivation',
+      repeat: 1,
+      sequence: ['observer', 'pipeline', 'decorator'],
+      constraints: {
+        contiguous: true,
+        pipelineConsumesObserverOutput: true,
+        decoratorConsumesPipelineOutput: true,
+      },
+    },
+  ],
+  optionalEffects: [
+    {
+      id: 'shorterPreparation',
+      repeat: 3,
+      sequence: ['observer', 'pipeline', 'decorator'],
+      constraints: {
+        contiguous: true,
+        distinctEventWindows: true,
+        distinctDecoratorSlots: true,
+      },
+    },
+    {
+      id: 'longerRange',
+      repeat: 2,
+      sequence: ['factoryMethod', 'pipeline', 'pipeline', 'decorator'],
+      constraints: {
+        distinctFactorySources: true,
+        pipelineStepsMustDiffer: true,
+      },
+    },
+    {
+      id: 'cooldownReduction',
+      repeat: 1,
+      sequence: ['stateMachine', 'commandTrace', 'repository', 'decorator'],
+      constraints: {
+        stateMustAdvance: true,
+        commandMustBeReplayable: true,
+      },
+    },
+  ],
+};
+```
+
+!! 赛周新增配方
+
+每赛周可能新增魔法书，记载新技能或已有技能的新触发方式。已有的常用技能保持稳定，不会全局随机调整。
+
+```ts
+// 赛周新增：碰撞后爆炸
+const collisionExplosionRecipe: TriggerRecipe = {
+  id: 'collisionExplosion',
+  description: 'projectile 碰撞后触发范围爆炸',
+  requiredSequences: [
+    {
+      id: 'collisionDetection',
+      repeat: 1,
+      sequence: ['observer'],
+      constraints: {
+        eventTopic: 'projectileCollision',
+        distinctEventWindows: true,
+      },
+    },
+  ],
+  optionalEffects: [
+    {
+      id: 'largerBlast',
+      repeat: 2,
+      sequence: ['observer', 'pipeline', 'decorator'],
+      constraints: {
+        eventTopic: 'areaDamage',
+        distinctEventWindows: true,
+      },
+    },
+  ],
+};
+```
+
+!! 技能状态反馈作为咏唱API
+
+技能释放后，其状态反馈不通过独立API返回，而是作为咏唱API中的事件源。玩家通过观察者模式订阅这些事件。
+
+例如一个 projectile 技能：
+
+| 反馈类型 | 咏唱API事件 | 获取方式 |
+| --- | --- | --- |
+| 碰撞检测 | `projectileCollision` | 订阅事件窗口 |
+| 命中回调 | `targetHit` | 订阅回调事件 |
+| 范围命中 | `areaDamage` | 订阅范围事件 |
+| 飞行轨迹 | `projectileMovement` | 订阅位置更新 |
+
+```ts
+class CollisionDetector {
+  private collisionKey?: EventKey;
+
+  attach(events: EventKeyRuntime): void {
+    events.on('projectileCollision', key => {
+      this.collisionKey = key;
+    });
+  }
+
+  async produce(): Promise<ObserverSeal> {
+    if (!this.collisionKey) throw new MissingEventError('projectileCollision');
+    return observerRuntime.fromEventKey({
+      key: this.collisionKey,
+      topic: 'projectileCollision',
+    });
+  }
+}
+```
+
+碰撞后爆炸的组合效果：
+
+```ts
+const explosionChain = new ChantChainBuilder()
+  .withObserver(new CollisionDetector())
+  .withPipeline(new BlastRadiusStep())
+  .withDecorator(new ExplosionAmplifier())
+  .build();
+```
+
+!! 环境状态作为咏唱API
+
+地图环境状态同样通过咏唱API查询，不是独立接口：
+
+| 环境信息 | 咏唱API | 获取方式 |
+| --- | --- | --- |
+| 区域供能状态 | `areaPower.query()` | 仓储查询或事件订阅 |
+| 敌方位置 | `enemyPositions.subscribe()` | 观察者订阅 |
+| 地形信息 | `terrain.read()` | 适配器读取 |
+| 能量节点状态 | `nodeStatus.query()` | 状态机查询 |
+
+```ts
+class AreaPowerQuery implements ChantStep {
+  async execute(context: ChantContext): Promise<QuerySeal> {
+    const status = await context.codex.areaPower.query({
+      sector: context.params.targetSector,
+    });
+    return queryRuntime.seal(status);
+  }
+}
+```
+

@@ -1,0 +1,125 @@
+title: 观察者模式与事件响应
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 观察者模式在咏唱中的作用
+
+观察者模式用于订阅咏唱事件窗口，获取技能状态反馈和环境变化。事件key只能在订阅回调中获得，无法通过直接调用来获取。
+
+!! 核心接口
+
+```ts
+export interface ChantEventRuntime {
+  on<T extends ChantEventKey>(
+    event: ChantEventTopic,
+    handler: (key: T) => void,
+  ): Subscription;
+}
+
+type ChantEventTopic =
+  | 'meterPulse'
+  | 'areaShift'
+  | 'projectileCollision'
+  | 'targetHit'
+  | 'areaDamage'
+  | 'projectileMovement'
+  | 'enemyInterference'
+  | 'artifactResonance'
+  | 'chantWindowOpen';
+```
+
+!! 技能状态反馈
+
+技能释放后的状态反馈通过咏唱事件窗口传递。平台在技能系统内部触发事件：
+
+```ts
+class ProjectileSkillSystem {
+  constructor(private events: ChantEventRuntime) {}
+
+  onCollision(projectileId: string, targetId: string): void {
+    const key = EventKey.generate({
+      projectileId,
+      targetId,
+      timestamp: Date.now(),
+    });
+    this.events.emit('projectileCollision', key);
+  }
+}
+```
+
+玩家订阅这些事件来获取技能状态：
+
+```ts
+class ProjectileCollisionObserver {
+  private collisionKey?: CollisionEventKey;
+  private subscription?: Subscription;
+
+  attach(events: ChantEventRuntime): void {
+    this.subscription = events.on('projectileCollision', key => {
+      this.collisionKey = key;
+    });
+  }
+
+  async produce(): Promise<ObserverSeal> {
+    if (!this.collisionKey) {
+      throw new MissingEventKeyError('projectileCollision');
+    }
+
+    return observerRuntime.fromEventKey({
+      key: this.collisionKey,
+      topic: 'projectileCollision',
+    });
+  }
+}
+```
+
+!! 环境状态事件
+
+```ts
+class AreaShiftObserver {
+  private shiftKey?: AreaShiftKey;
+
+  attach(events: ChantEventRuntime): void {
+    events.on('areaShift', key => {
+      this.shiftKey = key;
+    });
+  }
+
+  async produce(): Promise<ObserverSeal> {
+    if (!this.shiftKey) throw new MissingEventKeyError('areaShift');
+    return observerRuntime.fromEventKey({
+      key: this.shiftKey,
+      topic: 'areaShift',
+    });
+  }
+}
+```
+
+!! 组合使用
+
+碰撞检测后触发爆炸效果的咏唱：
+
+```ts
+const collisionObserver = new ProjectileCollisionObserver();
+collisionObserver.attach(context.events);
+
+const areaObserver = new AreaShiftObserver();
+areaObserver.attach(context.events);
+
+const collisionSeal = await collisionObserver.produce();
+const areaSeal = await areaObserver.produce();
+
+const pipeline = context.pipelines
+  .start(new DetectCollisionStep())
+  .then(new CalculateBlastRadiusStep())
+  .then(new ApplyAreaDamageStep());
+
+const result = await pipeline.run({
+  collision: collisionSeal,
+  area: areaSeal,
+});
+```
+
+!! 反投机
+
+事件key绑定窗口和时间戳，旧key无法复用。平台验证`windowId`和`timestamp`，复制旧签名无效。
+

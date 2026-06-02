@@ -1,0 +1,192 @@
+title: 装备与增幅
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 装饰器模式在咏唱中的作用
+
+装饰器给咏唱流程附加能力。魔法书、法杖、技术法术遗物作为装饰器包裹performer，不改主流程，只追加签名。
+
+!! 核心接口
+
+```ts
+export interface ChantPerformer {
+  perform(input: ChantPerformInput): Promise<ChantPerformOutput>;
+}
+```
+
+!! 基础实现
+
+```ts
+export class BasicChantPerformer implements ChantPerformer {
+  constructor(
+    private bus: ChantCommandBus,
+    private pipelineFactory: PipelineFactory,
+  ) {}
+
+  async perform(input: ChantPerformInput): Promise<ChantPerformOutput> {
+    const piped = await this.pipelineFactory
+      .create(input.route)
+      .run(input.material);
+
+    return {
+      output: piped.output,
+      trace: piped.trace,
+    };
+  }
+}
+```
+
+!! 法杖增幅装饰器
+
+```ts
+export class WandAmplifier implements ChantPerformer {
+  constructor(
+    private inner: ChantPerformer,
+    private wand: EquippedWand,
+  ) {}
+
+  async perform(input: ChantPerformInput): Promise<ChantPerformOutput> {
+    const output = await this.inner.perform(input);
+
+    if (!this.wand.matches(input.params.preferredSource)) {
+      return output;
+    }
+
+    const amplified = await input.context.codex.artifact.attune({
+      artifactId: this.wand.id,
+      boundVerse: output.output,
+      slot: 'wand:range',
+    });
+
+    return {
+      ...output,
+      output: amplified.boundVerse,
+      artifactTrace: [
+        ...output.artifactTrace,
+        {
+          artifactId: this.wand.id,
+          slot: 'wand:range',
+          sealId: amplified.id,
+        },
+      ],
+    };
+  }
+}
+```
+
+!! 魔法书计量装饰器
+
+```ts
+export class SpellbookMeterDecorator implements ChantPerformer {
+  constructor(
+    private inner: ChantPerformer,
+    private spellbook: EquippedSpellbook,
+  ) {}
+
+  async perform(input: ChantPerformInput): Promise<ChantPerformOutput> {
+    const output = await this.inner.perform(input);
+
+    const meter = await input.context.codex.artifact.readMeter({
+      artifactId: this.spellbook.id,
+      boundVerse: output.output,
+    });
+
+    return {
+      ...output,
+      output: meter.boundVerse,
+      artifactTrace: [
+        ...output.artifactTrace,
+        {
+          artifactId: this.spellbook.id,
+          slot: 'spellbook:meter',
+          sealId: meter.id,
+        },
+      ],
+    };
+  }
+}
+```
+
+!! 技术法术遗物稳定器
+
+```ts
+export class RelicStabilityDecorator implements ChantPerformer {
+  constructor(
+    private inner: ChantPerformer,
+    private relic: TechRelic,
+  ) {}
+
+  async perform(input: ChantPerformInput): Promise<ChantPerformOutput> {
+    const output = await this.inner.perform(input);
+
+    if (input.context.clock.currentTick() > this.relic.stabilityWindow) {
+      return output;
+    }
+
+    const stabilized = await input.context.codex.artifact.stabilize({
+      artifactId: this.relic.id,
+      boundVerse: output.output,
+      slot: 'relic:stability',
+    });
+
+    return {
+      ...output,
+      output: stabilized.boundVerse,
+      artifactTrace: [
+        ...output.artifactTrace,
+        {
+          artifactId: this.relic.id,
+          slot: 'relic:stability',
+          sealId: stabilized.id,
+        },
+      ],
+    };
+  }
+}
+```
+
+!! 多重装饰器组合
+
+```ts
+let performer: ChantPerformer = new BasicChantPerformer(bus, pipelineFactory);
+
+for (const artifact of context.equipment) {
+  if (artifact.type === 'wand') {
+    performer = new WandAmplifier(performer, artifact);
+  } else if (artifact.type === 'spellbook') {
+    performer = new SpellbookMeterDecorator(performer, artifact);
+  } else if (artifact.type === 'relic') {
+    performer = new RelicStabilityDecorator(performer, artifact);
+  }
+}
+
+performer = new LoggedChantDecorator(performer, context.logger);
+```
+
+!! 签名中的装饰器信息
+
+```ts
+export interface DecoratorSignature extends ChantSignature {
+  kind: 'decorator';
+  evidence: {
+    decoratorSlot: string;
+    artifactId?: string;
+  };
+}
+```
+
+!! 与技能触发的关系
+
+装饰器水印是配方匹配的关键。闪现增强配方可能要求：
+
+```ts
+{
+  id: 'shorterPreparation',
+  sequence: ['observer', 'pipeline', 'decorator'],
+  constraints: {
+    distinctDecoratorSlots: true,
+  },
+}
+```
+
+需要来自不同槽位的装饰器签名。
+

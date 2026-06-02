@@ -1,0 +1,116 @@
+title: 签名链模型
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 签名链模型
+
+咏唱证明的核心是签名链，一个按生成顺序排列的签名数组。
+
+```ts
+export interface ChantProof {
+  proofId: string;
+  sessionId: string;
+  paramsHash: string;
+  environmentHash: string;
+  signatures: ChantSignature[];
+}
+```
+
+!! 签名结构
+
+每个签名记录完整的血缘和时序信息：
+
+```ts
+export interface ChantSignature {
+  index: number;
+  kind: WatermarkKind;
+  stage: ChantStage;
+
+  producer: {
+    objectId: string;
+    classId: string;
+    modulePath: string;
+    sourceRef: SourceRef;
+  };
+
+  lineage: {
+    inputIds: string[];
+    outputId: string;
+    consumedBy?: string;
+    sourceRefs: SourceRef[];
+  };
+
+  evidence: {
+    eventTopic?: string;
+    windowId?: string;
+    stateTransition?: string;
+    pipelineStep?: string;
+    decoratorSlot?: string;
+    factorySource?: string;
+  };
+
+  quality: number;
+}
+```
+
+!! 水印类型
+
+```ts
+type WatermarkKind =
+  | 'observer'
+  | 'pipeline'
+  | 'decorator'
+  | 'factoryMethod'
+  | 'stateMachine'
+  | 'commandTrace'
+  | 'adapter'
+  | 'repository'
+  | 'visitor';
+```
+
+!! 有效签名判定
+
+```ts
+function isValidSignature(signature: ChantSignature): boolean {
+  return (
+    signatureIsAuthentic(signature) &&
+    signatureHasSourceRef(signature) &&
+    signatureHasLineage(signature) &&
+    signatureOutputIsConsumed(signature) &&
+    signatureInputOutputChanged(signature) &&
+    !signatureIsRepeated(signature) &&
+    signatureEventWindowIsFresh(signature) &&
+    signaturePassesHiddenCase(signature)
+  );
+}
+```
+
+!! 可选效果匹配
+
+平台读取魔法书配方，在签名链中匹配连续片段：
+
+```ts
+function matchOptionalEffects(
+  signatures: ChantSignature[],
+  recipe: SkillRecipe,
+): MatchedEffect[] {
+  const results: MatchedEffect[] = [];
+
+  for (const effect of recipe.optionalEffects) {
+    const matches = findSequences(signatures, effect.sequence, effect.constraints);
+    results.push({ effectId: effect.id, matches });
+  }
+
+  return results;
+}
+```
+
+!! 反投机
+
+| 投机方式 | 防御机制 |
+| --- | --- |
+| 循环刷同类型签名 | 检查 `producer.objectId` 和 `inputHash/outputHash` |
+| 空类堆叠 | 检查 `changesOutputHash` 和 `passesHiddenCase` |
+| 复制旧签名 | 绑定 `sessionId/paramsHash/environmentHash` |
+| 薄包装 | 检查 `sourceRef.functionLineCount` 和 `complexity` |
+| 跳过血缘 | 检查 `lineage.consumedBy` |
+

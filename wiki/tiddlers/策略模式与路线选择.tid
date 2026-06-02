@@ -1,0 +1,102 @@
+title: 策略模式与路线选择
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 策略模式在咏唱中的作用
+
+策略模式用于根据技能参数和环境条件选择咏唱路线。不同的路线需要调用不同族的API，产生不同的签名序列。
+
+!! 核心接口
+
+```ts
+export interface ChantRouteStrategy {
+  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute;
+}
+
+export interface ChantRoute {
+  id: string;
+  seed: ChantSeed;
+  depth: number;
+  requiredPulseFamily: PowerSourceKind;
+  requiredFamilies: ChantApiFamily[];
+  score: number;
+}
+```
+
+!! 具体策略实现
+
+根据距离选择路线：
+
+```ts
+export class DistanceRouteStrategy implements ChantRouteStrategy {
+  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
+    const depth = params.distance > 20 ? 5 : 3;
+    const requiredFamilies: ChantApiFamily[] = ['archive', 'index', 'hexstone'];
+
+    if (params.distance > 32) {
+      requiredFamilies.push('lattice');
+    }
+
+    return {
+      id: `distance-${depth}`,
+      seed: ChantSeed.from(params.distance, params.targetTags),
+      depth,
+      requiredPulseFamily: params.preferredSource,
+      requiredFamilies,
+      score: depth * 10 - params.riskBudget,
+    };
+  }
+}
+```
+
+根据紧急程度选择：
+
+```ts
+export class UrgencyRouteStrategy implements ChantRouteStrategy {
+  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
+    if (params.urgency === 'high') {
+      return {
+        id: 'urgent-burst',
+        seed: ChantSeed.from(params),
+        depth: 3,
+        requiredPulseFamily: 'hexstonePower',
+        requiredFamilies: ['hexstone', 'prayer'],
+        score: 25,
+      };
+    }
+
+    return {
+      id: 'standard',
+      seed: ChantSeed.from(params),
+      depth: 4,
+      requiredPulseFamily: 'internalPower',
+      requiredFamilies: ['archive', 'index', 'hexstone'],
+      score: 15,
+    };
+  }
+}
+```
+
+!! 组合策略
+
+```ts
+export class CompositeRouteStrategy implements ChantRouteStrategy {
+  constructor(private strategies: ChantRouteStrategy[]) {}
+
+  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
+    const candidates = this.strategies.map(s => s.choose(params, rules));
+
+    return candidates
+      .filter(route =>
+        route.requiredFamilies.every(f => rules.enabledFamilies.includes(f))
+      )
+      .sort((a, b) => b.score - a.score)[0];
+  }
+}
+```
+
+!! 与技能触发的关系
+
+策略模式选择的路由直接影响签名链中`pipeline`和`observer`水印的分布。不同的路线会匹配魔法书中不同的技能触发配方。
+
+例如选择`hexstonePower`路线更容易匹配需要蜂解石供能的闪现增强配方。
+

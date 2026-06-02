@@ -1,0 +1,212 @@
+title: 竞技场跃迁与PVP控制
+created: 20260602000000000
+creator: 林一二
+modified: 20260602000000000
+modifier: 林一二
+tags: 竞技场咏唱证明系统 AI生成
+title: 竞技场跃迁与PVP控制
+
+本条目描述跃迁类技能在咏唱系统中的触发方式。闪现、减速网、反跃迁都通过魔法书配方触发，玩家代码中没有直接调用这些技能的 API。
+
+!! 闪现技能触发配方
+
+魔法书记载的闪现触发配方：
+
+```ts
+const blinkRecipe: SkillRecipe = {
+  id: 'blink-mobility',
+  skillId: 'blink',
+  skillName: '闪现',
+  optionalEffects: [
+    {
+      id: 'reducePreparation',
+      repeat: 3,
+      sequence: ['observer', 'pipeline', 'decorator'],
+      constraints: {
+        contiguous: true,
+        distinctEventWindows: true,
+        distinctDecoratorSlots: true,
+      },
+    },
+    {
+      id: 'increaseRange',
+      repeat: 2,
+      sequence: ['factoryMethod', 'pipeline', 'pipeline', 'decorator'],
+      constraints: {
+        distinctFactorySources: true,
+        pipelineStepsMustDiffer: true,
+      },
+    },
+    {
+      id: 'reduceCooldown',
+      repeat: 1,
+      sequence: ['stateMachine', 'commandTrace', 'repository', 'decorator'],
+      constraints: {
+        stateMustAdvance: true,
+        commandMustBeReplayable: true,
+        repositoryMustUsePriorKnowledge: true,
+      },
+    },
+  ],
+};
+```
+
+!! 闪现咏唱示例
+
+玩家通过咏唱生成签名链，平台匹配配方后自动触发闪现：
+
+```ts
+export class BlinkChant implements ChantProgram<BlinkParams> {
+  configure(container: ChantContainer): void {
+    container.provide(TOKENS.routeStrategy, ctx =>
+      new DistanceRouteStrategy(ctx.rules));
+    container.provide(TOKENS.verseSource, ctx =>
+      new ArchiveVerseAdapter(ctx.codex.archive));
+    container.provide(TOKENS.pulseCollector, ctx =>
+      new MeterPulseCollector(ctx.clock));
+    container.provide(TOKENS.stateMachine, () =>
+      new StandardChantStateMachine());
+    container.provide(TOKENS.pipeline, ctx =>
+      new StandardChantPipeline([
+        new NormalizeFragmentStep(),
+        new BindIndexRangeStep(),
+        new FoldHexstoneStep(),
+      ], ctx));
+  }
+
+  async run(params: BlinkParams, context: ChantContext): Promise<ChantProof> {
+    const strategy = context.container.get(TOKENS.routeStrategy);
+    const source = context.container.get(TOKENS.verseSource);
+    const collector = context.container.get(TOKENS.pulseCollector);
+    const stateMachine = context.container.get(TOKENS.stateMachine);
+    const pipeline = context.container.get(TOKENS.pipeline);
+
+    collector.subscribe('meterPulse');
+
+    await stateMachine.transition('prepared', params);
+    const route = strategy.choose(params);
+    const fragment = await source.nextVerse(route.seed);
+
+    await stateMachine.transition('collecting', { route, fragment });
+    const pulse = await collector.waitFor('meterPulse');
+
+    await stateMachine.transition('folding', { pulse });
+    const bound = await pipeline.run({ fragment, pulse });
+
+    await stateMachine.transition('sealed', { bound });
+
+    return context.codex.seal.finalize({
+      route,
+      eventKeys: [pulse],
+      pipelineTrace: bound.trace,
+      stateTrace: stateMachine.trace(),
+    });
+  }
+}
+```
+
+!! 减速网技能触发配方
+
+```ts
+const slowNetRecipe: SkillRecipe = {
+  id: 'slow-net-control',
+  skillId: 'slowNet',
+  skillName: '减速网',
+  optionalEffects: [
+    {
+      id: 'widerRange',
+      repeat: 2,
+      sequence: ['observer', 'pipeline', 'decorator'],
+      constraints: {
+        eventTopic: 'areaShift',
+        distinctEventWindows: true,
+      },
+    },
+    {
+      id: 'strongerSlow',
+      repeat: 2,
+      sequence: ['factoryMethod', 'pipeline', 'decorator'],
+      constraints: {
+        factorySource: 'prayerPower',
+      },
+    },
+  ],
+};
+```
+
+!! 反跃迁技能触发配方
+
+```ts
+const antiBlinkRecipe: SkillRecipe = {
+  id: 'anti-blink-interference',
+  skillId: 'antiBlink',
+  skillName: '反跃迁干扰',
+  optionalEffects: [
+    {
+      id: 'startupDisruption',
+      repeat: 1,
+      sequence: ['observer', 'stateMachine', 'decorator'],
+      constraints: {
+        eventTopic: 'enemyInterference',
+        stateMustAdvance: true,
+      },
+    },
+    {
+      id: 'signaturePollution',
+      repeat: 1,
+      sequence: ['pipeline', 'commandTrace', 'decorator'],
+      constraints: {
+        pipelineStepsMustDiffer: true,
+        commandMustBeReplayable: true,
+      },
+    },
+  ],
+};
+```
+
+!! 能量来源与跃迁
+
+| 能量来源 | 对跃迁的影响 | 对减速网的影响 | 对反跃迁的影响 |
+| --- | --- | --- | --- |
+| 内力 | 基础距离，标准冷却 | 基础减速比例 | 基础干扰时长 |
+| 蜂解石 | 更远距离，更短准备 | 更大范围 | 更强干扰 |
+| 祈愿力 | 无视部分障碍 | 减速比例提升 | 干扰效果延长 |
+| 区域供能 | 受区域控制影响 | 受区域范围限制 | 受节点状态影响 |
+| 遗物供能 | 法杖增幅距离 | 魔法书增幅范围 | 技术遗物增幅时长 |
+
+!! PVP 中的咏唱策略
+
+减速网延缓敌方启动距离积累：
+
+```ts
+class SlowNetStrategy implements ChantRouteStrategy {
+  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
+    return {
+      id: 'slow-net-trap',
+      seed: ChantSeed.from(params),
+      depth: 4,
+      requiredPulseFamily: 'prayerPower',
+      requiredFamilies: ['prayer', 'index', 'hexstone'],
+      score: 20,
+    };
+  }
+}
+```
+
+反跃迁干扰敌方咏唱状态机：
+
+```ts
+class AntiBlinkStrategy implements ChantRouteStrategy {
+  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
+    return {
+      id: 'anti-blink-interference',
+      seed: ChantSeed.from(params),
+      depth: 3,
+      requiredPulseFamily: 'hexstonePower',
+      requiredFamilies: ['hexstone', 'lattice'],
+      score: 18,
+    };
+  }
+}
+```
+

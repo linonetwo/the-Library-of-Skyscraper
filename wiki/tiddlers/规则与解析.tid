@@ -1,0 +1,179 @@
+title: 规则与解析
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 访问者模式在咏唱中的作用
+
+访问者解析魔法书规则、赛周API文档和技术法术遗物的说明，将其转换为咏唱指令。
+
+!! 核心接口
+
+```ts
+export interface SpellbookNode {
+  accept(visitor: SpellbookVisitor): ChantInstruction;
+}
+
+export interface SpellbookVisitor {
+  visitMeterRule(node: MeterRuleNode): ChantInstruction;
+  visitFoldRule(node: FoldRuleNode): ChantInstruction;
+  visitSequenceRule(node: SequenceRuleNode): ChantInstruction;
+  visitConditionRule(node: ConditionRuleNode): ChantInstruction;
+}
+```
+
+!! 规则节点
+
+```ts
+export class MeterRuleNode implements SpellbookNode {
+  constructor(
+    public family: PowerSourceKind,
+    public minPulses: number,
+  ) {}
+
+  accept(visitor: SpellbookVisitor): ChantInstruction {
+    return visitor.visitMeterRule(this);
+  }
+}
+
+export class SequenceRuleNode implements SpellbookNode {
+  constructor(
+    public sequence: WatermarkKind[],
+    public repeat: number,
+  ) {}
+
+  accept(visitor: SpellbookVisitor): ChantInstruction {
+    return visitor.visitSequenceRule(this);
+  }
+}
+```
+
+!! 访问者实现
+
+```ts
+export class ChantInstructionBuilder implements SpellbookVisitor {
+  private instructions: ChantInstruction[] = [];
+
+  visitMeterRule(node: MeterRuleNode): ChantInstruction {
+    const instruction: ChantInstruction = {
+      action: 'subscribePulse',
+      family: node.family,
+      minPulses: node.minPulses,
+    };
+    this.instructions.push(instruction);
+    return instruction;
+  }
+
+  visitFoldRule(node: FoldRuleNode): ChantInstruction {
+    const instruction: ChantInstruction = {
+      action: 'runPipeline',
+      steps: node.steps,
+    };
+    this.instructions.push(instruction);
+    return instruction;
+  }
+
+  visitSequenceRule(node: SequenceRuleNode): ChantInstruction {
+    const instruction: ChantInstruction = {
+      action: 'matchSequence',
+      sequence: node.sequence,
+      repeat: node.repeat,
+    };
+    this.instructions.push(instruction);
+    return instruction;
+  }
+
+  visitConditionRule(node: ConditionRuleNode): ChantInstruction {
+    const instruction: ChantInstruction = {
+      action: 'conditionalBranch',
+      condition: node.condition,
+      thenBranch: node.thenBranch.accept(this),
+      elseBranch: node.elseBranch.accept(this),
+    };
+    this.instructions.push(instruction);
+    return instruction;
+  }
+
+  build(): ChantInstruction[] {
+    return this.instructions;
+  }
+}
+```
+
+!! 解释器模式
+
+解析赛周API文档字符串：
+
+```ts
+export class ApiDocumentParser {
+  parse(doc: string): SpellbookNode[] {
+    const lines = doc.split('\n');
+    const nodes: SpellbookNode[] = [];
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('METER:')) {
+        nodes.push(this.parseMeterRule(trimmed));
+      } else if (trimmed.startsWith('SEQ:')) {
+        nodes.push(this.parseSequenceRule(trimmed));
+      } else if (trimmed.startsWith('IF:')) {
+        nodes.push(this.parseConditionRule(trimmed));
+      }
+    }
+
+    return nodes;
+  }
+
+  private parseMeterRule(line: string): MeterRuleNode {
+    const [, family, min] = line.split(':');
+    return new MeterRuleNode(family as PowerSourceKind, parseInt(min));
+  }
+
+  private parseSequenceRule(line: string): SequenceRuleNode {
+    const [, seq, repeat] = line.split(':');
+    return new SequenceRuleNode(
+      seq.split(',') as WatermarkKind[],
+      parseInt(repeat),
+    );
+  }
+}
+```
+
+!! 使用示例
+
+```ts
+const parser = new ApiDocumentParser();
+const nodes = parser.parse(weeklyApiDoc);
+
+const builder = new ChantInstructionBuilder();
+for (const node of nodes) {
+  node.accept(builder);
+}
+
+const instructions = builder.build();
+```
+
+!! 签名中的解析信息
+
+```ts
+export interface VisitorSignature extends ChantSignature {
+  kind: 'visitor';
+  evidence: {
+    parsedNodes: number;
+    instructionTypes: string[];
+  };
+}
+```
+
+!! 与技能触发的关系
+
+访问者水印证明玩家解析了魔法书规则。配方可能要求：
+
+```ts
+{
+  id: 'ruleAwareBonus',
+  constraints: {
+    visitorSignatureCount: { min: 1 },
+    parsedMagicBook: true,
+  },
+}
+```
+

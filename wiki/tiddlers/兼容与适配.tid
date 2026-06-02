@@ -1,0 +1,136 @@
+title: 兼容与适配
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 适配器模式在咏唱中的作用
+
+适配器把平台提供的赛周API统一成玩家内部接口。赛周API结构长期稳定但输入输出形状可能微调，适配器隔离变化。
+
+!! 核心接口
+
+```ts
+export interface VerseSource {
+  nextVerse(seed: ChantSeed): Promise<PageFragment>;
+}
+
+export interface EventCollector {
+  attach(runtime: ChantEventRuntime): void;
+  collect(): EventKey[];
+}
+```
+
+!! 档案适配器
+
+```ts
+export class ArchiveVerseAdapter implements VerseSource {
+  constructor(private archive: ArchiveApi) {}
+
+  async nextVerse(seed: ChantSeed): Promise<PageFragment> {
+    const page = await this.archive.openUnstablePage({
+      pageHint: seed.pageHint,
+      salt: seed.salt,
+    });
+
+    return this.archive.readMarginalia({
+      page,
+      margin: seed.margin,
+      readingOrder: seed.readingOrder,
+    });
+  }
+}
+```
+
+!! 索引适配器
+
+```ts
+export class IndexVerseAdapter implements VerseSource {
+  constructor(private index: IndexApi) {}
+
+  async nextVerse(seed: ChantSeed): Promise<PageFragment> {
+    const range = await this.index.resolveRange(seed.indexHint);
+
+    return this.index.readFragment({
+      range,
+      citation: seed.citation,
+    });
+  }
+}
+```
+
+!! 魔法书适配器
+
+```ts
+export class SpellbookAdapter implements VerseSource {
+  constructor(private spellbook: SpellbookApi) {}
+
+  async nextVerse(seed: ChantSeed): Promise<PageFragment> {
+    return this.spellbook.turnPage({
+      pageIndex: seed.pageIndex,
+      chapter: seed.chapter,
+    });
+  }
+}
+```
+
+!! 事件收集器适配器
+
+```ts
+export class MeterPulseCollectorAdapter implements EventCollector {
+  private keys: EventKey[] = [];
+
+  attach(runtime: ChantEventRuntime): void {
+    runtime.on('meterPulse', key => this.keys.push(key));
+    runtime.on('hexstoneResonance', key => this.keys.push(key));
+  }
+
+  collect(): EventKey[] {
+    return this.keys;
+  }
+}
+```
+
+!! 组合使用
+
+```ts
+function createVerseSource(
+  codex: ChantCodex,
+  params: ChantParams,
+): VerseSource {
+  switch (params.preferredSource) {
+    case 'hexstonePower':
+      return new ArchiveVerseAdapter(codex.archive);
+    case 'prayerPower':
+      return new IndexVerseAdapter(codex.index);
+    case 'artifactPower':
+      return new SpellbookAdapter(codex.artifact);
+    default:
+      return new ArchiveVerseAdapter(codex.archive);
+  }
+}
+```
+
+!! 签名中的适配器信息
+
+```ts
+export interface AdapterSignature extends ChantSignature {
+  kind: 'adapter';
+  evidence: {
+    adapteeFamily: string;
+    targetInterface: string;
+  };
+}
+```
+
+!! 与技能触发的关系
+
+适配器水印证明玩家处理了多族API。配方可能要求：
+
+```ts
+{
+  id: 'multiSourceBonus',
+  constraints: {
+    minAdapters: 2,
+    distinctAdapteeFamilies: true,
+  },
+}
+```
+

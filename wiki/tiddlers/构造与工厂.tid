@@ -1,0 +1,162 @@
+title: 构造与工厂
+tags: 竞技场咏唱证明系统 AI生成
+
+!! 工厂模式在咏唱中的作用
+
+工厂根据能量来源和装备创建不同的咏唱构件。同一接口，不同来源产生不同签名。
+
+!! 核心接口
+
+```ts
+export interface ChantFactory {
+  createBinder(codex: ChantCodex): ChantBinder;
+  createPipeline(context: ChantContext): ChantPipeline;
+}
+
+export interface ChantBinder {
+  bind(input: ChantMaterial): Promise<BoundVerse>;
+}
+```
+
+!! 具体工厂
+
+蜂解石工厂：
+
+```ts
+export class HexstoneChantFactory implements ChantFactory {
+  createBinder(codex: ChantCodex): ChantBinder {
+    return new HexstoneBinder(codex.hexstone, codex.lattice);
+  }
+
+  createPipeline(context: ChantContext): ChantPipeline {
+    return new StandardChantPipeline([
+      new NormalizeFragmentStep(),
+      new FoldHexstoneStep(),
+      new SealLineageStep(),
+    ], context);
+  }
+}
+```
+
+祈愿力工厂：
+
+```ts
+export class PrayerChantFactory implements ChantFactory {
+  createBinder(codex: ChantCodex): ChantBinder {
+    return new PrayerBinder(codex.prayer, codex.archive);
+  }
+
+  createPipeline(context: ChantContext): ChantPipeline {
+    return new StandardChantPipeline([
+      new EchoPrayerStep(),
+      new BindIndexRangeStep(),
+      new SealLineageStep(),
+    ], context);
+  }
+}
+```
+
+遗物工厂：
+
+```ts
+export class ArtifactChantFactory implements ChantFactory {
+  constructor(private artifact: EquippedArtifact) {}
+
+  createBinder(codex: ChantCodex): ChantBinder {
+    return new ArtifactBinder(codex.artifact, this.artifact);
+  }
+
+  createPipeline(context: ChantContext): ChantPipeline {
+    return new StandardChantPipeline([
+      new AttuneArtifactStep(this.artifact),
+      new FoldHexstoneStep(),
+      new SealLineageStep(),
+    ], context);
+  }
+}
+```
+
+!! 签名中的工厂信息
+
+```ts
+export interface FactorySignature extends ChantSignature {
+  kind: 'factoryMethod';
+  evidence: {
+    factorySource: string;
+    productType: string;
+  };
+}
+```
+
+!! 建造者模式
+
+用于逐步装配复杂咏唱证明：
+
+```ts
+export class ChantProofBuilder {
+  private route?: ChantRoute;
+  private eventKeys: EventKey[] = [];
+  private pipelineTrace?: PipelineTrace[];
+  private commandTrace?: ChantCommandTrace[];
+  private stateTrace?: StateTransitionTrace[];
+
+  withRoute(route: ChantRoute): this {
+    this.route = route;
+    return this;
+  }
+
+  withEventKeys(keys: EventKey[]): this {
+    this.eventKeys = keys;
+    return this;
+  }
+
+  withPipelineTrace(trace: PipelineTrace[]): this {
+    this.pipelineTrace = trace;
+    return this;
+  }
+
+  async seal(sealApi: SealApi): Promise<ChantProof> {
+    return sealApi.finalize({
+      route: this.route,
+      eventKeys: this.eventKeys,
+      pipelineTrace: this.pipelineTrace,
+      commandTrace: this.commandTrace,
+      stateTrace: this.stateTrace,
+    });
+  }
+}
+```
+
+!! 使用示例
+
+```ts
+const factory = selectFactory(params.preferredSource, context.equipment);
+const binder = factory.createBinder(context.codex);
+const pipeline = factory.createPipeline(context);
+
+const bound = await binder.bind(material);
+const piped = await pipeline.run(bound);
+
+const proof = await new ChantProofBuilder()
+  .withRoute(route)
+  .withEventKeys(eventKeys)
+  .withPipelineTrace(piped.trace)
+  .seal(context.codex.seal);
+```
+
+!! 与技能触发的关系
+
+工厂水印参与配方匹配。例如：
+
+```ts
+{
+  id: 'increaseRange',
+  sequence: ['factoryMethod', 'pipeline', 'pipeline', 'decorator'],
+  constraints: {
+    distinctFactorySources: true,
+  },
+}
+```
+
+要求工厂来源为`hexstonePower`或`prayerPower`。
+
