@@ -120,6 +120,77 @@ const collisionExplosionRecipe: TriggerRecipe = {
     },
   ],
 };
+
+// 延时爆炸
+const delayedExplosionRecipe: TriggerRecipe = {
+  id: 'delayedExplosion',
+  description: '命中目标后延时触发爆炸',
+  requiredSequences: [
+    {
+      id: 'fuseArming',
+      repeat: 1,
+      sequence: ['stateMachine', 'commandTrace', 'pipeline'],
+      constraints: {
+        stateMustAdvance: true,
+        commandMustBeReplayable: true,
+      },
+    },
+  ],
+  optionalEffects: [
+    {
+      id: 'shorterFuse',
+      repeat: 1,
+      sequence: ['pipeline', 'decorator', 'pipeline'],
+      constraints: {
+        pipelineStepsMustDiffer: true,
+      },
+    },
+    {
+      id: 'largerBlastRadius',
+      repeat: 2,
+      sequence: ['observer', 'pipeline', 'decorator'],
+      constraints: {
+        eventTopic: 'areaDamage',
+        distinctDecoratorSlots: true,
+      },
+    },
+  ],
+};
+
+// 自分裂（分裂弹）
+const splitProjectileRecipe: TriggerRecipe = {
+  id: 'splitProjectile',
+  description: 'projectile 按弹道分裂为多个子弹',
+  requiredSequences: [
+    {
+      id: 'splitBase',
+      repeat: 1,
+      sequence: ['factoryMethod', 'pipeline', 'pipeline'],
+      constraints: {
+        pipelineStepsMustDiffer: true,
+        distinctFactorySources: true,
+      },
+    },
+  ],
+  optionalEffects: [
+    {
+      id: 'moreSplits',
+      repeat: 1,
+      sequence: ['factoryMethod', 'composite', 'decorator'],
+      constraints: {
+        distinctFactorySources: true,
+      },
+    },
+    {
+      id: 'widerSpread',
+      repeat: 1,
+      sequence: ['observer', 'pipeline', 'decorator'],
+      constraints: {
+        distinctDecoratorSlots: true,
+      },
+    },
+  ],
+};
 ```
 
 !! 技能状态反馈作为咏唱API
