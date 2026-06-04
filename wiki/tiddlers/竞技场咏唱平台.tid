@@ -1,16 +1,19 @@
 title: 竞技场咏唱平台
 tags: 竞技场咏唱证明系统 AI生成
 
-咏唱运行时的工程实现。包括平台 API、DI 容器、SourceRef 归因、文件长度损耗、噪声分类和验证服务。
+咏唱运行时的工程实现。技能源码中的咏唱代码通过咏唱过程接口积累签名链，并通过咏唱结束接口提交给游戏运行时。平台负责 SourceRef 归因、文件长度损耗、噪声分类和验证服务。
 
 !! 平台职责
 
 | 服务 | 职责 |
-| --- | --- |
-| `ChantContainer` | 依赖注入容器，注册策略、适配器、管线、状态机等组件 |
-| `ChantCodex` | 咏唱 API 文档，包含 archive、hexstone、prayer、index、lattice、artifact、seal 等 API 族 |
+| `SkillRegistry` | 登记技能 id、描述、源码位置、参数约束和可用条件 |
+| `ActionRuleRuntime` | 执行行动规则，让角色在状态机、状态树或行为模块中调用技能 |
+| `ChantProcessRuntime` | 咏唱过程接口，提供 archive、hexstone、prayer、index、lattice、artifact、seal 等 API 族 |
+| `ChantFinishRuntime` | 咏唱结束接口，接收技能源码提交的一条或多条签名链 |
+| `ChantContainer` | 依赖注入容器，注册策略、适配器、管线、状态机等咏唱组件 |
 | `ChantClock` | 事件时钟，提供脉冲、窗口、节拍和随机事件 key |
-| `ChantRepository` | 仓储接口，缓存赛周 API 探索结果和咏唱中间产物 |
+| `ChantRepository` | 仓储签名接口，记录固定或可签名结果的读写轨迹 |
 | `SourceAttributionService` | 签名归因，把签名绑定到源码文件、类和方法 |
 | `NoiseClassifier` | 噪声分类，把签名分为 effective、supporting、noise、invalid |
 | `QualityAggregator` | 品质聚合，计算文件长度损耗、噪声惩罚和最终品质 |
+| `GameEffectRuntime` | 根据签名链调用顺序匹配游戏效果，并把结果施加到游戏世界 |

@@ -6,9 +6,9 @@ modifier: 林一二
 tags: 竞技场技能触发 AI生成
 title: 竞技场跃迁与PVP控制
 
-本条目描述跃迁类技能在咏唱系统中的触发方式。闪现、减速网、反跃迁都通过魔法书配方触发，玩家代码中没有直接调用这些技能的 API。
+本条目描述跃迁类技能在咏唱系统中的效果匹配方式。行动规则可以直接调用闪现、减速网、反跃迁等技能 id；技能源码中的咏唱代码提交签名链后，游戏运行时根据配方匹配对应游戏效果。
 
-!! 闪现技能触发配方
+!! 闪现游戏效果配方
 
 魔法书记载的闪现触发配方：
 
@@ -53,33 +53,27 @@ const blinkRecipe: SkillRecipe = {
 
 !! 闪现咏唱示例
 
-玩家通过咏唱生成签名链，平台匹配配方后自动触发闪现：
+行动规则调用闪现技能后，技能源码中的咏唱代码生成签名链，并提交给游戏运行时匹配闪现效果：
 
 ```ts
-export class BlinkChant implements ChantProgram<BlinkParams> {
-  configure(container: ChantContainer): void {
-    container.provide(TOKENS.routeStrategy, ctx =>
-      new DistanceRouteStrategy(ctx.rules));
-    container.provide(TOKENS.verseSource, ctx =>
-      new ArchiveVerseAdapter(ctx.codex.archive));
-    container.provide(TOKENS.pulseCollector, ctx =>
-      new MeterPulseCollector(ctx.clock));
-    container.provide(TOKENS.stateMachine, () =>
-      new StandardChantStateMachine());
-    container.provide(TOKENS.pipeline, ctx =>
-      new StandardChantPipeline([
-        new NormalizeFragmentStep(),
-        new BindIndexRangeStep(),
-        new FoldHexstoneStep(),
-      ], ctx));
-  }
+export class BlinkSkill implements SkillDefinition<BlinkParams> {
+  id = 'blink';
+  description = '短距离空间跃迁';
+  sourceRef = SourceRef.fromModule('skills/blink.ts');
 
-  async run(params: BlinkParams, context: ChantContext): Promise<ChantProof> {
-    const strategy = context.container.get(TOKENS.routeStrategy);
-    const source = context.container.get(TOKENS.verseSource);
-    const collector = context.container.get(TOKENS.pulseCollector);
-    const stateMachine = context.container.get(TOKENS.stateMachine);
-    const pipeline = context.container.get(TOKENS.pipeline);
+  async execute(
+    params: BlinkParams,
+    context: SkillExecutionContext,
+  ): Promise<SkillExecutionResult> {
+    const strategy = new DistanceRouteStrategy(context.chant.rules);
+    const source = new ArchiveVerseAdapter(context.chant.codex.archive);
+    const collector = new MeterPulseCollector(context.chant.clock);
+    const stateMachine = new StandardChantStateMachine();
+    const pipeline = new StandardChantPipeline([
+      new NormalizeFragmentStep(),
+      new BindIndexRangeStep(),
+      new FoldHexstoneStep(),
+    ], context.chant);
 
     collector.subscribe('meterPulse');
 
@@ -95,17 +89,24 @@ export class BlinkChant implements ChantProgram<BlinkParams> {
 
     await stateMachine.transition('sealed', { bound });
 
-    return context.codex.seal.finalize({
-      route,
-      eventKeys: [pulse],
-      pipelineTrace: bound.trace,
-      stateTrace: stateMachine.trace(),
+    const receipt = await context.finish.submit({
+      skillId: this.id,
+      paramsHash: hashParams(params),
+      branchId: route.id,
+      signatures: context.chant.codex.seal.collect({
+        route,
+        eventKeys: [pulse],
+        pipelineTrace: bound.trace,
+        stateTrace: stateMachine.trace(),
+      }),
     });
+
+    return { skillId: this.id, receipt };
   }
 }
 ```
 
-!! 减速网技能触发配方
+!! 减速网游戏效果配方
 
 ```ts
 const slowNetRecipe: SkillRecipe = {
@@ -134,7 +135,7 @@ const slowNetRecipe: SkillRecipe = {
 };
 ```
 
-!! 反跃迁技能触发配方
+!! 反跃迁游戏效果配方
 
 ```ts
 const antiBlinkRecipe: SkillRecipe = {
@@ -167,7 +168,6 @@ const antiBlinkRecipe: SkillRecipe = {
 !! 能量来源与跃迁
 
 | 能量来源 | 对跃迁的影响 | 对减速网的影响 | 对反跃迁的影响 |
-| --- | --- | --- | --- |
 | 内力 | 基础距离，标准冷却 | 基础减速比例 | 基础干扰时长 |
 | 蜂解石 | 更远距离，更短准备 | 更大范围 | 更强干扰 |
 | 祈愿力 | 无视部分障碍 | 减速比例提升 | 干扰效果延长 |

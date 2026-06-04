@@ -42,9 +42,9 @@ export interface ChantSignature {
 }
 ```
 
-!! 技能状态反馈的工程实现
+!! 技能事件 key 的工程实现
 
-技能释放后的状态反馈不通过独立API返回，而是作为咏唱事件窗口。平台在技能系统内部触发事件，咏唱运行时订阅这些事件。
+技能释放后的碰撞、命中、范围命中等状态会进入咏唱事件窗口。平台在技能系统内部触发事件，咏唱运行时订阅这些事件并取得可签名 key。
 
 ```ts
 export interface SkillEventRuntime {
@@ -181,7 +181,7 @@ function signatureQuality(signature: ChantSignature): number {
 
 !! 噪声分类的工程实现
 
-噪声池是 verifier 的分类结果，不是抽象概念。
+噪声池由 verifier 的分类结果生成。
 
 ```ts
 export type SignatureClass =
@@ -254,7 +254,6 @@ const finalQuality = effectiveQuality * (1 - noisePenalty);
 !! 验证服务职责
 
 | 服务 | 职责 |
-| --- | --- |
 | `SourceAttributionService` | 把签名归因到文件、类、方法 |
 | `SignatureLedger` | 保存有序签名数组和索引 |
 | `PatternMatcher` | 匹配三联水印、可选效果、顺序规则 |

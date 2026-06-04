@@ -6,24 +6,34 @@ modifier: 林一二
 tags: 竞技场咏唱平台 AI生成
 title: 竞技场咏唱运行时API
 
-本条目描述咏唱运行时提供给玩家的 TypeScript API 草案。
+本条目描述技能源码内部可使用的咏唱运行时 TypeScript API 草案。
 
-技能没有直接代码级 API。玩家编写的咏唱程序通过 DI 容器接入这些 API，生成签名链，平台根据签名链匹配魔法书配方自动触发技能。
+玩家通过编程智能体编写发展规则和行动规则。行动规则可以直接调用角色身上可用的技能；每个技能拥有 id、描述、源码位置、参数约束和可用条件。技能源码内部包含咏唱代码，咏唱代码通过咏唱过程接口生成签名链，并通过咏唱结束接口提交给游戏运行时。
 
 !! 核心接口
 
 ```ts
-export interface ChantProgram<TParams> {
-  configure(container: ChantContainer): void;
-  run(params: TParams, context: ChantContext): Promise<ChantProof>;
+export interface SkillDefinition<TParams> {
+  id: string;
+  description: string;
+  sourceRef: SourceRef;
+  canUse(actor: ActorRef, params: TParams, world: WorldSnapshot): boolean;
+  execute(params: TParams, context: SkillExecutionContext): Promise<SkillExecutionResult>;
+}
+
+export interface SkillExecutionContext {
+  actor: ActorRef;
+  world: WorldSnapshot;
+  chant: ChantProcessRuntime;
+  finish: ChantFinishRuntime;
 }
 
 export interface ChantContainer {
-  provide<T>(token: Token<T>, factory: (ctx: ChantContext) => T): void;
+  provide<T>(token: Token<T>, factory: (ctx: ChantProcessRuntime) => T): void;
   get<T>(token: Token<T>): T;
 }
 
-export interface ChantContext {
+export interface ChantProcessRuntime {
   codex: ChantCodex;
   clock: ChantClock;
   repository: ChantRepository;
@@ -33,11 +43,22 @@ export interface ChantContext {
   events: ChantEventRuntime;
   recipe: ChantRecipeRuntime;
 }
+
+export interface ChantFinishRuntime {
+  submit(input: ChantFinishInput): Promise<GameEffectReceipt>;
+}
+
+export interface ChantFinishInput {
+  skillId: string;
+  paramsHash: string;
+  signatures: ChantSignature[];
+  branchId?: string;
+}
 ```
 
-!! 咏唱 API 文档
+!! 咏唱过程接口文档
 
-平台长期稳定提供以下 API 族：
+平台长期稳定提供以下过程接口族：
 
 ```ts
 export interface ChantCodex {
@@ -62,26 +83,29 @@ type BoundVerse = Opaque<'BoundVerse'>;
 type ChantProof = Opaque<'ChantProof'>;
 ```
 
-!! 咏唱程序入口
+!! 技能源码中的咏唱代码
 
 ```ts
-export class BlinkStrikeChant implements ChantProgram<BlinkStrikeParams> {
-  configure(container: ChantContainer): void {
-    container.provide(TOKENS.routeStrategy, ctx =>
-      new DistanceRouteStrategy(ctx.rules));
-    container.provide(TOKENS.verseSource, ctx =>
-      new ArchiveVerseAdapter(ctx.codex.archive));
-    container.provide(TOKENS.pulseCollector, ctx =>
-      new MeterPulseCollector(ctx.clock));
-    container.provide(TOKENS.pipeline, ctx =>
-      new ChantPipelineFactory(ctx.codex, ctx.rules).create('mobility'));
+export class BlinkStrikeSkill implements SkillDefinition<BlinkStrikeParams> {
+  id = 'blinkStrike';
+  description = '短距离跃迁后进行一次突击';
+  sourceRef = SourceRef.fromModule('skills/blinkStrike.ts');
+
+  canUse(actor: ActorRef, params: BlinkStrikeParams, world: WorldSnapshot): boolean {
+    return world.distance(actor, params.target) <= params.maxRange;
   }
 
-  async run(params: BlinkStrikeParams, context: ChantContext): Promise<ChantProof> {
-    const strategy = context.container.get(TOKENS.routeStrategy);
-    const source = context.container.get(TOKENS.verseSource);
-    const collector = context.container.get(TOKENS.pulseCollector);
-    const pipeline = context.container.get(TOKENS.pipeline);
+  async execute(
+    params: BlinkStrikeParams,
+    context: SkillExecutionContext,
+  ): Promise<SkillExecutionResult> {
+    const strategy = new DistanceRouteStrategy(context.chant.rules);
+    const source = new ArchiveVerseAdapter(context.chant.codex.archive);
+    const collector = new MeterPulseCollector(context.chant.clock);
+    const pipeline = new ChantPipelineFactory(
+      context.chant.codex,
+      context.chant.rules,
+    ).create('mobility');
 
     collector.subscribe();
 
@@ -90,22 +114,73 @@ export class BlinkStrikeChant implements ChantProgram<BlinkStrikeParams> {
     const pulse = await collector.waitFor(route.requiredPulseFamily);
     const bound = await pipeline.run({ fragment, pulse, params });
 
-    return context.codex.seal.finalize({
-      route,
-      eventKeys: [pulse],
-      pipelineTrace: bound.trace,
+    const receipt = await context.finish.submit({
+      skillId: this.id,
+      paramsHash: hashParams(params),
+      branchId: route.id,
+      signatures: context.chant.codex.seal.collect({
+        route,
+        eventKeys: [pulse],
+        pipelineTrace: bound.trace,
+      }),
     });
+
+    return {
+      skillId: this.id,
+      receipt,
+    };
   }
 }
 ```
 
+同一个技能源码可以根据参数或环境分支多次调用咏唱结束接口：
+
+```ts
+if (params.needEscape) {
+  await context.finish.submit({
+    skillId: this.id,
+    paramsHash: hashParams(params),
+    branchId: 'escape',
+    signatures: escapeSignatures,
+  });
+}
+
+if (params.needImpact) {
+  await context.finish.submit({
+    skillId: this.id,
+    paramsHash: hashParams(params),
+    branchId: 'impact',
+    signatures: impactSignatures,
+  });
+}
+```
+
+!! 行动规则调用技能
+
+```ts
+export class CombatActionRule implements ActionRule {
+  tick(actor: ActorRef, world: WorldSnapshot): ActionRuleResult {
+    if (world.enemyInRange(actor, 12)) {
+      return actor.skills.call('blinkStrike', {
+        target: world.nearestEnemy(actor),
+        maxRange: 12,
+      });
+    }
+
+    return actor.actions.holdPosition();
+  }
+}
+```
+
+行动规则负责决定何时调用技能。技能源码负责执行咏唱代码并提交签名链。游戏运行时负责根据签名链匹配游戏效果。
+
 !! 与旧 API 的区别
 
 | 旧机制 | 新机制 |
-| --- | --- |
-| `combatRuntime.createIntent()` | 无。玩家不直接创建意图 |
-| `combatRuntime.cast(result)` | 无。平台自动根据签名链匹配配方触发技能 |
-| `CombatResult` 手动构造 | `ChantProof` 由平台 API 生成，不可伪造 |
-| 技能效果由代码决定 | 技能效果由魔法书配方和签名链匹配决定 |
-| 能量池直接扣除 | 能量来源通过咏唱 API 调用自然消耗 |
+| `combatRuntime.createIntent()` | 行动规则直接调用技能 id |
+| `combatRuntime.cast(result)` | 技能源码调用咏唱结束接口提交签名链 |
+| `CombatResult` 手动构造 | 游戏效果由运行时根据签名链匹配生成 |
+| 旧式独立咏唱程序 | 玩家通过编程智能体维护发展规则、行动规则和技能源码 |
+| 技能效果由咏唱代码决定 | 咏唱代码只生成签名链，效果由游戏运行时匹配 |
+| 能量池直接扣除 | 能量来源通过咏唱过程接口调用自然消耗 |
 

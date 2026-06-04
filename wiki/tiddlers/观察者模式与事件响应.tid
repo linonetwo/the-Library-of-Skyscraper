@@ -3,7 +3,7 @@ tags: 竞技场咏唱设计模式 AI生成
 
 !! 观察者模式在咏唱中的作用
 
-观察者模式用于订阅咏唱事件窗口，获取技能状态反馈和环境变化。事件key只能在订阅回调中获得，无法通过直接调用来获取。
+观察者模式用于订阅咏唱事件窗口，并把接收事件 key 的过程写入签名链。事件 key 只能在订阅回调中获得，无法通过直接调用来获取，因此它能证明玩家确实建立了观察者结构。
 
 !! 核心接口
 
@@ -27,9 +27,9 @@ type ChantEventTopic =
   | 'chantWindowOpen';
 ```
 
-!! 技能状态反馈
+!! 事件 key 证明
 
-技能释放后的状态反馈通过咏唱事件窗口传递。平台在技能系统内部触发事件：
+技能系统内部触发的事件会产生可签名 key。玩家订阅这些事件后生成观察者水印：
 
 ```ts
 class ProjectileSkillSystem {
@@ -46,7 +46,7 @@ class ProjectileSkillSystem {
 }
 ```
 
-玩家订阅这些事件来获取技能状态：
+玩家订阅这些事件来取得可签名 key：
 
 ```ts
 class ProjectileCollisionObserver {
@@ -96,7 +96,7 @@ class AreaShiftObserver {
 
 !! 组合使用
 
-碰撞检测后触发爆炸效果的咏唱：
+用碰撞事件和区域事件生成观察者签名，再把签名交给后续管线：
 
 ```ts
 const collisionObserver = new ProjectileCollisionObserver();

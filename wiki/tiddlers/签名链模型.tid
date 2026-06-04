@@ -107,7 +107,6 @@ function matchOptionalEffects(
 !! 反投机
 
 | 投机方式 | 防御机制 |
-| --- | --- |
 | 循环刷同类型签名 | 检查 `producer.objectId` 和 `inputHash/outputHash` |
 | 空类堆叠 | 检查 `changesOutputHash` 和 `passesHiddenCase` |
 | 复制旧签名 | 绑定 `sessionId/paramsHash/environmentHash` |
