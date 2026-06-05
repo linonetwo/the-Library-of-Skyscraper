@@ -191,68 +191,6 @@ const splitProjectileRecipe: TriggerRecipe = {
     },
   ],
 };
-```
 
-!! 技能事件 key 作为咏唱过程接口
-
-技能释放后的碰撞、命中、范围命中等状态会进入咏唱过程接口的事件源。玩家通过观察者模式订阅这些事件，取得可签名 key。
-
-例如一个 projectile 技能：
-
-| 事件类型 | 咏唱过程接口事件 | 获取方式 |
-| 碰撞检测 | `projectileCollision` | 订阅事件窗口 |
-| 命中回调 | `targetHit` | 订阅回调事件 |
-| 范围命中 | `areaDamage` | 订阅范围事件 |
-| 飞行轨迹 | `projectileMovement` | 订阅位置更新 |
-
-```ts
-class CollisionDetector {
-  private collisionKey?: EventKey;
-
-  attach(events: EventKeyRuntime): void {
-    events.on('projectileCollision', key => {
-      this.collisionKey = key;
-    });
-  }
-
-  async produce(): Promise<ObserverSeal> {
-    if (!this.collisionKey) throw new MissingEventError('projectileCollision');
-    return observerRuntime.fromEventKey({
-      key: this.collisionKey,
-      topic: 'projectileCollision',
-    });
-  }
-}
-```
-
-碰撞后爆炸的组合效果：
-
-```ts
-const explosionChain = new ChantChainBuilder()
-  .withObserver(new CollisionDetector())
-  .withPipeline(new BlastRadiusStep())
-  .withDecorator(new ExplosionAmplifier())
-  .build();
-```
-
-!! 环境状态作为咏唱过程接口
-
-地图环境状态同样通过咏唱过程接口查询，并进入签名链：
-
-| 环境信息 | 咏唱过程接口 | 获取方式 |
-| 区域供能状态 | `areaPower.query()` | 仓储查询或事件订阅 |
-| 敌方位置 | `enemyPositions.subscribe()` | 观察者订阅 |
-| 地形信息 | `terrain.read()` | 适配器读取 |
-| 能量节点状态 | `nodeStatus.query()` | 状态机查询 |
-
-```ts
-class AreaPowerQuery implements ChantStep {
-  async execute(context: ChantContext): Promise<QuerySeal> {
-    const status = await context.codex.areaPower.query({
-      sector: context.params.targetSector,
-    });
-    return queryRuntime.seal(status);
-  }
-}
-```
+配方中的 `sequence` 字段使用设计模式水印，对应关系详见[[竞技场咏唱设计模式]]。技能事件 key 和环境状态查询的咏唱过程接口实现细节，详见[[竞技场咏唱核心]]。
 

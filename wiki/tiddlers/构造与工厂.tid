@@ -8,73 +8,27 @@ tags: 竞技场咏唱设计模式 AI生成
 !! 核心接口
 
 ```ts
-export interface ChantFactory {
-  createBinder(codex: ChantCodex): ChantBinder;
-  createPipeline(context: ChantContext): ChantPipeline;
-}
-
-export interface ChantBinder {
-  bind(input: ChantMaterial): Promise<BoundVerse>;
+export interface FactoryRuntime {
+  create(type: string, input: Seal): Promise<Seal>;
 }
 ```
 
-!! 具体工厂
+!! 使用示例
 
-蜂解石工厂：
+通过工厂运行时创建可签名对象，在签名链上留下工厂方法水印：
 
 ```ts
-export class HexstoneChantFactory implements ChantFactory {
-  createBinder(codex: ChantCodex): ChantBinder {
-    return new HexstoneBinder(codex.hexstone, codex.lattice);
-  }
+// 创建 range 种子
+const rangeSeal = await context.chant.factory.create('rangeSeed', baseSeal);
 
-  createPipeline(context: ChantContext): ChantPipeline {
-    return new StandardChantPipeline([
-      new NormalizeFragmentStep(),
-      new FoldHexstoneStep(),
-      new SealLineageStep(),
-    ], context);
-  }
-}
+// 创建 cooldown 对象
+const cdSeal = await context.chant.factory.create('cooldownObj', stateSeal);
+
+// 创建 blast 配置
+const blastSeal = await context.chant.factory.create('blastConfig', decoratorSeal);
 ```
 
-祈愿力工厂：
-
-```ts
-export class PrayerChantFactory implements ChantFactory {
-  createBinder(codex: ChantCodex): ChantBinder {
-    return new PrayerBinder(codex.prayer, codex.archive);
-  }
-
-  createPipeline(context: ChantContext): ChantPipeline {
-    return new StandardChantPipeline([
-      new EchoPrayerStep(),
-      new BindIndexRangeStep(),
-      new SealLineageStep(),
-    ], context);
-  }
-}
-```
-
-遗物工厂：
-
-```ts
-export class ArtifactChantFactory implements ChantFactory {
-  constructor(private artifact: EquippedArtifact) {}
-
-  createBinder(codex: ChantCodex): ChantBinder {
-    return new ArtifactBinder(codex.artifact, this.artifact);
-  }
-
-  createPipeline(context: ChantContext): ChantPipeline {
-    return new StandardChantPipeline([
-      new AttuneArtifactStep(this.artifact),
-      new FoldHexstoneStep(),
-      new SealLineageStep(),
-    ], context);
-  }
-}
-```
+不同 `type` 参数产生不同的工厂签名，证明玩家通过工厂方法组织了构造路径。
 
 !! 签名中的工厂信息
 
@@ -86,62 +40,6 @@ export interface FactorySignature extends ChantSignature {
     productType: string;
   };
 }
-```
-
-!! 建造者模式
-
-用于逐步装配复杂咏唱证明：
-
-```ts
-export class ChantProofBuilder {
-  private route?: ChantRoute;
-  private eventKeys: EventKey[] = [];
-  private pipelineTrace?: PipelineTrace[];
-  private commandTrace?: ChantCommandTrace[];
-  private stateTrace?: StateTransitionTrace[];
-
-  withRoute(route: ChantRoute): this {
-    this.route = route;
-    return this;
-  }
-
-  withEventKeys(keys: EventKey[]): this {
-    this.eventKeys = keys;
-    return this;
-  }
-
-  withPipelineTrace(trace: PipelineTrace[]): this {
-    this.pipelineTrace = trace;
-    return this;
-  }
-
-  async seal(sealApi: SealApi): Promise<ChantProof> {
-    return sealApi.finalize({
-      route: this.route,
-      eventKeys: this.eventKeys,
-      pipelineTrace: this.pipelineTrace,
-      commandTrace: this.commandTrace,
-      stateTrace: this.stateTrace,
-    });
-  }
-}
-```
-
-!! 使用示例
-
-```ts
-const factory = selectFactory(params.preferredSource, context.equipment);
-const binder = factory.createBinder(context.codex);
-const pipeline = factory.createPipeline(context);
-
-const bound = await binder.bind(material);
-const piped = await pipeline.run(bound);
-
-const proof = await new ChantProofBuilder()
-  .withRoute(route)
-  .withEventKeys(eventKeys)
-  .withPipelineTrace(piped.trace)
-  .seal(context.codex.seal);
 ```
 
 !! 与技能触发的关系

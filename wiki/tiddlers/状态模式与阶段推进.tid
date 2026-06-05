@@ -8,59 +8,30 @@ tags: 竞技场咏唱设计模式 AI生成
 !! 核心接口
 
 ```ts
-export type ChantState =
-  | 'idle'
-  | 'prepared'
-  | 'collecting'
-  | 'folding'
-  | 'binding'
-  | 'sealed'
-  | 'failed';
-
-export interface ChantStateMachine {
-  current: ChantState;
-  transition(next: ChantState, input: unknown): Promise<void>;
-  trace(): StateTransitionTrace[];
+export interface StateMachineRuntime {
+  transition(state: string, input?: Seal): Promise<Seal>;
 }
 ```
 
-!! 状态机实现
+!! 使用示例
+
+通过状态机运行时推进咏唱阶段，在签名链上留下状态机水印：
 
 ```ts
-export class StandardChantStateMachine implements ChantStateMachine {
-  current: ChantState = 'idle';
-  private transitions: StateTransitionTrace[] = [];
+// 准备阶段
+const readySeal = await context.chant.stateMachine.transition('ready', paramsSeal);
 
-  async transition(next: ChantState, input: unknown): Promise<void> {
-    if (!this.canTransition(this.current, next, input)) {
-      this.current = 'failed';
-      throw new InvalidChantStateError(this.current, next);
-    }
+// 收集阶段
+const collectSeal = await context.chant.stateMachine.transition('collecting', sourceSeal);
 
-    this.transitions.push({
-      from: this.current,
-      to: next,
-      at: Date.now(),
-      inputType: typeOf(input),
-    });
+// 处理阶段
+const processSeal = await context.chant.stateMachine.transition('processing', pipelineSeal);
 
-    this.current = next;
-  }
-
-  trace(): StateTransitionTrace[] {
-    return this.transitions;
-  }
-
-  private canTransition(from: ChantState, to: ChantState, input: unknown): boolean {
-    if (from === 'idle' && to === 'prepared') return hasValidParams(input);
-    if (from === 'prepared' && to === 'collecting') return hasRoute(input);
-    if (from === 'collecting' && to === 'folding') return hasEventKeys(input);
-    if (from === 'folding' && to === 'binding') return hasFoldedOutput(input);
-    if (from === 'binding' && to === 'sealed') return hasDecoratorOutput(input);
-    return false;
-  }
-}
+// 封装阶段
+const sealedSeal = await context.chant.stateMachine.transition('sealed', decoratorSeal);
 ```
+
+状态必须按合法顺序推进；跳过阶段或非法迁移会导致该段签名无法被配方匹配。
 
 !! 签名中的状态信息
 
@@ -73,26 +44,6 @@ export interface StateSignature extends ChantSignature {
     toState: ChantState;
   };
 }
-```
-
-!! 使用示例
-
-```ts
-const stateMachine = new StandardChantStateMachine();
-
-await stateMachine.transition('prepared', { params, route });
-const verse = await verseSource.nextVerse(route.seed);
-
-await stateMachine.transition('collecting', { verse });
-const eventKeys = collector.collect();
-
-await stateMachine.transition('folding', { eventKeys });
-const folded = await pipeline.run({ verse, eventKeys });
-
-await stateMachine.transition('binding', { folded });
-const decorated = await performer.perform({ folded });
-
-await stateMachine.transition('sealed', { decorated });
 ```
 
 !! 与技能触发的关系

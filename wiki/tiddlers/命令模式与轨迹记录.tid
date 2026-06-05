@@ -8,102 +8,27 @@ tags: 竞技场咏唱设计模式 AI生成
 !! 核心接口
 
 ```ts
-export interface ChantCommand {
-  readonly name: string;
-  execute(input: ChantCommandInput): Promise<ChantCommandOutput>;
-}
-
-export interface ChantCommandBus {
-  run(command: ChantCommand, input: ChantCommandInput): Promise<ChantCommandOutput>;
-  getTrace(): ChantCommandTrace[];
+export interface CommandRuntime {
+  execute(command: string, input?: Seal): Promise<Seal>;
 }
 ```
 
-!! 具体命令
+!! 使用示例
 
-读取档案片段：
+通过命令运行时执行可追踪操作，在签名链上留下命令轨迹水印：
 
 ```ts
-export class ReadArchiveCommand implements ChantCommand {
-  readonly name = 'readArchive';
+// 执行档案读取命令
+const readSeal = await context.chant.command.execute('readArchive', sourceSeal);
 
-  constructor(private verseSource: VerseSource) {}
+// 执行索引绑定命令
+const bindSeal = await context.chant.command.execute('bindIndex', readSeal);
 
-  async execute(input: ChantCommandInput): Promise<ChantCommandOutput> {
-    const fragment = await this.verseSource.nextVerse(input.route.seed);
-
-    return {
-      ...input,
-      fragments: [...input.fragments, fragment],
-    };
-  }
-}
+// 执行封装命令
+const sealSeal = await context.chant.command.execute('sealOutput', bindSeal);
 ```
 
-绑定索引范围：
-
-```ts
-export class BindIndexCommand implements ChantCommand {
-  readonly name = 'bindIndex';
-
-  constructor(private index: IndexApi) {}
-
-  async execute(input: ChantCommandInput): Promise<ChantCommandOutput> {
-    const citation = await this.index.bindPageRange({
-      fragment: input.latestFragment(),
-      range: input.route.indexRange,
-    });
-
-    return {
-      ...input,
-      citations: [...input.citations, citation],
-    };
-  }
-}
-```
-
-!! 轨迹记录实现
-
-```ts
-export class TracedChantCommandBus implements ChantCommandBus {
-  private trace: ChantCommandTrace[] = [];
-
-  constructor(private logger: ChantLogger) {}
-
-  async run(
-    command: ChantCommand,
-    input: ChantCommandInput,
-  ): Promise<ChantCommandOutput> {
-    const startedAt = performance.now();
-
-    try {
-      const output = await command.execute(input);
-
-      this.trace.push({
-        command: command.name,
-        ok: true,
-        durationMs: performance.now() - startedAt,
-        inputType: typeOfOpaque(input),
-        outputType: typeOfOpaque(output),
-      });
-
-      return output;
-    } catch (error) {
-      this.trace.push({
-        command: command.name,
-        ok: false,
-        durationMs: performance.now() - startedAt,
-        error: String(error),
-      });
-      throw error;
-    }
-  }
-
-  getTrace(): ChantCommandTrace[] {
-    return this.trace;
-  }
-}
-```
+每次 `execute` 调用生成独立的命令签名，记录命令名称和输入输出关系。平台可以重放命令序列验证一致性。
 
 !! 签名中的命令信息
 
@@ -117,26 +42,6 @@ export interface CommandSignature extends ChantSignature {
     outputType: string;
   };
 }
-```
-
-!! 使用示例
-
-```ts
-const bus = new TracedChantCommandBus(context.logger);
-
-const readResult = await bus.run(
-  new ReadArchiveCommand(verseSource),
-  { route, fragments: [] },
-);
-
-const bindResult = await bus.run(
-  new BindIndexCommand(context.codex.index),
-  readResult,
-);
-
-const proof = context.proof.seal({
-  commandTrace: bus.getTrace(),
-});
 ```
 
 !! 与技能触发的关系

@@ -8,159 +8,30 @@ tags: 竞技场咏唱设计模式 AI生成
 !! 核心接口
 
 ```ts
-export interface ChantPerformer {
-  perform(input: ChantPerformInput): Promise<ChantPerformOutput>;
+export interface DecoratorRuntime {
+  apply(input: Seal): Promise<Seal>;
 }
 ```
 
-!! 基础实现
+!! 使用示例
+
+通过装饰器运行时包装已有签名，在签名链上追加装饰器水印：
 
 ```ts
-export class BasicChantPerformer implements ChantPerformer {
-  constructor(
-    private bus: ChantCommandBus,
-    private pipelineFactory: PipelineFactory,
-  ) {}
+// 基础管线结果
+const pipelineSeal = await context.chant.pipeline.run([eventSeal]);
 
-  async perform(input: ChantPerformInput): Promise<ChantPerformOutput> {
-    const piped = await this.pipelineFactory
-      .create(input.route)
-      .run(input.material);
+// 法杖增幅装饰
+const wandSeal = await context.chant.decorator.apply(pipelineSeal);
 
-    return {
-      output: piped.output,
-      trace: piped.trace,
-    };
-  }
-}
+// 魔法书计量装饰
+const spellbookSeal = await context.chant.decorator.apply(wandSeal);
+
+// 遗物稳定装饰
+const finalSeal = await context.chant.decorator.apply(spellbookSeal);
 ```
 
-!! 法杖增幅装饰器
-
-```ts
-export class WandAmplifier implements ChantPerformer {
-  constructor(
-    private inner: ChantPerformer,
-    private wand: EquippedWand,
-  ) {}
-
-  async perform(input: ChantPerformInput): Promise<ChantPerformOutput> {
-    const output = await this.inner.perform(input);
-
-    if (!this.wand.matches(input.params.preferredSource)) {
-      return output;
-    }
-
-    const amplified = await input.context.codex.artifact.attune({
-      artifactId: this.wand.id,
-      boundVerse: output.output,
-      slot: 'wand:range',
-    });
-
-    return {
-      ...output,
-      output: amplified.boundVerse,
-      artifactTrace: [
-        ...output.artifactTrace,
-        {
-          artifactId: this.wand.id,
-          slot: 'wand:range',
-          sealId: amplified.id,
-        },
-      ],
-    };
-  }
-}
-```
-
-!! 魔法书计量装饰器
-
-```ts
-export class SpellbookMeterDecorator implements ChantPerformer {
-  constructor(
-    private inner: ChantPerformer,
-    private spellbook: EquippedSpellbook,
-  ) {}
-
-  async perform(input: ChantPerformInput): Promise<ChantPerformOutput> {
-    const output = await this.inner.perform(input);
-
-    const meter = await input.context.codex.artifact.readMeter({
-      artifactId: this.spellbook.id,
-      boundVerse: output.output,
-    });
-
-    return {
-      ...output,
-      output: meter.boundVerse,
-      artifactTrace: [
-        ...output.artifactTrace,
-        {
-          artifactId: this.spellbook.id,
-          slot: 'spellbook:meter',
-          sealId: meter.id,
-        },
-      ],
-    };
-  }
-}
-```
-
-!! 技术法术遗物稳定器
-
-```ts
-export class RelicStabilityDecorator implements ChantPerformer {
-  constructor(
-    private inner: ChantPerformer,
-    private relic: TechRelic,
-  ) {}
-
-  async perform(input: ChantPerformInput): Promise<ChantPerformOutput> {
-    const output = await this.inner.perform(input);
-
-    if (input.context.clock.currentTick() > this.relic.stabilityWindow) {
-      return output;
-    }
-
-    const stabilized = await input.context.codex.artifact.stabilize({
-      artifactId: this.relic.id,
-      boundVerse: output.output,
-      slot: 'relic:stability',
-    });
-
-    return {
-      ...output,
-      output: stabilized.boundVerse,
-      artifactTrace: [
-        ...output.artifactTrace,
-        {
-          artifactId: this.relic.id,
-          slot: 'relic:stability',
-          sealId: stabilized.id,
-        },
-      ],
-    };
-  }
-}
-```
-
-!! 多重装饰器组合
-
-```ts
-let performer: ChantPerformer = new BasicChantPerformer(bus, pipelineFactory);
-
-for (const artifact of context.equipment) {
-  if (artifact.type === 'wand') {
-    performer = new WandAmplifier(performer, artifact);
-  } else if (artifact.type === 'spellbook') {
-    performer = new SpellbookMeterDecorator(performer, artifact);
-  } else if (artifact.type === 'relic') {
-    performer = new RelicStabilityDecorator(performer, artifact);
-  }
-}
-
-performer = new LoggedChantDecorator(performer, context.logger);
-```
+每次 `apply` 调用生成独立的装饰器签名。多层装饰器组合会在签名链上留下连续的 `decorator` 水印，证明玩家使用了装饰器结构组织咏唱流程。
 
 !! 签名中的装饰器信息
 

@@ -8,95 +8,29 @@ tags: 竞技场咏唱设计模式 AI生成
 !! 核心接口
 
 ```ts
-export interface ChantRouteStrategy {
-  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute;
-}
-
-export interface ChantRoute {
-  id: string;
-  seed: ChantSeed;
-  depth: number;
-  requiredPulseFamily: PowerSourceKind;
-  requiredFamilies: ChantApiFamily[];
-  score: number;
+export interface StrategyRuntime {
+  choose(strategy: string, params: unknown): Promise<Seal>;
 }
 ```
 
-!! 具体策略实现
+!! 使用示例
 
-根据距离选择路线：
+通过策略运行时选择咏唱方案，在签名链上留下策略水印：
 
 ```ts
-export class DistanceRouteStrategy implements ChantRouteStrategy {
-  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
-    const depth = params.distance > 20 ? 5 : 3;
-    const requiredFamilies: ChantApiFamily[] = ['archive', 'index', 'hexstone'];
+// 根据距离选择
+const distanceSeal = await context.chant.strategy.choose('mobility', params);
 
-    if (params.distance > 32) {
-      requiredFamilies.push('lattice');
-    }
+// 根据紧急程度选择
+const urgencySeal = await context.chant.strategy.choose('urgency', params);
 
-    return {
-      id: `distance-${depth}`,
-      seed: ChantSeed.from(params.distance, params.targetTags),
-      depth,
-      requiredPulseFamily: params.preferredSource,
-      requiredFamilies,
-      score: depth * 10 - params.riskBudget,
-    };
-  }
-}
+// 根据敌方配置选择
+const counterSeal = await context.chant.strategy.choose('counter', enemyState);
 ```
 
-根据紧急程度选择：
+不同 `strategy` 参数产生不同的策略签名，证明玩家通过策略模式组织了决策分支。
 
-```ts
-export class UrgencyRouteStrategy implements ChantRouteStrategy {
-  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
-    if (params.urgency === 'high') {
-      return {
-        id: 'urgent-burst',
-        seed: ChantSeed.from(params),
-        depth: 3,
-        requiredPulseFamily: 'hexstonePower',
-        requiredFamilies: ['hexstone', 'prayer'],
-        score: 25,
-      };
-    }
+!! 签名中的策略信息
 
-    return {
-      id: 'standard',
-      seed: ChantSeed.from(params),
-      depth: 4,
-      requiredPulseFamily: 'internalPower',
-      requiredFamilies: ['archive', 'index', 'hexstone'],
-      score: 15,
-    };
-  }
-}
-```
-
-!! 组合策略
-
-```ts
-export class CompositeRouteStrategy implements ChantRouteStrategy {
-  constructor(private strategies: ChantRouteStrategy[]) {}
-
-  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
-    const candidates = this.strategies.map(s => s.choose(params, rules));
-
-    return candidates
-      .filter(route =>
-        route.requiredFamilies.every(f => rules.enabledFamilies.includes(f))
-      )
-      .sort((a, b) => b.score - a.score)[0];
-  }
-}
-```
-
-!! 与技能触发的关系
-
-策略模式选择的路由决定签名链中`pipeline`和`observer`水印的分布。不同路线的价值在于形成不同证明路径，进而匹配魔法书中不同的技能触发配方。
-
-例如选择`hexstonePower`路线更容易形成包含蜂解石供能证明的闪现配方签名。
+签名链中的每个 `Seal` 对象包含一个 `strategy` 字段，表示该签名对应的策略。这使得我们可以追踪玩家在不同技能触发时所采用的策略，从而分析其决策模式。
 

@@ -9,6 +9,55 @@ tags: 竞技场咏唱证明系统 AI生成
 * ''签名链为有序数组''：每次咏唱结束提交一条按生成顺序排列的签名数组。游戏运行时读取这条数组，匹配连续片段并触发游戏效果。
 * ''技能事件 key 是咏唱过程接口的一部分''：碰撞检测、命中回调、范围命中事件等都会在咏唱事件窗口中生成可签名 key。
 * ''环境状态查询是咏唱过程接口的一部分''：区域供能、敌方位置、地形信息等都通过咏唱过程接口查询。
-* ''有效签名依赖血缘与时序''：签名不只看类型数量，还检查输入输出消费关系、事件窗口、阶段推进和对象身份。
+* ''有效签名依赖输入输出关系与时序''：签名不只看类型数量，还检查输入输出消费关系、事件窗口、阶段推进和对象身份。
 * ''循环与表驱动允许存在''：玩家可以用循环做调度，但循环本身无法制造有效签名。投机代码只能生成低价值噪声。
 * ''文件长度影响签名品质''：过长的源码文件会导致该文件产出的签名有百分比损耗，鼓励玩家拆分模块。
+
+!! 技能事件 key 的实现
+
+技能释放后的碰撞、命中、范围命中等状态会进入咏唱过程接口的事件源。玩家通过观察者模式订阅这些事件，取得可签名 key。
+
+| 事件类型 | 咏唱过程接口事件 | 获取方式 |
+| 碰撞检测 | `projectileCollision` | 订阅事件窗口 |
+| 命中回调 | `targetHit` | 订阅回调事件 |
+| 范围命中 | `areaDamage` | 订阅范围事件 |
+| 飞行轨迹 | `projectileMovement` | 订阅位置更新 |
+
+```ts
+// 在当前技能 projectile 碰撞后，等待碰撞事件
+const collision = await context.chant.observer.waitFor('projectileCollision');
+// collision 包含 projectileId、targetId、position、timestamp 等信息
+
+// 将碰撞事件封装为观察者签名
+const observerSeal = await context.chant.observer.seal(collision);
+
+// 用管线组合签名
+const pipelineSeal = await context.chant.pipeline.run([observerSeal]);
+const decoratorSeal = await context.chant.decorator.apply(pipelineSeal);
+```
+
+!! 环境状态查询的实现
+
+地图环境状态同样通过咏唱过程接口查询，并进入签名链：
+
+| 环境信息 | 咏唱过程接口 | 获取方式 |
+| 区域供能状态 | `areaPower.query()` | 仓储查询或事件订阅 |
+| 敌方位置 | `enemyPositions.subscribe()` | 观察者订阅 |
+| 地形信息 | `terrain.read()` | 适配器读取 |
+| 能量节点状态 | `nodeStatus.query()` | 状态机查询 |
+
+```ts
+class AreaPowerQuery {
+  async execute(adapter: AdapterRuntime, sector: string): Promise<Seal> {
+    return adapter.read('areaPower', sector);
+  }
+}
+```
+
+!! 签名凭证的作用
+
+`collision` 事件对象包含具体数据，开发者可以用它做逻辑判断；`observerSeal` 是签名凭证，开发者不能读取其内部内容。签名凭证的唯一作用是在签名链上留下"我使用了观察者模式等待了碰撞事件"的证明。
+
+每次调用咏唱过程接口都会生成一枚签名凭证（`Seal`），按调用顺序组成签名链。咏唱结束时，技能源码通过咏唱结束接口提交整条签名链。游戏运行时验证签名的输入输出关系、事件窗口和文件归因后，根据链上的水印序列匹配对应的游戏效果——例如 `observer → pipeline → decorator` 序列匹配"碰撞后爆炸"效果。
+
+开发者不需要关心 `Seal` 的内部结构，只需要按照游戏效果配方要求的模式序列调用对应的咏唱过程接口，积累足够的水印序列即可。

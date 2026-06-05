@@ -8,85 +8,27 @@ tags: 竞技场咏唱设计模式 AI生成
 !! 核心接口
 
 ```ts
-export interface PipelineStep<I, O> {
-  readonly name: string;
-  handle(input: I, env: ChantEnvironment): Promise<O>;
-}
-
-export interface ChantPipeline {
-  run(input: unknown): Promise<PipelineOutput>;
+export interface PipelineRuntime {
+  run(inputs: Seal[]): Promise<Seal>;
 }
 ```
 
-!! 具体步骤
+!! 使用示例
 
-标准化档案片段：
+通过管线运行时处理多段签名，在签名链上留下管线水印：
 
 ```ts
-export class NormalizeFragmentStep implements PipelineStep<PageFragment, NormalizedFragment> {
-  readonly name = 'normalizeFragment';
+// 单输入管线
+const pipelineSeal1 = await context.chant.pipeline.run([observerSeal]);
 
-  async handle(
-    input: PageFragment,
-    env: ChantEnvironment,
-  ): Promise<NormalizedFragment> {
-    return env.codex.archive.normalize({
-      fragment: input,
-      rules: env.rules.normalization,
-    });
-  }
-}
+// 多输入管线
+const pipelineSeal2 = await context.chant.pipeline.run([sourceSeal, eventSeal]);
+
+// 链式管线
+const pipelineSeal3 = await context.chant.pipeline.run([pipelineSeal2]);
 ```
 
-折叠蜂解石晶面：
-
-```ts
-export class FoldHexstoneStep implements PipelineStep<NormalizedFragment, FoldedSeal> {
-  readonly name = 'foldHexstone';
-
-  async handle(
-    input: NormalizedFragment,
-    env: ChantEnvironment,
-  ): Promise<FoldedSeal> {
-    return env.codex.hexstone.foldFacet({
-      fragment: input,
-      angle: env.params.angleHint,
-    });
-  }
-}
-```
-
-!! 管线实现
-
-```ts
-export class StandardChantPipeline implements ChantPipeline {
-  constructor(
-    private steps: PipelineStep<unknown, unknown>[],
-    private env: ChantEnvironment,
-  ) {}
-
-  async run(input: unknown): Promise<PipelineOutput> {
-    let current: unknown = input;
-    const trace: PipelineTrace[] = [];
-
-    for (const step of this.steps) {
-      const before = current;
-      current = await step.handle(current, this.env);
-
-      trace.push({
-        step: step.name,
-        inputType: typeOfOpaque(before),
-        outputType: typeOfOpaque(current),
-      });
-    }
-
-    return {
-      output: current as BoundVerse,
-      trace,
-    };
-  }
-}
-```
+每次 `run` 调用生成独立的管线签名。多输入管线证明玩家将多个前序签名组织成连续处理链，单输入管线证明步骤顺序。配方检查管线步骤是否连续、输入输出类型是否变化。
 
 !! 签名中的管线信息
 
@@ -101,24 +43,11 @@ export interface PipelineSignature extends ChantSignature {
 }
 ```
 
-!! 使用示例
-
-```ts
-const pipeline = new StandardChantPipeline([
-  new NormalizeFragmentStep(),
-  new BindIndexRangeStep(),
-  new FoldHexstoneStep(),
-  new SealLineageStep(),
-], context);
-
-const result = await pipeline.run(initialFragment);
-```
-
 !! 与技能触发的关系
 
 管线水印证明玩家按顺序组织过多段咏唱步骤。配方检查步骤序列、输入输出类型和签名连续性。
 
 !! 反投机
 
-管线步骤有类型约束`PipelineStep<I, O>`。重复同一步骤会导致类型不匹配或输入输出哈希相同，签名进入噪声池。
+重复调用 `pipeline.run` 时，如果输入输出关系没有变化，签名会被判定为噪声。管线签名要求输入和输出存在实际消费关系。
 

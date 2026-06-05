@@ -8,115 +8,66 @@ tags: 竞技场咏唱设计模式 AI生成
 !! 核心接口
 
 ```ts
-export interface ChantEventRuntime {
-  on<T extends ChantEventKey>(
-    event: ChantEventTopic,
-    handler: (key: T) => void,
-  ): Subscription;
-}
-
-type ChantEventTopic =
-  | 'meterPulse'
-  | 'areaShift'
-  | 'projectileCollision'
-  | 'targetHit'
-  | 'areaDamage'
-  | 'projectileMovement'
-  | 'enemyInterference'
-  | 'artifactResonance'
-  | 'chantWindowOpen';
-```
-
-!! 事件 key 证明
-
-技能系统内部触发的事件会产生可签名 key。玩家订阅这些事件后生成观察者水印：
-
-```ts
-class ProjectileSkillSystem {
-  constructor(private events: ChantEventRuntime) {}
-
-  onCollision(projectileId: string, targetId: string): void {
-    const key = EventKey.generate({
-      projectileId,
-      targetId,
-      timestamp: Date.now(),
-    });
-    this.events.emit('projectileCollision', key);
-  }
+export interface ObserverRuntime {
+  // 在当前技能事件窗口中等待特定事件，返回事件 key（含事件数据）
+  waitFor(event: string): Promise<EventKey>;
+  // 将事件 key 封装为签名
+  seal(key: EventKey): Promise<Seal>;
 }
 ```
 
-玩家订阅这些事件来取得可签名 key：
+!! 事件 key 结构
+
+事件 key 包含事件的具体信息，玩家可以先读取再做逻辑判断：
 
 ```ts
-class ProjectileCollisionObserver {
-  private collisionKey?: CollisionEventKey;
-  private subscription?: Subscription;
+interface ProjectileCollisionKey extends EventKey {
+  projectileId: string;   // 当前技能释放的 projectile 的 id
+  targetId: string;       // 碰撞目标的 id
+  position: Coordinate;   // 碰撞位置
+  timestamp: number;      // 碰撞时间戳
+}
 
-  attach(events: ChantEventRuntime): void {
-    this.subscription = events.on('projectileCollision', key => {
-      this.collisionKey = key;
-    });
-  }
-
-  async produce(): Promise<ObserverSeal> {
-    if (!this.collisionKey) {
-      throw new MissingEventKeyError('projectileCollision');
-    }
-
-    return observerRuntime.fromEventKey({
-      key: this.collisionKey,
-      topic: 'projectileCollision',
-    });
-  }
+interface TargetHitKey extends EventKey {
+  projectileId: string;
+  targetId: string;
+  damage: number;
+  timestamp: number;
 }
 ```
 
-!! 环境状态事件
+!! 使用示例
+
+等待碰撞事件并读取数据：
 
 ```ts
-class AreaShiftObserver {
-  private shiftKey?: AreaShiftKey;
+// 在当前技能事件窗口中等待 projectile 碰撞事件
+const collision = await context.chant.observer.waitFor('projectileCollision');
 
-  attach(events: ChantEventRuntime): void {
-    events.on('areaShift', key => {
-      this.shiftKey = key;
-    });
-  }
+// 根据碰撞数据做逻辑判断
+if (collision.targetId === params.expectedTarget) {
+  // 将事件转为观察者签名
+  const observerSeal = await context.chant.observer.seal(collision);
 
-  async produce(): Promise<ObserverSeal> {
-    if (!this.shiftKey) throw new MissingEventKeyError('areaShift');
-    return observerRuntime.fromEventKey({
-      key: this.shiftKey,
-      topic: 'areaShift',
-    });
-  }
+  // 继续后续咏唱
+  const pipelineSeal = await context.chant.pipeline.run([observerSeal]);
+  const decoratedSeal = await context.chant.decorator.apply(pipelineSeal);
 }
 ```
 
-!! 组合使用
+!! 多事件组合
 
-用碰撞事件和区域事件生成观察者签名，再把签名交给后续管线：
+用碰撞事件和范围命中事件组合签名链：
 
 ```ts
-const collisionObserver = new ProjectileCollisionObserver();
-collisionObserver.attach(context.events);
+const collision = await context.chant.observer.waitFor('projectileCollision');
+const hit = await context.chant.observer.waitFor('targetHit');
 
-const areaObserver = new AreaShiftObserver();
-areaObserver.attach(context.events);
+const collisionSeal = await context.chant.observer.seal(collision);
+const hitSeal = await context.chant.observer.seal(hit);
 
-const collisionSeal = await collisionObserver.produce();
-const areaSeal = await areaObserver.produce();
-
-const pipeline = context.pipelines
-  .start(new DetectCollisionStep())
-  .then(new CalculateBlastRadiusStep())
-  .then(new ApplyAreaDamageStep());
-
-const result = await pipeline.run({
-  collision: collisionSeal,
-  area: areaSeal,
-});
+const pipelineSeal = await context.chant.pipeline.run([collisionSeal, hitSeal]);
+const decoratedSeal = await context.chant.decorator.apply(pipelineSeal);
 ```
 
 !! 反投机

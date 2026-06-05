@@ -8,52 +8,11 @@ title: 竞技场跃迁与PVP控制
 
 本条目描述跃迁类技能在咏唱系统中的效果匹配方式。行动规则可以直接调用闪现、减速网、反跃迁等技能 id；技能源码中的咏唱代码提交签名链后，游戏运行时根据配方匹配对应游戏效果。
 
-!! 闪现游戏效果配方
-
-魔法书记载的闪现触发配方：
-
-```ts
-const blinkRecipe: SkillRecipe = {
-  id: 'blink-mobility',
-  skillId: 'blink',
-  skillName: '闪现',
-  optionalEffects: [
-    {
-      id: 'reducePreparation',
-      repeat: 3,
-      sequence: ['observer', 'pipeline', 'decorator'],
-      constraints: {
-        contiguous: true,
-        distinctEventWindows: true,
-        distinctDecoratorSlots: true,
-      },
-    },
-    {
-      id: 'increaseRange',
-      repeat: 2,
-      sequence: ['factoryMethod', 'pipeline', 'pipeline', 'decorator'],
-      constraints: {
-        distinctFactorySources: true,
-        pipelineStepsMustDiffer: true,
-      },
-    },
-    {
-      id: 'reduceCooldown',
-      repeat: 1,
-      sequence: ['stateMachine', 'commandTrace', 'repository', 'decorator'],
-      constraints: {
-        stateMustAdvance: true,
-        commandMustBeReplayable: true,
-        repositoryMustUsePriorKnowledge: true,
-      },
-    },
-  ],
-};
-```
+闪现的游戏效果配方定义见[[竞技场魔法书与技能触发]]。
 
 !! 闪现咏唱示例
 
-行动规则调用闪现技能后，技能源码中的咏唱代码生成签名链，并提交给游戏运行时匹配闪现效果：
+行动规则调用闪现技能后，技能源码中的咏唱代码调用设计模式运行时生成签名链，再提交给游戏运行时匹配闪现效果：
 
 ```ts
 export class BlinkSkill implements SkillDefinition<BlinkParams> {
@@ -65,40 +24,32 @@ export class BlinkSkill implements SkillDefinition<BlinkParams> {
     params: BlinkParams,
     context: SkillExecutionContext,
   ): Promise<SkillExecutionResult> {
-    const strategy = new DistanceRouteStrategy(context.chant.rules);
-    const source = new ArchiveVerseAdapter(context.chant.codex.archive);
-    const collector = new MeterPulseCollector(context.chant.clock);
-    const stateMachine = new StandardChantStateMachine();
-    const pipeline = new StandardChantPipeline([
-      new NormalizeFragmentStep(),
-      new BindIndexRangeStep(),
-      new FoldHexstoneStep(),
-    ], context.chant);
+    // 基础激活序列：observer → pipeline → decorator
+    const eventSeal = await context.chant.observer.subscribe('mobilityEvent');
+    const pipelineSeal = await context.chant.pipeline.run([eventSeal]);
+    const decoratedSeal = await context.chant.decorator.apply(pipelineSeal);
 
-    collector.subscribe('meterPulse');
+    // 可选分支：range 扩展需要 factoryMethod → pipeline → pipeline → decorator
+    const factorySeal = await context.chant.factory.create('rangeSeed', decoratedSeal);
+    const rangePipe1 = await context.chant.pipeline.run([factorySeal]);
+    const rangePipe2 = await context.chant.pipeline.run([rangePipe1]);
+    const rangeDecorator = await context.chant.decorator.apply(rangePipe2);
 
-    await stateMachine.transition('prepared', params);
-    const route = strategy.choose(params);
-    const fragment = await source.nextVerse(route.seed);
+    // 可选分支：cooldown 减少需要 stateMachine → commandTrace → repository → decorator
+    const stateSeal = await context.chant.stateMachine.transition('charged', rangeDecorator);
+    const commandSeal = await context.chant.command.execute('cooldownCharge', stateSeal);
+    const repoSeal = await context.chant.repository.read('priorCooldown');
+    const cdDecorator = await context.chant.decorator.apply(commandSeal);
 
-    await stateMachine.transition('collecting', { route, fragment });
-    const pulse = await collector.waitFor('meterPulse');
-
-    await stateMachine.transition('folding', { pulse });
-    const bound = await pipeline.run({ fragment, pulse });
-
-    await stateMachine.transition('sealed', { bound });
-
+    // 提交签名链
     const receipt = await context.finish.submit({
       skillId: this.id,
       paramsHash: hashParams(params),
-      branchId: route.id,
-      signatures: context.chant.codex.seal.collect({
-        route,
-        eventKeys: [pulse],
-        pipelineTrace: bound.trace,
-        stateTrace: stateMachine.trace(),
-      }),
+      signatures: [
+        eventSeal, pipelineSeal, decoratedSeal,
+        factorySeal, rangePipe1, rangePipe2, rangeDecorator,
+        stateSeal, commandSeal, repoSeal, cdDecorator,
+      ],
     });
 
     return { skillId: this.id, receipt };
@@ -108,11 +59,13 @@ export class BlinkSkill implements SkillDefinition<BlinkParams> {
 
 !! 减速网游戏效果配方
 
+减速网技能 `slowNet` 的游戏效果配方：
+
 ```ts
-const slowNetRecipe: SkillRecipe = {
+const slowNetRecipe: TriggerRecipe = {
   id: 'slow-net-control',
-  skillId: 'slowNet',
-  skillName: '减速网',
+  description: '减速网',
+  requiredSequences: [],
   optionalEffects: [
     {
       id: 'widerRange',
@@ -137,11 +90,13 @@ const slowNetRecipe: SkillRecipe = {
 
 !! 反跃迁游戏效果配方
 
+反跃迁干扰技能 `antiBlink` 的游戏效果配方：
+
 ```ts
-const antiBlinkRecipe: SkillRecipe = {
+const antiBlinkRecipe: TriggerRecipe = {
   id: 'anti-blink-interference',
-  skillId: 'antiBlink',
-  skillName: '反跃迁干扰',
+  description: '反跃迁干扰',
+  requiredSequences: [],
   optionalEffects: [
     {
       id: 'startupDisruption',
@@ -174,39 +129,7 @@ const antiBlinkRecipe: SkillRecipe = {
 | 区域供能 | 受区域控制影响 | 受区域范围限制 | 受节点状态影响 |
 | 遗物供能 | 法杖增幅距离 | 魔法书增幅范围 | 技术遗物增幅时长 |
 
-!! PVP 中的咏唱策略
+!! PVP 中的咏唱思路
 
-减速网延缓敌方启动距离积累：
-
-```ts
-class SlowNetStrategy implements ChantRouteStrategy {
-  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
-    return {
-      id: 'slow-net-trap',
-      seed: ChantSeed.from(params),
-      depth: 4,
-      requiredPulseFamily: 'prayerPower',
-      requiredFamilies: ['prayer', 'index', 'hexstone'],
-      score: 20,
-    };
-  }
-}
-```
-
-反跃迁干扰敌方咏唱状态机：
-
-```ts
-class AntiBlinkStrategy implements ChantRouteStrategy {
-  choose(params: ChantParams, rules: ChantRuleSet): ChantRoute {
-    return {
-      id: 'anti-blink-interference',
-      seed: ChantSeed.from(params),
-      depth: 3,
-      requiredPulseFamily: 'hexstonePower',
-      requiredFamilies: ['hexstone', 'lattice'],
-      score: 18,
-    };
-  }
-}
-```
+减速网通过生成 `observer` + `pipeline` + `decorator` 签名序列来扩大控制范围；反跃迁干扰通过 `observer` + `stateMachine` + `decorator` 序列在敌方进入咏唱状态时施加打断。PVP 中的核心博弈是：在己方技能源码中组合出更完整的签名链以匹配高级可选效果，同时通过反跃迁技能污染敌方的签名序列，使其匹配失败。
 

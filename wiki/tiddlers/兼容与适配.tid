@@ -8,105 +8,28 @@ tags: 竞技场咏唱设计模式 AI生成
 !! 核心接口
 
 ```ts
-export interface VerseSource {
-  nextVerse(seed: ChantSeed): Promise<PageFragment>;
-}
-
-export interface EventCollector {
-  attach(runtime: ChantEventRuntime): void;
-  collect(): EventKey[];
+export interface AdapterRuntime {
+  read(source: string, input: Seal): Promise<Seal>;
+  convert(input: Seal, target: string): Promise<Seal>;
 }
 ```
 
-!! 档案适配器
+!! 使用示例
+
+通过适配器运行时读取不同数据源，在签名链上留下适配器水印：
 
 ```ts
-export class ArchiveVerseAdapter implements VerseSource {
-  constructor(private archive: ArchiveApi) {}
+// 从 archive 源读取
+const archiveSeal = await context.chant.adapter.read('archive', seedSeal);
 
-  async nextVerse(seed: ChantSeed): Promise<PageFragment> {
-    const page = await this.archive.openUnstablePage({
-      pageHint: seed.pageHint,
-      salt: seed.salt,
-    });
+// 从 index 源读取
+const indexSeal = await context.chant.adapter.read('index', seedSeal);
 
-    return this.archive.readMarginalia({
-      page,
-      margin: seed.margin,
-      readingOrder: seed.readingOrder,
-    });
-  }
-}
+// 转换格式
+const convertedSeal = await context.chant.adapter.convert(archiveSeal, 'bound');
 ```
 
-!! 索引适配器
-
-```ts
-export class IndexVerseAdapter implements VerseSource {
-  constructor(private index: IndexApi) {}
-
-  async nextVerse(seed: ChantSeed): Promise<PageFragment> {
-    const range = await this.index.resolveRange(seed.indexHint);
-
-    return this.index.readFragment({
-      range,
-      citation: seed.citation,
-    });
-  }
-}
-```
-
-!! 魔法书适配器
-
-```ts
-export class SpellbookAdapter implements VerseSource {
-  constructor(private spellbook: SpellbookApi) {}
-
-  async nextVerse(seed: ChantSeed): Promise<PageFragment> {
-    return this.spellbook.turnPage({
-      pageIndex: seed.pageIndex,
-      chapter: seed.chapter,
-    });
-  }
-}
-```
-
-!! 事件收集器适配器
-
-```ts
-export class MeterPulseCollectorAdapter implements EventCollector {
-  private keys: EventKey[] = [];
-
-  attach(runtime: ChantEventRuntime): void {
-    runtime.on('meterPulse', key => this.keys.push(key));
-    runtime.on('hexstoneResonance', key => this.keys.push(key));
-  }
-
-  collect(): EventKey[] {
-    return this.keys;
-  }
-}
-```
-
-!! 组合使用
-
-```ts
-function createVerseSource(
-  codex: ChantCodex,
-  params: ChantParams,
-): VerseSource {
-  switch (params.preferredSource) {
-    case 'hexstonePower':
-      return new ArchiveVerseAdapter(codex.archive);
-    case 'prayerPower':
-      return new IndexVerseAdapter(codex.index);
-    case 'artifactPower':
-      return new SpellbookAdapter(codex.artifact);
-    default:
-      return new ArchiveVerseAdapter(codex.archive);
-  }
-}
-```
+不同数据源调用产生不同的适配器签名，证明玩家通过适配器结构组织了多源访问。
 
 !! 签名中的适配器信息
 

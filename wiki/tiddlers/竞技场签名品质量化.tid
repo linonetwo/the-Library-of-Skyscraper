@@ -36,7 +36,7 @@ quality = clamp(
 |!评分|!含义|!主要指标|
 |structureScore|结构证明质量|文件行数、单行长度、模块职责、类型明确度、依赖边界|
 |runtimeScore|运行证明质量|tick 耗时、错误率、重试次数、资源浪费、能量干扰处理记录|
-|verificationScore|验证质量|沙盒测试、隐藏测试、日志完整度、命令轨迹、签名血缘完整度|
+|verificationScore|验证质量|沙盒测试、隐藏测试、日志完整度、命令轨迹、签名输入输出关系完整度|
 |reuseScore|复用证明质量|跨赛周签名形式复用、适配器覆盖率、策略库沉淀、硬编码比例|
 
 !! 结构评分
@@ -78,7 +78,7 @@ functionPenalty = max(0, maxFunctionLines - 60) * 0.2
 |隐藏测试|隐藏赛周和隐藏地图表现越稳定，分数越高|
 |日志完整度|关键决策、错误、资源消耗和签名来源都有日志|
 |命令轨迹|行动进入命令队列并可回放|
-|血缘完整度|签名来源、时效、角色、供能凭证记录完整|
+|输入输出关系完整度|签名来源、时效、角色、供能凭证记录完整|
 
 !! 复用评分
 
@@ -97,7 +97,7 @@ functionPenalty = max(0, maxFunctionLines - 60) * 0.2
 ```
 chainQuality = weightedAverage(signatures.map(signature => signature.quality))
 chainCompleteness = requiredSignatureCount / expectedSignatureCount
-chainStability = min(timeValidity, lineageIntegrity, resourceValidity)
+chainStability = min(timeValidity, dependencyIntegrity, resourceValidity)
 ```
 
 最终品质：
@@ -118,7 +118,7 @@ proofQuality = chainQuality * chainCompleteness * chainStability * (1 - noisePen
 
 平台验证签名链后按以下流程结算：
 
-# 验证签名链：来源、时效、血缘、类别、顺序、文件归因
+# 验证签名链：来源、时效、输入输出关系、类别、顺序、来源文件
 # 匹配可选效果：按魔法书配方匹配签名链中的连续片段
 # 计算品质：签名品质、完整度、验证可靠性、噪声惩罚
 # 触发技能：匹配到的可选效果越多，可选结算越充分
@@ -165,12 +165,10 @@ export interface ChantSignature {
     modulePath: string;
     sourceRef: SourceRef;
   };
-  lineage: {
-    inputIds: string[];
-    outputId: string;
-    consumedBy?: string;
-    sourceRefs: SourceRef[];
-  };
+  inputIds: string[];
+  outputId: string;
+  consumedBy?: string;
+  inputSourceRefs: SourceRef[];
   evidence: {
     eventTopic?: string;
     windowId?: string;
