@@ -1,10 +1,9 @@
 title: 竞技场跃迁与PVP控制
 created: 20260602000000000
 creator: 林一二
-modified: 20260602000000000
+modified: 20260605130500000
 modifier: 林一二
 tags: 竞技场技能触发 AI生成
-title: 竞技场跃迁与PVP控制
 
 本条目描述跃迁类技能在咏唱系统中的效果匹配方式。行动规则可以直接调用闪现、减速网、反跃迁等技能 id；技能源码中的咏唱代码提交签名链后，游戏运行时根据配方匹配对应游戏效果。
 
@@ -18,14 +17,14 @@ title: 竞技场跃迁与PVP控制
 export class BlinkSkill implements SkillDefinition<BlinkParams> {
   id = 'blink';
   description = '短距离空间跃迁';
-  sourceRef = SourceRef.fromModule('skills/blink.ts');
 
   async execute(
     params: BlinkParams,
     context: SkillExecutionContext,
   ): Promise<SkillExecutionResult> {
     // 基础激活序列：observer → pipeline → decorator
-    const eventSeal = await context.chant.observer.subscribe('mobilityEvent');
+    const eventKey = await context.chant.observer.waitFor('mobilityEvent');
+    const eventSeal = await context.chant.observer.seal(eventKey);
     const pipelineSeal = await context.chant.pipeline.run([eventSeal]);
     const decoratedSeal = await context.chant.decorator.apply(pipelineSeal);
 
@@ -52,7 +51,7 @@ export class BlinkSkill implements SkillDefinition<BlinkParams> {
       ],
     });
 
-    return { skillId: this.id, receipt };
+    return { skillId: this.id, receipts: [receipt] };
   }
 }
 ```

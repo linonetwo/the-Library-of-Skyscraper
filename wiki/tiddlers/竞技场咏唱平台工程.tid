@@ -7,7 +7,7 @@ tags: 竞技场咏唱平台 AI生成
 
 咏唱签名必须精确归因到产生它的源码位置。平台通过以下方式实现：
 
-* 玩家提交 TS 源码。
+* 玩家提交 JS/TS 源码。
 * 平台编译前扫描 AST，生成 `SourceManifest`。
 * 每个注册到咏唱系统的类、方法、函数都会拿到稳定 `SourceRef`。
 * 平台 SDK 生成签名时，从运行时上下文读取当前 `SourceRef`。
@@ -102,9 +102,9 @@ class EnvironmentService implements EnvironmentRuntime {
 
 !! 运行时 SourceRef 传递
 
-平台需要记录的是**用户源码中调用 API 的位置**，不是平台 API 自身的实现位置。实现分两层：
+平台需要记录**用户源码中调用 API 的位置**。实现分两层：
 
-''平台原生 API''（`observer.waitFor`、`pipeline.run` 等）——编译时 TS transformer 在用户调用处自动插桩：
+''平台原生 API''（`observer.waitFor`、`pipeline.run` 等）——编译期 JS/TS transformer 在用户调用处自动插桩：
 
 ```ts
 // 用户源码
@@ -164,7 +164,7 @@ class PipelineRuntime {
 }
 ```
 
-这样每个签名指向的是用户写调用代码的位置，不是平台内部实现的位置。
+这样每个签名都会指向用户写调用代码的位置。
 
 !! 文件长度损耗
 

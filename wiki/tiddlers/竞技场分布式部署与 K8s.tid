@@ -1,0 +1,81 @@
+created: 20260606104000000
+creator: 林一二
+modified: 20260606104000000
+modifier: 林一二
+tags: 竞技场系统设计与拆解 AI生成
+title: 竞技场分布式部署与 K8s
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+分布式部署系统负责在单机性能不足时，把服务器拆成可水平扩展的服务、分片、队列和存储。它需要同时支持本地开发、Steam 私服、官方测试服和正式云端集群。
+
+!! 部署形态
+
+|!形态|!用途|!技术|
+|本地离线|Steam 首次体验、训练局、沙盒测试|单进程或少量进程，本地文件/SQLite|
+|本地私服|玩家自建服务器、mod、局域网或小规模公网|Docker Compose、PostgreSQL、Redis/NATS|
+|官方测试服|Alpha、Beta、压测、内容验证|Docker Compose 或小型 K8s|
+|正式云服|多服务器、多赛季、多区域运营|K8s、托管数据库、对象存储、监控告警|
+
+!! 服务拆分
+
+|!服务|!扩展方式|
+|Gateway|无状态水平扩展，按连接数和订阅量扩容|
+|Simulation Worker|按赛局、地图分片或房间区域分配所有权|
+|Script Runner|按 CPU 压力水平扩展，运行短任务并强制超时|
+|Scheduler|主备或分片调度，负责开服、tick、任务分派|
+|State Store|PostgreSQL 主从、分区表、读写分离|
+|Event Stream|NATS、Redis Streams 或 Kafka，用于事件、日志、回放任务|
+|Replay Store|对象存储保存压缩回放和战报材料|
+|Telemetry|Prometheus、Grafana、OpenTelemetry、日志聚合|
+
+!! 分片原则
+
+|!维度|!设计|
+|赛局分片|每个服务器实例优先由一个 Simulation Worker 拥有，保证确定性和简单性|
+|地图分片|当单个赛局过大时，再按区域或层拆分，边界通过事件和意图同步|
+|脚本分片|玩家脚本天然适合进入运行器池，按玩家、规则版本和 tick 批量执行|
+|回放分片|回放生成、压缩、索引和摘要可以异步处理|
+|AI 复盘分片|智能体复盘是低频异步任务，不进入核心 tick 队列|
+
+!! 单机性能不足时的处理
+
+|!瓶颈|!处理|
+|tick 耗时过长|降低单局玩家数、拆分赛局、减少 tick 频率、优化热点系统|
+|玩家脚本耗时过长|增加脚本运行器池、降低配额、缓存快照、拒绝超时动作|
+|状态存储压力|世界状态内存化推进，周期性快照，事件日志异步落盘|
+|回放日志过大|事件分级、采样、压缩、关键片段索引和冷存储|
+|连接数过多|Gateway 水平扩展，客户端订阅按视野和关注对象过滤|
+|热点地图区域|限制同区域人数，扩展区域分片，调整地图目标分布|
+
+!! K8s 使用边界
+
+K8s 适合正式云端运营，不适合在原型第一天引入。原型阶段应先用本地进程和 Docker Compose 验证服务边界；当需要自动扩缩容、滚动发布、多节点调度、统一观测和云端高可用时，再进入 K8s。
+
+!! K8s 资源设计
+
+|!资源|!说明|
+|Deployment|Gateway、Script Runner、Replay Worker、AI Review Worker 等无状态服务|
+|StatefulSet|需要稳定身份的 Simulation Worker 或分片管理服务|
+|Job / CronJob|赛季结算、回放压缩、隐藏测评、数据迁移|
+|ConfigMap|赛周配置、地图模板、运行参数|
+|Secret|Steam Web API key、数据库密码、对象存储凭据|
+|HPA|按 CPU、队列长度、连接数和脚本任务延迟扩容|
+|PodDisruptionBudget|保护正在运行的赛局不被批量驱逐|
+
+!! 发布策略
+
+|!阶段|!策略|
+|本地开发|单机热重载，固定 seed 回放测试|
+|私服测试|Docker Compose，一键启动，版本锁定|
+|官方测试|蓝绿或金丝雀发布，保留旧模拟核心到赛局结束|
+|正式赛季|赛局创建后锁定内容版本和模拟版本，赛局结束后升级|
+|紧急修复|只允许无状态服务热修，模拟核心修复需要兼容旧回放|
+
+!! 首发范围
+
+# 本地离线训练局可在 Steam 客户端内启动。
+# Docker Compose 私服可启动 Gateway、Simulation、Script Runner、PostgreSQL 和回放存储。
+# 官方测试服具备基础指标、日志、告警和回放导出。
+# K8s 部署文档和 Helm/Kustomize 配置在 Beta 阶段补齐。

@@ -1,0 +1,75 @@
+created: 20260607152000000
+creator: 林一二
+modified: 20260607170000000
+modifier: 林一二
+tags: 竞技场脚本运行时与 TypeScript 策略 AI生成
+title: 竞技场Script Runner部署模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+本文档定义 Script Runner 在 Docker 与 K8s 中的部署形态。目标是在有限内存和有限 CPU 下运行大量托管行动规则和技能源码，并保持安全隔离和可水平扩展。
+
+!! Pod 结构
+
+|!组件|!职责|
+|Runner Supervisor|接收任务、管理 worker、统计配额、上报指标|
+|deno_core / V8 isolate Worker|执行托管行动规则和技能源码的活跃计算片段，受 CPU、内存和权限限制|
+|Module Cache|缓存规则版本的编译产物和模块实例|
+|Task Queue Client|连接 Scheduler 或消息队列，拉取脚本任务|
+|Result Client|把动作意图、日志和异常写回 Simulation Worker 或队列|
+
+!! Worker 数量
+
+每个 Script Runner Pod 内运行多个 worker。worker 数量由 Pod CPU、内存、脚本平均耗时和任务延迟决定。单个 worker 处理多个玩家脚本任务，任务之间清理上下文并保留受控模块缓存。玩家、角色和技能调用都不长期独占 worker。
+
+|!模式|!用途|
+|单 worker Pod|调试、低配私服、异常隔离测试|
+|多 worker Pod|官方短赛局和正式赛局默认形态|
+|专用高配 Pod|隐藏测评、压力测试和大型沙盒重放|
+|低内存 Pod|使用 QuickJS 或降低缓存，用于私服和降级|
+
+!! 大规模运行原则
+
+|!原则|!说明|
+|按任务分配|玩家、角色和技能调用都按任务进入 worker 池|
+|按规则版本缓存|相同规则版本可复用编译产物和模块缓存|
+|按赛局隔离|同一赛局优先投递到同一 runner 池，减少状态与缓存抖动|
+|按优先级排队|行动规则和技能事件任务优先，沙盒和复盘让出资源|
+|按内存回收|超过水位后清理缓存、重启 worker 或迁移任务|
+
+!! 技能等待模型
+
+技能源码可以持续数秒到十秒以上。Script Runner 只执行事件窗口中的活跃计算片段。技能等待条件、事件游标、签名账本、能量状态和取消条件保存在 Simulation Worker 或持久状态服务中。等待期间释放 worker，事件到达后由 Scheduler 投递新的技能事件任务。
+
+!! 远程行动规则
+
+自托管代码和 LLM 通过 Gateway 调用同构 HTTP API。Gateway 负责鉴权、限流、幂等、响应截止时间和返回对象大小限制。远程行动规则任务不进入 deno_core worker；Simulation Worker 只接收通过合法性校验的动作意图和发展方案补丁。
+
+!! K8s 部署
+
+|!资源|!说明|
+|Deployment|Script Runner 使用无状态 Deployment 水平扩展|
+|HPA|按 CPU、内存、任务队列长度和任务等待时间扩缩容|
+|Resource Limit|为 Pod 设置 CPU、内存和临时存储上限|
+|Pod Anti-Affinity|分散 runner，降低单节点故障影响|
+|PriorityClass|行动规则 runner 优先级高于沙盒和复盘 runner|
+|NetworkPolicy|禁止 runner 访问非白名单服务|
+|ConfigMap|配置 worker 数量、配额、缓存大小和运行时版本|
+
+!! 内存控制
+
+|!策略|!说明|
+|预估单 worker 内存|按运行时、模块缓存、堆上限和输出缓冲计算|
+|限制模块缓存|LRU 清理规则版本缓存，避免长尾玩家占满内存|
+|限制行动规则存储|`localStorage` 和建筑 `indexedDB` 有容量上限，大状态依靠局内建筑条件开放|
+|worker 周期重启|释放碎片和异常状态|
+|分离沙盒任务|沙盒重放和隐藏测评进入低优先级 runner 池|
+
+!! 与 Simulation Worker 的关系
+
+Simulation Worker 保持权威世界状态。Script Runner 只处理脚本任务。两者通过快照、动作意图和事件结果通信。Script Runner 扩容不会改变世界所有权，Simulation Worker 扩容才改变赛局或地图分区所有权。
+
+!! 首发部署
+
+首发 Docker Compose 使用一个 Simulation Worker、一个 Gateway、一个 Scheduler、一个 Script Runner、PostgreSQL 和对象存储。官方测试服在 K8s 中把 Script Runner 扩成独立 Deployment，并按行动规则、技能事件、沙盒、智能体复盘拆分任务队列。
