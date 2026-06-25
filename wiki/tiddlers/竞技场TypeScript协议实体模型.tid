@@ -1,0 +1,178 @@
+created: 20260617110000000
+creator: 林一二
+modified: 20260617110000000
+modifier: 林一二
+tags: 竞技场数据接口与事件模型 AI生成
+title: 竞技场TypeScript协议实体模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+TypeScript 协议实体模型定义前端、玩家脚本、工具链服务和本地训练局共同使用的数据形状。它只描述跨进程、跨端、可序列化的契约，不描述 React Store 的内部组织，也不描述 Rust ECS 的组件存储方式。
+
+所有协议对象必须可 JSON 序列化。高频二进制回放可以使用压缩格式，但解码后仍落到同一组逻辑类型。
+
+!! 基础标识
+
+```ts
+export type SessionId = string;
+export type RegionId = string;
+export type PlayerId = string;
+export type EntityId = string;
+export type RuleVersionId = string;
+export type TickId = number;
+
+export interface VersionedRef {
+  id: string;
+  contentVersion: string;
+}
+
+export interface TimelineStamp {
+  source: 'live' | 'replay' | 'sandbox' | 'local';
+  tick: TickId;
+  serverTime?: string;
+  replayTimeMs?: number;
+}
+
+export interface Capability {
+  canRead: boolean;
+  canCommand: boolean;
+  canEditRule: boolean;
+  deniedReason?: string;
+}
+```
+
+ID 在前端永远当字符串处理，避免 Rust u64、数据库 bigint、浏览器 number 精度差异造成对象错配。需要排序时使用 tick、sequence 或显式 sortKey。
+
+!! 快照结构
+
+```ts
+export interface ArenaSnapshot {
+  session: SessionSummary;
+  timeline: TimelineStamp;
+  viewer: ViewerContext;
+  map: MapSlice;
+  actors: Record<EntityId, ActorView>;
+  buildings: Record<EntityId, BuildingView>;
+  resourceNodes: Record<EntityId, ResourceNodeView>;
+  tasks: Record<string, TaskView>;
+  ruleVersions: Record<RuleVersionId, RuleVersionView>;
+  metrics: MetricFrame;
+}
+
+export interface ViewerContext {
+  playerId: PlayerId;
+  permissions: string[];
+  visibleRegions: RegionId[];
+  redaction: 'none' | 'fog' | 'summary';
+}
+```
+
+快照是界面启动和重连的基线。快照内只包含当前 viewer 可见的数据；被战争迷雾遮挡的对象不得以隐藏字段形式下发。
+
+!! 实体视图
+
+```ts
+export interface ActorView {
+  id: EntityId;
+  ownerId: PlayerId;
+  squadId: string;
+  archetypeId: string;
+  displayName: string;
+  role: SquadRole;
+  position: HexPosition;
+  hp: number;
+  hpMax: number;
+  phase: ActorPhase;
+  inventory: InventoryView;
+  currentTaskId?: string;
+  currentDecisionId?: string;
+  capability: Capability;
+}
+
+export interface BuildingView {
+  id: EntityId;
+  ownerId?: PlayerId;
+  archetypeId: string;
+  slotId: string;
+  position: HexPosition;
+  state: 'planned' | 'constructing' | 'active' | 'disabled' | 'destroyed';
+  hp: number;
+  hpMax: number;
+  inventory?: InventoryView;
+  maintenance: MaintenanceView;
+  capability: Capability;
+}
+
+export interface HexPosition {
+  regionId: RegionId;
+  q: number;
+  r: number;
+  localX: number;
+  localY: number;
+}
+```
+
+ActorView 和 BuildingView 是展示视图，不是权威状态。字段缺失表示当前 viewer 无权限或服务器未下发，不表示实体没有该状态。
+
+!! 差异事件
+
+```ts
+export type ArenaEvent =
+  | EntityUpsertEvent
+  | EntityRemoveEvent
+  | ComponentPatchEvent
+  | TaskEvent
+  | RuleEvent
+  | DecisionLogEvent
+  | MetricEvent
+  | AlertEvent;
+
+export interface EventEnvelope<TKind extends string, TPayload> {
+  eventId: string;
+  kind: TKind;
+  timeline: TimelineStamp;
+  regionId?: RegionId;
+  sequence: number;
+  payload: TPayload;
+}
+
+export type ComponentPatchEvent = EventEnvelope<'component.patch', {
+  entityId: EntityId;
+  component: 'position' | 'actorState' | 'inventory' | 'buildingState' | 'visibility';
+  patch: Record<string, unknown>;
+}>;
+```
+
+前端处理事件时必须按 tick、sequence、eventId 排序。乱序事件先进入缓冲区；超过缓冲窗口仍缺失事件时请求新快照。
+
+!! 错误模型
+
+```ts
+export interface ApiErrorBody {
+  code: string;
+  message: string;
+  severity: 'info' | 'warning' | 'error' | 'fatal';
+  retryable: boolean;
+  userAction?: 'retry' | 'login' | 'readonly' | 'exportFeedback' | 'rollback';
+  correlationId: string;
+  details?: Record<string, unknown>;
+}
+```
+
+所有 HTTP、WebSocket、本地服务和 Electron preload 错误都转换成 ApiErrorBody。UI 不直接展示原始异常栈，反馈包可以包含原始错误摘要。
+
+!! Schema 管理
+
+# 协议类型按 contentVersion 和 protocolVersion 双版本管理。
+# 字段删除只能在 major protocolVersion 发生。
+# 新增字段必须有默认行为或 feature flag。
+# 契约测试覆盖快照、事件、诊断、沙盒结果和回放索引样本。
+# 本地训练局与云端正式服共用协议包，差异放在 transport adapter。
+
+!! 首发完成定义
+
+# 前端可以用 Mock ArenaSnapshot 和 ArenaEvent 跑完整训练局界面。
+# WebSocket 重连后能从 snapshotVersion 继续或触发全量快照刷新。
+# 规则诊断、关键决策日志、地图对象和回放片段共享 EntityId、TickId 和 SourceRef。
+# 协议包能被玩家脚本类型提示复用，但脚本只暴露授权后的只读视图。

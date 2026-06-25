@@ -1,0 +1,89 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场据点与建筑系统 AI生成
+title: 竞技场建筑运行维护与损毁模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+建筑运行维护与损毁模型定义建筑激活后的产能、消耗、受损、禁用、修复和摧毁。它只处理运行期状态，不处理建筑计划和施工流程，也不处理 UI 展示。
+
+维护系统用于限制无限扩张。建筑越多、前线越深，越需要补给、搬运、防守和修复规则配合。
+
+!! 运行组件
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct BuildingOperation {
+    pub enabled: bool,
+    pub output_profile_id: Option<u32>,
+    pub maintenance_profile_id: Option<u32>,
+    pub disabled_reason: Option<BuildingDisabledReason>,
+    pub last_output_tick: Option<TickId>,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum BuildingDisabledReason {
+    NoMaintenance,
+    Damaged,
+    NoPower,
+    OccupiedByEnemy,
+    PhaseBlocked,
+}
+```
+
+BuildingOperation 只存在于 Active 或 Disabled 建筑。Planned 和 Constructing 不产生运行效果。
+
+!! 维护消耗
+
+|!建筑|!维护|!缺维护后果|
+|据点核心|少量补给和算力|规则上传、生产效率下降|
+|仓储建筑|少量补给|容量部分锁定|
+|防御建筑|补给或建材|停火、射程下降|
+|编目建筑|算力、模因流量|视野和编目分下降|
+|前线支援|补给|治疗、修复和撤退点失效|
+
+维护缺口先进入 Degraded，再进入 Disabled。直接摧毁只来自战斗、环境或拆除。
+
+!! 损毁流程
+
+# 战斗或环境事件对建筑造成 DamageEvent。
+# hp 降低并生成 BuildingDamaged。
+# hp 低于禁用阈值进入 Disabled。
+# hp 归零进入 Destroyed，释放或污染槽位。
+# 库存按规则掉落、损毁或转入废墟。
+# 任务系统生成修复、回收或放弃建议。
+
+!! 修复
+
+```ts
+export interface RepairTaskView {
+  taskId: string;
+  buildingId: EntityId;
+  requiredMaterial: number;
+  requiredWork: number;
+  priority: number;
+  risk: number;
+}
+```
+
+修复消耗建材和建设岗位工作量。战斗中修复可以降低效率，避免防御建筑过度硬扛。
+
+!! 事件
+
+|!事件|!用途|
+|MaintenanceConsumed|记录维护资源消耗|
+|MaintenanceMissing|记录维护缺口和影响|
+|BuildingDegraded|建筑进入降效|
+|BuildingDisabled|建筑功能停止|
+|BuildingRepaired|修复进度和生命恢复|
+|BuildingDestroyed|摧毁、掉落和槽位变化|
+
+!! 首发完成定义
+
+# 建筑激活后能产生功能、消耗维护并在缺维护时降级。
+# 防御建筑、编目建筑和前线支援建筑都有明确禁用状态。
+# 修复任务能从受损建筑自动生成。
+# 回放能解释建筑失效来自维护不足、敌方攻击还是规则未修复。

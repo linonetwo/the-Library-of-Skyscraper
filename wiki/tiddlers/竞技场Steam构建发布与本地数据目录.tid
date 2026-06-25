@@ -1,0 +1,68 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: [[竞技场 Steam 上线与产品化]] AI生成
+title: 竞技场Steam构建发布与本地数据目录
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+Steam 构建发布与本地数据目录定义桌面端如何打包、更新、存储训练局数据、导出回放和收集崩溃材料。它只处理 Steam 桌面发布工程，不处理商店页文案，也不处理云端服务器规则。
+
+桌面端必须支持离线训练、回放查看和反馈导出。正式在线赛局仍以服务器事件日志为准。
+
+!! 构建产物
+
+|!产物|!内容|
+|Electron App|React 工作台、PixiJS、Monaco、preload|
+|本地训练服务|可选 Rust 模拟核心和脚本运行器|
+|协议包|前端与本地服务共享 schema|
+|内容资产|训练局地图、单位、建筑、任务样本|
+|诊断工具|日志收集、反馈包导出、崩溃标记|
+
+!! 本地目录
+
+```text
+UserData/
+  rules/
+  replays/
+  training-saves/
+  logs/
+  crash-dumps/
+  feedback-packages/
+  content-cache/
+```
+
+rules 保存草稿和本地规则库。replays 保存本地训练和玩家手动下载的回放。content-cache 保存内容版本缓存，必须按 checksum 校验。
+
+!! 更新策略
+
+|!内容|!更新方式|
+|客户端壳|Steam build 更新|
+|协议包|随客户端版本发布|
+|内容资产|可随客户端，也可从服务器缓存|
+|本地训练服务|随客户端版本发布，版本需与协议兼容|
+|规则草稿|玩家数据，不随更新覆盖|
+
+!! 反馈包
+
+```ts
+export interface FeedbackPackageManifest {
+  packageId: string;
+  createdAt: string;
+  appVersion: string;
+  protocolVersion: string;
+  included: Array<'logs' | 'rule_package' | 'replay_segment' | 'diagnostics' | 'crash_dump'>;
+  redaction: 'normal' | 'privacy_strict';
+}
+```
+
+反馈包默认不包含玩家完整源码和敏感账户信息。包含规则包或回放片段时需要玩家确认。
+
+!! 首发完成定义
+
+# Steam 桌面端能启动本地训练局、保存规则草稿、打开本地回放。
+# 升级客户端不会覆盖玩家规则、回放和训练存档。
+# 崩溃后能保留最近日志和可选反馈包。
+# 本地服务、协议包和内容资产版本不匹配时给出明确修复路径。

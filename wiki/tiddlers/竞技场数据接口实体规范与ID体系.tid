@@ -1,0 +1,50 @@
+created: 20260609011000000
+creator: 林一二
+modified: 20260609011000000
+modifier: 林一二
+tags: 竞技场数据接口与事件模型 AI生成
+title: 竞技场数据接口实体规范与ID体系
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+实体规范与 ID 体系定义所有前端对象的稳定标识、引用字段、版本字段和来源字段。它让地图、曲线、日志、源码、规则版本、沙盒和智能体补丁能够互相跳转。
+
+!! 通用字段
+
+|!字段|!说明|
+|id|实体稳定唯一标识|
+|kind|实体类型，例如 room、unit、building、task、ruleVersion|
+|source|realTime、replay、sandbox、local、agent、settlement|
+|timelineId|实时赛局、回放、沙盒或本地训练的时间线标识|
+|tick|权威模拟 tick|
+|contentVersion|内容版本|
+|ruleVersionId|相关规则版本|
+|ownerId|玩家、小队、bot、PVE 或中立归属|
+|capabilities|当前用户可执行操作|
+
+!! ID 类型
+
+|!类型|!例子|
+|sessionId|赛局、训练局、短赛局、正式赛局或私服局|
+|mapObjectId|房间、资源点、编目台、角色、建筑、技能效果|
+|taskId|侦察、采集、搬运、建造、修复、防守、占领|
+|eventId|资源断线、战斗片段、规则发布、建筑受损|
+|logId|关键决策日志条目|
+|sourceRef|源码引用标识|
+|patchId|智能体或复盘补丁|
+|sandboxRunId|沙盒运行记录|
+
+!! 引用规则
+
+|!规则|!说明|
+|引用只存 id|UI 显示名可变，跨模块引用必须使用 id|
+|跨时间线引用带 source|实时对象与回放对象不能默认共用状态|
+|版本敏感引用带 version|规则、内容、回放和源码引用必须能检查兼容性|
+|缺失引用可降级|对象不存在时显示缺失原因和来源，不让 UI 崩溃|
+
+!! 首发验收
+
+# 任一告警都能通过 id 找到地图对象、时间点、规则版本和证据。
+# 实时、回放和沙盒对象不会因为 id 相同而串状态。
+# 规则源码、日志和节点图可以通过 sourceRef 互相跳转。

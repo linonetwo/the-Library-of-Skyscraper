@@ -1,0 +1,133 @@
+created: 20260617110000000
+creator: 林一二
+modified: 20260617110000000
+modifier: 林一二
+tags: 竞技场据点与建筑系统 AI生成
+title: 竞技场建筑实体槽位与建造流程
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+建筑实体、槽位与建造流程定义建筑从计划到运行的权威模型。它只处理建筑蓝图、地图槽位、施工任务和状态变化，不处理建筑面板 UI，也不处理建筑产出数值平衡。
+
+建筑是地图控制的长期承诺。每个建筑都必须占用明确槽位，消耗明确资源，并产生可复盘的建造、维护、受损和摧毁事件。
+
+!! 建筑槽位
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct BuildingSlot {
+    pub slot_id: u64,
+    pub region_id: RegionId,
+    pub room_q: i32,
+    pub room_r: i32,
+    pub slot_kind: BuildingSlotKind,
+    pub occupant: Option<EntityId>,
+    pub controller: Option<PlayerId>,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum BuildingSlotKind {
+    Base,
+    Storage,
+    Resource,
+    Passage,
+    Catalog,
+    CoreLibrary,
+    ForwardSupport,
+}
+```
+
+槽位由地图内容版本生成。赛局中可以改变 controller 和 occupant，但不得动态创建未登记槽位。特殊事件需要临时槽位时必须写入地图事件。
+
+!! 建筑状态
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct BuildingRuntime {
+    pub building_id: EntityId,
+    pub owner_id: Option<PlayerId>,
+    pub archetype_id: u32,
+    pub slot_id: u64,
+    pub state: BuildingState,
+    pub hp: i32,
+    pub hp_max: i32,
+    pub construction: ConstructionProgress,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum BuildingState {
+    Planned,
+    Constructing,
+    Active,
+    Disabled,
+    Destroyed,
+    Deconstructing,
+}
+
+#[derive(Clone, Debug)]
+pub struct ConstructionProgress {
+    pub required_work: u32,
+    pub completed_work: u32,
+    pub required_resources: Vec<ResourceStack>,
+    pub delivered_resources: Vec<ResourceStack>,
+}
+```
+
+Planned 可以被取消并释放已预留资源。Constructing 已占用槽位，敌方可以破坏。Active 开始产生功能和维护消耗。
+
+!! 建造流程
+
+# 行动规则或玩家配置提交 BuildingPlan。
+# 模拟核心校验槽位、控制权、蓝图、科技、阶段和资源预留。
+# 创建 Planned 建筑实体并锁定槽位。
+# 任务系统生成搬运任务，把资源送到建筑实体库存。
+# 建设岗位角色执行 WorkOnBuilding。
+# completedWork 达标后进入 Active。
+# 生成 BuildingActivated 事件，触发视野、仓储、防御、算力或补给能力。
+
+!! BuildingPlan
+
+```ts
+export interface BuildingPlan {
+  planId: string;
+  ownerId: PlayerId;
+  archetypeId: string;
+  slotId: string;
+  priority: number;
+  requestedBy: 'player' | 'rule' | 'agent' | 'template';
+  sourceRef?: SourceRef;
+}
+```
+
+BuildingPlan 不是建筑实体。计划通过校验后才生成建筑。计划失败需要返回 BuildRejectCode，前端和复盘都使用同一原因枚举。
+
+!! 拒绝原因
+
+|!原因|!说明|
+|SlotOccupied|槽位已有建筑或锁定计划|
+|SlotKindMismatch|蓝图不允许放在该槽位|
+|NoControl|玩家没有房间或槽位控制权|
+|TechMissing|科技或赛周内容未解锁|
+|ResourceMissing|可预留资源不足|
+|PhaseBlocked|当前赛局阶段不允许建造|
+|TooFarFromBase|超出据点或前线支援范围|
+|BlueprintDisabled|内容版本禁用了该蓝图|
+
+!! 建造事件
+
+|!事件|!触发|
+|BuildingPlanAccepted|计划通过校验并创建 Planned 实体|
+|BuildingPlanRejected|计划被拒绝|
+|BuildingResourceDelivered|资源送达施工库存|
+|BuildingWorkApplied|角色贡献施工进度|
+|BuildingActivated|建筑进入 Active|
+|BuildingCancelled|计划或施工被取消|
+|BuildingDestroyed|施工中或运行中建筑被摧毁|
+
+!! 首发完成定义
+
+# 据点核心、仓储、防御、编目和前线支援建筑都走同一建造状态机。
+# 建筑计划失败能定位到槽位、蓝图、资源、科技或控制权。
+# 回放能显示从计划、搬运、施工到激活的完整过程。
+# 建筑实体与资源账本、任务系统、视野系统和战斗系统通过事件连接。

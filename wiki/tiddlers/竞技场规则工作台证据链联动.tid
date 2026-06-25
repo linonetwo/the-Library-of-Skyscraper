@@ -1,0 +1,46 @@
+created: 20260609010000000
+creator: 林一二
+modified: 20260609010000000
+modifier: 林一二
+tags: 竞技场规则工作台总览 AI生成
+title: 竞技场规则工作台证据链联动
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+证据链联动负责让地图对象、资源曲线、时间轴、关键决策日志、源码、规则节点、沙盒结果、智能体补丁和版本报告之间可以互相跳转。它保证规则修改不是凭感觉进行。
+
+!! 证据对象
+
+|!对象|!必要字段|
+|地图对象|objectId、kind、position、owner、state、source、time|
+|曲线点|curveId、time、value、series、relatedObjectIds|
+|事件|eventId、type、time、objectIds、ruleVersionId、source|
+|决策日志|logId、time、actorId、ruleObjectId、sourceRef、reason|
+|源码位置|sourceRef、fileId、range、symbol、ruleObjectId|
+|规则节点|nodeId、graphId、ruleObjectId、state、diagnostics|
+|沙盒结果|runId、testId、candidateVersionId、metrics、failures|
+|补丁项|patchId、changeId、scope、evidenceIds、riskItems|
+
+!! 跳转矩阵
+
+|!来源|!目标|
+|地图对象|任务、日志、曲线、规则版本、复盘片段|
+|曲线异常|时间轴、地图对象、资源线、规则版本|
+|关键决策日志|源码、规则节点、角色、地图时间点|
+|源码位置|日志、沙盒失败、规则对象、版本 diff|
+|沙盒失败|测试用例、回放片段、源码、节点和补丁|
+|智能体建议|证据包、diff、风险确认、沙盒入口|
+
+!! 实现要求
+
+# 所有证据引用使用稳定 id，不能只保存显示文本。
+# 证据来源必须标注实时、回放、沙盒、结算或智能体。
+# 证据过期时需要显示原因，例如规则版本变化或回放片段重建失败。
+# 工作区切换时保留当前 evidenceContext。
+
+!! 首发验收
+
+# 从角色死亡片段能跳到地图、日志、源码、规则节点和沙盒对比。
+# 从资源断线曲线能跳到资源线、任务队列、搬运模块和补丁建议。
+# 从技能失败能跳到技能源码、咏唱验证、行动规则调用和回放片段。

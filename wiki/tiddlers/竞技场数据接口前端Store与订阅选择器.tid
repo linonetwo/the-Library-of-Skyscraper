@@ -1,0 +1,45 @@
+created: 20260609011000000
+creator: 林一二
+modified: 20260609011000000
+modifier: 林一二
+tags: 竞技场数据接口与事件模型 AI生成
+title: 竞技场数据接口前端Store与订阅选择器
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+前端 Store 与订阅选择器定义 React、PixiJS、图表、规则工作台和复盘回放共享状态的方式。它负责实体归一化、派生数据、选中对象、兴趣区域和最小更新。
+
+!! Store 分区
+
+|!分区|!内容|
+|sessionStore|赛局、阶段、服务器状态、容量和权限|
+|entityStore|地图对象、角色、建筑、任务、资源线、规则版本|
+|timelineStore|实时 tick、回放时间、沙盒时间和事件轨道|
+|selectionStore|当前选中对象、证据上下文、打开工作区|
+|codeStore|代码版本、草稿、诊断、补丁、沙盒和发布状态|
+|taskStore|后台任务、进度、错误和结果|
+|cacheStore|离线缓存、过期标记和同步状态|
+
+!! 选择器
+
+|!选择器|!用途|
+|selectVisibleMapObjects|给 PixiJS 当前镜头和兴趣区域对象|
+|selectObjectInspector|给右侧检查器选中对象详情|
+|selectResourceRoutes|给资源面板和地图资源线层|
+|selectTimelineEvents|给时间轴轨道和回放片段列表|
+|selectRuleDiagnostics|给规则工作台和发布检查|
+|selectEvidenceContext|给复盘、智能体和沙盒证据包|
+
+!! 更新原则
+
+# 高频事件只更新受影响实体和派生索引。
+# PixiJS 订阅最小渲染数据，不订阅完整业务对象。
+# React 面板使用选择器派生数据，避免各组件重复计算。
+# 回放、沙盒和实时使用不同 timelineStore，selectionStore 可共享对象引用。
+
+!! 首发验收
+
+# 同一选中对象能联动地图、检查器、曲线、日志和规则工作台。
+# 大量事件更新时 Monaco 和表单输入不被阻塞。
+# Store 可以加载 Mock 数据并驱动全部主界面。

@@ -1,0 +1,65 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: [[竞技场分布式部署与 K8s]] AI生成
+title: 竞技场K8s服务部署拓扑与故障域
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+K8s 服务部署拓扑与故障域定义正式环境中网关、调度、区域运行单元、工具链、存储和后台任务如何部署。它只处理集群部署和故障域，不处理具体游戏规则，也不处理本地 Steam 训练局。
+
+K8s 不改变赛局规则。它只负责容量、隔离、迁移和可用性。
+
+!! 服务拓扑
+
+|!服务|!部署形态|!故障影响|
+|网关服务|Deployment，多副本|连接中断，可重连|
+|开服调度|Deployment 或 leader election|新开服和迁移决策延迟|
+|区域运行单元|StatefulSet 或自定义控制器|影响绑定区域 tick|
+|事件存储|托管数据库或日志服务|提交延迟会阻塞 tick|
+|状态存储|对象存储或快照库|恢复变慢，不应影响当前 tick|
+|工具链服务|Deployment，可水平扩展|诊断、打包、沙盒排队|
+|后台任务|Job/Queue Worker|复盘、导出、结算延迟|
+
+!! 区域运行单元 Pod
+
+```yaml
+runtimeUnit:
+  contains:
+    - simulation-core
+    - script-runner
+  resources:
+    cpu: pinned or guaranteed
+    memory: guaranteed
+  storage:
+    eventLog: external durable store
+    snapshots: object store
+```
+
+simulation-core 和 script-runner 同机部署，使用本地通信。正式 tick 不把脚本请求跨网络发给共享脚本池。
+
+!! 故障域
+
+|!故障|!处理|
+|网关副本死亡|客户端重连到其他副本|
+|区域 Pod 死亡|从事件日志和最近快照恢复到新 Pod|
+|节点性能退化|标记 draining，新区域不再调度，已有区域迁移|
+|事件存储写入慢|区域 tick 等待或全局降级，不跳过日志提交|
+|工具链积压|影响发布和沙盒，不影响已发布规则运行|
+
+!! 调度约束
+
+# 同一服务器的关键区域尽量分散到不同节点。
+# 同一区域运行单元的模拟核心和脚本运行器必须同 Pod 或同节点。
+# 高负载区域需要 guaranteed QoS。
+# 观战和回放读取不要与权威 tick 抢占资源。
+# 迁移必须在 tick 边界和事件日志提交后执行。
+
+!! 首发完成定义
+
+# 私服 Docker Compose 和 K8s 集群使用同一服务边界。
+# 区域运行单元可通过快照加事件日志恢复。
+# 监控能区分 tick 耗时、脚本耗时、事件存储耗时和网关连接数。
+# 故障恢复不会让区域多跑或少跑 tick。

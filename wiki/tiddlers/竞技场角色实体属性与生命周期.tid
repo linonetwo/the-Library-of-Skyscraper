@@ -1,0 +1,131 @@
+created: 20260617110000000
+creator: 林一二
+modified: 20260617110000000
+modifier: 林一二
+tags: 竞技场角色与小队系统 AI生成
+title: 竞技场角色实体属性与生命周期
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+角色实体属性与生命周期定义参赛单位进入赛局后的权威状态。它只覆盖单个角色的属性、状态、资源携带、死亡与恢复，不覆盖小队编队、不覆盖 AI 行为树细节，也不覆盖技能源码内部实现。
+
+角色是小队级 RTS 的最小可控单位。所有行动规则、回放、复盘和战斗结算都必须能定位到具体角色。
+
+!! 角色组成
+
+|!部分|!说明|
+|身份|actorId、ownerId、squadId、archetypeId、displayName|
+|岗位|侦察、采集、搬运、建设、防守、突袭、控制、支援|
+|属性|生命、速度、负重、采集、建造、战斗、感知、能量上限|
+|状态|空闲、移动、采集、搬运、建造、战斗、咏唱、修复、撤退、倒地|
+|库存|携带资源、任务物品、补给、临时掉落物|
+|负面状态|疲劳、减速、沉默、眩晕、流血、补给不足|
+|绑定|当前任务、当前规则版本、当前决策、当前技能实例|
+
+!! Rust 结构
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct ActorRuntime {
+    pub actor_id: EntityId,
+    pub owner_id: PlayerId,
+    pub squad_id: u64,
+    pub archetype_id: u32,
+    pub role: SquadRole,
+    pub rule_profile_id: Option<u64>,
+}
+
+#[derive(Component, Clone, Debug)]
+pub struct ActorVitals {
+    pub hp: i32,
+    pub hp_max: i32,
+    pub shield: i32,
+    pub energy: i32,
+    pub energy_max: i32,
+    pub fatigue: u16,
+    pub supply: u16,
+}
+
+#[derive(Component, Clone, Debug)]
+pub struct ActorBindings {
+    pub current_task_id: Option<u64>,
+    pub current_decision_id: Option<u128>,
+    pub current_skill_instance: Option<u128>,
+    pub last_intent_id: Option<u128>,
+}
+```
+
+属性数值使用整数。倍率以 milli 表示，例如 1000 表示 1.0。前端展示可以转成小数，但服务端结算不得使用浮点数影响结果。
+
+!! 生命周期
+
+# Spawned：赛局创建、复活或训练局重置时生成角色实体。
+# Ready：角色可接收任务和动作意图。
+# Active：角色正在执行移动、采集、建造、战斗或技能。
+# Interrupted：角色被控制、路径阻挡、目标失效或任务取消。
+# Retreating：规则或系统触发撤退，优先寻找安全点和补给点。
+# Downed：生命归零后进入倒地，不再执行普通意图。
+# Recovering：等待救援、复活、撤出战场或训练局快速恢复。
+# Removed：赛局结束、永久死亡或实体迁移完成后移除。
+
+!! 状态转移
+
+|!来源|!目标|!触发|
+|Ready|Active|接受可执行意图|
+|Active|Interrupted|目标消失、路径失败、技能失败、控制效果|
+|Interrupted|Ready|中断处理完成并有 fallback|
+|Active|Retreating|生命、补给、敌情或规则阈值触发|
+|任意非 Removed|Downed|hp 小于等于 0|
+|Downed|Recovering|救援、复活设施或训练局规则触发|
+|Recovering|Ready|恢复时间结束并满足补给条件|
+
+!! TypeScript 视图
+
+```ts
+export interface ActorDetail {
+  id: EntityId;
+  ownerId: PlayerId;
+  squadId: string;
+  archetypeId: string;
+  role: SquadRole;
+  vitals: {
+    hp: number;
+    hpMax: number;
+    shield: number;
+    energy: number;
+    energyMax: number;
+    fatigue: number;
+    supply: number;
+  };
+  phase: ActorPhase;
+  inventory: InventoryView;
+  bindings: {
+    taskId?: string;
+    decisionId?: string;
+    skillInstanceId?: string;
+    ruleVersionId?: string;
+  };
+  effects: ActorEffectView[];
+}
+```
+
+ActorDetail 是详情面板和回放检查器使用的结构。实时列表可以使用 ActorSummary，避免高频面板更新拖慢地图。
+
+!! 属性来源
+
+|!来源|!处理|
+|单位原型|基础生命、速度、负重、岗位倾向、默认技能|
+|装备|修改负重、能量、采集、建造、战斗或感知|
+|科技|按赛局规则提供加成，必须写入效果来源|
+|建筑光环|只在范围和控制权满足时生效|
+|临时状态|战斗、技能、补给不足或 PVE 效果产生|
+
+最终属性需要生成 AttributeBreakdown，供回放和前端解释。玩家看到的每个加成或惩罚都必须能追溯来源。
+
+!! 首发完成定义
+
+# 角色能完成移动、采集、搬运、建造、战斗、撤退和倒地恢复。
+# 任一状态变化都生成可回放事件。
+# 任一属性变化都能列出来源和持续时间。
+# 角色详情、关键决策日志和规则诊断使用同一个 actorId。

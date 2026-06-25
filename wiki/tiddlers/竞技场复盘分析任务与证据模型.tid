@@ -1,0 +1,86 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场复盘与回放系统 AI生成
+title: 竞技场复盘分析任务与证据模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+复盘分析任务与证据模型定义系统如何从回放事件、曲线、日志和源码映射中生成可操作的问题归因。它只处理复盘后台任务和证据结构，不处理前端时间轴 UI，也不处理智能体提示词。
+
+复盘输出必须能追溯证据。没有证据的建议不能进入补丁流程。
+
+!! AnalysisJob
+
+```ts
+export interface AnalysisJob {
+  jobId: string;
+  ownerId: PlayerId;
+  sessionId: string;
+  scope: AnalysisScope;
+  state: 'queued' | 'running' | 'completed' | 'failed' | 'cancelled';
+  requestedBy: 'system' | 'player' | 'agent';
+}
+
+export interface AnalysisScope {
+  tickRange: { start: number; end: number };
+  segmentIds?: string[];
+  ruleVersionIds?: RuleVersionId[];
+  entityIds?: EntityId[];
+  focus?: AnalysisFocus[];
+}
+```
+
+AnalysisJob 可以在赛后批处理，也可以在赛局中针对短片段执行。实时赛局中的分析不能阻塞权威 tick。
+
+!! 证据结构
+
+```ts
+export interface EvidenceItem {
+  evidenceId: string;
+  kind: 'event' | 'metric' | 'decision_log' | 'source' | 'snapshot' | 'segment';
+  tick?: number;
+  entityIds?: EntityId[];
+  sourceRef?: SourceRef;
+  summary: string;
+  weight: number;
+}
+
+export interface Finding {
+  findingId: string;
+  category: AnalysisFocus;
+  severity: 'info' | 'warning' | 'critical';
+  title: string;
+  explanation: string;
+  evidenceIds: string[];
+  suggestedAction?: SuggestedAction;
+}
+```
+
+Finding 只引用 EvidenceItem，不复制大段回放内容。前端按 evidenceId 拉取详情。
+
+!! 分析焦点
+
+|!焦点|!主要证据|
+|资源断线|EconomyEvent、搬运任务、路线风险、库存变化|
+|角色死亡|DamageEvent、撤退阈值、支援距离、DecisionEvent|
+|建筑失效|MaintenanceMissing、BuildingDamaged、RepairTask|
+|技能失败|SkillCastEvent、能量、冷却、SourceRef、拒绝原因|
+|扩张失败|地图目标、PVE 激活、路径、控制变化|
+|积分落后|ScoreEvent、目标占用、阶段任务、资源效率|
+
+!! 输出约束
+
+# 每个 Finding 至少包含两类证据，除非是明确的编译或权限错误。
+# SuggestedAction 必须指定影响范围和风险。
+# 无法归因时输出 unknown，不编造原因。
+# 智能体补丁只能引用 completed 的 AnalysisJob。
+
+!! 首发完成定义
+
+# 系统能自动分析资源断线、角色死亡、建筑被毁和技能失败。
+# 每个分析结论都能跳到回放 tick、地图对象、日志或源码位置。
+# 复盘任务可以后台运行并产生进度、失败和取消状态。
+# 智能体读取 Finding 和 EvidenceItem 生成补丁，而不是直接读散乱日志。

@@ -1,0 +1,76 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场编程智能体协作系统 AI生成
+title: 竞技场智能体补丁生成与审阅契约
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+智能体补丁生成与审阅契约定义智能体如何把复盘结论转成可审阅、可沙盒、可发布的规则修改。它只处理补丁结构和审阅流程，不处理模型提示词，也不处理最终规则执行。
+
+补丁必须小、可解释、可回滚。一次补丁只解决一个主要问题，避免把多个策略变化混在一起。
+
+!! PatchDraft
+
+```ts
+export interface PatchDraft {
+  patchId: string;
+  baseRuleVersionId: RuleVersionId;
+  title: string;
+  intent: string;
+  evidenceRefs: AgentContextRef[];
+  changes: PatchChange[];
+  risk: PatchRisk;
+  recommendedTests: RuleTestCaseRef[];
+}
+
+export type PatchChange =
+  | SourcePatchChange
+  | BehaviorConfigPatchChange
+  | TaskPolicyPatchChange
+  | SkillPolicyPatchChange;
+```
+
+PatchDraft 不直接修改草稿。玩家接受后才应用到 RulePackage draft。
+
+!! 变更要求
+
+|!要求|!说明|
+|范围明确|只标记被修改文件、节点或配置项|
+|证据明确|每个关键变化至少有一条 evidenceRef|
+|风险明确|说明可能降低的行为或新的失败模式|
+|测试明确|给出固定沙盒或回放片段测试|
+|可回滚|保留 baseRuleVersionId 和反向 diff|
+
+!! 审阅状态
+
+```ts
+export type PatchReviewState =
+  | 'drafted'
+  | 'viewing_diff'
+  | 'applied_to_draft'
+  | 'diagnosing'
+  | 'sandboxing'
+  | 'ready_to_publish'
+  | 'rejected'
+  | 'published';
+```
+
+审阅状态属于前端和规则服务共享模型。状态变化写入审计事件，方便回放策略演进。
+
+!! 发布前检查
+
+# 补丁 base 版本必须仍然存在。
+# 修改后的草稿必须通过类型、schema、权限和配额检查。
+# 推荐沙盒至少运行一项。
+# 高风险补丁需要玩家显式确认。
+# 正式赛局发布必须生成新的 RuleVersionId。
+
+!! 首发完成定义
+
+# 智能体可以产出源码 diff、配置 diff 和任务策略 diff。
+# 玩家能逐项接受、拒绝或改写补丁。
+# 补丁进入沙盒后能对比旧版本和新版本表现。
+# 已发布补丁能在结算报告中沉淀为策略库条目。

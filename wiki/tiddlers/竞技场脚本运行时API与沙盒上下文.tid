@@ -1,0 +1,95 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: [[竞技场脚本运行时与 TypeScript 策略]] AI生成
+title: 竞技场脚本运行时API与沙盒上下文
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+脚本运行时 API 与沙盒上下文定义玩家 TypeScript 代码可以导入、读取和返回的最小接口。它只处理脚本 API、上下文对象、隔离和类型边界，不处理 UI 编辑器，也不处理 Rust 模拟结算。
+
+脚本运行时提供确定性、受限、无副作用的策略环境。脚本不得访问文件系统、网络、系统时间、随机全局状态或未授权世界数据。
+
+!! 公开 API
+
+```ts
+export interface ArenaScriptApi {
+  findActors(filter: ActorFilter): ActorScriptView[];
+  findBuildings(filter: BuildingFilter): BuildingScriptView[];
+  findResourceNodes(filter: ResourceFilter): ResourceNodeScriptView[];
+  findTasks(filter: TaskFilter): TaskScriptView[];
+  estimatePath(from: HexPosition, to: HexPosition): PathEstimate;
+  scoreTarget(input: TargetScoreInput): number;
+  log(entry: DecisionLogDraft): void;
+}
+```
+
+所有 API 都从 RuleContext 的授权快照读取数据。API 返回的是快照视图，不是实时查询权威世界。
+
+!! 禁止能力
+
+|!能力|!处理|
+|Date.now、performance.now|禁用或返回 tick 派生时间|
+|Math.random|禁用，提供 ctx.randomSeed 派生工具|
+|fetch、WebSocket|禁用|
+|eval、Function|禁用|
+|文件系统、进程、环境变量|禁用|
+|全局可变跨版本缓存|禁用，使用 RuleMemory|
+
+!! 上下文
+
+```ts
+export interface RuleExecutionContext {
+  tick: number;
+  ruleVersionId: RuleVersionId;
+  playerId: PlayerId;
+  contentVersion: string;
+  world: AuthorizedWorldView;
+  api: ArenaScriptApi;
+  memory: RuleMemory;
+  limits: RuleExecutionLimits;
+}
+
+export interface RuleExecutionLimits {
+  maxIntents: number;
+  maxTaskPatches: number;
+  maxLogEntries: number;
+  maxMemoryBytes: number;
+  remainingBudgetTokens: number;
+}
+```
+
+limits 是运行时提示，不是安全边界。真正的边界由脚本运行器和模拟核心校验。
+
+!! 隔离层
+
+|!层|!职责|
+|编译层|TypeScript 编译、依赖白名单、源码映射|
+|加载层|按 RuleVersionId 加载已发布 bundle|
+|执行层|isolate 或进程隔离，限制 CPU、内存和超时|
+|输出层|schema 校验、数量限制、sourceRef 校验|
+|审计层|记录耗时、内存、拒绝、异常和截断|
+
+!! 错误输出
+
+```ts
+export interface ScriptRunFailure {
+  ruleVersionId: RuleVersionId;
+  tick: number;
+  kind: 'compile' | 'timeout' | 'memory' | 'runtime' | 'schema' | 'permission';
+  message: string;
+  sourceRef?: SourceRef;
+  recoverable: boolean;
+}
+```
+
+脚本失败不应中断区域 tick。失败结果进入事件日志，模拟核心使用 fallback 或保持当前任务。
+
+!! 首发完成定义
+
+# 玩家 TypeScript 只能导入官方协议包和允许的纯函数工具。
+# 脚本输入完全来自授权快照。
+# 输出必须通过 schema、配额、sourceRef 和权限校验。
+# 编译错误、运行时错误、超时和内存超限都能定位到规则版本。

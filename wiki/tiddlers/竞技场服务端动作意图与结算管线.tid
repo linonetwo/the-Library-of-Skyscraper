@@ -1,0 +1,136 @@
+created: 20260617110000000
+creator: 林一二
+modified: 20260617110000000
+modifier: 林一二
+tags: 竞技场服务端模拟与运行系统 AI生成
+title: 竞技场服务端动作意图与结算管线
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+动作意图与结算管线定义玩家脚本输出如何进入权威模拟核心。它只处理脚本输出、校验、排序、结算和拒绝记录，不处理脚本语言设计，也不处理前端编辑器。
+
+动作意图不是命令。脚本只能表达希望做什么，模拟核心根据当前权威状态决定接受、降级、延迟或拒绝。
+
+!! 意图类型
+
+|!意图|!作用|!主要校验|
+|MoveIntent|移动到房间内位置或目标实体附近|视野、路径、速度、控制效果、区域所有权|
+|GatherIntent|采集资源点|距离、资源点状态、占用槽、工具、负重|
+|TransferIntent|搬运、存入、取出、提交资源|距离、容量、权限、资源类型、目标库存|
+|BuildIntent|建造、修复、拆除建筑|槽位、蓝图、资源、权限、科技、建造者状态|
+|AttackIntent|普通攻击或压制目标|视野、距离、武器状态、阵营关系、冷却|
+|CastSkillIntent|调用技能源码并传入目标参数|技能归属、能量、冷却、签名链、事件窗口|
+|ClaimIntent|占领资源点、编目台或房间控制点|控制进度、敌方干扰、角色状态、阶段限制|
+|TaskPatchIntent|调整任务队列|规则版本、任务权限、队列容量、互斥关系|
+
+!! 输入结构
+
+```rust
+pub struct IntentEnvelope<T> {
+    pub intent_id: u128,
+    pub tick_id: TickId,
+    pub player_id: PlayerId,
+    pub actor_id: EntityId,
+    pub rule_version_id: RuleVersionId,
+    pub decision_id: u128,
+    pub source_ref: Option<SourceRefId>,
+    pub payload: T,
+}
+
+pub enum ActionIntent {
+    Move(MoveIntent),
+    Gather(GatherIntent),
+    Transfer(TransferIntent),
+    Build(BuildIntent),
+    Attack(AttackIntent),
+    CastSkill(CastSkillIntent),
+    Claim(ClaimIntent),
+    TaskPatch(TaskPatchIntent),
+}
+```
+
+intent_id 由脚本运行器生成并带入脚本结果摘要，模拟核心在同一 tick 内去重。重复 intent_id 只保留第一条，并写入重复输出记录。
+
+!! 处理阶段
+
+# 接收脚本运行器返回的批量意图。
+# 验证 envelope：tickId、playerId、actorId、ruleVersionId、sourceRef。
+# 按 actor 当前状态过滤不可执行类型。
+# 按权限、视野、距离、冷却、配额、资源和地图控制逐项校验。
+# 将可执行意图转为内部 SimCommand。
+# 解决同一角色多意图冲突。
+# 按稳定顺序进入系统结算。
+# 生成接受、拒绝、降级和执行结果事件。
+
+!! 冲突解决
+
+|!冲突|!处理|
+|同一角色多个主动作|保留优先级最高的一项；同优先级按 intentId 排序|
+|移动与采集同时出现|采集距离不足时保留移动；距离满足时采集覆盖移动|
+|攻击与撤退同时出现|撤退意图优先，攻击写入 skipped|
+|建造与搬运互斥|当前任务阶段决定，搬运建材优先于施工|
+|技能与普通攻击|技能通过校验后覆盖普通攻击，普通攻击可作为 fallback|
+|任务补丁互相覆盖|同一 taskId 只保留最后一个 sequence 合法补丁|
+
+!! 拒绝原因
+
+```rust
+pub enum IntentRejectCode {
+    StaleTick,
+    ActorNotOwned,
+    ActorNotVisible,
+    ActorBusy,
+    TargetOutOfRange,
+    PathBlocked,
+    ResourceMissing,
+    InventoryFull,
+    PermissionDenied,
+    CooldownNotReady,
+    QuotaExceeded,
+    InvalidSourceRef,
+    SchemaInvalid,
+}
+```
+
+拒绝不是异常。拒绝结果必须进入关键决策日志和回放事件，方便玩家判断规则问题。高频重复拒绝需要在同一 tick 或同一片段内聚合，避免日志刷屏。
+
+!! SimCommand
+
+```rust
+pub struct SimCommand {
+    pub command_id: u128,
+    pub source_intent_id: u128,
+    pub actor_id: EntityId,
+    pub priority: u16,
+    pub kind: SimCommandKind,
+}
+
+pub enum SimCommandKind {
+    MoveTo(Position),
+    StartGather { node_id: EntityId },
+    Transfer { from: EntityId, to: EntityId, items: ResourceBundle },
+    WorkOnBuilding { building_id: EntityId, work: BuildWorkKind },
+    Attack { target_id: EntityId },
+    BeginSkillCast { skill_id: u32, target: SkillTarget },
+    Claim { target_id: EntityId },
+}
+```
+
+SimCommand 是模拟核心内部结构，不下发给前端。前端只能看到意图结果和世界事件。
+
+!! 结算输出
+
+|!输出|!用途|
+|IntentAccepted|说明脚本输出通过校验并进入结算|
+|IntentRejected|说明拒绝原因、sourceRef、actorId 和目标|
+|CommandExecuted|说明世界状态实际变化|
+|CommandSkipped|说明被更高优先级或状态变化覆盖|
+|DecisionTrace|连接源码、规则对象、角色、tick 和回放时间|
+
+!! 首发完成定义
+
+# 任一动作意图都有 schema、校验函数、拒绝原因和回放事件。
+# 同一输入事件日志重放时得到同一组 SimCommand 和世界结果。
+# 脚本越权不会修改权威状态，只生成拒绝记录。
+# 前端能把拒绝原因定位到角色、规则版本、源码范围和回放 tick。

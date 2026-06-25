@@ -1,8 +1,8 @@
-created: 20260607152000000
+created: 20260606103000000
 creator: 林一二
-modified: 20260607170000000
+modified: 20260606103000000
 modifier: 林一二
-tags: 竞技场脚本运行时与 TypeScript 策略 AI生成
+tags: 竞技场系统设计与拆解 AI生成
 title: 竞技场脚本引擎选型
 type: text/vnd.tiddlywiki
 
@@ -20,7 +20,7 @@ type: text/vnd.tiddlywiki
 
 !! 推荐方案
 
-正式服执行引擎采用 deno_core / V8 isolate worker 池。deno_core 直接嵌入 V8，并允许平台只暴露自定义 op，适合与 Rust 服务、配额系统、SourceManifest、行动规则存储和技能运行时账本集成。每个 Script Runner Pod 内启动多个预热 isolate worker，worker 顺序或并发处理多个玩家的行动规则任务和技能事件任务。用户脚本模块、SourceManifest 和常用 API 对象进入 LRU 缓存。
+正式服执行引擎采用 deno_core / V8 isolate worker 池。deno_core 直接嵌入 V8，并允许平台只暴露自定义 op，适合与 Rust 服务、配额系统、源码清单、行动规则存储和技能运行时账本集成。每个 脚本运行器 Pod 内启动多个预热 isolate worker，worker 顺序或并发处理多个玩家的行动规则任务和技能事件任务。用户脚本模块、源码清单 和常用 API 对象进入 LRU 缓存。
 
 Deno CLI 保留给本地调试、安全原型和开发工具。QuickJS 保留给低内存私服、离线训练和压力降级场景。
 
@@ -56,11 +56,11 @@ Deno CLI 保留给本地调试、安全原型和开发工具。QuickJS 保留给
 
 |!配额|!实现方式|
 |活跃执行时间|Runner Supervisor 记录任务耗时，V8 interrupt 和任务截止时间触发终止|
-|硬超时|worker 进程可被终止并重启，Simulation Worker 使用保守结果|
+|硬超时|worker 进程可被终止并重启，模拟核心使用保守结果|
 |堆内存|V8 isolate heap limit、Pod memory limit 和 worker 周期重启共同控制|
 |API 白名单|deno_core 只注册平台 op，文件、网络、环境变量和系统时间能力不进入玩家脚本|
 |技能等待|等待条件保存在技能运行时账本，等待期间释放 worker|
-|远程行动规则|Gateway 限制请求频率、响应截止时间、请求体大小和返回对象大小|
+|远程行动规则|网关服务 限制请求频率、响应截止时间、请求体大小和返回对象大小|
 
 !! 结论
 

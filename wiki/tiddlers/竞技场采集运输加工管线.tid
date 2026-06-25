@@ -1,0 +1,84 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场资源与经济系统 AI生成
+title: 竞技场采集运输加工管线
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+采集运输加工管线定义资源从地图资源点进入玩家经济系统的完整流程。它只处理资源点、采集、搬运、中转、加工和瓶颈事件，不处理资源面板 UI，也不处理最终结算奖励。
+
+资源线是行动规则最早需要跑通的闭环。它必须足够简单，能通过回放看出问题出在采集目标、运输路线、仓储位置还是防守不足。
+
+!! 管线阶段
+
+# 侦察发现资源点。
+# 规则选择采集目标和采集者。
+# 角色移动到资源点并占用采集槽。
+# 采集进度转化为角色库存或资源点旁缓存。
+# 搬运角色把资源送到仓储或建筑工地。
+# 加工建筑把原料转为可用建材、补给或科技材料。
+# 经济账本记录收入、转移、损耗和消耗。
+
+!! 资源点
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct ResourceNode {
+    pub node_id: EntityId,
+    pub kind: ResourceKind,
+    pub remaining: u32,
+    pub regen_per_tick: u32,
+    pub gather_slot_count: u8,
+    pub occupied_slots: Vec<EntityId>,
+    pub risk_level: u16,
+}
+```
+
+remaining 为权威剩余量。regen_per_tick 只在允许刷新的资源点启用。occupied_slots 用于限制多个角色同时采集的效率。
+
+!! 运输任务
+
+```ts
+export interface HaulTaskView {
+  taskId: string;
+  resource: ResourceKind;
+  fromEntityId: EntityId;
+  toEntityId: EntityId;
+  amountRequested: number;
+  amountDelivered: number;
+  priority: number;
+  routeRisk: number;
+}
+```
+
+搬运任务可以由建筑计划、仓储缺口、补给线或规则补丁生成。多个搬运任务需要按距离、风险、缺口和目标价值排序。
+
+!! 加工
+
+|!加工|!输入|!输出|
+|建材整理|原始残材|建材|
+|补给制备|补给原料|补给|
+|模因整理|研读产物|模因流量|
+|部件预制|建材、算力|建筑部件|
+
+首发可以把加工简化为建筑每 tick 转换固定资源，但事件仍要记录 input、output、buildingId 和效率。
+
+!! 瓶颈事件
+
+|!事件|!原因|
+|GatherSlotFull|采集者过多，资源点槽位不足|
+|CarrierMissing|采集完成但无人搬运|
+|StorageFull|目标仓储容量不足|
+|RouteUnsafe|运输路线风险超过阈值|
+|ProcessorIdle|加工建筑缺输入或输出堵塞|
+|MaintenanceStarved|维护资源不足影响建筑或单位|
+
+!! 首发完成定义
+
+# 一条资源线能从资源点采集、搬运到仓储，再消耗到建筑。
+# 每个资源变化都有 EconomyEvent。
+# 复盘能指出资源线断在采集、运输、仓储、加工或防守。
+# 行动规则能读取资源点摘要、库存缺口和搬运任务。

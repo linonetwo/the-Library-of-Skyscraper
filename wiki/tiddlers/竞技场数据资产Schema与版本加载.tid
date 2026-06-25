@@ -1,0 +1,91 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: 竞技场数据资产与赛周内容系统 AI生成
+title: 竞技场数据资产Schema与版本加载
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+数据资产 Schema 与版本加载定义单位、技能、建筑、地图、任务、PVE 和赛周规则如何被描述、校验、加载和绑定到赛局。它只处理内容数据契约，不处理运营后台界面，也不处理运行时 ECS 存储。
+
+内容资产必须可版本化、可测试、可回滚。正式赛局一旦开服，所绑定的内容版本不得原地修改。
+
+!! 资产包
+
+```ts
+export interface ContentBundleManifest {
+  contentVersion: string;
+  createdAt: string;
+  schemaVersion: string;
+  assets: ContentAssetRef[];
+  dependencies: string[];
+  checksum: string;
+}
+
+export interface ContentAssetRef {
+  assetId: string;
+  kind: ContentAssetKind;
+  path: string;
+  checksum: string;
+}
+
+export type ContentAssetKind =
+  | 'unit_archetype'
+  | 'skill_archetype'
+  | 'building_archetype'
+  | 'season_map'
+  | 'objective_rule'
+  | 'threat_spawn_rule'
+  | 'tech_node'
+  | 'season_rule';
+```
+
+Manifest 是加载入口。服务端、前端和工具链必须能读同一 manifest，并校验 checksum。
+
+!! Schema 原则
+
+|!原则|!说明|
+|静态资产只读|开服后运行时不改资产内容|
+|运行时状态分离|血量、库存、占领进度等放入运行时实体|
+|ID 稳定|assetId 一经发布不复用|
+|显式依赖|技能引用效果、单位引用技能、建筑引用产能必须可追踪|
+|可测试|每类资产有最小样本和 schema 校验|
+
+!! 加载流程
+
+# 工具链读取资产源文件并运行 schema 校验。
+# 解析引用关系，检查缺失、循环和禁用资产。
+# 生成 ContentBundleManifest 和 checksum。
+# 沙盒用该 bundle 跑固定用例。
+# 开服调度把 contentVersion 绑定到 sessionId。
+# 区域运行单元加载 bundle，生成运行时实体原型表。
+# 前端按同一 contentVersion 加载展示名、图标、描述和配置 schema。
+
+!! 校验内容
+
+|!资产|!校验|
+|单位|成本、岗位、属性范围、技能槽、装备槽|
+|技能|冷却、能量、效果、签名链要求、目标类型|
+|建筑|槽位类型、成本、维护、产能、防御、权限|
+|地图|房间连通、区域归属、目标点、出生点|
+|任务|阶段、目标、计分、过期、反刷限制|
+|PVE|生成预算、仇恨规则、掉落、可规避性|
+|科技|前置、成本、效果范围、叠加规则|
+
+!! 版本策略
+
+|!场景|!处理|
+|训练局|可选择最新稳定版本或指定版本|
+|短赛局|开服绑定固定 contentVersion|
+|正式三天局|开服后不允许热改内容资产|
+|紧急修复|发布新 contentVersion，新开服务器使用；旧服务器只允许配置级安全禁用|
+|回放|按原 contentVersion 加载资产，缺失时从归档读取|
+
+!! 首发完成定义
+
+# 单位、建筑、地图、任务和 PVE 至少各有一套 schema 和样本。
+# 服务端和前端都能按 contentVersion 加载同一资产包。
+# 资产引用错误能在工具链阶段失败。
+# 回放和沙盒能绑定并恢复对应内容版本。

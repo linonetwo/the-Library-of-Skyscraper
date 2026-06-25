@@ -1,0 +1,53 @@
+created: 20260609005000000
+creator: 林一二
+modified: 20260609005000000
+modifier: 林一二
+tags: 竞技场PixiJS渲染实现 AI生成
+title: 竞技场PixiJSReact状态桥与数据订阅
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+React 状态桥与数据订阅定义 PixiJS 画布如何与 React 面板、资源表格、时间轴、曲线、规则工作台和智能体证据同步。边界必须清晰，避免 React 每次状态变化都重建 PixiJS 对象。
+
+!! 状态桥事件
+
+|!事件|!方向|!用途|
+|MapObjectSelected|PixiJS 到 React|更新检查器、表格选中和命令上下文|
+|MapObjectHovered|PixiJS 到 React|显示 tooltip 和轻量预览|
+|CameraChanged|PixiJS 到 React|保存镜头、更新迷你地图和兴趣区域|
+|LayerVisibilityChanged|React 到 PixiJS|切换资源、任务、风险、复盘和调试层|
+|TimelineChanged|React 到 PixiJS|回放跳转、沙盒对比和事件高亮|
+|EvidenceFocused|React 到 PixiJS|从日志、曲线、智能体建议聚焦地图对象|
+|SubscriptionChanged|React 到数据层|按镜头、选中对象和工作区调整订阅范围|
+
+!! 数据订阅
+
+|!订阅|!触发|
+|地图快照|进入赛局、切换地图、内容版本变化或事件缺口修复|
+|兴趣区域|镜头移动、跟随目标、复盘片段或智能体证据聚焦|
+|对象详情|选中角色、建筑、目标、资源线、技能或事件|
+|回放片段|进入复盘、沙盒对比或时间轴跳转|
+|诊断证据|从规则工作台定位到地图事件或对象|
+
+!! 状态隔离
+
+|!上下文|!隔离字段|
+|实时|sessionId、serverTick、interestRegion、visionState|
+|沙盒|sandboxRunId、scenarioId、baselineVersion、candidateVersion|
+|回放|replayId、replayTick、segmentId、contentVersion|
+|离线训练|localSessionId、本地服务状态、缓存版本|
+
+!! 实现原则
+
+# PixiJS 内部对象状态使用控制器管理，React 只保存可序列化的选中、镜头、过滤和来源。
+# 高频位置更新不进入全局 React 状态，只在 PixiJS 层批处理。
+# 低频选中、告警、版本、任务和片段进入 React，供面板和 URL 状态使用。
+# 数据订阅由工作区、镜头和选中对象共同决定，避免全图持续推送。
+
+!! 首发验收
+
+# 地图选择对象后，检查器、时间轴、曲线和表格同步高亮。
+# React 面板变化不会导致 PixiJS Application 重建。
+# 实时、沙盒和回放的选中对象可以共享 id，但状态来源明确隔离。
+# 从规则诊断和智能体证据能稳定跳转地图位置。

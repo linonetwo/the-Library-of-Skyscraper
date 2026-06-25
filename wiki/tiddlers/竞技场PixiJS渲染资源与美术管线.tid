@@ -1,0 +1,54 @@
+created: 20260609005000000
+creator: 林一二
+modified: 20260609005000000
+modifier: 林一二
+tags: 竞技场PixiJS渲染实现 AI生成
+title: 竞技场PixiJS渲染资源与美术管线
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+渲染资源与美术管线定义地图图标、纹理、字体、主题、图例、shader 和资源加载方式。资源管线必须服务可读性、性能和内容版本化，避免前端开发后期因资源命名混乱和状态缺图返工。
+
+!! 资源类型
+
+|!类型|!用途|
+|纹理图集|单位、建筑、目标点、技能、事件标记和状态图标|
+|地图纹理|房间主题、区域底色、掩体、书架、危险区域和门禁|
+|字体|地图标签、数字、调试文本和短 tooltip|
+|shader|视野遮罩、历史情报、技能范围、风险热区和持续区域|
+|图例配置|资源、目标、岗位、技能、风险、归属和来源语义|
+|主题配置|不同房间主题、赛周视觉、PVE 包和内容版本差异|
+
+!! 命名规范
+
+|!对象|!命名字段|
+|地图目标|objective.resource、objective.catalog、objective.reading、objective.core、objective.lift|
+|岗位|role.scout、role.harvest、role.carry、role.build、role.defend、role.support|
+|建筑|building.core、building.storage、building.workshop、building.catalog、building.defense|
+|技能|skill.move、skill.damage、skill.control、skill.protect、skill.interfere|
+|状态|state.damaged、state.blocked、state.retreating、state.casting、state.failed|
+|事件|event.combat、event.disconnect、event.death、event.rule、event.warning|
+
+!! 加载策略
+
+|!阶段|!加载|
+|启动|基础 UI 图标、默认字体、占位纹理和错误资源|
+|进入赛局|地图主题、目标点、单位、建筑、技能和图例|
+|进入回放|回放涉及内容版本的资源包和缺失资源 fallback|
+|进入沙盒|候选规则需要的技能、单位和测试场景资源|
+|开发模式|调试图标、包围盒、坐标字体和资源缺失检查|
+
+!! 可读性要求
+
+# 每个关键状态不能只靠颜色表达，必须有形状、图标或文字辅助。
+# 资源图标、目标图标、岗位图标和技能图标在远景和近景都能识别。
+# 缺失资源使用明确占位图标，并记录资源 key 和内容版本。
+# 美术资源必须适配高 DPI 与缩放，不得在地图缩放时糊成不可读状态。
+
+!! 首发验收
+
+# 所有首发地图目标、岗位、建筑、技能、事件和状态都有资源 key 和占位资源。
+# 资源加载失败不会阻塞地图初始化。
+# 图例可以从地图界面打开，并与实际图标和颜色语义一致。
+# 回放内容版本缺资源时显示 fallback 和反馈导出入口。

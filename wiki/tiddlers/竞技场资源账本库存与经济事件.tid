@@ -1,0 +1,133 @@
+created: 20260617110000000
+creator: 林一二
+modified: 20260617110000000
+modifier: 林一二
+tags: 竞技场资源与经济系统 AI生成
+title: 竞技场资源账本库存与经济事件
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+资源账本、库存与经济事件定义资源如何被生产、携带、存储、消耗和审计。它只处理经济数据模型，不处理建筑 UI、不处理采集路径，也不处理结算报告展示。
+
+经济系统必须支持回放重建和反作弊审计。任何资源数量变化都必须来自明确事件，不能由面板或脚本直接改库存。
+
+!! 资源枚举
+
+```rust
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
+pub enum ResourceKind {
+    BuildingMaterial,
+    Supply,
+    Compute,
+    MemeFlow,
+    CatalogScore,
+}
+```
+
+建材、补给、算力、模因流量和编目分是首发固定资源。后续新增资源必须声明是否可携带、可存储、可交易、可结算。
+
+!! 库存组件
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct Inventory {
+    pub capacity: u32,
+    pub slots: Vec<ResourceStack>,
+    pub locked: Vec<ResourceReservation>,
+}
+
+#[derive(Clone, Debug)]
+pub struct ResourceStack {
+    pub kind: ResourceKind,
+    pub amount: u32,
+}
+
+#[derive(Clone, Debug)]
+pub struct ResourceReservation {
+    pub reservation_id: u64,
+    pub task_id: u64,
+    pub kind: ResourceKind,
+    pub amount: u32,
+    pub expires_at: TickId,
+}
+```
+
+角色、建筑和资源点可以拥有 Inventory。资源点库存代表剩余可采量；角色库存代表携带量；建筑库存代表仓储或生产队列材料。
+
+!! 账本事件
+
+```rust
+pub struct EconomyEvent {
+    pub event_id: u128,
+    pub tick_id: TickId,
+    pub player_id: Option<PlayerId>,
+    pub source: EconomySource,
+    pub delta: Vec<ResourceDelta>,
+    pub reason: EconomyReason,
+    pub related_task_id: Option<u64>,
+}
+
+pub struct ResourceDelta {
+    pub entity_id: EntityId,
+    pub kind: ResourceKind,
+    pub amount: i64,
+}
+```
+
+账本事件中的 delta 总和不一定为零。采集、刷新、维护消耗、编目分产出和系统惩罚都可以创建或销毁资源，但 reason 必须明确。
+
+!! EconomyReason
+
+|!原因|!说明|
+|Gathered|从资源点采集到角色或建筑|
+|Transferred|实体之间搬运或存取|
+|Produced|建筑加工或赛局规则产出|
+|ConsumedByBuild|建造、修复或升级消耗|
+|ConsumedByMaintenance|建筑、角色或编目台维护消耗|
+|Scored|编目分记入结算账本|
+|Dropped|角色倒地、建筑损毁或任务取消导致掉落|
+|Expired|临时资源或赛局阶段资源过期|
+|Corrected|故障恢复后的审计校正，只能由维护工具生成|
+
+!! TypeScript 视图
+
+```ts
+export interface EconomyLedgerEntry {
+  eventId: string;
+  tick: number;
+  playerId?: string;
+  reason: string;
+  deltas: Array<{
+    entityId: string;
+    resource: ResourceKind;
+    amount: number;
+  }>;
+  taskId?: string;
+  sourceRef?: SourceRef;
+}
+
+export interface InventoryView {
+  capacity: number;
+  used: number;
+  resources: Partial<Record<ResourceKind, number>>;
+  reserved?: Partial<Record<ResourceKind, number>>;
+}
+```
+
+前端资源曲线从 EconomyLedgerEntry 派生，不从当前库存反推。当前库存只用于面板展示和任务可行性提示。
+
+!! 不变量
+
+# 库存不得低于零。
+# 角色携带量不得超过 capacity。
+# 锁定资源到期后必须释放或转换为消耗事件。
+# 编目分可以进入账本，但不进入普通实体库存。
+# 算力可以由建筑或编目台提供，但脚本配额消耗必须另写配额事件。
+
+!! 首发完成定义
+
+# 采集、搬运、建造、维护和编目分都能生成账本事件。
+# 资源面板、回放曲线和结算报告使用同一事件来源。
+# 资源异常能定位到 tick、实体、任务和规则版本。
+# 崩溃恢复后库存可由快照加账本事件校验。

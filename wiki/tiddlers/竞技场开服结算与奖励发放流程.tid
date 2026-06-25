@@ -1,0 +1,74 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场服务器与赛季系统 AI生成
+title: 竞技场开服结算与奖励发放流程
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+开服结算与奖励发放流程定义服务器结束后如何冻结状态、生成结算、发放奖励和归档数据。它只处理赛局结束后的后端流程，不处理结算报告 UI，也不处理商业化定价。
+
+结算必须可重放、可审计、可补偿。奖励发放不能只依赖前端展示结果。
+
+!! 结算阶段
+
+# 到达 endsAtTick 后服务器进入 Settling。
+# 区域运行单元停止接受新规则发布和非必要输入。
+# 提交最后一个权威 tick 的事件日志。
+# 生成最终状态快照和分数快照。
+# 结算任务读取 ScoreEvent、EconomyEvent、战斗事件和任务事件。
+# 生成玩家分项成绩、排名、奖励候选和异常标记。
+# 奖励服务幂等写入玩家账户。
+# 对象存储归档回放、战报和证据包。
+# 服务器进入 Archived。
+
+!! 结算任务
+
+```ts
+export interface SettlementJob {
+  jobId: string;
+  serverId: string;
+  contentVersion: string;
+  state: 'pending' | 'running' | 'blocked' | 'completed' | 'failed';
+  inputEventRange: { fromTick: number; toTick: number };
+  outputReportId?: string;
+  retryCount: number;
+}
+```
+
+SettlementJob 必须幂等。重复执行同一个 jobId 不得重复发奖励。
+
+!! 奖励记录
+
+```rust
+pub struct RewardGrant {
+    pub grant_id: u128,
+    pub player_id: PlayerId,
+    pub server_id: u64,
+    pub season_id: u64,
+    pub reward_kind: RewardKind,
+    pub amount: u32,
+    pub reason: RewardReason,
+    pub idempotency_key: String,
+}
+```
+
+idempotency_key 由 serverId、playerId、rewardKind、reason 和 settlementVersion 生成。奖励写入失败可以重试，不能重复入账。
+
+!! 异常处理
+
+|!异常|!处理|
+|事件日志缺口|阻塞结算，尝试从区域快照和副本恢复|
+|玩家数据缺失|生成异常标记，保留补偿任务|
+|奖励写入失败|结算报告可生成，但奖励状态为 pending|
+|作弊审计命中|冻结该玩家奖励，等待人工或自动审计|
+|回放归档失败|不阻塞核心奖励，但保留重试任务|
+
+!! 首发完成定义
+
+# 结算可以从事件日志和最终快照生成排名、分项和奖励。
+# 奖励发放幂等，有 pending、granted、blocked、failed 状态。
+# 玩家能看到结算完成、奖励待发、奖励冻结或补偿中的明确状态。
+# 结算报告中的每个核心分数都能追溯到 ScoreEvent。

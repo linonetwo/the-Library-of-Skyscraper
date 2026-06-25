@@ -1,0 +1,106 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: [[竞技场战斗与 PVE 威胁系统]] AI生成
+title: 竞技场战斗实体与伤害结算模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+战斗实体与伤害结算模型定义普通攻击、技能效果、受击、倒地和战斗事件。它只处理权威结算和事件输出，不处理技能源码编辑器，也不处理前端特效表现。
+
+战斗必须可读、可复盘、可稳定重放。首发优先使用少量清晰规则，不做复杂命中盒和高频动作游戏式判定。
+
+!! 战斗实体
+
+|!实体|!用途|
+|ActorCombat|角色攻击、防御、射程、目标和冷却|
+|BuildingCombat|防御建筑攻击、护甲、警戒范围|
+|DamageEvent|一次伤害或治疗结算记录|
+|EffectInstance|持续效果、区域效果、控制效果|
+|ThreatState|PVE 或敌对单位对目标的仇恨和优先级|
+
+!! Rust 组件
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct CombatStats {
+    pub attack_power: i32,
+    pub armor: i32,
+    pub range_milli: u32,
+    pub attack_interval_ticks: u16,
+    pub last_attack_tick: Option<TickId>,
+    pub damage_kind: DamageKind,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum DamageKind {
+    Physical,
+    Arcane,
+    Siege,
+    Environmental,
+    Pure,
+}
+
+pub struct DamageEvent {
+    pub event_id: u128,
+    pub tick_id: TickId,
+    pub source_id: EntityId,
+    pub target_id: EntityId,
+    pub amount: i32,
+    pub kind: DamageKind,
+    pub source_intent_id: Option<u128>,
+}
+```
+
+DamageEvent 是结算结果，不是请求。请求来自 AttackIntent、CastSkillIntent 或环境系统。
+
+!! 结算顺序
+
+# 校验目标仍可见、仍在范围内、阵营关系仍允许攻击。
+# 检查攻击冷却、控制状态和武器状态。
+# 计算基础伤害、护甲、技能倍率和建筑减免。
+# 应用护盾、生命和倒地规则。
+# 生成 DamageEvent、ActorStateChanged、EffectApplied。
+# 触发仇恨、撤退、救援和复盘片段标记。
+
+!! 伤害公式
+
+首发使用定点整数公式：
+
+```text
+raw = attackPower * multiplierMilli / 1000
+mitigated = max(1, raw - armor)
+final = clamp(mitigated, minDamage, maxDamage)
+```
+
+技能可以提供 multiplierMilli、flatBonus、damageKind 和特殊效果。复杂抗性矩阵后续扩展，首发只保留 armor 和少量 DamageKind。
+
+!! 目标选择输入
+
+|!输入|!说明|
+|威胁等级|敌方是否正在攻击本方关键对象|
+|距离|能否在当前攻击范围内命中|
+|价值|目标是否是搬运、建设、支援或高分建筑|
+|风险|追击是否会离开补给线或防御范围|
+|规则权重|玩家行动规则给出的目标优先级|
+
+目标选择由行动规则提出，模拟核心校验。官方 fallback 只在脚本失败或规则没有输出时生效。
+
+!! 倒地与恢复
+
+|!状态|!规则|
+|Downed|生命归零，丢失部分携带资源，不执行普通任务|
+|Rescuable|队友或支援建筑可救援|
+|RetreatRemoved|撤出战场，进入恢复计时|
+|PermanentLoss|正式赛局可按规则产生长期惩罚|
+
+训练局默认快速恢复。短赛局和正式赛局按赛季规则决定恢复时间、资源消耗和积分惩罚。
+
+!! 首发完成定义
+
+# 普通攻击、防御建筑、基础技能伤害和倒地恢复可稳定重放。
+# 每次倒地都有来源、目标、伤害类型和相关规则版本。
+# 战斗片段能聚合攻击、技能、撤退失败和救援行为。
+# PVE 与玩家单位使用同一套受击和伤害事件。

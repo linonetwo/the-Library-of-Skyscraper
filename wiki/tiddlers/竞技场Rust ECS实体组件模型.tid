@@ -1,0 +1,181 @@
+created: 20260617110000000
+creator: 林一二
+modified: 20260617110000000
+modifier: 林一二
+tags: [[竞技场技术架构与 Rust Bevy 决策]] AI生成
+title: 竞技场Rust ECS实体组件模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+Rust ECS 实体组件模型定义服务端权威模拟核心的最小数据边界。它只描述 Bevy 世界中的实体、组件、资源和事件，不描述前端展示、不描述 TypeScript 脚本实现，也不描述运营配置后台。
+
+核心原则：组件只保存当前 tick 必须参与模拟的数据；长期统计、回放材料和审计数据写入事件日志或派生存储；脚本可见数据由授权快照生成，不能直接读取 ECS 世界。
+
+!! 实体分类
+
+|!实体|!必要组件|!说明|
+|赛局|GameSession、TickClock、RuleSetBinding|通常以 Resource 表达，记录赛局级时钟、规则版本和阶段|
+|区域|RegionState、RegionOwnership、RegionLoad|一个区域运行单元负责的世界分块|
+|房间|RoomCoord、RoomTopology、RoomControl、VisionBlocker|六边形房间和房间内通路的权威数据|
+|角色|ActorIdentity、ActorStats、ActorState、Position、Inventory、SkillLoadout|玩家小队、官方 bot 和 PVE 单位共用角色实体|
+|建筑|BuildingIdentity、BuildingState、Position、Inventory、Maintenance|据点核心、仓储、防御、编目和前线支援建筑|
+|资源点|ResourceNode、Position、RoomBinding、ExtractorSlots|可采集、可占领或可争夺的地图资源|
+|任务|TaskOrder、TaskAssignment、TaskProgress、RuleTrace|行动规则生成并由模拟核心校验后的执行目标|
+|技能实例|SkillCastState、SkillSignatureState、EffectQueue|跨帧技能、咏唱窗口和效果排队|
+|投射物/区域效果|EffectVolume、Lifetime、DamageProfile|可选实体，首发只保留需要跨 tick 的效果|
+
+!! Rust 类型草案
+
+```rust
+pub type TickId = u64;
+pub type PlayerId = u64;
+pub type EntityId = u64;
+pub type RegionId = u32;
+pub type RuleVersionId = u64;
+
+#[derive(Component, Clone, Copy, Debug, Eq, PartialEq, Hash)]
+pub struct ActorIdentity {
+    pub entity_id: EntityId,
+    pub owner: PlayerId,
+    pub squad_id: u64,
+    pub archetype_id: u32,
+}
+
+#[derive(Component, Clone, Debug)]
+pub struct ActorStats {
+    pub hp: i32,
+    pub hp_max: i32,
+    pub move_speed_milli: u32,
+    pub carry_capacity: u32,
+    pub gather_power: u32,
+    pub build_power: u32,
+    pub attack_power: u32,
+    pub sense_radius: u16,
+}
+
+#[derive(Component, Clone, Copy, Debug)]
+pub struct Position {
+    pub region_id: RegionId,
+    pub room_q: i32,
+    pub room_r: i32,
+    pub local_x_milli: i32,
+    pub local_y_milli: i32,
+}
+
+#[derive(Component, Clone, Debug)]
+pub struct ActorState {
+    pub phase: ActorPhase,
+    pub current_task: Option<u64>,
+    pub fatigue: u16,
+    pub downed_until: Option<TickId>,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum ActorPhase {
+    Idle,
+    Moving,
+    Gathering,
+    Carrying,
+    Building,
+    Fighting,
+    Casting,
+    Repairing,
+    Retreating,
+    Downed,
+}
+```
+
+!! 组件拆分规则
+
+|!规则|!说明|
+|只读配置不进组件|单位原型、建筑原型、技能原型从内容版本读取，组件只存 archetypeId 和运行时覆盖|
+|高频变更独立组件|Position、ActorState、Inventory、TaskProgress 分离，方便差异事件和回放压缩|
+|跨系统共享用事件|攻击命中、采集完成、建筑受损、占领变化通过 tick 事件连接系统|
+|脚本痕迹不污染权威状态|RuleTrace 保存最小 sourceRef、decisionId 和拒绝原因，详细日志写事件流|
+|派生值不长期保存|战斗力评分、资源效率、路径风险由查询或复盘任务计算|
+
+!! Resource 模型
+
+```rust
+#[derive(Resource, Clone, Debug)]
+pub struct TickClock {
+    pub session_id: u64,
+    pub tick_id: TickId,
+    pub tick_millis: u32,
+    pub phase: TickPhase,
+}
+
+#[derive(Resource, Clone, Debug)]
+pub struct RegionRuntime {
+    pub region_id: RegionId,
+    pub owner_node_id: String,
+    pub content_version: u64,
+    pub active_rule_versions: Vec<RuleVersionId>,
+}
+
+#[derive(Resource, Clone, Debug)]
+pub struct DeterministicSeed {
+    pub session_seed: u64,
+    pub region_seed: u64,
+    pub tick_salt: u64,
+}
+```
+
+TickClock 是所有系统的时钟来源。任何系统不得读取本机 wall clock 影响模拟结果。需要 wall clock 的监控数据写入运行指标，不进入权威结算。
+
+!! 系统顺序
+
+# 接收已排序的玩家输入、脚本输出和跨区事件。
+# 生成授权快照并分发给脚本运行器。
+# 收集动作意图、任务补丁和技能调用请求。
+# 校验所有请求的权限、视野、配额、距离、冷却和阶段。
+# 执行移动、采集、运输、建造、战斗、技能、占领和维护系统。
+# 生成 TickEvent、DecisionTrace、MetricSample 和 SnapshotDelta。
+# 事件日志提交成功后推进 TickClock。
+
+!! 事件类型
+
+```rust
+pub enum SimEventKind {
+    ActorMoved,
+    ActorStateChanged,
+    ResourceGathered,
+    ResourceTransferred,
+    BuildingPlaced,
+    BuildingDamaged,
+    SkillCastStarted,
+    SkillEffectApplied,
+    TaskAccepted,
+    TaskRejected,
+    ControlChanged,
+    VisibilityChanged,
+}
+
+pub struct SimEvent {
+    pub event_id: u128,
+    pub tick_id: TickId,
+    pub region_id: RegionId,
+    pub actor: Option<EntityId>,
+    pub target: Option<EntityId>,
+    pub kind: SimEventKind,
+    pub payload_hash: u64,
+}
+```
+
+事件 payload 可以按 kind 拆成枚举结构；event_id 必须可排序且可去重。跨区事件需要携带 sourceRegion、targetRegion 和 ownershipEpoch。
+
+!! 确定性要求
+
+# 使用整数或定点数表达距离、速度、时间和倍率。
+# 随机数只从 DeterministicSeed 派生，输入包含 tickId、regionId、entityId 和事件序号。
+# 查询结果排序必须显式指定稳定键，不依赖 HashMap 遍历顺序。
+# 脚本输出进入结算前按 playerId、ruleVersionId、intentId 排序。
+# 并行系统只能并行读取或写入互不重叠的组件集合。
+
+!! 首发完成定义
+
+# 单区域训练局可以用同一套组件完成移动、采集、建造、战斗和回放。
+# 所有权威状态都能从最近快照加事件日志重放恢复。
+# 任一脚本请求都能追溯到 actorId、ruleVersionId、sourceRef、decisionId 和拒绝原因。
+# TypeScript 协议类型可以由 Rust schema 生成或通过契约测试保持一致。

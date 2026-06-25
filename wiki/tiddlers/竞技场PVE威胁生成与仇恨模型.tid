@@ -1,0 +1,102 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: [[竞技场战斗与 PVE 威胁系统]] AI生成
+title: 竞技场PVE威胁生成与仇恨模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+PVE 威胁生成与仇恨模型定义中立敌对单位、环境事件和书库防卫如何进入赛局。它只处理 PVE 的生成、激活、目标选择和难度控制，不处理玩家技能，也不处理地图美术表现。
+
+PVE 的作用是制造扩张成本、资源线压力和战术扰动。它不能成为随机惩罚，必须能被侦察、规避、压制和复盘。
+
+!! 威胁类型
+
+|!类型|!行为|!首发用途|
+|游荡守卫|在房间组内巡逻，发现目标后追击|限制无侦察扩张|
+|书架异动|研读书架附近生成短时威胁|让研读需要护送|
+|核心书库防卫|高价值节点固定守卫和周期压制|推动中后期组队攻防|
+|资源点扰动|攻击采集者或搬运线|检查资源线防守|
+|通路事件|临时封锁、陷阱、环境伤害|制造路径调整需求|
+
+!! 生成规则
+
+```ts
+export interface ThreatSpawnRule {
+  spawnRuleId: string;
+  threatArchetypeId: string;
+  roomFilter: RoomFilter;
+  trigger: 'time' | 'control_changed' | 'resource_pressure' | 'research_started' | 'scripted';
+  budgetCost: number;
+  cooldownTicks: number;
+  maxAlive: number;
+}
+```
+
+ThreatSpawnRule 属于内容资产。运行时生成必须记录 seed、trigger 和 budget，保证回放一致。
+
+!! 仇恨状态
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct ThreatAIState {
+    pub home_room_id: u64,
+    pub leash_radius_rooms: u16,
+    pub current_target: Option<EntityId>,
+    pub hate_table: Vec<HateEntry>,
+    pub state: ThreatPhase,
+}
+
+pub struct HateEntry {
+    pub target_id: EntityId,
+    pub hate: i32,
+    pub last_seen_tick: TickId,
+}
+
+pub enum ThreatPhase {
+    Dormant,
+    Patrol,
+    Alert,
+    Engage,
+    ReturnHome,
+    Despawn,
+}
+```
+
+PVE AI 使用固定状态机，不运行玩家脚本。它可以读取完整权威状态，但输出仍通过同一套 SimCommand 结算。
+
+!! 仇恨来源
+
+|!来源|!效果|
+|进入警戒范围|低仇恨，触发观察或警告|
+|攻击 PVE|高仇恨，立即反击|
+|采集受保护资源|中高仇恨，优先攻击采集者|
+|建造前线建筑|中仇恨，可能攻击建筑或建设者|
+|持续占领目标点|随时间提高仇恨|
+
+仇恨随时间衰减。目标离开 leash 范围后，PVE 返回 home_room 并清理部分仇恨。
+
+!! 难度预算
+
+# 每个区域有 PVE 活跃预算。
+# 预算受赛局阶段、玩家平均编目分、资源点价值和地图目标等级影响。
+# PVE 生成不能直接追赶领先玩家到不可防守程度。
+# 训练局固定生成，短赛局使用轻量动态预算，正式赛局再开放复杂事件。
+
+!! 复盘输出
+
+|!数据|!用途|
+|spawnRuleId|说明威胁来自哪个规则|
+|trigger|说明为什么激活|
+|targetHistory|解释追击和仇恨变化|
+|damageContribution|衡量 PVE 对失败的影响|
+|avoidable|标记是否可通过侦察、护送或路径调整规避|
+
+!! 首发完成定义
+
+# PVE 能按固定 seed 在回放中重现生成和目标选择。
+# 资源点、研读书架和核心书库至少各有一种威胁模板。
+# 玩家能在复盘中看到 PVE 激活原因、目标选择和规避空间。
+# PVE 不读取或依赖玩家隐藏脚本，只根据世界状态行动。

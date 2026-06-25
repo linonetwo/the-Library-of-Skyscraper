@@ -1,0 +1,102 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: 竞技场视野与情报系统 AI生成
+title: 竞技场视野实体与情报权限模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+视野实体与情报权限模型定义玩家能看到什么、脚本能读取什么、回放能展示什么。它只处理可见性、情报等级、授权快照和权限过滤，不处理 PixiJS 遮罩表现，也不处理具体 AI 决策。
+
+视野系统是反作弊边界。服务端不得向客户端或玩家脚本下发当前不可见的敌方细节。
+
+!! 情报等级
+
+|!等级|!含义|!可下发字段|
+|None|完全未知|无对象信息|
+|Known|历史见过|最后已知位置、最后已知类型、最后 tick|
+|Detected|当前侦测到存在|粗略位置、阵营、类别、威胁等级|
+|Identified|当前可识别|具体实体 id、血量区间、建筑状态、任务迹象|
+|Observed|完整观察|服务端允许的完整 ActorView 或 BuildingView|
+
+脚本 API 和前端快照使用同一情报等级。前端不能通过调试字段拿到脚本不可见的数据。
+
+!! Rust 组件
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct VisionEmitter {
+    pub owner_id: PlayerId,
+    pub radius: u16,
+    pub profile_id: u32,
+    pub reveal_kind: RevealKind,
+}
+
+#[derive(Component, Clone, Debug)]
+pub struct StealthProfile {
+    pub stealth_level: u16,
+    pub detectable_by: Vec<RevealKind>,
+}
+
+#[derive(Resource, Clone, Debug)]
+pub struct PlayerVisibilityGrid {
+    pub player_id: PlayerId,
+    pub room_visibility: Vec<RoomVisibilityCell>,
+    pub entity_visibility_epoch: u64,
+}
+```
+
+PlayerVisibilityGrid 可以按区域拆分存储。每个 tick 只更新受移动、建筑控制、技能和天气影响的房间。
+
+!! 授权快照
+
+```ts
+export interface AuthorizedWorldView {
+  viewerId: PlayerId;
+  tick: number;
+  visibleRooms: string[];
+  knownRooms: Record<string, KnownRoomView>;
+  actors: Record<EntityId, ActorIntelView>;
+  buildings: Record<EntityId, BuildingIntelView>;
+  resourceNodes: Record<EntityId, ResourceNodeIntelView>;
+}
+
+export interface ActorIntelView {
+  id?: EntityId;
+  intel: 'known' | 'detected' | 'identified' | 'observed';
+  lastSeenTick: number;
+  position: HexPosition;
+  ownerHint?: PlayerId;
+  archetypeHint?: string;
+  hpBand?: 'low' | 'medium' | 'high';
+}
+```
+
+玩家脚本读取 AuthorizedWorldView。脚本输出目标时只能引用当前授权快照中的实体 id 或可见地图目标。
+
+!! 更新流程
+
+# 收集角色、建筑、编目台、技能和地图目标的 VisionEmitter。
+# 根据房间拓扑、遮挡、门禁和区域效果计算可见房间。
+# 对可见房间内实体计算情报等级。
+# 生成玩家授权快照。
+# 生成前端差异事件和脚本运行器输入。
+# 对消失实体保留最后已知信息，写入 Known 状态。
+
+!! 权限过滤
+
+|!数据|!过滤规则|
+|敌方角色精确血量|Observed 才下发，Identified 只给区间|
+|敌方任务队列|默认不下发，特殊侦察效果只能给摘要|
+|建筑库存|本方完整，敌方仅在 Observed 且规则允许时给估计|
+|路径风险|可以给风险分，不给隐藏敌方坐标|
+|回放观战|按当时 viewer 权限重建，不默认上帝视角|
+
+!! 首发完成定义
+
+# 客户端和脚本都只能拿到授权快照。
+# 战争迷雾、最后已知位置和当前观察使用同一状态来源。
+# 隐藏对象不会出现在网络负载、脚本输入和本地缓存中。
+# 回放可以选择玩家视角或管理员视角，两者事件过滤明确分离。

@@ -1,0 +1,96 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: 竞技场行为模块系统 AI生成
+title: 竞技场行为模块接口与组合模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+行为模块接口与组合模型定义采集、搬运、建造、战斗、撤退等可复用策略块如何被配置、组合和执行。它只处理模块契约和组合规则，不处理 Monaco 编辑器，也不处理服务端最终结算。
+
+行为模块是玩家脚本与结构化编辑之间的中间层。新手可以配置模块，进阶玩家可以替换模块实现。
+
+!! 模块形态
+
+|!形态|!说明|
+|官方模块|内置、可配置、可沙盒验证|
+|参数化模块|玩家只改阈值、目标权重和资源类型|
+|脚本模块|玩家写 TypeScript 实现模块接口|
+|组合模块|按状态机、决策树或优先级列表组合多个模块|
+
+!! 接口
+
+```ts
+export interface BehaviorModule<TConfig = unknown> {
+  moduleId: string;
+  kind: BehaviorModuleKind;
+  schemaVersion: string;
+  evaluate(input: BehaviorInput<TConfig>): BehaviorOutput;
+}
+
+export interface BehaviorInput<TConfig> {
+  ctx: RuleContext;
+  actor: ActorScriptView;
+  config: TConfig;
+  blackboard: BehaviorBlackboard;
+}
+
+export interface BehaviorOutput {
+  score: number;
+  intents: ActionIntentDraft[];
+  taskPatches?: TaskPatchDraft[];
+  logs?: DecisionLogDraft[];
+  blackboardPatch?: Record<string, unknown>;
+}
+```
+
+score 表示模块认为自己当前是否应该接管角色。组合器根据 score、岗位、任务优先级和安全规则选择输出。
+
+!! 核心模块
+
+|!模块|!输入|!输出|
+|ScoutModule|未知房间、风险、回撤点|移动、标记、侦察日志|
+|GatherModule|资源点、库存、路线、威胁|采集、搬运请求、撤退|
+|HaulModule|仓储、缺口、运输队列|取出、存入、护送请求|
+|BuildModule|建筑计划、材料、施工者|搬运、施工、修复|
+|DefendModule|防守区域、敌情、建筑状态|移动、攻击、技能、求援|
+|RaidModule|敌方资源线、风险预算|突袭、破坏、撤退|
+|RetreatModule|血量、补给、敌情、路径|撤退、求援、丢弃物资|
+
+!! 组合器
+
+```ts
+export interface BehaviorComposition {
+  compositionId: string;
+  mode: 'priority' | 'weighted' | 'state_machine' | 'decision_tree';
+  modules: BehaviorModuleBinding[];
+  fallbackModuleId: string;
+}
+
+export interface BehaviorModuleBinding {
+  moduleId: string;
+  enabled: boolean;
+  priority: number;
+  roleFilter?: SquadRole[];
+  config: unknown;
+}
+```
+
+priority 模式适合首发。weighted 和 decision_tree 可以在规则工作台成熟后开放。
+
+!! 黑板规则
+
+|!规则|!说明|
+|按角色隔离|每个角色有独立 blackboard，避免互相污染|
+|按规则版本隔离|发布新版本后 memory 迁移必须显式声明|
+|限制大小|黑板进入脚本 memory 限额|
+|只存决策辅助|不存权威状态，不存隐藏信息|
+
+!! 首发完成定义
+
+# 官方采集、搬运、建造、防守、撤退模块能组成基础小队规则。
+# 每个模块都有 schema、默认配置、输出样本和沙盒用例。
+# 模块输出能追溯到 moduleId、config、actorId 和 sourceRef。
+# 玩家脚本模块和官方模块走同一输出校验。

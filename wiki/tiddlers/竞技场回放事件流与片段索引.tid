@@ -1,0 +1,109 @@
+created: 20260617110000000
+creator: 林一二
+modified: 20260617110000000
+modifier: 林一二
+tags: 竞技场复盘与回放系统 AI生成
+title: 竞技场回放事件流与片段索引
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+回放事件流与片段索引定义实时赛局如何被记录成可重建、可跳转、可对比的回放数据。它只处理事件格式、关键帧、片段索引和读取方式，不处理复盘智能体如何生成建议，也不处理前端播放器 UI。
+
+回放事实来源是事件日志。状态快照和关键帧只用于加速读取，不能覆盖事件日志中的事实。
+
+!! 事件流分层
+
+|!层级|!内容|!保留目的|
+|SimEvent|移动、采集、建造、战斗、技能、占领、视野变化|重建世界状态|
+|DecisionEvent|规则选择、拒绝、fallback、目标切换|解释脚本行为|
+|EconomyEvent|资源收入、消耗、搬运、维护和编目分|生成曲线和经济归因|
+|MetricEvent|每 tick 或窗口聚合的统计样本|快速绘制曲线|
+|AlertEvent|资源断线、角色倒地、建筑被毁、规则异常|生成片段索引|
+
+!! 事件封包
+
+```rust
+pub struct ReplayEventEnvelope<T> {
+    pub event_id: u128,
+    pub session_id: u64,
+    pub region_id: RegionId,
+    pub tick_id: TickId,
+    pub sequence: u32,
+    pub visibility_scope: VisibilityScope,
+    pub payload: T,
+    pub payload_hash: u64,
+}
+
+pub enum VisibilityScope {
+    Public,
+    Player(PlayerId),
+    Observer,
+    Admin,
+}
+```
+
+同一 tick 内按 regionId、sequence、eventId 稳定排序。跨区域回放读取时，播放器按 tick 合并多个区域事件。
+
+!! 关键帧
+
+|!关键帧|!用途|
+|区域状态关键帧|快速跳到指定 tick 附近|
+|玩家视野关键帧|恢复战争迷雾和可见对象|
+|经济曲线关键帧|快速绘制长时间资源趋势|
+|规则版本关键帧|定位版本发布前后的表现|
+
+关键帧间隔按赛局类型配置。训练局可以每 30 秒一个关键帧；正式三天局按区域负载和存储预算动态调整。
+
+!! 片段索引
+
+```ts
+export interface ReplaySegmentIndex {
+  segmentId: string;
+  sessionId: string;
+  title: string;
+  kind: ReplaySegmentKind;
+  startTick: number;
+  endTick: number;
+  primaryEntityIds: string[];
+  relatedRuleVersionIds: string[];
+  severity: 'info' | 'warning' | 'critical';
+  scoreImpact?: number;
+}
+
+export type ReplaySegmentKind =
+  | 'combat'
+  | 'resource_break'
+  | 'building_destroyed'
+  | 'actor_downed'
+  | 'skill_failed'
+  | 'control_changed'
+  | 'rule_error'
+  | 'score_swing';
+```
+
+片段索引由在线聚合和赛后批处理共同生成。在线索引用于及时提醒；赛后索引用于更完整的复盘和导出。
+
+!! 读取流程
+
+# 客户端请求 sessionId、viewer、tickRange 和可选过滤条件。
+# 回放服务检查权限并选择最近关键帧。
+# 回放服务读取关键帧后的事件流，按 viewer 权限过滤。
+# 返回 initialState、events、segments 和 metricSeries。
+# 客户端播放时可以继续按 tickRange 分页拉取。
+
+!! 压缩策略
+
+|!数据|!策略|
+|位置变化|同一实体连续移动事件按路径段压缩|
+|资源曲线|按固定窗口聚合，关键点保留原始事件|
+|重复拒绝|同源 sourceRef 和 rejectCode 聚合计数|
+|战斗伤害|高频小伤害可聚合，但击杀、倒地、技能命中保留原事件|
+|视野变化|按房间或区域位集压缩|
+
+!! 首发完成定义
+
+# 训练局和短赛局能从事件流重建地图、角色、建筑、资源和任务状态。
+# 时间轴能跳到战斗、资源断线、建筑被毁、角色倒地和规则错误片段。
+# 关键决策日志能与回放 tick、角色、规则版本和源码位置对齐。
+# 回放读取使用权限过滤，不泄露玩家在当时不可见的信息。

@@ -1,47 +1,26 @@
 created: 20260607160000000
 creator: 林一二
-modified: 20260607160000000
+modified: 20260617103000000
 modifier: 林一二
 tags: 竞技场客户端工具系统 AI生成
 title: 竞技场客户端Steam桌面壳
 type: text/vnd.tiddlywiki
 
-!! 职责
+!! 定位
 
-Steam 桌面壳负责把 Web 客户端包装成可发布、可离线、可调试、可接入 Steamworks 的桌面游戏。首发采用 Electron 主进程承载本地能力。
+本文是旧的客户端专题入口。桌面壳的正本规范见[[竞技场Electron与Steam桌面壳]]。为避免两份文档重复维护，本文只保留选型补充和跳转。
 
-!! Electron 职责
+!! 首发结论
 
-|!能力|!说明|
-|Steamworks|登录、成就、云存档、好友邀请和专用服务器入口|
-|本地训练|启动本地 Simulation Worker、Script Runner 或连接本地端口|
-|文件访问|规则库、日志、回放片段、崩溃报告和导出包|
-|自动更新|客户端资源、内容版本和热修复|
-|崩溃收集|主进程、渲染进程、脚本运行器和本地服务错误|
-|安全边界|渲染进程隔离、最小 preload API、禁用危险 Node 能力|
+首发桌面端采用 Electron 宿主，复用同一套 Web 客户端核心。Electron 主进程只提供 Steam、本地服务、文件、崩溃收集和更新能力；业务界面、PixiJS Canvas、规则工作台和复盘工作台仍由共享前端核心实现。
 
 !! Tauri 候选
 
-Tauri 可以在低内存和小包体方向提供优势。进入性能优化阶段后，评估 Tauri 版本对 Steamworks、Monaco、PixiJS、崩溃收集、本地服务管理和更新流程的支持成本。
+Tauri 可以在低内存和小包体方向提供优势。进入性能优化阶段后，再评估 Tauri 对 Steamworks、Monaco、PixiJS、崩溃收集、本地服务管理和更新流程的支持成本。
 
-!! 本地服务
+!! 文档边界
 
-|!服务|!用途|
-|Local Gateway|训练局入口、本地状态订阅、规则发布|
-|Local Simulation|离线训练局和沙盒重放|
-|Local Script Runner|本地执行玩家规则和技能源码|
-|Local Tooling|TypeScript 诊断、SourceManifest、代码质量检查|
-|Replay Store|本地回放与错误报告缓存|
-
-!! 安全要求
-
-|!要求|!说明|
-|主进程最小化|只暴露 Steam、本地文件、本地服务和崩溃收集接口|
-|渲染进程隔离|禁用直接 Node 访问，通过 preload 白名单通信|
-|本地服务端口限制|默认绑定 localhost，使用随机 token 校验|
-|规则包隔离|玩家源码只进入 Script Runner 和工具链服务|
-|日志脱敏|反馈包移除本地路径、账号密钥和隐私字段|
-
-!! 首发范围
-
-首发桌面壳支持 Steam 登录、离线训练、本地规则库、本地回放、崩溃收集、日志导出和基础云存档。创意工坊和专用服务器工具可以在 Beta 后扩展。
+|!内容|!归属|
+|桌面壳职责、本地服务、安全边界和验收|[[竞技场Electron与Steam桌面壳]]|
+|跨端复用、宿主适配和移动端 WebView|[[竞技场前端跨端复用架构]]|
+|客户端技术取舍|[[竞技场客户端技术选型]]|

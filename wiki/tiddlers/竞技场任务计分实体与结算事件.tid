@@ -1,0 +1,102 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: 竞技场任务与计分系统 AI生成
+title: 竞技场任务计分实体与结算事件
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+任务计分实体与结算事件定义赛局目标如何转化为任务、积分、阶段奖励和最终排名。它只处理任务状态、计分规则和结算事件，不处理前端报告排版，也不处理资源采集细节。
+
+计分系统必须让玩家清楚知道分数来自哪里，并能在复盘中解释为什么落后。
+
+!! 任务实体
+
+```rust
+#[derive(Component, Clone, Debug)]
+pub struct ObjectiveTask {
+    pub task_id: u64,
+    pub owner_id: Option<PlayerId>,
+    pub objective_id: u32,
+    pub state: TaskState,
+    pub progress: u32,
+    pub progress_required: u32,
+    pub score_value: i32,
+    pub expires_at: Option<TickId>,
+}
+
+pub enum TaskState {
+    Available,
+    Accepted,
+    Active,
+    Completed,
+    Failed,
+    Expired,
+}
+```
+
+ObjectiveTask 可属于玩家、公共地图目标或赛局阶段。行动规则中的任务队列引用 taskId，但不能直接改 TaskState。
+
+!! 计分来源
+
+|!来源|!说明|
+|编目分|核心书库、编目台、研读任务和地图控制产出|
+|任务完成|赛周目标、阶段目标、训练目标|
+|地图控制|房间、资源点、升降井和关键建筑控制时间|
+|资源效率|采集、加工、维护和损耗表现|
+|战斗表现|击败、守住、防御贡献、损失控制|
+|规则表现|脚本稳定性、沙盒通过、复盘改进效果|
+
+首发排名以编目分和目标任务为主，其他分项用于报告和辅助奖励。
+
+!! ScoreEvent
+
+```ts
+export interface ScoreEvent {
+  eventId: string;
+  tick: number;
+  playerId: PlayerId;
+  source: ScoreSource;
+  amount: number;
+  objectiveId?: string;
+  entityId?: EntityId;
+  reason: string;
+}
+
+export type ScoreSource =
+  | 'catalog'
+  | 'objective'
+  | 'control'
+  | 'resource_efficiency'
+  | 'combat'
+  | 'rule_quality';
+```
+
+ScoreEvent 是分数事实来源。排行榜、结算报告和回放曲线都从 ScoreEvent 派生。
+
+!! 阶段结算
+
+|!阶段|!结算重点|
+|开局期|基础建设、资源线、侦察、安全扩张|
+|扩张期|资源点、编目台、研读书架、升降井控制|
+|冲突期|核心书库、关键战斗、建筑防守、编目分|
+|结算期|总分、分项、排名、奖励和策略沉淀|
+
+阶段边界由 TickClock 和赛局配置决定。不能由客户端本地时间判断。
+
+!! 反刷分规则
+
+# 同一目标重复完成必须有冷却或递减收益。
+# 自己拆自己建不能产生战斗或防御收益。
+# PVE 刷怪收益受区域预算和目标价值限制。
+# 资源效率分不能鼓励囤积不用，必须结合有效产出。
+# 规则质量分不能影响核心竞技排名过重。
+
+!! 首发完成定义
+
+# 编目分、任务完成和地图控制都能生成 ScoreEvent。
+# 排行榜、阶段面板和结算报告使用同一分数来源。
+# 分数异常能追溯 tick、目标、实体和原因。
+# 训练局可以使用简化任务，短赛局开始使用正式 ScoreEvent。

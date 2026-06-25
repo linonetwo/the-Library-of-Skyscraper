@@ -1,0 +1,45 @@
+created: 20260609011000000
+creator: 林一二
+modified: 20260609011000000
+modifier: 林一二
+tags: 竞技场数据接口与事件模型 AI生成
+title: 竞技场数据接口规则诊断与源码映射
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+规则诊断与源码映射定义 TypeScript 诊断、越权检查、配额分析、源码清单、源码引用标识、关键决策日志和规则对象之间的数据契约。
+
+!! 数据模型
+
+|!模型|!字段|
+|RulePackage|versionId、parentVersionId、scope、files、configs、tests、sourceMapId|
+|SourceFile|fileId、path、language、contentHash、diagnostics|
+|SourceSymbol|symbolId、fileId、name、kind、range、exported|
+|SourceRef|sourceRef、fileId、range、symbolId、ruleObjectId|
+|Diagnostic|diagnosticId、severity、code、message、sourceRef、blocking|
+|RuleObjectRef|ruleObjectId、kind、displayName、fileId、nodeId|
+
+!! 诊断类型
+
+|!类型|!发布影响|
+|type|类型错误阻止发布|
+|schema|配置 schema 错误阻止发布|
+|permission|越权访问阻止发布|
+|quota|严重超限阻止发布，风险超限要求确认|
+|completeness|缺少撤退、fallback 或岗位任务时要求修复或确认|
+|test|关键测试失败阻止正式发布|
+
+!! 跳转契约
+
+|!来源|!目标|
+|Diagnostic|Monaco 位置、对象树节点、发布检查项|
+|DecisionLog|SourceRef、RuleObjectRef、地图对象和回放时间|
+|SandboxFailure|测试用例、SourceRef、RuleObjectRef、曲线和片段|
+|PatchChange|SourceRef、文件 diff、节点 diff 和配置 diff|
+
+!! 首发验收
+
+# 诊断列表、Monaco、对象树和发布检查使用同一 diagnosticId。
+# 关键决策日志能通过 SourceRef 跳回源码。
+# 源码文件重命名后仍能通过 contentHash 和 symbolId 辅助恢复映射。

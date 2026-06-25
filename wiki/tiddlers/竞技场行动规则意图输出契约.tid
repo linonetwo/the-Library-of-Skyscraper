@@ -1,0 +1,105 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: 竞技场行动规则系统 AI生成
+title: 竞技场行动规则意图输出契约
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+行动规则意图输出契约定义玩家规则代码每个 tick 可以读取的输入和必须输出的结构。它只处理规则执行契约，不处理编辑器 UI、沙盒发布流程，也不处理模拟核心内部结算。
+
+行动规则不直接修改世界。它读取授权快照，输出动作意图、任务队列补丁、日志和可选诊断材料。
+
+!! 规则入口
+
+```ts
+export interface ActionRuleModule {
+  decide(ctx: RuleContext): RuleDecisionResult;
+}
+
+export interface RuleContext {
+  tick: number;
+  player: PlayerScriptView;
+  squad: SquadScriptView;
+  world: AuthorizedWorldView;
+  tasks: TaskQueueView;
+  memory: RuleMemory;
+  limits: RuleExecutionLimits;
+}
+
+export interface RuleDecisionResult {
+  intents: ActionIntentDraft[];
+  taskPatches?: TaskPatchDraft[];
+  logs?: DecisionLogDraft[];
+  memoryPatch?: RuleMemoryPatch;
+}
+```
+
+ctx 是只读对象。memoryPatch 由脚本运行器校验大小和 schema 后保存，下一次执行再作为 memory 输入。
+
+!! 意图草案
+
+```ts
+export type ActionIntentDraft =
+  | MoveIntentDraft
+  | GatherIntentDraft
+  | TransferIntentDraft
+  | BuildIntentDraft
+  | AttackIntentDraft
+  | CastSkillIntentDraft
+  | ClaimIntentDraft;
+
+export interface BaseIntentDraft {
+  actorId: EntityId;
+  priority: number;
+  reason?: string;
+  sourceRef?: SourceRef;
+}
+```
+
+priority 只解决同一角色同一 tick 的规则内部意图冲突。它不能越过模拟核心的公平排序和权限校验。
+
+!! 输出限制
+
+|!限制|!首发建议|
+|最大 intents|每玩家每 tick 角色数乘 2|
+|最大 taskPatches|每玩家每 tick 32 条|
+|最大 logs|每玩家每 tick 64 条，重复日志聚合|
+|memory 大小|每规则版本 64 KB 起步|
+|执行时间|按脚本配额令牌扣减|
+
+超过限制的输出进入截断或拒绝路径，并生成 quota 诊断。模拟核心只处理通过脚本运行器输出校验的结果。
+
+!! Fallback
+
+|!情况|!处理|
+|脚本超时|使用上个有效任务或官方安全 fallback|
+|输出 schema 错误|拒绝本 tick 输出，写诊断和关键决策日志|
+|角色无意图|保持当前任务或进入 Idle|
+|目标失效|模拟核心拒绝该意图，规则下 tick 可重选|
+|连续失败|触发风险提示，可建议回滚规则版本|
+
+!! 决策日志
+
+```ts
+export interface DecisionLogDraft {
+  actorId?: EntityId;
+  taskId?: string;
+  severity: 'debug' | 'info' | 'warning' | 'error';
+  code: string;
+  message: string;
+  sourceRef?: SourceRef;
+  data?: Record<string, string | number | boolean>;
+}
+```
+
+DecisionLogDraft 面向复盘，不面向控制台调试输出。日志必须短，结构化字段优先，长文本会被截断。
+
+!! 首发完成定义
+
+# 玩家规则能用 TypeScript 类型提示读取授权快照并输出动作意图。
+# 输出 schema、配额、sourceRef 和 memoryPatch 都有明确校验。
+# 超时、异常、空输出和非法输出都有可回放结果。
+# 关键决策日志能连接 actorId、taskId、sourceRef 和 replay tick。

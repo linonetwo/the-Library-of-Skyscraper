@@ -1,0 +1,85 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: 竞技场规则版本与沙盒系统 AI生成
+title: 竞技场规则包版本与发布流水线
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+规则包版本与发布流水线定义行动规则、行为模块、任务配置、技能调用条件和测试用例如何打包、诊断、沙盒、发布和回滚。它只处理版本生命周期，不处理编辑器布局，也不处理模拟核心结算细节。
+
+规则发布是赛局中的高风险操作。任何正式生效的规则包都必须可追溯、可复盘、可回滚。
+
+!! RulePackage
+
+```ts
+export interface RulePackage {
+  versionId: RuleVersionId;
+  parentVersionId?: RuleVersionId;
+  ownerId: PlayerId;
+  contentVersion: string;
+  createdAt: string;
+  status: RulePackageStatus;
+  files: SourceFile[];
+  behaviorConfigs: BehaviorConfigDocument[];
+  taskPolicies: TaskPolicyDocument[];
+  skillPolicies: SkillPolicyDocument[];
+  tests: RuleTestCase[];
+  manifest: RulePackageManifest;
+}
+
+export type RulePackageStatus =
+  | 'draft'
+  | 'diagnosing'
+  | 'sandboxing'
+  | 'ready'
+  | 'published'
+  | 'rolled_back'
+  | 'blocked';
+```
+
+RulePackage 是不可变发布单位。draft 可以修改；生成 versionId 后，正式版本内容不再原地变更。
+
+!! 流水线
+
+# 保存草稿，生成本地 draftId。
+# 运行 schema 校验和 TypeScript 诊断。
+# 运行权限、配额、完整性和风险检查。
+# 选择固定沙盒或回放片段沙盒。
+# 生成 SandboxRunResult 和发布检查项。
+# 玩家确认风险项。
+# 发布为新的 RuleVersionId。
+# 区域运行单元在安全 tick 边界切换版本。
+# 保留父版本用于回滚和对比。
+
+!! 发布检查
+
+|!检查|!阻断规则|
+|类型诊断|error 阻止发布|
+|schema|配置不合法阻止发布|
+|权限|读取隐藏数据、调用禁用 API 阻止发布|
+|配额|硬上限阻止，软上限要求确认|
+|完整性|缺少撤退或 fallback 要求确认或修复|
+|沙盒|关键测试失败阻止正式局发布|
+|版本兼容|contentVersion 不匹配阻止发布|
+
+!! 切换语义
+
+规则版本切换只能发生在 tick 边界。正在执行的技能实例和建筑任务保留原 sourceRef，但下一个决策 tick 使用新版本。回放中必须能显示版本切换 tick。
+
+!! 回滚
+
+|!回滚来源|!处理|
+|玩家手动回滚|发布父版本或指定历史版本|
+|连续脚本失败|建议回滚，不自动执行正式局回滚|
+|沙盒失败|草稿阻止发布，不影响已发布版本|
+|服务端异常|区域运行单元可临时降级到上个已知可用版本，并记录审计|
+
+!! 首发完成定义
+
+# 每个发布版本都有源码清单、诊断结果、沙盒结果和玩家确认记录。
+# 赛局中任一动作意图都能追溯到发布版本和 sourceRef。
+# 回滚不删除旧版本，只新增版本切换事件。
+# 本地训练局和正式短赛局使用同一发布流水线，只是检查强度不同。

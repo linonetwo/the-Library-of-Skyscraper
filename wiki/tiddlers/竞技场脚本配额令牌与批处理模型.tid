@@ -1,0 +1,89 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: 竞技场脚本CPU配额与调度 AI生成
+title: 竞技场脚本配额令牌与批处理模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+脚本配额令牌与批处理模型定义玩家规则在区域运行单元内如何排队、限流、执行和降级。它只处理脚本运行资源，不处理 K3S 节点调度，也不处理代码质量评分。
+
+配额目标是公平和可预测。硬件更强不能让某个玩家获得更多 tick 决策次数；硬件更弱只能触发准入、迁移或整体降级。
+
+!! 配额维度
+
+|!维度|!说明|
+|CPU 时间|单次执行和窗口总耗时|
+|内存|isolate 堆限制、输出大小、memory 大小|
+|输出数量|intents、taskPatches、logs 上限|
+|API 调用|路径估算、查询和评分函数调用次数|
+|失败次数|连续超时、异常和 schema 失败计数|
+
+!! 令牌模型
+
+```rust
+pub struct ScriptBudgetAccount {
+    pub player_id: PlayerId,
+    pub rule_version_id: RuleVersionId,
+    pub tokens: i64,
+    pub max_tokens: i64,
+    pub refill_per_tick: i64,
+    pub debt: i64,
+    pub failure_streak: u16,
+}
+
+pub enum BudgetDecision {
+    RunFull,
+    RunReduced,
+    SkipUseFallback,
+    BlockUntilRecovered,
+}
+```
+
+令牌用于调度优先级和降级策略。即使 RunReduced，模拟核心也不会接受超出输出限制的意图。
+
+!! 批处理流程
+
+# 区域运行单元收集本区域活跃玩家和需要决策的角色。
+# 按 playerId 和 ruleVersionId 生成脚本任务批次。
+# 为每个批次计算 BudgetDecision。
+# 脚本运行器并行执行 RunFull 和 RunReduced 批次。
+# 超时批次被取消，输出为空并记录失败。
+# 输出统一进入动作意图校验管线。
+# 根据实际耗时、输出大小和失败状态扣减或恢复令牌。
+
+!! 降级策略
+
+|!状态|!处理|
+|轻微超时|减少本玩家下个窗口 API 预算|
+|连续超时|跳过部分 tick，使用当前任务或官方 fallback|
+|内存超限|终止执行，要求修复或回滚|
+|输出过大|截断日志，拒绝超限意图|
+|区域过载|全区域统一降频或迁移，不单独让某玩家多跑|
+
+!! 指标
+
+```ts
+export interface ScriptBudgetMetric {
+  playerId: PlayerId;
+  ruleVersionId: RuleVersionId;
+  tick: number;
+  runMs: number;
+  memoryBytes: number;
+  budgetTokensBefore: number;
+  budgetTokensAfter: number;
+  decision: 'full' | 'reduced' | 'fallback' | 'blocked';
+  failureKind?: string;
+}
+```
+
+指标供前端配额面板、复盘和运维使用。玩家可以看到自己的脚本为什么被降级，但看不到其他玩家的详细脚本性能。
+
+!! 首发完成定义
+
+# 每个玩家每个规则版本有独立配额账户。
+# 脚本超时不会阻塞区域 tick 提交。
+# 配额降级有稳定、可解释、可回放的事件。
+# 前端能显示规则版本的耗时、失败、降级和建议修复方向。

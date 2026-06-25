@@ -1,0 +1,95 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场服务器与赛季系统 AI生成
+title: 竞技场服务器生命周期与准入排队模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+服务器生命周期与准入排队模型定义一轮服务器从创建、开放、运行、锁定、结算到归档的状态机。它只处理赛局服务器级生命周期、玩家准入和容量状态，不处理区域运行单元内部 tick，也不处理 Steam 商店发布。
+
+服务器是玩家选择进入的赛局实例。每个服务器绑定固定内容版本、地图模板、赛季规则和时间表。
+
+!! 状态机
+
+```rust
+pub enum ServerLifecycleState {
+    Scheduled,
+    Provisioning,
+    Open,
+    SoftFull,
+    Locked,
+    Settling,
+    Archived,
+    Failed,
+}
+
+pub struct ArenaServerRuntime {
+    pub server_id: u64,
+    pub season_id: u64,
+    pub content_version: String,
+    pub state: ServerLifecycleState,
+    pub opens_at_tick: TickId,
+    pub locks_at_tick: TickId,
+    pub ends_at_tick: TickId,
+    pub capacity: ServerCapacity,
+}
+```
+
+Scheduled 只存在于调度计划中。Provisioning 期间创建区域运行单元、事件存储命名空间和初始地图快照。Open 后玩家可以进入。Locked 后不再接受新玩家，只允许重连和观战。
+
+!! 容量模型
+
+|!指标|!说明|
+|maxPlayers|服务器理论玩家上限|
+|admittedPlayers|已准入玩家数|
+|activePlayers|最近窗口内活跃玩家数|
+|regionLoad|区域 tick、脚本、事件日志写入耗时|
+|joinQueueDepth|排队等待进入人数|
+|health|green、yellow、red、draining|
+
+容量准入基于运行指标，不基于单台机器峰值性能。准入结果必须可解释给玩家。
+
+!! 准入流程
+
+# 玩家请求服务器列表。
+# 网关返回每个服务器的状态、阶段、容量、延迟估计和推荐标记。
+# 玩家选择服务器并提交初始小队配置。
+# 调度服务检查服务器状态、玩家资格、配置合法性和容量。
+# 容量允许则分配初始据点和玩家 runtime 记录。
+# 容量紧张则进入排队，返回 queueTicket。
+# 玩家上线后订阅本方初始区域、赛局摘要和规则版本状态。
+
+!! QueueTicket
+
+```ts
+export interface QueueTicket {
+  ticketId: string;
+  serverId: string;
+  playerId: string;
+  position: number;
+  estimatedWaitSeconds: number;
+  expiresAt: string;
+  reason: 'capacity' | 'phase_lock' | 'provisioning' | 'maintenance';
+}
+```
+
+排队票据不是进入资格。容量恢复后仍需重新检查小队配置和服务器状态。
+
+!! 降级与锁定
+
+|!情况|!处理|
+|区域 tick 接近预算|停止推荐新玩家进入|
+|脚本队列积压|进入 SoftFull，允许重连，限制新入场|
+|事件日志延迟高|停止准入并触发运维告警|
+|开服时间过晚|进入 Locked，避免结算前临时进服|
+|节点故障|迁移区域或标记 draining|
+
+!! 首发完成定义
+
+# 训练局、本地短赛局和云端短赛局都走同一生命周期状态机。
+# 服务器列表能解释可加入、排队、锁定和维护状态。
+# 玩家准入结果能追溯到容量、阶段、配置或权限原因。
+# 服务器结算和归档不会破坏回放读取。

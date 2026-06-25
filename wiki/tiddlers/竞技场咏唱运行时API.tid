@@ -10,9 +10,9 @@ tags: 竞技场咏唱平台 AI生成
 !! 运行入口边界
 
 |!入口|!能力|!咏唱签名|
-|托管行动规则|读取授权快照、访问受限存储、输出动作意图和发展方案补丁|不产生|
+|托管行动规则|读取授权快照、访问受限存储、输出动作意图和任务队列补丁|不产生|
 |托管技能源码|读取技能参数、响应咏唱事件、生成签名链并提交技能回执|可以产生，前提是通过插桩后的咏唱过程接口生成 `Seal`|
-|远程 HTTP 逻辑|任意语言计算策略、返回动作意图、发展方案补丁、技能参数或普通指令|不产生|
+|远程 HTTP 逻辑|任意语言计算策略、返回动作意图、任务队列补丁、技能参数或普通指令|不产生|
 |客户端手动操作|指挥、移动、目标选择、规则发布确认|不能产生；记录为玩家干预和普通指令|
 |平台预制模块|默认 AI、官方技能、沙盒测试|可以产生平台签名，并与玩家源码签名分开标注|
 
@@ -80,7 +80,7 @@ export interface RuntimeContextBase {
 
 !! 行动规则 API
 
-行动规则负责角色在当前 tick 的行为选择，也负责指挥型角色制定发展方案。状态机、状态树、决策树、行为模块和自然语言目标都编译为行动规则内部数据或辅助函数。
+行动规则负责角色在当前 tick 的行为选择，也负责指挥型角色维护任务队列、建筑计划、扩张路线和风险预算。状态机、状态树、决策树、行为模块和自然语言目标都编译为行动规则内部数据或辅助函数。
 
 ```ts
 export interface ActionRule {
@@ -95,12 +95,12 @@ export interface ActionRuleContext extends RuntimeContextBase {
   skills: ActorSkillRuntime;
   actions: ActorActionRuntime;
   storage: ActionStorageRuntime;
-  plan: TeamPlanRuntime;
+  tasks: TeamTaskRuntime;
 }
 
 export interface ActionRuleResult {
   command?: ActionCommand;
-  planPatch?: TeamPlanPatch;
+  taskPatch?: TeamTaskPatch;
   logTags?: readonly string[];
 }
 
@@ -115,7 +115,7 @@ export type ActionCommand =
   | { type: 'holdPosition'; reason?: string }
   | { type: 'retreat'; reason?: string };
 
-export interface TeamPlanPatch {
+export interface TeamTaskPatch {
   resourceGoals?: ResourceGoal[];
   buildingPlans?: BuildingPlan[];
   squadAssignments?: SquadAssignment[];
@@ -417,7 +417,7 @@ export interface ExternalActionDecisionRequest {
 export interface ExternalActionDecision {
   requestId: string;
   commands?: readonly ActionCommand[];
-  planPatch?: TeamPlanPatch;
+  taskPatch?: TeamTaskPatch;
   rulePatchProposal?: RulePatchProposal;
   skillParams?: Record<string, unknown>;
 }

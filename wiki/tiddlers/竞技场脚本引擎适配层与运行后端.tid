@@ -1,0 +1,65 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场脚本引擎选型 AI生成
+title: 竞技场脚本引擎适配层与运行后端
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+脚本引擎适配层与运行后端定义 TypeScript 玩家脚本如何在不同 JavaScript 引擎上编译、加载、执行和替换。它只处理引擎边界和适配接口，不处理脚本 API 设计，也不处理前端编辑器。
+
+首发应把引擎选择封装在 ScriptEngineAdapter 后面，避免后续从 QuickJS、V8 isolate 或 Node Worker 切换时影响模拟核心。
+
+!! 适配接口
+
+```rust
+pub trait ScriptEngineAdapter {
+    fn compile(&self, input: CompileInput) -> CompileOutput;
+    fn load_bundle(&self, bundle: ScriptBundle) -> Result<LoadedScriptHandle, ScriptLoadError>;
+    fn run_tick(&self, handle: LoadedScriptHandle, input: ScriptRunInput) -> ScriptRunOutput;
+    fn unload(&self, handle: LoadedScriptHandle);
+}
+```
+
+模拟核心只依赖 run_tick 的输入输出契约。引擎内部如何 isolate、预热和缓存不进入模拟规则。
+
+!! 后端选项
+
+|!后端|!优点|!风险|!定位|
+|QuickJS|轻量、嵌入简单、确定性强|生态和性能有限|本地训练局、沙盒原型|
+|V8 isolate|性能好、隔离成熟|集成复杂、内存管理要求高|正式区域运行单元候选|
+|Node Worker|生态好、调试方便|隔离弱、启动重|工具链和后台沙盒|
+|Deno isolate|权限模型清晰|部署和嵌入成本需验证|备选正式后端|
+
+!! Bundle
+
+```ts
+export interface ScriptBundleManifest {
+  ruleVersionId: RuleVersionId;
+  sourceHash: string;
+  target: 'quickjs' | 'v8' | 'node_worker' | 'deno';
+  entry: string;
+  files: SourceFileManifest[];
+  exports: string[];
+  permissions: string[];
+}
+```
+
+Bundle 只包含允许依赖。第三方包必须经过白名单和打包审计。
+
+!! 运行策略
+
+# 编译和打包在工具链服务中完成。
+# 区域运行单元只加载已签名 bundle。
+# 每个 RuleVersionId 可以预热一个 LoadedScriptHandle。
+# 脚本执行必须有硬超时和内存上限。
+# 引擎崩溃只影响当前批次，不影响区域进程权威状态。
+
+!! 首发完成定义
+
+# 至少实现一个本地训练可用后端和一个接口可替换适配层。
+# 编译、加载、执行、卸载都有指标和错误模型。
+# 引擎输出统一进入脚本输出 schema 校验。
+# 切换引擎不改变 ActionIntentDraft 和 RuleContext 契约。

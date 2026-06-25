@@ -1,0 +1,49 @@
+created: 20260609011000000
+creator: 林一二
+modified: 20260617102500000
+modifier: 林一二
+tags: 竞技场数据接口与事件模型 AI生成
+title: 竞技场数据接口状态源与传输通道
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+状态源与传输通道定义前端从 HTTP、WebSocket、本地服务、Electron preload 和回放存储获取数据的边界。它负责统一请求状态、错误、权限、重试和降级语义。
+
+!! 通道
+
+|!通道|!用途|!更新方式|
+|HTTP API|赛局列表、代码版本、结算报告、回放索引、内容版本|请求响应|
+|WebSocket|实时状态差异、告警、发布结果、后台任务进度|持续订阅|
+|本地网关|训练局、沙盒、本地诊断和本地回放|HTTP 与 WebSocket|
+|Electron preload|Steam、文件导出、本地服务控制和反馈包|受限 IPC|
+|回放存储|事件流、曲线、片段索引和关键决策日志|按需读取|
+
+!! 请求状态
+
+|!状态|!说明|
+|idle|尚未请求|
+|loading|首次加载中|
+|refreshing|已有数据，正在刷新|
+|streaming|WebSocket 正常接收事件|
+|stale|数据可读但已过期|
+|offline|网络不可用或本地服务不可达|
+|degraded|服务降级，部分字段或事件延迟|
+|error|请求失败，需要显示原因和恢复动作|
+
+!! 错误模型
+
+|!字段|!说明|
+|code|稳定错误码|
+|message|用户可读说明|
+|source|remote、local、preload、replay、sandbox|
+|retryable|是否可重试|
+|deniedReason|权限不足原因|
+|fallbackMode|只读、离线、本地训练、延迟加载或导出反馈|
+
+!! 首发验收
+
+# 所有通道错误都能映射到加载、降级、只读、重试或离线状态。
+# WebSocket 断线后保留最后快照，并显示事件可能过期。
+# 本地服务不可达时训练局和沙盒入口显示恢复动作。
+# Electron preload 不暴露任意文件和端口访问。

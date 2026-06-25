@@ -1,0 +1,45 @@
+created: 20260609011000000
+creator: 林一二
+modified: 20260609011000000
+modifier: 林一二
+tags: 竞技场数据接口与事件模型 AI生成
+title: 竞技场数据接口沙盒智能体与后台任务
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+沙盒智能体与后台任务定义编译、诊断、沙盒、智能体分析、回放索引、反馈导出和本地服务操作的任务模型。所有后台任务必须可观察、可取消、可恢复。
+
+!! 任务模型
+
+|!模型|!字段|
+|TaskBase|taskId、kind、status、createdAt、startedAt、finishedAt、progress、cancelable|
+|BuildTask|rulePackageId、diagnostics、buildHash、sourceMapId|
+|SandboxRun|candidateVersionId、testIds、metrics、failures、evidenceIds|
+|AgentTask|taskType、inputs、outputs、cost、permissions、patchIds|
+|ReplayIndexTask|replayId、indexedSegments、failedSegments、warnings|
+|ExportTask|materials、redactionStatus、outputPath、errors|
+
+!! 任务状态
+
+|!状态|!说明|
+|queued|排队中|
+|running|运行中|
+|waitingInput|等待玩家确认或权限|
+|succeeded|成功完成|
+|failed|失败，保留错误和可恢复动作|
+|canceled|玩家或系统取消|
+|stale|输入材料已过期，需要重新运行|
+
+!! UI 规则
+
+# 顶部状态栏显示关键后台任务数量和最高风险任务。
+# 任务详情显示输入材料、输出结果、错误、耗时和取消入口。
+# 任务结果必须能写回规则工作台、复盘、沙盒或反馈导出入口。
+# 任务输入过期时禁止直接发布或应用结果。
+
+!! 首发验收
+
+# 沙盒、智能体、编译和导出都用同一任务状态组件展示。
+# 取消任务不会丢失玩家草稿。
+# 智能体任务需要显示材料范围、权限和成本。

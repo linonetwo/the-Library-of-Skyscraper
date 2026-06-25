@@ -1,0 +1,73 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场编程智能体协作系统 AI生成
+title: 竞技场智能体任务上下文与权限模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+智能体任务上下文与权限模型定义编程智能体能读取哪些材料、能生成哪些结果、哪些动作必须经过玩家确认。它只处理智能体协作边界，不处理大模型供应商接入，也不处理规则运行时结算。
+
+智能体是协作工具，不是权威控制者。正式赛局中，智能体不能绕过规则包发布流程。
+
+!! 任务类型
+
+|!类型|!输入|!输出|
+|战况复盘|回放片段、曲线、关键日志|问题摘要、原因、建议|
+|规则补丁|规则包、诊断、沙盒结果|PatchDraft、风险说明|
+|配置检查|小队配置、赛周规则、地图风险|缺口、冲突、推荐调整|
+|代码解释|源码、SourceRef、决策日志|解释、定位、相关对象|
+|沙盒分析|SandboxRunResult、对比曲线|通过/失败原因、下一步|
+
+!! AgentTask
+
+```ts
+export interface AgentTask {
+  taskId: string;
+  ownerId: PlayerId;
+  taskKind: AgentTaskKind;
+  source: 'scheduled' | 'player_request' | 'system_trigger';
+  contextRefs: AgentContextRef[];
+  permission: AgentPermission;
+  state: 'queued' | 'running' | 'waiting_confirm' | 'completed' | 'failed' | 'cancelled';
+}
+
+export interface AgentPermission {
+  canReadReplay: boolean;
+  canReadSource: boolean;
+  canCreatePatch: boolean;
+  canRunSandbox: boolean;
+  canPublish: false;
+}
+```
+
+canPublish 固定为 false。发布只能由玩家确认后走规则包流水线。
+
+!! 上下文引用
+
+|!引用|!说明|
+|ReplaySegmentRef|回放片段、tick 范围、可见权限|
+|RulePackageRef|规则版本、草稿或 diff|
+|SourceRef|源码文件、范围、符号和规则对象|
+|MetricSeriesRef|资源、分数、战斗、配额曲线|
+|DecisionLogRef|关键决策日志和拒绝原因|
+|SandboxRunRef|沙盒运行、输入片段、结果|
+
+智能体任务只拿引用解析后的最小上下文，不读取整场三天回放。长上下文由后台任务先摘要。
+
+!! 权限边界
+
+# 智能体只能读取玩家当时有权访问的数据。
+# 不能读取敌方隐藏脚本、隐藏视野或管理员诊断。
+# 不能直接写入已发布规则版本。
+# 不能自动发布正式赛局补丁。
+# 生成的补丁必须经过诊断、沙盒和玩家确认。
+
+!! 首发完成定义
+
+# 定时复盘和玩家主动复盘都生成 AgentTask。
+# 每个建议能追溯到具体证据引用。
+# 智能体补丁以 PatchDraft 进入审阅，不直接改规则。
+# 任务失败能导出可诊断的错误状态和 correlationId。

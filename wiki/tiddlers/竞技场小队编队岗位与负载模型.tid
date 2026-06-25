@@ -1,0 +1,109 @@
+created: 20260617110000000
+creator: 林一二
+modified: 20260617110000000
+modifier: 林一二
+tags: 竞技场角色与小队系统 AI生成
+title: 竞技场小队编队岗位与负载模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+小队编队岗位与负载模型定义局前配置如何转化为赛局内的小队实体和限制。它只处理编队、岗位、配置预算、负载和规则绑定，不处理单个角色的生命状态，也不处理地图上的具体战斗结算。
+
+小队配置必须能被系统检查、被玩家脚本读取、被复盘归因，并能在赛季规则变化时稳定迁移。
+
+!! 编队结构
+
+```ts
+export interface SquadLoadout {
+  squadId: string;
+  ownerId: PlayerId;
+  sessionType: 'training' | 'short' | 'season';
+  contentVersion: string;
+  units: SquadUnitLoadout[];
+  sharedRules: RuleBinding[];
+  budget: SquadBudgetUsage;
+}
+
+export interface SquadUnitLoadout {
+  loadoutSlotId: string;
+  archetypeId: string;
+  role: SquadRole;
+  equipmentIds: string[];
+  skillIds: string[];
+  ruleProfileId?: string;
+  priorityTags: string[];
+}
+```
+
+SquadLoadout 是局前保存结构。进入赛局后，每个 SquadUnitLoadout 生成一个或多个 ActorRuntime，具体数量由赛局规则决定。
+
+!! 岗位定义
+
+|!岗位|!默认职责|!关键指标|
+|侦察|发现资源点、敌情、PVE 威胁和通路|视野贡献、存活率、有效发现|
+|采集|从资源点获取建材、补给或模因流量|采集量、占用率、被打断次数|
+|搬运|维护资源线和中转仓储|运输量、损耗、空跑率|
+|建设|建造、修复、拆除和升级建筑|施工时间、延迟原因、修复收益|
+|防守|保护据点、通路和资源线|拦截次数、防御贡献、撤退执行|
+|突袭|干扰敌方资源线和关键建筑|破坏收益、风险暴露、撤退成功|
+|控制|占领编目台、升降井、关键房间|控制时间、争夺成功率|
+|支援|补给、治疗、救援、护送|救援次数、补给覆盖、队友存活|
+
+岗位是规则默认权重，不是硬职业。行动规则可以临时改派任务，但复盘会记录岗位偏离和收益。
+
+!! 预算模型
+
+```rust
+pub struct SquadBudgetRule {
+    pub max_units: u8,
+    pub max_total_cost: u32,
+    pub max_skill_slots: u16,
+    pub max_equipment_slots: u16,
+    pub role_soft_limits: Vec<RoleLimit>,
+}
+
+pub struct SquadBudgetUsage {
+    pub unit_cost: u32,
+    pub skill_cost: u32,
+    pub equipment_cost: u32,
+    pub special_cost: u32,
+}
+```
+
+预算检查只在局前和发布配置时执行。赛局内临时状态不能改变局前成本，否则回放和公平校验会变复杂。
+
+!! 规则绑定
+
+|!绑定|!说明|
+|小队默认规则|所有角色没有专属规则时使用|
+|岗位规则|同岗位角色共享任务权重和 fallback|
+|角色规则|特定角色覆盖岗位规则|
+|技能规则|特定技能的调用条件和参数|
+|紧急规则|撤退、救援、资源线断裂等高优先级规则|
+
+绑定解析顺序为紧急规则、角色规则、岗位规则、小队默认规则。解析结果写入 RuleBindingResolved 事件，方便排查为什么某个角色使用了某套逻辑。
+
+!! 负载检查
+
+# 必须至少有一个可执行采集或搬运任务的角色。
+# 必须至少有一个能处理建筑计划的角色或官方模板补偿。
+# 正式赛局必须有撤退规则或系统默认撤退阈值。
+# 技能总成本、装备总成本和单位总成本不得超过赛局限制。
+# 岗位缺口不一定阻止进入，但需要生成风险提示。
+
+!! 复盘指标
+
+|!指标|!用途|
+|岗位利用率|判断小队配置是否闲置或偏离|
+|角色任务切换频率|发现规则抖动和优先级冲突|
+|负载瓶颈|发现搬运不足、建设不足或侦察不足|
+|撤退纪律|判断高风险岗位是否按规则撤离|
+|技能覆盖率|判断技能配置是否真的被行动规则使用|
+
+!! 首发完成定义
+
+# 局前配置可以保存、校验、进入训练局并生成角色实体。
+# 配置风险能定位到岗位、角色、技能、装备或规则绑定。
+# 回放能按小队、岗位和角色聚合任务表现。
+# 修改赛周单位池后，旧配置能给出迁移结果或明确失效原因。

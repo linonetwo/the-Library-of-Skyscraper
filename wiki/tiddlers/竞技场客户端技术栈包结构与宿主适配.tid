@@ -1,0 +1,67 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场客户端技术选型 AI生成
+title: 竞技场客户端技术栈包结构与宿主适配
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+客户端技术栈包结构与宿主适配定义前端代码如何拆包，如何同时服务 Electron、浏览器和 React Native WebView。它只处理工程结构和宿主边界，不处理具体界面布局，也不处理 PixiJS 内部渲染细节。
+
+核心客户端必须是宿主无关的。Steam、浏览器和移动端差异只能进入 adapter 包。
+
+!! 包结构
+
+```text
+apps/desktop-electron
+apps/web
+apps/mobile-webview
+packages/arena-protocol
+packages/arena-data-client
+packages/arena-workbench
+packages/arena-renderer-pixi
+packages/arena-rule-editor
+packages/arena-replay
+packages/arena-ui
+packages/arena-host-adapter
+```
+
+arena-protocol 是最底层包，不能依赖 React、PixiJS 或 Electron。arena-workbench 负责业务状态机。宿主 app 只组装 adapter、路由、窗口和权限。
+
+!! HostAdapter
+
+```ts
+export interface HostAdapter {
+  platform: 'electron' | 'web' | 'mobile_webview';
+  fileSystem?: FileSystemAdapter;
+  steam?: SteamAdapter;
+  localService?: LocalServiceAdapter;
+  telemetry: TelemetryAdapter;
+  openExternal(url: string): Promise<void>;
+  exportFile(input: ExportFileInput): Promise<ExportFileResult>;
+}
+```
+
+业务代码通过 HostAdapter 调用宿主能力。任何组件不得直接 import Electron API。
+
+!! 数据层
+
+|!包|!职责|
+|arena-protocol|协议类型、schema、事件枚举|
+|arena-data-client|HTTP、WebSocket、本地服务、回放存储适配|
+|arena-workbench|选择状态、工作台状态机、派生数据|
+|arena-replay|回放事件读取、游标、时间轴数据|
+|arena-rule-editor|规则包、源码映射、诊断、沙盒结果|
+
+!! 渲染层
+
+PixiJS 渲染包只接受 MapRenderState、ReplayCursor 和 InteractionCommand。React 面板通过 workbench store 订阅选中对象。渲染包不读取 HTTP，不写规则草稿，不持久化业务状态。
+
+!! 首发完成定义
+
+# Electron 和 Web 能复用同一 arena-workbench、arena-renderer-pixi 和 arena-rule-editor。
+# Electron 特有能力全部通过 HostAdapter 暴露。
+# 移动端 WebView 可以只启用观战、回放和轻量补丁确认。
+# 包依赖方向能通过 lint 或 workspace 规则检查。

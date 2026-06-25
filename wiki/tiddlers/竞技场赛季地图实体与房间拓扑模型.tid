@@ -1,0 +1,111 @@
+created: 20260617111500000
+creator: 林一二
+modified: 20260617111500000
+modifier: 林一二
+tags: 竞技场赛季地图系统 AI生成
+title: 竞技场赛季地图实体与房间拓扑模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+赛季地图实体与房间拓扑模型定义六边形图书馆地图在服务端、前端和数据资产中的共同结构。它只处理地图单元、房间连接、区域划分、目标点和版本加载，不处理渲染图层，也不处理赛季平衡数值。
+
+地图数据必须能支持权威模拟、脚本查询、战争迷雾、回放重建和 PixiJS 绘制。首发地图可以简单，但字段不能只为单机原型服务。
+
+!! 地图层级
+
+|!层级|!说明|!ID|
+|WorldMap|一场赛局的完整地图|mapId、contentVersion|
+|Layer|图书馆楼层或垂直层|layerId|
+|Region|区域运行单元的固定分块|regionId|
+|Room|六边形战术房间|roomId、axial q/r|
+|Passage|房间边之间的门、廊桥、升降连接|passageId|
+|Slot|建筑、资源点、编目台、核心书库位置|slotId|
+
+Region 是运行时所有权边界，Room 是战术和路径边界，Slot 是交互对象挂点。三者不能混用。
+
+!! 资产结构
+
+```ts
+export interface SeasonMapAsset {
+  mapId: string;
+  contentVersion: string;
+  layers: MapLayerAsset[];
+  regions: RegionAsset[];
+  rooms: RoomAsset[];
+  passages: PassageAsset[];
+  slots: MapSlotAsset[];
+  spawnRules: SpawnRuleAsset[];
+}
+
+export interface RoomAsset {
+  roomId: string;
+  layerId: string;
+  regionId: string;
+  q: number;
+  r: number;
+  roomKind: RoomKind;
+  terrainFlags: string[];
+  baseMoveCost: number;
+  visionProfileId: string;
+}
+```
+
+地图资产进入赛局后只读。运行中变化写入 RoomRuntime、PassageRuntime 和 ObjectControl，不反写资产。
+
+!! 拓扑模型
+
+```rust
+pub struct PassageRuntime {
+    pub passage_id: u64,
+    pub from_room: u64,
+    pub to_room: u64,
+    pub edge: HexEdge,
+    pub state: PassageState,
+    pub move_cost: u32,
+    pub controller: Option<PlayerId>,
+}
+
+pub enum PassageState {
+    Open,
+    Blocked,
+    Locked,
+    OneWay,
+    Elevator,
+    Destroyed,
+}
+```
+
+路径查询读取 PassageRuntime。门禁、坍塌、临时封锁和 PVE 占据都表现为 PassageState 变化，并写入事件流。
+
+!! 坐标规则
+
+# 房间使用 axial 坐标 q/r。
+# 房间内局部坐标使用定点整数 localX/localY。
+# 跨层连接不使用 q/r 直接相邻关系，必须通过 Passage 表达。
+# PixiJS 可以派生屏幕坐标，但协议层不保存 screenX/screenY。
+# 脚本 API 返回房间、目标和路径摘要，不返回隐藏区域完整拓扑。
+
+!! 地图目标
+
+|!目标|!挂载方式|!运行时状态|
+|资源点|MapSlot + ResourceNode|容量、占用、刷新、控制权|
+|研读书架|MapSlot + ResearchNode|进度、占用、风险、产出|
+|编目台|MapSlot + CatalogNode|控制权、算力、视野、编目分|
+|核心书库|MapSlot + CoreLibraryNode|积分产出、争夺状态、防守压力|
+|升降井|Passage + ElevatorNode|开放状态、控制权、冷却、封锁|
+
+!! 校验规则
+
+# 每个 Room 必须属于一个 Region。
+# 每个 Passage 两端必须存在，跨 Region 时必须声明 boundary。
+# 每个 Slot 必须落在存在的 Room 内。
+# SpawnRule 不能把多个玩家放入不可连通的死区。
+# 资源点、编目台和核心书库必须能被至少一条合法路径访问。
+
+!! 首发完成定义
+
+# 训练局地图能从资产生成 Room、Passage、Slot 和初始目标实体。
+# 服务端路径、前端渲染和回放重建使用同一 roomId、slotId、regionId。
+# 地图版本变更能通过 schema 校验发现断边、孤房间和非法目标点。
+# 多区域协议字段在单区域首发中保持存在。

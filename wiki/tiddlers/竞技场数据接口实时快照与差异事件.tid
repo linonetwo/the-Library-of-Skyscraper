@@ -1,0 +1,44 @@
+created: 20260609011000000
+creator: 林一二
+modified: 20260609011000000
+modifier: 林一二
+tags: 竞技场数据接口与事件模型 AI生成
+title: 竞技场数据接口实时快照与差异事件
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+实时快照与差异事件定义局中战场观察、资源面板、角色面板、建筑面板、规则版本状态和告警系统所需的数据更新方式。前端使用快照初始化，使用差异事件持续更新。
+
+!! 快照类型
+
+|!快照|!内容|
+|SessionSnapshot|赛局阶段、服务器状态、剩余时间、容量、规则版本|
+|MapSnapshot|房间、区域、层、连接、目标对象、视野和兴趣区域|
+|SquadSnapshot|角色、岗位、任务、技能、资源、规则版本和告警|
+|EconomySnapshot|库存、收入、支出、资源线、仓储和维护|
+|RuleStatusSnapshot|当前版本、草稿、发布状态、诊断摘要和沙盒摘要|
+
+!! 差异事件
+
+|!事件|!字段|
+|TickAdvanced|tick、phase、serverTime、stageProgress|
+|MapObjectChanged|objectId、changedFields、reason、tick|
+|VisionChanged|visibleIds、historicalIds、expiredIds、source|
+|ResourceRouteChanged|routeId、efficiency、blockedReason、alerts|
+|TaskStateChanged|taskId、state、assigneeId、blockedReason|
+|AlertRaised|alertId、level、objectIds、evidenceIds、action|
+|RuleVersionStateChanged|versionId、state、scope、rollbackPoint|
+
+!! 处理规则
+
+# 快照必须带 sequence，差异事件必须按 sequence 应用。
+# 事件缺失时请求局部快照修复，不直接刷新整页。
+# 高频 tick 事件可合并，告警和选中对象事件优先显示。
+# 不在前端推导隐藏信息，视野状态完全来自快照或事件。
+
+!! 首发验收
+
+# 假 WebSocket 事件可以驱动地图、资源、小队和任务面板同步变化。
+# 乱序、重复、缺失事件有明确处理策略。
+# 服务器 degraded 时事件延迟能在 UI 中显示。

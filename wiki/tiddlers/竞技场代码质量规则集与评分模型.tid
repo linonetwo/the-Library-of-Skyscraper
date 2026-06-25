@@ -1,0 +1,77 @@
+created: 20260617113000000
+creator: 林一二
+modified: 20260617113000000
+modifier: 林一二
+tags: 竞技场代码质量与测评系统 AI生成
+title: 竞技场代码质量规则集与评分模型
+type: text/vnd.tiddlywiki
+
+!! 职责
+
+代码质量规则集与评分模型定义玩家规则代码如何被检查、提示和用于学习反馈。它只处理静态检查、风险评分和测评结果，不处理竞技排名核心分数，也不处理 Monaco 展示细节。
+
+代码质量评分服务于可维护性和可调试性，不能替代沙盒结果，也不能因为代码风格直接改变世界结算。
+
+!! 检查类别
+
+|!类别|!示例|!发布影响|
+|类型正确性|TypeScript 类型错误、缺失导出|阻止发布|
+|API 权限|访问禁用 API、隐藏信息|阻止发布|
+|配额风险|循环过深、输出过多、路径查询滥用|阻止或要求确认|
+|完整性|无撤退、无 fallback、无任务空闲处理|要求确认或修复|
+|可解释性|缺少关键决策日志、魔法数字过多|提示|
+|测试覆盖|关键岗位无沙盒用例|提示或要求确认|
+
+!! QualityFinding
+
+```ts
+export interface QualityFinding {
+  findingId: string;
+  ruleVersionId: RuleVersionId;
+  severity: 'info' | 'warning' | 'error';
+  category: 'type' | 'permission' | 'quota' | 'completeness' | 'explainability' | 'test';
+  code: string;
+  message: string;
+  sourceRef?: SourceRef;
+  ruleObjectId?: string;
+  blocking: boolean;
+}
+```
+
+QualityFinding 与 Diagnostic 可以共享展示通道，但保留 category，避免把策略风险误当编译错误。
+
+!! 评分
+
+```ts
+export interface RuleQualityScore {
+  ruleVersionId: RuleVersionId;
+  total: number;
+  dimensions: {
+    correctness: number;
+    safety: number;
+    efficiency: number;
+    explainability: number;
+    testReadiness: number;
+  };
+  findings: QualityFinding[];
+}
+```
+
+评分范围 0 到 100。error 级阻断项可以让 total 很低，但发布阻断仍由 blocking 决定。
+
+!! 测评流水线
+
+# 读取 RulePackage 和源码清单。
+# 运行 TypeScript 诊断。
+# 运行 API 权限和依赖白名单检查。
+# 运行规则结构检查。
+# 估算脚本配额风险。
+# 读取沙盒测试覆盖情况。
+# 输出 QualityFinding 和 RuleQualityScore。
+
+!! 首发完成定义
+
+# 发布检查能区分阻断错误、风险确认和普通建议。
+# 每条质量问题都有 sourceRef 或 ruleObjectId。
+# 质量分不直接影响战斗结算和排名。
+# 智能体可以读取 QualityFinding 生成补丁建议。
