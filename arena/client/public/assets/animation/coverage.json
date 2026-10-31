@@ -1,0 +1,3019 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "arena-animation-2026-10-28.1",
+  "generatedOn": "2026-10-28",
+  "source": {
+    "path": "arena/art/source/walk-body-eight-directions.png",
+    "sha256": "0ac437f4d2fc5f79510542ceee29b2ba885ee067a0e386ecd0ff13730ba0417f",
+    "generator": "GPT Image 2 via proxy-imagegen"
+  },
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ],
+  "padding": 2,
+  "directions": [
+    "S",
+    "SW",
+    "W",
+    "NW",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "layers": [
+    "body",
+    "outfit-scholar",
+    "outfit-warden",
+    "hair-ivory",
+    "hair-midnight",
+    "weapon-staff"
+  ],
+  "modules": {
+    "idle": {
+      "frames": 4,
+      "fps": 4,
+      "loop": true
+    },
+    "walk": {
+      "frames": 4,
+      "fps": 8,
+      "loop": true
+    },
+    "run": {
+      "frames": 6,
+      "fps": 12,
+      "loop": true
+    },
+    "jump": {
+      "frames": 6,
+      "fps": 10,
+      "loop": false
+    },
+    "climb": {
+      "frames": 6,
+      "fps": 8,
+      "loop": true
+    },
+    "weapon-staff": {
+      "frames": 8,
+      "fps": 12,
+      "loop": false
+    }
+  },
+  "directionMeaning": {
+    "S": "toward camera",
+    "SW": "toward camera left",
+    "W": "left profile",
+    "NW": "away camera left",
+    "N": "away camera",
+    "NE": "away camera right",
+    "E": "right profile",
+    "SE": "toward camera right"
+  },
+  "defaultLayerOrder": [
+    "weapon-back",
+    "hair-back",
+    "body",
+    "outfit",
+    "hair-front",
+    "weapon-front"
+  ],
+  "releaseReady": false,
+  "runtimePolicy": "prototype-preview-only; missing layers never count as animation coverage",
+  "review": {
+    "directionViews": "Eight distinct source views visually inspected; NW/NE passing poses drift toward N.",
+    "gait": "Four authored poses per direction, cadence/foot-sliding needs review.",
+    "proportion": "Source is approximately 2.5–2.8 heads; exact 3-head normalization pending.",
+    "cleanup": "Chroma specks removed; connected pale edge halos still need manual cleanup.",
+    "alignment": "Shared cell anchor provisional; attachment and occlusion tracks not authored.",
+    "paperDoll": "Body only. Animated outfits, hairstyles and staff missing; no compatibility claim."
+  },
+  "coverage": [
+    {
+      "action": "idle",
+      "layer": "body",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "body",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "body",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "body",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "body",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "body",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "body",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "body",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-scholar",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-scholar",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-scholar",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-scholar",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-scholar",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-scholar",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-scholar",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-scholar",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-warden",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-warden",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-warden",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-warden",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-warden",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-warden",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-warden",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "outfit-warden",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "body",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "prototype",
+      "frames": [
+        "walk/body/S/00",
+        "walk/body/S/01",
+        "walk/body/S/02",
+        "walk/body/S/03"
+      ],
+      "atlas": "walk-body.json",
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "body",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "prototype",
+      "frames": [
+        "walk/body/SW/00",
+        "walk/body/SW/01",
+        "walk/body/SW/02",
+        "walk/body/SW/03"
+      ],
+      "atlas": "walk-body.json",
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "body",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "prototype",
+      "frames": [
+        "walk/body/W/00",
+        "walk/body/W/01",
+        "walk/body/W/02",
+        "walk/body/W/03"
+      ],
+      "atlas": "walk-body.json",
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "body",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "prototype",
+      "frames": [
+        "walk/body/NW/00",
+        "walk/body/NW/01",
+        "walk/body/NW/02",
+        "walk/body/NW/03"
+      ],
+      "atlas": "walk-body.json",
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "body",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "prototype",
+      "frames": [
+        "walk/body/N/00",
+        "walk/body/N/01",
+        "walk/body/N/02",
+        "walk/body/N/03"
+      ],
+      "atlas": "walk-body.json",
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "body",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "prototype",
+      "frames": [
+        "walk/body/NE/00",
+        "walk/body/NE/01",
+        "walk/body/NE/02",
+        "walk/body/NE/03"
+      ],
+      "atlas": "walk-body.json",
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "body",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "prototype",
+      "frames": [
+        "walk/body/E/00",
+        "walk/body/E/01",
+        "walk/body/E/02",
+        "walk/body/E/03"
+      ],
+      "atlas": "walk-body.json",
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "body",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "prototype",
+      "frames": [
+        "walk/body/SE/00",
+        "walk/body/SE/01",
+        "walk/body/SE/02",
+        "walk/body/SE/03"
+      ],
+      "atlas": "walk-body.json",
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-scholar",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-scholar",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-scholar",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-scholar",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-scholar",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-scholar",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-scholar",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-scholar",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-warden",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-warden",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-warden",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-warden",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-warden",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-warden",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-warden",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "outfit-warden",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff",
+      "direction": "S",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff",
+      "direction": "E",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff",
+      "direction": "SE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "body",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "body",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "body",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "body",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "body",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "body",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "body",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "body",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-scholar",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-scholar",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-scholar",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-scholar",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-scholar",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-scholar",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-scholar",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-scholar",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-warden",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-warden",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-warden",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-warden",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-warden",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-warden",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-warden",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "outfit-warden",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-ivory",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-ivory",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-ivory",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-ivory",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-ivory",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-ivory",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-ivory",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-ivory",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-midnight",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-midnight",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-midnight",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-midnight",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-midnight",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-midnight",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-midnight",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "hair-midnight",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "weapon-staff",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "weapon-staff",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "weapon-staff",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "weapon-staff",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "weapon-staff",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "weapon-staff",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "weapon-staff",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "run",
+      "layer": "weapon-staff",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "body",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "body",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "body",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "body",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "body",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "body",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "body",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "body",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-scholar",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-scholar",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-scholar",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-scholar",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-scholar",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-scholar",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-scholar",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-scholar",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-warden",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-warden",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-warden",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-warden",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-warden",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-warden",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-warden",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "outfit-warden",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-ivory",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-ivory",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-ivory",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-ivory",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-ivory",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-ivory",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-ivory",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-ivory",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-midnight",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-midnight",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-midnight",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-midnight",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-midnight",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-midnight",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-midnight",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "hair-midnight",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "weapon-staff",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "weapon-staff",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "weapon-staff",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "weapon-staff",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "weapon-staff",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "weapon-staff",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "weapon-staff",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "jump",
+      "layer": "weapon-staff",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "body",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "body",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "body",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "body",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "body",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "body",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "body",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "body",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-scholar",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-scholar",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-scholar",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-scholar",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-scholar",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-scholar",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-scholar",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-scholar",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-warden",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-warden",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-warden",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-warden",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-warden",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-warden",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-warden",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "outfit-warden",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-ivory",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-ivory",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-ivory",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-ivory",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-ivory",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-ivory",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-ivory",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-ivory",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-midnight",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-midnight",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-midnight",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-midnight",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-midnight",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-midnight",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-midnight",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "hair-midnight",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "weapon-staff",
+      "direction": "S",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "weapon-staff",
+      "direction": "SW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "weapon-staff",
+      "direction": "W",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "weapon-staff",
+      "direction": "NW",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "weapon-staff",
+      "direction": "N",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "weapon-staff",
+      "direction": "NE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "weapon-staff",
+      "direction": "E",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "climb",
+      "layer": "weapon-staff",
+      "direction": "SE",
+      "expectedFrames": 6,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "body",
+      "direction": "S",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "body",
+      "direction": "SW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "body",
+      "direction": "W",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "body",
+      "direction": "NW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "body",
+      "direction": "N",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "body",
+      "direction": "NE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "body",
+      "direction": "E",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "body",
+      "direction": "SE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-scholar",
+      "direction": "S",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-scholar",
+      "direction": "SW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-scholar",
+      "direction": "W",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-scholar",
+      "direction": "NW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-scholar",
+      "direction": "N",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-scholar",
+      "direction": "NE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-scholar",
+      "direction": "E",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-scholar",
+      "direction": "SE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-warden",
+      "direction": "S",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-warden",
+      "direction": "SW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-warden",
+      "direction": "W",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-warden",
+      "direction": "NW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-warden",
+      "direction": "N",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-warden",
+      "direction": "NE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-warden",
+      "direction": "E",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "outfit-warden",
+      "direction": "SE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-ivory",
+      "direction": "S",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-ivory",
+      "direction": "SW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-ivory",
+      "direction": "W",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-ivory",
+      "direction": "NW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-ivory",
+      "direction": "N",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-ivory",
+      "direction": "NE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-ivory",
+      "direction": "E",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-ivory",
+      "direction": "SE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-midnight",
+      "direction": "S",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-midnight",
+      "direction": "SW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-midnight",
+      "direction": "W",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-midnight",
+      "direction": "NW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-midnight",
+      "direction": "N",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-midnight",
+      "direction": "NE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-midnight",
+      "direction": "E",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "hair-midnight",
+      "direction": "SE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "weapon-staff",
+      "direction": "S",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "weapon-staff",
+      "direction": "SW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "weapon-staff",
+      "direction": "W",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "weapon-staff",
+      "direction": "NW",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "weapon-staff",
+      "direction": "N",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "weapon-staff",
+      "direction": "NE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "weapon-staff",
+      "direction": "E",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "weapon-staff",
+      "layer": "weapon-staff",
+      "direction": "SE",
+      "expectedFrames": 8,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    }
+  ]
+}
