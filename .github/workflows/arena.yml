@@ -1,0 +1,65 @@
+name: Arena checks
+on:
+  push:
+    paths: ['arena/**', '.github/workflows/arena.yml']
+  pull_request:
+    paths: ['arena/**', '.github/workflows/arena.yml']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: arena/server
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            arena/client/package-lock.json
+            arena/tools/package-lock.json
+      - run: cargo test --locked
+        working-directory: arena/server
+      - run: cargo clippy --locked --all-targets -- -D warnings
+        working-directory: arena/server
+      - run: npm ci && npm run build
+        working-directory: arena/client
+      - run: npm ci && npm test
+        working-directory: arena/tools
+      - name: Build authority
+        run: cargo build --locked
+        working-directory: arena/server
+      - name: Real HTTP, WebSocket, and MCP integration
+        working-directory: arena/tools
+        run: |
+          ../server/target/debug/skyscraper-arena-server > "$RUNNER_TEMP/arena-server.log" 2>&1 &
+          authority_pid=$!
+          trap 'kill "$authority_pid" || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8787/health > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run test:integration
+      - name: Install browser test runtime
+        run: npx playwright install --with-deps chromium
+        working-directory: arena/tools
+      - name: MCP browser controls
+        working-directory: arena/tools
+        run: |
+          ../server/target/debug/skyscraper-arena-server > "$RUNNER_TEMP/arena-browser-server.log" 2>&1 &
+          authority_pid=$!
+          npm --prefix ../client run dev -- --host 127.0.0.1 > "$RUNNER_TEMP/arena-vite.log" 2>&1 &
+          ui_pid=$!
+          trap 'kill "$authority_pid" "$ui_pid" || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:5173/ > /dev/null && curl --fail --silent http://127.0.0.1:8787/health > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run test:browser
