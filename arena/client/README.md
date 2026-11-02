@@ -31,9 +31,16 @@ npm run dev
 
 - `public/assets/library-map.png`：手绘地图背景。
 - `public/assets/doll-atlas.png` / `doll-atlas.json`：标准 Pixi spritesheet，同尺寸、同坐标的透明分层帧。
-- 约定帧名：`body`、`outfit-scholar`、`outfit-warden`、`hair-ivory`、`hair-midnight`、`weapon-staff`；亦兼容 `.png` 后缀。
+- 约定帧名：`body`、`outfit-scholar`、`outfit-warden`、`hair-ivory`、`hair-midnight`、`weapon-staff`。
 
-角色预览通过 CSS 图集裁剪，小队和地图使用相同图层顺序。缺失素材时使用明确的程序化占位角色和底色，不阻断赛局。美术资产到达后刷新页面加载。无需外部字体网络请求，优先系统 Noto/宋体。
+角色预览通过 CSS 图集裁剪，小队和地图使用相同图层顺序。已打包图集随客户端发布；字体采用系统 Noto/宋体。
+
+## 模块组织
+
+App 负责布局；arenaApi 负责请求；useArenaSession 负责赛局状态与操作。
+Battlefield、CharacterInspector、RuleEditor、JournalPanel、SquadPanel、
+LobbyDialog 分别负责战场、角色、策略、日志、小队和入场。
+MapCanvas 管理 Pixi 生命周期，mapScene 负责场景绘制，PaperDoll 负责分层合成。
 
 ## 已知范围
 

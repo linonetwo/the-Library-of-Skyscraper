@@ -71,12 +71,11 @@ test('two independent browsers join a live room and reconnect with same player',
   await second.close();
 });
 
-test('narrow layout and missing textures remain usable', async ({ page }) => {
+test('narrow layout presents the paper-doll squad', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.route('**/assets/**', route => route.abort());
   await training(page);
   await expect(page.locator('canvas')).toBeVisible();
-  await expect(page.locator('.portrait-frame .doll-fallback')).toBeVisible();
+  await expect(page.locator('.portrait-frame .doll-layer')).toHaveCount(4);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
   expect(overflow).toBe(false);
 });

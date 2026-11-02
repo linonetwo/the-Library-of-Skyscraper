@@ -92,5 +92,10 @@ tool('Replay.getEvents', 'Read retained diagnostic events after an optional even
     return { retainedOnly: true, persistent: false, tick: snapshot.tick, firstRetainedId: snapshot.events[0]?.id ?? null,
       events: snapshot.events.filter(event => event.id > (args.afterId ?? 0)) };
   }, true);
+tool('Replay.export', 'Export the complete bounded, versioned command recording and final snapshot. Contains no bearer credentials. In-memory only: save the returned JSON before authority restart; overflow is rejected.',
+  handleSchema, async args => {
+    const credential = credentials(args.handle);
+    return request(sessionPath(credential, 'replay'), undefined, credential.token);
+  }, true);
 registerBrowserTools(server);
 await server.connect(new StdioServerTransport());
