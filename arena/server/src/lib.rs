@@ -2,6 +2,9 @@ use bevy_ecs::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
+pub mod replay;
+pub use replay::{Replay, ReplayOperation};
+
 #[derive(Clone, Copy, Debug, Deserialize, Serialize, PartialEq)]
 #[serde(rename_all = "lowercase")]
 pub enum Mode {
@@ -14,7 +17,7 @@ pub struct Rule {
     pub preset: String,
     pub retreat_hp: u32,
 }
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Player {
     pub id: String,
     pub name: String,
@@ -22,7 +25,7 @@ pub struct Player {
     pub score: u32,
     pub rule: Rule,
 }
-#[derive(Component, Clone, Debug, Serialize)]
+#[derive(Component, Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Actor {
     pub id: String,
@@ -33,7 +36,7 @@ pub struct Actor {
     pub max_hp: u32,
     pub state: String,
 }
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Room {
     pub id: String,
@@ -45,7 +48,7 @@ pub struct Room {
     pub enemy_hp: u32,
     pub owner: Option<String>,
 }
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Building {
     pub id: String,
@@ -53,7 +56,7 @@ pub struct Building {
     pub room_id: String,
     pub kind: String,
 }
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Event {
     pub id: u64,
@@ -62,12 +65,12 @@ pub struct Event {
     pub message: String,
     pub player_id: Option<String>,
 }
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct ResultSummary {
     pub winner: String,
     pub reason: String,
 }
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Snapshot {
     pub session_id: String,
@@ -83,7 +86,7 @@ pub struct Snapshot {
     pub events: Vec<Event>,
     pub result: Option<ResultSummary>,
 }
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(tag = "type", rename_all = "camelCase", deny_unknown_fields)]
 pub enum Command {
     Move {
@@ -137,6 +140,8 @@ pub struct Session {
     world: World,
     next_event: u64,
     manual_actions: BTreeMap<String, u64>,
+    replay_operations: Vec<ReplayOperation>,
+    replay_overflowed: bool,
 }
 impl Session {
     pub fn new(id: String, mode: Mode, seed: u64) -> Self {
@@ -190,6 +195,8 @@ impl Session {
             world: World::new(),
             next_event: 1,
             manual_actions: BTreeMap::new(),
+            replay_operations: vec![],
+            replay_overflowed: false,
         }
     }
     pub fn join(&mut self, token: String) -> Result<String, String> {
@@ -226,6 +233,9 @@ impl Session {
             });
         }
         self.event("join", format!("{id} 的三人小队抵达中庭"), Some(&id));
+        self.record_operation(ReplayOperation::Join {
+            player_id: id.clone(),
+        });
         Ok(id)
     }
     fn event(&mut self, kind: &str, message: String, player: Option<&str>) {
@@ -287,6 +297,17 @@ impl Session {
             .ok_or("room not found".into())
     }
     pub fn command(&mut self, owner: &str, command: Command) -> Result<(), String> {
+        // Record only accepted operations. Internal Step ticks and Reset joins
+        // deliberately use unrecorded paths to avoid replaying them twice.
+        let recorded = command.clone();
+        self.apply_command(owner, command)?;
+        self.record_operation(ReplayOperation::Command {
+            player_id: owner.into(),
+            command: recorded,
+        });
+        Ok(())
+    }
+    fn apply_command(&mut self, owner: &str, command: Command) -> Result<(), String> {
         if !self.players.contains_key(owner) {
             return Err("player not found".into());
         }
@@ -326,15 +347,19 @@ impl Session {
                     return Err("pause training before stepping".into());
                 }
                 for _ in 0..ticks {
-                    self.advance();
+                    self.advance_unrecorded();
                 }
             }
             Command::Reset {} => {
                 let tokens = self.tokens.clone();
+                let operations = std::mem::take(&mut self.replay_operations);
+                let overflowed = self.replay_overflowed;
                 *self = Self::new(self.id.clone(), self.mode, self.seed);
                 for token in tokens.keys() {
                     self.join(token.clone())?;
                 }
+                self.replay_operations = operations;
+                self.replay_overflowed = overflowed;
                 self.paused = true;
             }
             Command::Rule { preset, retreat_hp } => {
@@ -507,6 +532,12 @@ impl Session {
         Ok(())
     }
     pub fn advance(&mut self) {
+        if self.result.is_none() {
+            self.advance_unrecorded();
+            self.record_operation(ReplayOperation::Advance {});
+        }
+    }
+    fn advance_unrecorded(&mut self) {
         if self.result.is_some() {
             return;
         }

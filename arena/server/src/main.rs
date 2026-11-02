@@ -129,6 +129,22 @@ async fn join(
         token,
     }))
 }
+async fn replay(
+    State(store): State<Store>,
+    Path(id): Path<String>,
+    headers: HeaderMap,
+) -> Result<Json<skyscraper_arena_server::replay::Replay>, Error> {
+    let mut store = store.lock().await;
+    let session = store
+        .get_mut(&id)
+        .ok_or_else(|| error(StatusCode::NOT_FOUND, "session not found"))?;
+    authorize(session, &headers)?;
+    session
+        .export_replay()
+        .map(Json)
+        .map_err(|message| error(StatusCode::CONFLICT, &message))
+}
+
 async fn state(
     State(store): State<Store>,
     Path(id): Path<String>,
@@ -214,6 +230,7 @@ async fn main() {
         .route("/api/sessions", post(create))
         .route("/api/sessions/{id}/join", post(join))
         .route("/api/sessions/{id}/state", get(state))
+        .route("/api/sessions/{id}/replay", get(replay))
         .route("/api/sessions/{id}/commands", post(command))
         .route("/ws/{id}", get(ws))
         .layer(
