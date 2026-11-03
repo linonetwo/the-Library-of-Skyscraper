@@ -41,6 +41,7 @@ export default function SquadPanel() {
                 <small>{unit.role.toUpperCase()}</small>
                 <strong>{roleNames[unit.role]}</strong>
                 <span>{stateName(unit.state)}</span>
+                <span>携带 {unit.cargo} / {unit.cargoCapacity}</span>
                 <div className="health-track">
                   <i
                     style={{

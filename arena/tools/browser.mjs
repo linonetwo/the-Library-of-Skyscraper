@@ -6,7 +6,7 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
-    ...['startTraining', 'openLobby', 'openRules', 'closeLobby', 'gather', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
+    ...['startTraining', 'openLobby', 'openRules', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
     z.object({ type: z.literal('selectActor'), role: z.enum(['scout', 'gatherer', 'guard']) }).strict(),
     z.object({ type: z.literal('chooseOutfit'), outfit: z.enum(['scholar', 'warden']) }).strict(),
     z.object({ type: z.literal('chooseHair'), hair: z.enum(['ivory', 'midnight']) }).strict(),
@@ -92,6 +92,7 @@ export function registerBrowserTools(server) {
       case 'zoom': await click(action.direction === 'in' ? '放大地图' : '缩小地图'); break;
       case 'selectRoom': await active.getByRole('combobox', { name: '定位地图房间' }).selectOption(action.room); break;
       case 'gather': await click('采集'); break;
+      case 'deliver': await click('卸货入库'); break;
       case 'attack': await click('攻击'); break;
       case 'capture': await click('编目'); break;
     }

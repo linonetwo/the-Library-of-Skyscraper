@@ -1,5 +1,6 @@
 import { Container, Graphics, Sprite, Text, Texture } from "pixi.js";
 import type { Actor, Outfit, Room, Snapshot } from "./types";
+import { floorPoint } from "./libraryLayout";
 export type MapProps = {
   snapshot: Snapshot | null;
   selected: string | null;
@@ -13,10 +14,7 @@ export type MapProps = {
   onRoom: (id: string) => void;
 };
 
-const point = (room: Room) => ({
-  x: Math.sqrt(3) * 109 * (room.q + room.r / 2),
-  y: 109 * 1.5 * room.r,
-});
+const point = (room: Room) => floorPoint(room.q, room.r);
 const hex = (x: number, y: number, size: number) =>
   Array.from({ length: 6 }, (_, i) => {
     const a = ((60 * i - 30) * Math.PI) / 180;
@@ -65,7 +63,7 @@ export function paintMap(
             : room.kind === "base"
               ? 0x1e494e
               : 0x183437,
-        alpha: isSelected ? 0.55 : 0.3,
+        alpha: isSelected ? 0.35 : 0.1,
       })
       .stroke({
         color: isSelected ? 0xf5d08a : 0xd8c59a,
@@ -114,7 +112,7 @@ export function paintMap(
       .forEach((room) => {
         const { x, y } = point(room);
         routes
-          .moveTo(0, 0)
+          .moveTo(point(snapshot.rooms[0]).x, point(snapshot.rooms[0]).y)
           .lineTo(x, y)
           .stroke({ color: 0xe0c58a, alpha: 0.25, width: 1.5 });
       });
@@ -153,7 +151,7 @@ export function paintMap(
       const sprite = new Sprite(texture);
       sprite.anchor.set(0.5, 1);
       sprite.position.set(0, 28);
-      sprite.scale.set(64 / texture.height);
+      sprite.scale.set(86 / texture.height);
       node.addChild(sprite);
     });
     const health = new Graphics()

@@ -11,6 +11,8 @@ const stateNames: Record<string, string> = {
   idle: "等待指令",
   moving: "探索行进",
   gathering: "采集藏材",
+  transporting: "运返中庭",
+  delivering: "藏材入库",
   fighting: "迎战威胁",
   retreating: "撤退休整",
   defending: "守卫书库",

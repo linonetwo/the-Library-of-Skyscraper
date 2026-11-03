@@ -1,7 +1,10 @@
 import { useArena } from "./ArenaWorkspace";
+import { useState } from "react";
+import ReplayPanel from "./ReplayPanel";
 
 export default function JournalPanel() {
   const { session, snapshot, busy, exportReplay } = useArena();
+  const [replayOpen, setReplayOpen] = useState(false);
 
   return (
     <div className="workspace-overlay journal-panel">
@@ -10,6 +13,8 @@ export default function JournalPanel() {
       <button disabled={!session || busy} onClick={() => void exportReplay()}>
         导出命令回放
       </button>
+      <button disabled={!session} onClick={() => setReplayOpen(true)}>播放赛局回放</button>
+      {replayOpen && session && <ReplayPanel session={session} onClose={() => setReplayOpen(false)} />}
       <p>
         下方仅保留最近 100 条事件；完整命令录制可导出，服务器重启前请自行保存。
       </p>

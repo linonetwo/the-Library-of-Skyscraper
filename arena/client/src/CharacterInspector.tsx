@@ -82,6 +82,10 @@ export default function CharacterInspector() {
           <span>行动状态</span>
           <b className="state-text">{stateName(actor?.state)}</b>
         </div>
+        <div>
+          <span>随身藏材</span>
+          <b>{actor ? `${actor.cargo} / ${actor.cargoCapacity}` : "—"}</b>
+        </div>
       </div>
       <div className="wardrobe">
         <div className="panel-title">
@@ -145,6 +149,13 @@ export default function CharacterInspector() {
         >
           <Package size={15} />
           采集
+        </button>
+        <button
+          disabled={!ready || !isOwner || actor?.roomId !== "room-0" || actor?.cargo === 0}
+          onClick={() => void command({ type: "deliver", actorId: actor!.id })}
+        >
+          <Package size={15} />
+          卸货入库
         </button>
         <button
           disabled={!ready || !isOwner}

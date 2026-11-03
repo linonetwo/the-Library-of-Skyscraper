@@ -27,8 +27,9 @@ export default function ArenaHeader() {
         <div>
           <Package size={19} />
           <span>
-            <small>藏材</small>
+            <small>藏材库存</small>
             <b>{player?.materials ?? "—"}</b>
+            {snapshot && <small>运输中 {ownActors.reduce((sum, unit) => sum + unit.cargo, 0)}</small>}
           </span>
         </div>
         <div>

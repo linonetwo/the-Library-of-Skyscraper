@@ -1,4 +1,5 @@
 import type { Command, Session, Snapshot } from "./types";
+import type { ReplayTimeline } from "./useReplay";
 
 async function request<T>(
   path: string,
@@ -19,6 +20,8 @@ async function request<T>(
 }
 
 export const arenaApi = {
+  timeline: (session: Session) =>
+    request<ReplayTimeline>(`/${session.sessionId}/replay/timeline`, session),
   create: (mode: "training" | "online") =>
     request<Session>("", undefined, { mode, seed: 42 }),
   join: (id: string) =>

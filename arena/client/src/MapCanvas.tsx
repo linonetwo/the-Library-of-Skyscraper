@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Application, Assets, Container, Texture } from "pixi.js";
+import { Application, Assets, Container, Texture, Sprite } from "pixi.js";
 import { paintMap, type MapProps } from "./mapScene";
+import { libraryLayout } from "./libraryLayout";
 
 /** The application lives for the entire mounted canvas; snapshots only update its render bridge. */
 export default function MapCanvas(props: MapProps) {
@@ -22,9 +23,9 @@ export default function MapCanvas(props: MapProps) {
     const paint = () => {
       if (!frames || disposed) return;
       const p = latest.current;
-      world.position.set(host.clientWidth / 2, host.clientHeight / 2 + 16);
+      world.position.set(host.clientWidth / 2, host.clientHeight / 2);
       const fit =
-        Math.min(host.clientWidth / 730, host.clientHeight / 610, 1.5) * p.zoom;
+        Math.min(host.clientWidth / 922, host.clientHeight / 614, 1.5) * p.zoom;
       world.scale.set(fit);
       renderLayer.destroy({ children: true });
       renderLayer = new Container();
@@ -50,6 +51,13 @@ export default function MapCanvas(props: MapProps) {
         const sheet = await Assets.load("/assets/doll-atlas.json");
         if (disposed) return;
         frames = sheet.textures;
+        const illustration = await Assets.load("/assets/library-map.png");
+        if (disposed) return;
+        const background = new Sprite(illustration);
+        background.anchor.set(0.5);
+        background.scale.set(libraryLayout.scale);
+        background.alpha = 0.85;
+        world.addChild(background);
         host.appendChild(app.canvas);
         app.stage.addChild(world);
         resize = new ResizeObserver(() => {
