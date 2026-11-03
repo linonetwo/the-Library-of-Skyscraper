@@ -31,6 +31,8 @@ pub struct Actor {
     pub hp: u32,
     pub max_hp: u32,
     pub state: String,
+    pub cargo: u32,
+    pub cargo_capacity: u32,
 }
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -92,6 +94,10 @@ pub enum Command {
         room_id: String,
     },
     Gather {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+    },
+    Deliver {
         #[serde(rename = "actorId")]
         actor_id: String,
     },

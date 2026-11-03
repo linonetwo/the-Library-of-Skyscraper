@@ -55,6 +55,7 @@ impl Session {
         let action_actor = match &command {
             Command::Move { actor_id, .. }
             | Command::Gather { actor_id }
+            | Command::Deliver { actor_id }
             | Command::Attack { actor_id }
             | Command::Capture { actor_id } => Some(actor_id.clone()),
             _ => None,
@@ -114,6 +115,10 @@ impl Session {
             Command::Gather { actor_id } => {
                 let (e, a) = self.actor(owner, &actor_id)?;
                 self.gather(e, a)?;
+            }
+            Command::Deliver { actor_id } => {
+                let (e, a) = self.actor(owner, &actor_id)?;
+                self.deliver(e, a)?;
             }
             Command::Attack { actor_id } => {
                 let (e, a) = self.actor(owner, &actor_id)?;

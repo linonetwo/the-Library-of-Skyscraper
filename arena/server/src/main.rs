@@ -15,6 +15,7 @@ use std::time::Duration;
 use tower_http::cors::CorsLayer;
 use uuid::Uuid;
 
+mod replay_routes;
 mod store;
 use store::{Error, Store, error};
 const ALLOWED_ORIGINS: [&str; 6] = [
@@ -105,21 +106,6 @@ async fn join(
         token,
     }))
 }
-async fn replay(
-    State(store): State<Store>,
-    Path(id): Path<String>,
-    headers: HeaderMap,
-) -> Result<Json<skyscraper_arena_server::replay::Replay>, Error> {
-    store
-        .with_player(&id, &headers, |session, _| {
-            session
-                .export_replay()
-                .map(Json)
-                .map_err(|message| error(StatusCode::CONFLICT, &message))
-        })
-        .await
-}
-
 async fn state(
     State(store): State<Store>,
     Path(id): Path<String>,
@@ -204,7 +190,11 @@ async fn main() {
         .route("/api/sessions", post(create))
         .route("/api/sessions/{id}/join", post(join))
         .route("/api/sessions/{id}/state", get(state))
-        .route("/api/sessions/{id}/replay", get(replay))
+        .route("/api/sessions/{id}/replay", get(replay_routes::export))
+        .route(
+            "/api/sessions/{id}/replay/timeline",
+            get(replay_routes::timeline),
+        )
         .route("/api/sessions/{id}/commands", post(command))
         .route("/ws/{id}", get(ws))
         .layer(

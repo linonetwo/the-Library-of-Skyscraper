@@ -27,6 +27,11 @@ impl Session {
                 continue;
             }
             let rule = self.players[&a.owner].rule.clone();
+            let current = self.room_index(&a.room_id).unwrap();
+            if current == 0 && a.cargo > 0 {
+                let _ = self.deliver(entity, a);
+                continue;
+            }
             if a.hp <= rule.retreat_hp {
                 a.room_id = "room-0".into();
                 a.hp = (a.hp + 10).min(100);
@@ -34,7 +39,9 @@ impl Session {
                 self.world.entity_mut(entity).insert(a);
                 continue;
             }
-            let current = self.room_index(&a.room_id).unwrap();
+            if self.transport(entity, a.clone(), current) {
+                continue;
+            }
             if self
                 .buildings
                 .iter()
@@ -62,7 +69,7 @@ impl Session {
                 "defend" => 0,
                 "gather" => {
                     if a.role == "gatherer" {
-                        1
+                        self.resource_destination(1)
                     } else if a.role == "scout" {
                         2
                     } else {
@@ -72,7 +79,7 @@ impl Session {
                 _ => match a.role.as_str() {
                     "scout" => 5,
                     "guard" => 6,
-                    _ => 4,
+                    _ => self.resource_destination(4),
                 },
             };
             if current != desired {

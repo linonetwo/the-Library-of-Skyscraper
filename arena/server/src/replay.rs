@@ -34,7 +34,46 @@ pub enum ReplayOperation {
     Advance {},
 }
 
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ReplayFrame {
+    pub operation_index: usize,
+    pub tick: u64,
+    pub snapshot: Snapshot,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ReplayTimeline {
+    pub session_id: String,
+    pub frames: Vec<ReplayFrame>,
+}
+
 impl Replay {
+    /// Each frame follows one recorded operation; reset starts a new tick range.
+    pub fn timeline(&self) -> Result<ReplayTimeline, String> {
+        self.validate_limits()?;
+        let mut session = Session::new(self.session_id.clone(), self.mode, self.seed);
+        let mut frames = Vec::with_capacity(self.operations.len() + 1);
+        frames.push(ReplayFrame {
+            operation_index: 0,
+            tick: session.tick,
+            snapshot: session.snapshot(),
+        });
+        for (index, operation) in self.operations.iter().enumerate() {
+            session.replay_operation(index, operation)?;
+            frames.push(ReplayFrame {
+                operation_index: index + 1,
+                tick: session.tick,
+                snapshot: session.snapshot(),
+            });
+        }
+        Ok(ReplayTimeline {
+            session_id: self.session_id.clone(),
+            frames,
+        })
+    }
+
     /// Network/file callers must bound input before deserializing.
     pub fn from_json(json: &[u8]) -> Result<Self, String> {
         if json.len() > MAX_REPLAY_BYTES {
@@ -65,6 +104,34 @@ impl Replay {
 }
 
 impl Session {
+    fn replay_operation(
+        &mut self,
+        index: usize,
+        operation: &ReplayOperation,
+    ) -> Result<(), String> {
+        let invalid = || format!("invalid replay operation {index}");
+        match operation {
+            ReplayOperation::Join { player_id } => {
+                let actual = self
+                    .join(format!("replay-only-{index}"))
+                    .map_err(|_| invalid())?;
+                if actual != *player_id {
+                    return Err(invalid());
+                }
+            }
+            ReplayOperation::Command { player_id, command } => {
+                self.command(player_id, command.clone())
+                    .map_err(|_| invalid())?;
+            }
+            ReplayOperation::Advance {} => {
+                if self.result.is_some() {
+                    return Err(invalid());
+                }
+                self.advance();
+            }
+        }
+        Ok(())
+    }
     pub(crate) fn record_operation(&mut self, operation: ReplayOperation) {
         if self.replay_operations.len() >= MAX_REPLAY_OPERATIONS {
             self.replay_overflowed = true;
@@ -98,26 +165,7 @@ impl Session {
         replay.validate_limits()?;
         let mut session = Self::new(replay.session_id.clone(), replay.mode, replay.seed);
         for (index, operation) in replay.operations.iter().enumerate() {
-            let invalid = || format!("invalid replay operation {index}");
-            match operation {
-                ReplayOperation::Join { player_id } => {
-                    let actual = session
-                        .join(format!("replay-only-{index}"))
-                        .map_err(|_| invalid())?;
-                    if actual != *player_id {
-                        return Err(invalid());
-                    }
-                }
-                ReplayOperation::Command { player_id, command } => session
-                    .command(player_id, command.clone())
-                    .map_err(|_| invalid())?,
-                ReplayOperation::Advance {} => {
-                    if session.result.is_some() {
-                        return Err(invalid());
-                    }
-                    session.advance();
-                }
-            }
+            session.replay_operation(index, operation)?;
         }
         if serde_json::to_value(session.snapshot()).map_err(|_| "snapshot serialization failed")?
             != serde_json::to_value(&replay.final_snapshot)
@@ -130,125 +178,5 @@ impl Session {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-
-    fn round_trip(session: &mut Session) -> Session {
-        let replay = session.export_replay().unwrap();
-        let bytes = serde_json::to_vec(&replay).unwrap();
-        assert!(!String::from_utf8_lossy(&bytes).contains("live-secret"));
-        let decoded = Replay::from_json(&bytes).unwrap();
-        let mut restored = Session::from_replay(&decoded).unwrap();
-        assert_eq!(
-            serde_json::to_value(session.snapshot()).unwrap(),
-            serde_json::to_value(restored.snapshot()).unwrap()
-        );
-        restored
-    }
-
-    #[test]
-    fn two_player_commands_ticks_rejections_and_future_simulation() {
-        let mut session = Session::new("online-replay".into(), Mode::Online, 937);
-        session.join("live-secret-one".into()).unwrap();
-        session.advance();
-        session.join("live-secret-two".into()).unwrap();
-        session
-            .command(
-                "p2",
-                Command::Rule {
-                    preset: "explore".into(),
-                    retreat_hp: 45,
-                },
-            )
-            .unwrap();
-        session
-            .command(
-                "p2",
-                Command::Move {
-                    actor_id: "p2-gatherer".into(),
-                    room_id: "room-1".into(),
-                },
-            )
-            .unwrap();
-        let count = session.replay_operations.len();
-        assert!(
-            session
-                .command(
-                    "p1",
-                    Command::Gather {
-                        actor_id: "p2-gatherer".into(),
-                    }
-                )
-                .is_err()
-        );
-        assert!(session.command("p1", Command::Reset {}).is_err());
-        assert!(session.command("p1", Command::Step { ticks: 2 }).is_err());
-        assert_eq!(session.replay_operations.len(), count);
-        let mut restored = round_trip(&mut session);
-        // The snapshot alone does not include the cooldown; subsequent ticks
-        // prove the command reconstruction also restores this internal state.
-        for _ in 0..120 {
-            session.advance();
-            restored.advance();
-            assert_eq!(
-                serde_json::to_value(session.snapshot()).unwrap(),
-                serde_json::to_value(restored.snapshot()).unwrap()
-            );
-        }
-        round_trip(&mut session);
-    }
-
-    #[test]
-    fn training_steps_reset_preserve_history_without_duplicate_ticks_or_joins() {
-        let mut session = Session::new("training-replay".into(), Mode::Training, 31);
-        session.join("live-secret".into()).unwrap();
-        assert!(session.command("p1", Command::Step { ticks: 1 }).is_err());
-        session
-            .command("p1", Command::Pause { paused: true })
-            .unwrap();
-        session.command("p1", Command::Step { ticks: 120 }).unwrap();
-        assert_eq!(session.replay_operations.len(), 3);
-        round_trip(&mut session);
-        session.command("p1", Command::Reset {}).unwrap();
-        assert_eq!(session.replay_operations.len(), 4);
-        assert_eq!(session.tick, 0);
-        assert_eq!(session.tokens["live-secret"], "p1");
-        session.command("p1", Command::Step { ticks: 12 }).unwrap();
-        assert_eq!(session.tick, 12);
-        assert_eq!(session.replay_operations.len(), 5);
-        round_trip(&mut session);
-    }
-
-    #[test]
-    fn tampering_versions_invalid_operations_and_limits_rejected() {
-        let mut session = Session::new("bounds".into(), Mode::Training, 1);
-        session.join("live-secret".into()).unwrap();
-        let replay = session.export_replay().unwrap();
-        let mut tampered = replay.clone();
-        tampered.final_snapshot.tick += 1;
-        assert!(Session::from_replay(&tampered).is_err());
-        tampered = replay.clone();
-        tampered.version += 1;
-        assert!(Session::from_replay(&tampered).is_err());
-        tampered = replay.clone();
-        tampered.operations.push(ReplayOperation::Command {
-            player_id: "intruder".into(),
-            command: Command::Reset {},
-        });
-        assert!(Session::from_replay(&tampered).is_err());
-        tampered.operations = vec![ReplayOperation::Advance {}; MAX_REPLAY_OPERATIONS + 1];
-        assert!(Session::from_replay(&tampered).is_err());
-        assert!(Replay::from_json(&vec![b' '; MAX_REPLAY_BYTES + 1]).is_err());
-        for _ in 0..MAX_REPLAY_OPERATIONS {
-            session
-                .command("p1", Command::Pause { paused: true })
-                .unwrap();
-        }
-        assert!(session.export_replay().is_err());
-        session.command("p1", Command::Reset {}).unwrap();
-        assert!(
-            session.export_replay().is_err(),
-            "reset cannot erase overflow"
-        );
-    }
-}
+#[path = "replay_tests.rs"]
+mod tests;

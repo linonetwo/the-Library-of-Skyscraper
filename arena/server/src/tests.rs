@@ -189,7 +189,16 @@ fn manual_command_replaces_next_autonomous_action() {
     s.advance();
     assert_eq!(s.players["p1"].materials, 40);
     s.advance();
-    assert_eq!(s.players["p1"].materials, 48);
+    assert_eq!(s.players["p1"].materials, 40);
+    assert_eq!(
+        s.snapshot()
+            .actors
+            .iter()
+            .find(|a| a.role == "gatherer")
+            .unwrap()
+            .cargo,
+        8
+    );
 }
 #[test]
 fn symmetric_online_squads_cannot_steal_by_iteration_order() {

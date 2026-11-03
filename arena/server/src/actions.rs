@@ -2,25 +2,6 @@ use crate::{Actor, Session};
 use bevy_ecs::prelude::Entity;
 
 impl Session {
-    pub(crate) fn gather(&mut self, entity: Entity, mut actor: Actor) -> Result<(), String> {
-        let idx = self.room_index(&actor.room_id)?;
-        if self.rooms[idx].resources == 0 {
-            return Err("no resources in this room".into());
-        }
-        let amount = self.rooms[idx]
-            .resources
-            .min(if actor.role == "gatherer" { 8 } else { 3 });
-        self.rooms[idx].resources -= amount;
-        self.players.get_mut(&actor.owner).unwrap().materials += amount;
-        actor.state = "gathering".into();
-        self.event(
-            "gather",
-            format!("{} 采集 {amount} 建材", actor.id),
-            Some(&actor.owner),
-        );
-        self.world.entity_mut(entity).insert(actor);
-        Ok(())
-    }
     pub(crate) fn attack(&mut self, entity: Entity, mut actor: Actor) -> Result<(), String> {
         let idx = self.room_index(&actor.room_id)?;
         if self.rooms[idx].enemy_hp == 0 {

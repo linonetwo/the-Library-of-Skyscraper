@@ -75,3 +75,15 @@ after 120 ticks, winner highest catalog score, player ID breaks ties.
 Snapshots are diagnostic state, **not a complete replay stream**; persistent replay remains planned.
 Online rooms are casual integration-test rooms, not ranked/fair competitive matches:
 there is no ready lobby, the clock starts immediately, and late joiners have less time.
+# Gameplay additions
+
+Actors expose `cargo` and `cargoCapacity`. Gathering fills carried cargo;
+automatic hauling returns it to `room-0`, and unloading credits player materials.
+`{type:"deliver",actorId}` unloads at the base. Actor states include
+`transporting` and `delivering`.
+
+Authenticated `GET /api/sessions/:id/replay` exports a command recording.
+`GET /api/sessions/:id/replay/timeline` returns
+`{sessionId,frames:[{operationIndex,tick,snapshot}]}`. Index 0 is the initial
+world; operation indices increase through resets while tick follows the replayed
+world clock. Playback owns a separate reconstructed session.

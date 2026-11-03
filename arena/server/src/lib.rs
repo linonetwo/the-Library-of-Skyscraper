@@ -1,5 +1,6 @@
 mod actions;
 mod commands;
+mod economy;
 mod session;
 mod simulation;
 mod types;
@@ -9,5 +10,7 @@ pub use replay::{Replay, ReplayOperation};
 pub use session::Session;
 pub use types::*;
 
+#[cfg(test)]
+mod economy_tests;
 #[cfg(test)]
 mod tests;
