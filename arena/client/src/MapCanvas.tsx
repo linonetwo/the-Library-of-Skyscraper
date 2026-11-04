@@ -45,7 +45,7 @@ export default function MapCanvas(props: MapProps) {
         });
         initialized = true;
         if (disposed) {
-          app.destroy(true, { children: true });
+          app.destroy({ removeView: true }, { children: true });
           return;
         }
         const sheet = await Assets.load("/assets/doll-atlas.json");
@@ -79,7 +79,8 @@ export default function MapCanvas(props: MapProps) {
       resize?.disconnect();
       document.removeEventListener("visibilitychange", visibility);
       redraw.current = () => {};
-      if (initialized) app.destroy(true, { children: true });
+      // Live and replay maps share Pixi's global asset and batch pools.
+      if (initialized) app.destroy({ removeView: true }, { children: true });
     };
   }, []);
 
