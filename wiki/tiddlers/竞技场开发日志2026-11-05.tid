@@ -54,7 +54,7 @@ MCP Page.getState 返回各画布角色位置、朝向、帧号和动画模式�
 
 全套浏览器7/7通过，新增八方向映射、连续位置插值、重置定位和真实战场行走用例。
 
-[img[竞技场2026-11-05战场行走实机.png]]
+战场行走截图归档：[[竞技场2026-11-05战场行走实机.png]]。
 
 !! 本地存档与重启恢复
 
@@ -70,7 +70,7 @@ MCP Page.getState 返回各画布角色位置、朝向、帧号和动画模式�
 
 存档与公开回放上限已解耦：录制溢出后赛局继续存档与恢复；完整历史分段回放继续开发。Rust子代理31项通过；主代理实测关闭页面后恢复及两赛局切换通过。
 
-[img[竞技场2026-11-05远征续玩实机.png]]
+远征续玩截图归档：[[竞技场2026-11-05远征续玩实机.png]]。
 
 !! TS脚本接入设计与首份SDK
 
@@ -94,4 +94,42 @@ MCP新增Script.compile、Script.preview及代码工作台操作，工具总数1
 
 本轮全套浏览器9/9通过，包含单机、联机、续玩、动画、回放与TS工作台。
 
-[img[竞技场2026-11-05TS规则试跑实机.png]]
+TS试跑截图归档：[[竞技场2026-11-05TS规则试跑实机.png]]。
+
+!! TS规则正式驱动角色
+
+模拟代理将发布、停用、实时tick与训练Step接到统一异步driver；赛局目录锁只负责取得赛局，每局串行执行自己的决策与结算。发布绑定sourceHash，源码和bundle进入私有checkpoint；快照展示入口、版本与发布时间。运行器代理提供两个常驻JSONL worker，每次执行创建独立V8 isolate，共用进程池。
+
+意图按priority为每名角色选择一次，手动角色动作优先；空意图切换idle并原地等待，脚本错误进入事件记录。手动Build延续玩家级命令，脚本Build指定角色并消耗角色行动额度。切回预设清除绑定，训练重置保留规则。回放记录发布元数据和实际决策，重建时直接结算录制数据。
+
+主代理将工作台拆为编辑界面、状态hook、版本面板与模板来源。采集／守卫／探索模板直接引用SDK示例，展开共享模块供编辑；草稿和生效版本分开。角色检查器也显示生效TS版本。MCP新增Script.publish／disable，总数18。
+
+Rust全量含真实TS编译器与V8专项43项通过；HTTP／WebSocket／MCP集成10项通过。单机实测发布move→Step移动、发布空意图→保持位置、恢复预设→继续采集；联机实测两个owner独立绑定规则并随时钟推进。主代理实机发布纸林采集脚本，T2三名角色抵达纸林，携带量为8／3／3，页面错误为0。
+
+完整浏览器E2E 11/11通过，包含官方采集模板、代码发布／保持／恢复、双客户端、回放与持杖纸娃娃。MCP浏览器1/1通过，实际经过模板载入、多行源码粘贴、发布版本显示、恢复预设及截图。规则编辑改用真实剪贴板粘贴，以保留多行代码原文；行走用例在训练重置快照到达后推进下一步。
+
+[img[竞技场2026-11-05TS规则发布实机.png]]
+
+!! 法杖八向纸娃娃行走
+
+美术代理使用proxy-imagegen／GPT Image 2首次生成成功，提示词、源图与制作记录保存在arena/art/source/walk-weapon-staff-*。按32组右手握点注册杖身，制作完整逻辑图集与front／back遮挡图集；同一帧索引组合身体、衣装、法杖、前景手臂和头发。完整美术重建及9项测试通过。
+
+主代理将walkLayers统一用于战场与动画检查台。月白发型的学者、守卫均支持持杖行走，检查台支持衣装切换、武器开关与逐帧观察。当前仍为prototype，专用握拳手势、背向手腕、杖脚穿插、立绘与战场衣装造型配色统一继续精修；奔跑、跳跃、攀爬、武器使用及受击等动作仍按需求矩阵推进。
+
+[img[竞技场2026-11-05持杖脚本采集实机.png]]
+
+持杖八向检查台实机：[[竞技场2026-11-05持杖八向动画实机.png]]。截图复现工具：arena/tools/capture-script-progress.mjs。
+
+!! 分功能PR与CI
+
+已有功能按依赖建立堆叠PR：[[手绘战场与初始纸娃娃|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/3]]、[[经济与回放|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/4]]、[[权威换装与衣发图集|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/5]]、[[完整存档与规则SDK|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/6]]、[[远征册与守卫图集|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/7]]、[[Monaco与V8试跑|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/8]]。
+
+GitHub Actions已实际运行；视觉与经济回放两段成功。TS试跑分支两次CI均完成其余8项浏览器用例，三轮回放画布重开的测试累计超过30秒；依据trace将此测试预算调整为60秒，保留全部操作及断言。旧换装分支的受控checkbox点击问题已在后继提交修正。新版CI增加真实发布／存档／常驻worker专项，结果随PR继续记录。
+
+[[TS正式发布PR #9|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/9]]已提交。[[GitHub Actions 42068220837|https://github.com/linonetwo/the-Library-of-Skyscraper/actions/runs/42068220837]]在提交5b185fc上全部成功，包含Rust、Clippy、前端构建、SDK、编译工具链、V8、真实发布／checkpoint／worker、HTTP／WS／MCP、完整浏览器与美术测试。
+
+[[法杖八向纸娃娃PR #10|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/10]]单独提交图集、握点、方向遮挡、共用渲染层与动画用例；本页最新截图随该PR保存。
+
+!! 发布门槛
+
+继续完成完整纸娃娃动作及装备适配、立绘／战场视觉统一、策略记忆与任务队列、规则版本回滚与源码诊断、长记录分段回放、桌面离线打包、Steam集成、性能与兼容性、素材权利及产品化验收。当前阶段仍为可玩纵向切片。

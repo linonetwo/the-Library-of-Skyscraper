@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { ActorMotion, facing } from "../../client/src/actorMotion";
+import { floorPoint } from "../../client/src/libraryLayout";
 
 test("eight facings and continuous motion across new destinations", () => {
   const directions = [
@@ -24,6 +25,12 @@ test("battlefield paper doll walks between authoritative room destinations", asy
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
   await page.getByRole("button", { name: "暂停", exact: true }).click();
+  const poses = () => page.locator(".pixi-map").getAttribute("data-actors")
+    .then(value => JSON.parse(value || "[]") as {
+      id: string; x: number; y: number; moving: boolean; animation: string; direction: string;
+    }[]);
+  await expect.poll(async () => (await poses()).filter(p => p.animation === "walk-prototype").length)
+    .toBe(3);
   await page.evaluate(async () => {
     const session = JSON.parse(sessionStorage.getItem("arena-session")!);
     const send = (command: object) => fetch(`/api/sessions/${session.sessionId}/commands`, {
@@ -34,8 +41,9 @@ test("battlefield paper doll walks between authoritative room destinations", asy
     await send({ type: "equip", actorId: "p1-scout",
       appearance: { outfit: "scholar", hair: "ivory", weapon: false } });
   });
-  const poses = () => page.locator(".pixi-map").getAttribute("data-actors")
-    .then(value => JSON.parse(value || "[]") as { id: string; moving: boolean; animation: string; direction: string }[]);
+  await expect(page.getByText("TICK 0000", { exact: true })).toBeVisible();
+  await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout"))
+    .toMatchObject({ x: 39, y: floorPoint(0, 0).y + 4, moving: false });
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.animation)
     .toBe("walk-prototype");
   await page.getByRole("button", { name: "单步", exact: true }).click();
