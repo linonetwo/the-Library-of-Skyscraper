@@ -1,0 +1,11 @@
+{
+  "name": "@skyscraper/arena-script-sdk",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "typecheck": "node ../client/node_modules/typescript/bin/tsc -p tsconfig.json",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs"
+  }
+}
