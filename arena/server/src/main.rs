@@ -18,7 +18,10 @@ use uuid::Uuid;
 mod lifecycle;
 mod persistence;
 mod replay_routes;
+mod script_driver;
 mod script_routes;
+mod script_toolchain;
+mod script_worker;
 mod store;
 use store::{Error, Store, error};
 const ALLOWED_ORIGINS: [&str; 6] = [
@@ -126,14 +129,7 @@ async fn command(
     headers: HeaderMap,
     Json(command): Json<Command>,
 ) -> Result<Json<skyscraper_arena_server::Snapshot>, Error> {
-    store
-        .edit_player(&id, &headers, |session, owner| {
-            session
-                .command(owner, command)
-                .map_err(|message| error(StatusCode::BAD_REQUEST, &message))?;
-            Ok(Json(session.snapshot()))
-        })
-        .await
+    store.command(&id, &headers, command).await.map(Json)
 }
 #[derive(Deserialize)]
 struct WsAuth {
@@ -217,6 +213,14 @@ async fn main() {
         .route(
             "/api/sessions/{id}/scripts/preview",
             post(script_routes::preview),
+        )
+        .route(
+            "/api/sessions/{id}/scripts/publish",
+            post(script_routes::publish),
+        )
+        .route(
+            "/api/sessions/{id}/scripts/disable",
+            post(script_routes::disable),
         )
         .route("/ws/{id}", get(ws))
         .layer(

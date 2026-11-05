@@ -26,6 +26,11 @@ impl Session {
             if self.manual_actions.get(&a.id) == Some(&(self.tick - 1)) {
                 continue;
             }
+            if self.players[&a.owner].script.is_some() {
+                a.state = "idle".into();
+                self.world.entity_mut(entity).insert(a);
+                continue;
+            }
             let rule = self.players[&a.owner].rule.clone();
             let current = self.room_index(&a.room_id).unwrap();
             if current == 0 && a.cargo > 0 {

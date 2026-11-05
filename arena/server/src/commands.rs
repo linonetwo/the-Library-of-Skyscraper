@@ -15,7 +15,7 @@ impl Session {
         }
         Ok((entity, actor))
     }
-    fn actor(&mut self, owner: &str, id: &str) -> Result<(Entity, Actor), String> {
+    pub(crate) fn actor(&mut self, owner: &str, id: &str) -> Result<(Entity, Actor), String> {
         let (entity, actor) = self.owned_actor(owner, id)?;
         if actor.hp == 0 {
             return Err("actor downed".into());
@@ -42,7 +42,7 @@ impl Session {
         });
         Ok(())
     }
-    fn apply_command(&mut self, owner: &str, command: Command) -> Result<(), String> {
+    pub(crate) fn apply_command(&mut self, owner: &str, command: Command) -> Result<(), String> {
         if !self.players.contains_key(owner) {
             return Err("player not found".into());
         }
@@ -76,18 +76,19 @@ impl Session {
             }
             Command::Pause { paused } => self.paused = paused,
             Command::Step { ticks } => {
-                if !(1..=120).contains(&ticks) {
-                    return Err("ticks must be 1..120".into());
-                }
-                if !self.paused {
-                    return Err("pause training before stepping".into());
-                }
+                self.validate_step(ticks)?;
                 for _ in 0..ticks {
                     self.advance_unrecorded();
                 }
             }
             Command::Reset {} => {
                 let tokens = self.tokens.clone();
+                let scripts = std::mem::take(&mut self.scripts);
+                let metadata: Vec<_> = self
+                    .players
+                    .iter()
+                    .map(|(id, player)| (id.clone(), player.script.clone()))
+                    .collect();
                 let operations = std::mem::take(&mut self.replay_operations);
                 let overflowed = self.replay_overflowed;
                 *self = Self::new(self.id.clone(), self.mode, self.seed);
@@ -96,6 +97,10 @@ impl Session {
                 }
                 self.replay_operations = operations;
                 self.replay_overflowed = overflowed;
+                self.scripts = scripts;
+                for (id, script) in metadata {
+                    self.players.get_mut(&id).unwrap().script = script;
+                }
                 self.paused = true;
             }
             Command::Rule { preset, retreat_hp } => {
@@ -103,6 +108,8 @@ impl Session {
                     return Err("invalid preset or retreatHp (0..100)".into());
                 }
                 self.players.get_mut(owner).unwrap().rule = Rule { preset, retreat_hp };
+                self.players.get_mut(owner).unwrap().script = None;
+                self.scripts.remove(owner);
                 self.event("rule", "行动规则已发布".into(), Some(owner));
             }
             Command::Move { actor_id, room_id } => {

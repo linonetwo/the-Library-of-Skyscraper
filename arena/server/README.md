@@ -46,6 +46,43 @@ verifies the entire final snapshot. Reconstructed credentials are synthetic:
 never register a replay as a live authenticated session. Overflow fails export
 explicitly instead of returning a truncated recording.
 
+## Published TypeScript rules
+
+`POST /api/sessions/{id}/scripts/publish` accepts `{files, entry?}`, compiles the
+project, and binds a successful bundle to the authenticated player. Responses
+contain `{compilation, snapshot}` on publication, or just `{compilation}` when
+the compiler returns diagnostics. `Player.script` exposes only the source hash,
+entry point, and publication tick. Source files and executable bundles stay in
+private checkpoints.
+
+Clock advancement and training `Step` share the same script driver. The store
+holds a per-session execution lock, while unrelated sessions can advance in
+parallel. Compilation runs outside session locks. V8 work runs through the
+shared JSONL worker pool, with no global store lock held during execution.
+Each tick consumes one decision per published player; priority selects one
+intent per actor and an already accepted manual action takes precedence.
+The existing manual `build` command remains a player-level construction order;
+script `build` intents additionally name and consume their builder's action.
+Bound players with empty output hold position rather than running presets.
+Execution failures also hold for that tick and create a replayable event.
+
+`POST /api/sessions/{id}/scripts/disable` returns the current snapshot and
+restores the player's existing preset. Publishing a preset with `Command::Rule`
+also removes the TypeScript binding. Training reset retains published code and
+its original publication metadata while resetting the simulated world; the
+existing preset reset behavior remains unchanged.
+
+Public replays contain publication metadata and actual per-tick decisions,
+so reconstruction runs entirely inside Rust, with no compiler or V8 dependency.
+Private checkpoints retain source, bundle, and active bindings for restart.
+
+```sh
+cargo test publish_drives_steps_clock_hold_disable_and_checkpoint -- --ignored
+```
+
+This integration test requires installed script-toolchain dependencies and the
+built script-runner binary (or `ARENA_SCRIPT_RUNNER`).
+
 ## Local saves and process restart
 
 `ARENA_DATA_DIR` selects the save directory, defaulting to `data` under the
