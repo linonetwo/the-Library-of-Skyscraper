@@ -114,6 +114,19 @@ test('MCP to real authority: training control, retained events and online reject
   assert.deepEqual(equipped.actors.find(actor => actor.id === 'p1-scout').appearance, appearance);
   const stepped = await call('Simulation.step', { handle: training.handle, ticks: 4 });
   assert.equal(stepped.tick, 4);
+  const files = { 'main.ts': `import type { RuleContext, RuleDecisionResult } from "@skyscraper/arena-script-sdk";
+export function decide(ctx: RuleContext): RuleDecisionResult {
+  return { intents: ctx.squad.actors.map(actor => ({
+    type: "move", actorId: actor.id, roomId: "room-0", priority: 50
+  })) };
+}` };
+  const compiled = await call('Script.compile', { handle: training.handle, files });
+  assert.equal(compiled.diagnostics.length, 0);
+  assert(compiled.bundle.sourceHash);
+  const preview = await call('Script.preview', { handle: training.handle, files });
+  assert.equal(preview.tick, 4);
+  assert.equal(preview.execution.decision.intents.length, 3);
+  assert.equal((await call('Session.getState', { handle: training.handle })).tick, 4);
   const events = await call('Replay.getEvents', { handle: training.handle });
   assert.equal(events.retainedOnly, true);
   const online = await call('Session.create', { mode: 'online' });
