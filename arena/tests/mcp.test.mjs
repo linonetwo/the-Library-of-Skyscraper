@@ -42,7 +42,9 @@ test('official MCP initialize, tools/list, tools/call and private credentials', 
   const connection = await connect(`http://127.0.0.1:${authority.address().port}`);
   t.after(() => connection.client.close());
   const tools = await connection.client.listTools();
-  assert.equal(tools.tools.length, 16);
+  assert.equal(tools.tools.length, 18);
+  assert.equal(tools.tools.find(tool => tool.name === 'Script.publish').annotations.readOnlyHint, false);
+  assert.equal(tools.tools.find(tool => tool.name === 'Script.disable').annotations.readOnlyHint, false);
   assert(tools.tools.find(tool => tool.name === 'Simulation.step').description.includes('Online'));
   const created = await call(connection.client, 'Session.create', { mode: 'training', seed: 42 });
   assert.equal(created.playerId, 'p1');
@@ -60,6 +62,19 @@ test('official MCP initialize, tools/list, tools/call and private credentials', 
   const invalid = await connection.client.callTool({ name: 'Simulation.step', arguments: { handle: created.handle, ticks: 121 } });
   assert.equal(invalid.isError, true);
   assert.equal(requests.length, 3);
+  const files = { 'main.ts': 'export function decide() { return { intents: [] }; }' };
+  await call(connection.client, 'Script.publish', { handle: created.handle, files });
+  assert.deepEqual(requests[3], {
+    path: '/api/sessions/session-1/scripts/publish',
+    auth: 'Bearer PRIVATE_TEST_TOKEN',
+    body: { files },
+  });
+  await call(connection.client, 'Script.disable', { handle: created.handle });
+  assert.deepEqual(requests[4], {
+    path: '/api/sessions/session-1/scripts/disable',
+    auth: 'Bearer PRIVATE_TEST_TOKEN',
+    body: {},
+  });
 });
 test('MCP refuses remote origins and URL credentials before transport starts', async () => {
   for (const baseURL of ['https://example.com', 'http://example.com', 'http://user:secret@localhost:8787', 'http://localhost:8787/api']) {

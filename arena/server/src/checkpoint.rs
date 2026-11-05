@@ -14,6 +14,8 @@ pub struct SessionCheckpoint {
     next_event: u64,
     replay_operations: Vec<ReplayOperation>,
     replay_overflowed: bool,
+    #[serde(default)]
+    scripts: BTreeMap<String, crate::PublishedScript>,
 }
 
 impl Session {
@@ -26,6 +28,7 @@ impl Session {
             next_event: self.next_event,
             replay_operations: self.replay_operations.clone(),
             replay_overflowed: self.replay_overflowed,
+            scripts: self.scripts.clone(),
         }
     }
 
@@ -57,6 +60,7 @@ impl Session {
             manual_actions: checkpoint.manual_actions,
             replay_operations: checkpoint.replay_operations,
             replay_overflowed: checkpoint.replay_overflowed,
+            scripts: checkpoint.scripts,
         })
     }
 }

@@ -5,6 +5,11 @@ export interface PlayerScriptView {
   readonly name: string;
   readonly materials: number;
   readonly score: number;
+  readonly script?: {
+    readonly sourceHash: string;
+    readonly entry: string;
+    readonly publishedAtTick: number;
+  } | null;
   readonly rule: {
     readonly preset: 'gather' | 'defend' | 'explore';
     readonly retreatHp: number;

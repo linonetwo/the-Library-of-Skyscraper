@@ -1,64 +1,36 @@
-import { lazy, Suspense, useState } from "react";
-import { Code2, Play, ArrowLeft } from "lucide-react";
-import { useArena } from "./ArenaWorkspace";
-import { arenaApi } from "./arenaApi";
-import type { CompileResult, ScriptPreview } from "./scriptTypes";
+import { lazy, Suspense } from "react";
+import { Code2, Play, ArrowLeft, Upload } from "lucide-react";
+import { ScriptVersion } from "./ScriptVersion";
+import { useScriptWorkbench } from "./useScriptWorkbench";
+import { scriptTemplates } from "./scriptTemplates";
 import "./styles/scripts.css";
 
 const MonacoRuleEditor = lazy(() => import("./MonacoRuleEditor"));
-const initialSource = `import type { RuleContext, RuleDecisionResult } from "@skyscraper/arena-script-sdk";
-
-// 将小队召回中庭；修改 roomId 可以改变目标。
-export function decide(ctx: RuleContext): RuleDecisionResult {
-  return {
-    intents: ctx.squad.actors
-      .filter(actor => actor.roomId !== "room-0")
-      .map(actor => ({
-        type: "move",
-        actorId: actor.id,
-        roomId: "room-0",
-        priority: 50,
-        reason: "回到中庭集结",
-      })),
-  };
-}
-`;
 export default function ScriptWorkbench({ onBack }: { onBack: () => void }) {
-  const { session } = useArena();
-  const [source, setSource] = useState(() => localStorage.getItem("arena-rule-draft") ?? initialSource);
-  const [compilation, setCompilation] = useState<CompileResult | null>(null);
-  const [preview, setPreview] = useState<ScriptPreview | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const edit = (value: string) => {
-    setSource(value); localStorage.setItem("arena-rule-draft", value);
-    setCompilation(null); setPreview(null);
-  };
-  const run = async (mode: "compile" | "preview") => {
-    setBusy(true); setError(""); setPreview(null);
-    try {
-      const project = { files: { "main.ts": source }, entry: "main.ts" };
-      if (mode === "compile") setCompilation(await arenaApi.compile(session!, project));
-      else {
-        const result = await arenaApi.preview(session!, project);
-        setCompilation(result.compilation); setPreview(result);
-      }
-    } catch (cause) { setError((cause as Error).message); }
-    finally { setBusy(false); }
-  };
+  const { session, ready, source, compilation, preview, busy, error, edit, run } = useScriptWorkbench();
   return <div className="script-workbench">
     <header><div><span className="eyebrow">RULE STUDIO · TYPESCRIPT</span>
       <h2>用代码编织下一步。</h2></div>
       <button onClick={onBack}><ArrowLeft size={14} />行动预设</button></header>
-    <p>编辑 → 编译 → 当前快照试跑。草稿保存在本机；试跑输出动作意图，发布功能接入中。</p>
-    <div className="script-filebar"><Code2 size={15} /><span>main.ts</span><small>竞技场 SDK · v0</small></div>
+    <p>编辑 → 试跑 → 发布到战场。草稿保存在本机；已发布版本在每个模拟步驱动小队。</p>
+    <ScriptVersion busy={busy} onDisable={() => void run("disable")} />
+    <div className="script-filebar"><Code2 size={15} /><span>main.ts</span>
+      <select aria-label="载入规则模板" value="" disabled={busy}
+        onChange={event => edit(scriptTemplates[event.target.value].source)}>
+        <option value="" disabled>载入模板 · 替换草稿</option>
+        {Object.entries(scriptTemplates).map(([id, template]) =>
+          <option key={id} value={id}>{template.name}</option>)}
+      </select>
+      <small>竞技场 SDK · v0</small></div>
     <Suspense fallback={<div className="script-monaco">正在展开代码工作台…</div>}>
       <MonacoRuleEditor source={source} onChange={edit} diagnostics={compilation?.diagnostics ?? []} />
     </Suspense>
     <div className="script-toolbar">
       <button disabled={!session || busy} onClick={() => void run("compile")}>编译 TypeScript</button>
-      <button className="primary" disabled={!session || busy} onClick={() => void run("preview")}>
+      <button disabled={!session || busy} onClick={() => void run("preview")}>
         <Play size={14} />{busy ? "处理中…" : "试跑当前快照"}</button>
+      <button className="primary" disabled={!ready || busy} onClick={() => void run("publish")}>
+        <Upload size={14} />发布到战场</button>
       {compilation?.bundle && <small>版本 {compilation.bundle.sourceHash.slice(0, 12)}</small>}
     </div>
     <section className="script-results" aria-label="脚本运行结果">

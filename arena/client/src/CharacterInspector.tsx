@@ -22,7 +22,6 @@ export default function CharacterInspector() {
     command,
     equip,
     setView,
-    preset,
     player,
     actor,
     ownActors,
@@ -168,9 +167,11 @@ export default function CharacterInspector() {
             <ArrowUpRight size={15} />
           </button>
         </div>
-        <strong>{player ? presetNames[player.rule.preset] : "尚未发布"}</strong>
+        <strong>{player?.script ? `TS · ${player.script.sourceHash.slice(0, 12)}`
+          : player ? presetNames[player.rule.preset] : "尚未发布"}</strong>
         <p>
-          {player
+          {player?.script ? "按已发布代码决定每步行动。"
+            : player
             ? `生命低于 ${player.rule.retreatHp}% 时自动撤退。`
             : "在训练局中试验属于你的小队策略。"}
         </p>

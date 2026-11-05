@@ -89,16 +89,24 @@ tool('Simulation.step', 'Training ONLY: advance 1–120 ticks while paused. Onli
   { ...handleSchema, ticks: z.number().int().min(1).max(120) }, args => command(args.handle, { type: 'step', ticks: args.ticks }));
 tool('Simulation.reset', 'Training ONLY: reset to the original seed and pause. Credentials survive. Online reset is forbidden and rejected by the authority.',
   handleSchema, args => command(args.handle, { type: 'reset' }));
-for (const operation of ['compile', 'preview']) {
-  tool(`Script.${operation}`, operation === 'compile'
-    ? 'Compile TypeScript source files with the arena SDK; return diagnostics, bundle and source map.'
-    : 'Run a TypeScript rule in independent V8 against the current player snapshot; return decision intents.',
+const scriptDescriptions = {
+  compile: 'Compile TypeScript source files with the arena SDK; return diagnostics, bundle and source map.',
+  preview: 'Run a TypeScript rule in independent V8 against the current player snapshot; return decision intents.',
+  publish: 'Compile and bind a TypeScript rule to this player. Subsequent authority ticks execute its decisions.',
+};
+for (const [operation, description] of Object.entries(scriptDescriptions)) {
+  tool(`Script.${operation}`, description,
   { ...handleSchema, files: z.record(z.string(), z.string()), entry: z.string().optional() },
   async ({ handle, files, entry }) => {
     const credential = credentials(handle);
     return request(sessionPath(credential, `scripts/${operation}`), { files, entry }, credential.token);
-  }, true);
+  }, operation !== 'publish');
 }
+tool('Script.disable', 'Remove this player’s published TypeScript rule and resume the selected action preset.',
+  handleSchema, async ({ handle }) => {
+    const credential = credentials(handle);
+    return request(sessionPath(credential, 'scripts/disable'), {}, credential.token);
+  });
 tool('Replay.getEvents', 'Read retained diagnostic events after an optional event ID. Only the latest 100 are retained; this is NOT a complete or persistent replay. IDs restart on training reset.',
   { ...handleSchema, afterId: z.number().int().min(0).optional() }, async args => {
     const snapshot = await state(args.handle);

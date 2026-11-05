@@ -21,6 +21,8 @@ pub struct Player {
     pub materials: u32,
     pub score: u32,
     pub rule: Rule,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub script: Option<crate::ScriptMetadata>,
 }
 #[derive(Component, Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
