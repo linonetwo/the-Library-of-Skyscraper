@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "weapon-staff",
+  "source": "walk-weapon-staff.png",
+  "sourceSize": [
+    887,
+    1774
+  ],
+  "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+  "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+  "frames": [
+    {
+      "name": "walk/weapon-staff/S/00",
+      "crop": {
+        "x": 89,
+        "y": 23,
+        "w": 50,
+        "h": 186
+      },
+      "placement": {
+        "x": 41,
+        "y": 51,
+        "w": 51,
+        "h": 111
+      }
+    },
+    {
+      "name": "walk/weapon-staff/S/01",
+      "crop": {
+        "x": 315,
+        "y": 23,
+        "w": 44,
+        "h": 186
+      },
+      "placement": {
+        "x": 34,
+        "y": 47,
+        "w": 73,
+        "h": 107
+      }
+    },
+    {
+      "name": "walk/weapon-staff/S/02",
+      "crop": {
+        "x": 538,
+        "y": 25,
+        "w": 51,
+        "h": 184
+      },
+      "placement": {
+        "x": 45,
+        "y": 51,
+        "w": 58,
+        "h": 111
+      }
+    },
+    {
+      "name": "walk/weapon-staff/S/03",
+      "crop": {
+        "x": 755,
+        "y": 24,
+        "w": 43,
+        "h": 185
+      },
+      "placement": {
+        "x": 34,
+        "y": 48,
+        "w": 73,
+        "h": 107
+      }
+    },
+    {
+      "name": "walk/weapon-staff/SW/00",
+      "crop": {
+        "x": 87,
+        "y": 244,
+        "w": 49,
+        "h": 187
+      },
+      "placement": {
+        "x": 35,
+        "y": 50,
+        "w": 50,
+        "h": 112
+      }
+    },
+    {
+      "name": "walk/weapon-staff/SW/01",
+      "crop": {
+        "x": 314,
+        "y": 243,
+        "w": 45,
+        "h": 188
+      },
+      "placement": {
+        "x": 33,
+        "y": 44,
+        "w": 84,
+        "h": 104
+      }
+    },
+    {
+      "name": "walk/weapon-staff/SW/02",
+      "crop": {
+        "x": 538,
+        "y": 245,
+        "w": 56,
+        "h": 186
+      },
+      "placement": {
+        "x": 35,
+        "y": 50,
+        "w": 61,
+        "h": 113
+      }
+    },
+    {
+      "name": "walk/weapon-staff/SW/03",
+      "crop": {
+        "x": 755,
+        "y": 244,
+        "w": 41,
+        "h": 187
+      },
+      "placement": {
+        "x": 33,
+        "y": 46,
+        "w": 82,
+        "h": 103
+      }
+    },
+    {
+      "name": "walk/weapon-staff/W/00",
+      "crop": {
+        "x": 90,
+        "y": 466,
+        "w": 40,
+        "h": 186
+      },
+      "placement": {
+        "x": 33,
+        "y": 49,
+        "w": 52,
+        "h": 110
+      }
+    },
+    {
+      "name": "walk/weapon-staff/W/01",
+      "crop": {
+        "x": 316,
+        "y": 466,
+        "w": 38,
+        "h": 187
+      },
+      "placement": {
+        "x": 34,
+        "y": 45,
+        "w": 84,
+        "h": 99
+      }
+    },
+    {
+      "name": "walk/weapon-staff/W/02",
+      "crop": {
+        "x": 538,
+        "y": 467,
+        "w": 51,
+        "h": 186
+      },
+      "placement": {
+        "x": 38,
+        "y": 46,
+        "w": 58,
+        "h": 112
+      }
+    },
+    {
+      "name": "walk/weapon-staff/W/03",
+      "crop": {
+        "x": 758,
+        "y": 466,
+        "w": 37,
+        "h": 186
+      },
+      "placement": {
+        "x": 34,
+        "y": 46,
+        "w": 84,
+        "h": 98
+      }
+    },
+    {
+      "name": "walk/weapon-staff/NW/00",
+      "crop": {
+        "x": 89,
+        "y": 688,
+        "w": 40,
+        "h": 186
+      },
+      "placement": {
+        "x": 94,
+        "y": 48,
+        "w": 45,
+        "h": 110
+      }
+    },
+    {
+      "name": "walk/weapon-staff/NW/01",
+      "crop": {
+        "x": 317,
+        "y": 687,
+        "w": 37,
+        "h": 188
+      },
+      "placement": {
+        "x": 89,
+        "y": 48,
+        "w": 64,
+        "h": 108
+      }
+    },
+    {
+      "name": "walk/weapon-staff/NW/02",
+      "crop": {
+        "x": 538,
+        "y": 687,
+        "w": 50,
+        "h": 187
+      },
+      "placement": {
+        "x": 98,
+        "y": 49,
+        "w": 58,
+        "h": 113
+      }
+    },
+    {
+      "name": "walk/weapon-staff/NW/03",
+      "crop": {
+        "x": 759,
+        "y": 688,
+        "w": 39,
+        "h": 187
+      },
+      "placement": {
+        "x": 91,
+        "y": 50,
+        "w": 65,
+        "h": 108
+      }
+    },
+    {
+      "name": "walk/weapon-staff/N/00",
+      "crop": {
+        "x": 85,
+        "y": 908,
+        "w": 43,
+        "h": 188
+      },
+      "placement": {
+        "x": 96,
+        "y": 46,
+        "w": 47,
+        "h": 112
+      }
+    },
+    {
+      "name": "walk/weapon-staff/N/01",
+      "crop": {
+        "x": 318,
+        "y": 908,
+        "w": 37,
+        "h": 188
+      },
+      "placement": {
+        "x": 91,
+        "y": 45,
+        "w": 64,
+        "h": 108
+      }
+    },
+    {
+      "name": "walk/weapon-staff/N/02",
+      "crop": {
+        "x": 538,
+        "y": 908,
+        "w": 49,
+        "h": 188
+      },
+      "placement": {
+        "x": 102,
+        "y": 49,
+        "w": 57,
+        "h": 113
+      }
+    },
+    {
+      "name": "walk/weapon-staff/N/03",
+      "crop": {
+        "x": 761,
+        "y": 908,
+        "w": 36,
+        "h": 188
+      },
+      "placement": {
+        "x": 91,
+        "y": 46,
+        "w": 63,
+        "h": 108
+      }
+    },
+    {
+      "name": "walk/weapon-staff/NE/00",
+      "crop": {
+        "x": 87,
+        "y": 1130,
+        "w": 45,
+        "h": 188
+      },
+      "placement": {
+        "x": 97,
+        "y": 45,
+        "w": 55,
+        "h": 112
+      }
+    },
+    {
+      "name": "walk/weapon-staff/NE/01",
+      "crop": {
+        "x": 318,
+        "y": 1130,
+        "w": 39,
+        "h": 188
+      },
+      "placement": {
+        "x": 85,
+        "y": 46,
+        "w": 74,
+        "h": 106
+      }
+    },
+    {
+      "name": "walk/weapon-staff/NE/02",
+      "crop": {
+        "x": 538,
+        "y": 1130,
+        "w": 49,
+        "h": 188
+      },
+      "placement": {
+        "x": 103,
+        "y": 49,
+        "w": 64,
+        "h": 112
+      }
+    },
+    {
+      "name": "walk/weapon-staff/NE/03",
+      "crop": {
+        "x": 760,
+        "y": 1130,
+        "w": 39,
+        "h": 188
+      },
+      "placement": {
+        "x": 85,
+        "y": 46,
+        "w": 74,
+        "h": 106
+      }
+    },
+    {
+      "name": "walk/weapon-staff/E/00",
+      "crop": {
+        "x": 92,
+        "y": 1352,
+        "w": 39,
+        "h": 188
+      },
+      "placement": {
+        "x": 99,
+        "y": 45,
+        "w": 55,
+        "h": 111
+      }
+    },
+    {
+      "name": "walk/weapon-staff/E/01",
+      "crop": {
+        "x": 321,
+        "y": 1352,
+        "w": 34,
+        "h": 188
+      },
+      "placement": {
+        "x": 75,
+        "y": 49,
+        "w": 79,
+        "h": 101
+      }
+    },
+    {
+      "name": "walk/weapon-staff/E/02",
+      "crop": {
+        "x": 538,
+        "y": 1352,
+        "w": 48,
+        "h": 188
+      },
+      "placement": {
+        "x": 102,
+        "y": 49,
+        "w": 67,
+        "h": 111
+      }
+    },
+    {
+      "name": "walk/weapon-staff/E/03",
+      "crop": {
+        "x": 765,
+        "y": 1352,
+        "w": 27,
+        "h": 187
+      },
+      "placement": {
+        "x": 77,
+        "y": 49,
+        "w": 75,
+        "h": 98
+      }
+    },
+    {
+      "name": "walk/weapon-staff/SE/00",
+      "crop": {
+        "x": 98,
+        "y": 1574,
+        "w": 38,
+        "h": 186
+      },
+      "placement": {
+        "x": 107,
+        "y": 50,
+        "w": 51,
+        "h": 110
+      }
+    },
+    {
+      "name": "walk/weapon-staff/SE/01",
+      "crop": {
+        "x": 322,
+        "y": 1574,
+        "w": 35,
+        "h": 187
+      },
+      "placement": {
+        "x": 82,
+        "y": 51,
+        "w": 79,
+        "h": 100
+      }
+    },
+    {
+      "name": "walk/weapon-staff/SE/02",
+      "crop": {
+        "x": 539,
+        "y": 1576,
+        "w": 53,
+        "h": 184
+      },
+      "placement": {
+        "x": 108,
+        "y": 53,
+        "w": 66,
+        "h": 111
+      }
+    },
+    {
+      "name": "walk/weapon-staff/SE/03",
+      "crop": {
+        "x": 763,
+        "y": 1574,
+        "w": 34,
+        "h": 186
+      },
+      "placement": {
+        "x": 82,
+        "y": 50,
+        "w": 78,
+        "h": 100
+      }
+    }
+  ]
+}

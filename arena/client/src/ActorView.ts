@@ -1,6 +1,7 @@
 import { Container, Graphics, Sprite, Texture } from "pixi.js";
 import type { Actor } from "./types";
 import { dollLayers } from "./dollLayers";
+import { walkLayers } from "./walkLayers";
 import { ActorMotion, type Point } from "./actorMotion";
 
 export type DollTextures = { static: Record<string, Texture>; walk: Record<string, Texture> };
@@ -40,10 +41,10 @@ export class ActorView {
     if (appearance === this.appearance) return;
     this.appearance = appearance;
     // Select complete registered animation sets; other outfits keep their static layers.
-    this.animated = actor.appearance.hair === "ivory" && !actor.appearance.weapon;
+    this.animated = actor.appearance.hair === "ivory";
     for (const sprite of this.sprites) sprite.destroy();
     this.layers = this.animated
-      ? ["body", `outfit-${actor.appearance.outfit}`, "body-front", "hair-ivory"]
+      ? walkLayers(actor.appearance)
       : dollLayers(actor.appearance);
     this.sprites = this.layers.map(layer => {
       const texture = this.animated

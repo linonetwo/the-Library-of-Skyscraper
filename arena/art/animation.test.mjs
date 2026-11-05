@@ -21,12 +21,12 @@ test('animation coverage enumerates every action / equipment / direction without
     assert.equal(entry.expectedFrames, modules[entry.action].frames);
     assert.equal(entry.releaseApproved, false);
     if (entry.status === 'prototype') {
-      assert.equal(entry.action, 'walk'); assert(['body', 'outfit-scholar', 'outfit-warden', 'hair-ivory'].includes(entry.layer));
+      assert.equal(entry.action, 'walk'); assert(['body', 'outfit-scholar', 'outfit-warden', 'hair-ivory', 'weapon-staff'].includes(entry.layer));
       assert.equal(entry.frames.length, entry.expectedFrames);
     } else { assert.equal(entry.status, 'missing'); assert.equal(entry.frames.length, 0); assert.equal(entry.atlas, null); }
   }
   assert.equal(c.releaseReady, false);
-  assert.equal(c.coverage.filter(x => x.status === 'prototype').length, 32);
+  assert.equal(c.coverage.filter(x => x.status === 'prototype').length, 40);
 });
 test('prototype atlas contains 32 distinct nonempty RGBA frames within padded bounds', async () => {
   const atlas = await json('walk-body.json'), c = await json('coverage.json');
