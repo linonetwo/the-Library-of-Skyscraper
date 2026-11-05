@@ -24,7 +24,7 @@ export default function ReplayPanel({ session, onClose }: { session: Session; on
         {replay.timeline ? <>
           <div style={{ position: "relative", height: "min(52vh, 540px)", background: "#172b2e", borderRadius: "16px", overflow: "hidden" }}>
             <MapCanvas snapshot={snapshot} selected={selected} selectedRoom={selectedRoom}
-              outfits={{}} hairs={{}} weapons={{}} zoom={1} showRoutes
+              zoom={1} showRoutes
               onSelect={setSelected} onRoom={setSelectedRoom} />
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", marginTop: "16px", flexWrap: "wrap" }}>

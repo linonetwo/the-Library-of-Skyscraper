@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useArenaSession } from "./useArenaSession";
-import type { Outfit } from "./types";
+import type { Appearance } from "./types";
 
 export const presetNames = {
   gather: "资源优先",
@@ -26,9 +26,6 @@ export function useArenaWorkspace() {
   const { session, snapshot, connection, busy } = arena;
   const [selected, setSelected] = useState<string | null>(null);
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
-  const [outfits, setOutfits] = useState<Record<string, Outfit>>({});
-  const [hairs, setHairs] = useState<Record<string, "ivory" | "midnight">>({});
-  const [weapons, setWeapons] = useState<Record<string, boolean>>({});
   const [zoom, setZoom] = useState(1);
   const [showRoutes, setShowRoutes] = useState(true);
   const [view, setView] = useState<"map" | "rules" | "journal">("map");
@@ -45,9 +42,10 @@ export function useArenaWorkspace() {
   const room = snapshot?.rooms.find((r) => r.id === selectedRoom);
   const ownActors =
     snapshot?.actors.filter((a) => a.owner === session?.playerId) || [];
-  const outfit = actor
-    ? outfits[actor.id] || (actor.role === "guard" ? "warden" : "scholar")
-    : "scholar";
+  const outfit = actor?.appearance.outfit ?? "scholar";
+  const equip = (change: Partial<Appearance>) =>
+    arena.command({ type: "equip", actorId: actor!.id,
+      appearance: { ...actor!.appearance, ...change } });
   const ready =
     !!snapshot &&
     connection === "connected" &&
@@ -88,12 +86,7 @@ export function useArenaWorkspace() {
     selected,
     selectedRoom,
     setSelectedRoom,
-    outfits,
-    setOutfits,
-    hairs,
-    setHairs,
-    weapons,
-    setWeapons,
+    equip,
     zoom,
     setZoom,
     showRoutes,

@@ -108,6 +108,10 @@ test('MCP to real authority: training control, retained events and online reject
   }
   const training = await call('Session.create', { mode: 'training', seed: 7 });
   await call('Simulation.reset', { handle: training.handle });
+  const appearance = { outfit: 'warden', hair: 'midnight', weapon: false };
+  const equipped = await call('Simulation.command', { handle: training.handle,
+    command: { type: 'equip', actorId: 'p1-scout', appearance } });
+  assert.deepEqual(equipped.actors.find(actor => actor.id === 'p1-scout').appearance, appearance);
   const stepped = await call('Simulation.step', { handle: training.handle, ticks: 4 });
   assert.equal(stepped.tick, 4);
   const events = await call('Replay.getEvents', { handle: training.handle });

@@ -20,13 +20,7 @@ export default function CharacterInspector() {
   const {
     snapshot,
     command,
-    selected,
-    outfits,
-    setOutfits,
-    hairs,
-    setHairs,
-    weapons,
-    setWeapons,
+    equip,
     setView,
     preset,
     player,
@@ -58,8 +52,8 @@ export default function CharacterInspector() {
         <div className="portrait-rings" />
         <PaperDoll
           outfit={outfit}
-          hair={actor ? hairs[actor.id] : "ivory"}
-          weapon={actor ? weapons[actor.id] !== false : true}
+          hair={actor?.appearance.hair ?? "ivory"}
+          weapon={actor?.appearance.weapon ?? true}
         />
         <span className="portrait-caption">PAPER DOLL / 三头身纸娃娃</span>
         <div className="portrait-seal">
@@ -90,17 +84,15 @@ export default function CharacterInspector() {
       <div className="wardrobe">
         <div className="panel-title">
           <h3>纸娃娃装束</h3>
-          <small>外观 · 本机保存于当前页面</small>
+          <small>外观 · 赛局同步与回放记录</small>
         </div>
         <div className="outfit-options">
           {(["scholar", "warden"] as Outfit[]).map((item) => (
             <button
               key={item}
-              disabled={!actor}
+              disabled={!ready || !isOwner}
               className={item === outfit ? "selected" : ""}
-              onClick={() =>
-                actor && setOutfits({ ...outfits, [actor.id]: item })
-              }
+              onClick={() => void equip({ outfit: item })}
             >
               {item === "scholar" ? (
                 <Sparkles size={16} />
@@ -115,28 +107,23 @@ export default function CharacterInspector() {
         <div className="appearance-options">
           <span>发色</span>
           <button
-            disabled={!actor}
+            disabled={!ready || !isOwner}
             aria-label="月白发色"
-            className={`hair-swatch ivory ${!actor || !hairs[actor.id] || hairs[actor.id] === "ivory" ? "selected" : ""}`}
-            onClick={() => actor && setHairs({ ...hairs, [actor.id]: "ivory" })}
+            className={`hair-swatch ivory ${!actor || actor.appearance.hair === "ivory" ? "selected" : ""}`}
+            onClick={() => void equip({ hair: "ivory" })}
           />
           <button
-            disabled={!actor}
+            disabled={!ready || !isOwner}
             aria-label="墨蓝发色"
-            className={`hair-swatch midnight ${actor && hairs[actor.id] === "midnight" ? "selected" : ""}`}
-            onClick={() =>
-              actor && setHairs({ ...hairs, [actor.id]: "midnight" })
-            }
+            className={`hair-swatch midnight ${actor?.appearance.hair === "midnight" ? "selected" : ""}`}
+            onClick={() => void equip({ hair: "midnight" })}
           />
           <label>
             <input
               type="checkbox"
-              disabled={!actor}
-              checked={actor ? weapons[actor.id] !== false : true}
-              onChange={(e) =>
-                actor &&
-                setWeapons({ ...weapons, [actor.id]: e.target.checked })
-              }
+              disabled={!ready || !isOwner}
+              checked={actor?.appearance.weapon ?? true}
+              onChange={(e) => void equip({ weapon: e.target.checked })}
             />{" "}
             携带法杖
           </label>

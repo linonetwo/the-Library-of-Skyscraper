@@ -62,6 +62,28 @@ test('two independent browsers join a live room and reconnect with same player',
   const identities = await Promise.all([host, guest].map(p => p.evaluate(() =>
     JSON.parse(sessionStorage.getItem('arena-session')!).playerId)));
   expect(identities[0]).not.toBe(identities[1]);
+  await host.getByRole('button', { name: '书库守卫', exact: true }).click();
+  await host.getByRole('button', { name: '墨蓝发色' }).click();
+  await host.getByLabel('携带法杖').click();
+  await expect(host.getByLabel('携带法杖')).not.toBeChecked();
+  const equippedId = hostState.actors.find(
+    (actor: { owner: string }) => actor.owner === identities[0]).id;
+  const appearance = { outfit: 'warden', hair: 'midnight', weapon: false };
+  await expect.poll(async () =>
+    (await state(guest)).actors.find((actor: { id: string }) => actor.id === equippedId).appearance,
+  ).toEqual(appearance);
+  await host.reload();
+  await expect(host.locator('.portrait-frame .paper-doll')).toHaveClass(/warden/);
+  await expect(host.getByRole('button', { name: '墨蓝发色' })).toHaveClass(/selected/);
+  await expect(host.getByLabel('携带法杖')).not.toBeChecked();
+  const timeline = await host.evaluate(async () => {
+    const auth = JSON.parse(sessionStorage.getItem('arena-session')!);
+    return fetch(`/api/sessions/${auth.sessionId}/replay/timeline`, {
+      headers: { Authorization: `Bearer ${auth.token}` },
+    }).then(response => response.json());
+  });
+  expect(timeline.frames.at(-1).snapshot.actors.find(
+    (actor: { id: string }) => actor.id === equippedId).appearance).toEqual(appearance);
   await expect(guest.getByRole('button', { name: '暂停', exact: true })).toHaveCount(0);
   const tick = (await state(guest)).tick;
   await guest.reload();

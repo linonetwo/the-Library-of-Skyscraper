@@ -24,9 +24,6 @@ export default function Battlefield() {
     selected,
     selectedRoom,
     setSelectedRoom,
-    outfits,
-    hairs,
-    weapons,
     zoom,
     setZoom,
     showRoutes,
@@ -103,9 +100,6 @@ export default function Battlefield() {
           snapshot={snapshot}
           selected={selected}
           selectedRoom={selectedRoom}
-          outfits={outfits}
-          hairs={hairs}
-          weapons={weapons}
           zoom={zoom}
           showRoutes={showRoutes}
           onSelect={selectActor}
