@@ -7,10 +7,10 @@ import { Client } from '../tools/node_modules/@modelcontextprotocol/sdk/dist/esm
 import { StdioClientTransport } from '../tools/node_modules/@modelcontextprotocol/sdk/dist/esm/client/stdio.js';
 
 const browserPresent = existsSync(chromium.executablePath());
-test('MCP browser opens UI, trains, outfits, rules, map and captures PNG', {
+test('MCP browser controls outfits, map, Monaco publication and captures PNG', {
   skip: process.env.ARENA_BROWSER !== '1' ? 'Set ARENA_BROWSER=1 with UI and authority running'
     : !browserPresent ? 'Playwright Chromium is not installed: run npx playwright install chromium' : false,
-  timeout: 60000,
+  timeout: 90000,
 }, async t => {
   const client = new Client({ name: 'arena-browser-test', version: '1.0.0' });
   await client.connect(new StdioClientTransport({
@@ -40,6 +40,24 @@ test('MCP browser opens UI, trains, outfits, rules, map and captures PNG', {
   assert.match(state.text, /35%/);
   assert(state.buttons.length > 5);
   assert(!state.text.includes('"token"'));
+  await action({ type: 'openScripts' });
+  await action({ type: 'loadScriptTemplate', template: 'gather' });
+  const source = `import type { RuleContext } from '@skyscraper/arena-script-sdk';
+export function decide(ctx: RuleContext) {
+  return { intents: ctx.squad.actors
+    .filter(actor => actor.roomId !== 'room-0')
+    .map(actor => ({ type: 'move' as const, actorId: actor.id, roomId: 'room-0', priority: 50 })) };
+}`;
+  await action({ type: 'editScript', source });
+  await action({ type: 'publishScript' });
+  const published = JSON.parse((await call('Page.getState')).content[0].text);
+  assert.match(published.text, /TS 规则已接管小队/);
+  assert.match(published.text, /main\.ts · 发布于 T\d+/);
+  assert(published.buttons.some(button => button.label === '恢复行动预设'));
+  await action({ type: 'disableScript' });
+  const disabled = JSON.parse((await call('Page.getState')).content[0].text);
+  assert.match(disabled.text, /行动预设运行中/);
+  assert(!disabled.buttons.some(button => button.label === '恢复行动预设'));
   const screenshot = await call('Page.captureScreenshot');
   assert.equal(screenshot.content[0].type, 'image');
   assert.equal(screenshot.content[0].mimeType, 'image/png');

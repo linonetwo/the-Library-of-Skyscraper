@@ -42,8 +42,12 @@ jobs:
       - name: Independent V8 runner
         run: cargo test --locked && cargo build --locked
         working-directory: arena/script-runner
-      - name: Authority TypeScript compile route
-        run: cargo test --locked compile_route_uses_typescript -- --ignored
+      - name: Authority TypeScript routes and persistent V8 workers
+        run: |
+          export ARENA_SCRIPT_RUNNER="$GITHUB_WORKSPACE/arena/script-runner/target/debug/skyscraper-arena-script-runner"
+          cargo test --locked compile_route_uses_typescript -- --ignored
+          cargo test --locked publish_drives_steps_clock_hold_disable_and_checkpoint -- --ignored
+          cargo test --locked real_v8_worker_survives_rule_timeout -- --ignored
         working-directory: arena/server
       - run: npm ci && npm test
         working-directory: arena/tools

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('live and replay canvases keep independent rendering lifetimes', async ({ page }, testInfo) => {
+  test.setTimeout(60000); // Three replay canvases and screenshots also run under CI software rendering.
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/');
