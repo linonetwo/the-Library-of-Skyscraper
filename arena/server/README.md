@@ -15,8 +15,29 @@ No renderer, external database, GPU, Steam SDK or JavaScript runtime is required
 
 This is a local vertical-slice authority, not an Internet production service.
 It demonstrates gathering, construction, PVE combat, retreat, catalog control,
-deterministic reset/step, and shared online rooms. Parameterized rules are not
-the wiki's eventual arbitrary TypeScript script platform.
+deterministic reset/step, and shared online rooms. Parameterized rules drive the
+current simulation. TypeScript compilation and independent V8 preview are now
+available; publishing versions into the tick loop is the next integration stage.
+
+## TypeScript workbench
+
+```sh
+npm ci --prefix arena/script-toolchain
+cargo build --manifest-path arena/script-runner/Cargo.toml --locked
+ARENA_SCRIPT_RUNNER=/absolute/path/to/skyscraper-arena-script-runner \
+  cargo run --manifest-path arena/server/Cargo.toml
+```
+
+By default the authority looks for the runner beside its own executable.
+`ARENA_SCRIPT_TOOLCHAIN` selects an alternate `cli.mjs`; the repository sibling
+toolchain is the development default. The frontend's 行动规则 → 编写 TypeScript
+规则 opens Monaco with the shared SDK.
+
+Authenticated POST routes `/api/sessions/{id}/scripts/compile` and
+`/api/sessions/{id}/scripts/preview` accept `{files, entry}`. Preview captures the
+current player context, compiles the source, then runs the bundle in a separate
+V8 process. It returns decision intents and diagnostics while leaving the live
+simulation unchanged. Source hashes and source maps accompany compiled bundles.
 
 Authenticated `GET /api/sessions/{id}/replay` exports a versioned,
 credential-free command recording (maximum 10,000 operations / 2 MiB).
