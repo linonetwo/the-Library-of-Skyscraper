@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "outfit-warden",
+  "source": "walk-outfit-warden.png",
+  "sourceSize": [
+    887,
+    1774
+  ],
+  "sourceSha256": "1bca500224a643dba1ad2577e014406d5d5ac183b6338196894bdb6ebc390b92",
+  "promptSha256": "5cf05a1de7a6e676af39a8293fe9d39e4f9ed52897482657c2b5214cda9f5155",
+  "frames": [
+    {
+      "name": "walk/outfit-warden/S/00",
+      "crop": {
+        "x": 67,
+        "y": 94,
+        "w": 90,
+        "h": 99
+      },
+      "placement": {
+        "x": 62,
+        "y": 81,
+        "w": 67,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/S/01",
+      "crop": {
+        "x": 288,
+        "y": 91,
+        "w": 91,
+        "h": 98
+      },
+      "placement": {
+        "x": 64,
+        "y": 81,
+        "w": 63,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/S/02",
+      "crop": {
+        "x": 511,
+        "y": 92,
+        "w": 87,
+        "h": 99
+      },
+      "placement": {
+        "x": 63,
+        "y": 82,
+        "w": 66,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/S/03",
+      "crop": {
+        "x": 731,
+        "y": 91,
+        "w": 91,
+        "h": 97
+      },
+      "placement": {
+        "x": 65,
+        "y": 81,
+        "w": 63,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/SW/00",
+      "crop": {
+        "x": 71,
+        "y": 313,
+        "w": 79,
+        "h": 103
+      },
+      "placement": {
+        "x": 63,
+        "y": 81,
+        "w": 58,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/SW/01",
+      "crop": {
+        "x": 294,
+        "y": 313,
+        "w": 79,
+        "h": 99
+      },
+      "placement": {
+        "x": 65,
+        "y": 81,
+        "w": 55,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/SW/02",
+      "crop": {
+        "x": 513,
+        "y": 313,
+        "w": 81,
+        "h": 100
+      },
+      "placement": {
+        "x": 62,
+        "y": 82,
+        "w": 59,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/SW/03",
+      "crop": {
+        "x": 738,
+        "y": 313,
+        "w": 77,
+        "h": 99
+      },
+      "placement": {
+        "x": 65,
+        "y": 81,
+        "w": 55,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/W/00",
+      "crop": {
+        "x": 80,
+        "y": 534,
+        "w": 70,
+        "h": 100
+      },
+      "placement": {
+        "x": 65,
+        "y": 80,
+        "w": 48,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/W/01",
+      "crop": {
+        "x": 303,
+        "y": 534,
+        "w": 59,
+        "h": 98
+      },
+      "placement": {
+        "x": 66,
+        "y": 80,
+        "w": 48,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/W/02",
+      "crop": {
+        "x": 530,
+        "y": 533,
+        "w": 68,
+        "h": 102
+      },
+      "placement": {
+        "x": 64,
+        "y": 81,
+        "w": 50,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/W/03",
+      "crop": {
+        "x": 749,
+        "y": 533,
+        "w": 61,
+        "h": 98
+      },
+      "placement": {
+        "x": 66,
+        "y": 80,
+        "w": 48,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/NW/00",
+      "crop": {
+        "x": 75,
+        "y": 755,
+        "w": 73,
+        "h": 101
+      },
+      "placement": {
+        "x": 62,
+        "y": 82,
+        "w": 62,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/NW/01",
+      "crop": {
+        "x": 299,
+        "y": 755,
+        "w": 69,
+        "h": 101
+      },
+      "placement": {
+        "x": 66,
+        "y": 83,
+        "w": 60,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/NW/02",
+      "crop": {
+        "x": 519,
+        "y": 754,
+        "w": 76,
+        "h": 101
+      },
+      "placement": {
+        "x": 62,
+        "y": 81,
+        "w": 62,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/NW/03",
+      "crop": {
+        "x": 742,
+        "y": 755,
+        "w": 70,
+        "h": 95
+      },
+      "placement": {
+        "x": 66,
+        "y": 83,
+        "w": 60,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/N/00",
+      "crop": {
+        "x": 65,
+        "y": 978,
+        "w": 92,
+        "h": 99
+      },
+      "placement": {
+        "x": 62,
+        "y": 82,
+        "w": 66,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/N/01",
+      "crop": {
+        "x": 287,
+        "y": 977,
+        "w": 92,
+        "h": 99
+      },
+      "placement": {
+        "x": 65,
+        "y": 82,
+        "w": 62,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/N/02",
+      "crop": {
+        "x": 509,
+        "y": 977,
+        "w": 91,
+        "h": 98
+      },
+      "placement": {
+        "x": 62,
+        "y": 83,
+        "w": 66,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/N/03",
+      "crop": {
+        "x": 731,
+        "y": 977,
+        "w": 92,
+        "h": 99
+      },
+      "placement": {
+        "x": 65,
+        "y": 82,
+        "w": 62,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/NE/00",
+      "crop": {
+        "x": 68,
+        "y": 1199,
+        "w": 83,
+        "h": 103
+      },
+      "placement": {
+        "x": 65,
+        "y": 81,
+        "w": 62,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/NE/01",
+      "crop": {
+        "x": 297,
+        "y": 1198,
+        "w": 76,
+        "h": 93
+      },
+      "placement": {
+        "x": 65,
+        "y": 83,
+        "w": 60,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/NE/02",
+      "crop": {
+        "x": 512,
+        "y": 1199,
+        "w": 83,
+        "h": 102
+      },
+      "placement": {
+        "x": 65,
+        "y": 82,
+        "w": 62,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/NE/03",
+      "crop": {
+        "x": 742,
+        "y": 1199,
+        "w": 76,
+        "h": 96
+      },
+      "placement": {
+        "x": 65,
+        "y": 83,
+        "w": 60,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/E/00",
+      "crop": {
+        "x": 73,
+        "y": 1421,
+        "w": 66,
+        "h": 101
+      },
+      "placement": {
+        "x": 79,
+        "y": 80,
+        "w": 48,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/E/01",
+      "crop": {
+        "x": 302,
+        "y": 1421,
+        "w": 60,
+        "h": 96
+      },
+      "placement": {
+        "x": 78,
+        "y": 80,
+        "w": 48,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/E/02",
+      "crop": {
+        "x": 517,
+        "y": 1421,
+        "w": 65,
+        "h": 99
+      },
+      "placement": {
+        "x": 77,
+        "y": 81,
+        "w": 50,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/E/03",
+      "crop": {
+        "x": 748,
+        "y": 1421,
+        "w": 60,
+        "h": 94
+      },
+      "placement": {
+        "x": 78,
+        "y": 80,
+        "w": 48,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/SE/00",
+      "crop": {
+        "x": 69,
+        "y": 1641,
+        "w": 80,
+        "h": 99
+      },
+      "placement": {
+        "x": 69,
+        "y": 81,
+        "w": 59,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/SE/01",
+      "crop": {
+        "x": 296,
+        "y": 1641,
+        "w": 75,
+        "h": 97
+      },
+      "placement": {
+        "x": 71,
+        "y": 81,
+        "w": 55,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/SE/02",
+      "crop": {
+        "x": 512,
+        "y": 1642,
+        "w": 82,
+        "h": 100
+      },
+      "placement": {
+        "x": 69,
+        "y": 82,
+        "w": 59,
+        "h": 55
+      }
+    },
+    {
+      "name": "walk/outfit-warden/SE/03",
+      "crop": {
+        "x": 740,
+        "y": 1640,
+        "w": 77,
+        "h": 98
+      },
+      "placement": {
+        "x": 71,
+        "y": 81,
+        "w": 55,
+        "h": 55
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "arena-animation-2026-11-05.2",
+  "contentVersion": "arena-animation-2026-11-05.3",
   "generatedOn": "2026-11-05",
   "source": {
     "path": "arena/art/source/walk-body-eight-directions.png",
@@ -92,7 +92,7 @@
     "proportion": "Source is approximately 2.5–2.8 heads; exact 3-head normalization pending.",
     "cleanup": "Chroma specks removed; connected pale edge halos still need manual cleanup.",
     "alignment": "Scholar authored per-frame placements share cell anchor; original hand pixels restored as body-front. Vest width and side/back registration need art refinement.",
-    "paperDoll": "Walk body + scholar vest + foreground hands + ivory hair assembled in 32 poses. Warden, midnight hair, staff and other actions remain in production queue."
+    "paperDoll": "Walk body, scholar and warden outfits, foreground hands and ivory hair assembled in 32 poses. Midnight hair, staff and other actions remain in production queue."
   },
   "coverage": [
     {
@@ -820,9 +820,14 @@
       "layer": "outfit-warden",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-warden/S/00",
+        "walk/outfit-warden/S/01",
+        "walk/outfit-warden/S/02",
+        "walk/outfit-warden/S/03"
+      ],
+      "atlas": "walk-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -830,9 +835,14 @@
       "layer": "outfit-warden",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-warden/SW/00",
+        "walk/outfit-warden/SW/01",
+        "walk/outfit-warden/SW/02",
+        "walk/outfit-warden/SW/03"
+      ],
+      "atlas": "walk-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -840,9 +850,14 @@
       "layer": "outfit-warden",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-warden/W/00",
+        "walk/outfit-warden/W/01",
+        "walk/outfit-warden/W/02",
+        "walk/outfit-warden/W/03"
+      ],
+      "atlas": "walk-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -850,9 +865,14 @@
       "layer": "outfit-warden",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-warden/NW/00",
+        "walk/outfit-warden/NW/01",
+        "walk/outfit-warden/NW/02",
+        "walk/outfit-warden/NW/03"
+      ],
+      "atlas": "walk-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -860,9 +880,14 @@
       "layer": "outfit-warden",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-warden/N/00",
+        "walk/outfit-warden/N/01",
+        "walk/outfit-warden/N/02",
+        "walk/outfit-warden/N/03"
+      ],
+      "atlas": "walk-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -870,9 +895,14 @@
       "layer": "outfit-warden",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-warden/NE/00",
+        "walk/outfit-warden/NE/01",
+        "walk/outfit-warden/NE/02",
+        "walk/outfit-warden/NE/03"
+      ],
+      "atlas": "walk-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -880,9 +910,14 @@
       "layer": "outfit-warden",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-warden/E/00",
+        "walk/outfit-warden/E/01",
+        "walk/outfit-warden/E/02",
+        "walk/outfit-warden/E/03"
+      ],
+      "atlas": "walk-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -890,9 +925,14 @@
       "layer": "outfit-warden",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-warden/SE/00",
+        "walk/outfit-warden/SE/01",
+        "walk/outfit-warden/SE/02",
+        "walk/outfit-warden/SE/03"
+      ],
+      "atlas": "walk-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -3108,6 +3148,12 @@
       "path": "arena/art/source/walk-hair-ivory.png",
       "sha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
       "provenance": "walk-hair-ivory.provenance.json"
+    },
+    {
+      "layer": "outfit-warden",
+      "path": "arena/art/source/walk-outfit-warden.png",
+      "sha256": "1bca500224a643dba1ad2577e014406d5d5ac183b6338196894bdb6ebc390b92",
+      "provenance": "walk-outfit-warden.provenance.json"
     }
   ],
   "auxiliaryLayers": [
