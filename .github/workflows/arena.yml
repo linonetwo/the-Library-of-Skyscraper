@@ -17,7 +17,9 @@ jobs:
           components: clippy
       - uses: Swatinem/rust-cache@v2
         with:
-          workspaces: arena/server
+          workspaces: |
+            arena/server
+            arena/script-runner
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -34,6 +36,15 @@ jobs:
       - name: TypeScript rule SDK and official strategies
         run: npm run typecheck && npm test
         working-directory: arena/script-sdk
+      - name: TypeScript compilation toolchain
+        run: npm ci && npm test
+        working-directory: arena/script-toolchain
+      - name: Independent V8 runner
+        run: cargo test --locked && cargo build --locked
+        working-directory: arena/script-runner
+      - name: Authority TypeScript compile route
+        run: cargo test --locked compile_route_uses_typescript -- --ignored
+        working-directory: arena/server
       - run: npm ci && npm test
         working-directory: arena/tools
       - name: Build authority
@@ -42,6 +53,7 @@ jobs:
       - name: Real HTTP, WebSocket, and MCP integration
         working-directory: arena/tools
         run: |
+          export ARENA_SCRIPT_RUNNER="$GITHUB_WORKSPACE/arena/script-runner/target/debug/skyscraper-arena-script-runner"
           ARENA_DATA_DIR="$RUNNER_TEMP/arena-integration-data" ../server/target/debug/skyscraper-arena-server > "$RUNNER_TEMP/arena-server.log" 2>&1 &
           authority_pid=$!
           trap 'kill "$authority_pid" || true' EXIT
@@ -56,6 +68,7 @@ jobs:
       - name: MCP browser controls
         working-directory: arena/tools
         run: |
+          export ARENA_SCRIPT_RUNNER="$GITHUB_WORKSPACE/arena/script-runner/target/debug/skyscraper-arena-script-runner"
           ARENA_DATA_DIR="$RUNNER_TEMP/arena-browser-data" ../server/target/debug/skyscraper-arena-server > "$RUNNER_TEMP/arena-browser-server.log" 2>&1 &
           authority_pid=$!
           npm --prefix ../client run dev -- --host 127.0.0.1 > "$RUNNER_TEMP/arena-vite.log" 2>&1 &

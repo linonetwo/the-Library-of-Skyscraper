@@ -1,0 +1,21 @@
+.script-workbench { max-width: 100%; }
+.script-workbench header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.script-workbench header button { display: flex; gap: 6px; align-items: center; white-space: nowrap; }
+.script-workbench h2 { margin: 6px 0 12px; }
+.script-workbench p { font-size: 11px; color: #afc2b4; line-height: 1.7; }
+.script-filebar {
+  display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+  border: 1px solid #a99b6655; background: #29413f; color: #dbc794;
+}
+.script-filebar small { margin-left: auto; color: #a9bba5; }
+.script-monaco { height: 310px; border: 1px solid #a99b6655; }
+.script-toolbar { display: flex; align-items: center; gap: 14px; margin: 14px 0; flex-wrap: wrap; }
+.script-toolbar button { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+.script-toolbar small { color: #9fb4a2; }
+.script-results { border-top: 1px solid #a99b6633; padding-top: 10px; font-size: 12px; }
+.script-results .script-diagnostic { color: #f0b39e; }
+.script-results .script-success { color: #c4d99e; }
+.intent-row { display: flex; gap: 16px; border-bottom: 1px solid #a99b6622; padding: 9px 0; }
+.intent-row code { color: #e2c997; }
+.intent-row b { font-weight: 400; color: #bdd2b0; }
+.intent-row span { color: #a8bcb4; }

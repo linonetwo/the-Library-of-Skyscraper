@@ -1,5 +1,6 @@
 import type { Command, Session, Snapshot } from "./types";
 import type { ReplayTimeline } from "./useReplay";
+import type { CompileResult, RuleSourceProject, ScriptPreview } from "./scriptTypes";
 
 async function request<T>(
   path: string,
@@ -20,6 +21,10 @@ async function request<T>(
 }
 
 export const arenaApi = {
+  compile: (session: Session, project: RuleSourceProject) =>
+    request<CompileResult>(`/${session.sessionId}/scripts/compile`, session, project),
+  preview: (session: Session, project: RuleSourceProject) =>
+    request<ScriptPreview>(`/${session.sessionId}/scripts/preview`, session, project),
   timeline: (session: Session) =>
     request<ReplayTimeline>(`/${session.sessionId}/replay/timeline`, session),
   create: (mode: "training" | "online") =>
