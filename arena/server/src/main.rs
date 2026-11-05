@@ -11,13 +11,13 @@ use axum::{
 };
 use serde::{Deserialize, Serialize};
 use skyscraper_arena_server::{Command, Mode, Session};
-use std::{collections::BTreeMap, sync::Arc, time::Duration};
-use tokio::sync::Mutex;
+use std::time::Duration;
 use tower_http::cors::CorsLayer;
 use uuid::Uuid;
 
-type Store = Arc<Mutex<BTreeMap<String, Session>>>;
-type Error = (StatusCode, Json<serde_json::Value>);
+mod replay_routes;
+mod store;
+use store::{Error, Store, error};
 const ALLOWED_ORIGINS: [&str; 6] = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
@@ -52,22 +52,6 @@ async fn guard_origin(request: Request, next: Next) -> Response {
     }
     next.run(request).await
 }
-fn error(status: StatusCode, message: &str) -> Error {
-    (status, Json(serde_json::json!({"error":message})))
-}
-fn authorize(s: &Session, headers: &HeaderMap) -> Result<String, Error> {
-    let token = headers
-        .get("authorization")
-        .and_then(|v| v.to_str().ok())
-        .and_then(|v| v.strip_prefix("Bearer "))
-        .unwrap_or("");
-    s.tokens.get(token).cloned().ok_or_else(|| {
-        error(
-            StatusCode::UNAUTHORIZED,
-            "valid session bearer token required",
-        )
-    })
-}
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 struct Create {
@@ -85,20 +69,13 @@ async fn create(
     State(store): State<Store>,
     Json(input): Json<Create>,
 ) -> Result<Json<Credentials>, Error> {
-    let mut store = store.lock().await;
-    if store.len() >= 128 {
-        return Err(error(
-            StatusCode::SERVICE_UNAVAILABLE,
-            "local session capacity reached; restart server to clear sessions",
-        ));
-    }
     let id = Uuid::new_v4().to_string();
     let token = Uuid::new_v4().to_string();
     let mut s = Session::new(id.clone(), input.mode, input.seed.unwrap_or(42));
     let player_id = s
         .join(token.clone())
         .map_err(|e| error(StatusCode::BAD_REQUEST, &e))?;
-    store.insert(id.clone(), s);
+    store.insert(s).await;
     Ok(Json(Credentials {
         session_id: id,
         player_id,
@@ -109,20 +86,20 @@ async fn join(
     State(store): State<Store>,
     Path(id): Path<String>,
 ) -> Result<Json<Credentials>, Error> {
-    let mut store = store.lock().await;
-    let s = store
-        .get_mut(&id)
-        .ok_or_else(|| error(StatusCode::NOT_FOUND, "session not found"))?;
-    if s.mode != Mode::Online {
-        return Err(error(
-            StatusCode::FORBIDDEN,
-            "training sessions are private",
-        ));
-    }
     let token = Uuid::new_v4().to_string();
-    let player_id = s
-        .join(token.clone())
-        .map_err(|e| error(StatusCode::BAD_REQUEST, &e))?;
+    let player_id = store
+        .with_session(&id, |session| {
+            if session.mode != Mode::Online {
+                return Err(error(
+                    StatusCode::FORBIDDEN,
+                    "training sessions are private",
+                ));
+            }
+            session
+                .join(token.clone())
+                .map_err(|message| error(StatusCode::BAD_REQUEST, &message))
+        })
+        .await?;
     Ok(Json(Credentials {
         session_id: id,
         player_id,
@@ -134,12 +111,9 @@ async fn state(
     Path(id): Path<String>,
     headers: HeaderMap,
 ) -> Result<Json<skyscraper_arena_server::Snapshot>, Error> {
-    let mut store = store.lock().await;
-    let s = store
-        .get_mut(&id)
-        .ok_or_else(|| error(StatusCode::NOT_FOUND, "session not found"))?;
-    authorize(s, &headers)?;
-    Ok(Json(s.snapshot()))
+    store
+        .with_player(&id, &headers, |session, _| Ok(Json(session.snapshot())))
+        .await
 }
 async fn command(
     State(store): State<Store>,
@@ -147,14 +121,14 @@ async fn command(
     headers: HeaderMap,
     Json(command): Json<Command>,
 ) -> Result<Json<skyscraper_arena_server::Snapshot>, Error> {
-    let mut store = store.lock().await;
-    let s = store
-        .get_mut(&id)
-        .ok_or_else(|| error(StatusCode::NOT_FOUND, "session not found"))?;
-    let owner = authorize(s, &headers)?;
-    s.command(&owner, command)
-        .map_err(|e| error(StatusCode::BAD_REQUEST, &e))?;
-    Ok(Json(s.snapshot()))
+    store
+        .with_player(&id, &headers, |session, owner| {
+            session
+                .command(owner, command)
+                .map_err(|message| error(StatusCode::BAD_REQUEST, &message))?;
+            Ok(Json(session.snapshot()))
+        })
+        .await
 }
 #[derive(Deserialize)]
 struct WsAuth {
@@ -166,42 +140,44 @@ async fn ws(
     Query(auth): Query<WsAuth>,
     upgrade: WebSocketUpgrade,
 ) -> Result<Response, Error> {
-    {
-        let store = store.lock().await;
-        let s = store
-            .get(&id)
-            .ok_or_else(|| error(StatusCode::NOT_FOUND, "session not found"))?;
-        if !s.tokens.contains_key(&auth.token) {
-            return Err(error(StatusCode::UNAUTHORIZED, "invalid token"));
-        }
-    }
-    Ok(upgrade.on_upgrade(move|mut socket|async move{
-        let mut interval=tokio::time::interval(Duration::from_millis(500));
-        loop {
-            tokio::select! {
-                _=interval.tick()=>{
-                    let json={let mut store=store.lock().await;let Some(s)=store.get_mut(&id)else{break};serde_json::to_string(&s.snapshot()).unwrap()};
-                    if socket.send(Message::Text(json.into())).await.is_err(){break}
-                },
-                message=socket.recv()=>{match message{Some(Ok(Message::Ping(bytes)))=>{if socket.send(Message::Pong(bytes)).await.is_err(){break}},Some(Ok(Message::Close(_)))|None|Some(Err(_))=>break,_=>{}}}
+    store.with_token(&id, &auth.token, |_, _| Ok(())).await?;
+    Ok(upgrade
+        .on_upgrade(move |mut socket| async move {
+            let mut interval = tokio::time::interval(Duration::from_millis(500));
+            loop {
+                tokio::select! {
+                    _ = interval.tick() => {
+                        let Ok(snapshot) = store
+                            .with_session(&id, |session| Ok(session.snapshot()))
+                            .await else { break };
+                        let json = serde_json::to_string(&snapshot).unwrap();
+                        if socket.send(Message::Text(json.into())).await.is_err() {
+                            break;
+                        }
+                    },
+                    message = socket.recv() => match message {
+                        Some(Ok(Message::Ping(bytes))) => {
+                            if socket.send(Message::Pong(bytes)).await.is_err() {
+                                break;
+                            }
+                        },
+                        Some(Ok(Message::Close(_))) | None | Some(Err(_)) => break,
+                        _ => {}
+                    }
+                }
             }
-        }
-    }).into_response())
+        })
+        .into_response())
 }
 #[tokio::main]
 async fn main() {
-    let store: Store = Arc::new(Mutex::new(BTreeMap::new()));
+    let store = Store::default();
     let clock = store.clone();
     tokio::spawn(async move {
         let mut interval = tokio::time::interval(Duration::from_millis(500));
         loop {
             interval.tick().await;
-            let mut sessions = clock.lock().await;
-            for s in sessions.values_mut() {
-                if !s.paused {
-                    s.advance()
-                }
-            }
+            clock.advance().await;
         }
     });
     let app = Router::new()
@@ -214,6 +190,11 @@ async fn main() {
         .route("/api/sessions", post(create))
         .route("/api/sessions/{id}/join", post(join))
         .route("/api/sessions/{id}/state", get(state))
+        .route("/api/sessions/{id}/replay", get(replay_routes::export))
+        .route(
+            "/api/sessions/{id}/replay/timeline",
+            get(replay_routes::timeline),
+        )
         .route("/api/sessions/{id}/commands", post(command))
         .route("/ws/{id}", get(ws))
         .layer(

@@ -1,0 +1,121 @@
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 285px;
+  gap: 25px;
+  padding: 25px 0 0;
+}
+.battle-section {
+  min-width: 0;
+}
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  height: 45px;
+}
+.eyebrow {
+  font-size: 8px;
+  letter-spacing: 2.2px;
+  color: #b59a6c;
+  font-weight: 600;
+}
+.section-heading h2 {
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 6px;
+  color: #e2e3d4;
+}
+.phase-tag {
+  font-size: 11px;
+  color: #c5d0c5;
+  text-align: right;
+  display: grid;
+  grid-template-columns: 7px 1fr;
+  gap: 5px 7px;
+  align-items: center;
+}
+.phase-tag > span {
+  width: 4px;
+  height: 4px;
+  background: #bac796;
+  border-radius: 50%;
+}
+.phase-tag small {
+  grid-column: 1/3;
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #70898e;
+}
+.map-shell {
+  position: relative;
+  isolation: isolate;
+  height: clamp(430px, 51vh, 680px);
+  border: 1px solid #93876b55;
+  overflow: hidden;
+  background: #233735;
+  box-shadow: inset 0 0 50px #0008;
+}
+.map-art {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+  background-image: url("/assets/library-map.png");
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.65) brightness(0.75);
+}
+.map-art:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent, #12232866);
+}
+.map-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      0deg,
+      #10252bd9,
+      transparent 20%,
+      transparent 78%,
+      #10252bbd
+    ),
+    radial-gradient(ellipse at 50% 50%, transparent, #0b202a55);
+}
+.map-shell:before,
+.map-shell:after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: #dbc28b;
+  pointer-events: none;
+  z-index: 4;
+}
+.map-shell:before {
+  top: 6px;
+  left: 6px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.map-shell:after {
+  bottom: 6px;
+  right: 6px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+.pixi-map {
+  position: absolute;
+  inset: 36px 0 30px;
+  z-index: 0;
+}
+.pixi-map canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

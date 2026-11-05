@@ -63,3 +63,15 @@ jobs:
             sleep 1
           done
           npm run test:browser
+          npm --prefix ../e2e ci
+          npm --prefix ../e2e test
+      - name: Art pipeline checks
+        working-directory: arena/art
+        run: npm ci && npm test
+      - name: Preserve browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arena-browser-evidence
+          path: arena/e2e/test-results/
+          if-no-files-found: ignore

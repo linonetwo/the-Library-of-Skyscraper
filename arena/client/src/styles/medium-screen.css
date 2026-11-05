@@ -1,0 +1,78 @@
+@media (max-width: 1200px) {
+  .main-shell {
+    padding: 0 20px;
+  }
+  .workspace {
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 18px;
+  }
+  .inspector {
+    padding-left: 18px;
+  }
+  .resource-strip {
+    gap: 20px;
+    padding: 0 10px;
+  }
+  .wordmark h1 {
+    font-size: 20px;
+  }
+  .wordmark h1 span {
+    font-size: 17px;
+  }
+  .wordmark p {
+    font-size: 7px;
+    letter-spacing: 1.7px;
+  }
+  .session-button {
+    min-width: 140px;
+  }
+  .squad-cards {
+    gap: 8px;
+  }
+  .squad-card strong {
+    font-size: 14px;
+  }
+  .squad-card {
+    padding-right: 9px;
+  }
+  .squad-card > .paper-doll {
+    width: 40%;
+  }
+  .panel-title h3 small {
+    display: none;
+  }
+  .portrait-frame {
+    height: 210px;
+  }
+  .portrait-frame > .paper-doll {
+    height: 205px;
+    width: 205px;
+  }
+  .appearance-options {
+    gap: 5px;
+  }
+  .appearance-options label {
+    font-size: 8px;
+  }
+  .resource-strip b {
+    font-size: 20px;
+  }
+  .workspace-overlay {
+    padding: 27px;
+  }
+  .presets {
+    gap: 6px;
+  }
+  .presets button {
+    padding: 12px 9px;
+  }
+  .presets strong {
+    font-size: 13px;
+  }
+  .event-strip {
+    gap: 16px;
+  }
+  .event-strip > div:nth-of-type(2) {
+    display: none;
+  }
+}

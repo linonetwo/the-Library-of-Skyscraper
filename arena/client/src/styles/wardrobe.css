@@ -1,0 +1,156 @@
+.character-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 1px 17px;
+  border-bottom: 1px solid var(--line);
+}
+.character-stats > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10px;
+}
+.character-stats span {
+  color: #7f9699;
+}
+.character-stats b {
+  font-weight: 400;
+  color: #ccd5c5;
+  font-size: 11px;
+}
+.character-stats .state-text {
+  color: #b6c695;
+  font-size: 10px;
+  text-align: right;
+  max-width: 150px;
+}
+.wardrobe {
+  padding-top: 17px;
+}
+.wardrobe .panel-title {
+  display: block;
+}
+.wardrobe .panel-title h3 {
+  font-size: 13px;
+}
+.wardrobe .panel-title > small {
+  font-size: 8px;
+  display: block;
+  margin-top: 6px;
+  color: #82968d;
+}
+.outfit-options {
+  display: flex;
+  gap: 8px;
+}
+.outfit-options button {
+  border: 1px solid #5269686e;
+  padding: 10px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 10px;
+  flex: 1;
+  color: #9cafa5;
+  border-radius: 3px;
+}
+.outfit-options button.selected {
+  background: #9885531f;
+  color: #e1c895;
+  border-color: #bca16a;
+}
+.appearance-options {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  font-size: 9px;
+  color: #8a9c97;
+}
+.hair-swatch {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 3px solid #23363a;
+}
+.hair-swatch.ivory {
+  background: #e3dec7;
+}
+.hair-swatch.midnight {
+  background: #4d6876;
+}
+.hair-swatch.selected {
+  outline: 1px solid #baa273;
+}
+.appearance-options label {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  white-space: nowrap;
+  font-size: 9px;
+}
+.appearance-options input {
+  width: 11px;
+  height: 11px;
+}
+.quick-actions {
+  display: flex;
+  gap: 7px;
+  margin-top: 19px;
+}
+.quick-actions button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  justify-content: center;
+  flex: 1;
+  border: 1px solid #8b9b7d3b;
+  background: #31433d55;
+  padding: 9px 3px;
+  border-radius: 3px;
+}
+.doctrine-card {
+  margin-top: 17px;
+  border: 1px solid #97a58638;
+  padding: 13px 12px;
+  background: #35453a24;
+}
+.doctrine-card > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #b3bd9d;
+}
+.doctrine-card h3 {
+  font-size: 11px;
+  font-weight: 400;
+}
+.doctrine-card button {
+  margin-left: auto;
+  display: flex;
+}
+.doctrine-card > strong {
+  font-weight: 500;
+  font-size: 12px;
+  display: block;
+  margin-top: 14px;
+  color: #ded5b5;
+}
+.doctrine-card p {
+  font-size: 10px;
+  line-height: 1.8;
+  color: #9ba996;
+  margin: 6px 0 10px;
+}
+.doctrine-card > span {
+  display: block;
+  font-size: 8px;
+  color: #708b85;
+  border-top: 1px solid #a1b08620;
+  padding-top: 10px;
+  letter-spacing: 0.5px;
+}

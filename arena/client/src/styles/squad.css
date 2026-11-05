@@ -1,0 +1,124 @@
+.squad-section {
+  padding-top: 21px;
+}
+.panel-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.panel-title h3 {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #e2deca;
+}
+.panel-title h3 small {
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 7px;
+  letter-spacing: 1.6px;
+  color: #6e878d;
+  margin-left: 10px;
+}
+.panel-title > span,
+.panel-title > small {
+  font-size: 9px;
+  color: #81908c;
+}
+.squad-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.squad-card {
+  position: relative;
+  display: flex;
+  text-align: left;
+  align-items: center;
+  min-height: 120px;
+  background: linear-gradient(120deg, #253b3d, #1b2c33);
+  border: 1px solid #65787544;
+  padding: 12px 12px 8px 2px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.squad-card.selected {
+  border-color: #be9f67;
+  background: linear-gradient(120deg, #344840, #22373a);
+  box-shadow: inset 0 0 22px #aa97560b;
+}
+.card-number {
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  color: #839488;
+  font-family: Georgia, serif;
+  font-size: 10px;
+}
+.squad-card > .paper-doll {
+  width: 44%;
+  height: 100px;
+  flex-shrink: 0;
+}
+.squad-card > div:last-of-type {
+  flex: 1;
+  min-width: 0;
+}
+.squad-card small {
+  display: block;
+  font-size: 7px;
+  letter-spacing: 1.4px;
+  color: #9eaa95;
+}
+.squad-card strong {
+  display: block;
+  font-family: "Noto Serif SC", serif;
+  font-size: 17px;
+  font-weight: 500;
+  margin: 4px 0;
+  color: #e9e0c8;
+}
+.squad-card > div > span {
+  font-size: 9px;
+  color: #97aca3;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.health-track {
+  height: 3px;
+  margin-top: 10px;
+  background: #101f25;
+}
+.health-track i {
+  display: block;
+  height: 100%;
+  background: #a8b68b;
+}
+.squad-card em {
+  font-size: 8px;
+  color: #8ea198;
+  font-style: normal;
+  display: block;
+  margin-top: 4px;
+}
+.card-check {
+  position: absolute;
+  right: 8px;
+  top: 9px;
+  color: #dbc18e;
+}
+.squad-empty {
+  grid-column: 1/4;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #81968f;
+  border: 1px dashed #849c7840;
+  background: #1b2d3080;
+  font-size: 11px;
+  padding: 22px;
+}

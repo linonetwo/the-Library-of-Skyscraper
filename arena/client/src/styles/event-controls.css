@@ -1,0 +1,74 @@
+.event-strip {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  min-height: 52px;
+  color: #819a97;
+  font-size: 9px;
+}
+.event-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #bdc1a5;
+  white-space: nowrap;
+  font-size: 10px;
+}
+.event-strip > div {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  min-width: 0;
+  flex: 1;
+}
+.event-strip time {
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  color: #b69d71;
+}
+.event-strip > div span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-strip > button {
+  margin-left: auto;
+}
+.event-strip > p {
+  font-size: 10px;
+  color: #6c8687;
+}
+.primary {
+  background: #cfb47f;
+  color: #1b3136;
+  border: 1px solid #e3cc99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 19px;
+  font-size: 12px;
+  border-radius: 2px;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 2px #7a663523;
+}
+.primary:hover:not(:disabled) {
+  background: #e2c992;
+  color: #142b30;
+}
+.wide {
+  width: 100%;
+}
+.text-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #adbaa7;
+  margin-top: 14px;
+  padding: 6px;
+}

@@ -1,7 +1,4 @@
 import { test, expect, type Page } from '@playwright/test';
-import path from 'node:path';
-
-const evidence = path.resolve(import.meta.dirname, '../../../wiki/tiddlers');
 async function state(page: Page) {
   return page.evaluate(async () => {
     const auth = JSON.parse(sessionStorage.getItem('arena-session')!);
@@ -19,7 +16,7 @@ async function training(page: Page) {
   await expect(page.getByRole('button', { name: '继续', exact: true })).toBeVisible();
 }
 
-test('single player: atlas, rule publication, tick control and real screenshot', async ({ page }) => {
+test('single player: atlas, rule publication, tick control and real screenshot', async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await training(page);
@@ -41,7 +38,8 @@ test('single player: atlas, rule publication, tick control and real screenshot',
   await page.getByLabel('定位地图房间').selectOption('room-0');
   await expect(page.getByRole('button', { name: '建造哨塔' })).toBeVisible();
   await page.getByRole('button', { name: '关闭房间详情' }).click();
-  await page.screenshot({ path: path.join(evidence, '竞技场实机2026-10-27.png'), fullPage: true });
+  const screenshot = await page.screenshot({ path: testInfo.outputPath('training-runtime.png'), fullPage: true });
+  await testInfo.attach('training-runtime', { body: screenshot, contentType: 'image/png' });
   expect(errors).toEqual([]);
 });
 
@@ -73,12 +71,11 @@ test('two independent browsers join a live room and reconnect with same player',
   await second.close();
 });
 
-test('narrow layout and missing textures remain usable', async ({ page }) => {
+test('narrow layout presents the paper-doll squad', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.route('**/assets/**', route => route.abort());
   await training(page);
   await expect(page.locator('canvas')).toBeVisible();
-  await expect(page.locator('.portrait-frame .doll-fallback')).toBeVisible();
+  await expect(page.locator('.portrait-frame .doll-layer')).toHaveCount(4);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
   expect(overflow).toBe(false);
 });

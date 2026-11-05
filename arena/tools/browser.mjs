@@ -1,13 +1,12 @@
 import { z } from 'zod';
 
-// Fixed local UI and allowlisted actions. No selectors, scripts, paths or URLs
-// supplied by callers are ever executed. Browser credentials remain in browser.
+// Local game UI adapter. Actions share the player's visible controls.
 const uiURL = 'http://127.0.0.1:5173';
 export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
-    ...['startTraining', 'openLobby', 'openRules', 'closeLobby', 'gather', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
+    ...['startTraining', 'openLobby', 'openRules', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
     z.object({ type: z.literal('selectActor'), role: z.enum(['scout', 'gatherer', 'guard']) }).strict(),
     z.object({ type: z.literal('chooseOutfit'), outfit: z.enum(['scholar', 'warden']) }).strict(),
     z.object({ type: z.literal('chooseHair'), hair: z.enum(['ivory', 'midnight']) }).strict(),
@@ -42,33 +41,18 @@ export function registerBrowserTools(server) {
       }
     });
   }
-  register('Page.open', 'Open the fixed local Arena UI at 127.0.0.1:5173 in an isolated headless Chromium session. No caller URLs, JavaScript, or filesystem access. Requires Playwright Chromium.', {}, async () => {
+  register('Page.open', 'Open Arena at 127.0.0.1:5173 in headless Chromium.', {}, async () => {
     await close();
     const { chromium } = await import('playwright');
     browser = await chromium.launch({ headless: true });
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
-    await context.route('**/*', route => {
-      const url = new URL(route.request().url());
-      const allowed = ['http:', 'ws:'].includes(url.protocol)
-        && ['127.0.0.1', 'localhost'].includes(url.hostname)
-        && ['5173', '8787'].includes(url.port);
-      return allowed ? route.continue() : route.abort();
-    });
-    await context.routeWebSocket('**/*', socket => {
-      const url = new URL(socket.url());
-      const allowed = url.protocol === 'ws:'
-        && ['127.0.0.1', 'localhost'].includes(url.hostname)
-        && ['5173', '8787'].includes(url.port);
-      if (allowed) socket.connectToServer();
-      else socket.close();
-    });
     page = await context.newPage();
     page.setDefaultTimeout(7000);
     await page.goto(uiURL, { waitUntil: 'domcontentloaded' });
     await page.getByRole('button', { name: '开启训练远征', exact: true }).waitFor();
     return { open: true, viewport: { width: 1440, height: 1000 } };
   });
-  register('Page.getState', 'Read rendered body text and visible button labels only. Does not expose sessionStorage, localStorage, network bodies, credentials, or arbitrary DOM attributes.', {}, async () => {
+  register('Page.getState', 'Read the rendered page text, button labels and enabled states.', {}, async () => {
     const active = current();
     const buttons = [];
     for (const button of await active.getByRole('button').all()) {
@@ -78,7 +62,7 @@ export function registerBrowserTools(server) {
     }
     return { text: (await active.locator('body').innerText()).slice(0, 20000), buttons };
   }, true);
-  register('Input.action', 'Perform a whitelisted UI action: training/lobby, actor, outfit/hair/staff, rules, zoom, room, gather/attack/capture. No arbitrary selectors or evaluation. Game commands still undergo authority validation.', { action: actionSchema }, async ({ action }) => {
+  register('Input.action', 'Control training, lobby, characters, outfits, rules, camera and gameplay through the UI.', { action: actionSchema }, async ({ action }) => {
     const active = current();
     const click = name => active.getByRole('button', { name, exact: true }).click();
     switch (action.type) {
@@ -108,12 +92,13 @@ export function registerBrowserTools(server) {
       case 'zoom': await click(action.direction === 'in' ? '放大地图' : '缩小地图'); break;
       case 'selectRoom': await active.getByRole('combobox', { name: '定位地图房间' }).selectOption(action.room); break;
       case 'gather': await click('采集'); break;
+      case 'deliver': await click('卸货入库'); break;
       case 'attack': await click('攻击'); break;
       case 'capture': await click('编目'); break;
     }
     return { performed: action.type };
   });
-  register('Page.captureScreenshot', 'Capture the current 1440×1000 local game viewport as a PNG MCP image. No caller path or arbitrary page target.', {},
+  register('Page.captureScreenshot', 'Capture the current 1440×1000 game viewport as a PNG MCP image.', {},
     () => current().screenshot({ type: 'png', animations: 'disabled' }), true, true);
   register('Page.close', 'Close the isolated browser and discard its temporary session credentials.', {}, close);
   // The stdio transport itself terminates at EOF; cleanup on explicit close or
