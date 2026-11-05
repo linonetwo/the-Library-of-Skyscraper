@@ -2,7 +2,7 @@ use crate::{ReplayOperation, Session, types::*};
 use bevy_ecs::prelude::Entity;
 
 impl Session {
-    fn actor(&mut self, owner: &str, id: &str) -> Result<(Entity, Actor), String> {
+    fn owned_actor(&mut self, owner: &str, id: &str) -> Result<(Entity, Actor), String> {
         let (entity, actor) = self
             .world
             .query::<(Entity, &Actor)>()
@@ -13,6 +13,10 @@ impl Session {
         if actor.owner != owner {
             return Err("actor ownership denied".into());
         }
+        Ok((entity, actor))
+    }
+    fn actor(&mut self, owner: &str, id: &str) -> Result<(Entity, Actor), String> {
+        let (entity, actor) = self.owned_actor(owner, id)?;
         if actor.hp == 0 {
             return Err("actor downed".into());
         }
@@ -61,6 +65,15 @@ impl Session {
             _ => None,
         };
         match command {
+            Command::Equip {
+                actor_id,
+                appearance,
+            } => {
+                let (entity, mut actor) = self.owned_actor(owner, &actor_id)?;
+                actor.appearance = appearance;
+                self.world.entity_mut(entity).insert(actor);
+                self.event("equip", format!("{actor_id} 更新了装束"), Some(owner));
+            }
             Command::Pause { paused } => self.paused = paused,
             Command::Step { ticks } => {
                 if !(1..=120).contains(&ticks) {

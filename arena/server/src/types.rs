@@ -1,3 +1,4 @@
+use crate::Appearance;
 use bevy_ecs::prelude::Component;
 use serde::{Deserialize, Serialize};
 
@@ -33,6 +34,7 @@ pub struct Actor {
     pub state: String,
     pub cargo: u32,
     pub cargo_capacity: u32,
+    pub appearance: Appearance,
 }
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -87,6 +89,11 @@ pub struct Snapshot {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(tag = "type", rename_all = "camelCase", deny_unknown_fields)]
 pub enum Command {
+    Equip {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+        appearance: Appearance,
+    },
     Move {
         #[serde(rename = "actorId")]
         actor_id: String,
