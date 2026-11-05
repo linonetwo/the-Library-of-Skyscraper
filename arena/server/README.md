@@ -31,11 +31,16 @@ explicitly instead of returning a truncated recording.
 server's working directory. `ARENA_PORT` selects the local listener port
 (default `8787`; `0` allocates a port for process tests).
 
-Each session has an atomic JSON save containing its command replay and its
-original bearer-token mapping. On startup the server reconstructs the simulation
-from that replay, then restores the mapping, so existing browser credentials
-reconnect to the same squad. Paused training stays paused; active matches resume
-their 2 Hz clock without advancing the time spent offline.
+Each session has an atomic JSON save containing a complete `SessionCheckpoint`:
+the visible snapshot, original bearer-token mapping, manual-action cooldowns,
+next event ID, and public replay recording state. Startup rebuilds the ECS world
+directly from this checkpoint, so existing browser credentials reconnect to the
+same squad. Paused training stays paused; active matches resume their 2 Hz clock
+without advancing the time spent offline.
+
+Older private saves containing `replay` and `tokens` still load through the
+original replay reconstruction path. Their next changed-state checkpoint writes
+the new format, preserving existing user saves and credentials.
 
 Changed sessions are checkpointed every **2 seconds**. Creation, joins, accepted
 commands, and advancing ticks mark a session dirty. HTTP and WebSocket reads
@@ -51,17 +56,20 @@ builds and version control. Public replay exports remain credential-free.
 Malformed saves stop startup with their filename and error rather than silently
 discarding a squad.
 
-The existing **10,000 operations / 2 MiB** replay limits also apply to saves.
-Long-running training with repeated resets can reach them. The server reports
-checkpoint errors and retains the last complete save; further play remains
-in memory. Start a new session for a fresh recording budget. A future segmented
-replay format needs a complete simulation base state (including action cooldowns
-and next event ID) to support longer histories while retaining bounded segments.
+The **10,000 operations / 2 MiB** limits apply to public replay exports,
+independently of private saves. Long-running training keeps saving and restoring
+its complete current simulation after public recording fills. The recording
+overflow flag is preserved across restarts, so replay export continues to report
+its limit instead of presenting a partial history as complete. Full-history
+segmented replay is a separate future feature.
 
 `cargo test --test restart` launches real server processes on isolated ports,
 checks graceful and abrupt restart recovery with the original credentials,
 checks private permissions and credential-free exports, and exercises periodic
 checkpointing without read-triggered writes.
+`cargo test --test long_restart` covers saves after recording overflow, action
+cooldowns after restart, subsequent simulation and checkpoints, and migration
+from the legacy replay-based save format.
 
 Known limitations: session expiry, matchmaking, Steam identity,
 encrypted external transport, fog of war, production rate limiting, distributed

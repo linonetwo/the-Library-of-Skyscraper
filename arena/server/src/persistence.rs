@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use skyscraper_arena_server::{Replay, Session};
+use skyscraper_arena_server::{Replay, Session, SessionCheckpoint};
 use std::{
     collections::BTreeMap,
     fs::{self, OpenOptions},
@@ -8,9 +8,28 @@ use std::{
 };
 
 #[derive(Deserialize, Serialize)]
-struct SavedSession {
-    replay: Replay,
-    tokens: BTreeMap<String, String>,
+#[serde(untagged)]
+enum SavedSession {
+    Current {
+        checkpoint: SessionCheckpoint,
+    },
+    Legacy {
+        replay: Replay,
+        tokens: BTreeMap<String, String>,
+    },
+}
+
+impl SavedSession {
+    fn restore(self) -> Result<Session, String> {
+        match self {
+            Self::Current { checkpoint } => Session::from_checkpoint(checkpoint),
+            Self::Legacy { replay, tokens } => {
+                let mut session = Session::from_replay(&replay)?;
+                session.tokens = tokens;
+                Ok(session)
+            }
+        }
+    }
 }
 
 pub struct Persistence {
@@ -37,9 +56,7 @@ impl Persistence {
             }
             let restore = || -> io::Result<Session> {
                 let saved: SavedSession = serde_json::from_slice(&fs::read(&path)?)?;
-                let mut session = Session::from_replay(&saved.replay).map_err(io::Error::other)?;
-                session.tokens = saved.tokens;
-                Ok(session)
+                saved.restore().map_err(io::Error::other)
             };
             let session = restore()
                 .map_err(|error| io::Error::other(format!("{}: {error}", path.display())))?;
@@ -49,9 +66,8 @@ impl Persistence {
     }
 
     pub fn save(&self, session: &mut Session) -> io::Result<()> {
-        let saved = SavedSession {
-            replay: session.export_replay().map_err(io::Error::other)?,
-            tokens: session.tokens.clone(),
+        let saved = SavedSession::Current {
+            checkpoint: session.checkpoint(),
         };
         let bytes = serde_json::to_vec(&saved)?;
         let path = self.directory.join(format!("{}.json", session.id));
