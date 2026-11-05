@@ -60,7 +60,9 @@ export default function RuleEditor() {
         <ScrollText size={17} />
         <span>
           当前规则：
-          {player
+          {player?.script
+            ? `TS · ${player.script.sourceHash.slice(0, 12)} · 发布预设后切换`
+            : player
             ? `${presetNames[player.rule.preset]} · 低于 ${player.rule.retreatHp}% 生命值撤退`
             : "尚未创建赛局"}
         </span>
