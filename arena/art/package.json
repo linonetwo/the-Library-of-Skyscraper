@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node build-atlas.mjs",
-    "build:animation": "node build-animation.mjs && node prepare-scholar-walk.mjs",
+    "build:animation": "node build-animation.mjs && node prepare-scholar-walk.mjs && node prepare-ivory-walk.mjs",
     "test": "node --test"
   },
   "dependencies": {

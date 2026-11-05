@@ -6,4 +6,4 @@
 
 图层统一虚拟画布，顺序为 body → outfit → hair → weapon。衣装与发型组合只影响外观，不改变竞技数值。图集坐标、对齐修正和内容版本均受版本控制。生成式素材仍需进一步人工美术审查和发布权利审查；模型输出不保证完美层间兼容。
 
-八向动画走独立试产管线：`npm run build:animation`。范围和制作队列见 [ANIMATION-PLAN.md](ANIMATION-PLAN.md)，覆盖矩阵位于 `../client/public/assets/animation/coverage.json`。当前 walk 包含32帧身体、学者服与前景手臂，状态 prototype；动画检查台提供衣装叠层开关。组合素材预览为 `walk-scholar-preview.png`，详细制作记录见 [学者服记录](source/walk-outfit-scholar-generation.md)。
+八向动画走独立试产管线：`npm run build:animation`。范围和制作队列见 [ANIMATION-PLAN.md](ANIMATION-PLAN.md)，覆盖矩阵位于 `../client/public/assets/animation/coverage.json`。当前 walk 包含32帧身体、学者服、月白发与前景手臂，状态 prototype；动画检查台提供衣装叠层开关。组合素材预览为 `walk-scholar-ivory-preview.png`，详细制作记录见 [学者服记录](source/walk-outfit-scholar-generation.md) 与 [月白发记录](source/walk-hair-ivory-generation.md)。

@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "hair-ivory",
+  "source": "walk-hair-ivory.png",
+  "sourceSize": [
+    887,
+    1774
+  ],
+  "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+  "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+  "frames": [
+    {
+      "name": "walk/hair-ivory/S/00",
+      "crop": {
+        "x": 34,
+        "y": 31,
+        "w": 168,
+        "h": 134
+      },
+      "placement": {
+        "x": 55,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/S/01",
+      "crop": {
+        "x": 257,
+        "y": 31,
+        "w": 166,
+        "h": 134
+      },
+      "placement": {
+        "x": 55,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/S/02",
+      "crop": {
+        "x": 480,
+        "y": 31,
+        "w": 167,
+        "h": 134
+      },
+      "placement": {
+        "x": 55,
+        "y": 11,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/S/03",
+      "crop": {
+        "x": 703,
+        "y": 31,
+        "w": 163,
+        "h": 134
+      },
+      "placement": {
+        "x": 55,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/SW/00",
+      "crop": {
+        "x": 32,
+        "y": 251,
+        "w": 168,
+        "h": 139
+      },
+      "placement": {
+        "x": 50,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/SW/01",
+      "crop": {
+        "x": 252,
+        "y": 252,
+        "w": 168,
+        "h": 137
+      },
+      "placement": {
+        "x": 51,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/SW/02",
+      "crop": {
+        "x": 477,
+        "y": 252,
+        "w": 163,
+        "h": 138
+      },
+      "placement": {
+        "x": 50,
+        "y": 11,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/SW/03",
+      "crop": {
+        "x": 698,
+        "y": 252,
+        "w": 164,
+        "h": 138
+      },
+      "placement": {
+        "x": 51,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/W/00",
+      "crop": {
+        "x": 38,
+        "y": 473,
+        "w": 162,
+        "h": 140
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/W/01",
+      "crop": {
+        "x": 258,
+        "y": 473,
+        "w": 162,
+        "h": 139
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/W/02",
+      "crop": {
+        "x": 484,
+        "y": 474,
+        "w": 160,
+        "h": 138
+      },
+      "placement": {
+        "x": 49,
+        "y": 11,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/W/03",
+      "crop": {
+        "x": 706,
+        "y": 474,
+        "w": 159,
+        "h": 138
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/NW/00",
+      "crop": {
+        "x": 38,
+        "y": 696,
+        "w": 158,
+        "h": 138
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-ivory/NW/01",
+      "crop": {
+        "x": 259,
+        "y": 697,
+        "w": 158,
+        "h": 137
+      },
+      "placement": {
+        "x": 52,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-ivory/NW/02",
+      "crop": {
+        "x": 481,
+        "y": 697,
+        "w": 159,
+        "h": 136
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-ivory/NW/03",
+      "crop": {
+        "x": 704,
+        "y": 697,
+        "w": 157,
+        "h": 136
+      },
+      "placement": {
+        "x": 52,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-ivory/N/00",
+      "crop": {
+        "x": 37,
+        "y": 918,
+        "w": 165,
+        "h": 140
+      },
+      "placement": {
+        "x": 53,
+        "y": 10,
+        "w": 83,
+        "h": 74
+      }
+    },
+    {
+      "name": "walk/hair-ivory/N/01",
+      "crop": {
+        "x": 259,
+        "y": 918,
+        "w": 164,
+        "h": 141
+      },
+      "placement": {
+        "x": 54,
+        "y": 10,
+        "w": 83,
+        "h": 74
+      }
+    },
+    {
+      "name": "walk/hair-ivory/N/02",
+      "crop": {
+        "x": 478,
+        "y": 918,
+        "w": 167,
+        "h": 140
+      },
+      "placement": {
+        "x": 53,
+        "y": 11,
+        "w": 83,
+        "h": 74
+      }
+    },
+    {
+      "name": "walk/hair-ivory/N/03",
+      "crop": {
+        "x": 703,
+        "y": 918,
+        "w": 164,
+        "h": 140
+      },
+      "placement": {
+        "x": 54,
+        "y": 10,
+        "w": 83,
+        "h": 74
+      }
+    },
+    {
+      "name": "walk/hair-ivory/NE/00",
+      "crop": {
+        "x": 38,
+        "y": 1142,
+        "w": 157,
+        "h": 138
+      },
+      "placement": {
+        "x": 55,
+        "y": 10,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-ivory/NE/01",
+      "crop": {
+        "x": 260,
+        "y": 1141,
+        "w": 158,
+        "h": 138
+      },
+      "placement": {
+        "x": 54,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-ivory/NE/02",
+      "crop": {
+        "x": 480,
+        "y": 1142,
+        "w": 161,
+        "h": 138
+      },
+      "placement": {
+        "x": 55,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-ivory/NE/03",
+      "crop": {
+        "x": 704,
+        "y": 1141,
+        "w": 156,
+        "h": 138
+      },
+      "placement": {
+        "x": 54,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-ivory/E/00",
+      "crop": {
+        "x": 33,
+        "y": 1364,
+        "w": 159,
+        "h": 138
+      },
+      "placement": {
+        "x": 60,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/E/01",
+      "crop": {
+        "x": 257,
+        "y": 1365,
+        "w": 157,
+        "h": 137
+      },
+      "placement": {
+        "x": 59,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/E/02",
+      "crop": {
+        "x": 478,
+        "y": 1364,
+        "w": 156,
+        "h": 138
+      },
+      "placement": {
+        "x": 60,
+        "y": 11,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/E/03",
+      "crop": {
+        "x": 702,
+        "y": 1364,
+        "w": 155,
+        "h": 138
+      },
+      "placement": {
+        "x": 59,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/SE/00",
+      "crop": {
+        "x": 34,
+        "y": 1588,
+        "w": 166,
+        "h": 137
+      },
+      "placement": {
+        "x": 61,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/SE/01",
+      "crop": {
+        "x": 256,
+        "y": 1588,
+        "w": 166,
+        "h": 136
+      },
+      "placement": {
+        "x": 61,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/SE/02",
+      "crop": {
+        "x": 477,
+        "y": 1587,
+        "w": 168,
+        "h": 136
+      },
+      "placement": {
+        "x": 61,
+        "y": 11,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-ivory/SE/03",
+      "crop": {
+        "x": 698,
+        "y": 1587,
+        "w": 169,
+        "h": 136
+      },
+      "placement": {
+        "x": 61,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    }
+  ]
+}
