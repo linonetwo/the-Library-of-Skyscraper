@@ -1,0 +1,38 @@
+.recent-expeditions {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 20px;
+}
+.recent-expeditions header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #d6c497;
+}
+.recent-expeditions h3 { margin: 0; font-weight: 400; font-size: 17px; }
+.recent-expeditions header small { margin-left: auto; color: #829c93; font-size: 10px; }
+.recent-expeditions p { margin: 10px 0 14px; font-size: 11px; }
+.expedition-list { display: grid; gap: 8px; max-height: 230px; overflow-y: auto; }
+.expedition-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding: 12px;
+  background: #203b3c;
+  border: 1px solid #c4ac7540;
+}
+.expedition-card:hover { border-color: #c4ac75; background: #29464a; }
+.expedition-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 38px;
+  border: 1px solid #b8a17270;
+  color: #ddc996;
+}
+.expedition-card strong { display: block; color: #e2d8be; font-size: 13px; font-weight: 400; }
+.expedition-card code { margin-left: 9px; color: #93aaa1; font-size: 10px; }
+.expedition-card small { display: block; margin-top: 5px; color: #9fb6a8; font-size: 10px; }
+.expedition-card time { margin-left: auto; font-size: 10px; color: #9bac9c; }
+.expedition-empty { padding: 20px; border: 1px dashed #b8a17240; color: #96aa9c; font-size: 12px; }

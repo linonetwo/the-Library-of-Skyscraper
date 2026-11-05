@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { arenaApi } from "./arenaApi";
 import type { Command, Session, Snapshot } from "./types";
+import { readExpeditions, rememberExpedition } from "./expeditionLibrary";
 
 export function useArenaSession() {
   const [session, setSession] = useState<Session | null>(() =>
     JSON.parse(sessionStorage.getItem("arena-session") || "null"),
   );
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
+  const [expeditions, setExpeditions] = useState(readExpeditions);
   const [connection, setConnection] = useState<
     "idle" | "connecting" | "connected" | "disconnected"
   >("idle");
@@ -76,16 +78,39 @@ export function useArenaSession() {
     return () => clearTimeout(timer);
   }, [notice]);
 
+  useEffect(() => {
+    if (session && snapshot && session.sessionId === snapshot.sessionId
+      && (snapshot.paused || snapshot.phase === "settled" || snapshot.tick % 10 === 0)) {
+      setExpeditions(rememberExpedition(session, snapshot));
+    }
+  }, [session, snapshot]);
+  useEffect(() => {
+    const sync = () => setExpeditions(readExpeditions());
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
+  }, []);
+
   const start = (mode: "training" | "online", joinId?: string) =>
     perform(async () => {
       const next = await (joinId === undefined
         ? arenaApi.create(mode)
         : arenaApi.join(joinId));
+      const state = await arenaApi.state(next);
+      setExpeditions(rememberExpedition(next, state));
       sessionStorage.setItem("arena-session", JSON.stringify(next));
       setSnapshot(null);
       setSession(next);
       return next;
     });
+  const resume = (next: Session) => perform(async () => {
+    const state = await arenaApi.state(next);
+    sessionStorage.setItem("arena-session", JSON.stringify(next));
+    setSnapshot(state);
+    setSession(next);
+    setExpeditions(rememberExpedition(next, state));
+    setNotice("远征已接续，原小队与装束已恢复。");
+    return next;
+  });
   const command = (value: Command) =>
     perform(async () => {
       const next = await arenaApi.command(session!, value);
@@ -122,6 +147,8 @@ export function useArenaSession() {
     busy,
     notice,
     start,
+    resume,
+    expeditions,
     command,
     exportReplay,
     copySession,

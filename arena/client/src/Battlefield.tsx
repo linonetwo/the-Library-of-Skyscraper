@@ -21,6 +21,8 @@ export default function Battlefield() {
     snapshot,
     busy,
     start,
+    resume,
+    expeditions,
     selected,
     selectedRoom,
     setSelectedRoom,
@@ -133,6 +135,10 @@ export default function Battlefield() {
             <button className="text-button" onClick={() => setLobby(true)}>
               或加入联机赛局 <ChevronRight size={13} />
             </button>
+            {expeditions[0] && <button className="text-button" disabled={busy}
+              onClick={() => void resume(expeditions[0].session)}>
+              继续上次远征 <ChevronRight size={13} />
+            </button>}
           </div>
         )}
         {snapshot?.result && (

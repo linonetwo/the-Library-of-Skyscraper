@@ -128,7 +128,7 @@ export default function CharacterInspector() {
             携带法杖
           </label>
         </div>
-        <small>行走试产：星墨学者／月白发型／收起法杖。其余装束按当前图层展示。</small>
+        <small>行走试产：学者或守卫服／月白发型／收起法杖。其余装束按当前图层展示。</small>
       </div>
       <div className="quick-actions">
         <button

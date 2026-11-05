@@ -6,7 +6,8 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
-    ...['startTraining', 'openLobby', 'openRules', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
+    ...['startTraining', 'resumeLatest', 'openLobby', 'openRules', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
+    z.object({ type: z.literal('resumeSession'), sessionId: z.string() }).strict(),
     z.object({ type: z.literal('selectActor'), role: z.enum(['scout', 'gatherer', 'guard']) }).strict(),
     z.object({ type: z.literal('chooseOutfit'), outfit: z.enum(['scholar', 'warden']) }).strict(),
     z.object({ type: z.literal('chooseHair'), hair: z.enum(['ivory', 'midnight']) }).strict(),
@@ -68,6 +69,8 @@ export function registerBrowserTools(server) {
     const active = current();
     const click = name => active.getByRole('button', { name, exact: true }).click();
     switch (action.type) {
+      case 'resumeLatest': await click('继续上次远征'); break;
+      case 'resumeSession': await click(`继续远征 ${action.sessionId}`); break;
       case 'startTraining':
         await click('开启训练远征');
         await active.locator('.squad-card').first().waitFor();

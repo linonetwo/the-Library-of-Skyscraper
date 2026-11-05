@@ -1,7 +1,7 @@
 # 纸娃娃八向动作美术合同
 
 状态：试产。最新矩阵：`../client/public/assets/animation/coverage.json`。
-2026-11-05 已完成 walk 身体、学者服、月白发各32帧叠层，以及前景手臂的遮挡处理。
+2026-11-05 已完成 walk 身体、学者服、守卫服、月白发各32帧叠层，以及前景手臂的遮挡处理。
 
 ## 统一接口
 
@@ -19,6 +19,7 @@
 - [ ] walk 两套衣装、两款发型与法杖，绘制各方向各帧适配和遮挡；录实机动画。
   - 学者服独立32帧图集和前景手臂已完成试产，coverage记为prototype。详见 `source/walk-outfit-scholar-generation.md`。
   - 月白发32帧已完成试产，身体/衣装/手臂/发型组合素材表已出。详见 `source/walk-hair-ivory-generation.md`。
+  - 守卫服32帧已完成试产，复用前景摆臂与月白发组合；下一批为午夜发和法杖。详见 `source/walk-outfit-warden-generation.md`。
 - [ ] idle / run / jump（起跳、腾空、落地）/ climb（抓握、提膝、攀升）独立动作集。
 - [ ] 法杖起手/施法/收招及其他武器动作；死亡、受击等完整状态机补全。
 - [ ] 任意换装组合、八向移动和动作切换实机回归；发布权利及视觉一致性审核。
