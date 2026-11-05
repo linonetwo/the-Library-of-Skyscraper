@@ -1,0 +1,24 @@
+title: 竞技场TS脚本接入实施计划
+tags: 竞技场开发计划
+type: text/vnd.tiddlywiki
+
+依据：[[竞技场脚本运行时与 TypeScript 策略]]、[[竞技场行动规则意图输出契约]]、[[竞技场脚本引擎适配层与运行后端]]、[[竞技场规则工作台Monaco集成与诊断桥]]。
+
+!! 接入主链
+
+Monaco＋类型SDK → TS工具链 → 版本化bundle → 发布 → Rust授权快照 → 独立deno_core/V8运行器 → RuleDecisionResult → Rust意图结算 → 快照与回放。
+
+!! 待办与分工
+
+|!负责人|!任务|!交付|
+|主代理|v0上下文与意图SDK已完成；扩展版本协议|arena/script-sdk与三份官方TS示例|
+|编译工具链代理|类型诊断、转译、source map与源码清单|可缓存bundle、诊断位置、sourceHash|
+|运行器代理|ScriptEngineAdapter和deno_core/V8 worker|加载版本、run_tick、结构化运行结果|
+|模拟代理|tick批次与意图结算、memoryPatch|同tick统一输入、确定性结算、存档与回放|
+|前端代理|Monaco、试跑、差异、发布与回滚|从编辑到角色实际行动的闭环|
+
+!! 第一条可玩切片
+
+将当前采集／守卫／探索预设实现为官方TS规则；先贯通编辑一条规则、训练局试跑、发布到下一tick、观察角色行为、日志跳回源码。继而扩展策略记忆、任务队列、技能事件、可视节点与建筑存储。单机和联机使用同套运行器与协议。
+
+实施细节见[[竞技场开发日志2026-11-05]]。当前RuleEditor仍为预设参数界面，TS执行链处于接入阶段。
