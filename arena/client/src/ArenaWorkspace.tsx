@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useArenaSession } from "./useArenaSession";
-import type { Appearance } from "./types";
+import type { Appearance, Session } from "./types";
 
 export const presetNames = {
   gather: "资源优先",
@@ -71,8 +71,7 @@ export function useArenaWorkspace() {
       setThreshold(player.rule.retreatHp);
     }
   }, [player?.rule.preset, player?.rule.retreatHp]);
-  const start = async (mode: "training" | "online", join = false) => {
-    const next = await arena.start(mode, join ? joinId : undefined);
+  const enter = (next: Session | undefined) => {
     if (next) {
       setLobby(false);
       setSelected(null);
@@ -80,9 +79,13 @@ export function useArenaWorkspace() {
       setView("map");
     }
   };
+  const start = async (mode: "training" | "online", join = false) =>
+    enter(await arena.start(mode, join ? joinId : undefined));
+  const resume = async (saved: Session) => enter(await arena.resume(saved));
   return {
     ...arena,
     start,
+    resume,
     selected,
     selectedRoom,
     setSelectedRoom,
