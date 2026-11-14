@@ -1,0 +1,617 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "hair-midnight",
+  "source": "arena/art/source/walk-hair-midnight.png",
+  "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+  "frames": [
+    {
+      "frame": "idle/hair-midnight/S/00",
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/S/01",
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/S/02",
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/S/03",
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/SW/00",
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/SW/01",
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/SW/02",
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/SW/03",
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/W/00",
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/W/01",
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/W/02",
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/W/03",
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/NW/00",
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/NW/01",
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/NW/02",
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/NW/03",
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/N/00",
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/N/01",
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/N/02",
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/N/03",
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/NE/00",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/NE/01",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/NE/02",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/NE/03",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/E/00",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/E/01",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/E/02",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/E/03",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/SE/00",
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/SE/01",
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/SE/02",
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    },
+    {
+      "frame": "idle/hair-midnight/SE/03",
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway"
+    }
+  ]
+}

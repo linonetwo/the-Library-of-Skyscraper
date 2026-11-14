@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "hair-midnight-back",
+  "status": "prototype",
+  "releaseApproved": false,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/walk-hair-midnight.png",
+  "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+  "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+  "method": "Shared directional hair artwork (column 0 only), re-registered to dedicated idle crown; low-amplitude lagged tip sway, not a reused walk animation.",
+  "recipeSha256": "e6f279ebee69fd5988827a3c099d1913b0eaf8355003971bfd98295baca32c42",
+  "registration": "arena/art/source/idle-hair-midnight-back-registration.json",
+  "atlasPngSha256": "994bdf457dff1577d992df92f79fbc4099fe5d1213415d2846179fd328f244eb",
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ]
+}

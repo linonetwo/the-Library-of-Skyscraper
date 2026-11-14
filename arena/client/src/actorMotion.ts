@@ -23,7 +23,7 @@ export class ActorMotion {
       y: this.from.y + (this.to.y - this.from.y) * progress,
       moving,
       direction: this.direction,
-      frame: moving ? Math.floor((now - this.started) / 100) % 4 : 0,
+      frame: moving ? Math.floor((now - this.started) / 100) % 4 : Math.floor(now / 250) % 4,
     };
   }
   move(to: Point, now: number, snap = false) {

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "weapon-staff",
+  "status": "prototype",
+  "releaseApproved": false,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/walk-weapon-staff.png",
+  "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+  "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+  "method": "Shared directional staff design, column 0 only; dedicated relaxed standing right-hand grip and direction-specific depth, independent from walk carry track.",
+  "recipeSha256": "c1ac81ef6b3ce631bb1361c644e65ed1bc38912a3d461eeb90eb4a82c21c6905",
+  "registration": "arena/art/source/idle-weapon-staff-registration.json",
+  "atlasPngSha256": "642cfcf212447a61207e9fcbf5b415f290771cb8aa82bb3738131795a2ec7569",
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ]
+}

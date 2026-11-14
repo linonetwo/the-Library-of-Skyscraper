@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "hair-midnight-front",
+  "source": "arena/art/source/walk-hair-midnight.png",
+  "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+  "frames": [
+    {
+      "frame": "idle/hair-midnight-front/S/00",
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/S/01",
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/S/02",
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/S/03",
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/SW/00",
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/SW/01",
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/SW/02",
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/SW/03",
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/W/00",
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/W/01",
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/W/02",
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/W/03",
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/NW/00",
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/NW/01",
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/NW/02",
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/NW/03",
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/N/00",
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/N/01",
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/N/02",
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/N/03",
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/NE/00",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/NE/01",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/NE/02",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/NE/03",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/E/00",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/E/01",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/E/02",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/E/03",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/SE/00",
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ],
+      "phase": 0,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/SE/01",
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ],
+      "phase": 1,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/SE/02",
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ],
+      "phase": 2,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    },
+    {
+      "frame": "idle/hair-midnight-front/SE/03",
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ],
+      "phase": 3,
+      "durationMs": 250,
+      "sharedSourceColumn": 0,
+      "deformation": "idle crown breath + delayed hair tip sway",
+      "depth": "front",
+      "split": "outer hanging locks y>=53 and x<75 or x>117 behind body; remaining cap and bangs in front"
+    }
+  ]
+}

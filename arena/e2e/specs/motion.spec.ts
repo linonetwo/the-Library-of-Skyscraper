@@ -14,7 +14,7 @@ test("eight facings and continuous motion across new destinations", () => {
   expect(motion.sample(1200)).toMatchObject({ x: 50, y: 0, moving: true, direction: "E", frame: 2 });
   motion.move({ x: 50, y: 100 }, 1200);
   expect(motion.sample(1400)).toMatchObject({ x: 50, y: 50, direction: "S" });
-  expect(motion.sample(1600)).toMatchObject({ x: 50, y: 100, moving: false, frame: 0 });
+  expect(motion.sample(1600)).toMatchObject({ x: 50, y: 100, moving: false, frame: 2 });
   motion.move({ x: 0, y: 0 }, 1700, true);
   expect(motion.sample(1700)).toMatchObject({ x: 0, y: 0, moving: false });
 });
@@ -29,7 +29,7 @@ test("battlefield paper doll walks between authoritative room destinations", asy
     .then(value => JSON.parse(value || "[]") as {
       id: string; x: number; y: number; moving: boolean; animation: string; direction: string;
     }[]);
-  await expect.poll(async () => (await poses()).filter(p => p.animation === "walk-prototype").length)
+  await expect.poll(async () => (await poses()).filter(p => p.animation === "idle").length)
     .toBe(3);
   await page.evaluate(async () => {
     const session = JSON.parse(sessionStorage.getItem("arena-session")!);
@@ -45,10 +45,19 @@ test("battlefield paper doll walks between authoritative room destinations", asy
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout"))
     .toMatchObject({ x: 39, y: floorPoint(0, 0).y + 4, moving: false });
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.animation)
-    .toBe("walk-prototype");
+    .toBe("idle");
   await page.getByRole("button", { name: "单步", exact: true }).click();
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.moving,
     { intervals: [20, 20, 30] }).toBe(true);
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.moving).toBe(false);
   expect(errors).toEqual([]);
+});
+
+test("idle samples are deterministic and retain final facing", () => {
+ const motion = new ActorMotion({x:0,y:0});
+ expect(new Set([0,250,500,750].map(t => motion.sample(t).frame)).size).toBe(4);
+ motion.move({x:-100,y:0},1000);
+ expect(motion.sample(1100).moving).toBe(true);
+ expect(motion.sample(1800)).toMatchObject({moving:false,direction:"W"});
+ expect(motion.sample(1800)).toEqual(motion.sample(1800));
 });

@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "weapon-staff",
+  "source": "arena/art/source/walk-weapon-staff.png",
+  "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+  "frames": [
+    {
+      "frame": "idle/weapon-staff/S/00",
+      "hand": "right",
+      "grip": {
+        "x": 74,
+        "y": 123
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        61,
+        63,
+        27,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/S/01",
+      "hand": "right",
+      "grip": {
+        "x": 74,
+        "y": 122.86909090909091
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        61,
+        63,
+        27,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/S/02",
+      "hand": "right",
+      "grip": {
+        "x": 74,
+        "y": 122.77909090909091
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        61,
+        63,
+        27,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/S/03",
+      "hand": "right",
+      "grip": {
+        "x": 74,
+        "y": 122.91
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        61,
+        63,
+        27,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/SW/00",
+      "hand": "right",
+      "grip": {
+        "x": 73,
+        "y": 122
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 134
+      },
+      "placement": [
+        59,
+        63,
+        26,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/SW/01",
+      "hand": "right",
+      "grip": {
+        "x": 73,
+        "y": 121.85454545454546
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 134
+      },
+      "placement": [
+        59,
+        63,
+        26,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/SW/02",
+      "hand": "right",
+      "grip": {
+        "x": 73,
+        "y": 121.75454545454545
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 134
+      },
+      "placement": [
+        59,
+        63,
+        26,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/SW/03",
+      "hand": "right",
+      "grip": {
+        "x": 73,
+        "y": 121.9
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 134
+      },
+      "placement": [
+        59,
+        63,
+        26,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/W/00",
+      "hand": "right",
+      "grip": {
+        "x": 88,
+        "y": 121
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        75,
+        61,
+        21,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/W/01",
+      "hand": "right",
+      "grip": {
+        "x": 88,
+        "y": 120.84
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        75,
+        61,
+        21,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/W/02",
+      "hand": "right",
+      "grip": {
+        "x": 88,
+        "y": 120.73
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        75,
+        61,
+        21,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/W/03",
+      "hand": "right",
+      "grip": {
+        "x": 88,
+        "y": 120.89
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        75,
+        61,
+        21,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/NW/00",
+      "hand": "right",
+      "grip": {
+        "x": 116,
+        "y": 122
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 134
+      },
+      "placement": [
+        103,
+        63,
+        21,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/NW/01",
+      "hand": "right",
+      "grip": {
+        "x": 116,
+        "y": 121.85454545454546
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 134
+      },
+      "placement": [
+        103,
+        63,
+        21,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/NW/02",
+      "hand": "right",
+      "grip": {
+        "x": 116,
+        "y": 121.75454545454545
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 134
+      },
+      "placement": [
+        103,
+        63,
+        21,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/NW/03",
+      "hand": "right",
+      "grip": {
+        "x": 116,
+        "y": 121.9
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 134
+      },
+      "placement": [
+        103,
+        63,
+        21,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/N/00",
+      "hand": "right",
+      "grip": {
+        "x": 117,
+        "y": 122
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        101,
+        61,
+        23,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/N/01",
+      "hand": "right",
+      "grip": {
+        "x": 117,
+        "y": 121.85454545454546
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        101,
+        61,
+        23,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/N/02",
+      "hand": "right",
+      "grip": {
+        "x": 117,
+        "y": 121.75454545454545
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        101,
+        61,
+        23,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/N/03",
+      "hand": "right",
+      "grip": {
+        "x": 117,
+        "y": 121.9
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        101,
+        61,
+        23,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/NE/00",
+      "hand": "right",
+      "grip": {
+        "x": 118,
+        "y": 122
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        104,
+        61,
+        24,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/NE/01",
+      "hand": "right",
+      "grip": {
+        "x": 118,
+        "y": 121.85454545454546
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        104,
+        61,
+        24,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/NE/02",
+      "hand": "right",
+      "grip": {
+        "x": 118,
+        "y": 121.75454545454545
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        104,
+        61,
+        24,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/NE/03",
+      "hand": "right",
+      "grip": {
+        "x": 118,
+        "y": 121.9
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 114,
+        "y": 135
+      },
+      "placement": [
+        104,
+        61,
+        24,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/E/00",
+      "hand": "right",
+      "grip": {
+        "x": 105,
+        "y": 121
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 116,
+        "y": 134
+      },
+      "placement": [
+        92,
+        61,
+        21,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/E/01",
+      "hand": "right",
+      "grip": {
+        "x": 105,
+        "y": 120.84
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 116,
+        "y": 134
+      },
+      "placement": [
+        92,
+        61,
+        21,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/E/02",
+      "hand": "right",
+      "grip": {
+        "x": 105,
+        "y": 120.73
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 116,
+        "y": 134
+      },
+      "placement": [
+        92,
+        61,
+        21,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/E/03",
+      "hand": "right",
+      "grip": {
+        "x": 105,
+        "y": 120.89
+      },
+      "depth": "back",
+      "sourceGrip": {
+        "x": 116,
+        "y": 134
+      },
+      "placement": [
+        92,
+        61,
+        21,
+        100
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/SE/00",
+      "hand": "right",
+      "grip": {
+        "x": 119,
+        "y": 122
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 116,
+        "y": 133
+      },
+      "placement": [
+        110,
+        63,
+        20,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/SE/01",
+      "hand": "right",
+      "grip": {
+        "x": 119,
+        "y": 121.85454545454546
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 116,
+        "y": 133
+      },
+      "placement": [
+        110,
+        63,
+        20,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/SE/02",
+      "hand": "right",
+      "grip": {
+        "x": 119,
+        "y": 121.75454545454545
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 116,
+        "y": 133
+      },
+      "placement": [
+        110,
+        63,
+        20,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/weapon-staff/SE/03",
+      "hand": "right",
+      "grip": {
+        "x": 119,
+        "y": 121.9
+      },
+      "depth": "front",
+      "sourceGrip": {
+        "x": 116,
+        "y": 133
+      },
+      "placement": [
+        110,
+        63,
+        20,
+        99
+      ],
+      "carryLeanDegrees": 0,
+      "durationMs": 250
+    }
+  ]
+}
