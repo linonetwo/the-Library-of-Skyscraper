@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "arena-animation-2026-11-05.4",
+  "contentVersion": "arena-animation-2026-11-14.1",
   "generatedOn": "2026-11-05",
   "source": {
     "path": "arena/art/source/walk-body-eight-directions.png",
@@ -92,7 +92,7 @@
     "proportion": "Source is approximately 2.5–2.8 heads; exact 3-head normalization pending.",
     "cleanup": "Chroma specks removed; connected pale edge halos still need manual cleanup.",
     "alignment": "Scholar authored per-frame placements share cell anchor; original hand pixels restored as body-front. Vest width and side/back registration need art refinement.",
-    "paperDoll": "Walk body, scholar and warden outfits, ivory hair and held staff assembled across 32 poses. Midnight hair and other actions remain in production queue."
+    "paperDoll": "Walk body, scholar/warden outfits, ivory/midnight hair and directional staff are registered 32-frame prototypes. Other actions and final visual approval remain outstanding."
   },
   "coverage": [
     {
@@ -1060,9 +1060,14 @@
       "layer": "hair-midnight",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-midnight/S/00",
+        "walk/hair-midnight/S/01",
+        "walk/hair-midnight/S/02",
+        "walk/hair-midnight/S/03"
+      ],
+      "atlas": "walk-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -1070,9 +1075,14 @@
       "layer": "hair-midnight",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-midnight/SW/00",
+        "walk/hair-midnight/SW/01",
+        "walk/hair-midnight/SW/02",
+        "walk/hair-midnight/SW/03"
+      ],
+      "atlas": "walk-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -1080,9 +1090,14 @@
       "layer": "hair-midnight",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-midnight/W/00",
+        "walk/hair-midnight/W/01",
+        "walk/hair-midnight/W/02",
+        "walk/hair-midnight/W/03"
+      ],
+      "atlas": "walk-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -1090,9 +1105,14 @@
       "layer": "hair-midnight",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-midnight/NW/00",
+        "walk/hair-midnight/NW/01",
+        "walk/hair-midnight/NW/02",
+        "walk/hair-midnight/NW/03"
+      ],
+      "atlas": "walk-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -1100,9 +1120,14 @@
       "layer": "hair-midnight",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-midnight/N/00",
+        "walk/hair-midnight/N/01",
+        "walk/hair-midnight/N/02",
+        "walk/hair-midnight/N/03"
+      ],
+      "atlas": "walk-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -1110,9 +1135,14 @@
       "layer": "hair-midnight",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-midnight/NE/00",
+        "walk/hair-midnight/NE/01",
+        "walk/hair-midnight/NE/02",
+        "walk/hair-midnight/NE/03"
+      ],
+      "atlas": "walk-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -1120,9 +1150,14 @@
       "layer": "hair-midnight",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-midnight/E/00",
+        "walk/hair-midnight/E/01",
+        "walk/hair-midnight/E/02",
+        "walk/hair-midnight/E/03"
+      ],
+      "atlas": "walk-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -1130,9 +1165,14 @@
       "layer": "hair-midnight",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-midnight/SE/00",
+        "walk/hair-midnight/SE/01",
+        "walk/hair-midnight/SE/02",
+        "walk/hair-midnight/SE/03"
+      ],
+      "atlas": "walk-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -3200,6 +3240,12 @@
       "path": "arena/art/source/walk-weapon-staff.png",
       "sha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
       "provenance": "walk-weapon-staff.provenance.json"
+    },
+    {
+      "layer": "hair-midnight",
+      "path": "arena/art/source/walk-hair-midnight.png",
+      "sha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+      "provenance": "walk-hair-midnight.provenance.json"
     }
   ],
   "auxiliaryLayers": [

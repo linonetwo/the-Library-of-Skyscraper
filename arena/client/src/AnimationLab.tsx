@@ -8,6 +8,7 @@ const directions = ["S", "SW", "W", "NW", "N", "NE", "E", "SE"];
 export default function AnimationLab() {
   const [atlases, setAtlases] = useState<Record<string, AnimationAtlas> | null>(null);
   const [haired, setHaired] = useState(true);
+  const [hair, setHair] = useState<"ivory" | "midnight">("ivory");
   const [equipped, setEquipped] = useState(true);
   const [weapon, setWeapon] = useState(true);
   const [outfit, setOutfit] = useState<Outfit>("scholar");
@@ -30,15 +31,15 @@ export default function AnimationLab() {
     const timer = window.setInterval(() => setFrame(value => (value + 1) % 4), 1000 / fps);
     return () => window.clearInterval(timer);
   }, [playing, fps]);
-  const layers = walkLayers({ outfit, hair: "ivory", weapon })
+  const layers = walkLayers({ outfit, hair, weapon })
     .filter(layer => (equipped || !layer.startsWith("outfit-"))
       && (haired || !layer.startsWith("hair-")));
   return (
     <main style={{ maxWidth: 1200, margin: "auto", padding: 32 }}>
       <a href="/">← 返回竞技场</a>
       <h1>纸娃娃动画检查台</h1>
-      <p>行走基础体 + 可替换衣装 + 月白发型 + 法杖 · 八方向试产</p>
-      <p role="note">身体、衣装、月白发型与法杖各有 32 帧独立图集，共用动作、方向和帧号。法杖按握点注册，前后图层随朝向切换；比例、手指握持与完整动作继续精修。</p>
+      <p>行走基础体 + 可替换衣装 + 月白 / 午夜发型 + 法杖 · 八方向试产</p>
+      <p role="note">身体、两套衣装、两款发型与法杖各有 32 帧独立图集，共用动作、方向和帧号。法杖按握点注册，前后图层随朝向切换；比例、手指握持与完整动作继续精修。</p>
       <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap", margin: "24px 0" }}>
         <button onClick={() => setPlaying(!playing)}>{playing ? "暂停动画" : "播放动画"}</button>
         <button disabled={playing} onClick={() => setFrame((frame + 1) % 4)}>下一帧</button>
@@ -51,7 +52,10 @@ export default function AnimationLab() {
         </select></label>
         <label><input type="checkbox" checked={equipped} onChange={e => setEquipped(e.target.checked)} />
           {outfit === "scholar" ? "学者服行走层" : "守卫服行走层"}</label>
-        <label><input type="checkbox" checked={haired} onChange={e => setHaired(e.target.checked)} />月白发型行走层</label>
+        <label>发型 <select aria-label="行走发型" value={hair} onChange={e => setHair(e.target.value as "ivory" | "midnight")}>
+          <option value="ivory">月白</option><option value="midnight">午夜</option>
+        </select></label>
+        <label><input type="checkbox" checked={haired} onChange={e => setHaired(e.target.checked)} />{hair === "ivory" ? "月白" : "午夜"}发型行走层</label>
         <label><input type="checkbox" checked={weapon} onChange={e => setWeapon(e.target.checked)} />法杖行走层</label>
       </div>
       {error && <p role="alert">{error}</p>}
@@ -61,7 +65,7 @@ export default function AnimationLab() {
           style={{ padding: 16, border: "1px solid #53615b", background: "#24363c" }}>
           <h2>{direction}{direction === "S" ? " · 面向屏幕" : direction === "N" ? " · 背向屏幕" : ""}</h2>
           <AnimatedDollPreview atlases={atlases} layers={layers} direction={direction} frame={frame} />
-          <small>{outfit} · {weapon ? "持杖" : "空手"} / prototype</small>
+          <small>{outfit} · {hair} · {weapon ? "持杖" : "空手"} / prototype</small>
         </article>)}
       </section>
       <p><a href="/assets/animation/coverage.json">查看逐动作、装备、方向覆盖矩阵</a></p>

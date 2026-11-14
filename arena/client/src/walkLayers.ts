@@ -1,7 +1,7 @@
 import type { Appearance } from "./types";
 
 export const walkLayerNames = [
-  "body", "outfit-scholar", "outfit-warden", "body-front", "hair-ivory",
+  "body", "outfit-scholar", "outfit-warden", "body-front", "hair-ivory", "hair-midnight",
   "weapon-staff-back", "weapon-staff-front",
 ];
 

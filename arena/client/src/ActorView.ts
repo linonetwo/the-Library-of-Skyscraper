@@ -40,8 +40,8 @@ export class ActorView {
     const appearance = JSON.stringify(actor.appearance);
     if (appearance === this.appearance) return;
     this.appearance = appearance;
-    // Select complete registered animation sets; other outfits keep their static layers.
-    this.animated = actor.appearance.hair === "ivory";
+    // Use animation only when every layer is available; both hair sets share registrations.
+    this.animated = walkLayers(actor.appearance).every(layer => this.textures.walk[`walk/${layer}/S/00`]);
     for (const sprite of this.sprites) sprite.destroy();
     this.layers = this.animated
       ? walkLayers(actor.appearance)
