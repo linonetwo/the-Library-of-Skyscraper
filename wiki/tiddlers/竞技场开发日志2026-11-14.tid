@@ -38,6 +38,6 @@ Astra完成[[竞技场规则运行状态实施方案]]，依据既有Wiki保留m
 
 PR #1–#10经Astra技术评审后，由Terra按顺序合并到master，最终合并提交82352804a2df5557935dd2cb8b4ecff6a2faa8b7。#5受控checkbox测试与#7／#8回放超时分别移植后继修复，并通过merge传播；#3–#10均在各自head CI成功后合并。#1／#2尚未引入工作流，由#3累计CI覆盖。[[已合并PR列表|https://github.com/linonetwo/the-Library-of-Skyscraper/pulls?q=is%3Apr+is%3Amerged]]。
 
-[[规则历史PR #11|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/11]]包含服务端、工作台、MCP、专项与浏览器用例。午夜发型单独提交美术PR。后续合并由Terra在Astra评审与最终head CI通过后执行。
+[[规则历史PR #11|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/11]]包含服务端、工作台、MCP、专项与浏览器用例。[[午夜发型PR #12|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/12]]单独提交源图、打包、渲染适配与美术测试。合并由Terra在Astra评审与最终head CI通过后执行。
 
 完整动作纸娃娃、任务与规则记忆、长回放归档、桌面离线包、Steam接入继续按[[竞技场开发计划]]推进。
