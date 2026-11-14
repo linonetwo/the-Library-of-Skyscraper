@@ -1,0 +1,189 @@
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 75% 0, #24373c 0, transparent 45%);
+}
+.rail {
+  width: 76px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--line);
+  background: #101e25;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 24px 10px 16px;
+  position: relative;
+  z-index: 2;
+}
+.brand-icon {
+  width: 47px;
+  height: 47px;
+  border: 1px solid #a79061;
+  color: #dcc392;
+  display: grid;
+  place-items: center;
+  transform: rotate(45deg);
+  border-radius: 4px;
+}
+.brand-icon svg {
+  transform: rotate(-45deg);
+}
+.rail-mark {
+  font-family: "Noto Serif SC", serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--gold);
+  margin: 27px 0 34px;
+}
+.rail nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.rail nav button {
+  height: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #7b8d92;
+  border-radius: 5px;
+  position: relative;
+}
+.rail nav button svg {
+  width: 21px;
+  height: 21px;
+}
+.rail nav button span {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.rail nav button.active {
+  color: #e8cf9b;
+  background: #243238;
+}
+.rail nav button.active:before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 2px;
+  background: #cfb481;
+  left: -10px;
+}
+.help-button {
+  margin-top: auto;
+  padding: 30px 0 15px;
+  color: #7f9298;
+}
+.rail-version {
+  font-size: 9px;
+  color: #607980;
+  letter-spacing: 1px;
+}
+.main-shell {
+  min-width: 0;
+  flex: 1;
+  padding: 0 30px;
+}
+.topbar {
+  height: 105px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.wordmark h1 {
+  font-size: 24px;
+  color: #e9ddbf;
+  font-weight: 600;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+.wordmark h1 span {
+  font-size: 20px;
+  font-weight: 400;
+}
+.wordmark p {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 9px;
+  font-size: 8px;
+  letter-spacing: 2.4px;
+  color: #859490;
+}
+.wordmark p i {
+  width: 3px;
+  height: 3px;
+  background: #bba36f;
+  transform: rotate(45deg);
+}
+.resource-strip {
+  display: flex;
+  gap: 32px;
+  padding: 0 20px;
+}
+.resource-strip > div {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.resource-strip svg {
+  color: #bfa473;
+}
+.resource-strip span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.resource-strip small {
+  font-size: 10px;
+  color: #93a09c;
+}
+.resource-strip b {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #e5decb;
+}
+.session-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  text-align: left;
+  padding: 10px 0 10px 20px;
+  border-left: 1px solid var(--line);
+  min-width: 165px;
+}
+.session-button small {
+  display: block;
+  margin-top: 5px;
+  color: #718a90;
+  font-size: 9px;
+  max-width: 145px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.connection-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #68777b;
+}
+.connection-dot.connected {
+  background: #a0c295;
+  box-shadow: 0 0 9px #8bad8555;
+}
+.connection-dot.connecting {
+  background: #c9ad78;
+  animation: pulse 1s infinite;
+}
+.connection-dot.disconnected {
+  background: #e19781;
+}

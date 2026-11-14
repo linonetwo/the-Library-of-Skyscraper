@@ -1,0 +1,31 @@
+@media (min-width: 1600px) {
+  .main-shell {
+    padding: 0 42px;
+  }
+  .workspace {
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: 32px;
+  }
+  .inspector {
+    padding-left: 30px;
+  }
+  .map-shell {
+    height: 57vh;
+  }
+  .portrait-frame {
+    height: 260px;
+  }
+  .portrait-frame > .paper-doll {
+    width: 250px;
+    height: 250px;
+  }
+  .character-heading h2 {
+    font-size: 26px;
+  }
+  .squad-card {
+    min-height: 130px;
+  }
+  .topbar {
+    height: 112px;
+  }
+}

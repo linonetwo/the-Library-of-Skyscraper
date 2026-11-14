@@ -15,6 +15,8 @@ export interface Actor {
   roomId: string;
   hp: number;
   maxHp: number;
+  cargo: number;
+  cargoCapacity: number;
   state: string;
 }
 export interface Player {

@@ -1,0 +1,174 @@
+@media (max-width: 760px) {
+  .app-shell {
+    display: block;
+  }
+  .rail {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 61px;
+    padding: 0;
+    background: #12252bf5;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #98a48544;
+    flex-direction: row;
+    z-index: 10;
+  }
+  .rail .brand-icon,
+  .rail-mark,
+  .rail-version,
+  .help-button {
+    display: none;
+  }
+  .rail nav {
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-around;
+  }
+  .rail nav button {
+    height: 58px;
+    flex: 1;
+    gap: 4px;
+    border-radius: 0;
+  }
+  .rail nav button svg {
+    width: 20px;
+    height: 20px;
+  }
+  .rail nav button span {
+    font-size: 9px;
+  }
+  .rail nav button.active:before {
+    top: 0;
+    left: 35%;
+    right: 35%;
+    width: 30%;
+    height: 2px;
+  }
+  .main-shell {
+    padding: 0 16px 68px;
+  }
+  .topbar {
+    height: 98px;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 15px 0 12px;
+  }
+  .wordmark h1 {
+    font-size: 19px;
+  }
+  .wordmark h1 span {
+    font-size: 16px;
+  }
+  .wordmark p {
+    font-size: 6px;
+    letter-spacing: 1.5px;
+    margin-top: 6px;
+  }
+  .resource-strip {
+    order: 3;
+    gap: 22px;
+    padding: 3px 0 0;
+    width: 100%;
+  }
+  .resource-strip > div {
+    gap: 7px;
+  }
+  .resource-strip svg {
+    display: block;
+    width: 12px;
+    height: 12px;
+  }
+  .resource-strip span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+  .resource-strip small {
+    font-size: 8px;
+  }
+  .resource-strip b {
+    font-size: 13px;
+  }
+  .session-button {
+    padding: 0;
+    border: 0;
+    gap: 6px;
+  }
+  .session-button small {
+    font-size: 7px;
+    margin-top: 3px;
+  }
+  .session-button > svg {
+    display: none;
+  }
+  .workspace {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    gap: 25px;
+  }
+  .section-heading {
+    margin-bottom: 15px;
+    height: 40px;
+  }
+  .section-heading .eyebrow {
+    font-size: 7px;
+  }
+  .section-heading h2 {
+    font-size: 18px;
+  }
+  .map-shell {
+    height: 470px;
+  }
+  .map-topline {
+    left: 13px;
+    right: 12px;
+    font-size: 8px;
+  }
+  .map-topline > span {
+    letter-spacing: 0;
+  }
+  .map-topline button {
+    font-size: 8px;
+  }
+  .map-compass {
+    right: 13px;
+    top: 65px;
+  }
+  .map-compass svg {
+    width: 34px;
+    height: 34px;
+  }
+  .map-bottomline {
+    left: 12px;
+    right: 12px;
+  }
+  .map-bottomline > span {
+    font-size: 7px;
+  }
+  .zoom-controls {
+    height: 24px;
+  }
+  .zoom-controls button {
+    height: 22px;
+    width: 23px;
+  }
+  .zoom-controls span {
+    font-size: 8px;
+    min-width: 35px;
+    padding: 0 3px;
+  }
+  .squad-section {
+    padding-top: 18px;
+  }
+  .squad-cards {
+    gap: 7px;
+  }
+  .squad-card {
+    min-height: 127px;
+  }
+}

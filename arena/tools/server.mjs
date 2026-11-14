@@ -16,7 +16,7 @@ const identifier = z.string().min(1).max(128);
 const handleSchema = { handle: identifier.describe('Opaque local handle returned by Session.create/join; not a player credential.') };
 const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('move'), actorId: identifier, roomId: identifier }).strict(),
-  ...['gather', 'attack', 'capture'].map(type => z.object({ type: z.literal(type), actorId: identifier }).strict()),
+  ...['gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type), actorId: identifier }).strict()),
   z.object({ type: z.literal('build'), roomId: identifier, kind: z.enum(['tower', 'catalog']) }).strict(),
   z.object({ type: z.literal('rule'), preset: z.enum(['gather', 'defend', 'explore']), retreatHp: z.number().int().min(0).max(100) }).strict(),
 ]);
@@ -91,6 +91,11 @@ tool('Replay.getEvents', 'Read retained diagnostic events after an optional even
     const snapshot = await state(args.handle);
     return { retainedOnly: true, persistent: false, tick: snapshot.tick, firstRetainedId: snapshot.events[0]?.id ?? null,
       events: snapshot.events.filter(event => event.id > (args.afterId ?? 0)) };
+  }, true);
+tool('Replay.export', 'Export the complete bounded, versioned command recording and final snapshot. Contains no bearer credentials. In-memory only: save the returned JSON before authority restart; overflow is rejected.',
+  handleSchema, async args => {
+    const credential = credentials(args.handle);
+    return request(sessionPath(credential, 'replay'), undefined, credential.token);
   }, true);
 registerBrowserTools(server);
 await server.connect(new StdioServerTransport());

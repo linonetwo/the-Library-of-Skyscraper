@@ -1,0 +1,104 @@
+.inspector {
+  border-left: 1px solid var(--line);
+  padding-left: 25px;
+  padding-top: 3px;
+  min-width: 0;
+}
+.inspector-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inspector-top .eyebrow {
+  font-size: 7px;
+  letter-spacing: 1.6px;
+}
+.serial {
+  font-family: Georgia, serif;
+  font-size: 9px;
+  color: #7c9190;
+  letter-spacing: 1px;
+}
+.character-heading {
+  margin-top: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.character-heading h2 {
+  font-size: 23px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  color: #e8dec3;
+}
+.character-heading > span {
+  font-size: 8px;
+  color: #93a79e;
+  letter-spacing: 1.5px;
+}
+.portrait-frame {
+  height: 230px;
+  position: relative;
+  isolation: isolate;
+  margin: 16px 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, #d5c6a626, transparent 60%),
+    linear-gradient(135deg, #2b403f50, #162a2f);
+  border: 1px solid #a7926140;
+  overflow: hidden;
+}
+.portrait-frame:before,
+.portrait-frame:after {
+  position: absolute;
+  content: "";
+  height: 6px;
+  width: 6px;
+  border: 1px solid #b59a6d;
+  transform: rotate(45deg);
+  top: 10px;
+}
+.portrait-frame:before {
+  left: 10px;
+}
+.portrait-frame:after {
+  right: 10px;
+}
+.portrait-rings {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border: 1px solid #b5a67130;
+  border-radius: 50%;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+}
+.portrait-rings:after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid #b5a67120;
+  border-radius: 50%;
+}
+.portrait-caption {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  color: #91a097;
+}
+.portrait-seal {
+  position: absolute;
+  right: 11px;
+  bottom: 33px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #aa986158;
+  width: 30px;
+  height: 35px;
+  color: #a18e60;
+  border-radius: 15px 15px 2px 2px;
+}

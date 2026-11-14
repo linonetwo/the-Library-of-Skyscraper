@@ -1,0 +1,31 @@
+title: 竞技场当前实现架构
+tags: 通天书苑：竞技场 竞技场开发计划
+type: text/vnd.tiddlywiki
+
+!! 数据流与职责
+
+React 界面经 HTTP 提交命令，Rust / Axum 服务执行 Session 权威模拟，通过 WebSocket 推送 Snapshot。Pixi 将快照与本地展示选择组合成战场。MCP 复用命令接口，并提供浏览器页面、操作和截图能力。
+
+* 客户端：App 装配界面；ArenaWorkspace 管理选择与展示状态；useArenaSession 管理网络会话；arenaApi 封装传输；MapCanvas 管理渲染生命周期；mapScene 绘制场景。
+* 服务端：store 管理赛局集合；session 管理单局状态；commands 分派玩家命令；actions 与 economy 实现动作和经济；simulation 推进固定 tick；replay 重演操作。
+* 技术美术：源图 → 注册与裁切 → 纹理图集 → 纸娃娃分层渲染。动作、方向、帧号与装备层是共同索引。
+* 工具：MCP 的 Session、Simulation、Replay、Page、Input 分组复用运行中的游戏；浏览器用例覆盖单机与双客户端。
+
+!! 已采用的设计模式
+
+|!模式|!落点|
+|ECS|Bevy World 与 Actor 组件；当前推进逻辑集中在 Session 的模拟模块|
+|命令模式|玩家动作、规则调整、步进等序列化 Command|
+|操作记录与重演|Join、Command、Advance 日志重建独立 Session 和时间轴|
+|策略选择|gather、defend、explore 数据驱动的行动分支|
+|组合式纸娃娃|身体、服装、头发、武器共享帧坐标与锚点|
+|容器与展示分离|hooks 管状态，独立组件展示，Pixi 管绘制|
+|适配器|HTTP、WebSocket、MCP、浏览器控制连接核心功能|
+
+!! 实现边界与下一阶段
+
+当前为单进程、内存赛局、固定 tick 原型。角色外观选择保存在客户端，动作图集仍处制作阶段。优先推进装备状态联机同步、完整动作纸娃娃、赛局及回放持久化、规则脚本执行。桌面离线打包、Steam 接入与产品化要求继续依据[[竞技场 Steam 上线与产品化]]推进。
+
+!! 组织原则
+
+主代理负责领域边界、公共类型、集成与运行效果。子代理按模拟、界面、美术分配明确文件所有权。模块按职责拆分，共用命令与快照，业务规则集中在核心模拟，制作细节记录到按日工作日志。

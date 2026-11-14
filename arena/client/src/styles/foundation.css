@@ -1,0 +1,72 @@
+:root {
+  font-family: "Noto Sans SC", system-ui, sans-serif;
+  color: #d8dfd9;
+  background: #101e25;
+  font-synthesis: none;
+  font-weight: 400;
+  font-size: 13px;
+  --gold: #ceb17b;
+  --dim: #7e9396;
+  --line: rgba(190, 196, 169, 0.16);
+  --paper: #e7dcc2;
+  --ink: #293b3e;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 360px;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+  color: inherit;
+  background: none;
+  border: 0;
+}
+button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+button:not(:disabled),
+a,
+input {
+  touch-action: manipulation;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #e7ca8e;
+  outline-offset: 4px;
+}
+button {
+  transition:
+    background 0.18s,
+    color 0.18s,
+    border-color 0.18s,
+    opacity 0.18s;
+}
+button:hover:not(:disabled) {
+  color: #ffe6b2;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3 {
+  font-family: "Noto Serif SC", "Songti SC", serif;
+}
+input {
+  accent-color: #b79961;
+}
+svg {
+  flex-shrink: 0;
+}

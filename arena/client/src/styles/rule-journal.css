@@ -1,0 +1,125 @@
+.workspace-overlay {
+  position: absolute;
+  inset: 0;
+  background: #1b3037f7;
+  z-index: 5;
+  overflow: auto;
+  padding: 32px 40px;
+}
+.rule-editor {
+  max-width: 570px;
+  margin: auto;
+}
+.rule-editor h2,
+.journal-panel h2 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #e7dec4;
+  margin: 13px 0;
+}
+.rule-editor > p,
+.journal-panel > p {
+  font-size: 11px;
+  color: #98aaa2;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+.field-label {
+  font-size: 11px;
+  color: #b8c1ad;
+  display: flex;
+  justify-content: space-between;
+  margin: 18px 0 10px;
+}
+.field-label b {
+  font-weight: 500;
+  color: #dbc08a;
+}
+.presets {
+  display: flex;
+  gap: 9px;
+}
+.presets button {
+  position: relative;
+  text-align: left;
+  border: 1px solid #86977b45;
+  padding: 13px 12px;
+  background: #3146404d;
+  flex: 1;
+  min-width: 0;
+}
+.presets button.chosen {
+  border-color: #bea372;
+  background: #a5946121;
+}
+.presets button > span {
+  font-family: Georgia, serif;
+  color: #a49169;
+  font-size: 13px;
+}
+.presets strong {
+  display: block;
+  font-family: "Noto Serif SC", serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 7px 0;
+  color: #e1d8ba;
+}
+.presets small {
+  font-size: 9px;
+  color: #9caf9c;
+  line-height: 1.8;
+  display: block;
+}
+.presets button svg {
+  position: absolute;
+  top: 13px;
+  right: 11px;
+  color: #dbc18d;
+}
+.rule-editor input[type="range"] {
+  width: 100%;
+  height: 3px;
+  display: block;
+  margin: 20px 0 12px;
+}
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #849b94;
+  font-size: 9px;
+}
+.rule-summary {
+  font-size: 10px;
+  color: #a8b7a3;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 18px 0;
+  margin: 7px 0;
+}
+.journal-list {
+  margin-top: 25px;
+}
+.journal-list > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #93a17a25;
+  font-size: 11px;
+}
+.journal-list time {
+  font-family: monospace;
+  color: #c4a874;
+  font-size: 10px;
+}
+.journal-list span {
+  flex: 1;
+  color: #c1cbbc;
+}
+.journal-list small {
+  font-size: 8px;
+  color: #73938f;
+}

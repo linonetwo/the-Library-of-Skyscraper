@@ -13,25 +13,22 @@ Configure an MCP client with command `node` and absolute argument
 Optional `ARENA_BASE_URL` accepts a plain HTTP loopback origin only. Redirects are
 disabled. Standard output is reserved for official SDK protocol messages.
 
-Thirteen tools expose narrow, CDP-style domains: `Session.create`, `Session.join`,
+Fourteen tools expose CDP-style domains: `Session.create`, `Session.join`,
 `Session.getState`, `Simulation.command`, `Simulation.pause`, `Simulation.step`,
-`Simulation.reset`, `Replay.getEvents`, `Page.open`, `Page.getState`,
+`Simulation.reset`, `Replay.getEvents`, `Replay.export`, `Page.open`, `Page.getState`,
 `Page.captureScreenshot`, `Page.close`, `Input.action`. Create/join returns a local handle, session
-ID and player ID, never the bearer token. Credentials are held in process memory,
+ID and player ID. Credentials are held in process memory,
 and are lost on MCP restart. Reuse a handle after transient connection failure;
 joining again creates another player. All commands pass through the authority.
-Online pause/step/reset are forbidden. Diagnostic events are a bounded ring, not
-an archival replay. No arbitrary evaluation, shell, filesystem, or remote fetch.
+Training sessions provide pause/step/reset. `Replay.getEvents` reads recent
+events; `Replay.export` downloads the complete command recording.
 
 Browser control is optional and isolated from simulation handles. It launches
-headless Chromium at the fixed `http://127.0.0.1:5173` UI, with HTTP/WebSocket
-requests limited to the local UI and authority ports. It supports whitelisted
+headless Chromium at `http://127.0.0.1:5173`. It supports
 training/lobby navigation, selecting actors/rooms, outfits/hair/staff, rules,
 map zoom and player commands. `Page.getState` reads rendered body text and visible
-button labels only; it never reads browser storage or network credentials.
-`Page.captureScreenshot` returns PNG image content directly via MCP, with no
-caller-controlled file path. `Page.close` discards the temporary browser context.
-There is no arbitrary selector or script tool.
+button labels. `Page.captureScreenshot` returns PNG image content directly via
+MCP. `Page.close` releases the browser context.
 
 ```sh
 npm test                     # official SDK initialize/list/call with mock HTTP authority

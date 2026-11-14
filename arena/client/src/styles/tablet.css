@@ -1,0 +1,164 @@
+@media (max-width: 980px) {
+  .rail {
+    width: 62px;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+  .rail-mark {
+    margin: 25px 0;
+  }
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+  }
+  .brand-icon svg {
+    width: 23px;
+  }
+  .topbar {
+    height: 94px;
+  }
+  .resource-strip {
+    gap: 17px;
+  }
+  .resource-strip svg {
+    display: none;
+  }
+  .resource-strip > div {
+    gap: 0;
+  }
+  .resource-strip small {
+    font-size: 9px;
+  }
+  .session-button {
+    min-width: 0;
+    padding-left: 12px;
+  }
+  .session-button > span:nth-child(2) {
+    max-width: 85px;
+    font-size: 10px;
+  }
+  .session-button small {
+    max-width: 85px;
+  }
+  .workspace {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 15px;
+  }
+  .inspector {
+    padding-left: 15px;
+  }
+  .map-shell {
+    height: 460px;
+  }
+  .character-heading h2 {
+    font-size: 19px;
+  }
+  .character-heading > span {
+    font-size: 7px;
+  }
+  .inspector-top .eyebrow {
+    letter-spacing: 1px;
+  }
+  .portrait-frame {
+    height: 190px;
+  }
+  .portrait-frame > .paper-doll {
+    width: 190px;
+    height: 190px;
+  }
+  .outfit-options {
+    gap: 5px;
+  }
+  .outfit-options button {
+    font-size: 9px;
+    padding: 9px 4px;
+  }
+  .outfit-options svg {
+    width: 13px;
+  }
+  .appearance-options > span {
+    display: none;
+  }
+  .squad-card {
+    padding: 28px 10px 10px;
+    min-height: 127px;
+  }
+  .squad-card > .paper-doll {
+    position: absolute;
+    right: -8px;
+    top: 2px;
+    width: 70px;
+    height: 85px;
+    opacity: 0.45;
+  }
+  .squad-card > div:last-of-type {
+    z-index: 1;
+  }
+  .squad-card > div > span {
+    max-width: 80px;
+  }
+  .squad-card strong {
+    font-size: 15px;
+  }
+  .section-heading h2 {
+    font-size: 18px;
+  }
+  .phase-tag {
+    font-size: 9px;
+  }
+  .phase-tag small {
+    font-size: 8px;
+  }
+  .simulation-bar {
+    padding: 0 8px;
+  }
+  .simulation-bar > div {
+    gap: 5px;
+  }
+  .simulation-bar small {
+    display: none;
+  }
+  .map-bottomline > span {
+    font-size: 8px;
+    gap: 4px;
+  }
+  .legend-dot {
+    margin-left: 6px;
+  }
+  .entry-card {
+    min-width: 290px;
+    padding: 25px;
+  }
+  .entry-card h2 {
+    font-size: 28px;
+  }
+  .workspace-overlay {
+    padding: 23px;
+  }
+  .presets {
+    flex-direction: column;
+  }
+  .presets button {
+    padding: 9px 12px;
+  }
+  .presets button > span {
+    float: left;
+    margin: 2px 9px 0 0;
+  }
+  .presets strong {
+    margin: 0 0 4px;
+  }
+  .presets small {
+    margin-left: 25px;
+  }
+  .rule-editor h2 {
+    font-size: 23px;
+  }
+  .rule-summary {
+    font-size: 9px;
+    line-height: 1.7;
+  }
+  .rule-editor > p {
+    font-size: 10px;
+  }
+}

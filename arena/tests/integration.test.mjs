@@ -20,6 +20,21 @@ async function http(path, body, token, status = 200) {
 const create = (mode, seed = 42) => http('/api/sessions', { mode, seed });
 const state = (c, status = 200) => http(`/api/sessions/${c.sessionId}/state`, undefined, c.token, status);
 const command = (c, body, status = 200) => http(`/api/sessions/${c.sessionId}/commands`, body, c.token, status);
+test('HTTP: replay export requires ownership, excludes credentials and records accepted commands', { skip: !enabled }, async () => {
+  const session = await create('training', 71);
+  const other = await create('training', 72);
+  await command(session, { type: 'reset' });
+  await command(session, { type: 'step', ticks: 8 });
+  const route = `/api/sessions/${session.sessionId}/replay`;
+  await http(route, undefined, undefined, 401);
+  await http(route, undefined, other.token, 401);
+  const recording = await http(route, undefined, session.token);
+  assert.equal(recording.version, 1);
+  assert.equal(recording.finalSnapshot.tick, 8);
+  assert(recording.operations.some(operation => operation.command?.type === 'step'));
+  assert(!JSON.stringify(recording).includes(session.token));
+  assert.deepEqual(recording.finalSnapshot, await state(session));
+});
 function firstSnapshot(credential, afterTick = -1) {
   return new Promise((resolve, reject) => {
     const socket = new WebSocket(`${base.replace('http:', 'ws:')}/ws/${credential.sessionId}?token=${credential.token}`);

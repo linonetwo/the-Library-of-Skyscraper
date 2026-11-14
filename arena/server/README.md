@@ -18,8 +18,15 @@ It demonstrates gathering, construction, PVE combat, retreat, catalog control,
 deterministic reset/step, and shared online rooms. Parameterized rules are not
 the wiki's eventual arbitrary TypeScript script platform.
 
-Known limitations: sessions are memory-only and capped at 128; there is no
-session expiry, persistent command/event replay, matchmaking, Steam identity,
+Authenticated `GET /api/sessions/{id}/replay` exports a versioned,
+credential-free command recording (maximum 10,000 operations / 2 MiB).
+`Session::from_replay` reconstructs joins, accepted commands and ticks and
+verifies the entire final snapshot. Reconstructed credentials are synthetic:
+never register a replay as a live authenticated session. Overflow fails export
+explicitly instead of returning a truncated recording.
+
+Known limitations: sessions and recordings are memory-only and capped at 128; there is no
+session expiry, persistent replay storage, matchmaking, Steam identity,
 encrypted external transport, fog of war, production rate limiting, distributed
 simulation or crash recovery. Latest 100 events are diagnostic history only.
 All participants see the same room state. Towers restore allied occupants' HP;

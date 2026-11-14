@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import type { Outfit } from "./types";
+import atlasData from "../public/assets/doll-atlas.json";
 
 interface Atlas {
   frames: Record<
@@ -8,7 +8,7 @@ interface Atlas {
   >;
   meta: { size: { w: number; h: number } };
 }
-let atlasRequest: Promise<Atlas | null> | undefined;
+const atlas: Atlas = atlasData;
 
 export default function PaperDoll({
   outfit = "scholar",
@@ -21,23 +21,6 @@ export default function PaperDoll({
   weapon?: boolean;
   small?: boolean;
 }) {
-  const [atlas, setAtlas] = useState<Atlas | null>(null);
-  useEffect(() => {
-    let active = true;
-    atlasRequest ||= fetch("/assets/doll-atlas.json")
-      .then((r) =>
-        r.ok && r.headers.get("content-type")?.includes("json")
-          ? r.json()
-          : null,
-      )
-      .catch(() => null);
-    atlasRequest.then((value) => {
-      if (active) setAtlas(value);
-    });
-    return () => {
-      active = false;
-    };
-  }, []);
   const layers = [
     "body",
     `outfit-${outfit}`,
@@ -50,35 +33,21 @@ export default function PaperDoll({
       aria-label={`${outfit === "scholar" ? "学者长袍" : "守卫制服"}纸娃娃角色`}
     >
       <div className="doll-halo" />
-      {atlas ? (
-        layers.map((name) => {
-          const entry = atlas.frames[name] || atlas.frames[`${name}.png`];
-          if (!entry) return null;
-          const { x, y, w, h } = entry.frame;
-          return (
-            <div
-              key={name}
-              className="doll-layer"
-              style={{
-                aspectRatio: `${w}/${h}`,
-                backgroundImage: "url(/assets/doll-atlas.png)",
-                backgroundSize: `${(atlas.meta.size.w / w) * 100}% ${(atlas.meta.size.h / h) * 100}%`,
-                backgroundPosition: `${atlas.meta.size.w === w ? 0 : (x / (atlas.meta.size.w - w)) * 100}% ${atlas.meta.size.h === h ? 0 : (y / (atlas.meta.size.h - h)) * 100}%`,
-              }}
-            />
-          );
-        })
-      ) : (
-        <div className={`doll-fallback ${hair}`}>
-          <span className="doll-head">
-            <i />
-            <i />
-          </span>
-          <span className="doll-body" />
-          <span className="doll-legs" />
-          {weapon && <span className="doll-staff" />}
-        </div>
-      )}
+      {layers.map((name) => {
+        const { x, y, w, h } = atlas.frames[name].frame;
+        return (
+          <div
+            key={name}
+            className="doll-layer"
+            style={{
+              aspectRatio: `${w}/${h}`,
+              backgroundImage: "url(/assets/doll-atlas.png)",
+              backgroundSize: `${(atlas.meta.size.w / w) * 100}% ${(atlas.meta.size.h / h) * 100}%`,
+              backgroundPosition: `${(x / (atlas.meta.size.w - w)) * 100}% ${(y / (atlas.meta.size.h - h)) * 100}%`,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }
