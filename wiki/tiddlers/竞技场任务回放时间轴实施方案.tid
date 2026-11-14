@@ -1,0 +1,35 @@
+title: 竞技场任务回放时间轴实施方案
+tags: 竞技场开发计划
+type: text/vnd.tiddlywiki
+
+本切片在[[竞技场规则运行状态实施方案]]之上，将本人任务与版本记忆接入已有回放播放器。依据[[竞技场回放事件流与片段索引]]：历史补丁是事实来源，不重跑脚本，不从当前运行状态填补历史。
+
+!! 数据边界
+
+# HTTP timeline 仍先认证玩家，再通过 export_replay_for(owner) 获得仅含本人私有补丁的回放。公开世界 Snapshot、WebSocket 和源码包不增加私有字段。
+# ReplayFrame 保留 operationIndex、tick、snapshot；私有历史放在 timeline 的独立可选 ruleHistory 中。owner 来自已过滤回放的 finalRuleState.playerId，不接受客户端任意指定 viewer。
+# ruleHistory 为 playerId 与 changes；每条 change 标明应用后的 operationIndex。使用权威重演后规范化的提交记录，而非未经校验的输入操作。成功且 runtimeValidated 的本人决策携带执行前 tick、sourceHash、memoryPatch/taskPatches；Reset 事件仅标明 reset。失败和旧语义记录不产生状态补丁。
+# 沿用既有补丁格式，不另造通用事件框架。回放文件本身已有所需事实，不为时间轴提升 replay 文件版本。
+
+!! 播放投影
+
+客户端小型投影函数按 operationIndex 应用已记录补丁，维护 sourceHash 到 memory 的映射及跨版本共享 tasks。remove 后 set；任务补丁按原顺序；任务来源字段由事件 sourceHash、tick 确定。客户端不再实施一套权限或配额校验。
+
+sourceHash 优先采用决策记录，缺省时采用该操作时的规则绑定；无绑定的合法任务删除携带 null，不因此丢弃事件。合法记忆补丁和任务 upsert 仍由权威层保证具有版本来源。本次投影的记忆对象可原地应用补丁，不为每次小修改复制整份记忆；不修改输入历史。
+
+所选帧的公开玩家元数据决定当时活跃 sourceHash；切换版本选择对应记忆，停用脚本显示无活跃版本但保留任务。Reset 清空全部版本记忆与任务，源码绑定仍按公开帧展示。不能用 tick 唯一定位，因为 Reset 后 tick 可重复；来源跳转使用 operationIndex。
+
+旧 v1、公开分享或未携带私有状态的回放显示“未记录私有状态”，而非虚构当前任务。已有私有历史中尚未创建任务的帧正常显示空队列。
+
+!! 大小与模块
+
+不能为每帧重复序列化完整 memory/tasks：各 64 KiB 乘以 10000 帧可新增约 1.25 GiB，即使每步只修改一个计数器也无法靠全状态去重解决。新增数据保持为已有有界回放的私有增量；客户端只保留当前投影，不生成所有帧的私有状态数组。顺播可增量应用，向后拖动可从头折叠；不在本切片引入分页服务或通用缓存。
+
+后端投影与测试独立短模块；客户端投影、任务面板与播放器分别负责事实归并、展示、时间选择。任务详情展示 actor、目标、状态、阻塞原因、来源版本与来源操作，选帧/播放时同步更新；不引入任务编辑器。
+
+!! 验收
+
+# 两玩家同 sourceHash，timeline 仅含本人 memory/tasks，公开 Snapshot 不变。
+# A→B→A、停用、Reset、失败输出、同 tick 多操作均对应正确历史；任务来源操作可追溯。
+# 拖动与播放同步更新队列和记忆；旧回放明确无私有历史，不读取当前运行状态。
+# 大记忆只修改小计数器时，新增 timeline 数据随补丁大小增长，不随完整状态乘帧数增长。

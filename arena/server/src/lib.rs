@@ -13,6 +13,7 @@ mod simulation;
 mod types;
 
 pub mod replay;
+mod replay_rule_history;
 pub use appearance::{Appearance, Hair, Outfit};
 pub use checkpoint::SessionCheckpoint;
 pub use replay::{Replay, ReplayOperation};

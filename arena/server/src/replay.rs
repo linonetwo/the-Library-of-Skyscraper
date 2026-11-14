@@ -59,6 +59,8 @@ pub struct ReplayFrame {
 pub struct ReplayTimeline {
     pub session_id: String,
     pub frames: Vec<ReplayFrame>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rule_history: Option<crate::replay_rule_history::RuleHistory>,
 }
 
 impl Replay {
@@ -66,6 +68,7 @@ impl Replay {
     pub fn timeline(&self) -> Result<ReplayTimeline, String> {
         self.validate_limits()?;
         let mut session = Session::new(self.session_id.clone(), self.mode, self.seed);
+        let mut rule_history = crate::replay_rule_history::RuleHistory::for_replay(self);
         let mut frames = Vec::with_capacity(self.operations.len() + 1);
         frames.push(ReplayFrame {
             operation_index: 0,
@@ -73,7 +76,21 @@ impl Replay {
             snapshot: session.snapshot(),
         });
         for (index, operation) in self.operations.iter().enumerate() {
+            let tick = session.tick;
+            // Keep only this operation's normalized committed facts. This also
+            // avoids the recording cap during replay reconstruction.
+            session.replay_operations.clear();
             session.replay_operation(index, operation)?;
+            if let Some(history) = &mut rule_history
+                && let Some(committed) = session.replay_operations.last()
+            {
+                let hash = session
+                    .players
+                    .get(&history.player_id)
+                    .and_then(|player| player.script.as_ref())
+                    .map(|script| script.source_hash.as_str());
+                history.record(committed, index + 1, tick, hash);
+            }
             frames.push(ReplayFrame {
                 operation_index: index + 1,
                 tick: session.tick,
@@ -83,6 +100,7 @@ impl Replay {
         Ok(ReplayTimeline {
             session_id: self.session_id.clone(),
             frames,
+            rule_history,
         })
     }
 

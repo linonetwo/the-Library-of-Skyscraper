@@ -6,7 +6,9 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
-    ...['startTraining', 'resetTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'openScriptHistory', 'loadScriptVersion', 'restoreScriptVersion', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
+    ...['openReplay', 'closeReplay', 'playReplay', 'pauseReplay', 'locateReplayTaskSource', 'startTraining', 'resetTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'openScriptHistory', 'loadScriptVersion', 'restoreScriptVersion', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
+    z.object({ type: z.literal('seekReplay'), operationIndex: z.number().int().min(0) }).strict(),
+    z.object({ type: z.literal('selectReplayTask'), index: z.number().int().min(0) }).strict(),
     z.object({ type: z.literal('editScript'), source: z.string() }).strict(),
     z.object({ type: z.literal('loadScriptTemplate'), template: z.enum(['recall', 'gather', 'defend', 'explore', 'memory-gather']) }).strict(),
     z.object({ type: z.literal('selectScriptVersion'), sourceHash: z.string() }).strict(),
@@ -72,12 +74,27 @@ export function registerBrowserTools(server) {
       maps.map(map => JSON.parse(map.dataset.actors || '[]')));
     const scriptVersions = await active.getByLabel('规则历史版本').locator('option').evaluateAll(options =>
       options.filter(option => option.value).map(option => ({ sourceHash: option.value, label: option.textContent })));
-    return { text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    const replayDialog = active.getByRole('dialog', { name: '书苑行迹 · 赛局回放' });
+    const replay = await replayDialog.count() ? {
+      operationIndex: Number(await active.getByRole('slider', { name: '回放进度' }).inputValue()),
+      maxOperationIndex: Number(await active.getByRole('slider', { name: '回放进度' }).getAttribute('max')),
+      ruleState: await active.getByLabel('回放规则状态').innerText(),
+      memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
+      tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
+    } : null;
+    return { replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   register('Input.action', 'Control training, characters, outfits, TypeScript editing/publication, rules and gameplay through the UI.', { action: actionSchema }, async ({ action }) => {
     const active = current();
     const click = name => active.getByRole('button', { name, exact: true }).click();
     switch (action.type) {
+      case 'openReplay': await click('赛局日志'); await click('播放赛局回放'); break;
+      case 'closeReplay': await click('返回实时赛局'); break;
+      case 'playReplay': await click('播放回放'); break;
+      case 'pauseReplay': await click('暂停回放'); break;
+      case 'seekReplay': await active.getByRole('slider', { name: '回放进度' }).fill(String(action.operationIndex)); break;
+      case 'selectReplayTask': await active.getByLabel('回放任务队列').getByRole('button').nth(action.index).click(); break;
+      case 'locateReplayTaskSource': await click('定位任务来源'); break;
       case 'openScripts':
         await click('行动规则');
         await click('编写 TypeScript 规则 →');
