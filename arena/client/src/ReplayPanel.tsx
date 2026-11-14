@@ -4,6 +4,7 @@ import MapCanvas from "./MapCanvas";
 import { useDialog } from "./useDialog";
 import { useReplay } from "./useReplay";
 import type { Session } from "./types";
+import ReplayRules from "./ReplayRules";
 
 export default function ReplayPanel({ session, onClose }: { session: Session; onClose: () => void }) {
   const dialog = useDialog(onClose);
@@ -39,6 +40,7 @@ export default function ReplayPanel({ session, onClose }: { session: Session; on
             onChange={(e) => replay.seek(Number(e.target.value))} />
           <p>按录制操作顺序播放 · 重置前后的行迹连续保留 · 实时赛局继续独立运行</p>
           <p>{snapshot?.events.at(-1)?.message || "赛局初始状态"}</p>
+          {replay.frame && <ReplayRules timeline={replay.timeline} frame={replay.frame} onSeek={replay.seek} />}
         </> : !replay.error && <p>正在重演赛局行迹…</p>}
       </section>
     </div>,

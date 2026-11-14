@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { arenaApi } from "./arenaApi";
 import type { Session, Snapshot } from "./types";
+import type { RuleHistory } from "./replayRuleState";
 
 export interface ReplayFrame {
   operationIndex: number;
@@ -10,6 +11,7 @@ export interface ReplayFrame {
 export interface ReplayTimeline {
   sessionId: string;
   frames: ReplayFrame[];
+  ruleHistory?: RuleHistory;
 }
 
 export function useReplay(session: Session) {

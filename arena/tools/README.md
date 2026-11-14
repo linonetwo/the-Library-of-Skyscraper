@@ -77,3 +77,11 @@ validated action variants. Screenshots are viewport-sized (1440×1000).
 The server uses the official `@modelcontextprotocol/sdk` v1 maintenance line
 (MCP through 2025-11-25), not a custom JSON-RPC implementation. SDK API references:
 [official source](https://github.com/modelcontextprotocol/typescript-sdk/tree/v1.x).
+
+Replay UI controls use `Input.action`: `openReplay`, `closeReplay`,
+`playReplay`, `pauseReplay`, `seekReplay` (`operationIndex`: nonnegative integer),
+`selectReplayTask` (`index`: zero-based queue position), and
+`locateReplayTaskSource`. `Page.getState.replay` exposes the selected
+`operationIndex`, `maxOperationIndex`, rendered `ruleState`, `memory`, and `tasks`;
+it is `null` when the replay dialog is closed. Source navigation and seeking use
+operation indexes, so resets with repeated ticks remain unambiguous.

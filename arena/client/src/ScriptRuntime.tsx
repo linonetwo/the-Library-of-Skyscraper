@@ -3,10 +3,8 @@ import { BrainCircuit, ListTodo } from "lucide-react";
 import { useArena } from "./ArenaWorkspace";
 import { arenaApi } from "./arenaApi";
 import type { RuleRuntimeState, ScriptPreview } from "./scriptTypes";
+import { taskStatusNames, taskKindNames } from "./ruleLabels";
 import "./styles/script-runtime.css";
-
-const statuses = { queued: "待执行", running: "进行中", blocked: "等待条件", completed: "已完成", failed: "失败", cancelled: "已取消" };
-const kinds = { move: "前往", gather: "采集", deliver: "入库", build: "建造", attack: "攻击", capture: "编目" };
 
 export function ScriptRuntime() {
   const { session, snapshot } = useArena();
@@ -36,7 +34,7 @@ export function ScriptRuntime() {
         <pre aria-label="规则记忆">{JSON.stringify(state.memory, null, 2)}</pre></div>
       <div className="script-tasks"><h4><ListTodo size={15} />小队任务 <span>{state.tasks.items.length}</span></h4>
         <ul aria-label="规则任务队列">{state.tasks.items.map(task => <li key={task.id}>
-          <div><strong>{kinds[task.kind]}</strong><span data-status={task.status}>{statuses[task.status]}</span></div>
+          <div><strong>{taskKindNames[task.kind]}</strong><span data-status={task.status}>{taskStatusNames[task.status]}</span></div>
           <small>{task.actorId} → {snapshot?.rooms.find(room => room.id === task.roomId)?.name ?? task.roomId}</small>
           {task.blockedReason && <p>{task.blockedReason}</p>}
           <small>优先级 {task.priority} · T{task.updatedAtTick} · {task.sourceHash.slice(0, 8)}</small>

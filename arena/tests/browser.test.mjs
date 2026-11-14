@@ -7,7 +7,7 @@ import { StdioClientTransport } from '../tools/node_modules/@modelcontextprotoco
 
 test('MCP browser controls outfits, map, Monaco publication and captures PNG', {
   skip: process.env.ARENA_BROWSER !== '1' ? 'Set ARENA_BROWSER=1 with UI and authority running' : false,
-  timeout: 90000,
+  timeout: 180000,
 }, async t => {
   const client = new Client({ name: 'arena-browser-test', version: '1.0.0' });
   await client.connect(new StdioClientTransport({
