@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Application, Assets, Container, Texture, Sprite } from "pixi.js";
+import { Application, Assets, Container, Sprite } from "pixi.js";
 import { paintMap, type MapProps } from "./mapScene";
 import { libraryLayout } from "./libraryLayout";
+import { ActorScene } from "./ActorScene";
 
 /** The application lives for the entire mounted canvas; snapshots only update its render bridge. */
 export default function MapCanvas(props: MapProps) {
@@ -17,11 +18,11 @@ export default function MapCanvas(props: MapProps) {
     let disposed = false;
     let initialized = false;
     let resize: ResizeObserver | undefined;
-    let frames: Record<string, Texture>;
+    let actors: ActorScene;
     const world = new Container();
     let renderLayer = new Container();
     const paint = () => {
-      if (!frames || disposed) return;
+      if (!actors || disposed) return;
       const p = latest.current;
       world.position.set(host.clientWidth / 2, host.clientHeight / 2);
       const fit =
@@ -29,8 +30,9 @@ export default function MapCanvas(props: MapProps) {
       world.scale.set(fit);
       renderLayer.destroy({ children: true });
       renderLayer = new Container();
-      world.addChild(renderLayer);
-      paintMap(renderLayer, p, frames);
+      world.addChildAt(renderLayer, 1);
+      paintMap(renderLayer, p);
+      actors.update(p, performance.now());
     };
     redraw.current = paint;
     void (async () => {
@@ -48,9 +50,12 @@ export default function MapCanvas(props: MapProps) {
           app.destroy({ removeView: true }, { children: true });
           return;
         }
-        const sheet = await Assets.load("/assets/doll-atlas.json");
+        const [sheet, ...walkSheets] = await Promise.all([
+          Assets.load("/assets/doll-atlas.json"),
+          ...["body", "outfit-scholar", "body-front", "hair-ivory"].map(layer =>
+            Assets.load(`/assets/animation/walk-${layer}.json`)),
+        ]);
         if (disposed) return;
-        frames = sheet.textures;
         const illustration = await Assets.load("/assets/library-map.png");
         if (disposed) return;
         const background = new Sprite(illustration);
@@ -58,6 +63,14 @@ export default function MapCanvas(props: MapProps) {
         background.scale.set(libraryLayout.scale);
         background.alpha = 0.85;
         world.addChild(background);
+        actors = new ActorScene({
+          static: sheet.textures,
+          walk: Object.assign({}, ...walkSheets.map(sheet => sheet.textures)),
+        });
+        world.addChild(renderLayer, actors.node);
+        app.ticker.add(() => {
+          host.dataset.actors = JSON.stringify(actors.render(performance.now()));
+        });
         host.appendChild(app.canvas);
         app.stage.addChild(world);
         resize = new ResizeObserver(() => {

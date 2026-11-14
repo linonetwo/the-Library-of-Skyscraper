@@ -15,6 +15,8 @@ use std::time::Duration;
 use tower_http::cors::CorsLayer;
 use uuid::Uuid;
 
+mod lifecycle;
+mod persistence;
 mod replay_routes;
 mod store;
 use store::{Error, Store, error};
@@ -35,7 +37,7 @@ fn origin_allowed(headers: &HeaderMap) -> bool {
             .is_ok_and(|origin| ALLOWED_ORIGINS.contains(&origin))
     })
 }
-async fn guard_origin(request: Request, next: Next) -> Response {
+async fn guard_origin(State(port): State<u16>, request: Request, next: Next) -> Response {
     if !origin_allowed(request.headers()) {
         return error(StatusCode::FORBIDDEN, "browser origin is not allowed").into_response();
     }
@@ -44,9 +46,11 @@ async fn guard_origin(request: Request, next: Next) -> Response {
         .get(header::HOST)
         .and_then(|value| value.to_str().ok());
     if !host.is_some_and(|host| {
-        ALLOWED_ORIGINS
-            .iter()
-            .any(|origin| origin.strip_prefix("http://") == Some(host))
+        host == format!("127.0.0.1:{port}")
+            || host == format!("localhost:{port}")
+            || ALLOWED_ORIGINS
+                .iter()
+                .any(|origin| origin.strip_prefix("http://") == Some(host))
     }) {
         return error(StatusCode::FORBIDDEN, "request host is not allowed").into_response();
     }
@@ -88,7 +92,7 @@ async fn join(
 ) -> Result<Json<Credentials>, Error> {
     let token = Uuid::new_v4().to_string();
     let player_id = store
-        .with_session(&id, |session| {
+        .edit_session(&id, |session| {
             if session.mode != Mode::Online {
                 return Err(error(
                     StatusCode::FORBIDDEN,
@@ -122,7 +126,7 @@ async fn command(
     Json(command): Json<Command>,
 ) -> Result<Json<skyscraper_arena_server::Snapshot>, Error> {
     store
-        .with_player(&id, &headers, |session, owner| {
+        .edit_player(&id, &headers, |session, owner| {
             session
                 .command(owner, command)
                 .map_err(|message| error(StatusCode::BAD_REQUEST, &message))?;
@@ -144,8 +148,13 @@ async fn ws(
     Ok(upgrade
         .on_upgrade(move |mut socket| async move {
             let mut interval = tokio::time::interval(Duration::from_millis(500));
-            loop {
+            let mut shutdown = store.shutdown.subscribe();
+            while !*shutdown.borrow() {
                 tokio::select! {
+                    _ = shutdown.changed() => {
+                        let _ = socket.send(Message::Close(None)).await;
+                        break;
+                    },
                     _ = interval.tick() => {
                         let Ok(snapshot) = store
                             .with_session(&id, |session| Ok(session.snapshot()))
@@ -171,15 +180,19 @@ async fn ws(
 }
 #[tokio::main]
 async fn main() {
-    let store = Store::default();
-    let clock = store.clone();
-    tokio::spawn(async move {
-        let mut interval = tokio::time::interval(Duration::from_millis(500));
-        loop {
-            interval.tick().await;
-            clock.advance().await;
-        }
-    });
+    let directory = std::env::var_os("ARENA_DATA_DIR")
+        .map(std::path::PathBuf::from)
+        .unwrap_or_else(|| "data".into());
+    let store = Store::open(directory).expect("restore arena sessions");
+    let port: u16 = std::env::var("ARENA_PORT")
+        .unwrap_or_else(|_| "8787".into())
+        .parse()
+        .expect("ARENA_PORT must be a port number");
+    let listener = tokio::net::TcpListener::bind(("127.0.0.1", port))
+        .await
+        .expect("bind local arena port");
+    let address = listener.local_addr().unwrap();
+    let clock = lifecycle::start_clock(store.clone());
     let app = Router::new()
         .route(
             "/health",
@@ -203,13 +216,17 @@ async fn main() {
                 .allow_headers([header::AUTHORIZATION, header::CONTENT_TYPE])
                 .allow_methods([Method::GET, Method::POST, Method::OPTIONS]),
         )
-        .layer(middleware::from_fn(guard_origin))
-        .with_state(store);
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:8787")
+        .layer(middleware::from_fn_with_state(address.port(), guard_origin))
+        .with_state(store.clone());
+    println!("Arena authority listening on http://{address}");
+    axum::serve(listener, app)
+        .with_graceful_shutdown(lifecycle::shutdown(store.clone(), clock))
         .await
-        .expect("bind 127.0.0.1:8787");
-    println!("Arena authority listening on http://127.0.0.1:8787");
-    axum::serve(listener, app).await.unwrap();
+        .unwrap();
+    store
+        .checkpoint()
+        .await
+        .expect("save arena sessions on shutdown");
 }
 
 #[cfg(test)]

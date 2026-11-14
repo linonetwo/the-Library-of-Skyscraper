@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { arenaApi } from "./arenaApi";
 import type { Command, Session, Snapshot } from "./types";
 
@@ -13,10 +13,7 @@ export function useArenaSession() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
-  const latestTick = useRef(-1);
   const acceptSnapshot = useCallback((next: Snapshot) => {
-    if (next.tick < latestTick.current) return;
-    latestTick.current = next.tick;
     setSnapshot(next);
   }, []);
 
@@ -39,7 +36,6 @@ export function useArenaSession() {
     let socket: WebSocket | undefined;
     let reconnect: ReturnType<typeof setTimeout>;
     let attempts = 0;
-    latestTick.current = -1;
     const scheduleReconnect = () => {
       if (disposed) return;
       setConnection("disconnected");
@@ -86,7 +82,6 @@ export function useArenaSession() {
         ? arenaApi.create(mode)
         : arenaApi.join(joinId));
       sessionStorage.setItem("arena-session", JSON.stringify(next));
-      latestTick.current = -1;
       setSnapshot(null);
       setSession(next);
       return next;
@@ -94,7 +89,6 @@ export function useArenaSession() {
   const command = (value: Command) =>
     perform(async () => {
       const next = await arenaApi.command(session!, value);
-      if (value.type === "reset") latestTick.current = -1;
       acceptSnapshot(next);
       if (value.type === "rule") setNotice("行动规则已发布，下一模拟步生效。");
     });

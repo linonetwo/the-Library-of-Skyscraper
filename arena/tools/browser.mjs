@@ -52,7 +52,7 @@ export function registerBrowserTools(server) {
     await page.getByRole('button', { name: '开启训练远征', exact: true }).waitFor();
     return { open: true, viewport: { width: 1440, height: 1000 } };
   });
-  register('Page.getState', 'Read the rendered page text, button labels and enabled states.', {}, async () => {
+  register('Page.getState', 'Read rendered text, controls and battlefield actor poses (position, direction, animation frame).', {}, async () => {
     const active = current();
     const buttons = [];
     for (const button of await active.getByRole('button').all()) {
@@ -60,7 +60,9 @@ export function registerBrowserTools(server) {
       buttons.push({ label: await button.getAttribute('aria-label') || (await button.innerText()).trim(),
         disabled: await button.isDisabled() });
     }
-    return { text: (await active.locator('body').innerText()).slice(0, 20000), buttons };
+    const battlefields = await active.locator('.pixi-map').evaluateAll(maps =>
+      maps.map(map => JSON.parse(map.dataset.actors || '[]')));
+    return { text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields };
   }, true);
   register('Input.action', 'Control training, lobby, characters, outfits, rules, camera and gameplay through the UI.', { action: actionSchema }, async ({ action }) => {
     const active = current();

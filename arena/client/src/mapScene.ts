@@ -1,7 +1,6 @@
-import { Container, Graphics, Sprite, Text, Texture } from "pixi.js";
-import type { Actor, Room, Snapshot } from "./types";
+import { Container, Graphics, Text } from "pixi.js";
+import type { Room, Snapshot } from "./types";
 import { floorPoint } from "./libraryLayout";
-import { dollLayers } from "./dollLayers";
 export type MapProps = {
   snapshot: Snapshot | null;
   selected: string | null;
@@ -43,7 +42,6 @@ function label(
 export function paintMap(
   renderLayer: Container,
   p: MapProps,
-  frames: Record<string, Texture>,
 ) {
   const snapshot = p.snapshot;
   if (!snapshot) return;
@@ -116,47 +114,4 @@ export function paintMap(
       });
     renderLayer.addChild(routes);
   }
-  const grouped: Record<string, Actor[]> = {};
-  snapshot.actors.forEach((actor) =>
-    (grouped[actor.roomId] ||= []).push(actor),
-  );
-  snapshot.actors.forEach((actor) => {
-    const room = snapshot.rooms.find((r) => r.id === actor.roomId)!;
-    const { x, y } = point(room);
-    const group = grouped[room.id];
-    const offset = (group.indexOf(actor) - (group.length - 1) / 2) * 39;
-    const selected = actor.id === p.selected;
-    const node = new Container();
-    node.position.set(x + offset, y + 4);
-    if (selected)
-      node.addChild(
-        new Graphics()
-          .ellipse(0, 29, 24, 8)
-          .stroke({ color: 0xf5d18a, width: 2 })
-          .fill({ color: 0xf5d18a, alpha: 0.15 }),
-      );
-    // Aligned independent body, outfit, hair and accessory frames form the paper doll.
-    const layers = dollLayers(actor.appearance);
-    layers.forEach((key) => {
-      const texture = frames[key];
-      const sprite = new Sprite(texture);
-      sprite.anchor.set(0.5, 1);
-      sprite.position.set(0, 28);
-      sprite.scale.set(86 / texture.height);
-      node.addChild(sprite);
-    });
-    const health = new Graphics()
-      .roundRect(-16, 34, 32, 3, 1)
-      .fill(0x20353a)
-      .roundRect(-16, 34, Math.max(0.1, (32 * actor.hp) / actor.maxHp), 3, 1)
-      .fill(actor.hp > actor.maxHp * 0.35 ? 0xabcda0 : 0xe18c75);
-    node.addChild(health);
-    node.eventMode = "static";
-    node.cursor = "pointer";
-    node.on("pointertap", (event) => {
-      event.stopPropagation();
-      p.onSelect(actor.id);
-    });
-    renderLayer.addChild(node);
-  });
 }

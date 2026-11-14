@@ -16,7 +16,7 @@ export default function JournalPanel() {
       <button disabled={!session} onClick={() => setReplayOpen(true)}>播放赛局回放</button>
       {replayOpen && session && <ReplayPanel session={session} onClose={() => setReplayOpen(false)} />}
       <p>
-        下方仅保留最近 100 条事件；完整命令录制可导出，服务器重启前请自行保存。
+        下方显示最近 100 条事件；赛局每两秒自动归档，完整命令录制可单独导出。
       </p>
       <p>来自服务器的真实事件记录 · {snapshot?.events.length || 0} 条</p>
       <div className="journal-list">
