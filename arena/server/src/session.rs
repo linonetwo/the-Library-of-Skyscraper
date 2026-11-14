@@ -3,6 +3,7 @@ use bevy_ecs::prelude::World;
 use std::collections::BTreeMap;
 
 pub struct Session {
+    pub rule_runtime: BTreeMap<String, crate::script_state::RuleRuntimeState>,
     pub id: String,
     pub mode: Mode,
     pub seed: u64,
@@ -73,6 +74,7 @@ impl Session {
             result: None,
             scripts: BTreeMap::new(),
             script_versions: BTreeMap::new(),
+            rule_runtime: BTreeMap::new(),
             world: World::new(),
             next_event: 1,
             manual_actions: BTreeMap::new(),

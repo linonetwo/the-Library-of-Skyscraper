@@ -7,6 +7,8 @@ use std::collections::BTreeMap;
 #[derive(Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SessionCheckpoint {
+    #[serde(default)]
+    rule_runtime: BTreeMap<String, crate::script_state::RuleRuntimeState>,
     version: u32,
     snapshot: Snapshot,
     tokens: BTreeMap<String, String>,
@@ -23,6 +25,7 @@ pub struct SessionCheckpoint {
 impl Session {
     pub fn checkpoint(&mut self) -> SessionCheckpoint {
         SessionCheckpoint {
+            rule_runtime: self.rule_runtime.clone(),
             version: 1,
             snapshot: self.snapshot(),
             tokens: self.tokens.clone(),
@@ -43,6 +46,7 @@ impl Session {
         let mut world = World::new();
         world.spawn_batch(snapshot.actors);
         let mut session = Self {
+            rule_runtime: checkpoint.rule_runtime,
             id: snapshot.session_id,
             mode: snapshot.mode,
             seed: snapshot.seed,

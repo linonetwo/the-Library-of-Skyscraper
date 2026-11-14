@@ -153,3 +153,38 @@ fn timeline_follows_operations_across_reset_and_keeps_live_state() {
     assert_eq!(serde_json::to_value(session.snapshot()).unwrap(), live);
     assert_eq!(session.tokens["live-secret"], "p1");
 }
+
+#[test]
+fn legacy_script_advance_keeps_per_intent_rejection_semantics() {
+    let mut session = Session::new("legacy-script".into(), Mode::Online, 42);
+    session.join("owner".into()).unwrap();
+    session.join("other".into()).unwrap();
+    let decision: crate::ScriptDecision = serde_json::from_value(serde_json::json!({
+        "playerId":"p1", "intents":[
+            {"type":"move","actorId":"p2-scout","roomId":"room-1","priority":10},
+            {"type":"move","actorId":"p1-scout","roomId":"room-1","priority":9}
+        ]
+    }))
+    .unwrap();
+    session.advance_scripted_recorded(vec![decision], false);
+    let replay = session.export_replay().unwrap();
+    let mut legacy = serde_json::to_value(&replay).unwrap();
+    legacy["version"] = serde_json::json!(1);
+    for op in legacy["operations"].as_array_mut().unwrap() {
+        op.as_object_mut().unwrap().remove("runtimeValidated");
+    }
+    let replay = Replay::from_json(&serde_json::to_vec(&legacy).unwrap()).unwrap();
+    let mut restored = Session::from_replay(&replay).unwrap();
+    assert_eq!(
+        restored
+            .snapshot()
+            .actors
+            .iter()
+            .find(|a| a.id == "p1-scout")
+            .unwrap()
+            .room_id,
+        "room-1"
+    );
+    let upgraded = restored.export_replay().unwrap();
+    Session::from_replay(&upgraded).unwrap();
+}

@@ -159,3 +159,7 @@ Latest 100 events are diagnostic history only.
 All participants see the same room state. Towers restore allied occupants' HP;
 catalog buildings generate points. These simplified mechanics are an initial
 playable slice, not final balance or a complete wiki implementation.
+
+Rule runtime state is private to each authenticated owner: `GET /api/sessions/{id}/scripts/state` returns `{sourceHash,memory,tasks:{items}}`. Memory is isolated per compiled source hash (64 KiB); task queues are shared across that owner's versions (32 patches per output, 128 tasks and 64 KiB). Outputs are validated and committed atomically before intent settlement. Preview uses the compiled hash and never commits. Training reset clears runtime state; checkpoints preserve all owners and versions. Replay v2 exports only the requesting owner's private patches and validates their final state; public exports omit all private patches.
+
+Run the real V8 runtime test with `ARENA_SCRIPT_RUNNER=/absolute/path/to/skyscraper-arena-script-runner cargo test runtime_memory_survives -- --ignored`.

@@ -15,12 +15,20 @@ pub async fn advance(session: &mut Session, workers: &ScriptWorkers) {
     for (owner, script) in &session.scripts {
         let request =
             json!({ "bundle": script.bundle, "context": rule_context(snapshot.clone(), owner) });
+        let mut request = request;
+        let state = session.rule_state(owner, script.bundle["sourceHash"].as_str());
+        request["context"]["memory"] = state["memory"].clone();
+        request["context"]["tasks"] = state["tasks"].clone();
         let outcome = workers.execute(&request).await;
         let mut decision = ScriptDecision {
+            source_hash: None,
+            memory_patch: None,
+            task_patches: None,
             player_id: owner.clone(),
             intents: vec![],
             failure: None,
         };
+        let outcome_copy = outcome.clone();
         match outcome {
             Ok(response) if response.get("decision").is_some() => {
                 match serde_json::from_value(response["decision"]["intents"].clone()) {
@@ -37,6 +45,16 @@ pub async fn advance(session: &mut Session, workers: &ScriptWorkers) {
                 )
             }
             Err(error) => decision.failure = Some(error),
+        }
+        decision.source_hash = script.bundle["sourceHash"].as_str().map(str::to_owned);
+        if let Ok(response) = &outcome_copy {
+            decision.memory_patch = response["decision"].get("memoryPatch").cloned();
+            if let Some(patches) = response["decision"].get("taskPatches") {
+                match serde_json::from_value(patches.clone()) {
+                    Ok(value) => decision.task_patches = Some(value),
+                    Err(error) => decision.failure = Some(format!("script output: {error}")),
+                }
+            }
         }
         decisions.push(decision);
     }
