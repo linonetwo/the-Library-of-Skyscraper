@@ -87,3 +87,17 @@ test('all examples are synchronous and leave deeply frozen input unchanged', () 
     assert.equal(JSON.stringify(ctx), before);
   }
 });
+
+test('memory gather counts immutable input and reports executable plans', async () => {
+  const { decide } = await import('../examples/memory-gather.ts');
+  const ctx = context();
+  ctx.memory = { ticks: 4, retained: null };
+  freeze(ctx);
+  const result = decide(ctx);
+  assert.deepEqual(result.memoryPatch, { set: { ticks: 5 } });
+  assert.equal(ctx.memory.ticks, 4);
+  assert.equal(result.intents[0].type, 'move');
+  assert.equal(result.taskPatches[0].task.actorId, result.intents[0].actorId);
+  assert.equal(result.taskPatches[0].task.roomId, result.intents[0].roomId);
+  assert.equal(result.taskPatches[0].task.status, 'running');
+});
