@@ -20,5 +20,12 @@ test("eight directions play real distinct frames and allow deterministic inspect
   await expect(page.locator(".animated-outfit")).toHaveCount(0);
   await page.getByLabel("学者服行走层").check();
   await expect(page.locator(".animated-outfit")).toHaveCount(8);
+  await expect(page.locator(".animated-weapon")).toHaveCount(16);
+  await page.getByLabel("法杖行走层").uncheck();
+  await expect(page.locator(".animated-weapon")).toHaveCount(0);
+  await page.getByLabel("法杖行走层").check();
+  await expect(page.locator(".animated-weapon")).toHaveCount(16);
+  await page.getByLabel("行走衣装").selectOption("warden");
+  await expect(page.locator(".animated-outfit").first()).toHaveAttribute("style", /warden/);
   await expect(page.getByRole("alert")).toHaveCount(0);
 });

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "arena-animation-2026-11-05.3",
+  "contentVersion": "arena-animation-2026-11-05.4",
   "generatedOn": "2026-11-05",
   "source": {
     "path": "arena/art/source/walk-body-eight-directions.png",
@@ -92,7 +92,7 @@
     "proportion": "Source is approximately 2.5–2.8 heads; exact 3-head normalization pending.",
     "cleanup": "Chroma specks removed; connected pale edge halos still need manual cleanup.",
     "alignment": "Scholar authored per-frame placements share cell anchor; original hand pixels restored as body-front. Vest width and side/back registration need art refinement.",
-    "paperDoll": "Walk body, scholar and warden outfits, foreground hands and ivory hair assembled in 32 poses. Midnight hair, staff and other actions remain in production queue."
+    "paperDoll": "Walk body, scholar and warden outfits, ivory hair and held staff assembled across 32 poses. Midnight hair and other actions remain in production queue."
   },
   "coverage": [
     {
@@ -1140,9 +1140,14 @@
       "layer": "weapon-staff",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/weapon-staff/S/00",
+        "walk/weapon-staff/S/01",
+        "walk/weapon-staff/S/02",
+        "walk/weapon-staff/S/03"
+      ],
+      "atlas": "walk-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -1150,9 +1155,14 @@
       "layer": "weapon-staff",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/weapon-staff/SW/00",
+        "walk/weapon-staff/SW/01",
+        "walk/weapon-staff/SW/02",
+        "walk/weapon-staff/SW/03"
+      ],
+      "atlas": "walk-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -1160,9 +1170,14 @@
       "layer": "weapon-staff",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/weapon-staff/W/00",
+        "walk/weapon-staff/W/01",
+        "walk/weapon-staff/W/02",
+        "walk/weapon-staff/W/03"
+      ],
+      "atlas": "walk-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -1170,9 +1185,14 @@
       "layer": "weapon-staff",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/weapon-staff/NW/00",
+        "walk/weapon-staff/NW/01",
+        "walk/weapon-staff/NW/02",
+        "walk/weapon-staff/NW/03"
+      ],
+      "atlas": "walk-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -1180,9 +1200,14 @@
       "layer": "weapon-staff",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/weapon-staff/N/00",
+        "walk/weapon-staff/N/01",
+        "walk/weapon-staff/N/02",
+        "walk/weapon-staff/N/03"
+      ],
+      "atlas": "walk-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -1190,9 +1215,14 @@
       "layer": "weapon-staff",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/weapon-staff/NE/00",
+        "walk/weapon-staff/NE/01",
+        "walk/weapon-staff/NE/02",
+        "walk/weapon-staff/NE/03"
+      ],
+      "atlas": "walk-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -1200,9 +1230,14 @@
       "layer": "weapon-staff",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/weapon-staff/E/00",
+        "walk/weapon-staff/E/01",
+        "walk/weapon-staff/E/02",
+        "walk/weapon-staff/E/03"
+      ],
+      "atlas": "walk-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -1210,9 +1245,14 @@
       "layer": "weapon-staff",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/weapon-staff/SE/00",
+        "walk/weapon-staff/SE/01",
+        "walk/weapon-staff/SE/02",
+        "walk/weapon-staff/SE/03"
+      ],
+      "atlas": "walk-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -3154,6 +3194,12 @@
       "path": "arena/art/source/walk-outfit-warden.png",
       "sha256": "1bca500224a643dba1ad2577e014406d5d5ac183b6338196894bdb6ebc390b92",
       "provenance": "walk-outfit-warden.provenance.json"
+    },
+    {
+      "layer": "weapon-staff",
+      "path": "arena/art/source/walk-weapon-staff.png",
+      "sha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+      "provenance": "walk-weapon-staff.provenance.json"
     }
   ],
   "auxiliaryLayers": [
@@ -3162,6 +3208,18 @@
       "action": "walk",
       "atlas": "walk-body-front.json",
       "purpose": "Visible forearms and hands composited above sleeveless outfits; sampled from body source."
+    },
+    {
+      "layer": "weapon-staff-back",
+      "action": "walk",
+      "atlas": "walk-weapon-staff-back.json",
+      "purpose": "Directional back occlusion for the right-hand staff; opposite-depth rows are transparent."
+    },
+    {
+      "layer": "weapon-staff-front",
+      "action": "walk",
+      "atlas": "walk-weapon-staff-front.json",
+      "purpose": "Directional front occlusion for the right-hand staff; opposite-depth rows are transparent."
     }
   ]
 }

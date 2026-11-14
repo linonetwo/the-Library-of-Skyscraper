@@ -3,6 +3,7 @@ import { Application, Assets, Container, Sprite } from "pixi.js";
 import { paintMap, type MapProps } from "./mapScene";
 import { libraryLayout } from "./libraryLayout";
 import { ActorScene } from "./ActorScene";
+import { walkLayerNames } from "./walkLayers";
 
 /** The application lives for the entire mounted canvas; snapshots only update its render bridge. */
 export default function MapCanvas(props: MapProps) {
@@ -52,7 +53,7 @@ export default function MapCanvas(props: MapProps) {
         }
         const [sheet, ...walkSheets] = await Promise.all([
           Assets.load("/assets/doll-atlas.json"),
-          ...["body", "outfit-scholar", "outfit-warden", "body-front", "hair-ivory"].map(layer =>
+          ...walkLayerNames.map(layer =>
             Assets.load(`/assets/animation/walk-${layer}.json`)),
         ]);
         if (disposed) return;
