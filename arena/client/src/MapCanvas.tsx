@@ -52,7 +52,7 @@ export default function MapCanvas(props: MapProps) {
         }
         const [sheet, ...walkSheets] = await Promise.all([
           Assets.load("/assets/doll-atlas.json"),
-          ...["body", "outfit-scholar", "body-front", "hair-ivory"].map(layer =>
+          ...["body", "outfit-scholar", "outfit-warden", "body-front", "hair-ivory"].map(layer =>
             Assets.load(`/assets/animation/walk-${layer}.json`)),
         ]);
         if (disposed) return;

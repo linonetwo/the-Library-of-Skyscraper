@@ -4,7 +4,6 @@ import { dollLayers } from "./dollLayers";
 import { ActorMotion, type Point } from "./actorMotion";
 
 export type DollTextures = { static: Record<string, Texture>; walk: Record<string, Texture> };
-const walkLayers = ["body", "outfit-scholar", "body-front", "hair-ivory"];
 
 export class ActorView {
   readonly node = new Container();
@@ -17,6 +16,7 @@ export class ActorView {
   private animated = false;
   private appearance = "";
   private frameKey = "";
+  private layers: string[] = [];
 
   constructor(actor: Actor, position: Point, private textures: DollTextures, onSelect: (id: string) => void) {
     this.actor = actor;
@@ -40,11 +40,12 @@ export class ActorView {
     if (appearance === this.appearance) return;
     this.appearance = appearance;
     // Select complete registered animation sets; other outfits keep their static layers.
-    this.animated = actor.appearance.outfit === "scholar"
-      && actor.appearance.hair === "ivory" && !actor.appearance.weapon;
+    this.animated = actor.appearance.hair === "ivory" && !actor.appearance.weapon;
     for (const sprite of this.sprites) sprite.destroy();
-    const layers = this.animated ? walkLayers : dollLayers(actor.appearance);
-    this.sprites = layers.map(layer => {
+    this.layers = this.animated
+      ? ["body", `outfit-${actor.appearance.outfit}`, "body-front", "hair-ivory"]
+      : dollLayers(actor.appearance);
+    this.sprites = this.layers.map(layer => {
       const texture = this.animated
         ? this.textures.walk[`walk/${layer}/S/00`] : this.textures.static[layer];
       const sprite = new Sprite(texture);
@@ -65,7 +66,7 @@ export class ActorView {
     if (this.animated && key !== this.frameKey) {
       this.frameKey = key;
       this.sprites.forEach((sprite, index) => {
-        sprite.texture = this.textures.walk[`walk/${walkLayers[index]}/${key}`];
+        sprite.texture = this.textures.walk[`walk/${this.layers[index]}/${key}`];
       });
     }
     return { id: this.actor.id, ...pose, animation: this.animated ? "walk-prototype" : "static" };

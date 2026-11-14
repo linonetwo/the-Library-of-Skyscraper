@@ -9,6 +9,8 @@ import {
 
 import { useArena } from "./ArenaWorkspace";
 import { useDialog } from "./useDialog";
+import RecentExpeditions from "./RecentExpeditions";
+import "./styles/expeditions.css";
 export default function LobbyDialog() {
   const {
     session,
@@ -85,6 +87,7 @@ export default function LobbyDialog() {
             加入赛局
           </button>
         </form>
+        <RecentExpeditions />
         {session && (
           <div className="current-session">
             <span>
