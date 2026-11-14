@@ -1,15 +1,22 @@
 import { ScrollText, ArrowUpRight, Check } from "lucide-react";
+import { lazy, Suspense, useState } from "react";
 
 import { useArena, presetNames } from "./ArenaWorkspace";
+const ScriptWorkbench = lazy(() => import("./ScriptWorkbench"));
 
 export default function RuleEditor() {
+  const [coding, setCoding] = useState(false);
   const { command, preset, setPreset, threshold, setThreshold, player, ready } =
     useArena();
+  if (coding) return <Suspense fallback={<p>正在加载规则工作台…</p>}>
+    <ScriptWorkbench onBack={() => setCoding(false)} />
+  </Suspense>;
 
   return (
     <div className="rule-editor">
       <span className="eyebrow">AUTONOMOUS DOCTRINE</span>
       <h2>把意图交给小队。</h2>
+      <button className="text-button" onClick={() => setCoding(true)}>编写 TypeScript 规则 →</button>
       <p>
         角色依照已发布的行动规则自主探索、采集与守卫。调整策略，观察每一步的真实结果。
       </p>

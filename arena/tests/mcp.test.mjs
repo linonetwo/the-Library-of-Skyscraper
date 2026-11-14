@@ -42,7 +42,7 @@ test('official MCP initialize, tools/list, tools/call and private credentials', 
   const connection = await connect(`http://127.0.0.1:${authority.address().port}`);
   t.after(() => connection.client.close());
   const tools = await connection.client.listTools();
-  assert.equal(tools.tools.length, 14);
+  assert.equal(tools.tools.length, 16);
   assert(tools.tools.find(tool => tool.name === 'Simulation.step').description.includes('Online'));
   const created = await call(connection.client, 'Session.create', { mode: 'training', seed: 42 });
   assert.equal(created.playerId, 'p1');

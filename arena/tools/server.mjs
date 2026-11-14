@@ -89,13 +89,23 @@ tool('Simulation.step', 'Training ONLY: advance 1–120 ticks while paused. Onli
   { ...handleSchema, ticks: z.number().int().min(1).max(120) }, args => command(args.handle, { type: 'step', ticks: args.ticks }));
 tool('Simulation.reset', 'Training ONLY: reset to the original seed and pause. Credentials survive. Online reset is forbidden and rejected by the authority.',
   handleSchema, args => command(args.handle, { type: 'reset' }));
+for (const operation of ['compile', 'preview']) {
+  tool(`Script.${operation}`, operation === 'compile'
+    ? 'Compile TypeScript source files with the arena SDK; return diagnostics, bundle and source map.'
+    : 'Run a TypeScript rule in independent V8 against the current player snapshot; return decision intents.',
+  { ...handleSchema, files: z.record(z.string(), z.string()), entry: z.string().optional() },
+  async ({ handle, files, entry }) => {
+    const credential = credentials(handle);
+    return request(sessionPath(credential, `scripts/${operation}`), { files, entry }, credential.token);
+  }, true);
+}
 tool('Replay.getEvents', 'Read retained diagnostic events after an optional event ID. Only the latest 100 are retained; this is NOT a complete or persistent replay. IDs restart on training reset.',
   { ...handleSchema, afterId: z.number().int().min(0).optional() }, async args => {
     const snapshot = await state(args.handle);
     return { retainedOnly: true, persistent: false, tick: snapshot.tick, firstRetainedId: snapshot.events[0]?.id ?? null,
       events: snapshot.events.filter(event => event.id > (args.afterId ?? 0)) };
   }, true);
-tool('Replay.export', 'Export the complete bounded, versioned command recording and final snapshot. Contains no bearer credentials. In-memory only: save the returned JSON before authority restart; overflow is rejected.',
+tool('Replay.export', 'Export the bounded versioned command recording and final snapshot. Private checkpoints retain recordings across restarts; public exports contain gameplay data only.',
   handleSchema, async args => {
     const credential = credentials(args.handle);
     return request(sessionPath(credential, 'replay'), undefined, credential.token);

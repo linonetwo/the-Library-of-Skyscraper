@@ -18,6 +18,7 @@ use uuid::Uuid;
 mod lifecycle;
 mod persistence;
 mod replay_routes;
+mod script_routes;
 mod store;
 use store::{Error, Store, error};
 const ALLOWED_ORIGINS: [&str; 6] = [
@@ -209,6 +210,14 @@ async fn main() {
             get(replay_routes::timeline),
         )
         .route("/api/sessions/{id}/commands", post(command))
+        .route(
+            "/api/sessions/{id}/scripts/compile",
+            post(script_routes::compile),
+        )
+        .route(
+            "/api/sessions/{id}/scripts/preview",
+            post(script_routes::preview),
+        )
         .route("/ws/{id}", get(ws))
         .layer(
             CorsLayer::new()
