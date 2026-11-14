@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { arenaApi } from "./arenaApi";
 import type { Command, Session, Snapshot } from "./types";
 import { readExpeditions, rememberExpedition } from "./expeditionLibrary";
@@ -15,8 +15,10 @@ export function useArenaSession() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
+  const activeSession = useRef(session?.sessionId);
+  activeSession.current = session?.sessionId;
   const acceptSnapshot = useCallback((next: Snapshot) => {
-    setSnapshot(next);
+    if (next.sessionId === activeSession.current) setSnapshot(next);
   }, []);
 
   // Every user request shares one status and error boundary.

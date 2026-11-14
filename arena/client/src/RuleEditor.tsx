@@ -6,10 +6,10 @@ const ScriptWorkbench = lazy(() => import("./ScriptWorkbench"));
 
 export default function RuleEditor() {
   const [coding, setCoding] = useState(false);
-  const { command, preset, setPreset, threshold, setThreshold, player, ready } =
+  const { command, preset, setPreset, threshold, setThreshold, player, ready, session } =
     useArena();
   if (coding) return <Suspense fallback={<p>正在加载规则工作台…</p>}>
-    <ScriptWorkbench onBack={() => setCoding(false)} />
+    <ScriptWorkbench key={`${session?.sessionId}:${session?.playerId}`} onBack={() => setCoding(false)} />
   </Suspense>;
 
   return (
