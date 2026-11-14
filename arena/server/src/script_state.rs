@@ -14,8 +14,16 @@ pub struct RuleRuntimeState {
 }
 impl Session {
     pub fn rule_state(&self, owner: &str, hash: Option<&str>) -> Value {
-        let state = self.rule_runtime.get(owner).cloned().unwrap_or_default();
-        json!({"sourceHash":hash,"memory":hash.and_then(|h|state.memories.get(h)).cloned().unwrap_or_default(),"tasks":{"items":state.tasks.values().collect::<Vec<_>>()}})
+        let state = self.rule_runtime.get(owner);
+        let memory = hash
+            .and_then(|hash| state?.memories.get(hash))
+            .cloned()
+            .unwrap_or_default();
+        let tasks: Vec<_> = state
+            .into_iter()
+            .flat_map(|state| state.tasks.values())
+            .collect();
+        json!({"sourceHash": hash, "memory": memory, "tasks": {"items": tasks}})
     }
     pub(crate) fn prepare_rule_state(
         &mut self,

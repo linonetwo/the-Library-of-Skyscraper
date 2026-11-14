@@ -1,6 +1,6 @@
 use super::*;
 #[cfg(test)]
-mod tests {
+mod version_tests {
     use super::*;
     use crate::{Mode, ScriptDecision};
     fn decision(owner: &str, hash: &str, patch: Value) -> ScriptDecision {
