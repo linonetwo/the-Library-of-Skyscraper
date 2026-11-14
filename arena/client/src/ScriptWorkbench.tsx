@@ -5,6 +5,7 @@ import { useScriptWorkbench } from "./useScriptWorkbench";
 import { scriptTemplates } from "./scriptTemplates";
 import { ScriptFiles } from "./ScriptFiles";
 import { ScriptHistory } from "./ScriptHistory";
+import { ScriptRuntime, PreviewStatePatch } from "./ScriptRuntime";
 import "./styles/scripts.css";
 
 const MonacoRuleEditor = lazy(() => import("./MonacoRuleEditor"));
@@ -19,7 +20,7 @@ export default function ScriptWorkbench({ onBack }: { onBack: () => void }) {
     <ScriptVersion busy={busy} onDisable={() => void run("disable")} />
     <div className="script-filebar"><Code2 size={15} /><span>{draft.activeFile}</span>
       <select aria-label="载入规则模板" value="" disabled={busy}
-        onChange={event => loadProject({ files: { "main.ts": scriptTemplates[event.target.value].source } })}>
+        onChange={event => loadProject(scriptTemplates[event.target.value].project)}>
         <option value="" disabled>载入模板 · 替换草稿</option>
         {Object.entries(scriptTemplates).map(([id, template]) =>
           <option key={id} value={id}>{template.name}</option>)}
@@ -51,11 +52,13 @@ export default function ScriptWorkbench({ onBack }: { onBack: () => void }) {
       {preview?.execution?.decision && <>
         <strong>动作意图 {preview.execution.decision.intents.length} 条</strong>
         {preview.execution.decision.intents.map((intent, index) => <div className="intent-row" key={index}>
-          <code>{intent.actorId}</code><b>{intent.type}</b><span>{intent.roomId ?? intent.reason}</span>
+          <code>{intent.actorId}</code><b>{intent.type}</b><span>{"roomId" in intent ? intent.roomId : intent.reason}</span>
         </div>)}
+        <PreviewStatePatch preview={preview} />
       </>}
       {!compilation && !error && <p>输入规则，查看类型提示与当前小队的决策结果。</p>}
     </section>
+    <ScriptRuntime key={`${session?.sessionId}:${session?.playerId}`} />
     <ScriptHistory draft={draft} busy={busy} onLoad={loadProject} onRestore={hash => void run("rollback", hash)} />
   </div>;
 }

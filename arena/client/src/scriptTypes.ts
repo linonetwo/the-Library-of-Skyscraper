@@ -17,11 +17,17 @@ export interface ScriptPublication {
   compilation: import("../../script-toolchain/src/compile").CompileResult;
   snapshot?: import("./types").Snapshot;
 }
+export interface RuleRuntimeState {
+  sourceHash: string | null;
+  memory: import("../../script-sdk/src/views").RuleMemory;
+  tasks: import("../../script-sdk/src/views").TaskQueueView;
+}
 export interface ScriptPreview {
   tick: number;
+  sourceHash?: string;
   compilation: import("../../script-toolchain/src/compile").CompileResult;
   execution?: {
-    decision?: { intents: { type: string; actorId: string; roomId?: string; reason?: string }[] };
+    decision?: import("../../script-sdk/src/contract").RuleDecisionResult;
     failure?: { kind: string; message: string };
     durationMs: number;
   };

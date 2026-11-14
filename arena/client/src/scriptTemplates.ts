@@ -2,6 +2,8 @@ import gather from "../../script-sdk/examples/gather.ts?raw";
 import defend from "../../script-sdk/examples/defend.ts?raw";
 import explore from "../../script-sdk/examples/explore.ts?raw";
 import shared from "../../script-sdk/examples/shared.ts?raw";
+import memoryGather from "../../script-sdk/examples/memory-gather.ts?raw";
+import type { RuleSourceProject } from "./scriptTypes";
 
 export const recallSource = `import type { RuleContext, RuleDecisionResult } from "@skyscraper/arena-script-sdk";
 
@@ -26,9 +28,14 @@ const helpers = shared.replace("'../src/index.ts'", "'@skyscraper/arena-script-s
 const standalone = (source: string) => `${helpers}\n${source
   .replace(/^import type .*;\n/m, "")
   .replace(/^import .* from '\.\/shared.ts';\n/m, "")}`;
-export const scriptTemplates: Record<string, { name: string; source: string }> = {
-  recall: { name: "召回中庭", source: recallSource },
-  gather: { name: "资源优先", source: standalone(gather) },
-  defend: { name: "守卫书库", source: standalone(defend) },
-  explore: { name: "深入探索", source: standalone(explore) },
+const sdkImports = (source: string) => source.replaceAll("'../src/index.ts'", "'@skyscraper/arena-script-sdk'");
+const singleFile = (source: string): RuleSourceProject => ({ files: { "main.ts": source } });
+export const scriptTemplates: Record<string, { name: string; project: RuleSourceProject }> = {
+  recall: { name: "召回中庭", project: singleFile(recallSource) },
+  gather: { name: "资源优先", project: singleFile(standalone(gather)) },
+  defend: { name: "守卫书库", project: singleFile(standalone(defend)) },
+  explore: { name: "深入探索", project: singleFile(standalone(explore)) },
+  "memory-gather": { name: "记忆采集计划", project: {
+    entry: "main.ts", files: { "main.ts": sdkImports(memoryGather), "gather.ts": sdkImports(gather), "shared.ts": sdkImports(shared) },
+  } },
 };
