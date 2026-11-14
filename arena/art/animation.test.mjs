@@ -21,12 +21,12 @@ test('animation coverage enumerates every action / equipment / direction without
     assert.equal(entry.expectedFrames, modules[entry.action].frames);
     assert.equal(entry.releaseApproved, false);
     if (entry.status === 'prototype') {
-      assert.equal(entry.action, 'walk'); assert(['body', 'outfit-scholar', 'outfit-warden', 'hair-ivory', 'weapon-staff'].includes(entry.layer));
+      assert.equal(entry.action, 'walk'); assert(layers.includes(entry.layer));
       assert.equal(entry.frames.length, entry.expectedFrames);
     } else { assert.equal(entry.status, 'missing'); assert.equal(entry.frames.length, 0); assert.equal(entry.atlas, null); }
   }
   assert.equal(c.releaseReady, false);
-  assert.equal(c.coverage.filter(x => x.status === 'prototype').length, 40);
+  assert.equal(c.coverage.filter(x => x.status === 'prototype').length, 48);
 });
 test('prototype atlas contains 32 distinct nonempty RGBA frames within padded bounds', async () => {
   const atlas = await json('walk-body.json'), c = await json('coverage.json');
@@ -55,9 +55,9 @@ test('generated source is preserved and checksum is reproducible', async () => {
   const source = await readFile(new URL('source/walk-body-eight-directions.png', import.meta.url));
   assert.equal(createHash('sha256').update(source).digest('hex'), c.source.sha256);
 });
-test('outfits, ivory hair and foreground hands share the 32 body registrations', async () => {
+test('outfits, both hair sets and foreground hands share the 32 body registrations', async () => {
   const body = await json('walk-body.json');
-  for (const layer of ['outfit-scholar', 'outfit-warden', 'body-front', 'hair-ivory']) {
+  for (const layer of ['outfit-scholar', 'outfit-warden', 'body-front', 'hair-ivory', 'hair-midnight']) {
     const atlas = await json(`walk-${layer}.json`);
     const image = await readFile(new URL(atlas.meta.image, base));
     assert.equal(Object.keys(atlas.frames).length, 32);
@@ -71,4 +71,23 @@ test('outfits, ivory hair and foreground hands share the 32 body registrations',
       assert(visible > 50, `${layer}/${direction}/${i} has visible artwork`);
     }
   }
+});
+test('midnight hair has 32 unique poses, transparent borders and reproducible source hashes', async () => {
+  const atlas = await json('walk-hair-midnight.json');
+  const image = await readFile(new URL(atlas.meta.image, base));
+  const provenance = await json('walk-hair-midnight.provenance.json');
+  const source = await readFile(new URL('source/walk-hair-midnight.png', import.meta.url));
+  assert.equal(provenance.sourceSha256, createHash('sha256').update(source).digest('hex'));
+  assert.equal(provenance.atlasPngSha256, createHash('sha256').update(image).digest('hex'));
+  assert.equal(provenance.releaseApproved, false);
+  const hashes = new Set();
+  for (const { frame: { x, y, w, h } } of Object.values(atlas.frames)) {
+    const raw = await sharp(image).extract({ left: x, top: y, width: w, height: h }).raw().toBuffer();
+    hashes.add(createHash('sha256').update(raw).digest('hex'));
+    for (let py = 0; py < h; py++) for (let px = 0; px < w; px++) {
+      if (px === 0 || py === 0 || px === w - 1 || py === h - 1)
+        assert.equal(raw[(py * w + px) * 4 + 3], 0, 'No artwork leaks across cell borders');
+    }
+  }
+  assert.equal(hashes.size, 32);
 });

@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "hair-midnight",
+  "source": "walk-hair-midnight.png",
+  "sourceSize": [
+    887,
+    1774
+  ],
+  "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+  "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+  "frames": [
+    {
+      "name": "walk/hair-midnight/S/00",
+      "crop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": {
+        "x": 55,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/S/01",
+      "crop": {
+        "x": 244,
+        "y": 52,
+        "w": 177,
+        "h": 128
+      },
+      "placement": {
+        "x": 55,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/S/02",
+      "crop": {
+        "x": 467,
+        "y": 52,
+        "w": 176,
+        "h": 128
+      },
+      "placement": {
+        "x": 55,
+        "y": 11,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/S/03",
+      "crop": {
+        "x": 689,
+        "y": 52,
+        "w": 175,
+        "h": 128
+      },
+      "placement": {
+        "x": 55,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/SW/00",
+      "crop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": {
+        "x": 50,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/SW/01",
+      "crop": {
+        "x": 245,
+        "y": 272,
+        "w": 177,
+        "h": 134
+      },
+      "placement": {
+        "x": 51,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/SW/02",
+      "crop": {
+        "x": 466,
+        "y": 273,
+        "w": 178,
+        "h": 135
+      },
+      "placement": {
+        "x": 50,
+        "y": 11,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/SW/03",
+      "crop": {
+        "x": 688,
+        "y": 273,
+        "w": 177,
+        "h": 134
+      },
+      "placement": {
+        "x": 51,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/W/00",
+      "crop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/W/01",
+      "crop": {
+        "x": 252,
+        "y": 494,
+        "w": 169,
+        "h": 141
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/W/02",
+      "crop": {
+        "x": 470,
+        "y": 494,
+        "w": 171,
+        "h": 141
+      },
+      "placement": {
+        "x": 49,
+        "y": 11,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/W/03",
+      "crop": {
+        "x": 692,
+        "y": 494,
+        "w": 172,
+        "h": 141
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/NW/00",
+      "crop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-midnight/NW/01",
+      "crop": {
+        "x": 253,
+        "y": 718,
+        "w": 167,
+        "h": 138
+      },
+      "placement": {
+        "x": 52,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-midnight/NW/02",
+      "crop": {
+        "x": 474,
+        "y": 718,
+        "w": 167,
+        "h": 140
+      },
+      "placement": {
+        "x": 49,
+        "y": 10,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-midnight/NW/03",
+      "crop": {
+        "x": 694,
+        "y": 718,
+        "w": 170,
+        "h": 139
+      },
+      "placement": {
+        "x": 52,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-midnight/N/00",
+      "crop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": {
+        "x": 53,
+        "y": 10,
+        "w": 83,
+        "h": 74
+      }
+    },
+    {
+      "name": "walk/hair-midnight/N/01",
+      "crop": {
+        "x": 245,
+        "y": 939,
+        "w": 176,
+        "h": 139
+      },
+      "placement": {
+        "x": 54,
+        "y": 10,
+        "w": 83,
+        "h": 74
+      }
+    },
+    {
+      "name": "walk/hair-midnight/N/02",
+      "crop": {
+        "x": 466,
+        "y": 939,
+        "w": 177,
+        "h": 139
+      },
+      "placement": {
+        "x": 53,
+        "y": 11,
+        "w": 83,
+        "h": 74
+      }
+    },
+    {
+      "name": "walk/hair-midnight/N/03",
+      "crop": {
+        "x": 689,
+        "y": 939,
+        "w": 176,
+        "h": 139
+      },
+      "placement": {
+        "x": 54,
+        "y": 10,
+        "w": 83,
+        "h": 74
+      }
+    },
+    {
+      "name": "walk/hair-midnight/NE/00",
+      "crop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": {
+        "x": 55,
+        "y": 10,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-midnight/NE/01",
+      "crop": {
+        "x": 244,
+        "y": 1161,
+        "w": 173,
+        "h": 140
+      },
+      "placement": {
+        "x": 54,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-midnight/NE/02",
+      "crop": {
+        "x": 466,
+        "y": 1162,
+        "w": 175,
+        "h": 138
+      },
+      "placement": {
+        "x": 55,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-midnight/NE/03",
+      "crop": {
+        "x": 686,
+        "y": 1162,
+        "w": 178,
+        "h": 138
+      },
+      "placement": {
+        "x": 54,
+        "y": 11,
+        "w": 82,
+        "h": 72
+      }
+    },
+    {
+      "name": "walk/hair-midnight/E/00",
+      "crop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": {
+        "x": 60,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/E/01",
+      "crop": {
+        "x": 245,
+        "y": 1383,
+        "w": 168,
+        "h": 137
+      },
+      "placement": {
+        "x": 59,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/E/02",
+      "crop": {
+        "x": 467,
+        "y": 1383,
+        "w": 172,
+        "h": 137
+      },
+      "placement": {
+        "x": 60,
+        "y": 11,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/E/03",
+      "crop": {
+        "x": 688,
+        "y": 1383,
+        "w": 173,
+        "h": 137
+      },
+      "placement": {
+        "x": 59,
+        "y": 10,
+        "w": 82,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/SE/00",
+      "crop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": {
+        "x": 61,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/SE/01",
+      "crop": {
+        "x": 243,
+        "y": 1606,
+        "w": 178,
+        "h": 135
+      },
+      "placement": {
+        "x": 61,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/SE/02",
+      "crop": {
+        "x": 464,
+        "y": 1606,
+        "w": 178,
+        "h": 135
+      },
+      "placement": {
+        "x": 61,
+        "y": 11,
+        "w": 83,
+        "h": 70
+      }
+    },
+    {
+      "name": "walk/hair-midnight/SE/03",
+      "crop": {
+        "x": 686,
+        "y": 1606,
+        "w": 178,
+        "h": 135
+      },
+      "placement": {
+        "x": 61,
+        "y": 10,
+        "w": 83,
+        "h": 70
+      }
+    }
+  ]
+}
