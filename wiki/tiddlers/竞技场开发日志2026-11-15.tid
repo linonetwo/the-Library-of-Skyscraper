@@ -61,3 +61,5 @@ Sol接入共用动作层索引与渲染，静止播放idle，移动播放walk，
 全量浏览器最初因本地服务进程退出而中断，恢复同目录赛局后完整重跑通过。后端回放增量、前端共享Sprite池及前后发片挂层已由Astra独立技术评审；美术Astra另行记录作者自审和后续精修项。
 
 本轮分为[[本人任务回放PR #14|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/14]]与[[八向待机纸娃娃PR #15|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/15]]，Astra评审后由Terra按最终head的CI结果顺序交付。
+
+CI检查发现浏览器并行争用与Reset前历史操作影响测试计数；浏览器测试改为串行并增加超时余量，回放断言只计算最后Reset后的推进，完整历史继续保留。

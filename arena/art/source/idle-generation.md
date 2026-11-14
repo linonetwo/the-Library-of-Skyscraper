@@ -1,6 +1,6 @@
 # Idle full paper-doll module — 2026-11-14
 
-Status: **prototype**, not release-approved. No approval is implied by complete asset coverage or automated tests.
+Status: **prototype**; release approval remains pending.
 
 ## Generation and shared-source boundary
 
@@ -34,16 +34,16 @@ Rebuild: `npm run build:animation` (walk then idle, preserving both in coverage)
 - All eight views were reviewed in scholar/midnight/staff and warden/ivory contact sheets. New poses have straight planted legs rather than a walk contact pose. Skin/charcoal base, warm dark outlines and existing hair/staff preserve the established anime art direction.
 - Scholar's teal center and ivory side panels are intentionally front-only; its ivory back carries a teal book emblem. The lighter back is not a missing clothing overlay.
 - NW staff was corrected from the near-side left silhouette to the right-hand x=116 attachment. Midnight hair width was expanded by 6 px to cover exposed bald-head edges in oblique views.
-- The newly generated standing body is closer to the requested three-head proportion than the older walk source. The old walk head is visibly larger, and its stance is wider. Switching actions therefore still has a proportion/volume discontinuity; harmonizing the older walk source requires a separate reviewed normalization pass, not falsifying the new standing body with walk frames.
+- The newly generated standing body is closer to the requested three-head proportion than the older walk source. The old walk head is visibly larger, and its stance is wider. Switching actions therefore still has a proportion/volume discontinuity; harmonizing the older walk source requires a separate reviewed normalization pass, using a separate reviewed normalization pass.
 - Hands touch the shaft, but a fully wrapped gripping-finger pose is not yet painted. Fine scalp/ear edge coverage, profile/back transitions, exact three-head measurement, and cloth/sleeve overlap still require human art approval.
-- Runtime combination selection, idle/walk switching and screenshot evidence are handled in the client integration work. Contact sheets alone do not establish runtime approval.
+- Runtime combination selection, idle/walk switching and screenshot evidence are handled in the client integration work. Runtime approval remains pending.
 
 Coverage honestly marks all 48 idle logical direction rows `prototype`, with `releaseApproved: false`. Other unproduced actions remain `missing`.
 
 ## Final implementer self-review
 
-The art implementer reviewed the final real-client, two-outfit screenshot `wiki/tiddlers/竞技场2026-11-15待机纸娃娃实机.png` and independently read `ActorView.ts`, `walkLayers.ts`, and `AnimatedDollPreview.tsx`. This is an **implementer self-review**, not independent release approval.
+The art implementer reviewed the final real-client, two-outfit screenshot `wiki/tiddlers/竞技场2026-11-15待机纸娃娃实机.png` and independently read `ActorView.ts`, `walkLayers.ts`, and `AnimatedDollPreview.tsx`. This is an **implementer self-review**.
 
-Observed screenshot silhouettes, facing directions, scholar back emblem, warden armor and rear staff positions agree with the composed asset sheets. Runtime idle order is rear staff → rear hair → body → outfit → front staff → foreground hands → front hair, matching `prepare-idle.mjs`. Action-prefixed texture keys select independent idle assets; the sprite pool updates texture/order and hides surplus sprites when switching weapon/action combinations. The lab uses the same layer selector for DOM composition. A screenshot proves the visible composition only, not temporal behavior; runtime animation switching is covered by the client integration tests.
+Observed screenshot silhouettes, facing directions, scholar back emblem, warden armor and rear staff positions agree with the composed asset sheets. Runtime idle order is rear staff → rear hair → body → outfit → front staff → foreground hands → front hair, matching `prepare-idle.mjs`. Action-prefixed texture keys select independent idle assets; the sprite pool updates texture/order and hides surplus sprites when switching weapon/action combinations. The lab uses the same layer selector for DOM composition. The screenshot shows visible composition; client integration tests cover runtime animation switching.
 
-The final full `npm run build:animation && npm test` was rerun by the implementer: 14 tests passed, zero failures. No generated walk file changed; coverage continues to record 96 prototype direction/layer rows and zero approvals. The client reviewer was asked to align the lab's initial idle playback speed to 4 fps (the authored 250 ms timing) and its visible labels to the selected action. Art limitations above remain open and are not overridden by these checks.
+The final full `npm run build:animation && npm test` was rerun by the implementer: 14 tests passed, zero failures. No generated walk file changed; coverage continues to record 96 prototype direction/layer rows and zero approvals. The client reviewer was asked to align the lab's initial idle playback speed to 4 fps (the authored 250 ms timing) and its visible labels to the selected action. The art limitations above remain open.
