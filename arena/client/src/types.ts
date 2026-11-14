@@ -9,6 +9,7 @@ export interface Room {
   owner: string | null;
 }
 export interface Actor {
+  appearance: Appearance;
   id: string;
   owner: string;
   role: "scout" | "gatherer" | "guard";
@@ -56,11 +57,21 @@ export interface Session {
   playerId: string;
   token: string;
 }
-export type Command = {
-  type: string;
-  [key: string]: string | number | boolean;
-};
+export type Command =
+  | { type: "equip"; actorId: string; appearance: Appearance }
+  | { type: "move"; actorId: string; roomId: string }
+  | { type: "gather" | "deliver" | "attack" | "capture"; actorId: string }
+  | { type: "build"; roomId: string; kind: "tower" | "catalog" }
+  | { type: "rule"; preset: Player["rule"]["preset"]; retreatHp: number }
+  | { type: "pause"; paused: boolean }
+  | { type: "step"; ticks: number }
+  | { type: "reset" };
 export type Outfit = "scholar" | "warden";
+export interface Appearance {
+  outfit: Outfit;
+  hair: "ivory" | "midnight";
+  weapon: boolean;
+}
 export const roleNames = {
   scout: "巡书使",
   gatherer: "采撷师",

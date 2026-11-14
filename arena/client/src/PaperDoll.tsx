@@ -1,5 +1,6 @@
 import type { Outfit } from "./types";
 import atlasData from "../public/assets/doll-atlas.json";
+import { dollLayers } from "./dollLayers";
 
 interface Atlas {
   frames: Record<
@@ -21,12 +22,7 @@ export default function PaperDoll({
   weapon?: boolean;
   small?: boolean;
 }) {
-  const layers = [
-    "body",
-    `outfit-${outfit}`,
-    `hair-${hair}`,
-    ...(weapon ? ["weapon-staff"] : []),
-  ];
+  const layers = dollLayers({ outfit, hair, weapon });
   return (
     <div
       className={`paper-doll ${small ? "small" : ""} ${outfit}`}

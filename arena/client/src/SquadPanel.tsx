@@ -6,7 +6,7 @@ import { roleNames } from "./types";
 import { useArena, stateName } from "./ArenaWorkspace";
 
 export default function SquadPanel() {
-  const { selected, outfits, hairs, weapons, ownActors, outfit, selectActor } =
+  const { selected, ownActors, selectActor } =
     useArena();
 
   return (
@@ -30,12 +30,7 @@ export default function SquadPanel() {
               <span className="card-number">0{i + 1}</span>
               <PaperDoll
                 small
-                outfit={
-                  outfits[unit.id] ||
-                  (unit.role === "guard" ? "warden" : "scholar")
-                }
-                hair={hairs[unit.id]}
-                weapon={weapons[unit.id] !== false}
+                {...unit.appearance}
               />
               <div>
                 <small>{unit.role.toUpperCase()}</small>

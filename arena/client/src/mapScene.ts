@@ -1,13 +1,11 @@
 import { Container, Graphics, Sprite, Text, Texture } from "pixi.js";
-import type { Actor, Outfit, Room, Snapshot } from "./types";
+import type { Actor, Room, Snapshot } from "./types";
 import { floorPoint } from "./libraryLayout";
+import { dollLayers } from "./dollLayers";
 export type MapProps = {
   snapshot: Snapshot | null;
   selected: string | null;
   selectedRoom: string | null;
-  outfits: Record<string, Outfit>;
-  hairs: Record<string, "ivory" | "midnight">;
-  weapons: Record<string, boolean>;
   zoom: number;
   showRoutes: boolean;
   onSelect: (id: string) => void;
@@ -128,8 +126,6 @@ export function paintMap(
     const group = grouped[room.id];
     const offset = (group.indexOf(actor) - (group.length - 1) / 2) * 39;
     const selected = actor.id === p.selected;
-    const outfit =
-      p.outfits[actor.id] || (actor.role === "guard" ? "warden" : "scholar");
     const node = new Container();
     node.position.set(x + offset, y + 4);
     if (selected)
@@ -140,12 +136,7 @@ export function paintMap(
           .fill({ color: 0xf5d18a, alpha: 0.15 }),
       );
     // Aligned independent body, outfit, hair and accessory frames form the paper doll.
-    const layers = [
-      "body",
-      `outfit-${outfit}`,
-      `hair-${p.hairs[actor.id] || "ivory"}`,
-      ...(p.weapons[actor.id] !== false ? ["weapon-staff"] : []),
-    ];
+    const layers = dollLayers(actor.appearance);
     layers.forEach((key) => {
       const texture = frames[key];
       const sprite = new Sprite(texture);

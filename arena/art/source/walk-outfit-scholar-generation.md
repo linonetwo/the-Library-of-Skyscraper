@@ -1,19 +1,25 @@
 # 学者衣装行走层生成记录
 
-状态：**生成失败，无源位图，不构成动画覆盖**。
+## 2026-11-05：32帧衣装完成试产
 
-- 请求：使用 `proxy-imagegen/scripts/generate.sh`，指定 GPT Image 2；提示词完整保存在 `walk-outfit-scholar-prompt.txt`。
-- 结果：连续三次 Responses API HTTP 500，进程退出码 1；没有最终 PNG，不记录虚构的图片来源哈希。
-- 没有更换供应商、没有无上限重试、没有使用静态正面衣装填充八方向。
-- 目标：象牙白/青绿短款无袖学者背心，前扣/背部书纹区别方向；32帧全部衣装独立透明，头、手、腿空白。
-- 当前源基础体自身 NW/NE passing 帧有方向漂移；衣装完成也不会自动解除基础体验收缺陷。
+本轮使用用户指定 `proxy-imagegen` / GPT Image 2，首次调用生成成功，进程退出码0，源PNG为887×1774、755431字节。完整提示词保留于 `walk-outfit-scholar-prompt.txt`，原图保留于 `walk-outfit-scholar.png`。
 
-## 已实现技术准备
+画面为象牙白/青绿无袖短背心，前扣与背部书纹区分朝向；4列×8行，方向 `S SW W NW N NE E SE`。每格保留独立绘制的衣装形变。
 
-`equipment-pipeline.mjs` 接受人工审核的32个 crop/placement 注册，不按不透明包围盒自动居中、不镜像、不合成步态。输出独立 PNG、Pixi JSON、来源/提示词/注册表/输出哈希记录，192×192、2px留白、脚底锚点(0.5,0.9)。短背心顶端66px及145px以下禁止不透明像素，空帧/重复帧/缺失方向/错误尺寸或哈希全部拒绝。技术检查成功也只能是 prototype，不能更新 releaseApproved。
+制作流程：
 
-配方字段：`schemaVersion:1, action:"walk", layer:"outfit-scholar", source, prompt, sourceSha256, promptSha256, sourceSize:[width,height], frames:[{name:"walk/outfit-scholar/S/00",crop:{x,y,w,h},placement:{x,y,w,h}}, ...]`。source/prompt 路径相对于配方文件。图像成功生成并完成逐帧定位之后，才创建真实配方；不提前伪造尺寸或哈希。
+1. 清理生成图的红/黄/紫色键污染，产出 `walk-outfit-scholar-clean.png`。
+2. 源图裁切框与身体上的放置框分别管理；身体注册值由 `prepare-scholar-walk.mjs` 的32个手工坐标给出。源图边界提取只影响裁切，实际放置由固定注册坐标决定。
+3. `walk-outfit-scholar-registration.json` 记录每帧裁切、放置及来源；独立PNG/Pixi JSON打包到 `/assets/animation/walk-outfit-scholar.*`。
+4. 从身体原像素提取可见前臂/手部，生成 `walk-body-front.*`。叠层顺序 `body → outfit-scholar → body-front`，使经过胸前的摆臂显示在衣装前方。
+5. 生成 `arena/art/walk-scholar-preview.png` 组合素材表；实机画面由主代理在动画检查台拍摄。
 
-运行：`node build-equipment.mjs <reviewed-registration.json> <output-directory>`；测试 `node --test equipment.test.mjs`。合成测试纹理只在内存内验证管线，不写入游戏资产。
+规格：192×192单元、2px留白，图集784×1568，共32帧，脚底参考锚点(0.5,0.9)。帧键 `walk/outfit-scholar/{direction}/{00..03}` 与 `walk/body-front/{direction}/{00..03}`。来源记录置于对应 `.provenance.json`。
 
-仍需：成功源图、实际透明清理、32帧逐一身体对齐/手遮挡审查、八向播放审查、实机截图、coverage登记。以上全部尚未完成。
+实际完成范围为 walk 学者服 prototype。画面已呈现全部方向、逐帧衣装及前景摆臂。待美修项：背心胸廓偏宽、袖口及领口贴合、侧后方向衣装/身体朝向一致性、细碎浅色边缘；基础体的NW/NE passing方向漂移与三头身归一化继续列入身体制作任务。发型、守卫服、法杖和其他动作仍在制作队列。
+
+复现：`cd arena/art && npm run build:animation`。本轮美术测试8项通过，包含真实衣装/前景手臂的32帧身体注册。
+
+## 早期生成记录
+
+前一轮连续三次 Responses API HTTP500，退出码1；当时无源图产出。本轮保留原提示词并完成新请求，以上成功源图及打包结果取代前次缺图状态。

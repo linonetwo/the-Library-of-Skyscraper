@@ -21,12 +21,12 @@ test('animation coverage enumerates every action / equipment / direction without
     assert.equal(entry.expectedFrames, modules[entry.action].frames);
     assert.equal(entry.releaseApproved, false);
     if (entry.status === 'prototype') {
-      assert.equal(entry.action, 'walk'); assert.equal(entry.layer, 'body');
+      assert.equal(entry.action, 'walk'); assert(['body', 'outfit-scholar', 'hair-ivory'].includes(entry.layer));
       assert.equal(entry.frames.length, entry.expectedFrames);
     } else { assert.equal(entry.status, 'missing'); assert.equal(entry.frames.length, 0); assert.equal(entry.atlas, null); }
   }
   assert.equal(c.releaseReady, false);
-  assert.equal(c.coverage.filter(x => x.status === 'prototype').length, 8);
+  assert.equal(c.coverage.filter(x => x.status === 'prototype').length, 24);
 });
 test('prototype atlas contains 32 distinct nonempty RGBA frames within padded bounds', async () => {
   const atlas = await json('walk-body.json'), c = await json('coverage.json');
@@ -54,4 +54,21 @@ test('generated source is preserved and checksum is reproducible', async () => {
   const c = await json('coverage.json');
   const source = await readFile(new URL('source/walk-body-eight-directions.png', import.meta.url));
   assert.equal(createHash('sha256').update(source).digest('hex'), c.source.sha256);
+});
+test('scholar vest, ivory hair and foreground hands share the 32 body registrations', async () => {
+  const body = await json('walk-body.json');
+  for (const layer of ['outfit-scholar', 'body-front', 'hair-ivory']) {
+    const atlas = await json(`walk-${layer}.json`);
+    const image = await readFile(new URL(atlas.meta.image, base));
+    assert.equal(Object.keys(atlas.frames).length, 32);
+    for (const direction of directions) for (let i = 0; i < 4; i++) {
+      const entry = atlas.frames[frameName('walk', layer, direction, i)];
+      assert.deepEqual(entry, body.frames[frameName('walk', 'body', direction, i)]);
+      const { x, y, w, h } = entry.frame;
+      const pixels = await sharp(image).extract({ left: x, top: y, width: w, height: h }).raw().toBuffer();
+      let visible = 0;
+      for (let p = 3; p < pixels.length; p += 4) if (pixels[p] > 128) visible++;
+      assert(visible > 50, `${layer}/${direction}/${i} has visible artwork`);
+    }
+  }
 });

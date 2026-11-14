@@ -78,7 +78,15 @@ export function registerBrowserTools(server) {
         break;
       case 'chooseOutfit': await click({ scholar: '星墨学者', warden: '书库守卫' }[action.outfit]); break;
       case 'chooseHair': await click(action.hair === 'ivory' ? '月白发色' : '墨蓝发色'); break;
-      case 'toggleStaff': await active.getByRole('checkbox', { name: '携带法杖' }).setChecked(action.equipped); break;
+      case 'toggleStaff': {
+        const checkbox = active.getByRole('checkbox', { name: '携带法杖' });
+        if (await checkbox.isChecked() !== action.equipped) {
+          await checkbox.click();
+          await active.waitForFunction(equipped =>
+            document.querySelector('.appearance-options input').checked === equipped, action.equipped);
+        }
+        break;
+      }
       case 'setRule': {
         await click('行动规则');
         await active.locator('.presets button').nth(['gather', 'defend', 'explore'].indexOf(action.preset)).click();

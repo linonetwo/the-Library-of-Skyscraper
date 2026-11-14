@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "outfit-scholar",
+  "source": "walk-outfit-scholar-clean.png",
+  "prompt": "walk-outfit-scholar-prompt.txt",
+  "sourceSha256": "48e94c4bf477e5b8d9ff3df9a2635eb0a13b16506786408a50f41426a478073c",
+  "promptSha256": "412ea94d8d3db9cc88c8075805069df1cfbf0dc57c47aa2a7349e477cf8b0173",
+  "sourceSize": [
+    887,
+    1774
+  ],
+  "frames": [
+    {
+      "name": "walk/outfit-scholar/S/00",
+      "crop": {
+        "x": 74,
+        "y": 112,
+        "w": 72,
+        "h": 98
+      },
+      "placement": {
+        "x": 65,
+        "y": 82,
+        "w": 61,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/S/01",
+      "crop": {
+        "x": 297,
+        "y": 111,
+        "w": 72,
+        "h": 99
+      },
+      "placement": {
+        "x": 67,
+        "y": 82,
+        "w": 57,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/S/02",
+      "crop": {
+        "x": 519,
+        "y": 112,
+        "w": 72,
+        "h": 98
+      },
+      "placement": {
+        "x": 66,
+        "y": 83,
+        "w": 60,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/S/03",
+      "crop": {
+        "x": 741,
+        "y": 112,
+        "w": 71,
+        "h": 98
+      },
+      "placement": {
+        "x": 68,
+        "y": 82,
+        "w": 57,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/SW/00",
+      "crop": {
+        "x": 74,
+        "y": 333,
+        "w": 71,
+        "h": 100
+      },
+      "placement": {
+        "x": 66,
+        "y": 82,
+        "w": 52,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/SW/01",
+      "crop": {
+        "x": 299,
+        "y": 332,
+        "w": 69,
+        "h": 100
+      },
+      "placement": {
+        "x": 68,
+        "y": 82,
+        "w": 49,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/SW/02",
+      "crop": {
+        "x": 518,
+        "y": 333,
+        "w": 69,
+        "h": 99
+      },
+      "placement": {
+        "x": 65,
+        "y": 83,
+        "w": 53,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/SW/03",
+      "crop": {
+        "x": 741,
+        "y": 333,
+        "w": 72,
+        "h": 99
+      },
+      "placement": {
+        "x": 68,
+        "y": 82,
+        "w": 49,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/W/00",
+      "crop": {
+        "x": 81,
+        "y": 554,
+        "w": 57,
+        "h": 99
+      },
+      "placement": {
+        "x": 67,
+        "y": 81,
+        "w": 44,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/W/01",
+      "crop": {
+        "x": 305,
+        "y": 553,
+        "w": 56,
+        "h": 99
+      },
+      "placement": {
+        "x": 68,
+        "y": 81,
+        "w": 44,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/W/02",
+      "crop": {
+        "x": 525,
+        "y": 554,
+        "w": 57,
+        "h": 98
+      },
+      "placement": {
+        "x": 66,
+        "y": 82,
+        "w": 46,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/W/03",
+      "crop": {
+        "x": 748,
+        "y": 554,
+        "w": 56,
+        "h": 100
+      },
+      "placement": {
+        "x": 68,
+        "y": 81,
+        "w": 44,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/NW/00",
+      "crop": {
+        "x": 76,
+        "y": 777,
+        "w": 68,
+        "h": 99
+      },
+      "placement": {
+        "x": 65,
+        "y": 83,
+        "w": 56,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/NW/01",
+      "crop": {
+        "x": 299,
+        "y": 775,
+        "w": 70,
+        "h": 98
+      },
+      "placement": {
+        "x": 69,
+        "y": 84,
+        "w": 54,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/NW/02",
+      "crop": {
+        "x": 521,
+        "y": 777,
+        "w": 71,
+        "h": 99
+      },
+      "placement": {
+        "x": 65,
+        "y": 82,
+        "w": 56,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/NW/03",
+      "crop": {
+        "x": 744,
+        "y": 776,
+        "w": 70,
+        "h": 98
+      },
+      "placement": {
+        "x": 69,
+        "y": 84,
+        "w": 54,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/N/00",
+      "crop": {
+        "x": 74,
+        "y": 999,
+        "w": 73,
+        "h": 98
+      },
+      "placement": {
+        "x": 65,
+        "y": 83,
+        "w": 60,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/N/01",
+      "crop": {
+        "x": 297,
+        "y": 998,
+        "w": 72,
+        "h": 98
+      },
+      "placement": {
+        "x": 68,
+        "y": 83,
+        "w": 56,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/N/02",
+      "crop": {
+        "x": 517,
+        "y": 999,
+        "w": 73,
+        "h": 98
+      },
+      "placement": {
+        "x": 65,
+        "y": 84,
+        "w": 60,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/N/03",
+      "crop": {
+        "x": 741,
+        "y": 999,
+        "w": 72,
+        "h": 98
+      },
+      "placement": {
+        "x": 68,
+        "y": 83,
+        "w": 56,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/NE/00",
+      "crop": {
+        "x": 73,
+        "y": 1221,
+        "w": 72,
+        "h": 98
+      },
+      "placement": {
+        "x": 68,
+        "y": 82,
+        "w": 56,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/NE/01",
+      "crop": {
+        "x": 296,
+        "y": 1219,
+        "w": 71,
+        "h": 96
+      },
+      "placement": {
+        "x": 68,
+        "y": 84,
+        "w": 54,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/NE/02",
+      "crop": {
+        "x": 517,
+        "y": 1222,
+        "w": 71,
+        "h": 98
+      },
+      "placement": {
+        "x": 68,
+        "y": 83,
+        "w": 56,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/NE/03",
+      "crop": {
+        "x": 741,
+        "y": 1221,
+        "w": 69,
+        "h": 99
+      },
+      "placement": {
+        "x": 68,
+        "y": 84,
+        "w": 54,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/E/00",
+      "crop": {
+        "x": 80,
+        "y": 1442,
+        "w": 59,
+        "h": 98
+      },
+      "placement": {
+        "x": 81,
+        "y": 81,
+        "w": 44,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/E/01",
+      "crop": {
+        "x": 306,
+        "y": 1440,
+        "w": 54,
+        "h": 98
+      },
+      "placement": {
+        "x": 80,
+        "y": 81,
+        "w": 44,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/E/02",
+      "crop": {
+        "x": 522,
+        "y": 1443,
+        "w": 60,
+        "h": 97
+      },
+      "placement": {
+        "x": 79,
+        "y": 82,
+        "w": 46,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/E/03",
+      "crop": {
+        "x": 750,
+        "y": 1442,
+        "w": 55,
+        "h": 98
+      },
+      "placement": {
+        "x": 80,
+        "y": 81,
+        "w": 44,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/SE/00",
+      "crop": {
+        "x": 79,
+        "y": 1664,
+        "w": 67,
+        "h": 99
+      },
+      "placement": {
+        "x": 72,
+        "y": 82,
+        "w": 53,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/SE/01",
+      "crop": {
+        "x": 297,
+        "y": 1662,
+        "w": 72,
+        "h": 99
+      },
+      "placement": {
+        "x": 74,
+        "y": 82,
+        "w": 49,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/SE/02",
+      "crop": {
+        "x": 523,
+        "y": 1664,
+        "w": 68,
+        "h": 100
+      },
+      "placement": {
+        "x": 72,
+        "y": 83,
+        "w": 53,
+        "h": 49
+      }
+    },
+    {
+      "name": "walk/outfit-scholar/SE/03",
+      "crop": {
+        "x": 742,
+        "y": 1662,
+        "w": 71,
+        "h": 99
+      },
+      "placement": {
+        "x": 74,
+        "y": 82,
+        "w": 49,
+        "h": 49
+      }
+    }
+  ]
+}

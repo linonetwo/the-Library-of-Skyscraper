@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "arena-animation-2026-10-28.1",
-  "generatedOn": "2026-10-28",
+  "contentVersion": "arena-animation-2026-11-05.2",
+  "generatedOn": "2026-11-05",
   "source": {
     "path": "arena/art/source/walk-body-eight-directions.png",
     "sha256": "0ac437f4d2fc5f79510542ceee29b2ba885ee067a0e386ecd0ff13730ba0417f",
@@ -91,8 +91,8 @@
     "gait": "Four authored poses per direction, cadence/foot-sliding needs review.",
     "proportion": "Source is approximately 2.5–2.8 heads; exact 3-head normalization pending.",
     "cleanup": "Chroma specks removed; connected pale edge halos still need manual cleanup.",
-    "alignment": "Shared cell anchor provisional; attachment and occlusion tracks not authored.",
-    "paperDoll": "Body only. Animated outfits, hairstyles and staff missing; no compatibility claim."
+    "alignment": "Scholar authored per-frame placements share cell anchor; original hand pixels restored as body-front. Vest width and side/back registration need art refinement.",
+    "paperDoll": "Walk body + scholar vest + foreground hands + ivory hair assembled in 32 poses. Warden, midnight hair, staff and other actions remain in production queue."
   },
   "coverage": [
     {
@@ -700,9 +700,14 @@
       "layer": "outfit-scholar",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-scholar/S/00",
+        "walk/outfit-scholar/S/01",
+        "walk/outfit-scholar/S/02",
+        "walk/outfit-scholar/S/03"
+      ],
+      "atlas": "walk-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -710,9 +715,14 @@
       "layer": "outfit-scholar",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-scholar/SW/00",
+        "walk/outfit-scholar/SW/01",
+        "walk/outfit-scholar/SW/02",
+        "walk/outfit-scholar/SW/03"
+      ],
+      "atlas": "walk-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -720,9 +730,14 @@
       "layer": "outfit-scholar",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-scholar/W/00",
+        "walk/outfit-scholar/W/01",
+        "walk/outfit-scholar/W/02",
+        "walk/outfit-scholar/W/03"
+      ],
+      "atlas": "walk-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -730,9 +745,14 @@
       "layer": "outfit-scholar",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-scholar/NW/00",
+        "walk/outfit-scholar/NW/01",
+        "walk/outfit-scholar/NW/02",
+        "walk/outfit-scholar/NW/03"
+      ],
+      "atlas": "walk-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -740,9 +760,14 @@
       "layer": "outfit-scholar",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-scholar/N/00",
+        "walk/outfit-scholar/N/01",
+        "walk/outfit-scholar/N/02",
+        "walk/outfit-scholar/N/03"
+      ],
+      "atlas": "walk-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -750,9 +775,14 @@
       "layer": "outfit-scholar",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-scholar/NE/00",
+        "walk/outfit-scholar/NE/01",
+        "walk/outfit-scholar/NE/02",
+        "walk/outfit-scholar/NE/03"
+      ],
+      "atlas": "walk-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -760,9 +790,14 @@
       "layer": "outfit-scholar",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-scholar/E/00",
+        "walk/outfit-scholar/E/01",
+        "walk/outfit-scholar/E/02",
+        "walk/outfit-scholar/E/03"
+      ],
+      "atlas": "walk-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -770,9 +805,14 @@
       "layer": "outfit-scholar",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/outfit-scholar/SE/00",
+        "walk/outfit-scholar/SE/01",
+        "walk/outfit-scholar/SE/02",
+        "walk/outfit-scholar/SE/03"
+      ],
+      "atlas": "walk-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -860,9 +900,14 @@
       "layer": "hair-ivory",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-ivory/S/00",
+        "walk/hair-ivory/S/01",
+        "walk/hair-ivory/S/02",
+        "walk/hair-ivory/S/03"
+      ],
+      "atlas": "walk-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -870,9 +915,14 @@
       "layer": "hair-ivory",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-ivory/SW/00",
+        "walk/hair-ivory/SW/01",
+        "walk/hair-ivory/SW/02",
+        "walk/hair-ivory/SW/03"
+      ],
+      "atlas": "walk-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -880,9 +930,14 @@
       "layer": "hair-ivory",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-ivory/W/00",
+        "walk/hair-ivory/W/01",
+        "walk/hair-ivory/W/02",
+        "walk/hair-ivory/W/03"
+      ],
+      "atlas": "walk-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -890,9 +945,14 @@
       "layer": "hair-ivory",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-ivory/NW/00",
+        "walk/hair-ivory/NW/01",
+        "walk/hair-ivory/NW/02",
+        "walk/hair-ivory/NW/03"
+      ],
+      "atlas": "walk-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -900,9 +960,14 @@
       "layer": "hair-ivory",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-ivory/N/00",
+        "walk/hair-ivory/N/01",
+        "walk/hair-ivory/N/02",
+        "walk/hair-ivory/N/03"
+      ],
+      "atlas": "walk-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -910,9 +975,14 @@
       "layer": "hair-ivory",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-ivory/NE/00",
+        "walk/hair-ivory/NE/01",
+        "walk/hair-ivory/NE/02",
+        "walk/hair-ivory/NE/03"
+      ],
+      "atlas": "walk-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -920,9 +990,14 @@
       "layer": "hair-ivory",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-ivory/E/00",
+        "walk/hair-ivory/E/01",
+        "walk/hair-ivory/E/02",
+        "walk/hair-ivory/E/03"
+      ],
+      "atlas": "walk-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -930,65 +1005,20 @@
       "layer": "hair-ivory",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "walk/hair-ivory/SE/00",
+        "walk/hair-ivory/SE/01",
+        "walk/hair-ivory/SE/02",
+        "walk/hair-ivory/SE/03"
+      ],
+      "atlas": "walk-hair-ivory.json",
       "releaseApproved": false
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "S",
-      "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
-      "releaseApproved": false
-    },
-    {
-      "action": "walk",
-      "layer": "hair-midnight",
-      "direction": "SW",
-      "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
-      "releaseApproved": false
-    },
-    {
-      "action": "walk",
-      "layer": "hair-midnight",
-      "direction": "W",
-      "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
-      "releaseApproved": false
-    },
-    {
-      "action": "walk",
-      "layer": "hair-midnight",
-      "direction": "NW",
-      "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
-      "releaseApproved": false
-    },
-    {
-      "action": "walk",
-      "layer": "hair-midnight",
-      "direction": "N",
-      "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
-      "releaseApproved": false
-    },
-    {
-      "action": "walk",
-      "layer": "hair-midnight",
-      "direction": "NE",
       "expectedFrames": 4,
       "status": "missing",
       "frames": [],
@@ -998,6 +1028,56 @@
     {
       "action": "walk",
       "layer": "hair-midnight",
+      "direction": "SW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "W",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "NW",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "N",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
+      "direction": "NE",
+      "expectedFrames": 4,
+      "status": "missing",
+      "frames": [],
+      "atlas": null,
+      "releaseApproved": false
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight",
       "direction": "E",
       "expectedFrames": 4,
       "status": "missing",
@@ -3014,6 +3094,28 @@
       "frames": [],
       "atlas": null,
       "releaseApproved": false
+    }
+  ],
+  "equipmentSources": [
+    {
+      "layer": "outfit-scholar",
+      "path": "arena/art/source/walk-outfit-scholar.png",
+      "sha256": "8031c77f62cba2d87a0eb362501065905ad6c202ba1f3cb7656c2e7b431cae2e",
+      "provenance": "walk-outfit-scholar.provenance.json"
+    },
+    {
+      "layer": "hair-ivory",
+      "path": "arena/art/source/walk-hair-ivory.png",
+      "sha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+      "provenance": "walk-hair-ivory.provenance.json"
+    }
+  ],
+  "auxiliaryLayers": [
+    {
+      "layer": "body-front",
+      "action": "walk",
+      "atlas": "walk-body-front.json",
+      "purpose": "Visible forearms and hands composited above sleeveless outfits; sampled from body source."
     }
   ]
 }

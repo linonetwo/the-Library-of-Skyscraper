@@ -90,9 +90,6 @@ export default function MapCanvas(props: MapProps) {
     props.snapshot,
     props.selected,
     props.selectedRoom,
-    props.outfits,
-    props.hairs,
-    props.weapons,
     props.zoom,
     props.showRoutes,
   ]);

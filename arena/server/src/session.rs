@@ -1,4 +1,4 @@
-use crate::{ReplayOperation, types::*};
+use crate::{Appearance, ReplayOperation, types::*};
 use bevy_ecs::prelude::World;
 use std::collections::BTreeMap;
 
@@ -109,6 +109,7 @@ impl Session {
                 state: "idle".into(),
                 cargo: 0,
                 cargo_capacity: if role == "gatherer" { 24 } else { 12 },
+                appearance: Appearance::for_role(role),
             });
         }
         self.event("join", format!("{id} 的三人小队抵达中庭"), Some(&id));
