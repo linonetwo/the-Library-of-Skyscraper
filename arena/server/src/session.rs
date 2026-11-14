@@ -14,6 +14,7 @@ pub struct Session {
     pub buildings: Vec<Building>,
     pub events: Vec<Event>,
     pub result: Option<ResultSummary>,
+    pub scripts: BTreeMap<String, crate::PublishedScript>,
     pub(crate) world: World,
     pub(crate) next_event: u64,
     pub(crate) manual_actions: BTreeMap<String, u64>,
@@ -69,6 +70,7 @@ impl Session {
             buildings: vec![],
             events: vec![],
             result: None,
+            scripts: BTreeMap::new(),
             world: World::new(),
             next_event: 1,
             manual_actions: BTreeMap::new(),
@@ -95,6 +97,7 @@ impl Session {
                     preset: "gather".into(),
                     retreat_hp: 30,
                 },
+                script: None,
             },
         );
         self.tokens.insert(token, id.clone());

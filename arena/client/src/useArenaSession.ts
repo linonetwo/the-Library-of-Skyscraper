@@ -141,6 +141,7 @@ export function useArenaSession() {
   return {
     session,
     snapshot,
+    acceptSnapshot,
     connection,
     error,
     setError,

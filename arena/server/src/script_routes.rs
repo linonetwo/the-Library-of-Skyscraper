@@ -1,21 +1,12 @@
+use crate::script_toolchain::{compile_project, service_error};
 use crate::store::{Error, Store, error};
 use axum::{
     Json,
     extract::{Path, State},
     http::{HeaderMap, StatusCode},
 };
-use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
-use skyscraper_arena_server::Snapshot;
-use std::{collections::BTreeMap, path::PathBuf, process::Stdio};
-use tokio::{io::AsyncWriteExt, process::Command};
-
-#[derive(Deserialize, Serialize)]
-pub struct SourceProject {
-    files: BTreeMap<String, String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    entry: Option<String>,
-}
+use skyscraper_arena_server::{PublishedScript, Snapshot, SourceProject};
 
 pub async fn compile(
     State(store): State<Store>,
@@ -41,24 +32,16 @@ pub async fn preview(
     let compilation = compile_project(&project).await?;
     let mut response = json!({ "tick": context["tick"], "compilation": compilation });
     if let Some(bundle) = response["compilation"].get("bundle") {
-        let runner = std::env::var_os("ARENA_SCRIPT_RUNNER")
-            .map(PathBuf::from)
-            .map(Ok)
-            .unwrap_or_else(|| {
-                std::env::current_exe()
-                    .map(|path| path.with_file_name("skyscraper-arena-script-runner"))
-            })
+        response["execution"] = store
+            .workers
+            .execute(&json!({ "bundle": bundle, "context": context }))
+            .await
             .map_err(service_error)?;
-        response["execution"] = exchange(
-            Command::new(runner),
-            &json!({ "bundle": bundle, "context": context }),
-        )
-        .await?;
     }
     Ok(Json(response))
 }
 
-fn rule_context(snapshot: Snapshot, owner: &str) -> Value {
+pub(crate) fn rule_context(snapshot: Snapshot, owner: &str) -> Value {
     let player = snapshot.players.iter().find(|player| player.id == owner);
     let actors: Vec<_> = snapshot
         .actors
@@ -77,7 +60,7 @@ fn rule_context(snapshot: Snapshot, owner: &str) -> Value {
         "tasks": { "items": [] },
         "memory": {},
         "limits": {
-            "maxIntents": 32,
+            "maxIntents": actors.len() * 2,
             "maxTaskPatches": 0,
             "maxLogEntries": 32,
             "maxMemoryBytes": 65536,
@@ -86,43 +69,46 @@ fn rule_context(snapshot: Snapshot, owner: &str) -> Value {
     })
 }
 
-async fn compile_project(project: &SourceProject) -> Result<Value, Error> {
-    let cli = std::env::var_os("ARENA_SCRIPT_TOOLCHAIN")
-        .map(PathBuf::from)
-        .unwrap_or_else(|| {
-            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../script-toolchain/cli.mjs")
-        });
-    let mut command = Command::new("node");
-    command.arg(cli);
-    exchange(command, &serde_json::to_value(project).unwrap()).await
-}
-
-async fn exchange(mut command: Command, request: &Value) -> Result<Value, Error> {
-    let mut child = command
-        .stdin(Stdio::piped())
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped())
-        .kill_on_drop(true)
-        .spawn()
-        .map_err(service_error)?;
-    let mut stdin = child.stdin.take().unwrap();
-    let mut bytes = serde_json::to_vec(request).unwrap();
-    bytes.push(b'\n');
-    stdin.write_all(&bytes).await.map_err(service_error)?;
-    drop(stdin);
-    let output = child.wait_with_output().await.map_err(service_error)?;
-    if !output.status.success() {
-        return Err(service_error(String::from_utf8_lossy(&output.stderr)));
+pub async fn publish(
+    State(store): State<Store>,
+    Path(id): Path<String>,
+    headers: HeaderMap,
+    Json(project): Json<SourceProject>,
+) -> Result<Json<Value>, Error> {
+    store.with_player(&id, &headers, |_, _| Ok(())).await?;
+    let compilation = compile_project(&project).await?;
+    let mut response = json!({ "compilation": compilation });
+    if let Some(bundle) = response["compilation"].get("bundle").cloned() {
+        let snapshot = store
+            .edit_player(&id, &headers, |session, owner| {
+                if session.result.is_some() {
+                    return Err(error(
+                        StatusCode::CONFLICT,
+                        "reset training or create a new session before publishing",
+                    ));
+                }
+                session.publish_script(owner, PublishedScript { project, bundle });
+                Ok(session.snapshot())
+            })
+            .await?;
+        response["snapshot"] = serde_json::to_value(snapshot).unwrap();
     }
-    serde_json::from_slice(&output.stdout).map_err(service_error)
+    Ok(Json(response))
+}
+pub async fn disable(
+    State(store): State<Store>,
+    Path(id): Path<String>,
+    headers: HeaderMap,
+) -> Result<Json<Snapshot>, Error> {
+    store
+        .edit_player(&id, &headers, |session, owner| {
+            session.disable_script(owner);
+            Ok(Json(session.snapshot()))
+        })
+        .await
 }
 
-fn service_error(message: impl std::fmt::Display) -> Error {
-    error(
-        StatusCode::BAD_GATEWAY,
-        &format!("script service: {message}"),
-    )
-}
-
+#[cfg(test)]
+mod publish_tests;
 #[cfg(test)]
 mod tests;

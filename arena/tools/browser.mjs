@@ -6,8 +6,9 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
-    ...['startTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
+    ...['startTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
     z.object({ type: z.literal('editScript'), source: z.string() }).strict(),
+    z.object({ type: z.literal('loadScriptTemplate'), template: z.enum(['recall', 'gather', 'defend', 'explore']) }).strict(),
     z.object({ type: z.literal('resumeSession'), sessionId: z.string() }).strict(),
     z.object({ type: z.literal('selectActor'), role: z.enum(['scout', 'gatherer', 'guard']) }).strict(),
     z.object({ type: z.literal('chooseOutfit'), outfit: z.enum(['scholar', 'warden']) }).strict(),
@@ -48,6 +49,7 @@ export function registerBrowserTools(server) {
     const { chromium } = await import('playwright');
     browser = await chromium.launch({ headless: true });
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
+    await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: uiURL });
     page = await context.newPage();
     page.setDefaultTimeout(7000);
     await page.goto(uiURL, { waitUntil: 'domcontentloaded' });
@@ -66,20 +68,36 @@ export function registerBrowserTools(server) {
       maps.map(map => JSON.parse(map.dataset.actors || '[]')));
     return { text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields };
   }, true);
-  register('Input.action', 'Control training, lobby, characters, outfits, rules, camera and gameplay through the UI.', { action: actionSchema }, async ({ action }) => {
+  register('Input.action', 'Control training, characters, outfits, TypeScript editing/publication, rules and gameplay through the UI.', { action: actionSchema }, async ({ action }) => {
     const active = current();
     const click = name => active.getByRole('button', { name, exact: true }).click();
     switch (action.type) {
       case 'openScripts':
         await click('行动规则');
         await click('编写 TypeScript 规则 →');
+        await active.getByRole('textbox', { name: 'TypeScript规则源码' }).waitFor({ timeout: 20000 });
         break;
       case 'compileScript': await click('编译 TypeScript'); break;
       case 'previewScript': await click('试跑当前快照'); break;
+      case 'publishScript':
+      case 'disableScript': {
+        const operation = action.type === 'publishScript' ? 'publish' : 'disable';
+        await Promise.all([
+          active.waitForResponse(response => response.url().endsWith(`/scripts/${operation}`), { timeout: 20000 }),
+          click(operation === 'publish' ? '发布到战场' : '恢复行动预设'),
+        ]);
+        await active.getByRole('button', { name: '发布到战场', exact: true }).waitFor();
+        break;
+      }
+      case 'loadScriptTemplate':
+        await active.getByLabel('载入规则模板').selectOption(action.template);
+        break;
       case 'editScript':
+        await active.evaluate(source => navigator.clipboard.writeText(source), action.source);
         await active.getByRole('textbox', { name: 'TypeScript规则源码' }).focus();
         await active.keyboard.press('ControlOrMeta+a');
-        await active.keyboard.insertText(action.source);
+        await active.keyboard.press('ControlOrMeta+v');
+        await active.waitForFunction(source => localStorage.getItem('arena-rule-draft') === source, action.source);
         break;
       case 'resumeLatest': await click('继续上次远征'); break;
       case 'resumeSession': await click(`继续远征 ${action.sessionId}`); break;

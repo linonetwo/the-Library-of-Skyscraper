@@ -20,6 +20,14 @@ pub struct Replay {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(tag = "type", rename_all = "camelCase", deny_unknown_fields)]
 pub enum ReplayOperation {
+    ScriptPublication {
+        #[serde(rename = "playerId")]
+        player_id: String,
+        script: Option<crate::ScriptMetadata>,
+    },
+    ScriptAdvance {
+        decisions: Vec<crate::ScriptDecision>,
+    },
     Join {
         #[serde(rename = "playerId")]
         player_id: String,
@@ -111,6 +119,18 @@ impl Session {
     ) -> Result<(), String> {
         let invalid = || format!("invalid replay operation {index}");
         match operation {
+            ReplayOperation::ScriptPublication { player_id, script } => {
+                if !self.players.contains_key(player_id) {
+                    return Err(invalid());
+                }
+                self.set_script_metadata(player_id, script.clone());
+            }
+            ReplayOperation::ScriptAdvance { decisions } => {
+                if self.result.is_some() {
+                    return Err(invalid());
+                }
+                self.advance_scripted(decisions.clone());
+            }
             ReplayOperation::Join { player_id } => {
                 let actual = self
                     .join(format!("replay-only-{index}"))

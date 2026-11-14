@@ -3,11 +3,25 @@
 .script-workbench header button { display: flex; gap: 6px; align-items: center; white-space: nowrap; }
 .script-workbench h2 { margin: 6px 0 12px; }
 .script-workbench p { font-size: 11px; color: #afc2b4; line-height: 1.7; }
+.script-version {
+  display: flex; align-items: center; gap: 10px; margin: 14px 0; padding: 12px;
+  border: 1px solid #a99b6644; background: #243b36; color: #b5c5af;
+}
+.script-version.active { border-color: #b6cc7966; background: linear-gradient(110deg, #344b39, #233a36); color: #d0dfa5; }
+.script-version div { flex: 1; min-width: 0; }
+.script-version strong { display: block; font-size: 12px; font-weight: 500; }
+.script-version small { display: block; margin-top: 5px; font-size: 10px; line-height: 1.6; color: #aebfac; overflow-wrap: anywhere; }
+.script-version button { display: flex; align-items: center; gap: 5px; font-size: 10px; flex-shrink: 0; }
+@media (max-width: 600px) {
+  .script-version { flex-wrap: wrap; }
+  .script-version button { margin-left: 27px; }
+}
 .script-filebar {
   display: flex; align-items: center; gap: 8px; padding: 10px 14px;
   border: 1px solid #a99b6655; background: #29413f; color: #dbc794;
 }
 .script-filebar small { margin-left: auto; color: #a9bba5; }
+.script-filebar select { max-width: 160px; padding: 4px 6px; font-size: 10px; color: #d9cca6; background: #203834; border: 1px solid #a99b6644; }
 .script-monaco { height: 310px; border: 1px solid #a99b6655; }
 .script-toolbar { display: flex; align-items: center; gap: 14px; margin: 14px 0; flex-wrap: wrap; }
 .script-toolbar button { display: flex; gap: 6px; align-items: center; font-size: 12px; }

@@ -26,6 +26,7 @@ export interface Player {
   materials: number;
   score: number;
   rule: { preset: "gather" | "defend" | "explore"; retreatHp: number };
+  script?: { sourceHash: string; entry: string; publishedAtTick: number } | null;
 }
 export interface Snapshot {
   sessionId: string;
