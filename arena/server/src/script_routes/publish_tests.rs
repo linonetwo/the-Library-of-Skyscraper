@@ -135,3 +135,69 @@ async fn publish_drives_steps_clock_hold_disable_and_checkpoint() {
         .unwrap();
     std::fs::remove_dir_all(directory).unwrap();
 }
+
+#[tokio::test]
+#[ignore = "requires TypeScript toolchain dependencies and built V8 runner"]
+async fn runtime_memory_survives_ticks_preview_and_restart() {
+    let directory = std::env::temp_dir().join(format!("arena-runtime-{}", uuid::Uuid::new_v4()));
+    let store = Store::open(directory.clone()).unwrap();
+    let mut session = Session::new("runtime".into(), Mode::Training, 42);
+    session.join("token".into()).unwrap();
+    session
+        .command("p1", Command::Pause { paused: true })
+        .unwrap();
+    store.insert(session).await;
+    let mut headers = HeaderMap::new();
+    headers.insert("authorization", "Bearer token".parse().unwrap());
+    let counter = || {
+        project(
+            "return { intents: [], memoryPatch: { set: { count: Number(ctx.memory.count ?? 0) + 1 } } };",
+        )
+    };
+    let Json(result) = publish(
+        State(store.clone()),
+        Path("runtime".into()),
+        headers.clone(),
+        Json(counter()),
+    )
+    .await
+    .unwrap();
+    assert_eq!(result["compilation"]["diagnostics"], json!([]));
+    store
+        .command("runtime", &headers, Command::Step { ticks: 2 })
+        .await
+        .unwrap();
+    for _ in 0..2 {
+        let Json(previewed) = preview(
+            State(store.clone()),
+            Path("runtime".into()),
+            headers.clone(),
+            Json(counter()),
+        )
+        .await
+        .unwrap();
+        assert_eq!(
+            previewed["execution"]["decision"]["memoryPatch"]["set"]["count"],
+            3
+        );
+    }
+    let Json(current) = state(
+        State(store.clone()),
+        Path("runtime".into()),
+        headers.clone(),
+    )
+    .await
+    .unwrap();
+    assert_eq!(current["memory"]["count"], 2);
+    store.checkpoint().await.unwrap();
+    let restored = Store::open(directory.clone()).unwrap();
+    restored
+        .command("runtime", &headers, Command::Step { ticks: 1 })
+        .await
+        .unwrap();
+    let Json(current) = state(State(restored), Path("runtime".into()), headers)
+        .await
+        .unwrap();
+    assert_eq!(current["memory"]["count"], 3);
+    std::fs::remove_dir_all(directory).unwrap();
+}

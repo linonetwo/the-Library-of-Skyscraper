@@ -26,6 +26,12 @@ pub struct PublishedScript {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ScriptDecision {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source_hash: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub memory_patch: Option<Value>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub task_patches: Option<Vec<Value>>,
     pub player_id: String,
     pub intents: Vec<ScriptIntent>,
     #[serde(skip_serializing_if = "Option::is_none")]

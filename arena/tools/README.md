@@ -13,17 +13,21 @@ Configure an MCP client with command `node` and absolute argument
 Optional `ARENA_BASE_URL` accepts a plain HTTP loopback origin only. Redirects are
 disabled. Standard output is reserved for official SDK protocol messages.
 
-Twenty-one tools expose CDP-style domains: `Session.create`, `Session.join`,
+Twenty-two tools expose CDP-style domains: `Session.create`, `Session.join`,
 `Session.getState`, `Simulation.command`, `Simulation.pause`, `Simulation.step`,
 `Simulation.reset`, `Script.compile`, `Script.preview`, `Script.publish`,
-`Script.disable`, `Script.listVersions`, `Script.getVersion`, `Script.rollback`,
+`Script.disable`, `Script.listVersions`, `Script.getVersion`, `Script.rollback`, `Script.getState`,
 `Replay.getEvents`, `Replay.export`, `Page.open`, `Page.getState`,
 `Page.captureScreenshot`, `Page.close`, `Input.action`. Create/join returns a local handle, session
 ID and player ID. Credentials are held in process memory,
 and are lost on MCP restart. Reuse a handle after transient connection failure;
 joining again creates another player. All commands pass through the authority.
 Training sessions provide pause/step/reset. `Replay.getEvents` reads recent
-events; `Replay.export` downloads the complete command recording.
+events; `Replay.export` downloads recorded actions with the requesting player's private memory and tasks.
+
+`Script.getState({handle})` returns the active version's memory and the player's
+shared task queue. Publishing a new hash selects its own memory; restoring a hash
+resumes that version's last memory. Training reset clears runtime state.
 
 `Script.compile/preview/publish` accept `{handle, files, entry?}`, where `files`
 maps project-relative paths to TypeScript source and `entry` defaults to
@@ -47,7 +51,7 @@ MCP. `Page.close` releases the browser context.
 The browser action chain `openScripts` → `loadScriptTemplate` →
 `editScript` → `publishScript` edits and publishes through Monaco's visible UI;
 `disableScript` restores the action preset. Templates are `recall`, `gather`,
-`defend`, and `explore`. `editScript` accepts `source` and uses clipboard paste
+`defend`, `explore`, and `memory-gather`. `editScript` accepts `source` and uses clipboard paste
 to preserve multiline source exactly, then waits for the local draft update.
 For example: `{"action":{"type":"loadScriptTemplate","template":"gather"}}`.
 Multi-file controls use `addScriptFile`, `selectScriptFile`, and `setScriptEntry`
@@ -64,7 +68,7 @@ npx playwright install chromium
 npm run test:browser         # real MCP -> Chromium -> UI -> authority; UI must run on 5173
 ```
 
-Browser tests explicitly skip when not enabled or Chromium is absent. CI installs
+Browser tests run when explicitly enabled and require a Chromium installation. CI installs
 Chromium and its system dependencies, then starts both services to run the browser
 test. `Input.action` takes `{action:{type:...}}`; for example
 `{"action":{"type":"chooseHair","hair":"midnight"}}`. Inspect `tools/list` for all

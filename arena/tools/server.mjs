@@ -107,6 +107,11 @@ tool('Script.disable', 'Remove this player’s published TypeScript rule and res
     const credential = credentials(handle);
     return request(sessionPath(credential, 'scripts/disable'), {}, credential.token);
   });
+tool('Script.getState', 'Read your active source hash, version memory and shared task queue.',
+  handleSchema, async ({ handle }) => {
+    const credential = credentials(handle);
+    return request(sessionPath(credential, 'scripts/state'), undefined, credential.token);
+  }, true);
 tool('Script.listVersions', 'List this player’s published source versions and active version hash.',
   handleSchema, async ({ handle }) => {
     const credential = credentials(handle);

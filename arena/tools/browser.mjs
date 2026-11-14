@@ -8,7 +8,7 @@ export function registerBrowserTools(server) {
   const actionSchema = z.discriminatedUnion('type', [
     ...['startTraining', 'resetTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'openScriptHistory', 'loadScriptVersion', 'restoreScriptVersion', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
     z.object({ type: z.literal('editScript'), source: z.string() }).strict(),
-    z.object({ type: z.literal('loadScriptTemplate'), template: z.enum(['recall', 'gather', 'defend', 'explore']) }).strict(),
+    z.object({ type: z.literal('loadScriptTemplate'), template: z.enum(['recall', 'gather', 'defend', 'explore', 'memory-gather']) }).strict(),
     z.object({ type: z.literal('selectScriptVersion'), sourceHash: z.string() }).strict(),
     z.object({ type: z.literal('toggleScriptDiff'), enabled: z.boolean() }).strict(),
     ...['selectScriptFile', 'addScriptFile', 'setScriptEntry', 'selectScriptDiffFile']

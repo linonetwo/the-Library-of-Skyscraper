@@ -3,6 +3,8 @@ mod appearance;
 mod checkpoint;
 mod commands;
 mod economy;
+pub mod script_state;
+mod script_tasks;
 mod script_types;
 mod script_versions;
 mod scripting;

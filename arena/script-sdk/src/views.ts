@@ -61,9 +61,28 @@ export interface AuthorizedWorldView {
   readonly buildings: readonly BuildingScriptView[];
 }
 
-/** Reserved context slot: v0 has no executable task queue. */
+export type TaskKind = 'move' | 'gather' | 'deliver' | 'build' | 'attack' | 'capture';
+export type TaskStatus = 'queued' | 'running' | 'blocked' | 'completed' | 'failed' | 'cancelled';
+
+export interface TaskDraft {
+  readonly id: string;
+  readonly actorId: EntityId;
+  readonly roomId: EntityId;
+  readonly kind: TaskKind;
+  readonly priority: number;
+  readonly status: TaskStatus;
+  readonly blockedReason: string | null;
+}
+
+/** Authority-added provenance; tasks describe plans and do not execute actions. */
+export interface TaskView extends TaskDraft {
+  readonly source: 'rule';
+  readonly sourceHash: string;
+  readonly updatedAtTick: number;
+}
+
 export interface TaskQueueView {
-  readonly items: readonly never[];
+  readonly items: readonly TaskView[];
 }
 
 export type MemoryValue =
@@ -71,7 +90,7 @@ export type MemoryValue =
   | readonly MemoryValue[]
   | { readonly [key: string]: MemoryValue };
 
-/** Read-only JSON snapshot; memory patch persistence is a later runtime feature. */
+/** Read-only JSON snapshot isolated by player and source version. */
 export interface RuleMemory {
   readonly [key: string]: MemoryValue;
 }

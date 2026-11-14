@@ -132,7 +132,7 @@ export function useArenaSession() {
       link.download = `arena-replay-${session!.sessionId}-tick-${recording.finalSnapshot.tick}.json`;
       link.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
-      setNotice("已导出完整命令回放。");
+      setNotice("已导出回放，包含本人的策略记忆与任务。");
     });
   const copySession = () =>
     perform(async () => {

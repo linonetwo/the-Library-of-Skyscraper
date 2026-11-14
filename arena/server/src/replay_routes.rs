@@ -28,9 +28,9 @@ pub async fn timeline(
 
 async fn recording(store: &Store, id: &str, headers: &HeaderMap) -> Result<Replay, Error> {
     store
-        .with_player(id, headers, |session, _| {
+        .with_player(id, headers, |session, owner| {
             session
-                .export_replay()
+                .export_replay_for(Some(owner))
                 .map_err(|message| error(StatusCode::CONFLICT, &message))
         })
         .await

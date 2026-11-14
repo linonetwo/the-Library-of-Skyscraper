@@ -24,13 +24,20 @@ pub async fn preview(
     headers: HeaderMap,
     Json(project): Json<SourceProject>,
 ) -> Result<Json<Value>, Error> {
+    store.with_player(&id, &headers, |_, _| Ok(())).await?;
+    let compilation = compile_project(&project).await?;
+    let hash = compilation["bundle"]["sourceHash"].as_str();
     let context = store
         .with_player(&id, &headers, |session, owner| {
-            Ok(rule_context(session.snapshot(), owner))
+            let state = session.rule_state(owner, hash);
+            let mut context = rule_context(session.snapshot(), owner);
+            context["memory"] = state["memory"].clone();
+            context["tasks"] = state["tasks"].clone();
+            Ok(context)
         })
         .await?;
-    let compilation = compile_project(&project).await?;
-    let mut response = json!({ "tick": context["tick"], "compilation": compilation });
+    let mut response =
+        json!({ "tick": context["tick"], "sourceHash": hash, "compilation": compilation });
     if let Some(bundle) = response["compilation"].get("bundle") {
         response["execution"] = store
             .workers
@@ -61,9 +68,9 @@ pub(crate) fn rule_context(snapshot: Snapshot, owner: &str) -> Value {
         "memory": {},
         "limits": {
             "maxIntents": actors.len() * 2,
-            "maxTaskPatches": 0,
+            "maxTaskPatches": skyscraper_arena_server::script_state::MAX_TASK_PATCHES,
             "maxLogEntries": 32,
-            "maxMemoryBytes": 65536,
+            "maxMemoryBytes": skyscraper_arena_server::script_state::MAX_MEMORY_BYTES,
             "remainingBudgetTokens": 10000,
         },
     })
@@ -114,3 +121,20 @@ mod history_tests;
 mod publish_tests;
 #[cfg(test)]
 mod tests;
+
+pub async fn state(
+    State(store): State<Store>,
+    Path(id): Path<String>,
+    headers: HeaderMap,
+) -> Result<Json<Value>, Error> {
+    store
+        .with_player(&id, &headers, |session, owner| {
+            let hash = session
+                .players
+                .get(owner)
+                .and_then(|p| p.script.as_ref())
+                .map(|s| s.source_hash.as_str());
+            Ok(Json(session.rule_state(owner, hash)))
+        })
+        .await
+}

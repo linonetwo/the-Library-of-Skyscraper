@@ -1,6 +1,6 @@
 import type {
   AuthorizedWorldView, EntityId, PlayerScriptView, RuleMemory,
-  SquadScriptView, TaskQueueView,
+  SquadScriptView, TaskQueueView, TaskDraft,
 } from './views.ts';
 
 export interface RuleExecutionLimits {
@@ -48,8 +48,19 @@ export type ActionIntentDraft =
   | MoveIntentDraft | GatherIntentDraft | DeliverIntentDraft
   | AttackIntentDraft | CaptureIntentDraft | BuildIntentDraft;
 
+export interface RuleMemoryPatch {
+  readonly set?: RuleMemory;
+  readonly remove?: readonly string[];
+}
+
+export type TaskPatchDraft =
+  | { readonly type: 'upsert'; readonly task: TaskDraft }
+  | { readonly type: 'remove'; readonly taskId: string };
+
 export interface RuleDecisionResult {
   readonly intents: readonly ActionIntentDraft[];
+  readonly memoryPatch?: RuleMemoryPatch;
+  readonly taskPatches?: readonly TaskPatchDraft[];
 }
 
 export interface ActionRuleModule {

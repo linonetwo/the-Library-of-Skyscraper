@@ -2,7 +2,7 @@
 use crate::{Command, Mode, Session, Snapshot};
 use serde::{Deserialize, Serialize};
 
-pub const REPLAY_VERSION: u32 = 1;
+pub const REPLAY_VERSION: u32 = 2;
 pub const MAX_REPLAY_OPERATIONS: usize = 10_000;
 pub const MAX_REPLAY_BYTES: usize = 2 * 1024 * 1024;
 
@@ -15,6 +15,8 @@ pub struct Replay {
     pub seed: u64,
     pub operations: Vec<ReplayOperation>,
     pub final_snapshot: Snapshot,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub final_rule_state: Option<serde_json::Value>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -26,6 +28,8 @@ pub enum ReplayOperation {
         script: Option<crate::ScriptMetadata>,
     },
     ScriptAdvance {
+        #[serde(default, rename = "runtimeValidated")]
+        runtime_validated: bool,
         decisions: Vec<crate::ScriptDecision>,
     },
     Join {
@@ -94,7 +98,7 @@ impl Replay {
     }
 
     fn validate_limits(&self) -> Result<(), String> {
-        if self.version != REPLAY_VERSION {
+        if self.version != 1 && self.version != REPLAY_VERSION {
             return Err("unsupported replay version".into());
         }
         if self.operations.len() > MAX_REPLAY_OPERATIONS {
@@ -125,11 +129,14 @@ impl Session {
                 }
                 self.set_script_metadata(player_id, script.clone());
             }
-            ReplayOperation::ScriptAdvance { decisions } => {
+            ReplayOperation::ScriptAdvance {
+                decisions,
+                runtime_validated,
+            } => {
                 if self.result.is_some() {
                     return Err(invalid());
                 }
-                self.advance_scripted(decisions.clone());
+                self.advance_scripted_recorded(decisions.clone(), *runtime_validated);
             }
             ReplayOperation::Join { player_id } => {
                 let actual = self
@@ -163,17 +170,32 @@ impl Session {
     /// Never returns a truncated recording. A long-running/reset session remains
     /// playable after the recording limit, but cannot claim reproducible export.
     pub fn export_replay(&mut self) -> Result<Replay, String> {
+        self.export_replay_for(None)
+    }
+    pub fn export_replay_for(&mut self, owner: Option<&str>) -> Result<Replay, String> {
         if self.replay_overflowed {
             return Err("replay recording limit reached; export unavailable".into());
         }
-        let replay = Replay {
+        let mut replay = Replay {
             version: REPLAY_VERSION,
             session_id: self.id.clone(),
             mode: self.mode,
             seed: self.seed,
             operations: self.replay_operations.clone(),
             final_snapshot: self.snapshot(),
+            final_rule_state: None,
         };
+        for operation in &mut replay.operations {
+            if let ReplayOperation::ScriptAdvance { decisions, .. } = operation {
+                for decision in decisions {
+                    if Some(decision.player_id.as_str()) != owner {
+                        decision.memory_patch = None;
+                        decision.task_patches = None;
+                    }
+                }
+            }
+        }
+        replay.final_rule_state = owner.map(|owner| serde_json::json!({"playerId":owner,"state":self.rule_runtime.get(owner).cloned().unwrap_or_default()}));
         replay.validate_limits()?;
         Ok(replay)
     }
@@ -192,6 +214,17 @@ impl Session {
                 .map_err(|_| "snapshot serialization failed")?
         {
             return Err("replay final snapshot mismatch".into());
+        }
+        if let Some(final_state) = &replay.final_rule_state {
+            let owner = final_state["playerId"]
+                .as_str()
+                .ok_or("invalid finalRuleState owner")?;
+            if serde_json::to_value(session.rule_runtime.get(owner).cloned().unwrap_or_default())
+                .unwrap()
+                != final_state["state"]
+            {
+                return Err("replay final rule state mismatch".into());
+            }
         }
         Ok(session)
     }

@@ -208,6 +208,10 @@ async fn main() {
         )
         .route("/api/sessions/{id}/commands", post(command))
         .route(
+            "/api/sessions/{id}/scripts/state",
+            get(script_routes::state),
+        )
+        .route(
             "/api/sessions/{id}/scripts/compile",
             post(script_routes::compile),
         )

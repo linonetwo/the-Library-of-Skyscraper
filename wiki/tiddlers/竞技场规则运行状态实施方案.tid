@@ -2,7 +2,7 @@ title: 竞技场规则运行状态实施方案
 tags: 竞技场开发计划
 type: text/vnd.tiddlywiki
 
-在版本历史完成后接入规则记忆与任务队列。本条是下一可玩切片方案，不代表功能已实现；实现与验证记录放入[[竞技场开发日志2026-11-14]]。
+规则记忆与任务队列的实施依据。本轮已接入权威tick、工作台与MCP；实现、评审及实测证据见[[竞技场开发日志2026-11-15]]。任务时间轴与完整编辑器继续列入后续待办。
 
 !! 与现有契约对齐
 
@@ -28,7 +28,7 @@ RuleMemoryPatch 为 `{ set?: RuleMemory; remove?: readonly string[] }`。只合�
 
 TaskPatchDraft 为 `{ type: "upsert"; task: TaskDraft } | { type: "remove"; taskId: string }`；数组位置就是本批 sequence。TaskDraft 最小字段为 id、actorId、roomId、kind、priority、status、blockedReason；kind 先限于现有 move/gather/deliver/build/attack/capture，status 使用 queued/running/blocked/completed/failed/cancelled。blocked 状态必须给原因，其他状态为 null。TaskView 另外由权威侧添加 source: "rule"、sourceHash、updatedAtTick，不能由脚本伪造。
 
-任务是脚本报告的计划状态，不是权威动作成功凭证。任务 upsert 不会自动执行行动；角色仍须通过 intents 及已有命令校验。首阶段不做任务编辑器、自动寻路调度、技能或建筑控制器。
+updatedAtTick 使用本次执行上下文的 tick（推进世界前），与该批决策的基准一致。任务是脚本报告的计划状态，不是权威动作成功凭证。任务 upsert 不会自动执行行动；角色仍须通过 intents 及已有命令校验。首阶段不做任务编辑器、自动寻路调度、技能或建筑控制器。
 
 !! 生命周期
 
@@ -63,6 +63,8 @@ TaskPatchDraft 为 `{ type: "upsert"; task: TaskDraft } | { type: "remove"; task
 现有 replay 路由允许任一参赛者读取整场操作，因此不能直接序列化新增私有补丁。导出流程接收已认证 owner，克隆记录后移除其他玩家的 memoryPatch/taskPatches，只附带本人 finalRuleState 用于最终状态一致性校验；所有玩家的动作决策仍保留以重建当前公开世界。玩家可自行选择分享下载文件，界面明确文件包含自己的策略记忆与任务。公开展示/无 owner 导出移除全部私有状态。
 
 回放仅应用文件实际携带的状态补丁，并独立校验 finalSnapshot 与可选 finalRuleState；不宣称过滤后的文件能恢复对手私有状态，也不能把它当完整存档续玩。任务时间轴由可见补丁重建，不重新执行规则。旧回放缺补丁/最终状态字段时继续支持；新导出版本显式升级，读取端兼容旧版，防止旧程序悄悄丢弃新状态。
+
+旧版回放兼容也包含旧版意图结算语义，不能把新增整批校验追溯施加于历史记录而改变世界结果。长期续玩使用完整 checkpoint，不受分享回放的 10000 操作、2 MiB 导出上限影响；超过回放上限后仍须保存全部版本记忆与任务并可重启恢复。
 
 !! 验收门槛
 

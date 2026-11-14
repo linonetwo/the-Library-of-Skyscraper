@@ -31,10 +31,35 @@ impl Session {
     }
 
     pub fn advance_scripted(&mut self, decisions: Vec<ScriptDecision>) {
+        self.advance_scripted_recorded(decisions, true);
+    }
+    pub(crate) fn advance_scripted_recorded(
+        &mut self,
+        mut decisions: Vec<ScriptDecision>,
+        runtime_validated: bool,
+    ) {
         if self.result.is_some() {
             return;
         }
-        for decision in &decisions {
+        for decision in &mut decisions {
+            if runtime_validated && decision.failure.is_none() {
+                match self.prepare_rule_state(decision) {
+                    Ok(state) => {
+                        self.rule_runtime.insert(decision.player_id.clone(), state);
+                    }
+                    Err(error) => {
+                        decision.failure = Some(error);
+                        decision.intents.clear();
+                        decision.memory_patch = None;
+                        decision.task_patches = None;
+                    }
+                }
+            }
+            if decision.failure.is_some() {
+                decision.intents.clear();
+                decision.memory_patch = None;
+                decision.task_patches = None;
+            }
             if let Some(message) = &decision.failure {
                 self.event("script-error", message.clone(), Some(&decision.player_id));
                 continue;
@@ -76,7 +101,10 @@ impl Session {
             }
         }
         self.advance_unrecorded();
-        self.record_operation(ReplayOperation::ScriptAdvance { decisions });
+        self.record_operation(ReplayOperation::ScriptAdvance {
+            decisions,
+            runtime_validated,
+        });
     }
 
     pub fn validate_step(&self, ticks: u32) -> Result<(), String> {
