@@ -1,0 +1,74 @@
+title: 竞技场规则运行状态实施方案
+tags: 竞技场开发计划
+type: text/vnd.tiddlywiki
+
+在版本历史完成后接入规则记忆与任务队列。本条是下一可玩切片方案，不代表功能已实现；实现与验证记录放入[[竞技场开发日志2026-11-14]]。
+
+!! 与现有契约对齐
+
+|!依据|!实际状态|!本次落点|
+|[[竞技场行动规则意图输出契约]]|wiki 已定义 memoryPatch、taskPatches；实际 SDK RuleDecisionResult 目前只有 intents|沿用既有字段名，新增可选补丁；不另造 memory 输出字段|
+|[[竞技场脚本运行时API与沙盒上下文]]|SDK 已有只读 ctx.memory、ctx.tasks、limits；server 当前传空对象/空队列|填入权威状态副本；运行器只返回结果，Rust 校验并提交；不把 isolate 全局变量当存储|
+|[[竞技场脚本运行时与 TypeScript 策略]]|localStorage、建筑 indexedDB 为远景；当前未实现|先用显式 memoryPatch 提供小容量键值语义，不引入浏览器存储 API 或建筑数据库|
+|[[竞技场任务队列与行动规则编辑]]|SDK TaskQueueView.items 目前为 readonly never[]|增加带来源、执行者、目标、优先级、状态、阻塞原因的声明任务；行动仍只由 intents 驱动|
+|[[竞技场服务端动作意图与结算管线]]|已有 owner 校验、角色动作排序及 ScriptAdvance|补丁按数组顺序应用，同一 taskId 最后一项生效；不新增第二执行器|
+|[[竞技场回放事件流与片段索引]]|当前操作日志可重建世界；尚无玩家私有状态过滤|记录状态变更事实，导出按玩家过滤；回放不重跑 V8|
+|[[竞技场规则工作台草稿状态与版本上下文]]|本机草稿、不可变源码包、运行版本已经分离|记忆与任务不写入源码包，加载草稿不修改运行状态|
+
+!! 最小 SDK
+
+在现有 RuleDecisionResult 中增加：
+
+```ts
+readonly memoryPatch?: RuleMemoryPatch;
+readonly taskPatches?: readonly TaskPatchDraft[];
+```
+
+RuleMemoryPatch 为 `{ set?: RuleMemory; remove?: readonly string[] }`。只合并顶层键，嵌套值整体替换；先 remove 再 set，同名键最终采用 set 值。省略补丁表示不变，null 是普通 JSON 值而非删除指令。不引入通用 JSON Patch、路径表达式或递归合并。
+
+TaskPatchDraft 为 `{ type: "upsert"; task: TaskDraft } | { type: "remove"; taskId: string }`；数组位置就是本批 sequence。TaskDraft 最小字段为 id、actorId、roomId、kind、priority、status、blockedReason；kind 先限于现有 move/gather/deliver/build/attack/capture，status 使用 queued/running/blocked/completed/failed/cancelled。blocked 状态必须给原因，其他状态为 null。TaskView 另外由权威侧添加 source: "rule"、sourceHash、updatedAtTick，不能由脚本伪造。
+
+任务是脚本报告的计划状态，不是权威动作成功凭证。任务 upsert 不会自动执行行动；角色仍须通过 intents 及已有命令校验。首阶段不做任务编辑器、自动寻路调度、技能或建筑控制器。
+
+!! 生命周期
+
+|!对象/操作|!语义|
+|memory|按 sessionId / playerId / sourceHash 隔离，每版本最终 JSON 编码不超过 65536 字节；对齐既有“每规则版本 64KB”|
+|tasks|按 sessionId / playerId 隔离，按 taskId 稳定排序读出；跨版本共享，来源版本保留在每条任务上|
+|首次执行版本|memory 为空；tasks 为该玩家现有队列|
+|发布新版本|切换到新版本自己的记忆；不隐式复制旧版本记忆或清空队列|
+|重新发布/恢复已有版本|使用该版本最后成功提交的记忆，不回退到首次发布时；队列与世界继续保持当前状态|
+|停用脚本/切回预设|保留但不执行规则记忆和队列；重新启用后继续使用|
+|训练 Reset|清空全部版本记忆和任务，保留源码历史、当前绑定和编译包|
+|checkpoint / 重启|保存并恢复全部玩家、全部版本记忆及队列；旧 checkpoint 缺字段时从空状态开始|
+|预览|用当前玩家状态副本执行，记忆选择预览产物的 sourceHash；新草稿 hash 使用空记忆，返回采用的基准 hash；不提交任何补丁|
+
+规则恢复不是运行现场回滚。保留版本记忆与共享队列意味着旧规则必须重新验证目标；不自动迁移业务 schema。用户若要迁移，可在规则中明确读取版本标记并写入新结构，跨版本复制另做显式操作，不在本切片暗中实现。
+
+!! 权威提交与模块
+
+# SDK contract/views 增加小型类型与类型测试，并提升 SDK 版本号（当前 sourceHash 包含该版本号）；官方示例增加一次计数器及采集任务演示。
+# 新建 server/script_state.rs，承载 RuleRuntimeState、顶层补丁和任务队列应用；解析 JSON/schema 与配额检查集中在一处。
+# script_routes::rule_context 接受 owner 当前状态和执行版本；driver 从同一 tick 的快照派生上下文，不在输出解析时修改 Session。
+# 在每玩家输出进入 advance_scripted 前，完整解析 intents、memoryPatch、taskPatches，并在状态副本上验证补丁。schema、配额或任务归属失败则拒绝该玩家本 tick 整份输出，保留旧状态并记录 failure；其他玩家和 tick 正常继续。
+# 验证通过后由 advance_scripted 在现有 session 锁内提交状态，再执行现有意图结算。单个动作因距离、资源等被拒绝不撤销已合法提交的记忆；补丁并不承诺动作成功。
+# 同一提交函数用于 live、单步与含私有状态的回放；checkpoint 新增 serde(default) 状态字段。保持模块短，不引入通用状态管理层。
+
+限额先采用 maxTaskPatches=32、每玩家最多128条任务、任务队列 JSON 总量最多65536字节。同时执行现有 maxIntents=角色数×2，任务 actorId 必须属于玩家，roomId 必须存在，priority 必须为有限数。输出提示 limits 与实际校验使用同一常量；不是仅向脚本提供提示。任务删除不存在的 id 为幂等成功。对已倒下角色可以保留任务记录，不把“暂时不能行动”误判成越权。
+
+!! 回放与私有状态
+
+内存和 checkpoint 中的 ScriptAdvance 记录有效补丁及其 sourceHash；失败仅记录失败事实。公开 Snapshot、WebSocket 广播和源码包都不增加私有 memory 或任务 payload。
+
+现有 replay 路由允许任一参赛者读取整场操作，因此不能直接序列化新增私有补丁。导出流程接收已认证 owner，克隆记录后移除其他玩家的 memoryPatch/taskPatches，只附带本人 finalRuleState 用于最终状态一致性校验；所有玩家的动作决策仍保留以重建当前公开世界。玩家可自行选择分享下载文件，界面明确文件包含自己的策略记忆与任务。公开展示/无 owner 导出移除全部私有状态。
+
+回放仅应用文件实际携带的状态补丁，并独立校验 finalSnapshot 与可选 finalRuleState；不宣称过滤后的文件能恢复对手私有状态，也不能把它当完整存档续玩。任务时间轴由可见补丁重建，不重新执行规则。旧回放缺补丁/最终状态字段时继续支持；新导出版本显式升级，读取端兼容旧版，防止旧程序悄悄丢弃新状态。
+
+!! 验收门槛
+
+# 计数器逐 tick 增长，重启继续；preview 连续运行不改变权威状态。
+# 两玩家同 hash 隔离；A→B→A 恢复 A 最后有效记忆，队列保持；Reset 清空状态但保留历史。
+# 非法 actor/room、超额补丁、最终记忆或任务超限使整份输出失败，合法动作因环境条件被拒绝则不回滚合法状态补丁。
+# 相同 taskId 多次修改按序生效，删除幂等；失败、超时及停用不会清空上次有效状态。
+# checkpoint 完整还原；导出不含其他玩家 memory/任务；回放世界与本人私有状态均一致；旧 checkpoint/replay 可读取。
+# HTTP、MCP、浏览器展示同一状态结果；CI 显式运行需要真实 V8 的 ignored 集成测试。

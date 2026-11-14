@@ -47,6 +47,7 @@ jobs:
           export ARENA_SCRIPT_RUNNER="$GITHUB_WORKSPACE/arena/script-runner/target/debug/skyscraper-arena-script-runner"
           cargo test --locked compile_route_uses_typescript -- --ignored
           cargo test --locked publish_drives_steps_clock_hold_disable_and_checkpoint -- --ignored
+          cargo test --locked published_a_b_rollback_a_drives_actual_ticks -- --ignored
           cargo test --locked real_v8_worker_survives_rule_timeout -- --ignored
         working-directory: arena/server
       - run: npm ci && npm test

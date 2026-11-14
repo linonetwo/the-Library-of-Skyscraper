@@ -28,6 +28,24 @@
 .script-toolbar small { color: #9fb4a2; }
 .script-results { border-top: 1px solid #a99b6633; padding-top: 10px; font-size: 12px; }
 .script-results .script-diagnostic { color: #f0b39e; }
+.script-results button.script-diagnostic { display: block; width: 100%; text-align: left; font-size: 11px; margin: 6px 0; }
+.script-project { border: 1px solid #a99b6644; border-top: 0; padding: 8px; background: #172e32; }
+.script-tabs, .script-project-tools, .script-history-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.script-tabs button { font-size: 11px; padding: 6px 10px; }
+.script-tabs button[aria-selected="true"] { color: #ebd9a4; background: #3a4d43; border-color: #a99b66; }
+.script-project-tools { margin-top: 8px; font-size: 10px; color: #afc2b4; }
+.script-project-tools input, .script-project-tools select, .script-history select {
+  padding: 5px 8px; color: #d7decf; background: #183137; border: 1px solid #a99b6655; font-size: 11px;
+}
+.script-project-tools input { width: 130px; }
+.script-project-tools button { font-size: 10px; padding: 6px 10px; }
+.script-history { border-top: 1px solid #a99b6655; margin-top: 18px; padding-top: 12px; color: #cbd2b7; }
+.script-history summary { cursor: pointer; font-size: 13px; }
+.script-history summary span { margin-left: 12px; font-size: 10px; color: #9fb4a2; }
+.script-history-select { display: flex; gap: 12px; align-items: center; font-size: 11px; }
+.script-history-actions { margin: 12px 0; }
+.script-history-actions button, .script-history-actions label { font-size: 11px; }
+.script-diff { height: 300px; border: 1px solid #a99b6655; margin-top: 10px; }
 .script-results .script-success { color: #c4d99e; }
 .intent-row { display: flex; gap: 16px; border-bottom: 1px solid #a99b6622; padding: 9px 0; }
 .intent-row code { color: #e2c997; }

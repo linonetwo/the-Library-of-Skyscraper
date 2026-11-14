@@ -76,6 +76,29 @@ Public replays contain publication metadata and actual per-tick decisions,
 so reconstruction runs entirely inside Rust, with no compiler or V8 dependency.
 Private checkpoints retain source, bundle, and active bindings for restart.
 
+### Rule versions and manual restoration
+
+Successful publications retain an immutable package per owner and source hash.
+Publishing the same hash reuses its original source, bundle, creation tick, and
+parent reference. A private insertion sequence keeps the version list newest
+first, including publications within the same tick or after training reset.
+
+- `GET /api/sessions/{id}/scripts/versions` returns
+  `{activeSourceHash, versions:[{sourceHash,entry,createdAtTick,parentSourceHash?}]}`.
+- `GET /api/sessions/{id}/scripts/versions/{hash}` returns `{version,project}` for
+  the authenticated owner's version, including its original multi-file source.
+- `POST /api/sessions/{id}/scripts/rollback` with `{sourceHash}` activates the
+  stored bundle and returns the current snapshot, with no compilation step.
+
+Restoration is a new switch event: public `publishedAtTick` becomes the current
+tick while the immutable version's `createdAtTick` stays unchanged. The same
+per-session lock that serializes ticks establishes the switch boundary, so the
+next decision sees the selected bundle. Disable and preset selection keep the
+catalog; reset keeps both catalog and active binding. Private checkpoint restore
+also imports the active package from older saves that only contain `scripts`.
+Public replay records switch metadata and actual decisions, with source/history
+remaining in the owner-scoped private store.
+
 ```sh
 cargo test publish_drives_steps_clock_hold_disable_and_checkpoint -- --ignored
 ```

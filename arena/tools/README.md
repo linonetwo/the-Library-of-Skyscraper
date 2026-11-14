@@ -13,10 +13,11 @@ Configure an MCP client with command `node` and absolute argument
 Optional `ARENA_BASE_URL` accepts a plain HTTP loopback origin only. Redirects are
 disabled. Standard output is reserved for official SDK protocol messages.
 
-Eighteen tools expose CDP-style domains: `Session.create`, `Session.join`,
+Twenty-one tools expose CDP-style domains: `Session.create`, `Session.join`,
 `Session.getState`, `Simulation.command`, `Simulation.pause`, `Simulation.step`,
 `Simulation.reset`, `Script.compile`, `Script.preview`, `Script.publish`,
-`Script.disable`, `Replay.getEvents`, `Replay.export`, `Page.open`, `Page.getState`,
+`Script.disable`, `Script.listVersions`, `Script.getVersion`, `Script.rollback`,
+`Replay.getEvents`, `Replay.export`, `Page.open`, `Page.getState`,
 `Page.captureScreenshot`, `Page.close`, `Input.action`. Create/join returns a local handle, session
 ID and player ID. Credentials are held in process memory,
 and are lost on MCP restart. Reuse a handle after transient connection failure;
@@ -31,6 +32,10 @@ against a snapshot. Publish binds the compiled version to the handle's player,
 so subsequent authority ticks apply its decisions. An empty `intents` array
 holds position. `Script.disable({handle})` resumes the player's action preset.
 `Session.getState` includes the published version hash in `Player.script`.
+`Script.listVersions({handle})` lists this player's published history;
+`Script.getVersion({handle, sourceHash})` returns the original multi-file project.
+`Script.rollback({handle, sourceHash})` activates that stored version for future
+ticks, preserving the other players' rule choices.
 
 Browser control is optional and isolated from simulation handles. It launches
 headless Chromium at `http://127.0.0.1:5173`. It supports
@@ -45,6 +50,12 @@ The browser action chain `openScripts` → `loadScriptTemplate` →
 `defend`, and `explore`. `editScript` accepts `source` and uses clipboard paste
 to preserve multiline source exactly, then waits for the local draft update.
 For example: `{"action":{"type":"loadScriptTemplate","template":"gather"}}`.
+Multi-file controls use `addScriptFile`, `selectScriptFile`, and `setScriptEntry`
+with `{file}`. `openScriptHistory` exposes version controls;
+`selectScriptVersion({sourceHash})`, `loadScriptVersion`, and
+`restoreScriptVersion` select, load a draft, or restore the running version.
+`toggleScriptDiff({enabled})` and `selectScriptDiffFile({file})` control the source
+comparison. `Page.getState.scriptVersions` includes selectable version hashes.
 
 ```sh
 npm test                     # official SDK initialize/list/call with mock HTTP authority

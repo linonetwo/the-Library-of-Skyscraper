@@ -21,6 +21,7 @@ mod replay_routes;
 mod script_driver;
 mod script_routes;
 mod script_toolchain;
+mod script_version_routes;
 mod script_worker;
 mod store;
 use store::{Error, Store, error};
@@ -221,6 +222,18 @@ async fn main() {
         .route(
             "/api/sessions/{id}/scripts/disable",
             post(script_routes::disable),
+        )
+        .route(
+            "/api/sessions/{id}/scripts/versions",
+            get(script_version_routes::versions),
+        )
+        .route(
+            "/api/sessions/{id}/scripts/versions/{hash}",
+            get(script_version_routes::version),
+        )
+        .route(
+            "/api/sessions/{id}/scripts/rollback",
+            post(script_version_routes::rollback),
         )
         .route("/ws/{id}", get(ws))
         .layer(

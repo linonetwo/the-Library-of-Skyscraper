@@ -42,9 +42,12 @@ test('official MCP initialize, tools/list, tools/call and private credentials', 
   const connection = await connect(`http://127.0.0.1:${authority.address().port}`);
   t.after(() => connection.client.close());
   const tools = await connection.client.listTools();
-  assert.equal(tools.tools.length, 18);
+  assert.equal(tools.tools.length, 21);
   assert.equal(tools.tools.find(tool => tool.name === 'Script.publish').annotations.readOnlyHint, false);
   assert.equal(tools.tools.find(tool => tool.name === 'Script.disable').annotations.readOnlyHint, false);
+  assert.equal(tools.tools.find(tool => tool.name === 'Script.listVersions').annotations.readOnlyHint, true);
+  assert.equal(tools.tools.find(tool => tool.name === 'Script.getVersion').annotations.readOnlyHint, true);
+  assert.equal(tools.tools.find(tool => tool.name === 'Script.rollback').annotations.readOnlyHint, false);
   assert(tools.tools.find(tool => tool.name === 'Simulation.step').description.includes('Online'));
   const created = await call(connection.client, 'Session.create', { mode: 'training', seed: 42 });
   assert.equal(created.playerId, 'p1');
@@ -75,6 +78,14 @@ test('official MCP initialize, tools/list, tools/call and private credentials', 
     auth: 'Bearer PRIVATE_TEST_TOKEN',
     body: {},
   });
+  await call(connection.client, 'Script.listVersions', { handle: created.handle });
+  await call(connection.client, 'Script.getVersion', { handle: created.handle, sourceHash: 'version-a' });
+  await call(connection.client, 'Script.rollback', { handle: created.handle, sourceHash: 'version-a' });
+  assert.deepEqual(requests.slice(5).map(({ path, body }) => ({ path, body })), [
+    { path: '/api/sessions/session-1/scripts/versions', body: null },
+    { path: '/api/sessions/session-1/scripts/versions/version-a', body: null },
+    { path: '/api/sessions/session-1/scripts/rollback', body: { sourceHash: 'version-a' } },
+  ]);
 });
 test('MCP refuses remote origins and URL credentials before transport starts', async () => {
   for (const baseURL of ['https://example.com', 'http://example.com', 'http://user:secret@localhost:8787', 'http://localhost:8787/api']) {

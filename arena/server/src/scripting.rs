@@ -3,13 +3,8 @@ use std::collections::BTreeSet;
 
 impl Session {
     pub fn publish_script(&mut self, owner: &str, script: PublishedScript) {
-        let metadata = ScriptMetadata {
-            source_hash: script.bundle["sourceHash"].as_str().unwrap().into(),
-            entry: script.bundle["entry"].as_str().unwrap().into(),
-            published_at_tick: self.tick,
-        };
-        self.scripts.insert(owner.into(), script);
-        self.set_script_metadata(owner, Some(metadata));
+        let hash = self.archive_script(owner, script, self.tick);
+        self.rollback_script(owner, &hash).unwrap();
     }
 
     pub fn disable_script(&mut self, owner: &str) {

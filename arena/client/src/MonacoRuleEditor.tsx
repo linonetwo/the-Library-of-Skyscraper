@@ -1,63 +1,99 @@
 import { useEffect, useRef } from "react";
-import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
-import "monaco-editor/esm/vs/language/typescript/monaco.contribution";
-import EditorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
-import TsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker";
-import views from "../../script-sdk/src/views.ts?raw";
-import contract from "../../script-sdk/src/contract.ts?raw";
+import { monaco } from "./monacoSetup";
 import type { RuleDiagnostic } from "./scriptTypes";
 
-self.MonacoEnvironment = {
-  getWorker: (_, label) => label === "typescript" || label === "javascript"
-    ? new TsWorker() : new EditorWorker(),
-};
-const ts = (monaco.languages as typeof import("monaco-editor").languages).typescript;
-ts.typescriptDefaults.setCompilerOptions({
-  target: ts.ScriptTarget.ESNext, module: ts.ModuleKind.ESNext,
-  strict: true, lib: ["es2022"], noEmit: true,
-});
-ts.typescriptDefaults.addExtraLib(
-  `declare module "@skyscraper/arena-script-sdk" {\n${views}\n${contract.replace(/^import type[\s\S]*?;\n/, "")}\n}`,
-  "file:///arena-sdk.d.ts",
-);
-monaco.editor.defineTheme("arena-ink", {
-  base: "vs-dark", inherit: true, rules: [],
-  colors: { "editor.background": "#10252c", "editor.foreground": "#d7decf",
-    "editorLineNumber.foreground": "#637e7b", "editorCursor.foreground": "#e8cf97" },
-});
-
 interface Props {
-  source: string;
+  files: Record<string, string>;
+  activeFile: string;
   onChange: (value: string) => void;
   diagnostics: RuleDiagnostic[];
+  location?: { file: string; line: number; column: number; nonce: number };
 }
-export default function MonacoRuleEditor({ source, onChange, diagnostics }: Props) {
+
+export default function MonacoRuleEditor({ files, activeFile, onChange, diagnostics, location }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const instance = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+  const models = useRef(new Map<string, monaco.editor.ITextModel>());
+  const views = useRef(new Map<string, monaco.editor.ICodeEditorViewState>());
+  const selected = useRef<string | undefined>(undefined);
+  const syncing = useRef(false);
   const change = useRef(onChange);
   change.current = onChange;
+
   useEffect(() => {
-    const model = monaco.editor.createModel(source, "typescript", monaco.Uri.parse("file:///main.ts"));
     const editor = monaco.editor.create(host.current!, {
-      model, theme: "arena-ink", automaticLayout: true, minimap: { enabled: false },
+      model: null, theme: "arena-ink", automaticLayout: true, minimap: { enabled: false },
       fontSize: 13, lineNumbersMinChars: 3, scrollBeyondLastLine: false,
       ariaLabel: "TypeScript规则源码", tabSize: 2, padding: { top: 14 },
     });
     instance.current = editor;
-    const subscription = model.onDidChangeContent(() => change.current(model.getValue()));
-    return () => { subscription.dispose(); editor.dispose(); model.dispose(); instance.current = null; };
+    const subscription = editor.onDidChangeModelContent(() => {
+      if (!syncing.current) change.current(editor.getValue());
+    });
+    return () => {
+      subscription.dispose();
+      editor.dispose();
+      for (const model of models.current.values()) model.dispose();
+      models.current.clear();
+      views.current.clear();
+      selected.current = undefined;
+      instance.current = null;
+    };
   }, []);
+
   useEffect(() => {
-    const model = instance.current?.getModel();
-    if (model && model.getValue() !== source) model.setValue(source);
-  }, [source]);
+    const editor = instance.current!;
+    syncing.current = true;
+    if (selected.current && selected.current !== activeFile) {
+      const view = editor.saveViewState();
+      if (view) views.current.set(selected.current, view);
+    }
+    for (const [file, source] of Object.entries(files)) {
+      const model = models.current.get(file);
+      if (!model) {
+        models.current.set(file, monaco.editor.createModel(source, "typescript",
+          monaco.Uri.from({ scheme: "file", path: `/${file}` })));
+      } else if (model.getValue() !== source) {
+        model.setValue(source);
+      }
+    }
+    const activeModel = models.current.get(activeFile) ?? null;
+    if (editor.getModel() !== activeModel) {
+      editor.setModel(activeModel);
+      const view = views.current.get(activeFile);
+      if (view) editor.restoreViewState(view);
+    }
+    selected.current = activeFile;
+    for (const [file, model] of models.current) {
+      if (!(file in files)) {
+        model.dispose();
+        models.current.delete(file);
+        views.current.delete(file);
+      }
+    }
+    syncing.current = false;
+  }, [files, activeFile]);
+
   useEffect(() => {
-    const model = instance.current?.getModel();
-    if (model) monaco.editor.setModelMarkers(model, "arena-compiler", diagnostics.map(item => ({
-      severity: item.severity === "error" ? monaco.MarkerSeverity.Error : monaco.MarkerSeverity.Warning,
-      message: item.message, startLineNumber: item.line, startColumn: item.column,
-      endLineNumber: item.line, endColumn: item.column + 1,
-    })));
-  }, [diagnostics]);
+    for (const [file, model] of models.current) {
+      monaco.editor.setModelMarkers(model, "arena-compiler", diagnostics
+        .filter(item => item.file === file)
+        .map(item => ({
+          severity: item.severity === "error" ? monaco.MarkerSeverity.Error : monaco.MarkerSeverity.Warning,
+          message: item.message, startLineNumber: item.line, startColumn: item.column,
+          endLineNumber: item.line, endColumn: item.column + 1,
+        })));
+    }
+  }, [diagnostics, files]);
+
+  useEffect(() => {
+    if (location?.file === activeFile) {
+      const editor = instance.current!;
+      editor.setPosition({ lineNumber: location.line, column: location.column });
+      editor.revealLineInCenter(location.line);
+      editor.focus();
+    }
+  }, [location, activeFile]);
+
   return <div ref={host} className="script-monaco" />;
 }

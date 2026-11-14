@@ -107,6 +107,21 @@ tool('Script.disable', 'Remove this player’s published TypeScript rule and res
     const credential = credentials(handle);
     return request(sessionPath(credential, 'scripts/disable'), {}, credential.token);
   });
+tool('Script.listVersions', 'List this player’s published source versions and active version hash.',
+  handleSchema, async ({ handle }) => {
+    const credential = credentials(handle);
+    return request(sessionPath(credential, 'scripts/versions'), undefined, credential.token);
+  }, true);
+tool('Script.getVersion', 'Read a published version and its original multi-file TypeScript project.',
+  { ...handleSchema, sourceHash: identifier }, async ({ handle, sourceHash }) => {
+    const credential = credentials(handle);
+    return request(sessionPath(credential, `scripts/versions/${encodeURIComponent(sourceHash)}`), undefined, credential.token);
+  }, true);
+tool('Script.rollback', 'Activate one of this player’s published versions for subsequent simulation ticks.',
+  { ...handleSchema, sourceHash: identifier }, async ({ handle, sourceHash }) => {
+    const credential = credentials(handle);
+    return request(sessionPath(credential, 'scripts/rollback'), { sourceHash }, credential.token);
+  });
 tool('Replay.getEvents', 'Read retained diagnostic events after an optional event ID. Only the latest 100 are retained; this is NOT a complete or persistent replay. IDs restart on training reset.',
   { ...handleSchema, afterId: z.number().int().min(0).optional() }, async args => {
     const snapshot = await state(args.handle);

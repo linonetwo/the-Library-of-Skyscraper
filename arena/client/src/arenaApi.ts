@@ -1,6 +1,6 @@
 import type { Command, Session, Snapshot } from "./types";
 import type { ReplayTimeline } from "./useReplay";
-import type { CompileResult, RuleSourceProject, ScriptPreview, ScriptPublication } from "./scriptTypes";
+import type { CompileResult, RuleSourceProject, ScriptPreview, ScriptPublication, RuleVersionList, RuleVersionSource } from "./scriptTypes";
 
 async function request<T>(
   path: string,
@@ -21,6 +21,12 @@ async function request<T>(
 }
 
 export const arenaApi = {
+  scriptVersions: (session: Session) =>
+    request<RuleVersionList>(`/${session.sessionId}/scripts/versions`, session),
+  scriptVersion: (session: Session, hash: string) =>
+    request<RuleVersionSource>(`/${session.sessionId}/scripts/versions/${encodeURIComponent(hash)}`, session),
+  rollbackScript: (session: Session, sourceHash: string) =>
+    request<Snapshot>(`/${session.sessionId}/scripts/rollback`, session, { sourceHash }),
   publishScript: (session: Session, project: RuleSourceProject) =>
     request<ScriptPublication>(`/${session.sessionId}/scripts/publish`, session, project),
   disableScript: (session: Session) =>

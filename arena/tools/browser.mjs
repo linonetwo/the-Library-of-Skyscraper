@@ -6,9 +6,13 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
-    ...['startTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
+    ...['startTraining', 'resetTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'openScriptHistory', 'loadScriptVersion', 'restoreScriptVersion', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
     z.object({ type: z.literal('editScript'), source: z.string() }).strict(),
     z.object({ type: z.literal('loadScriptTemplate'), template: z.enum(['recall', 'gather', 'defend', 'explore']) }).strict(),
+    z.object({ type: z.literal('selectScriptVersion'), sourceHash: z.string() }).strict(),
+    z.object({ type: z.literal('toggleScriptDiff'), enabled: z.boolean() }).strict(),
+    ...['selectScriptFile', 'addScriptFile', 'setScriptEntry', 'selectScriptDiffFile']
+      .map(type => z.object({ type: z.literal(type), file: z.string() }).strict()),
     z.object({ type: z.literal('resumeSession'), sessionId: z.string() }).strict(),
     z.object({ type: z.literal('selectActor'), role: z.enum(['scout', 'gatherer', 'guard']) }).strict(),
     z.object({ type: z.literal('chooseOutfit'), outfit: z.enum(['scholar', 'warden']) }).strict(),
@@ -66,7 +70,9 @@ export function registerBrowserTools(server) {
     }
     const battlefields = await active.locator('.pixi-map').evaluateAll(maps =>
       maps.map(map => JSON.parse(map.dataset.actors || '[]')));
-    return { text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields };
+    const scriptVersions = await active.getByLabel('规则历史版本').locator('option').evaluateAll(options =>
+      options.filter(option => option.value).map(option => ({ sourceHash: option.value, label: option.textContent })));
+    return { text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   register('Input.action', 'Control training, characters, outfits, TypeScript editing/publication, rules and gameplay through the UI.', { action: actionSchema }, async ({ action }) => {
     const active = current();
@@ -92,12 +98,49 @@ export function registerBrowserTools(server) {
       case 'loadScriptTemplate':
         await active.getByLabel('载入规则模板').selectOption(action.template);
         break;
+      case 'openScriptHistory':
+        if (await active.locator('.script-history').getAttribute('open') === null)
+          await active.locator('.script-history summary').click();
+        break;
+      case 'selectScriptVersion':
+        await active.getByLabel('规则历史版本').selectOption(action.sourceHash);
+        await active.getByRole('button', { name: '载入为草稿', exact: true }).waitFor();
+        break;
+      case 'loadScriptVersion': await click('载入为草稿'); break;
+      case 'restoreScriptVersion':
+        await Promise.all([
+          active.waitForResponse(response => response.url().endsWith('/scripts/rollback')),
+          click('恢复此版本'),
+        ]);
+        break;
+      case 'toggleScriptDiff':
+        await active.getByLabel('查看与草稿差异').setChecked(action.enabled);
+        break;
+      case 'selectScriptDiffFile':
+        await active.getByLabel('对比源码文件').selectOption(action.file);
+        break;
+      case 'selectScriptFile': {
+        const name = action.file.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        await active.getByRole('tab', { name: new RegExp(`^${name}(?: · 入口)?$`) }).click();
+        break;
+      }
+      case 'addScriptFile':
+        await active.getByLabel('新规则文件名').fill(action.file);
+        await click('添加文件');
+        break;
+      case 'setScriptEntry':
+        await active.getByLabel('规则入口文件').selectOption(action.file);
+        break;
       case 'editScript':
         await active.evaluate(source => navigator.clipboard.writeText(source), action.source);
         await active.getByRole('textbox', { name: 'TypeScript规则源码' }).focus();
         await active.keyboard.press('ControlOrMeta+a');
         await active.keyboard.press('ControlOrMeta+v');
-        await active.waitForFunction(source => localStorage.getItem('arena-rule-draft') === source, action.source);
+        await active.waitForFunction(source => {
+          const session = JSON.parse(sessionStorage.getItem('arena-session'));
+          const project = JSON.parse(localStorage.getItem(`arena-rule-project:${session.sessionId}:${session.playerId}`));
+          return project.files[project.activeFile] === source;
+        }, action.source);
         break;
       case 'resumeLatest': await click('继续上次远征'); break;
       case 'resumeSession': await click(`继续远征 ${action.sessionId}`); break;
@@ -105,6 +148,7 @@ export function registerBrowserTools(server) {
         await click('开启训练远征');
         await active.locator('.squad-card').first().waitFor();
         break;
+      case 'resetTraining': await click('重置训练局'); break;
       case 'openLobby': await click('联机大厅'); break;
       case 'closeLobby': await click('关闭赛局入口'); break;
       case 'openRules': await click('行动规则'); break;
