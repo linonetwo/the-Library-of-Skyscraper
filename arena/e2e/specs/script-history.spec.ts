@@ -6,6 +6,10 @@ async function capture(page: Page, label: string) {
   if (!process.env.ARENA_CAPTURE_DAY) return;
   const name = `竞技场${process.env.ARENA_CAPTURE_DAY}${label}实机.png`;
   const destination = path.resolve("../../wiki/tiddlers", name);
+  await page.locator(".script-history").scrollIntoViewIfNeeded();
+  if (label === "规则源码差异") {
+    await page.getByRole("region", { name: "规则源码差异" }).scrollIntoViewIfNeeded();
+  }
   await page.screenshot({ path: destination, fullPage: true });
   await writeFile(`${destination}.meta`, `title: ${name}\ntype: image/png\n`);
 }
@@ -140,6 +144,7 @@ test("a delayed publication cannot replace a newly opened session", async ({ pag
   const completed = page.waitForResponse(response => response.url().endsWith("/scripts/publish"));
   release();
   await completed;
+  await openScripts(page);
   await expect(page.getByLabel("当前规则版本")).toContainText("预设");
   expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem("arena-session")!).sessionId)).toBe(current);
 });

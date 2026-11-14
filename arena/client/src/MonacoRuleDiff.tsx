@@ -11,20 +11,24 @@ export default function MonacoRuleDiff({ original, modified, fileName }: Props) 
     const id = ++nextDiff;
     const model = {
       original: monaco.editor.createModel(original, "typescript",
-        monaco.Uri.from({ scheme: "arena-diff", path: `/${id}/original/${fileName}` })),
+        monaco.Uri.file(`/arena-diff/${id}/original/${fileName}`)),
       modified: monaco.editor.createModel(modified, "typescript",
-        monaco.Uri.from({ scheme: "arena-diff", path: `/${id}/modified/${fileName}` })),
+        monaco.Uri.file(`/arena-diff/${id}/modified/${fileName}`)),
     };
     const editor = monaco.editor.createDiffEditor(host.current!, {
       theme: "arena-ink", automaticLayout: true, renderSideBySide: false,
       readOnly: true, originalEditable: false, minimap: { enabled: false },
       fontSize: 13, scrollBeyondLastLine: false, ariaLabel: "规则源码差异",
     });
-    editor.setModel(model);
+    const viewModel = editor.createViewModel(model);
+    editor.setModel(viewModel);
     instance.current = editor;
     return () => {
       editor.setModel(null);
       editor.dispose();
+      // Own the view model explicitly: cancel pending worker computations
+      // before releasing their text models, including StrictMode cleanup.
+      viewModel.dispose();
       model.original.dispose();
       model.modified.dispose();
       instance.current = null;
