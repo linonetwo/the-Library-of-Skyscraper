@@ -29,7 +29,7 @@ test('HTTP: replay export requires ownership, excludes credentials and records a
   await http(route, undefined, undefined, 401);
   await http(route, undefined, other.token, 401);
   const recording = await http(route, undefined, session.token);
-  assert.equal(recording.version, 1);
+  assert.equal(recording.version, 2);
   assert.equal(recording.finalSnapshot.tick, 8);
   assert.equal(recording.operations.filter(operation => operation.type === 'advance').length, 8);
   assert(!JSON.stringify(recording).includes(session.token));
