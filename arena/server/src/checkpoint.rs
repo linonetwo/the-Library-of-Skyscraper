@@ -16,6 +16,8 @@ pub struct SessionCheckpoint {
     replay_overflowed: bool,
     #[serde(default)]
     scripts: BTreeMap<String, crate::PublishedScript>,
+    #[serde(default)]
+    script_versions: crate::RuleVersionCatalog,
 }
 
 impl Session {
@@ -29,6 +31,7 @@ impl Session {
             replay_operations: self.replay_operations.clone(),
             replay_overflowed: self.replay_overflowed,
             scripts: self.scripts.clone(),
+            script_versions: self.script_versions.clone(),
         }
     }
 
@@ -39,7 +42,7 @@ impl Session {
         let snapshot = checkpoint.snapshot;
         let mut world = World::new();
         world.spawn_batch(snapshot.actors);
-        Ok(Self {
+        let mut session = Self {
             id: snapshot.session_id,
             mode: snapshot.mode,
             seed: snapshot.seed,
@@ -61,6 +64,9 @@ impl Session {
             replay_operations: checkpoint.replay_operations,
             replay_overflowed: checkpoint.replay_overflowed,
             scripts: checkpoint.scripts,
-        })
+            script_versions: checkpoint.script_versions,
+        };
+        session.migrate_script_versions();
+        Ok(session)
     }
 }

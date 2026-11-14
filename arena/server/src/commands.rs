@@ -84,6 +84,7 @@ impl Session {
             Command::Reset {} => {
                 let tokens = self.tokens.clone();
                 let scripts = std::mem::take(&mut self.scripts);
+                let script_versions = std::mem::take(&mut self.script_versions);
                 let metadata: Vec<_> = self
                     .players
                     .iter()
@@ -98,6 +99,7 @@ impl Session {
                 self.replay_operations = operations;
                 self.replay_overflowed = overflowed;
                 self.scripts = scripts;
+                self.script_versions = script_versions;
                 for (id, script) in metadata {
                     self.players.get_mut(&id).unwrap().script = script;
                 }

@@ -109,6 +109,8 @@ pub async fn disable(
 }
 
 #[cfg(test)]
+mod history_tests;
+#[cfg(test)]
 mod publish_tests;
 #[cfg(test)]
 mod tests;
