@@ -1,0 +1,135 @@
+{
+  "frames": {
+    "body": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 384,
+        "h": 384
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "sourceSize": {
+        "w": 384,
+        "h": 384
+      }
+    },
+    "outfit-scholar": {
+      "frame": {
+        "x": 390,
+        "y": 2,
+        "w": 384,
+        "h": 384
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "sourceSize": {
+        "w": 384,
+        "h": 384
+      }
+    },
+    "outfit-warden": {
+      "frame": {
+        "x": 778,
+        "y": 2,
+        "w": 384,
+        "h": 384
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "sourceSize": {
+        "w": 384,
+        "h": 384
+      }
+    },
+    "hair-ivory": {
+      "frame": {
+        "x": 2,
+        "y": 390,
+        "w": 384,
+        "h": 384
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "sourceSize": {
+        "w": 384,
+        "h": 384
+      }
+    },
+    "hair-midnight": {
+      "frame": {
+        "x": 390,
+        "y": 390,
+        "w": 384,
+        "h": 384
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "sourceSize": {
+        "w": 384,
+        "h": 384
+      }
+    },
+    "weapon-staff": {
+      "frame": {
+        "x": 778,
+        "y": 390,
+        "w": 384,
+        "h": 384
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "sourceSize": {
+        "w": 384,
+        "h": 384
+      }
+    }
+  },
+  "meta": {
+    "app": "arena-art-pipeline",
+    "version": "1",
+    "image": "doll-atlas.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1164,
+      "h": 776
+    },
+    "scale": "1"
+  }
+}

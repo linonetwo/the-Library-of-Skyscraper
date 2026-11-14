@@ -1,0 +1,9 @@
+# 竞技场美术管线
+
+`source/library-map.png` 与 `source/doll-sheet.png` 使用用户指定的 proxy-imagegen / GPT Image 2 生成。原图保留，不能用程序画图或概念图冒充游戏截图。
+
+运行 `npm ci && npm run build`：色键透明化、独立图层对齐、2px 边缘留白、标准 Pixi 图集及 SHA-256 来源清单生成至 `../client/public/assets/`。贴图为 PNG，不依赖运行时生成服务。
+
+图层统一虚拟画布，顺序为 body → outfit → hair → weapon。衣装与发型组合只影响外观，不改变竞技数值。图集坐标、对齐修正和内容版本均受版本控制。生成式素材仍需进一步人工美术审查和发布权利审查；模型输出不保证完美层间兼容。
+
+八向动画另走独立试产管线：`npm run build:animation`。范围和未完成项见 [ANIMATION-PLAN.md](ANIMATION-PLAN.md)，覆盖矩阵位于 `../client/public/assets/animation/coverage.json`。它不会覆盖静态图集；八向 walk 基础体目前仅为 prototype，没有任何 approved 的完整纸娃娃动作。

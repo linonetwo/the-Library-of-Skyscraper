@@ -1,0 +1,17 @@
+{
+  "name": "@skyscraper/arena-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test ../tests/*.test.mjs",
+    "test:integration": "ARENA_INTEGRATION=1 node --test ../tests/*.test.mjs",
+    "test:browser": "ARENA_BROWSER=1 node --test ../tests/browser.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "playwright": "^1.58.2",
+    "zod": "^4.6.7"
+  }
+}

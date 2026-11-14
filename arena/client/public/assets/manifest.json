@@ -1,0 +1,35 @@
+{
+  "contentVersion": "arena-art-2026-10-27.1",
+  "sources": [
+    {
+      "path": "source/doll-sheet.png",
+      "sha256": "c32308a7f3407a87e3499b95f0411ea05501c73b39e159f68dcb5243e0864172",
+      "generator": "GPT Image 2 via proxy-imagegen",
+      "generatedOn": "2026-10-27"
+    },
+    {
+      "path": "source/library-map.png",
+      "sha256": "fc742bef08af8d9d9013afc363a245f0cbe436443dcc62cd31d76afbfff7d5a3",
+      "generator": "GPT Image 2 via proxy-imagegen",
+      "generatedOn": "2026-10-27"
+    }
+  ],
+  "frameSize": [
+    384,
+    384
+  ],
+  "padding": 2,
+  "layers": [
+    "body",
+    "outfit-scholar",
+    "outfit-warden",
+    "hair-ivory",
+    "hair-midnight",
+    "weapon-staff"
+  ],
+  "anchor": [
+    0.5,
+    1
+  ],
+  "notes": "AI-generated source; alpha cleanup and authored alignment. Cosmetics only. Release rights review pending."
+}
