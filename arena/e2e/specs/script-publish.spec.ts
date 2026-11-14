@@ -14,7 +14,11 @@ test("publish TypeScript to training ticks, hold, then return to preset", async 
     await input.focus();
     await page.keyboard.press("ControlOrMeta+a");
     await page.keyboard.press("ControlOrMeta+v");
-    await expect.poll(() => page.evaluate(() => localStorage.getItem("arena-rule-draft"))).toBe(source);
+    await expect.poll(() => page.evaluate(() => {
+      const session = JSON.parse(sessionStorage.getItem("arena-session")!);
+      const project = JSON.parse(localStorage.getItem(`arena-rule-project:${session.sessionId}:${session.playerId}`)!);
+      return project.files[project.activeFile];
+    })).toBe(source);
   }
   await writeRule(`import type { RuleContext } from '@skyscraper/arena-script-sdk';
 export function decide(ctx: RuleContext) {

@@ -33,7 +33,11 @@ try {
   await editor.focus();
   await page.keyboard.press('ControlOrMeta+a');
   await page.keyboard.press('ControlOrMeta+v');
-  await page.waitForFunction(text => localStorage.getItem('arena-rule-draft') === text, source);
+  await page.waitForFunction(text => {
+    const session = JSON.parse(sessionStorage.getItem('arena-session'));
+    const draft = JSON.parse(localStorage.getItem(`arena-rule-project:${session.sessionId}:${session.playerId}`));
+    return draft?.files[draft.activeFile] === text;
+  }, source);
   await page.getByRole('button', { name: '发布到战场' }).click();
   await page.getByLabel('当前规则版本').getByText('TS 规则已接管小队').waitFor();
   for (let tick = 0; tick < 2; tick++) {
