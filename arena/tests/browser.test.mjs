@@ -1,15 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '../tools/node_modules/playwright/index.mjs';
 import { Client } from '../tools/node_modules/@modelcontextprotocol/sdk/dist/esm/client/index.js';
 import { StdioClientTransport } from '../tools/node_modules/@modelcontextprotocol/sdk/dist/esm/client/stdio.js';
 
-const browserPresent = existsSync(chromium.executablePath());
 test('MCP browser controls outfits, map, Monaco publication and captures PNG', {
-  skip: process.env.ARENA_BROWSER !== '1' ? 'Set ARENA_BROWSER=1 with UI and authority running'
-    : !browserPresent ? 'Playwright Chromium is not installed: run npx playwright install chromium' : false,
+  skip: process.env.ARENA_BROWSER !== '1' ? 'Set ARENA_BROWSER=1 with UI and authority running' : false,
   timeout: 90000,
 }, async t => {
   const client = new Client({ name: 'arena-browser-test', version: '1.0.0' });
