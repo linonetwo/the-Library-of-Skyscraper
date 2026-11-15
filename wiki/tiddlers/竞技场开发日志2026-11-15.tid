@@ -63,3 +63,5 @@ Sol接入共用动作层索引与渲染，静止播放idle，移动播放walk，
 本轮分为[[本人任务回放PR #14|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/14]]与[[八向待机纸娃娃PR #15|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/15]]，Astra评审后由Terra按最终head的CI结果顺序交付。
 
 CI检查发现浏览器并行争用与Reset前历史操作影响测试计数；浏览器测试改为串行并增加超时余量，回放断言只计算最后Reset后的推进，完整历史继续保留。
+
+联机方向修复：朝向由连续权威目标计算，位置继续平滑插值，避免不同网络间隔产生相反方向。客户端构建通过；真实浏览器6项通过，联机用例重复3次通过，强化共同起点后再次通过；定时回归覆盖不同到包间隔。
