@@ -1,0 +1,1961 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "body-front",
+  "source": "arena/art/source/walk-body-eight-directions.png",
+  "sourceSha256": "0ac437f4d2fc5f79510542ceee29b2ba885ee067a0e386ecd0ff13730ba0417f",
+  "frames": [
+    {
+      "frame": "walk/body-front/S/00",
+      "originalFrame": "walk/body-front/S/00",
+      "transform": {
+        "sourceHead": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "sourceNeck": 83,
+        "targetNeck": 71,
+        "sourceSole": 183,
+        "targetSole": 172,
+        "headScale": 0.9253731343283582,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 96,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            17,
+            15
+          ],
+          [
+            83,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            183,
+            172
+          ],
+          [
+            184,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/S/01",
+      "originalFrame": "walk/body-front/S/01",
+      "transform": {
+        "sourceHead": {
+          "left": 62,
+          "right": 128,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "sourceNeck": 83,
+        "targetNeck": 71.6,
+        "sourceSole": 182,
+        "targetSole": 172,
+        "headScale": 0.9253731343283582,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            17,
+            15.6
+          ],
+          [
+            83,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            182,
+            172
+          ],
+          [
+            183,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/S/02",
+      "originalFrame": "walk/body-front/S/02",
+      "transform": {
+        "sourceHead": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "sourceNeck": 83,
+        "targetNeck": 71,
+        "sourceSole": 183,
+        "targetSole": 172,
+        "headScale": 0.9253731343283582,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 96,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            17,
+            15
+          ],
+          [
+            83,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            183,
+            172
+          ],
+          [
+            184,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/S/03",
+      "originalFrame": "walk/body-front/S/03",
+      "transform": {
+        "sourceHead": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "sourceNeck": 83,
+        "targetNeck": 71.6,
+        "sourceSole": 183,
+        "targetSole": 172,
+        "headScale": 0.9253731343283582,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 96,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            17,
+            15.6
+          ],
+          [
+            83,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            183,
+            172
+          ],
+          [
+            184,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/SW/00",
+      "originalFrame": "walk/body-front/SW/00",
+      "transform": {
+        "sourceHead": {
+          "left": 58,
+          "right": 123,
+          "top": 13,
+          "bottom": 76,
+          "width": 66,
+          "height": 64
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "sourceNeck": 77,
+        "targetNeck": 72,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            77,
+            72
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/SW/01",
+      "originalFrame": "walk/body-front/SW/01",
+      "transform": {
+        "sourceHead": {
+          "left": 57,
+          "right": 121,
+          "top": 12,
+          "bottom": 78,
+          "width": 65,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "sourceNeck": 79,
+        "targetNeck": 72.6,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9846153846153847,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 89,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            12,
+            15.6
+          ],
+          [
+            79,
+            72.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/SW/02",
+      "originalFrame": "walk/body-front/SW/02",
+      "transform": {
+        "sourceHead": {
+          "left": 58,
+          "right": 123,
+          "top": 13,
+          "bottom": 76,
+          "width": 66,
+          "height": 64
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "sourceNeck": 77,
+        "targetNeck": 72,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            77,
+            72
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/SW/03",
+      "originalFrame": "walk/body-front/SW/03",
+      "transform": {
+        "sourceHead": {
+          "left": 59,
+          "right": 123,
+          "top": 13,
+          "bottom": 78,
+          "width": 65,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "sourceNeck": 79,
+        "targetNeck": 72.6,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9846153846153847,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 91,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            13,
+            15.6
+          ],
+          [
+            79,
+            72.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/W/00",
+      "originalFrame": "walk/body-front/W/00",
+      "transform": {
+        "sourceHead": {
+          "left": 57,
+          "right": 123,
+          "top": 10,
+          "bottom": 78,
+          "width": 67,
+          "height": 69
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 79,
+        "targetNeck": 71,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.8955223880597015,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            79,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/W/01",
+      "originalFrame": "walk/body-front/W/01",
+      "transform": {
+        "sourceHead": {
+          "left": 57,
+          "right": 123,
+          "top": 10,
+          "bottom": 77,
+          "width": 67,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.8955223880597015,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            78,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/W/02",
+      "originalFrame": "walk/body-front/W/02",
+      "transform": {
+        "sourceHead": {
+          "left": 57,
+          "right": 123,
+          "top": 10,
+          "bottom": 79,
+          "width": 67,
+          "height": 70
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 80,
+        "targetNeck": 71,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.8955223880597015,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            80,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/W/03",
+      "originalFrame": "walk/body-front/W/03",
+      "transform": {
+        "sourceHead": {
+          "left": 58,
+          "right": 122,
+          "top": 10,
+          "bottom": 77,
+          "width": 65,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9230769230769231,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            78,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/NW/00",
+      "originalFrame": "walk/body-front/NW/00",
+      "transform": {
+        "sourceHead": {
+          "left": 54,
+          "right": 117,
+          "top": 12,
+          "bottom": 76,
+          "width": 64,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 77,
+        "targetNeck": 71,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 1,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 85.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            12,
+            15
+          ],
+          [
+            77,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/NW/01",
+      "originalFrame": "walk/body-front/NW/01",
+      "transform": {
+        "sourceHead": {
+          "left": 55,
+          "right": 121,
+          "top": 12,
+          "bottom": 73,
+          "width": 67,
+          "height": 62
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 74,
+        "targetNeck": 71.6,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.9552238805970149,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 88,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            12,
+            15.6
+          ],
+          [
+            74,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/NW/02",
+      "originalFrame": "walk/body-front/NW/02",
+      "transform": {
+        "sourceHead": {
+          "left": 54,
+          "right": 117,
+          "top": 11,
+          "bottom": 76,
+          "width": 64,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 77,
+        "targetNeck": 71,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 1,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 85.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            77,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/NW/03",
+      "originalFrame": "walk/body-front/NW/03",
+      "transform": {
+        "sourceHead": {
+          "left": 55,
+          "right": 122,
+          "top": 12,
+          "bottom": 73,
+          "width": 68,
+          "height": 62
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 74,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9411764705882353,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 88.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            12,
+            15.6
+          ],
+          [
+            74,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/N/00",
+      "originalFrame": "walk/body-front/N/00",
+      "transform": {
+        "sourceHead": {
+          "left": 61,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 69,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "sourceNeck": 75,
+        "targetNeck": 69,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.8985507246376812,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            75,
+            69
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/N/01",
+      "originalFrame": "walk/body-front/N/01",
+      "transform": {
+        "sourceHead": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 68,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "sourceNeck": 75,
+        "targetNeck": 69.6,
+        "sourceSole": 179,
+        "targetSole": 172,
+        "headScale": 0.9117647058823529,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            75,
+            69.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            179,
+            172
+          ],
+          [
+            180,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/N/02",
+      "originalFrame": "walk/body-front/N/02",
+      "transform": {
+        "sourceHead": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 68,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "sourceNeck": 75,
+        "targetNeck": 69,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9117647058823529,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            75,
+            69
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/N/03",
+      "originalFrame": "walk/body-front/N/03",
+      "transform": {
+        "sourceHead": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 68,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "sourceNeck": 75,
+        "targetNeck": 69.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9117647058823529,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            75,
+            69.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/NE/00",
+      "originalFrame": "walk/body-front/NE/00",
+      "transform": {
+        "sourceHead": {
+          "left": 61,
+          "right": 128,
+          "top": 10,
+          "bottom": 76,
+          "width": 68,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "sourceNeck": 77,
+        "targetNeck": 70,
+        "sourceSole": 176,
+        "targetSole": 172,
+        "headScale": 0.9411764705882353,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 94.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            77,
+            70
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            176,
+            172
+          ],
+          [
+            177,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/NE/01",
+      "originalFrame": "walk/body-front/NE/01",
+      "transform": {
+        "sourceHead": {
+          "left": 61,
+          "right": 126,
+          "top": 10,
+          "bottom": 74,
+          "width": 66,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "sourceNeck": 75,
+        "targetNeck": 70.6,
+        "sourceSole": 179,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 93.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            75,
+            70.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            179,
+            172
+          ],
+          [
+            180,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/NE/02",
+      "originalFrame": "walk/body-front/NE/02",
+      "transform": {
+        "sourceHead": {
+          "left": 62,
+          "right": 128,
+          "top": 10,
+          "bottom": 76,
+          "width": 67,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "sourceNeck": 77,
+        "targetNeck": 70,
+        "sourceSole": 176,
+        "targetSole": 172,
+        "headScale": 0.9552238805970149,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            77,
+            70
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            176,
+            172
+          ],
+          [
+            177,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/NE/03",
+      "originalFrame": "walk/body-front/NE/03",
+      "transform": {
+        "sourceHead": {
+          "left": 62,
+          "right": 127,
+          "top": 10,
+          "bottom": 75,
+          "width": 66,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "sourceNeck": 76,
+        "targetNeck": 70.6,
+        "sourceSole": 179,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 94.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            76,
+            70.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            179,
+            172
+          ],
+          [
+            180,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/E/00",
+      "originalFrame": "walk/body-front/E/00",
+      "transform": {
+        "sourceHead": {
+          "left": 67,
+          "right": 132,
+          "top": 10,
+          "bottom": 77,
+          "width": 66,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.9090909090909091,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 99.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            78,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/E/01",
+      "originalFrame": "walk/body-front/E/01",
+      "transform": {
+        "sourceHead": {
+          "left": 66,
+          "right": 131,
+          "top": 9,
+          "bottom": 75,
+          "width": 66,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 76,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9090909090909091,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 98.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            9,
+            15.6
+          ],
+          [
+            76,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/E/02",
+      "originalFrame": "walk/body-front/E/02",
+      "transform": {
+        "sourceHead": {
+          "left": 67,
+          "right": 133,
+          "top": 10,
+          "bottom": 77,
+          "width": 67,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.8955223880597015,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 100,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            78,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/E/03",
+      "originalFrame": "walk/body-front/E/03",
+      "transform": {
+        "sourceHead": {
+          "left": 68,
+          "right": 133,
+          "top": 10,
+          "bottom": 75,
+          "width": 66,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 76,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9090909090909091,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 100.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            76,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/SE/00",
+      "originalFrame": "walk/body-front/SE/00",
+      "transform": {
+        "sourceHead": {
+          "left": 68,
+          "right": 134,
+          "top": 11,
+          "bottom": 78,
+          "width": 67,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 79,
+        "targetNeck": 71,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9552238805970149,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 101,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            79,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/SE/01",
+      "originalFrame": "walk/body-front/SE/01",
+      "transform": {
+        "sourceHead": {
+          "left": 68,
+          "right": 133,
+          "top": 11,
+          "bottom": 77,
+          "width": 66,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71.6,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 100.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15.6
+          ],
+          [
+            78,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/SE/02",
+      "originalFrame": "walk/body-front/SE/02",
+      "transform": {
+        "sourceHead": {
+          "left": 68,
+          "right": 134,
+          "top": 11,
+          "bottom": 77,
+          "width": 67,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71,
+        "sourceSole": 177,
+        "targetSole": 172,
+        "headScale": 0.9552238805970149,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 101,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            78,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            177,
+            172
+          ],
+          [
+            178,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    },
+    {
+      "frame": "walk/body-front/SE/03",
+      "originalFrame": "walk/body-front/SE/03",
+      "transform": {
+        "sourceHead": {
+          "left": 69,
+          "right": 134,
+          "top": 11,
+          "bottom": 77,
+          "width": 66,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71.6,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 101.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15.6
+          ],
+          [
+            78,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      }
+    }
+  ]
+}

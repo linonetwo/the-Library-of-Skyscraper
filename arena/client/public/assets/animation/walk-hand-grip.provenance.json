@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "hand-grip",
+  "status": "prototype",
+  "releaseApproved": false,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/grip-hands.png",
+  "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
+  "promptSha256": "aef6a7206206fcdcc6cfe5405eb2b37fc75fe28fe8493d597bfe25f60a53f44a",
+  "method": "Eight newly generated anatomical right-hand closed-grip views, independently registered to idle and normalized walk staff grips. Foreground fingers cover the shaft; empty-hand combinations omit this layer.",
+  "registration": "arena/art/source/walk-hand-grip-registration.json",
+  "recipeSha256": "0274149f8245d010a46dade13469f4e9ff6b4197c049e0dcc4f1d3b70b227073",
+  "atlasPngSha256": "a9ab84ded87cfa0ac4013a0ce103224e117f561ea050a7e4cab81f9afb3ed5c7",
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "weapon-staff-front",
+  "status": "prototype",
+  "releaseApproved": false,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/walk-weapon-staff.png",
+  "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+  "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+  "normalizationSha256": "2f468b4da5342c3772656ea6f02948cb4253ba7c73d9635d798e7b28c6eac0ad",
+  "recipeSha256": "4a28dbde02ac678e3c2367eaef05c8e6df2838994ecabde2dab45269330c636d",
+  "registration": "arena/art/source/walk-weapon-staff-front-normalized-registration.json",
+  "review": "Normalized to idle proportions; original four-phase gait retained. All direction/hand contacts require visual approval.",
+  "atlasPngSha256": "29bf0c4edc373f1ee0a8af01f07a581dac26a8c1e4ba3fa07fb48a8a4cf005ad",
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ]
+}

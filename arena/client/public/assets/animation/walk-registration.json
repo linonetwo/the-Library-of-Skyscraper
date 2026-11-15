@@ -1,0 +1,3723 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "reference": "idle-body.png",
+  "source": "source/walk-body-eight-directions.png",
+  "sourceAtlasSha256": "5df8ef0243709472a74567ccc61549dae3927446d95f56c630801b89f1de6b8b",
+  "referenceAtlasSha256": "9023ee5ee6623fdf26f917587e07bfbd2647670a4a9947a3d1fc1b247d5d79ba",
+  "frames": [
+    {
+      "frame": "walk/body/S/00",
+      "registration": {
+        "sourceHead": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "sourceNeck": 83,
+        "targetNeck": 71,
+        "sourceSole": 183,
+        "targetSole": 172,
+        "headScale": 0.9253731343283582,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 96,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            17,
+            15
+          ],
+          [
+            83,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            183,
+            172
+          ],
+          [
+            184,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "body": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 183,
+          "width": 67,
+          "height": 167
+        }
+      },
+      "after": {
+        "head": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "body": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 172,
+          "width": 62,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          73.86,
+          107.56603773584905
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/S/01",
+      "registration": {
+        "sourceHead": {
+          "left": 62,
+          "right": 128,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "sourceNeck": 83,
+        "targetNeck": 71.6,
+        "sourceSole": 182,
+        "targetSole": 172,
+        "headScale": 0.9253731343283582,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            17,
+            15.6
+          ],
+          [
+            83,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            182,
+            172
+          ],
+          [
+            183,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 62,
+          "right": 128,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "body": {
+          "left": 62,
+          "right": 128,
+          "top": 17,
+          "bottom": 182,
+          "width": 67,
+          "height": 166
+        }
+      },
+      "after": {
+        "head": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "body": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 172,
+          "width": 62,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          77.96000000000001,
+          101.39622641509433
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/S/02",
+      "registration": {
+        "sourceHead": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "sourceNeck": 83,
+        "targetNeck": 71,
+        "sourceSole": 183,
+        "targetSole": 172,
+        "headScale": 0.9253731343283582,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 96,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            17,
+            15
+          ],
+          [
+            83,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            183,
+            172
+          ],
+          [
+            184,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "body": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 183,
+          "width": 67,
+          "height": 167
+        }
+      },
+      "after": {
+        "head": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "body": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 172,
+          "width": 62,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          74.68,
+          108.64150943396226
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/S/03",
+      "registration": {
+        "sourceHead": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "sourceNeck": 83,
+        "targetNeck": 71.6,
+        "sourceSole": 183,
+        "targetSole": 172,
+        "headScale": 0.9253731343283582,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 96,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            17,
+            15.6
+          ],
+          [
+            83,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            183,
+            172
+          ],
+          [
+            184,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 82,
+          "width": 67,
+          "height": 66
+        },
+        "body": {
+          "left": 63,
+          "right": 129,
+          "top": 17,
+          "bottom": 183,
+          "width": 67,
+          "height": 167
+        }
+      },
+      "after": {
+        "head": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 70,
+          "width": 62,
+          "height": 56
+        },
+        "body": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 172,
+          "width": 62,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          78.78,
+          101.39622641509433
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/SW/00",
+      "registration": {
+        "sourceHead": {
+          "left": 58,
+          "right": 123,
+          "top": 13,
+          "bottom": 76,
+          "width": 66,
+          "height": 64
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "sourceNeck": 77,
+        "targetNeck": 72,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            77,
+            72
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 58,
+          "right": 123,
+          "top": 13,
+          "bottom": 76,
+          "width": 66,
+          "height": 64
+        },
+        "body": {
+          "left": 58,
+          "right": 127,
+          "top": 13,
+          "bottom": 178,
+          "width": 70,
+          "height": 166
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 64,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          72
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          69.76,
+          109.01694915254237
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/SW/01",
+      "registration": {
+        "sourceHead": {
+          "left": 57,
+          "right": 121,
+          "top": 12,
+          "bottom": 78,
+          "width": 65,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "sourceNeck": 79,
+        "targetNeck": 72.6,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9846153846153847,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 89,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            12,
+            15.6
+          ],
+          [
+            79,
+            72.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 57,
+          "right": 121,
+          "top": 12,
+          "bottom": 78,
+          "width": 65,
+          "height": 67
+        },
+        "body": {
+          "left": 57,
+          "right": 121,
+          "top": 12,
+          "bottom": 178,
+          "width": 65,
+          "height": 167
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 16,
+          "bottom": 71,
+          "width": 64,
+          "height": 56
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 16,
+          "bottom": 172,
+          "width": 64,
+          "height": 157
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          72.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          82.88,
+          98.84210526315789
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/SW/02",
+      "registration": {
+        "sourceHead": {
+          "left": 58,
+          "right": 123,
+          "top": 13,
+          "bottom": 76,
+          "width": 66,
+          "height": 64
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "sourceNeck": 77,
+        "targetNeck": 72,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            77,
+            72
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 58,
+          "right": 123,
+          "top": 13,
+          "bottom": 76,
+          "width": 66,
+          "height": 64
+        },
+        "body": {
+          "left": 56,
+          "right": 132,
+          "top": 13,
+          "bottom": 178,
+          "width": 77,
+          "height": 166
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "body": {
+          "left": 63,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 65,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          72
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          66.48,
+          111.86440677966101
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/SW/03",
+      "registration": {
+        "sourceHead": {
+          "left": 59,
+          "right": 123,
+          "top": 13,
+          "bottom": 78,
+          "width": 65,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "sourceNeck": 79,
+        "targetNeck": 72.6,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9846153846153847,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 91,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            13,
+            15.6
+          ],
+          [
+            79,
+            72.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 59,
+          "right": 123,
+          "top": 13,
+          "bottom": 78,
+          "width": 65,
+          "height": 66
+        },
+        "body": {
+          "left": 59,
+          "right": 123,
+          "top": 13,
+          "bottom": 178,
+          "width": 65,
+          "height": 166
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 71,
+          "width": 64,
+          "height": 57
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 64,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          72.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          82.88,
+          98.84210526315789
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/W/00",
+      "registration": {
+        "sourceHead": {
+          "left": 57,
+          "right": 123,
+          "top": 10,
+          "bottom": 78,
+          "width": 67,
+          "height": 69
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 79,
+        "targetNeck": 71,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.8955223880597015,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            79,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 57,
+          "right": 123,
+          "top": 10,
+          "bottom": 78,
+          "width": 67,
+          "height": 69
+        },
+        "body": {
+          "left": 53,
+          "right": 134,
+          "top": 10,
+          "bottom": 180,
+          "width": 82,
+          "height": 171
+        }
+      },
+      "after": {
+        "head": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "body": {
+          "left": 58,
+          "right": 128,
+          "top": 15,
+          "bottom": 172,
+          "width": 71,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          69.76,
+          106
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/W/01",
+      "registration": {
+        "sourceHead": {
+          "left": 57,
+          "right": 123,
+          "top": 10,
+          "bottom": 77,
+          "width": 67,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.8955223880597015,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            78,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 57,
+          "right": 123,
+          "top": 10,
+          "bottom": 77,
+          "width": 67,
+          "height": 68
+        },
+        "body": {
+          "left": 57,
+          "right": 126,
+          "top": 10,
+          "bottom": 181,
+          "width": 70,
+          "height": 172
+        }
+      },
+      "after": {
+        "head": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "body": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 172,
+          "width": 60,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          84.52,
+          97.8551724137931
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/W/02",
+      "registration": {
+        "sourceHead": {
+          "left": 57,
+          "right": 123,
+          "top": 10,
+          "bottom": 79,
+          "width": 67,
+          "height": 70
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 80,
+        "targetNeck": 71,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.8955223880597015,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            80,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 57,
+          "right": 123,
+          "top": 10,
+          "bottom": 79,
+          "width": 67,
+          "height": 70
+        },
+        "body": {
+          "left": 53,
+          "right": 134,
+          "top": 10,
+          "bottom": 180,
+          "width": 82,
+          "height": 171
+        }
+      },
+      "after": {
+        "head": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "body": {
+          "left": 57,
+          "right": 129,
+          "top": 15,
+          "bottom": 172,
+          "width": 73,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          68.94,
+          106.625
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/W/03",
+      "registration": {
+        "sourceHead": {
+          "left": 58,
+          "right": 122,
+          "top": 10,
+          "bottom": 77,
+          "width": 65,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9230769230769231,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 90,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            78,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 58,
+          "right": 122,
+          "top": 10,
+          "bottom": 77,
+          "width": 65,
+          "height": 68
+        },
+        "body": {
+          "left": 58,
+          "right": 125,
+          "top": 10,
+          "bottom": 181,
+          "width": 68,
+          "height": 172
+        }
+      },
+      "after": {
+        "head": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "body": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 172,
+          "width": 60,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          84.52,
+          97.8551724137931
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/NW/00",
+      "registration": {
+        "sourceHead": {
+          "left": 54,
+          "right": 117,
+          "top": 12,
+          "bottom": 76,
+          "width": 64,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 77,
+        "targetNeck": 71,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 1,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 85.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            12,
+            15
+          ],
+          [
+            77,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 54,
+          "right": 117,
+          "top": 12,
+          "bottom": 76,
+          "width": 64,
+          "height": 65
+        },
+        "body": {
+          "left": 50,
+          "right": 127,
+          "top": 12,
+          "bottom": 178,
+          "width": 78,
+          "height": 167
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "body": {
+          "left": 59,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 69,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          113.22,
+          106.74576271186442
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/NW/01",
+      "registration": {
+        "sourceHead": {
+          "left": 55,
+          "right": 121,
+          "top": 12,
+          "bottom": 73,
+          "width": 67,
+          "height": 62
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 74,
+        "targetNeck": 71.6,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.9552238805970149,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 88,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            12,
+            15.6
+          ],
+          [
+            74,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 55,
+          "right": 121,
+          "top": 12,
+          "bottom": 73,
+          "width": 67,
+          "height": 62
+        },
+        "body": {
+          "left": 55,
+          "right": 121,
+          "top": 12,
+          "bottom": 180,
+          "width": 67,
+          "height": 169
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 16,
+          "bottom": 70,
+          "width": 64,
+          "height": 55
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 16,
+          "bottom": 172,
+          "width": 64,
+          "height": 157
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          112.4,
+          106.16774193548386
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/NW/02",
+      "registration": {
+        "sourceHead": {
+          "left": 54,
+          "right": 117,
+          "top": 11,
+          "bottom": 76,
+          "width": 64,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 77,
+        "targetNeck": 71,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 1,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 85.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            77,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 54,
+          "right": 117,
+          "top": 11,
+          "bottom": 76,
+          "width": 64,
+          "height": 66
+        },
+        "body": {
+          "left": 50,
+          "right": 126,
+          "top": 11,
+          "bottom": 178,
+          "width": 77,
+          "height": 168
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "body": {
+          "left": 58,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 70,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          113.22,
+          106.74576271186442
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/NW/03",
+      "registration": {
+        "sourceHead": {
+          "left": 55,
+          "right": 122,
+          "top": 12,
+          "bottom": 73,
+          "width": 68,
+          "height": 62
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 74,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9411764705882353,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 88.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            12,
+            15.6
+          ],
+          [
+            74,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 55,
+          "right": 122,
+          "top": 12,
+          "bottom": 73,
+          "width": 68,
+          "height": 62
+        },
+        "body": {
+          "left": 55,
+          "right": 122,
+          "top": 12,
+          "bottom": 181,
+          "width": 68,
+          "height": 170
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 16,
+          "bottom": 70,
+          "width": 64,
+          "height": 55
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 16,
+          "bottom": 172,
+          "width": 64,
+          "height": 157
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          113.22,
+          107.07741935483871
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/N/00",
+      "registration": {
+        "sourceHead": {
+          "left": 61,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 69,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "sourceNeck": 75,
+        "targetNeck": 69,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.8985507246376812,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            75,
+            69
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 61,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 69,
+          "height": 65
+        },
+        "body": {
+          "left": 61,
+          "right": 129,
+          "top": 10,
+          "bottom": 181,
+          "width": 69,
+          "height": 172
+        }
+      },
+      "after": {
+        "head": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "body": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 172,
+          "width": 62,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          69
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          116.5,
+          106.72131147540983
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/N/01",
+      "registration": {
+        "sourceHead": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 68,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "sourceNeck": 75,
+        "targetNeck": 69.6,
+        "sourceSole": 179,
+        "targetSole": 172,
+        "headScale": 0.9117647058823529,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            75,
+            69.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            179,
+            172
+          ],
+          [
+            180,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 68,
+          "height": 65
+        },
+        "body": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 179,
+          "width": 68,
+          "height": 170
+        }
+      },
+      "after": {
+        "head": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "body": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 172,
+          "width": 62,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          69.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          112.4,
+          102.15081967213115
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/N/02",
+      "registration": {
+        "sourceHead": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 68,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "sourceNeck": 75,
+        "targetNeck": 69,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9117647058823529,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            75,
+            69
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 68,
+          "height": 65
+        },
+        "body": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 181,
+          "width": 68,
+          "height": 172
+        }
+      },
+      "after": {
+        "head": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "body": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 172,
+          "width": 62,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          69
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          116.5,
+          107.68852459016392
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/N/03",
+      "registration": {
+        "sourceHead": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 68,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 65,
+          "right": 126,
+          "top": 15,
+          "bottom": 68,
+          "width": 62,
+          "height": 54
+        },
+        "sourceNeck": 75,
+        "targetNeck": 69.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9117647058823529,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            75,
+            69.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 74,
+          "width": 68,
+          "height": 65
+        },
+        "body": {
+          "left": 62,
+          "right": 129,
+          "top": 10,
+          "bottom": 181,
+          "width": 68,
+          "height": 172
+        }
+      },
+      "after": {
+        "head": {
+          "left": 65,
+          "right": 126,
+          "top": 16,
+          "bottom": 68,
+          "width": 62,
+          "height": 53
+        },
+        "body": {
+          "left": 65,
+          "right": 126,
+          "top": 16,
+          "bottom": 172,
+          "width": 62,
+          "height": 157
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          69.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          112.4,
+          103.10819672131147
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/NE/00",
+      "registration": {
+        "sourceHead": {
+          "left": 61,
+          "right": 128,
+          "top": 10,
+          "bottom": 76,
+          "width": 68,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "sourceNeck": 77,
+        "targetNeck": 70,
+        "sourceSole": 176,
+        "targetSole": 172,
+        "headScale": 0.9411764705882353,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 94.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            77,
+            70
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            176,
+            172
+          ],
+          [
+            177,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 61,
+          "right": 128,
+          "top": 10,
+          "bottom": 76,
+          "width": 68,
+          "height": 67
+        },
+        "body": {
+          "left": 50,
+          "right": 129,
+          "top": 10,
+          "bottom": 176,
+          "width": 80,
+          "height": 167
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "body": {
+          "left": 55,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 73,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          70
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          118.96,
+          105.38983050847457
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/NE/01",
+      "registration": {
+        "sourceHead": {
+          "left": 61,
+          "right": 126,
+          "top": 10,
+          "bottom": 74,
+          "width": 66,
+          "height": 65
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "sourceNeck": 75,
+        "targetNeck": 70.6,
+        "sourceSole": 179,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 93.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            75,
+            70.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            179,
+            172
+          ],
+          [
+            180,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 61,
+          "right": 126,
+          "top": 10,
+          "bottom": 74,
+          "width": 66,
+          "height": 65
+        },
+        "body": {
+          "left": 61,
+          "right": 126,
+          "top": 10,
+          "bottom": 179,
+          "width": 66,
+          "height": 170
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 16,
+          "bottom": 69,
+          "width": 64,
+          "height": 54
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 16,
+          "bottom": 172,
+          "width": 64,
+          "height": 157
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          70.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          110.76,
+          101.65245901639344
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/NE/02",
+      "registration": {
+        "sourceHead": {
+          "left": 62,
+          "right": 128,
+          "top": 10,
+          "bottom": 76,
+          "width": 67,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "sourceNeck": 77,
+        "targetNeck": 70,
+        "sourceSole": 176,
+        "targetSole": 172,
+        "headScale": 0.9552238805970149,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 95,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            77,
+            70
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            176,
+            172
+          ],
+          [
+            177,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 62,
+          "right": 128,
+          "top": 10,
+          "bottom": 76,
+          "width": 67,
+          "height": 67
+        },
+        "body": {
+          "left": 50,
+          "right": 135,
+          "top": 10,
+          "bottom": 176,
+          "width": 86,
+          "height": 167
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "body": {
+          "left": 56,
+          "right": 128,
+          "top": 15,
+          "bottom": 172,
+          "width": 73,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          70
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          119.78,
+          106.37288135593221
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/NE/03",
+      "registration": {
+        "sourceHead": {
+          "left": 62,
+          "right": 127,
+          "top": 10,
+          "bottom": 75,
+          "width": 66,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "sourceNeck": 76,
+        "targetNeck": 70.6,
+        "sourceSole": 179,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 94.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            76,
+            70.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            179,
+            172
+          ],
+          [
+            180,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 62,
+          "right": 127,
+          "top": 10,
+          "bottom": 75,
+          "width": 66,
+          "height": 66
+        },
+        "body": {
+          "left": 62,
+          "right": 127,
+          "top": 10,
+          "bottom": 179,
+          "width": 66,
+          "height": 170
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 69,
+          "width": 64,
+          "height": 55
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 64,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          70.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          110.76,
+          101.21333333333334
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/E/00",
+      "registration": {
+        "sourceHead": {
+          "left": 67,
+          "right": 132,
+          "top": 10,
+          "bottom": 77,
+          "width": 66,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.9090909090909091,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 99.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            78,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 67,
+          "right": 132,
+          "top": 10,
+          "bottom": 77,
+          "width": 66,
+          "height": 68
+        },
+        "body": {
+          "left": 54,
+          "right": 134,
+          "top": 10,
+          "bottom": 180,
+          "width": 81,
+          "height": 171
+        }
+      },
+      "after": {
+        "head": {
+          "left": 66,
+          "right": 125,
+          "top": 14,
+          "bottom": 70,
+          "width": 60,
+          "height": 57
+        },
+        "body": {
+          "left": 60,
+          "right": 130,
+          "top": 14,
+          "bottom": 172,
+          "width": 71,
+          "height": 159
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          120.6,
+          104.41379310344827
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/E/01",
+      "registration": {
+        "sourceHead": {
+          "left": 66,
+          "right": 131,
+          "top": 9,
+          "bottom": 75,
+          "width": 66,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 76,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9090909090909091,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 98.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            9,
+            15.6
+          ],
+          [
+            76,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 66,
+          "right": 131,
+          "top": 9,
+          "bottom": 75,
+          "width": 66,
+          "height": 67
+        },
+        "body": {
+          "left": 64,
+          "right": 131,
+          "top": 9,
+          "bottom": 181,
+          "width": 68,
+          "height": 173
+        }
+      },
+      "after": {
+        "head": {
+          "left": 66,
+          "right": 125,
+          "top": 16,
+          "bottom": 70,
+          "width": 60,
+          "height": 55
+        },
+        "body": {
+          "left": 66,
+          "right": 125,
+          "top": 16,
+          "bottom": 172,
+          "width": 60,
+          "height": 157
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          103.38,
+          100.74
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/E/02",
+      "registration": {
+        "sourceHead": {
+          "left": 67,
+          "right": 133,
+          "top": 10,
+          "bottom": 77,
+          "width": 67,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71,
+        "sourceSole": 180,
+        "targetSole": 172,
+        "headScale": 0.8955223880597015,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 100,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            78,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            180,
+            172
+          ],
+          [
+            181,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 67,
+          "right": 133,
+          "top": 10,
+          "bottom": 77,
+          "width": 67,
+          "height": 68
+        },
+        "body": {
+          "left": 55,
+          "right": 134,
+          "top": 10,
+          "bottom": 180,
+          "width": 80,
+          "height": 171
+        }
+      },
+      "after": {
+        "head": {
+          "left": 66,
+          "right": 125,
+          "top": 14,
+          "bottom": 70,
+          "width": 60,
+          "height": 57
+        },
+        "body": {
+          "left": 60,
+          "right": 130,
+          "top": 14,
+          "bottom": 172,
+          "width": 71,
+          "height": 159
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          120.6,
+          105.39655172413794
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/E/03",
+      "registration": {
+        "sourceHead": {
+          "left": 68,
+          "right": 133,
+          "top": 10,
+          "bottom": 75,
+          "width": 66,
+          "height": 66
+        },
+        "targetHead": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "sourceNeck": 76,
+        "targetNeck": 71.6,
+        "sourceSole": 181,
+        "targetSole": 172,
+        "headScale": 0.9090909090909091,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 100.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            15.6
+          ],
+          [
+            76,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            181,
+            172
+          ],
+          [
+            182,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 68,
+          "right": 133,
+          "top": 10,
+          "bottom": 75,
+          "width": 66,
+          "height": 66
+        },
+        "body": {
+          "left": 67,
+          "right": 133,
+          "top": 10,
+          "bottom": 181,
+          "width": 67,
+          "height": 172
+        }
+      },
+      "after": {
+        "head": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 70,
+          "width": 60,
+          "height": 56
+        },
+        "body": {
+          "left": 66,
+          "right": 125,
+          "top": 15,
+          "bottom": 172,
+          "width": 60,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          104.2,
+          100.74
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/SE/00",
+      "registration": {
+        "sourceHead": {
+          "left": 68,
+          "right": 134,
+          "top": 11,
+          "bottom": 78,
+          "width": 67,
+          "height": 68
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 79,
+        "targetNeck": 71,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9552238805970149,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 101,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            79,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 68,
+          "right": 134,
+          "top": 11,
+          "bottom": 78,
+          "width": 67,
+          "height": 68
+        },
+        "body": {
+          "left": 59,
+          "right": 134,
+          "top": 11,
+          "bottom": 178,
+          "width": 76,
+          "height": 168
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 64,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          123.06,
+          107
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/SE/01",
+      "registration": {
+        "sourceHead": {
+          "left": 68,
+          "right": 133,
+          "top": 11,
+          "bottom": 77,
+          "width": 66,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71.6,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 100.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15.6
+          ],
+          [
+            78,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 68,
+          "right": 133,
+          "top": 11,
+          "bottom": 77,
+          "width": 66,
+          "height": 67
+        },
+        "body": {
+          "left": 68,
+          "right": 133,
+          "top": 11,
+          "bottom": 178,
+          "width": 66,
+          "height": 168
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 64,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          109.94,
+          100.77241379310345
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/SE/02",
+      "registration": {
+        "sourceHead": {
+          "left": 68,
+          "right": 134,
+          "top": 11,
+          "bottom": 77,
+          "width": 67,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71,
+        "sourceSole": 177,
+        "targetSole": 172,
+        "headScale": 0.9552238805970149,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 101,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            78,
+            71
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            177,
+            172
+          ],
+          [
+            178,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 68,
+          "right": 134,
+          "top": 11,
+          "bottom": 77,
+          "width": 67,
+          "height": 67
+        },
+        "body": {
+          "left": 64,
+          "right": 134,
+          "top": 11,
+          "bottom": 177,
+          "width": 71,
+          "height": 167
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 64,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15
+        ],
+        "neck": [
+          96,
+          71
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          123.88,
+          108.34482758620689
+        ]
+      },
+      "sourcePoseRetained": true
+    },
+    {
+      "frame": "walk/body/SE/03",
+      "registration": {
+        "sourceHead": {
+          "left": 69,
+          "right": 134,
+          "top": 11,
+          "bottom": 77,
+          "width": 66,
+          "height": 67
+        },
+        "targetHead": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "sourceNeck": 78,
+        "targetNeck": 71.6,
+        "sourceSole": 178,
+        "targetSole": 172,
+        "headScale": 0.9696969696969697,
+        "torsoScale": 0.82,
+        "legScale": 0.92,
+        "headCenter": 101.5,
+        "targetHeadCenter": 95.5,
+        "yKnots": [
+          [
+            0,
+            0
+          ],
+          [
+            11,
+            15.6
+          ],
+          [
+            78,
+            71.6
+          ],
+          [
+            136,
+            128
+          ],
+          [
+            178,
+            172
+          ],
+          [
+            179,
+            173
+          ],
+          [
+            192,
+            192
+          ]
+        ]
+      },
+      "before": {
+        "head": {
+          "left": 69,
+          "right": 134,
+          "top": 11,
+          "bottom": 77,
+          "width": 66,
+          "height": 67
+        },
+        "body": {
+          "left": 69,
+          "right": 134,
+          "top": 11,
+          "bottom": 178,
+          "width": 66,
+          "height": 168
+        }
+      },
+      "after": {
+        "head": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 70,
+          "width": 64,
+          "height": 56
+        },
+        "body": {
+          "left": 64,
+          "right": 127,
+          "top": 15,
+          "bottom": 172,
+          "width": 64,
+          "height": 158
+        }
+      },
+      "durationMs": 125,
+      "attachments": {
+        "crown": [
+          95.5,
+          15.6
+        ],
+        "neck": [
+          96,
+          71.6
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          109.94,
+          100.77241379310345
+        ]
+      },
+      "sourcePoseRetained": true
+    }
+  ],
+  "method": "Piecewise head/torso/leg registration of all 32 original walking poses; planted reference sole y172. Shared standing costume designs with independent walk twist/hem phases."
+}

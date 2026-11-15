@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "hair-ivory",
+  "source": "arena/art/source/walk-hair-ivory.png",
+  "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+  "frames": [
+    {
+      "frame": "walk/hair-ivory/S/00",
+      "sourceCrop": {
+        "x": 34,
+        "y": 31,
+        "w": 168,
+        "h": 134
+      },
+      "placement": [
+        61,
+        9,
+        70,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/S/01",
+      "sourceCrop": {
+        "x": 257,
+        "y": 31,
+        "w": 166,
+        "h": 134
+      },
+      "placement": [
+        61,
+        10,
+        70,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/S/02",
+      "sourceCrop": {
+        "x": 480,
+        "y": 31,
+        "w": 167,
+        "h": 134
+      },
+      "placement": [
+        61,
+        9,
+        70,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/S/03",
+      "sourceCrop": {
+        "x": 703,
+        "y": 31,
+        "w": 163,
+        "h": 134
+      },
+      "placement": [
+        61,
+        10,
+        70,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/SW/00",
+      "sourceCrop": {
+        "x": 32,
+        "y": 251,
+        "w": 168,
+        "h": 139
+      },
+      "placement": [
+        57,
+        9,
+        72,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/SW/01",
+      "sourceCrop": {
+        "x": 252,
+        "y": 252,
+        "w": 168,
+        "h": 137
+      },
+      "placement": [
+        57,
+        10,
+        72,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/SW/02",
+      "sourceCrop": {
+        "x": 477,
+        "y": 252,
+        "w": 163,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        72,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/SW/03",
+      "sourceCrop": {
+        "x": 698,
+        "y": 252,
+        "w": 164,
+        "h": 138
+      },
+      "placement": [
+        57,
+        10,
+        72,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/W/00",
+      "sourceCrop": {
+        "x": 38,
+        "y": 473,
+        "w": 162,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        68,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/W/01",
+      "sourceCrop": {
+        "x": 258,
+        "y": 473,
+        "w": 162,
+        "h": 139
+      },
+      "placement": [
+        59,
+        10,
+        68,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/W/02",
+      "sourceCrop": {
+        "x": 484,
+        "y": 474,
+        "w": 160,
+        "h": 138
+      },
+      "placement": [
+        59,
+        9,
+        68,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/W/03",
+      "sourceCrop": {
+        "x": 706,
+        "y": 474,
+        "w": 159,
+        "h": 138
+      },
+      "placement": [
+        59,
+        10,
+        68,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/NW/00",
+      "sourceCrop": {
+        "x": 38,
+        "y": 696,
+        "w": 158,
+        "h": 138
+      },
+      "placement": [
+        60,
+        9,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/NW/01",
+      "sourceCrop": {
+        "x": 259,
+        "y": 697,
+        "w": 158,
+        "h": 137
+      },
+      "placement": [
+        60,
+        10,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/NW/02",
+      "sourceCrop": {
+        "x": 481,
+        "y": 697,
+        "w": 159,
+        "h": 136
+      },
+      "placement": [
+        60,
+        9,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/NW/03",
+      "sourceCrop": {
+        "x": 704,
+        "y": 697,
+        "w": 157,
+        "h": 136
+      },
+      "placement": [
+        60,
+        10,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/N/00",
+      "sourceCrop": {
+        "x": 37,
+        "y": 918,
+        "w": 165,
+        "h": 140
+      },
+      "placement": [
+        61,
+        9,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/N/01",
+      "sourceCrop": {
+        "x": 259,
+        "y": 918,
+        "w": 164,
+        "h": 141
+      },
+      "placement": [
+        61,
+        10,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/N/02",
+      "sourceCrop": {
+        "x": 478,
+        "y": 918,
+        "w": 167,
+        "h": 140
+      },
+      "placement": [
+        61,
+        9,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/N/03",
+      "sourceCrop": {
+        "x": 703,
+        "y": 918,
+        "w": 164,
+        "h": 140
+      },
+      "placement": [
+        61,
+        10,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/NE/00",
+      "sourceCrop": {
+        "x": 38,
+        "y": 1142,
+        "w": 157,
+        "h": 138
+      },
+      "placement": [
+        62,
+        9,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/NE/01",
+      "sourceCrop": {
+        "x": 260,
+        "y": 1141,
+        "w": 158,
+        "h": 138
+      },
+      "placement": [
+        62,
+        10,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/NE/02",
+      "sourceCrop": {
+        "x": 480,
+        "y": 1142,
+        "w": 161,
+        "h": 138
+      },
+      "placement": [
+        62,
+        9,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/NE/03",
+      "sourceCrop": {
+        "x": 704,
+        "y": 1141,
+        "w": 156,
+        "h": 138
+      },
+      "placement": [
+        62,
+        10,
+        70,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/E/00",
+      "sourceCrop": {
+        "x": 33,
+        "y": 1364,
+        "w": 159,
+        "h": 138
+      },
+      "placement": [
+        65,
+        9,
+        68,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/E/01",
+      "sourceCrop": {
+        "x": 257,
+        "y": 1365,
+        "w": 157,
+        "h": 137
+      },
+      "placement": [
+        65,
+        10,
+        68,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/E/02",
+      "sourceCrop": {
+        "x": 478,
+        "y": 1364,
+        "w": 156,
+        "h": 138
+      },
+      "placement": [
+        65,
+        9,
+        68,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/E/03",
+      "sourceCrop": {
+        "x": 702,
+        "y": 1364,
+        "w": 155,
+        "h": 138
+      },
+      "placement": [
+        65,
+        10,
+        68,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/SE/00",
+      "sourceCrop": {
+        "x": 34,
+        "y": 1588,
+        "w": 166,
+        "h": 137
+      },
+      "placement": [
+        64,
+        9,
+        72,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/SE/01",
+      "sourceCrop": {
+        "x": 256,
+        "y": 1588,
+        "w": 166,
+        "h": 136
+      },
+      "placement": [
+        64,
+        10,
+        72,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/SE/02",
+      "sourceCrop": {
+        "x": 477,
+        "y": 1587,
+        "w": 168,
+        "h": 136
+      },
+      "placement": [
+        64,
+        9,
+        72,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory/SE/03",
+      "sourceCrop": {
+        "x": 698,
+        "y": 1587,
+        "w": 169,
+        "h": 136
+      },
+      "placement": [
+        64,
+        10,
+        72,
+        62
+      ]
+    }
+  ]
+}

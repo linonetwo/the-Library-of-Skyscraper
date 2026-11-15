@@ -1,12 +1,18 @@
 {
   "schemaVersion": 1,
+  "action": "walk",
+  "layer": "hair-midnight",
   "status": "prototype",
   "releaseApproved": false,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/walk-hair-midnight.png",
   "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
   "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
-  "recipeSha256": "764db68d2b625765e72207efc8d9f7ecf1c870231fdd1e327d712f081ef4d2bf",
-  "atlasPngSha256": "572de2cfbc1733b81aca5ce39b50eb7e9c3b24e6d7cb5cf786f12500086715dd",
-  "generator": "GPT Image 2 via proxy-imagegen",
+  "normalizationSha256": "2f468b4da5342c3772656ea6f02948cb4253ba7c73d9635d798e7b28c6eac0ad",
+  "recipeSha256": "4db6adb6c7497d52059c38097b0c94b14c0e8563cffac54b73f01f815ad4437f",
+  "registration": "arena/art/source/walk-hair-midnight-normalized-registration.json",
+  "review": "Normalized to idle proportions; original four-phase gait retained. All direction/hand contacts require visual approval.",
+  "atlasPngSha256": "d48210d9f08ebace45f0375720db133bbc9173298b31b75b47d9907ec0f25bf7",
   "cell": [
     192,
     192
@@ -14,6 +20,5 @@
   "anchor": [
     0.5,
     0.9
-  ],
-  "review": "32 independently generated midnight hair poses registered to the shared crown/ear-line. Directional silhouettes and face cutouts require final human approval; body proportion remains prototype."
+  ]
 }

@@ -1,12 +1,19 @@
 {
   "schemaVersion": 1,
+  "action": "walk",
+  "layer": "outfit-scholar",
   "status": "prototype",
   "releaseApproved": false,
-  "sourceSha256": "48e94c4bf477e5b8d9ff3df9a2635eb0a13b16506786408a50f41426a478073c",
-  "promptSha256": "412ea94d8d3db9cc88c8075805069df1cfbf0dc57c47aa2a7349e477cf8b0173",
-  "recipeSha256": "357ad11efea0b018795c8bac52af547945fd4684d965a62c7550715140adf9e3",
-  "atlasPngSha256": "d1beb7232e184498cc339b228c59082b7eeba91d87b3fcad88fbb7b0e2be24f8",
   "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/idle-outfits.png",
+  "sourceSha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
+  "promptSha256": "53a58dbd944125ca6d529567fbe2db94bc0310d918d484c0e5ca67d3fdb15f0c",
+  "method": "Same generated costume design as idle, independent walk torso twist and hem phases; not a new image generation.",
+  "normalizationSha256": "2f468b4da5342c3772656ea6f02948cb4253ba7c73d9635d798e7b28c6eac0ad",
+  "recipeSha256": "c8994dcd5aa209abfa4b5f4610e697f998fab5b4792d59872e9deb89632726fa",
+  "registration": "arena/art/source/walk-outfit-scholar-normalized-registration.json",
+  "review": "Normalized to idle proportions; original four-phase gait retained. All direction/hand contacts require visual approval.",
+  "atlasPngSha256": "f14e416650638562a199aff6e7d558dab0d574d4bf4ffdd500b71f54f174376e",
   "cell": [
     192,
     192
@@ -14,6 +21,5 @@
   "anchor": [
     0.5,
     0.9
-  ],
-  "visualApproval": "Required: direction, gait, body fit, hand occlusion, edge quality. Hash uniqueness is not visual approval."
+  ]
 }

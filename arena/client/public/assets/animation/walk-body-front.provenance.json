@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "body-front",
+  "status": "prototype",
+  "releaseApproved": false,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/walk-body-eight-directions.png",
+  "sourceSha256": "0ac437f4d2fc5f79510542ceee29b2ba885ee067a0e386ecd0ff13730ba0417f",
+  "normalizationSha256": "2f468b4da5342c3772656ea6f02948cb4253ba7c73d9635d798e7b28c6eac0ad",
+  "recipeSha256": "73df6d9ca6ef0d166234c36582c641b81c7cdd80cc562f9427afdf54a39097a3",
+  "registration": "arena/art/source/walk-body-front-normalized-registration.json",
+  "review": "Normalized to idle proportions; original four-phase gait retained. All direction/hand contacts require visual approval.",
+  "atlasPngSha256": "491f5d265e9885b4dad874666e0337a3d48dc459a2f35f46ee4d6e3ccc5da7f7",
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ]
+}
