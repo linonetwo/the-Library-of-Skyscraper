@@ -13,7 +13,7 @@ test("eight facings and continuous motion across new destinations", () => {
   motion.move({ x: 100, y: 0 }, 1000);
   expect(motion.sample(1200)).toMatchObject({ x: 50, y: 0, moving: true, direction: "E", frame: 2 });
   motion.move({ x: 50, y: 100 }, 1200);
-  expect(motion.sample(1400)).toMatchObject({ x: 50, y: 50, direction: "S" });
+  expect(motion.sample(1400)).toMatchObject({ x: 50, y: 50, direction: "SW" });
   expect(motion.sample(1600)).toMatchObject({ x: 50, y: 100, moving: false, frame: 2 });
   motion.move({ x: 0, y: 0 }, 1700, true);
   expect(motion.sample(1700)).toMatchObject({ x: 0, y: 0, moving: false });
@@ -60,4 +60,15 @@ test("idle samples are deterministic and retain final facing", () => {
  expect(motion.sample(1100).moving).toBe(true);
  expect(motion.sample(1800)).toMatchObject({moving:false,direction:"W"});
  expect(motion.sample(1800)).toEqual(motion.sample(1800));
+});
+
+test("facing follows authoritative segments independently of packet timing", () => {
+ for (const delay of [100, 400]) {
+  const motion = new ActorMotion({ x: 0, y: 0 });
+  motion.move({ x: 100, y: 0 }, 1000);
+  const before = motion.sample(1000 + delay);
+  motion.move({ x: 80, y: 0 }, 1000 + delay);
+  expect(motion.sample(1000 + delay)).toMatchObject({ x: before.x, y: before.y });
+  expect(motion.sample(2000)).toMatchObject({ x: 80, y: 0, moving: false, direction: "W" });
+ }
 });

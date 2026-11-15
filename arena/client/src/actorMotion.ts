@@ -33,7 +33,7 @@ export class ActorMotion {
     }
     if (to.x === this.to.x && to.y === this.to.y) return;
     this.from = this.sample(now);
-    this.direction = facing(this.from, to);
+    this.direction = facing(this.to, to);
     this.to = to;
     this.started = now;
   }
