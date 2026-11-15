@@ -11,6 +11,7 @@ The idle standing anatomy is the scale reference. Walk retains its 32 original g
 - Grip views are not mirrored. Each is reduced to a compact fist with short wrist, rotated to the walk staff angle where applicable, then subpixel-registered to the corresponding shaft contact. Fingers paint over the shaft while it remains visible above and below the fist.
 - Idle W/E and oblique hand contacts were measured again against the actual skin silhouette; the former W x88 / E x105 registrations were corrected to W x97 / E x94 to avoid adding a fist beside an existing open hand.
 - Idle E uses a 14° carry angle with the same rear-depth rule, so the staff ornament and lower shaft remain readable outside the side-body silhouette; its fist follows that angle.
+- Runtime close-up review corrected walk S/01 and S/03 source-cell hand centers to `[74,120]` and `[85,114]`. These authored staff tracks are mapped through body normalization before placing the closed-grip layer, moving shaft and fist together onto the existing palm; body and empty-hand sources remain unchanged.
 
 ## Measured change
 
