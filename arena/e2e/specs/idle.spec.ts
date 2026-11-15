@@ -18,15 +18,15 @@ test("idle atlas covers every appearance and paused inspection stays fixed", asy
               expect(atlas.frames[`idle/${layer}/${direction}/0${frame}`].frame.w).toBe(192);
         }
   await page.goto("/animation-lab");
-  await expect(page.getByRole("img")).toHaveCount(8);
+  await expect(page.getByRole("region", { name: "八方向动画预览" }).getByRole("img")).toHaveCount(8);
   await page.getByRole("button", { name: "暂停动画" }).click();
   const frame = await page.getByLabel("当前帧").innerText();
   await page.waitForTimeout(400);
   await expect(page.getByLabel("当前帧")).toHaveText(frame);
   for (const outfit of ["scholar", "warden"]) {
     await page.getByLabel("动画衣装").selectOption(outfit);
-    await expect(page.locator(".animated-outfit")).toHaveCount(8);
-    await expect(page.locator(".animated-outfit").first()).toHaveAttribute("style", new RegExp(`idle-${outfit === "scholar" ? "outfit-scholar" : "outfit-warden"}`));
+    await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-outfit")).toHaveCount(8);
+    await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-outfit").first()).toHaveAttribute("style", new RegExp(`idle-${outfit === "scholar" ? "outfit-scholar" : "outfit-warden"}`));
   }
   await page.getByRole("button", { name: "下一帧" }).click();
   await expect(page.getByLabel("当前帧")).not.toHaveText(frame);
