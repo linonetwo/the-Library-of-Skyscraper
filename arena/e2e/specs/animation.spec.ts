@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("eight directions play real distinct frames and allow deterministic inspection", async ({ page }) => {
   await page.goto("/animation-lab");
+  await page.getByLabel("动作", { exact: true }).selectOption("walk");
   await expect(page.getByRole("img")).toHaveCount(8);
   await page.getByRole("button", { name: "暂停动画" }).click();
   const initial = await page.getByLabel("当前帧").innerText();
@@ -12,20 +13,20 @@ test("eight directions play real distinct frames and allow deterministic inspect
   await expect(page.getByRole("note")).toContainText("32 帧独立图集");
   await expect(page.locator(".animated-outfit")).toHaveCount(8);
   await expect(page.locator(".animated-hair")).toHaveCount(8);
-  await page.getByLabel("月白发型行走层").uncheck();
+  await page.getByLabel("月白发型动画层").uncheck();
   await expect(page.locator(".animated-hair")).toHaveCount(0);
-  await page.getByLabel("月白发型行走层").check();
+  await page.getByLabel("月白发型动画层").check();
   await expect(page.locator(".animated-hair")).toHaveCount(8);
-  await page.getByLabel("学者服行走层").uncheck();
+  await page.getByLabel("学者服动画层").uncheck();
   await expect(page.locator(".animated-outfit")).toHaveCount(0);
-  await page.getByLabel("学者服行走层").check();
+  await page.getByLabel("学者服动画层").check();
   await expect(page.locator(".animated-outfit")).toHaveCount(8);
   await expect(page.locator(".animated-weapon")).toHaveCount(16);
-  await page.getByLabel("法杖行走层").uncheck();
+  await page.getByLabel("法杖动画层").uncheck();
   await expect(page.locator(".animated-weapon")).toHaveCount(0);
-  await page.getByLabel("法杖行走层").check();
+  await page.getByLabel("法杖动画层").check();
   await expect(page.locator(".animated-weapon")).toHaveCount(16);
-  await page.getByLabel("行走衣装").selectOption("warden");
+  await page.getByLabel("动画衣装").selectOption("warden");
   await expect(page.locator(".animated-outfit").first()).toHaveAttribute("style", /warden/);
   await expect(page.getByRole("alert")).toHaveCount(0);
 });

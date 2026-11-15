@@ -3,17 +3,18 @@ export type AnimationAtlas = {
   meta: { size: { w: number; h: number } };
 };
 
-export function AnimatedDollPreview({ atlases, layers, direction, frame }: {
+export function AnimatedDollPreview({ atlases, layers, direction, frame, action = "walk" }: {
   atlases: Record<string, AnimationAtlas>;
   layers: string[];
   direction: string;
   frame: number;
+  action?: "idle" | "walk";
 }) {
   const style = (layer: string) => {
     const atlas = atlases[layer];
-    const cell = atlas.frames[`walk/${layer}/${direction}/${String(frame).padStart(2, "0")}`].frame;
+    const cell = atlas.frames[`${action}/${layer}/${direction}/${String(frame).padStart(2, "0")}`].frame;
     return {
-      backgroundImage: `url(/assets/animation/walk-${layer}.png)`,
+      backgroundImage: `url(/assets/animation/${action}-${layer}.png)`,
       backgroundSize: `${atlas.meta.size.w}px ${atlas.meta.size.h}px`,
       backgroundPosition: `-${cell.x}px -${cell.y}px`,
     };

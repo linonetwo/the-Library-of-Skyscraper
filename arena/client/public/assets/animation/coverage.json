@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "arena-animation-2026-11-14.1",
-  "generatedOn": "2026-11-05",
+  "contentVersion": "arena-animation-2026-11-14.idle.1",
+  "generatedOn": "2026-11-14",
   "source": {
     "path": "arena/art/source/walk-body-eight-directions.png",
     "sha256": "0ac437f4d2fc5f79510542ceee29b2ba885ee067a0e386ecd0ff13730ba0417f",
@@ -92,7 +92,8 @@
     "proportion": "Source is approximately 2.5–2.8 heads; exact 3-head normalization pending.",
     "cleanup": "Chroma specks removed; connected pale edge halos still need manual cleanup.",
     "alignment": "Scholar authored per-frame placements share cell anchor; original hand pixels restored as body-front. Vest width and side/back registration need art refinement.",
-    "paperDoll": "Walk body, scholar/warden outfits, ivory/midnight hair and directional staff are registered 32-frame prototypes. Other actions and final visual approval remain outstanding."
+    "paperDoll": "Walk body, scholar/warden outfits, ivory/midnight hair and directional staff are registered 32-frame prototypes. Other actions and final visual approval remain outstanding.",
+    "idle": "Dedicated eight-direction standing body and garments. Four breathing/hem/hair deformation frames with bit-identical lower-body pixels. Both hair styles and staff use shared designs with idle-only registrations. All combinations remain prototype pending human approval of proportions, grip closure and transitions."
   },
   "coverage": [
     {
@@ -100,9 +101,14 @@
       "layer": "body",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/body/S/00",
+        "idle/body/S/01",
+        "idle/body/S/02",
+        "idle/body/S/03"
+      ],
+      "atlas": "idle-body.json",
       "releaseApproved": false
     },
     {
@@ -110,9 +116,14 @@
       "layer": "body",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/body/SW/00",
+        "idle/body/SW/01",
+        "idle/body/SW/02",
+        "idle/body/SW/03"
+      ],
+      "atlas": "idle-body.json",
       "releaseApproved": false
     },
     {
@@ -120,9 +131,14 @@
       "layer": "body",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/body/W/00",
+        "idle/body/W/01",
+        "idle/body/W/02",
+        "idle/body/W/03"
+      ],
+      "atlas": "idle-body.json",
       "releaseApproved": false
     },
     {
@@ -130,9 +146,14 @@
       "layer": "body",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/body/NW/00",
+        "idle/body/NW/01",
+        "idle/body/NW/02",
+        "idle/body/NW/03"
+      ],
+      "atlas": "idle-body.json",
       "releaseApproved": false
     },
     {
@@ -140,9 +161,14 @@
       "layer": "body",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/body/N/00",
+        "idle/body/N/01",
+        "idle/body/N/02",
+        "idle/body/N/03"
+      ],
+      "atlas": "idle-body.json",
       "releaseApproved": false
     },
     {
@@ -150,9 +176,14 @@
       "layer": "body",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/body/NE/00",
+        "idle/body/NE/01",
+        "idle/body/NE/02",
+        "idle/body/NE/03"
+      ],
+      "atlas": "idle-body.json",
       "releaseApproved": false
     },
     {
@@ -160,9 +191,14 @@
       "layer": "body",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/body/E/00",
+        "idle/body/E/01",
+        "idle/body/E/02",
+        "idle/body/E/03"
+      ],
+      "atlas": "idle-body.json",
       "releaseApproved": false
     },
     {
@@ -170,9 +206,14 @@
       "layer": "body",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/body/SE/00",
+        "idle/body/SE/01",
+        "idle/body/SE/02",
+        "idle/body/SE/03"
+      ],
+      "atlas": "idle-body.json",
       "releaseApproved": false
     },
     {
@@ -180,9 +221,14 @@
       "layer": "outfit-scholar",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-scholar/S/00",
+        "idle/outfit-scholar/S/01",
+        "idle/outfit-scholar/S/02",
+        "idle/outfit-scholar/S/03"
+      ],
+      "atlas": "idle-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -190,9 +236,14 @@
       "layer": "outfit-scholar",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-scholar/SW/00",
+        "idle/outfit-scholar/SW/01",
+        "idle/outfit-scholar/SW/02",
+        "idle/outfit-scholar/SW/03"
+      ],
+      "atlas": "idle-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -200,9 +251,14 @@
       "layer": "outfit-scholar",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-scholar/W/00",
+        "idle/outfit-scholar/W/01",
+        "idle/outfit-scholar/W/02",
+        "idle/outfit-scholar/W/03"
+      ],
+      "atlas": "idle-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -210,9 +266,14 @@
       "layer": "outfit-scholar",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-scholar/NW/00",
+        "idle/outfit-scholar/NW/01",
+        "idle/outfit-scholar/NW/02",
+        "idle/outfit-scholar/NW/03"
+      ],
+      "atlas": "idle-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -220,9 +281,14 @@
       "layer": "outfit-scholar",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-scholar/N/00",
+        "idle/outfit-scholar/N/01",
+        "idle/outfit-scholar/N/02",
+        "idle/outfit-scholar/N/03"
+      ],
+      "atlas": "idle-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -230,9 +296,14 @@
       "layer": "outfit-scholar",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-scholar/NE/00",
+        "idle/outfit-scholar/NE/01",
+        "idle/outfit-scholar/NE/02",
+        "idle/outfit-scholar/NE/03"
+      ],
+      "atlas": "idle-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -240,9 +311,14 @@
       "layer": "outfit-scholar",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-scholar/E/00",
+        "idle/outfit-scholar/E/01",
+        "idle/outfit-scholar/E/02",
+        "idle/outfit-scholar/E/03"
+      ],
+      "atlas": "idle-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -250,9 +326,14 @@
       "layer": "outfit-scholar",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-scholar/SE/00",
+        "idle/outfit-scholar/SE/01",
+        "idle/outfit-scholar/SE/02",
+        "idle/outfit-scholar/SE/03"
+      ],
+      "atlas": "idle-outfit-scholar.json",
       "releaseApproved": false
     },
     {
@@ -260,9 +341,14 @@
       "layer": "outfit-warden",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-warden/S/00",
+        "idle/outfit-warden/S/01",
+        "idle/outfit-warden/S/02",
+        "idle/outfit-warden/S/03"
+      ],
+      "atlas": "idle-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -270,9 +356,14 @@
       "layer": "outfit-warden",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-warden/SW/00",
+        "idle/outfit-warden/SW/01",
+        "idle/outfit-warden/SW/02",
+        "idle/outfit-warden/SW/03"
+      ],
+      "atlas": "idle-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -280,9 +371,14 @@
       "layer": "outfit-warden",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-warden/W/00",
+        "idle/outfit-warden/W/01",
+        "idle/outfit-warden/W/02",
+        "idle/outfit-warden/W/03"
+      ],
+      "atlas": "idle-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -290,9 +386,14 @@
       "layer": "outfit-warden",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-warden/NW/00",
+        "idle/outfit-warden/NW/01",
+        "idle/outfit-warden/NW/02",
+        "idle/outfit-warden/NW/03"
+      ],
+      "atlas": "idle-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -300,9 +401,14 @@
       "layer": "outfit-warden",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-warden/N/00",
+        "idle/outfit-warden/N/01",
+        "idle/outfit-warden/N/02",
+        "idle/outfit-warden/N/03"
+      ],
+      "atlas": "idle-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -310,9 +416,14 @@
       "layer": "outfit-warden",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-warden/NE/00",
+        "idle/outfit-warden/NE/01",
+        "idle/outfit-warden/NE/02",
+        "idle/outfit-warden/NE/03"
+      ],
+      "atlas": "idle-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -320,9 +431,14 @@
       "layer": "outfit-warden",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-warden/E/00",
+        "idle/outfit-warden/E/01",
+        "idle/outfit-warden/E/02",
+        "idle/outfit-warden/E/03"
+      ],
+      "atlas": "idle-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -330,9 +446,14 @@
       "layer": "outfit-warden",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/outfit-warden/SE/00",
+        "idle/outfit-warden/SE/01",
+        "idle/outfit-warden/SE/02",
+        "idle/outfit-warden/SE/03"
+      ],
+      "atlas": "idle-outfit-warden.json",
       "releaseApproved": false
     },
     {
@@ -340,9 +461,14 @@
       "layer": "hair-ivory",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-ivory/S/00",
+        "idle/hair-ivory/S/01",
+        "idle/hair-ivory/S/02",
+        "idle/hair-ivory/S/03"
+      ],
+      "atlas": "idle-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -350,9 +476,14 @@
       "layer": "hair-ivory",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-ivory/SW/00",
+        "idle/hair-ivory/SW/01",
+        "idle/hair-ivory/SW/02",
+        "idle/hair-ivory/SW/03"
+      ],
+      "atlas": "idle-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -360,9 +491,14 @@
       "layer": "hair-ivory",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-ivory/W/00",
+        "idle/hair-ivory/W/01",
+        "idle/hair-ivory/W/02",
+        "idle/hair-ivory/W/03"
+      ],
+      "atlas": "idle-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -370,9 +506,14 @@
       "layer": "hair-ivory",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-ivory/NW/00",
+        "idle/hair-ivory/NW/01",
+        "idle/hair-ivory/NW/02",
+        "idle/hair-ivory/NW/03"
+      ],
+      "atlas": "idle-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -380,9 +521,14 @@
       "layer": "hair-ivory",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-ivory/N/00",
+        "idle/hair-ivory/N/01",
+        "idle/hair-ivory/N/02",
+        "idle/hair-ivory/N/03"
+      ],
+      "atlas": "idle-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -390,9 +536,14 @@
       "layer": "hair-ivory",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-ivory/NE/00",
+        "idle/hair-ivory/NE/01",
+        "idle/hair-ivory/NE/02",
+        "idle/hair-ivory/NE/03"
+      ],
+      "atlas": "idle-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -400,9 +551,14 @@
       "layer": "hair-ivory",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-ivory/E/00",
+        "idle/hair-ivory/E/01",
+        "idle/hair-ivory/E/02",
+        "idle/hair-ivory/E/03"
+      ],
+      "atlas": "idle-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -410,9 +566,14 @@
       "layer": "hair-ivory",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-ivory/SE/00",
+        "idle/hair-ivory/SE/01",
+        "idle/hair-ivory/SE/02",
+        "idle/hair-ivory/SE/03"
+      ],
+      "atlas": "idle-hair-ivory.json",
       "releaseApproved": false
     },
     {
@@ -420,9 +581,14 @@
       "layer": "hair-midnight",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-midnight/S/00",
+        "idle/hair-midnight/S/01",
+        "idle/hair-midnight/S/02",
+        "idle/hair-midnight/S/03"
+      ],
+      "atlas": "idle-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -430,9 +596,14 @@
       "layer": "hair-midnight",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-midnight/SW/00",
+        "idle/hair-midnight/SW/01",
+        "idle/hair-midnight/SW/02",
+        "idle/hair-midnight/SW/03"
+      ],
+      "atlas": "idle-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -440,9 +611,14 @@
       "layer": "hair-midnight",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-midnight/W/00",
+        "idle/hair-midnight/W/01",
+        "idle/hair-midnight/W/02",
+        "idle/hair-midnight/W/03"
+      ],
+      "atlas": "idle-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -450,9 +626,14 @@
       "layer": "hair-midnight",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-midnight/NW/00",
+        "idle/hair-midnight/NW/01",
+        "idle/hair-midnight/NW/02",
+        "idle/hair-midnight/NW/03"
+      ],
+      "atlas": "idle-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -460,9 +641,14 @@
       "layer": "hair-midnight",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-midnight/N/00",
+        "idle/hair-midnight/N/01",
+        "idle/hair-midnight/N/02",
+        "idle/hair-midnight/N/03"
+      ],
+      "atlas": "idle-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -470,9 +656,14 @@
       "layer": "hair-midnight",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-midnight/NE/00",
+        "idle/hair-midnight/NE/01",
+        "idle/hair-midnight/NE/02",
+        "idle/hair-midnight/NE/03"
+      ],
+      "atlas": "idle-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -480,9 +671,14 @@
       "layer": "hair-midnight",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-midnight/E/00",
+        "idle/hair-midnight/E/01",
+        "idle/hair-midnight/E/02",
+        "idle/hair-midnight/E/03"
+      ],
+      "atlas": "idle-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -490,9 +686,14 @@
       "layer": "hair-midnight",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/hair-midnight/SE/00",
+        "idle/hair-midnight/SE/01",
+        "idle/hair-midnight/SE/02",
+        "idle/hair-midnight/SE/03"
+      ],
+      "atlas": "idle-hair-midnight.json",
       "releaseApproved": false
     },
     {
@@ -500,9 +701,14 @@
       "layer": "weapon-staff",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/weapon-staff/S/00",
+        "idle/weapon-staff/S/01",
+        "idle/weapon-staff/S/02",
+        "idle/weapon-staff/S/03"
+      ],
+      "atlas": "idle-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -510,9 +716,14 @@
       "layer": "weapon-staff",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/weapon-staff/SW/00",
+        "idle/weapon-staff/SW/01",
+        "idle/weapon-staff/SW/02",
+        "idle/weapon-staff/SW/03"
+      ],
+      "atlas": "idle-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -520,9 +731,14 @@
       "layer": "weapon-staff",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/weapon-staff/W/00",
+        "idle/weapon-staff/W/01",
+        "idle/weapon-staff/W/02",
+        "idle/weapon-staff/W/03"
+      ],
+      "atlas": "idle-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -530,9 +746,14 @@
       "layer": "weapon-staff",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/weapon-staff/NW/00",
+        "idle/weapon-staff/NW/01",
+        "idle/weapon-staff/NW/02",
+        "idle/weapon-staff/NW/03"
+      ],
+      "atlas": "idle-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -540,9 +761,14 @@
       "layer": "weapon-staff",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/weapon-staff/N/00",
+        "idle/weapon-staff/N/01",
+        "idle/weapon-staff/N/02",
+        "idle/weapon-staff/N/03"
+      ],
+      "atlas": "idle-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -550,9 +776,14 @@
       "layer": "weapon-staff",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/weapon-staff/NE/00",
+        "idle/weapon-staff/NE/01",
+        "idle/weapon-staff/NE/02",
+        "idle/weapon-staff/NE/03"
+      ],
+      "atlas": "idle-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -560,9 +791,14 @@
       "layer": "weapon-staff",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/weapon-staff/E/00",
+        "idle/weapon-staff/E/01",
+        "idle/weapon-staff/E/02",
+        "idle/weapon-staff/E/03"
+      ],
+      "atlas": "idle-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -570,9 +806,14 @@
       "layer": "weapon-staff",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "missing",
-      "frames": [],
-      "atlas": null,
+      "status": "prototype",
+      "frames": [
+        "idle/weapon-staff/SE/00",
+        "idle/weapon-staff/SE/01",
+        "idle/weapon-staff/SE/02",
+        "idle/weapon-staff/SE/03"
+      ],
+      "atlas": "idle-weapon-staff.json",
       "releaseApproved": false
     },
     {
@@ -3266,6 +3507,80 @@
       "action": "walk",
       "atlas": "walk-weapon-staff-front.json",
       "purpose": "Directional front occlusion for the right-hand staff; opposite-depth rows are transparent."
+    },
+    {
+      "action": "idle",
+      "layer": "body-front",
+      "atlas": "idle-body-front.json",
+      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff-back",
+      "atlas": "idle-weapon-staff-back.json",
+      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff-front",
+      "atlas": "idle-weapon-staff-front.json",
+      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory-back",
+      "atlas": "idle-hair-ivory-back.json",
+      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+    },
+    {
+      "action": "idle",
+      "layer": "hair-ivory-front",
+      "atlas": "idle-hair-ivory-front.json",
+      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight-back",
+      "atlas": "idle-hair-midnight-back.json",
+      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+    },
+    {
+      "action": "idle",
+      "layer": "hair-midnight-front",
+      "atlas": "idle-hair-midnight-front.json",
+      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+    }
+  ],
+  "idleSources": [
+    {
+      "source": "arena/art/source/idle-body.png",
+      "sourceSha256": "cfa4c561a348a3f0ae07f77315bbb431b0a9b038179eaebc25fb6512f5361fd9",
+      "promptSha256": "5afcf934b32be1f20170af3b9eb65014594b7980700739988cb8ea3cdb8b0a7c",
+      "method": "Eight newly generated dedicated standing views, normalized to planted soles; four upper-body breathing deformations with unchanged lower body."
+    },
+    {
+      "source": "arena/art/source/idle-outfits.png",
+      "sourceSha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
+      "promptSha256": "53a58dbd944125ca6d529567fbe2db94bc0310d918d484c0e5ca67d3fdb15f0c",
+      "method": "Newly generated standing garments, eight dedicated directional views per outfit; registered breathing and hem flutter."
+    },
+    {
+      "source": "arena/art/source/walk-hair-ivory.png",
+      "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+      "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+      "method": "Shared directional hair artwork (column 0 only), re-registered to dedicated idle crown; low-amplitude lagged tip sway, not a reused walk animation."
+    },
+    {
+      "source": "arena/art/source/walk-hair-midnight.png",
+      "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+      "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+      "method": "Shared directional hair artwork (column 0 only), re-registered to dedicated idle crown; low-amplitude lagged tip sway, not a reused walk animation."
+    },
+    {
+      "source": "arena/art/source/walk-weapon-staff.png",
+      "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+      "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+      "method": "Shared directional staff design, column 0 only; dedicated relaxed standing right-hand grip and direction-specific depth, independent from walk carry track."
     }
   ]
 }

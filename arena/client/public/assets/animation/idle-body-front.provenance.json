@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "body-front",
+  "status": "prototype",
+  "releaseApproved": false,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/idle-body.png",
+  "sourceSha256": "cfa4c561a348a3f0ae07f77315bbb431b0a9b038179eaebc25fb6512f5361fd9",
+  "promptSha256": "5afcf934b32be1f20170af3b9eb65014594b7980700739988cb8ea3cdb8b0a7c",
+  "method": "Foreground skin and outline pixels sampled from each corresponding standing body frame.",
+  "recipeSha256": "fa1cd5274a6d85c89366302023b961036731d854aed7ddfd9279e8a4ab84b44f",
+  "registration": "arena/art/source/idle-body-front-registration.json",
+  "atlasPngSha256": "84e0c24e53ed910375c193c6303aaf77a79a3581cd7b5eed3459f12c74a4afb0",
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ]
+}

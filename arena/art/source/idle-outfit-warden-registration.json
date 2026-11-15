@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "outfit-warden",
+  "source": "arena/art/source/idle-outfits.png",
+  "sourceSha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
+  "frames": [
+    {
+      "frame": "idle/outfit-warden/S/00",
+      "sourceCrop": {
+        "x": 579,
+        "y": 23,
+        "w": 173,
+        "h": 183
+      },
+      "placement": [
+        70,
+        77,
+        52,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/S/01",
+      "sourceCrop": {
+        "x": 579,
+        "y": 23,
+        "w": 173,
+        "h": 183
+      },
+      "placement": [
+        70,
+        77,
+        52,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/S/02",
+      "sourceCrop": {
+        "x": 579,
+        "y": 23,
+        "w": 173,
+        "h": 183
+      },
+      "placement": [
+        70,
+        77,
+        52,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/S/03",
+      "sourceCrop": {
+        "x": 579,
+        "y": 23,
+        "w": 173,
+        "h": 183
+      },
+      "placement": [
+        70,
+        77,
+        52,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/SW/00",
+      "sourceCrop": {
+        "x": 586,
+        "y": 245,
+        "w": 161,
+        "h": 181
+      },
+      "placement": [
+        71,
+        77,
+        49,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/SW/01",
+      "sourceCrop": {
+        "x": 586,
+        "y": 245,
+        "w": 161,
+        "h": 181
+      },
+      "placement": [
+        71,
+        77,
+        49,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/SW/02",
+      "sourceCrop": {
+        "x": 586,
+        "y": 245,
+        "w": 161,
+        "h": 181
+      },
+      "placement": [
+        71,
+        77,
+        49,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/SW/03",
+      "sourceCrop": {
+        "x": 586,
+        "y": 245,
+        "w": 161,
+        "h": 181
+      },
+      "placement": [
+        71,
+        77,
+        49,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/W/00",
+      "sourceCrop": {
+        "x": 601,
+        "y": 467,
+        "w": 114,
+        "h": 179
+      },
+      "placement": [
+        76,
+        76,
+        37,
+        43
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/W/01",
+      "sourceCrop": {
+        "x": 601,
+        "y": 467,
+        "w": 114,
+        "h": 179
+      },
+      "placement": [
+        76,
+        76,
+        37,
+        43
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/W/02",
+      "sourceCrop": {
+        "x": 601,
+        "y": 467,
+        "w": 114,
+        "h": 179
+      },
+      "placement": [
+        76,
+        76,
+        37,
+        43
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/W/03",
+      "sourceCrop": {
+        "x": 601,
+        "y": 467,
+        "w": 114,
+        "h": 179
+      },
+      "placement": [
+        76,
+        76,
+        37,
+        43
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/NW/00",
+      "sourceCrop": {
+        "x": 593,
+        "y": 689,
+        "w": 147,
+        "h": 181
+      },
+      "placement": [
+        71,
+        77,
+        49,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/NW/01",
+      "sourceCrop": {
+        "x": 593,
+        "y": 689,
+        "w": 147,
+        "h": 181
+      },
+      "placement": [
+        71,
+        77,
+        49,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/NW/02",
+      "sourceCrop": {
+        "x": 593,
+        "y": 689,
+        "w": 147,
+        "h": 181
+      },
+      "placement": [
+        71,
+        77,
+        49,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/NW/03",
+      "sourceCrop": {
+        "x": 593,
+        "y": 689,
+        "w": 147,
+        "h": 181
+      },
+      "placement": [
+        71,
+        77,
+        49,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/N/00",
+      "sourceCrop": {
+        "x": 576,
+        "y": 910,
+        "w": 179,
+        "h": 182
+      },
+      "placement": [
+        70,
+        77,
+        52,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/N/01",
+      "sourceCrop": {
+        "x": 576,
+        "y": 910,
+        "w": 179,
+        "h": 182
+      },
+      "placement": [
+        70,
+        77,
+        52,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/N/02",
+      "sourceCrop": {
+        "x": 576,
+        "y": 910,
+        "w": 179,
+        "h": 182
+      },
+      "placement": [
+        70,
+        77,
+        52,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/N/03",
+      "sourceCrop": {
+        "x": 576,
+        "y": 910,
+        "w": 179,
+        "h": 182
+      },
+      "placement": [
+        70,
+        77,
+        52,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/NE/00",
+      "sourceCrop": {
+        "x": 586,
+        "y": 1133,
+        "w": 158,
+        "h": 180
+      },
+      "placement": [
+        72,
+        77,
+        49,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/NE/01",
+      "sourceCrop": {
+        "x": 586,
+        "y": 1133,
+        "w": 158,
+        "h": 180
+      },
+      "placement": [
+        72,
+        77,
+        49,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/NE/02",
+      "sourceCrop": {
+        "x": 586,
+        "y": 1133,
+        "w": 158,
+        "h": 180
+      },
+      "placement": [
+        72,
+        77,
+        49,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/NE/03",
+      "sourceCrop": {
+        "x": 586,
+        "y": 1133,
+        "w": 158,
+        "h": 180
+      },
+      "placement": [
+        72,
+        77,
+        49,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/E/00",
+      "sourceCrop": {
+        "x": 616,
+        "y": 1355,
+        "w": 114,
+        "h": 178
+      },
+      "placement": [
+        79,
+        76,
+        37,
+        43
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/E/01",
+      "sourceCrop": {
+        "x": 616,
+        "y": 1355,
+        "w": 114,
+        "h": 178
+      },
+      "placement": [
+        79,
+        76,
+        37,
+        43
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/E/02",
+      "sourceCrop": {
+        "x": 616,
+        "y": 1355,
+        "w": 114,
+        "h": 178
+      },
+      "placement": [
+        79,
+        76,
+        37,
+        43
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/E/03",
+      "sourceCrop": {
+        "x": 616,
+        "y": 1355,
+        "w": 114,
+        "h": 178
+      },
+      "placement": [
+        79,
+        76,
+        37,
+        43
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/SE/00",
+      "sourceCrop": {
+        "x": 587,
+        "y": 1576,
+        "w": 156,
+        "h": 181
+      },
+      "placement": [
+        72,
+        77,
+        49,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/SE/01",
+      "sourceCrop": {
+        "x": 587,
+        "y": 1576,
+        "w": 156,
+        "h": 181
+      },
+      "placement": [
+        72,
+        77,
+        49,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/SE/02",
+      "sourceCrop": {
+        "x": 587,
+        "y": 1576,
+        "w": 156,
+        "h": 181
+      },
+      "placement": [
+        72,
+        77,
+        49,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-warden/SE/03",
+      "sourceCrop": {
+        "x": 587,
+        "y": 1576,
+        "w": 156,
+        "h": 181
+      },
+      "placement": [
+        72,
+        77,
+        49,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    }
+  ]
+}

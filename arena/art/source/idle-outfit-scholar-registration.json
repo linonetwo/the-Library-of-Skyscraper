@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "outfit-scholar",
+  "source": "arena/art/source/idle-outfits.png",
+  "sourceSha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
+  "frames": [
+    {
+      "frame": "idle/outfit-scholar/S/00",
+      "sourceCrop": {
+        "x": 148,
+        "y": 23,
+        "w": 148,
+        "h": 183
+      },
+      "placement": [
+        73,
+        77,
+        46,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/S/01",
+      "sourceCrop": {
+        "x": 148,
+        "y": 23,
+        "w": 148,
+        "h": 183
+      },
+      "placement": [
+        73,
+        77,
+        46,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/S/02",
+      "sourceCrop": {
+        "x": 148,
+        "y": 23,
+        "w": 148,
+        "h": 183
+      },
+      "placement": [
+        73,
+        77,
+        46,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/S/03",
+      "sourceCrop": {
+        "x": 148,
+        "y": 23,
+        "w": 148,
+        "h": 183
+      },
+      "placement": [
+        73,
+        77,
+        46,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/SW/00",
+      "sourceCrop": {
+        "x": 148,
+        "y": 245,
+        "w": 142,
+        "h": 181
+      },
+      "placement": [
+        74,
+        77,
+        43,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/SW/01",
+      "sourceCrop": {
+        "x": 148,
+        "y": 245,
+        "w": 142,
+        "h": 181
+      },
+      "placement": [
+        74,
+        77,
+        43,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/SW/02",
+      "sourceCrop": {
+        "x": 148,
+        "y": 245,
+        "w": 142,
+        "h": 181
+      },
+      "placement": [
+        74,
+        77,
+        43,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/SW/03",
+      "sourceCrop": {
+        "x": 148,
+        "y": 245,
+        "w": 142,
+        "h": 181
+      },
+      "placement": [
+        74,
+        77,
+        43,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/W/00",
+      "sourceCrop": {
+        "x": 165,
+        "y": 467,
+        "w": 110,
+        "h": 179
+      },
+      "placement": [
+        79,
+        76,
+        31,
+        43
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/W/01",
+      "sourceCrop": {
+        "x": 165,
+        "y": 467,
+        "w": 110,
+        "h": 179
+      },
+      "placement": [
+        79,
+        76,
+        31,
+        43
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/W/02",
+      "sourceCrop": {
+        "x": 165,
+        "y": 467,
+        "w": 110,
+        "h": 179
+      },
+      "placement": [
+        79,
+        76,
+        31,
+        43
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/W/03",
+      "sourceCrop": {
+        "x": 165,
+        "y": 467,
+        "w": 110,
+        "h": 179
+      },
+      "placement": [
+        79,
+        76,
+        31,
+        43
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/NW/00",
+      "sourceCrop": {
+        "x": 157,
+        "y": 689,
+        "w": 128,
+        "h": 181
+      },
+      "placement": [
+        74,
+        77,
+        43,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/NW/01",
+      "sourceCrop": {
+        "x": 157,
+        "y": 689,
+        "w": 128,
+        "h": 181
+      },
+      "placement": [
+        74,
+        77,
+        43,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/NW/02",
+      "sourceCrop": {
+        "x": 157,
+        "y": 689,
+        "w": 128,
+        "h": 181
+      },
+      "placement": [
+        74,
+        77,
+        43,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/NW/03",
+      "sourceCrop": {
+        "x": 157,
+        "y": 689,
+        "w": 128,
+        "h": 181
+      },
+      "placement": [
+        74,
+        77,
+        43,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/N/00",
+      "sourceCrop": {
+        "x": 148,
+        "y": 911,
+        "w": 148,
+        "h": 182
+      },
+      "placement": [
+        73,
+        77,
+        46,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/N/01",
+      "sourceCrop": {
+        "x": 148,
+        "y": 911,
+        "w": 148,
+        "h": 182
+      },
+      "placement": [
+        73,
+        77,
+        46,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/N/02",
+      "sourceCrop": {
+        "x": 148,
+        "y": 911,
+        "w": 148,
+        "h": 182
+      },
+      "placement": [
+        73,
+        77,
+        46,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/N/03",
+      "sourceCrop": {
+        "x": 148,
+        "y": 911,
+        "w": 148,
+        "h": 182
+      },
+      "placement": [
+        73,
+        77,
+        46,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/NE/00",
+      "sourceCrop": {
+        "x": 156,
+        "y": 1133,
+        "w": 132,
+        "h": 179
+      },
+      "placement": [
+        75,
+        77,
+        43,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/NE/01",
+      "sourceCrop": {
+        "x": 156,
+        "y": 1133,
+        "w": 132,
+        "h": 179
+      },
+      "placement": [
+        75,
+        77,
+        43,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/NE/02",
+      "sourceCrop": {
+        "x": 156,
+        "y": 1133,
+        "w": 132,
+        "h": 179
+      },
+      "placement": [
+        75,
+        77,
+        43,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/NE/03",
+      "sourceCrop": {
+        "x": 156,
+        "y": 1133,
+        "w": 132,
+        "h": 179
+      },
+      "placement": [
+        75,
+        77,
+        43,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/E/00",
+      "sourceCrop": {
+        "x": 169,
+        "y": 1355,
+        "w": 111,
+        "h": 179
+      },
+      "placement": [
+        82,
+        76,
+        31,
+        43
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/E/01",
+      "sourceCrop": {
+        "x": 169,
+        "y": 1355,
+        "w": 111,
+        "h": 179
+      },
+      "placement": [
+        82,
+        76,
+        31,
+        43
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/E/02",
+      "sourceCrop": {
+        "x": 169,
+        "y": 1355,
+        "w": 111,
+        "h": 179
+      },
+      "placement": [
+        82,
+        76,
+        31,
+        43
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/E/03",
+      "sourceCrop": {
+        "x": 169,
+        "y": 1355,
+        "w": 111,
+        "h": 179
+      },
+      "placement": [
+        82,
+        76,
+        31,
+        43
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/SE/00",
+      "sourceCrop": {
+        "x": 152,
+        "y": 1576,
+        "w": 142,
+        "h": 181
+      },
+      "placement": [
+        75,
+        77,
+        43,
+        42
+      ],
+      "phase": 0,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/SE/01",
+      "sourceCrop": {
+        "x": 152,
+        "y": 1576,
+        "w": 142,
+        "h": 181
+      },
+      "placement": [
+        75,
+        77,
+        43,
+        42
+      ],
+      "phase": 1,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/SE/02",
+      "sourceCrop": {
+        "x": 152,
+        "y": 1576,
+        "w": 142,
+        "h": 181
+      },
+      "placement": [
+        75,
+        77,
+        43,
+        42
+      ],
+      "phase": 2,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    },
+    {
+      "frame": "idle/outfit-scholar/SE/03",
+      "sourceCrop": {
+        "x": 152,
+        "y": 1576,
+        "w": 142,
+        "h": 181
+      },
+      "placement": [
+        75,
+        77,
+        43,
+        42
+      ],
+      "phase": 3,
+      "deformation": "upper-body breath + delayed hem sway",
+      "durationMs": 250
+    }
+  ]
+}

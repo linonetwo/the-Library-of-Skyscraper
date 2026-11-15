@@ -23,7 +23,7 @@ export class ActorMotion {
       y: this.from.y + (this.to.y - this.from.y) * progress,
       moving,
       direction: this.direction,
-      frame: moving ? Math.floor((now - this.started) / 100) % 4 : 0,
+      frame: moving ? Math.floor((now - this.started) / 100) % 4 : Math.floor(now / 250) % 4,
     };
   }
   move(to: Point, now: number, snap = false) {
@@ -33,7 +33,7 @@ export class ActorMotion {
     }
     if (to.x === this.to.x && to.y === this.to.y) return;
     this.from = this.sample(now);
-    this.direction = facing(this.from, to);
+    this.direction = facing(this.to, to);
     this.to = to;
     this.started = now;
   }

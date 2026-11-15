@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "outfit-warden",
+  "status": "prototype",
+  "releaseApproved": false,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/idle-outfits.png",
+  "sourceSha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
+  "promptSha256": "53a58dbd944125ca6d529567fbe2db94bc0310d918d484c0e5ca67d3fdb15f0c",
+  "method": "Newly generated standing garments, eight dedicated directional views per outfit; registered breathing and hem flutter.",
+  "recipeSha256": "8932c3fab22ce43c13b4b7879401617d00cf5f5263217eddc16c07f75dc97865",
+  "registration": "arena/art/source/idle-outfit-warden-registration.json",
+  "atlasPngSha256": "15a1c86814840f2dd4eaf5fc595a26b38e28c5e2f6e57121698a6ad84d45128d",
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ]
+}

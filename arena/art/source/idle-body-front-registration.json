@@ -1,0 +1,1417 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "body-front",
+  "source": "arena/art/source/idle-body.png",
+  "sourceSha256": "cfa4c561a348a3f0ae07f77315bbb431b0a9b038179eaebc25fb6512f5361fd9",
+  "frames": [
+    {
+      "frame": "idle/body-front/S/00",
+      "sourceCrop": {
+        "x": 150,
+        "y": 17,
+        "w": 143,
+        "h": 417
+      },
+      "placement": [
+        65,
+        15,
+        62,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          15
+        ],
+        "neck": [
+          96,
+          77
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          74,
+          123
+        ],
+        "leftHand": [
+          118,
+          123
+        ]
+      },
+      "deformation": {
+        "lift": 0,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/S/01",
+      "sourceCrop": {
+        "x": 150,
+        "y": 17,
+        "w": 143,
+        "h": 417
+      },
+      "placement": [
+        65,
+        15,
+        62,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.2
+        ],
+        "neck": [
+          96,
+          76.2
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          74,
+          122.86909090909091
+        ],
+        "leftHand": [
+          118,
+          122.86909090909091
+        ]
+      },
+      "deformation": {
+        "lift": -0.8,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/S/02",
+      "sourceCrop": {
+        "x": 150,
+        "y": 17,
+        "w": 143,
+        "h": 417
+      },
+      "placement": [
+        65,
+        15,
+        62,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          13.65
+        ],
+        "neck": [
+          96,
+          75.65
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          74,
+          122.77909090909091
+        ],
+        "leftHand": [
+          118,
+          122.77909090909091
+        ]
+      },
+      "deformation": {
+        "lift": -1.35,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/S/03",
+      "sourceCrop": {
+        "x": 150,
+        "y": 17,
+        "w": 143,
+        "h": 417
+      },
+      "placement": [
+        65,
+        15,
+        62,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.45
+        ],
+        "neck": [
+          96,
+          76.45
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          74,
+          122.91
+        ],
+        "leftHand": [
+          118,
+          122.91
+        ]
+      },
+      "deformation": {
+        "lift": -0.55,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/SW/00",
+      "sourceCrop": {
+        "x": 594,
+        "y": 17,
+        "w": 141,
+        "h": 418
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          15
+        ],
+        "neck": [
+          96,
+          77
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          73,
+          122
+        ],
+        "leftHand": [
+          119,
+          122
+        ]
+      },
+      "deformation": {
+        "lift": 0,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/SW/01",
+      "sourceCrop": {
+        "x": 594,
+        "y": 17,
+        "w": 141,
+        "h": 418
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.2
+        ],
+        "neck": [
+          96,
+          76.2
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          73,
+          121.85454545454546
+        ],
+        "leftHand": [
+          119,
+          121.85454545454546
+        ]
+      },
+      "deformation": {
+        "lift": -0.8,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/SW/02",
+      "sourceCrop": {
+        "x": 594,
+        "y": 17,
+        "w": 141,
+        "h": 418
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          13.65
+        ],
+        "neck": [
+          96,
+          75.65
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          73,
+          121.75454545454545
+        ],
+        "leftHand": [
+          119,
+          121.75454545454545
+        ]
+      },
+      "deformation": {
+        "lift": -1.35,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/SW/03",
+      "sourceCrop": {
+        "x": 594,
+        "y": 17,
+        "w": 141,
+        "h": 418
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.45
+        ],
+        "neck": [
+          96,
+          76.45
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          73,
+          121.9
+        ],
+        "leftHand": [
+          119,
+          121.9
+        ]
+      },
+      "deformation": {
+        "lift": -0.55,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/W/00",
+      "sourceCrop": {
+        "x": 152,
+        "y": 461,
+        "w": 140,
+        "h": 417
+      },
+      "placement": [
+        66,
+        15,
+        60,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          15
+        ],
+        "neck": [
+          96,
+          77
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          88,
+          121
+        ],
+        "leftHand": [
+          104,
+          121
+        ]
+      },
+      "deformation": {
+        "lift": 0,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/W/01",
+      "sourceCrop": {
+        "x": 152,
+        "y": 461,
+        "w": 140,
+        "h": 417
+      },
+      "placement": [
+        66,
+        15,
+        60,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.2
+        ],
+        "neck": [
+          96,
+          76.2
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          88,
+          120.84
+        ],
+        "leftHand": [
+          104,
+          120.84
+        ]
+      },
+      "deformation": {
+        "lift": -0.8,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/W/02",
+      "sourceCrop": {
+        "x": 152,
+        "y": 461,
+        "w": 140,
+        "h": 417
+      },
+      "placement": [
+        66,
+        15,
+        60,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          13.65
+        ],
+        "neck": [
+          96,
+          75.65
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          88,
+          120.73
+        ],
+        "leftHand": [
+          104,
+          120.73
+        ]
+      },
+      "deformation": {
+        "lift": -1.35,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/W/03",
+      "sourceCrop": {
+        "x": 152,
+        "y": 461,
+        "w": 140,
+        "h": 417
+      },
+      "placement": [
+        66,
+        15,
+        60,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.45
+        ],
+        "neck": [
+          96,
+          76.45
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          88,
+          120.89
+        ],
+        "leftHand": [
+          104,
+          120.89
+        ]
+      },
+      "deformation": {
+        "lift": -0.55,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/NW/00",
+      "sourceCrop": {
+        "x": 593,
+        "y": 461,
+        "w": 142,
+        "h": 417
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          15
+        ],
+        "neck": [
+          96,
+          77
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          116,
+          122
+        ],
+        "leftHand": [
+          76,
+          122
+        ]
+      },
+      "deformation": {
+        "lift": 0,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/NW/01",
+      "sourceCrop": {
+        "x": 593,
+        "y": 461,
+        "w": 142,
+        "h": 417
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.2
+        ],
+        "neck": [
+          96,
+          76.2
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          116,
+          121.85454545454546
+        ],
+        "leftHand": [
+          76,
+          121.85454545454546
+        ]
+      },
+      "deformation": {
+        "lift": -0.8,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/NW/02",
+      "sourceCrop": {
+        "x": 593,
+        "y": 461,
+        "w": 142,
+        "h": 417
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          13.65
+        ],
+        "neck": [
+          96,
+          75.65
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          116,
+          121.75454545454545
+        ],
+        "leftHand": [
+          76,
+          121.75454545454545
+        ]
+      },
+      "deformation": {
+        "lift": -1.35,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/NW/03",
+      "sourceCrop": {
+        "x": 593,
+        "y": 461,
+        "w": 142,
+        "h": 417
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.45
+        ],
+        "neck": [
+          96,
+          76.45
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          116,
+          121.9
+        ],
+        "leftHand": [
+          76,
+          121.9
+        ]
+      },
+      "deformation": {
+        "lift": -0.55,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/N/00",
+      "sourceCrop": {
+        "x": 150,
+        "y": 904,
+        "w": 143,
+        "h": 417
+      },
+      "placement": [
+        65,
+        15,
+        62,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          15
+        ],
+        "neck": [
+          96,
+          77
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          117,
+          122
+        ],
+        "leftHand": [
+          75,
+          122
+        ]
+      },
+      "deformation": {
+        "lift": 0,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/N/01",
+      "sourceCrop": {
+        "x": 150,
+        "y": 904,
+        "w": 143,
+        "h": 417
+      },
+      "placement": [
+        65,
+        15,
+        62,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.2
+        ],
+        "neck": [
+          96,
+          76.2
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          117,
+          121.85454545454546
+        ],
+        "leftHand": [
+          75,
+          121.85454545454546
+        ]
+      },
+      "deformation": {
+        "lift": -0.8,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/N/02",
+      "sourceCrop": {
+        "x": 150,
+        "y": 904,
+        "w": 143,
+        "h": 417
+      },
+      "placement": [
+        65,
+        15,
+        62,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          13.65
+        ],
+        "neck": [
+          96,
+          75.65
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          117,
+          121.75454545454545
+        ],
+        "leftHand": [
+          75,
+          121.75454545454545
+        ]
+      },
+      "deformation": {
+        "lift": -1.35,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/N/03",
+      "sourceCrop": {
+        "x": 150,
+        "y": 904,
+        "w": 143,
+        "h": 417
+      },
+      "placement": [
+        65,
+        15,
+        62,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.45
+        ],
+        "neck": [
+          96,
+          76.45
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          117,
+          121.9
+        ],
+        "leftHand": [
+          75,
+          121.9
+        ]
+      },
+      "deformation": {
+        "lift": -0.55,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/NE/00",
+      "sourceCrop": {
+        "x": 594,
+        "y": 904,
+        "w": 141,
+        "h": 417
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          15
+        ],
+        "neck": [
+          96,
+          77
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          118,
+          122
+        ],
+        "leftHand": [
+          74,
+          122
+        ]
+      },
+      "deformation": {
+        "lift": 0,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/NE/01",
+      "sourceCrop": {
+        "x": 594,
+        "y": 904,
+        "w": 141,
+        "h": 417
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.2
+        ],
+        "neck": [
+          96,
+          76.2
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          118,
+          121.85454545454546
+        ],
+        "leftHand": [
+          74,
+          121.85454545454546
+        ]
+      },
+      "deformation": {
+        "lift": -0.8,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/NE/02",
+      "sourceCrop": {
+        "x": 594,
+        "y": 904,
+        "w": 141,
+        "h": 417
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          13.65
+        ],
+        "neck": [
+          96,
+          75.65
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          118,
+          121.75454545454545
+        ],
+        "leftHand": [
+          74,
+          121.75454545454545
+        ]
+      },
+      "deformation": {
+        "lift": -1.35,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/NE/03",
+      "sourceCrop": {
+        "x": 594,
+        "y": 904,
+        "w": 141,
+        "h": 417
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.45
+        ],
+        "neck": [
+          96,
+          76.45
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          118,
+          121.9
+        ],
+        "leftHand": [
+          74,
+          121.9
+        ]
+      },
+      "deformation": {
+        "lift": -0.55,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/E/00",
+      "sourceCrop": {
+        "x": 151,
+        "y": 1348,
+        "w": 140,
+        "h": 417
+      },
+      "placement": [
+        66,
+        15,
+        60,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          15
+        ],
+        "neck": [
+          96,
+          77
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          105,
+          121
+        ],
+        "leftHand": [
+          87,
+          121
+        ]
+      },
+      "deformation": {
+        "lift": 0,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/E/01",
+      "sourceCrop": {
+        "x": 151,
+        "y": 1348,
+        "w": 140,
+        "h": 417
+      },
+      "placement": [
+        66,
+        15,
+        60,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.2
+        ],
+        "neck": [
+          96,
+          76.2
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          105,
+          120.84
+        ],
+        "leftHand": [
+          87,
+          120.84
+        ]
+      },
+      "deformation": {
+        "lift": -0.8,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/E/02",
+      "sourceCrop": {
+        "x": 151,
+        "y": 1348,
+        "w": 140,
+        "h": 417
+      },
+      "placement": [
+        66,
+        15,
+        60,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          13.65
+        ],
+        "neck": [
+          96,
+          75.65
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          105,
+          120.73
+        ],
+        "leftHand": [
+          87,
+          120.73
+        ]
+      },
+      "deformation": {
+        "lift": -1.35,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/E/03",
+      "sourceCrop": {
+        "x": 151,
+        "y": 1348,
+        "w": 140,
+        "h": 417
+      },
+      "placement": [
+        66,
+        15,
+        60,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.45
+        ],
+        "neck": [
+          96,
+          76.45
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          105,
+          120.89
+        ],
+        "leftHand": [
+          87,
+          120.89
+        ]
+      },
+      "deformation": {
+        "lift": -0.55,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/SE/00",
+      "sourceCrop": {
+        "x": 594,
+        "y": 1348,
+        "w": 141,
+        "h": 418
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          15
+        ],
+        "neck": [
+          96,
+          77
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          119,
+          122
+        ],
+        "leftHand": [
+          73,
+          122
+        ]
+      },
+      "deformation": {
+        "lift": 0,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/SE/01",
+      "sourceCrop": {
+        "x": 594,
+        "y": 1348,
+        "w": 141,
+        "h": 418
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.2
+        ],
+        "neck": [
+          96,
+          76.2
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          119,
+          121.85454545454546
+        ],
+        "leftHand": [
+          73,
+          121.85454545454546
+        ]
+      },
+      "deformation": {
+        "lift": -0.8,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/SE/02",
+      "sourceCrop": {
+        "x": 594,
+        "y": 1348,
+        "w": 141,
+        "h": 418
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          13.65
+        ],
+        "neck": [
+          96,
+          75.65
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          119,
+          121.75454545454545
+        ],
+        "leftHand": [
+          73,
+          121.75454545454545
+        ]
+      },
+      "deformation": {
+        "lift": -1.35,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    },
+    {
+      "frame": "idle/body-front/SE/03",
+      "sourceCrop": {
+        "x": 594,
+        "y": 1348,
+        "w": 141,
+        "h": 418
+      },
+      "placement": [
+        64,
+        15,
+        64,
+        158
+      ],
+      "durationMs": 250,
+      "solesY": 172,
+      "attachments": {
+        "crown": [
+          96,
+          14.45
+        ],
+        "neck": [
+          96,
+          76.45
+        ],
+        "hip": [
+          96,
+          128
+        ],
+        "rightHand": [
+          119,
+          121.9
+        ],
+        "leftHand": [
+          73,
+          121.9
+        ]
+      },
+      "deformation": {
+        "lift": -0.55,
+        "lowerBodyFixedFromY": 132
+      },
+      "extraction": "body skin/outline mask y90..133"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { Application, Assets, Container, Sprite } from "pixi.js";
 import { paintMap, type MapProps } from "./mapScene";
 import { libraryLayout } from "./libraryLayout";
 import { ActorScene } from "./ActorScene";
-import { walkLayerNames } from "./walkLayers";
+import { animationLayerNames } from "./walkLayers";
 
 /** The application lives for the entire mounted canvas; snapshots only update its render bridge. */
 export default function MapCanvas(props: MapProps) {
@@ -51,11 +51,11 @@ export default function MapCanvas(props: MapProps) {
           app.destroy({ removeView: true }, { children: true });
           return;
         }
-        const [sheet, ...walkSheets] = await Promise.all([
-          Assets.load("/assets/doll-atlas.json"),
-          ...walkLayerNames.map(layer =>
-            Assets.load(`/assets/animation/walk-${layer}.json`)),
-        ]);
+        const [walk, idle] = await Promise.all((["walk", "idle"] as const).map(async action => {
+          const sheets = await Promise.all(animationLayerNames[action].map(layer =>
+            Assets.load(`/assets/animation/${action}-${layer}.json`)));
+          return Object.assign({}, ...sheets.map(sheet => sheet.textures));
+        }));
         if (disposed) return;
         const illustration = await Assets.load("/assets/library-map.png");
         if (disposed) return;
@@ -64,10 +64,7 @@ export default function MapCanvas(props: MapProps) {
         background.scale.set(libraryLayout.scale);
         background.alpha = 0.85;
         world.addChild(background);
-        actors = new ActorScene({
-          static: sheet.textures,
-          walk: Object.assign({}, ...walkSheets.map(sheet => sheet.textures)),
-        });
+        actors = new ActorScene({ walk, idle });
         world.addChild(renderLayer, actors.node);
         app.ticker.add(() => {
           host.dataset.actors = JSON.stringify(actors.render(performance.now()));

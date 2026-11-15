@@ -1,10 +1,9 @@
 import { Container, Graphics, Sprite, Texture } from "pixi.js";
 import type { Actor } from "./types";
-import { dollLayers } from "./dollLayers";
-import { walkLayers } from "./walkLayers";
+import { animationLayers } from "./walkLayers";
 import { ActorMotion, type Point } from "./actorMotion";
 
-export type DollTextures = { static: Record<string, Texture>; walk: Record<string, Texture> };
+export type DollTextures = { walk: Record<string, Texture>; idle: Record<string, Texture> };
 
 export class ActorView {
   readonly node = new Container();
@@ -14,10 +13,8 @@ export class ActorView {
   private health = new Graphics();
   private sprites: Sprite[] = [];
   private actor: Actor;
-  private animated = false;
   private appearance = "";
   private frameKey = "";
-  private layers: string[] = [];
 
   constructor(actor: Actor, position: Point, private textures: DollTextures, onSelect: (id: string) => void) {
     this.actor = actor;
@@ -40,22 +37,6 @@ export class ActorView {
     const appearance = JSON.stringify(actor.appearance);
     if (appearance === this.appearance) return;
     this.appearance = appearance;
-    // Use animation only when every layer is available; both hair sets share registrations.
-    this.animated = walkLayers(actor.appearance).every(layer => this.textures.walk[`walk/${layer}/S/00`]);
-    for (const sprite of this.sprites) sprite.destroy();
-    this.layers = this.animated
-      ? walkLayers(actor.appearance)
-      : dollLayers(actor.appearance);
-    this.sprites = this.layers.map(layer => {
-      const texture = this.animated
-        ? this.textures.walk[`walk/${layer}/S/00`] : this.textures.static[layer];
-      const sprite = new Sprite(texture);
-      sprite.anchor.set(0.5, 1);
-      sprite.position.set(0, 28);
-      sprite.scale.set(86 / texture.height);
-      this.doll.addChild(sprite);
-      return sprite;
-    });
     this.frameKey = "";
   }
 
@@ -63,13 +44,25 @@ export class ActorView {
     const pose = this.motion.sample(now);
     this.node.position.set(pose.x, pose.y);
     this.node.zIndex = pose.y;
+    const action = pose.moving ? "walk" : "idle";
     const key = `${pose.direction}/${String(pose.frame).padStart(2, "0")}`;
-    if (this.animated && key !== this.frameKey) {
-      this.frameKey = key;
+    if (`${action}/${key}` !== this.frameKey) {
+      this.frameKey = `${action}/${key}`;
+      const layers = animationLayers(action, this.actor.appearance);
+      while (this.sprites.length < layers.length) {
+        const sprite = new Sprite();
+        sprite.anchor.set(0.5, 0.9);
+        sprite.position.set(0, 28);
+        this.doll.addChild(sprite);
+        this.sprites.push(sprite);
+      }
       this.sprites.forEach((sprite, index) => {
-        sprite.texture = this.textures.walk[`walk/${this.layers[index]}/${key}`];
+        sprite.visible = index < layers.length;
+        if (!sprite.visible) return;
+        sprite.texture = this.textures[action][`${action}/${layers[index]}/${key}`];
+        sprite.scale.set(86 / sprite.texture.height);
       });
     }
-    return { id: this.actor.id, ...pose, animation: this.animated ? "walk-prototype" : "static" };
+    return { id: this.actor.id, ...pose, animation: action };
   }
 }
