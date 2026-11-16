@@ -1,3 +1,4 @@
+import { animationActions } from "./animationCatalog";
 import { useEffect, useRef, useState } from "react";
 import { Application, Assets, Container, Sprite } from "pixi.js";
 import { paintMap, type MapProps } from "./mapScene";
@@ -51,10 +52,10 @@ export default function MapCanvas(props: MapProps) {
           app.destroy({ removeView: true }, { children: true });
           return;
         }
-        const [walk, idle] = await Promise.all((["walk", "idle"] as const).map(async action => {
+        const actionTextures = await Promise.all(animationActions.map(async action => {
           const sheets = await Promise.all(animationLayerNames[action].map(layer =>
             Assets.load(`/assets/animation/${action}-${layer}.json`)));
-          return Object.assign({}, ...sheets.map(sheet => sheet.textures));
+          return [action, Object.assign({}, ...sheets.map(sheet => sheet.textures))] as const;
         }));
         if (disposed) return;
         const illustration = await Assets.load("/assets/library-map.png");
@@ -64,7 +65,7 @@ export default function MapCanvas(props: MapProps) {
         background.scale.set(libraryLayout.scale);
         background.alpha = 0.85;
         world.addChild(background);
-        actors = new ActorScene({ walk, idle });
+        actors = new ActorScene(Object.fromEntries(actionTextures) as import("./ActorView").DollTextures);
         world.addChild(renderLayer, actors.node);
         app.ticker.add(() => {
           host.dataset.actors = JSON.stringify(actors.render(performance.now()));

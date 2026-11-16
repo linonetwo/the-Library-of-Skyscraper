@@ -1,3 +1,4 @@
+import { animationActions, animationCatalog, type AnimationAction } from "./animationCatalog";
 import { useEffect, useState } from "react";
 import { AnimatedDollPreview, type AnimationAtlas } from "./AnimatedDollPreview";
 import { animationLayerNames, animationLayers } from "./walkLayers";
@@ -9,7 +10,7 @@ const directions = ["S", "SW", "W", "NW", "N", "NE", "E", "SE"];
 
 export default function AnimationLab() {
   const [selectedDirection, setSelectedDirection] = useState("S");
-  const [action, setAction] = useState<"idle" | "walk">("idle");
+  const [action, setAction] = useState<AnimationAction>("idle");
   const [atlases, setAtlases] = useState<Record<string, AnimationAtlas> | null>(null);
   const [haired, setHaired] = useState(true);
   const [hair, setHair] = useState<"ivory" | "midnight">("ivory");
@@ -19,7 +20,7 @@ export default function AnimationLab() {
   const [error, setError] = useState("");
   const [playing, setPlaying] = useState(true);
   const [frame, setFrame] = useState(0);
-  const [fps, setFps] = useState(4);
+  const [fps, setFps] = useState(1000 / animationCatalog.idle.frameMs);
   useEffect(() => {
     setError("");
     const controller = new AbortController();
@@ -33,9 +34,9 @@ export default function AnimationLab() {
   }, [action]);
   useEffect(() => {
     if (!playing) return;
-    const timer = window.setInterval(() => setFrame(value => (value + 1) % 4), 1000 / fps);
+    const timer = window.setInterval(() => setFrame(value => (value + 1) % animationCatalog[action].frameCount), 1000 / fps);
     return () => window.clearInterval(timer);
-  }, [playing, fps]);
+  }, [playing, fps, action]);
   const layers = animationLayers(action, { outfit, hair, weapon })
     .filter(layer => (equipped || !layer.startsWith("outfit-"))
       && (haired || !layer.startsWith("hair-")));
@@ -44,13 +45,13 @@ export default function AnimationLab() {
       <a href="/">← 返回竞技场</a>
       <header className="lab-heading"><small>THE ARCHIVE · CHARACTER ATELIER</small><h1>纸娃娃工坊</h1><p>一呼一吸，一步一向。为书苑旅人试一身新装。</p></header>
       <div className="lab-workbench"><section className="lab-stage" aria-label="角色重点预览"><div className="lab-stage-caption">动作检查 · {directionNames[selectedDirection]}</div><div className="lab-hero">{atlases && <AnimatedDollPreview action={action} atlases={atlases} layers={layers} direction={selectedDirection} frame={frame} />}</div><p>{outfit === "scholar" ? "星墨学者" : "书库守卫"} · {action === "idle" ? "静候下一页" : "行走于书苑"}</p></section><aside className="lab-controls"><h2>动作与播放</h2>
-        <label>动作 <select aria-label="动作" value={action} onChange={e => { setAtlases(null); setAction(e.target.value as "idle" | "walk"); setFps(e.target.value === "idle" ? 4 : 8); }}><option value="idle">待机</option><option value="walk">行走</option></select></label>
+        <label>动作 <select aria-label="动作" value={action} onChange={e => { setAtlases(null); setAction(e.target.value as AnimationAction); setFps(1000 / animationCatalog[e.target.value as AnimationAction].frameMs); setFrame(0); }}>{animationActions.map(type => <option key={type} value={type}>{animationCatalog[type].label}</option>)}</select></label>
         <button onClick={() => setPlaying(!playing)}>{playing ? "暂停动画" : "播放动画"}</button>
-        <button disabled={playing} onClick={() => setFrame((frame + 1) % 4)}>下一帧</button>
+        <button disabled={playing} onClick={() => setFrame((frame + 1) % animationCatalog[action].frameCount)}>下一帧</button>
         <label>播放速度 <select aria-label="播放速度" value={fps} onChange={e => setFps(Number(e.target.value))}>
           {[2, 4, 8, 12].map(value => <option key={value} value={value}>{value} FPS</option>)}
         </select></label>
-        <output aria-label="当前帧">帧 {frame + 1} / 4</output>
+        <output aria-label="当前帧">帧 {frame + 1} / {animationCatalog[action].frameCount}</output>
         <h2>衣装与外观</h2>
         <label>衣装 <select aria-label="动画衣装" value={outfit} onChange={e => setOutfit(e.target.value as Outfit)}>
           <option value="scholar">星墨学者</option><option value="warden">书库守卫</option>

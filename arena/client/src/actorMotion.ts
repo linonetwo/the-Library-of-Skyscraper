@@ -1,3 +1,4 @@
+import { animationFrame } from "./animationCatalog";
 export type Point = { x: number; y: number };
 export type Direction = "S" | "SW" | "W" | "NW" | "N" | "NE" | "E" | "SE";
 const compass: Direction[] = ["E", "SE", "S", "SW", "W", "NW", "N", "NE"];
@@ -23,7 +24,7 @@ export class ActorMotion {
       y: this.from.y + (this.to.y - this.from.y) * progress,
       moving,
       direction: this.direction,
-      frame: moving ? Math.floor((now - this.started) / 100) % 4 : Math.floor(now / 250) % 4,
+      frame: animationFrame(moving ? "walk" : "idle", moving ? now - this.started : now),
     };
   }
   move(to: Point, now: number, snap = false) {

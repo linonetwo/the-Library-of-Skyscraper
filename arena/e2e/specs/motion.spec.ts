@@ -11,7 +11,7 @@ test("eight facings and continuous motion across new destinations", () => {
     expect(facing({ x: 0, y: 0 }, { x, y })).toBe(direction);
   const motion = new ActorMotion({ x: 0, y: 0 }, 400);
   motion.move({ x: 100, y: 0 }, 1000);
-  expect(motion.sample(1200)).toMatchObject({ x: 50, y: 0, moving: true, direction: "E", frame: 2 });
+  expect(motion.sample(1200)).toMatchObject({ x: 50, y: 0, moving: true, direction: "E", frame: 1 });
   motion.move({ x: 50, y: 100 }, 1200);
   expect(motion.sample(1400)).toMatchObject({ x: 50, y: 50, direction: "SW" });
   expect(motion.sample(1600)).toMatchObject({ x: 50, y: 100, moving: false, frame: 2 });
@@ -71,4 +71,12 @@ test("facing follows authoritative segments independently of packet timing", () 
   expect(motion.sample(1000 + delay)).toMatchObject({ x: before.x, y: before.y });
   expect(motion.sample(2000)).toMatchObject({ x: 80, y: 0, moving: false, direction: "W" });
  }
+});
+
+test("walk frames use authored 125ms timing", () => {
+ const motion=new ActorMotion({x:0,y:0});
+ motion.move({x:100,y:0},1000);
+ expect(motion.sample(1124).frame).toBe(0);
+ expect(motion.sample(1125).frame).toBe(1);
+ expect(motion.sample(1375).frame).toBe(3);
 });

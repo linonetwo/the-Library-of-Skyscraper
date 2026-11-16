@@ -1,9 +1,10 @@
+import type { AnimationAction } from "./animationCatalog";
 import { Container, Graphics, Sprite, Texture } from "pixi.js";
 import type { Actor } from "./types";
 import { animationLayers } from "./walkLayers";
 import { ActorMotion, type Point } from "./actorMotion";
 
-export type DollTextures = { walk: Record<string, Texture>; idle: Record<string, Texture> };
+export type DollTextures = Record<AnimationAction, Record<string, Texture>>;
 
 export class ActorView {
   readonly node = new Container();

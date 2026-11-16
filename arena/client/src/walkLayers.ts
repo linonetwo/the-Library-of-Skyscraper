@@ -16,8 +16,9 @@ export const walkLayers = ({ outfit, hair, weapon }: Appearance) => [
   `hair-${hair}`,
 ];
 
-export type AnimationAction = "idle" | "walk";
-export const animationLayerNames = {
+import type { AnimationAction } from "./animationCatalog";
+export type { AnimationAction } from "./animationCatalog";
+export const animationLayerNames: Record<AnimationAction, string[]> = {
   walk: walkLayerNames,
   idle: [...walkLayerNames.filter(layer => !layer.startsWith("hair-")),
     "hair-ivory-back", "hair-ivory-front", "hair-midnight-back", "hair-midnight-front"],
