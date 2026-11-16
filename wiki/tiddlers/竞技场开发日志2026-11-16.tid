@@ -54,7 +54,7 @@ MCP帧数同步改为读取真实“帧x/y”控件的分母，与工坊动作�
 
 集中验收完成后已恢复主仓库开发预览、原赛局目录及主仓库TS编译路径；开发authority和Vite健康运行。v0.2.0动作目录继续作为独立候选，版本范围由Astra冻结。
 
-动作目录属于v0.2.0候选，待Astra冻结整版范围及源码评审；本轮仅创建草稿PR，不发布tag、不合并。生产构建35.9秒、动作浏览器9项及MCP 2项实测已通过；[[动作目录草稿PR #22|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/22]]代码提交26cae9f的两项CI均通过（7分2秒、9分31秒）；通过CI不代表整版范围冻结或Astra源码评审完成。
+动作目录归v0.2.0候选，[[PR #22|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/22]]当前为草稿，Astra负责后续整版范围冻结与源码评审。生产构建35.9秒、动作浏览器9项及MCP2项通过；代码26cae9f的两项CI通过（7分2秒、9分31秒）。
 
 本地交付目录：/var/lib/mwc/build-scratch/arena-v0.1.0/。最终候选文件：arena-v0.1.0-linux-x86_64-candidate.tar.gz（164 MiB）；SHA256：31f8c0a0e40327a5b7ce44315fa42cce3dca5ec39e0dd958082cc30f45b3fb54。包内README已整理为直接运行说明，沿用上述运行验收；FILES.sha256同步更新。
 
