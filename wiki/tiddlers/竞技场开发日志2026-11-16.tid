@@ -1,0 +1,25 @@
+title: 竞技场开发日志2026-11-16
+tags: 竞技场开发日志 通天书苑：竞技场
+type: text/vnd.tiddlywiki
+
+!! 工坊调试控制
+
+Astra定义简明合同，Sol实现独立browser-workshop模块，沿用Page／Input入口。MCP支持进入工坊、返回赛场、切换待机／行走、八向选择、播放暂停、逐帧、速度、两套衣装、两款发型和装备显隐。Page.getState读取实际控件，返回当前动作、方向、帧、速度、播放状态与纸娃娃组合。控制台与实机共享同一套可见操作。
+
+真实stdio流程完成切换、逐帧、换装、显隐与截图；最新图片由MCP Page.captureScreenshot生成。
+
+适配器按工坊动作分派，通过可见控件执行；重复动作切换保留现有图集，播放暂停可重复调用。页面加载期间投影真实加载状态与空朝向，控件与图集就绪后显示所选方向。
+
+[img[竞技场2026-11-16工坊MCP实机.png]]
+
+!! 动作素材交付
+
+[[工坊PR #17|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/17]]与[[动作统一PR #18|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/18]]已完成Astra最终评审、CI并合并。源握点修正后S方向两passing帧握掌与手腕连接连续；独立Astra亲阅六帧实机，确认并列旧拳轮廓消除。量化、生成源及昨日近景记录见[[竞技场开发日志2026-11-15]]。
+
+#18先进入工坊依赖分支，随后以[[主分支交付PR #19|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/19]]同步同一组已评审素材。MCP工坊控制独立提交[[PR #20|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/20]]。
+
+#19已合入master，提交233ecb4，最终双CI通过。工坊MCP精简后两项真实浏览器／stdio测试通过，覆盖成功控制链及图集加载状态读取；旧竞技场MCP浏览器回归通过。开发预览进程退出后已从同一赛局目录恢复服务，再执行工坊两项8.3秒通过。
+
+!! 后续
+
+八向奔跑／跳跃／攀爬／武器动作与全部换装适配继续按[[竞技场纸娃娃动画需求]]推进；桌面离线包、完整玩法、长回放归档及Steam接入继续依据[[竞技场开发计划]]执行。

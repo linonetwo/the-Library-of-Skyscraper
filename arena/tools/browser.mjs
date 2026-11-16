@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { workshopActionSchemas, performWorkshopAction, readWorkshopState } from './browser-workshop.mjs';
 
 // Local game UI adapter. Actions share the player's visible controls.
 const uiURL = 'http://127.0.0.1:5173';
@@ -6,6 +7,7 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
+    ...workshopActionSchemas,
     ...['openReplay', 'closeReplay', 'playReplay', 'pauseReplay', 'locateReplayTaskSource', 'startTraining', 'resetTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'openScriptHistory', 'loadScriptVersion', 'restoreScriptVersion', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
     z.object({ type: z.literal('seekReplay'), operationIndex: z.number().int().min(0) }).strict(),
     z.object({ type: z.literal('selectReplayTask'), index: z.number().int().min(0) }).strict(),
@@ -82,10 +84,11 @@ export function registerBrowserTools(server) {
       memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
       tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
     } : null;
-    return { replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    return { workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   register('Input.action', 'Control training, characters, outfits, TypeScript editing/publication, rules and gameplay through the UI.', { action: actionSchema }, async ({ action }) => {
     const active = current();
+    if (await performWorkshopAction(active, action)) return { performed: action.type };
     const click = name => active.getByRole('button', { name, exact: true }).click();
     switch (action.type) {
       case 'openReplay': await click('赛局日志'); await click('播放赛局回放'); break;

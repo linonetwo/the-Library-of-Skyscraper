@@ -85,3 +85,16 @@ Replay UI controls use `Input.action`: `openReplay`, `closeReplay`,
 `operationIndex`, `maxOperationIndex`, rendered `ruleState`, `memory`, and `tasks`;
 it is `null` when the replay dialog is closed. Source navigation and seeking use
 operation indexes, so resets with repeated ticks remain unambiguous.
+
+### 纸娃娃工坊
+
+通过已有 `Input.action` 控制真实检查台：`openWorkshop`、`returnToArena`；
+`setWorkshopAction {action: idle|walk}`、`selectWorkshopDirection {direction: S|SW|W|NW|N|NE|E|SE}`；
+`playWorkshop`、`pauseWorkshop`、`stepWorkshop`（必须先暂停）；
+`setWorkshopFps {fps: 2|4|8|12}`、`setWorkshopOutfit {outfit: scholar|warden}`、
+`setWorkshopHair {hair: ivory|midnight}`、`setWorkshopLayer {layer: outfit|hair|weapon, visible: boolean}`。
+所有操作驱动可见控件；播放和暂停可重复调用。`Page.getState.workshop` 返回动作、方向、
+从0开始的帧号、帧数、速度、播放状态、外观与图层显隐、加载状态和错误；离开工坊后为 null。
+`Page.captureScreenshot` 可直接捕获当前工坊。原竞技场换装动作保持原用途。
+
+真实 stdio 浏览器验证：`ARENA_BROWSER=1 node --test ../tests/workshop-browser.test.mjs`。
