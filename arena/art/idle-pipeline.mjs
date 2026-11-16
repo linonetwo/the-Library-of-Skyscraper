@@ -61,12 +61,12 @@ export async function foregroundHands(image) {
   return sharp(result, { raw: info }).png().toBuffer();
 }
 
-export async function packLayer(layer, cells, provenance) {
+export async function packLayer(layer, cells, provenance, action = 'idle') {
   const composites = [], frames = {}, animations = {};
   for (const [row, direction] of directions.entries()) {
-    const key = `idle/${layer}/${direction}`; animations[key] = [];
+    const key = `${action}/${layer}/${direction}`; animations[key] = [];
     for (let col = 0; col < 4; col++) {
-      const name = frameName('idle', layer, direction, col), x = col * 196 + 2, y = row * 196 + 2;
+      const name = frameName(action, layer, direction, col), x = col * 196 + 2, y = row * 196 + 2;
       composites.push({ input: cells[row][col], left: x, top: y });
       frames[name] = { frame: { x, y, w: 192, h: 192 }, rotated: false, trimmed: false,
         spriteSourceSize: { x: 0, y: 0, w: 192, h: 192 }, sourceSize: { w: 192, h: 192 }, anchor: { x: 0.5, y: 0.9 } };
@@ -76,11 +76,11 @@ export async function packLayer(layer, cells, provenance) {
   const image = await sharp({ create: { width: 784, height: 1568, channels: 4, background: '#00000000' } })
     .composite(composites).png().toBuffer();
   const atlas = { frames, animations, meta: { app: 'arena-idle-paper-doll-pipeline', version: '1',
-    image: `idle-${layer}.png`, format: 'RGBA8888', size: { w: 784, h: 1568 }, scale: '1' } };
-  await writeFile(new URL(`idle-${layer}.png`, output), image);
-  await writeFile(new URL(`idle-${layer}.json`, output), json(atlas));
-  await writeFile(new URL(`idle-${layer}.provenance.json`, output), json({
-    schemaVersion: 1, action: 'idle', layer, status: 'prototype', releaseApproved: false,
+    image: `${action}-${layer}.png`, format: 'RGBA8888', size: { w: 784, h: 1568 }, scale: '1' } };
+  await writeFile(new URL(`${action}-${layer}.png`, output), image);
+  await writeFile(new URL(`${action}-${layer}.json`, output), json(atlas));
+  await writeFile(new URL(`${action}-${layer}.provenance.json`, output), json({
+    schemaVersion: 1, action, layer, status: 'prototype', releaseApproved: false,
     generator: 'GPT Image 2 via proxy-imagegen', ...provenance,
     atlasPngSha256: digest(image), cell: [192, 192], anchor: [0.5, 0.9],
   }));

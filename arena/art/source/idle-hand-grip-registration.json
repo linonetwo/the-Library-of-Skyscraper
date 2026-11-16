@@ -1,0 +1,937 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "hand-grip",
+  "source": "grip-hands.png",
+  "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
+  "frames": [
+    {
+      "frame": "idle/hand-grip/S/00",
+      "sourceCrop": {
+        "x": 84,
+        "y": 35,
+        "w": 277,
+        "h": 370
+      },
+      "placement": [
+        69,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.29999999999999716
+      ],
+      "grip": {
+        "x": 74,
+        "y": 121
+      },
+      "hand": "right",
+      "sourceView": "S",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/S/01",
+      "sourceCrop": {
+        "x": 84,
+        "y": 35,
+        "w": 277,
+        "h": 370
+      },
+      "placement": [
+        69,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.45999999999999375
+      ],
+      "grip": {
+        "x": 74,
+        "y": 120.84
+      },
+      "hand": "right",
+      "sourceView": "S",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/S/02",
+      "sourceCrop": {
+        "x": 84,
+        "y": 35,
+        "w": 277,
+        "h": 370
+      },
+      "placement": [
+        69,
+        111,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        0.4300000000000068
+      ],
+      "grip": {
+        "x": 74,
+        "y": 120.73
+      },
+      "hand": "right",
+      "sourceView": "S",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/S/03",
+      "sourceCrop": {
+        "x": 84,
+        "y": 35,
+        "w": 277,
+        "h": 370
+      },
+      "placement": [
+        69,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.4099999999999966
+      ],
+      "grip": {
+        "x": 74,
+        "y": 120.89
+      },
+      "hand": "right",
+      "sourceView": "S",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/SW/00",
+      "sourceCrop": {
+        "x": 510,
+        "y": 34,
+        "w": 304,
+        "h": 375
+      },
+      "placement": [
+        68,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.29999999999999716
+      ],
+      "grip": {
+        "x": 73,
+        "y": 121
+      },
+      "hand": "right",
+      "sourceView": "SW",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/SW/01",
+      "sourceCrop": {
+        "x": 510,
+        "y": 34,
+        "w": 304,
+        "h": 375
+      },
+      "placement": [
+        68,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.45999999999999375
+      ],
+      "grip": {
+        "x": 73,
+        "y": 120.84
+      },
+      "hand": "right",
+      "sourceView": "SW",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/SW/02",
+      "sourceCrop": {
+        "x": 510,
+        "y": 34,
+        "w": 304,
+        "h": 375
+      },
+      "placement": [
+        68,
+        111,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        0.4300000000000068
+      ],
+      "grip": {
+        "x": 73,
+        "y": 120.73
+      },
+      "hand": "right",
+      "sourceView": "SW",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/SW/03",
+      "sourceCrop": {
+        "x": 510,
+        "y": 34,
+        "w": 304,
+        "h": 375
+      },
+      "placement": [
+        68,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.4099999999999966
+      ],
+      "grip": {
+        "x": 73,
+        "y": 120.89
+      },
+      "hand": "right",
+      "sourceView": "SW",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/W/00",
+      "sourceCrop": {
+        "x": 61,
+        "y": 483,
+        "w": 306,
+        "h": 362
+      },
+      "placement": [
+        92,
+        113,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.29999999999999716
+      ],
+      "grip": {
+        "x": 97,
+        "y": 122
+      },
+      "hand": "right",
+      "sourceView": "W",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/W/01",
+      "sourceCrop": {
+        "x": 61,
+        "y": 483,
+        "w": 306,
+        "h": 362
+      },
+      "placement": [
+        92,
+        113,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.4454545454545382
+      ],
+      "grip": {
+        "x": 97,
+        "y": 121.85454545454546
+      },
+      "hand": "right",
+      "sourceView": "W",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/W/02",
+      "sourceCrop": {
+        "x": 61,
+        "y": 483,
+        "w": 306,
+        "h": 362
+      },
+      "placement": [
+        92,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        0.45454545454545325
+      ],
+      "grip": {
+        "x": 97,
+        "y": 121.75454545454545
+      },
+      "hand": "right",
+      "sourceView": "W",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/W/03",
+      "sourceCrop": {
+        "x": 61,
+        "y": 483,
+        "w": 306,
+        "h": 362
+      },
+      "placement": [
+        92,
+        113,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.3999999999999915
+      ],
+      "grip": {
+        "x": 97,
+        "y": 121.9
+      },
+      "hand": "right",
+      "sourceView": "W",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/NW/00",
+      "sourceCrop": {
+        "x": 505,
+        "y": 481,
+        "w": 315,
+        "h": 359
+      },
+      "placement": [
+        107,
+        111,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.29999999999999716
+      ],
+      "grip": {
+        "x": 112,
+        "y": 120
+      },
+      "hand": "right",
+      "sourceView": "NW",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/NW/01",
+      "sourceCrop": {
+        "x": 505,
+        "y": 481,
+        "w": 315,
+        "h": 359
+      },
+      "placement": [
+        107,
+        111,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.4745454545454493
+      ],
+      "grip": {
+        "x": 112,
+        "y": 119.82545454545455
+      },
+      "hand": "right",
+      "sourceView": "NW",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/NW/02",
+      "sourceCrop": {
+        "x": 505,
+        "y": 481,
+        "w": 315,
+        "h": 359
+      },
+      "placement": [
+        107,
+        110,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        0.4054545454545462
+      ],
+      "grip": {
+        "x": 112,
+        "y": 119.70545454545454
+      },
+      "hand": "right",
+      "sourceView": "NW",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/NW/03",
+      "sourceCrop": {
+        "x": 505,
+        "y": 481,
+        "w": 315,
+        "h": 359
+      },
+      "placement": [
+        107,
+        111,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.4200000000000017
+      ],
+      "grip": {
+        "x": 112,
+        "y": 119.88
+      },
+      "hand": "right",
+      "sourceView": "NW",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/N/00",
+      "sourceCrop": {
+        "x": 80,
+        "y": 922,
+        "w": 279,
+        "h": 371
+      },
+      "placement": [
+        113,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.29999999999999716
+      ],
+      "grip": {
+        "x": 118,
+        "y": 121
+      },
+      "hand": "right",
+      "sourceView": "N",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/N/01",
+      "sourceCrop": {
+        "x": 80,
+        "y": 922,
+        "w": 279,
+        "h": 371
+      },
+      "placement": [
+        113,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.45999999999999375
+      ],
+      "grip": {
+        "x": 118,
+        "y": 120.84
+      },
+      "hand": "right",
+      "sourceView": "N",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/N/02",
+      "sourceCrop": {
+        "x": 80,
+        "y": 922,
+        "w": 279,
+        "h": 371
+      },
+      "placement": [
+        113,
+        111,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        0.4300000000000068
+      ],
+      "grip": {
+        "x": 118,
+        "y": 120.73
+      },
+      "hand": "right",
+      "sourceView": "N",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/N/03",
+      "sourceCrop": {
+        "x": 80,
+        "y": 922,
+        "w": 279,
+        "h": 371
+      },
+      "placement": [
+        113,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.4099999999999966
+      ],
+      "grip": {
+        "x": 118,
+        "y": 120.89
+      },
+      "hand": "right",
+      "sourceView": "N",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/NE/00",
+      "sourceCrop": {
+        "x": 517,
+        "y": 921,
+        "w": 300,
+        "h": 373
+      },
+      "placement": [
+        112,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.29999999999999716
+      ],
+      "grip": {
+        "x": 117,
+        "y": 121
+      },
+      "hand": "right",
+      "sourceView": "NE",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/NE/01",
+      "sourceCrop": {
+        "x": 517,
+        "y": 921,
+        "w": 300,
+        "h": 373
+      },
+      "placement": [
+        112,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.45999999999999375
+      ],
+      "grip": {
+        "x": 117,
+        "y": 120.84
+      },
+      "hand": "right",
+      "sourceView": "NE",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/NE/02",
+      "sourceCrop": {
+        "x": 517,
+        "y": 921,
+        "w": 300,
+        "h": 373
+      },
+      "placement": [
+        112,
+        111,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        0.4300000000000068
+      ],
+      "grip": {
+        "x": 117,
+        "y": 120.73
+      },
+      "hand": "right",
+      "sourceView": "NE",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/NE/03",
+      "sourceCrop": {
+        "x": 517,
+        "y": 921,
+        "w": 300,
+        "h": 373
+      },
+      "placement": [
+        112,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.4099999999999966
+      ],
+      "grip": {
+        "x": 117,
+        "y": 120.89
+      },
+      "hand": "right",
+      "sourceView": "NE",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/E/00",
+      "sourceCrop": {
+        "x": 75,
+        "y": 1370,
+        "w": 291,
+        "h": 371
+      },
+      "placement": [
+        88,
+        112,
+        13,
+        17
+      ],
+      "subpixelOffset": [
+        -0.0645405879206038,
+        -0.2465323072967891
+      ],
+      "grip": {
+        "x": 94,
+        "y": 122
+      },
+      "hand": "right",
+      "sourceView": "E",
+      "rotationDegrees": 14,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/E/01",
+      "sourceCrop": {
+        "x": 75,
+        "y": 1370,
+        "w": 291,
+        "h": 371
+      },
+      "placement": [
+        88,
+        112,
+        13,
+        17
+      ],
+      "subpixelOffset": [
+        -0.0645405879206038,
+        -0.39198685275133016
+      ],
+      "grip": {
+        "x": 94,
+        "y": 121.85454545454546
+      },
+      "hand": "right",
+      "sourceView": "E",
+      "rotationDegrees": 14,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/E/02",
+      "sourceCrop": {
+        "x": 75,
+        "y": 1370,
+        "w": 291,
+        "h": 371
+      },
+      "placement": [
+        88,
+        112,
+        13,
+        17
+      ],
+      "subpixelOffset": [
+        -0.0645405879206038,
+        -0.4919868527513387
+      ],
+      "grip": {
+        "x": 94,
+        "y": 121.75454545454545
+      },
+      "hand": "right",
+      "sourceView": "E",
+      "rotationDegrees": 14,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/E/03",
+      "sourceCrop": {
+        "x": 75,
+        "y": 1370,
+        "w": 291,
+        "h": 371
+      },
+      "placement": [
+        88,
+        112,
+        13,
+        17
+      ],
+      "subpixelOffset": [
+        -0.0645405879206038,
+        -0.3465323072967834
+      ],
+      "grip": {
+        "x": 94,
+        "y": 121.9
+      },
+      "hand": "right",
+      "sourceView": "E",
+      "rotationDegrees": 14,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/SE/00",
+      "sourceCrop": {
+        "x": 511,
+        "y": 1365,
+        "w": 301,
+        "h": 376
+      },
+      "placement": [
+        113,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.29999999999999716
+      ],
+      "grip": {
+        "x": 118,
+        "y": 121
+      },
+      "hand": "right",
+      "sourceView": "SE",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/SE/01",
+      "sourceCrop": {
+        "x": 511,
+        "y": 1365,
+        "w": 301,
+        "h": 376
+      },
+      "placement": [
+        113,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.45999999999999375
+      ],
+      "grip": {
+        "x": 118,
+        "y": 120.84
+      },
+      "hand": "right",
+      "sourceView": "SE",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/SE/02",
+      "sourceCrop": {
+        "x": 511,
+        "y": 1365,
+        "w": 301,
+        "h": 376
+      },
+      "placement": [
+        113,
+        111,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        0.4300000000000068
+      ],
+      "grip": {
+        "x": 118,
+        "y": 120.73
+      },
+      "hand": "right",
+      "sourceView": "SE",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    },
+    {
+      "frame": "idle/hand-grip/SE/03",
+      "sourceCrop": {
+        "x": 511,
+        "y": 1365,
+        "w": 301,
+        "h": 376
+      },
+      "placement": [
+        113,
+        112,
+        10,
+        15
+      ],
+      "subpixelOffset": [
+        0,
+        -0.4099999999999966
+      ],
+      "grip": {
+        "x": 118,
+        "y": 120.89
+      },
+      "hand": "right",
+      "sourceView": "SE",
+      "rotationDegrees": 0,
+      "durationMs": 250,
+      "weaponOnly": true,
+      "depth": "above body-front and staff; below hair"
+    }
+  ]
+}

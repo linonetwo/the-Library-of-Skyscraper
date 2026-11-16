@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "hair-midnight",
+  "source": "arena/art/source/walk-hair-midnight.png",
+  "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+  "frames": [
+    {
+      "frame": "walk/hair-midnight/S/00",
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/S/01",
+      "sourceCrop": {
+        "x": 244,
+        "y": 52,
+        "w": 177,
+        "h": 128
+      },
+      "placement": [
+        58,
+        10,
+        76,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/S/02",
+      "sourceCrop": {
+        "x": 467,
+        "y": 52,
+        "w": 176,
+        "h": 128
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/S/03",
+      "sourceCrop": {
+        "x": 689,
+        "y": 52,
+        "w": 175,
+        "h": 128
+      },
+      "placement": [
+        58,
+        10,
+        76,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/SW/00",
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/SW/01",
+      "sourceCrop": {
+        "x": 245,
+        "y": 272,
+        "w": 177,
+        "h": 134
+      },
+      "placement": [
+        54,
+        10,
+        78,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/SW/02",
+      "sourceCrop": {
+        "x": 466,
+        "y": 273,
+        "w": 178,
+        "h": 135
+      },
+      "placement": [
+        54,
+        9,
+        78,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/SW/03",
+      "sourceCrop": {
+        "x": 688,
+        "y": 273,
+        "w": 177,
+        "h": 134
+      },
+      "placement": [
+        54,
+        10,
+        78,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/W/00",
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/W/01",
+      "sourceCrop": {
+        "x": 252,
+        "y": 494,
+        "w": 169,
+        "h": 141
+      },
+      "placement": [
+        56,
+        10,
+        74,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/W/02",
+      "sourceCrop": {
+        "x": 470,
+        "y": 494,
+        "w": 171,
+        "h": 141
+      },
+      "placement": [
+        56,
+        9,
+        74,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/W/03",
+      "sourceCrop": {
+        "x": 692,
+        "y": 494,
+        "w": 172,
+        "h": 141
+      },
+      "placement": [
+        56,
+        10,
+        74,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/NW/00",
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/NW/01",
+      "sourceCrop": {
+        "x": 253,
+        "y": 718,
+        "w": 167,
+        "h": 138
+      },
+      "placement": [
+        57,
+        10,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/NW/02",
+      "sourceCrop": {
+        "x": 474,
+        "y": 718,
+        "w": 167,
+        "h": 140
+      },
+      "placement": [
+        57,
+        9,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/NW/03",
+      "sourceCrop": {
+        "x": 694,
+        "y": 718,
+        "w": 170,
+        "h": 139
+      },
+      "placement": [
+        57,
+        10,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/N/00",
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/N/01",
+      "sourceCrop": {
+        "x": 245,
+        "y": 939,
+        "w": 176,
+        "h": 139
+      },
+      "placement": [
+        58,
+        10,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/N/02",
+      "sourceCrop": {
+        "x": 466,
+        "y": 939,
+        "w": 177,
+        "h": 139
+      },
+      "placement": [
+        58,
+        9,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/N/03",
+      "sourceCrop": {
+        "x": 689,
+        "y": 939,
+        "w": 176,
+        "h": 139
+      },
+      "placement": [
+        58,
+        10,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/NE/00",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/NE/01",
+      "sourceCrop": {
+        "x": 244,
+        "y": 1161,
+        "w": 173,
+        "h": 140
+      },
+      "placement": [
+        59,
+        10,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/NE/02",
+      "sourceCrop": {
+        "x": 466,
+        "y": 1162,
+        "w": 175,
+        "h": 138
+      },
+      "placement": [
+        59,
+        9,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/NE/03",
+      "sourceCrop": {
+        "x": 686,
+        "y": 1162,
+        "w": 178,
+        "h": 138
+      },
+      "placement": [
+        59,
+        10,
+        76,
+        64
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/E/00",
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/E/01",
+      "sourceCrop": {
+        "x": 245,
+        "y": 1383,
+        "w": 168,
+        "h": 137
+      },
+      "placement": [
+        62,
+        10,
+        74,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/E/02",
+      "sourceCrop": {
+        "x": 467,
+        "y": 1383,
+        "w": 172,
+        "h": 137
+      },
+      "placement": [
+        62,
+        9,
+        74,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/E/03",
+      "sourceCrop": {
+        "x": 688,
+        "y": 1383,
+        "w": 173,
+        "h": 137
+      },
+      "placement": [
+        62,
+        10,
+        74,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/SE/00",
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/SE/01",
+      "sourceCrop": {
+        "x": 243,
+        "y": 1606,
+        "w": 178,
+        "h": 135
+      },
+      "placement": [
+        61,
+        10,
+        78,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/SE/02",
+      "sourceCrop": {
+        "x": 464,
+        "y": 1606,
+        "w": 178,
+        "h": 135
+      },
+      "placement": [
+        61,
+        9,
+        78,
+        62
+      ]
+    },
+    {
+      "frame": "walk/hair-midnight/SE/03",
+      "sourceCrop": {
+        "x": 686,
+        "y": 1606,
+        "w": 178,
+        "h": 135
+      },
+      "placement": [
+        61,
+        10,
+        78,
+        62
+      ]
+    }
+  ]
+}

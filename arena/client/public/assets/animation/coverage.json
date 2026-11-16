@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "arena-animation-2026-11-14.idle.1",
-  "generatedOn": "2026-11-14",
+  "contentVersion": "arena-animation-2026-11-15.motion-grip.1",
+  "generatedOn": "2026-11-15",
   "source": {
     "path": "arena/art/source/walk-body-eight-directions.png",
     "sha256": "0ac437f4d2fc5f79510542ceee29b2ba885ee067a0e386ecd0ff13730ba0417f",
@@ -89,11 +89,12 @@
   "review": {
     "directionViews": "Eight distinct source views visually inspected; NW/NE passing poses drift toward N.",
     "gait": "Four authored poses per direction, cadence/foot-sliding needs review.",
-    "proportion": "Source is approximately 2.5–2.8 heads; exact 3-head normalization pending.",
+    "proportion": "Walk head volume/crown and body baseline normalized against measured idle anatomy, preserving the original 32 gait poses. See walk-registration.json for before/after bounds.",
     "cleanup": "Chroma specks removed; connected pale edge halos still need manual cleanup.",
     "alignment": "Scholar authored per-frame placements share cell anchor; original hand pixels restored as body-front. Vest width and side/back registration need art refinement.",
-    "paperDoll": "Walk body, scholar/warden outfits, ivory/midnight hair and directional staff are registered 32-frame prototypes. Other actions and final visual approval remain outstanding.",
-    "idle": "Dedicated eight-direction standing body and garments. Four breathing/hem/hair deformation frames with bit-identical lower-body pixels. Both hair styles and staff use shared designs with idle-only registrations. All combinations remain prototype pending human approval of proportions, grip closure and transitions."
+    "paperDoll": "Idle and walk share both costume designs and hair scale. Dedicated directional walk gait and clothing twist remain independent.",
+    "idle": "Dedicated eight-direction standing body and garments. Four breathing/hem/hair deformation frames with bit-identical lower-body pixels. Both hair styles and staff use shared designs with idle-only registrations. All combinations remain prototype pending human approval of proportions, grip closure and transitions.",
+    "grip": "Dedicated closed right-hand artwork registered to both actions; foreground fingers occlude the shaft. Detailed wrist/shaft contact and all-direction anatomical approval remain prototype review."
   },
   "coverage": [
     {
@@ -3460,8 +3461,8 @@
   "equipmentSources": [
     {
       "layer": "outfit-scholar",
-      "path": "arena/art/source/walk-outfit-scholar.png",
-      "sha256": "8031c77f62cba2d87a0eb362501065905ad6c202ba1f3cb7656c2e7b431cae2e",
+      "path": "arena/art/source/idle-outfits.png",
+      "sha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
       "provenance": "walk-outfit-scholar.provenance.json"
     },
     {
@@ -3472,8 +3473,8 @@
     },
     {
       "layer": "outfit-warden",
-      "path": "arena/art/source/walk-outfit-warden.png",
-      "sha256": "1bca500224a643dba1ad2577e014406d5d5ac183b6338196894bdb6ebc390b92",
+      "path": "arena/art/source/idle-outfits.png",
+      "sha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
       "provenance": "walk-outfit-warden.provenance.json"
     },
     {
@@ -3549,6 +3550,18 @@
       "layer": "hair-midnight-front",
       "atlas": "idle-hair-midnight-front.json",
       "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+    },
+    {
+      "action": "idle",
+      "layer": "hand-grip",
+      "atlas": "idle-hand-grip.json",
+      "purpose": "Weapon-only closed right-hand fingers over shaft and body-front; direction-specific generated source."
+    },
+    {
+      "action": "walk",
+      "layer": "hand-grip",
+      "atlas": "walk-hand-grip.json",
+      "purpose": "Weapon-only closed right-hand fingers over shaft and body-front; direction-specific generated source."
     }
   ],
   "idleSources": [
@@ -3582,5 +3595,16 @@
       "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
       "method": "Shared directional staff design, column 0 only; dedicated relaxed standing right-hand grip and direction-specific depth, independent from walk carry track."
     }
-  ]
+  ],
+  "walkNormalization": {
+    "registration": "walk-registration.json",
+    "sha256": "1f65cebfdc98d606bc42584ab1fd00512d1da668ce13017fd72254656ca55e39",
+    "reference": "idle-body.png"
+  },
+  "gripSource": {
+    "source": "arena/art/source/grip-hands.png",
+    "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
+    "promptSha256": "aef6a7206206fcdcc6cfe5405eb2b37fc75fe28fe8493d597bfe25f60a53f44a",
+    "method": "Eight newly generated anatomical right-hand closed-grip views, independently registered to idle and normalized walk staff grips. Foreground fingers cover the shaft; empty-hand combinations omit this layer."
+  }
 }

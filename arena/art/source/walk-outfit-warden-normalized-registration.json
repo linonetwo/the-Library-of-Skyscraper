@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "outfit-warden",
+  "source": "arena/art/source/idle-outfits.png",
+  "sourceSha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
+  "frames": [
+    {
+      "frame": "walk/outfit-warden/S/00",
+      "sharedSourceFrame": "idle/outfit-warden/S/00",
+      "twist": -0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/S/01",
+      "sharedSourceFrame": "idle/outfit-warden/S/00",
+      "twist": 0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/S/02",
+      "sharedSourceFrame": "idle/outfit-warden/S/00",
+      "twist": 0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/S/03",
+      "sharedSourceFrame": "idle/outfit-warden/S/00",
+      "twist": -0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/SW/00",
+      "sharedSourceFrame": "idle/outfit-warden/SW/00",
+      "twist": -0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/SW/01",
+      "sharedSourceFrame": "idle/outfit-warden/SW/00",
+      "twist": 0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/SW/02",
+      "sharedSourceFrame": "idle/outfit-warden/SW/00",
+      "twist": 0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/SW/03",
+      "sharedSourceFrame": "idle/outfit-warden/SW/00",
+      "twist": -0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/W/00",
+      "sharedSourceFrame": "idle/outfit-warden/W/00",
+      "twist": -0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/W/01",
+      "sharedSourceFrame": "idle/outfit-warden/W/00",
+      "twist": 0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/W/02",
+      "sharedSourceFrame": "idle/outfit-warden/W/00",
+      "twist": 0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/W/03",
+      "sharedSourceFrame": "idle/outfit-warden/W/00",
+      "twist": -0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/NW/00",
+      "sharedSourceFrame": "idle/outfit-warden/NW/00",
+      "twist": -0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/NW/01",
+      "sharedSourceFrame": "idle/outfit-warden/NW/00",
+      "twist": 0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/NW/02",
+      "sharedSourceFrame": "idle/outfit-warden/NW/00",
+      "twist": 0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/NW/03",
+      "sharedSourceFrame": "idle/outfit-warden/NW/00",
+      "twist": -0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/N/00",
+      "sharedSourceFrame": "idle/outfit-warden/N/00",
+      "twist": -0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/N/01",
+      "sharedSourceFrame": "idle/outfit-warden/N/00",
+      "twist": 0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/N/02",
+      "sharedSourceFrame": "idle/outfit-warden/N/00",
+      "twist": 0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/N/03",
+      "sharedSourceFrame": "idle/outfit-warden/N/00",
+      "twist": -0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/NE/00",
+      "sharedSourceFrame": "idle/outfit-warden/NE/00",
+      "twist": -0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/NE/01",
+      "sharedSourceFrame": "idle/outfit-warden/NE/00",
+      "twist": 0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/NE/02",
+      "sharedSourceFrame": "idle/outfit-warden/NE/00",
+      "twist": 0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/NE/03",
+      "sharedSourceFrame": "idle/outfit-warden/NE/00",
+      "twist": -0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/E/00",
+      "sharedSourceFrame": "idle/outfit-warden/E/00",
+      "twist": -0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/E/01",
+      "sharedSourceFrame": "idle/outfit-warden/E/00",
+      "twist": 0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/E/02",
+      "sharedSourceFrame": "idle/outfit-warden/E/00",
+      "twist": 0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/E/03",
+      "sharedSourceFrame": "idle/outfit-warden/E/00",
+      "twist": -0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/SE/00",
+      "sharedSourceFrame": "idle/outfit-warden/SE/00",
+      "twist": -0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/SE/01",
+      "sharedSourceFrame": "idle/outfit-warden/SE/00",
+      "twist": 0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/SE/02",
+      "sharedSourceFrame": "idle/outfit-warden/SE/00",
+      "twist": 0.8,
+      "bob": 0,
+      "hemLagFactor": 0.55
+    },
+    {
+      "frame": "walk/outfit-warden/SE/03",
+      "sharedSourceFrame": "idle/outfit-warden/SE/00",
+      "twist": -0.6,
+      "bob": 0.6,
+      "hemLagFactor": 0.55
+    }
+  ]
+}
