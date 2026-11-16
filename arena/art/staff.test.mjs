@@ -19,7 +19,7 @@ test('staff depth layers reconstruct all 32 poses at authored grip tracks', asyn
     assert.deepEqual(atlas.frames[entry.frame].anchor, { x: 0.5, y: 0.9 });
     let gripPixels = 0;
     for (let dy = -3; dy <= 3; dy++) for (let dx = -3; dx <= 3; dx++) {
-      const x = col * 196 + 2 + entry.grip.x + dx, y = row * 196 + 2 + entry.grip.y + dy;
+      const x = col * 196 + 2 + Math.round(entry.grip.x) + dx, y = row * 196 + 2 + Math.round(entry.grip.y) + dy;
       if (complete[(y * 784 + x) * 4 + 3] > 96) gripPixels++;
     }
     assert(gripPixels > 0, `${entry.frame} intersects its hand grip`);

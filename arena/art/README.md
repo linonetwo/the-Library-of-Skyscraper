@@ -10,4 +10,6 @@
 
 行走法杖另有32帧完整逻辑层、按朝向拆分的前/后杖层和逐帧握点轨迹。持杖组合预览为 `walk-scholar-staff-preview.png`、`walk-warden-staff-preview.png`；接口与制作过程见 [法杖记录](source/walk-weapon-staff-generation.md)。
 
-独立待机模块使用新生成的八向站姿基础体与学者/守卫衣装，复用两款发型及法杖设计并注册独立待机挂点。`npm run build:idle` 生成13个图集、逐帧来源/挂点与8套组合预览；全量 `build:animation` 已包含此步骤。四帧250ms呼吸、衣摆和发梢微动，脚底固定，不使用walk帧冒充idle。前后发片、前后法杖与前手可独立合成。详情与真实待修项见 [待机制作记录](source/idle-generation.md)。完整美术测试 `npm test` 当前14项；所有已产出的动作仍为prototype。
+独立待机模块使用新生成的八向站姿基础体与学者/守卫衣装，复用两款发型及法杖设计并注册独立待机挂点。四帧250ms呼吸、衣摆和发梢微动，脚底固定，不使用walk帧冒充idle。前后发片、前后法杖与前手可独立合成。详情见 [待机制作记录](source/idle-generation.md)。
+
+11月15日切片将原有32个walk步态注册到idle近三头身基准，两动作共用衣装款式和发型尺寸，并新增仅持杖显示的闭握手指层。全量 `npm run build:animation` 依次生成原始walk、idle、walk归一化、闭握层及对比图。`npm run build:idle` 用于已有walk资源时的待机迭代。完整美术测试 `npm test` 当前18项；来源、量化和新合同见 [动作统一记录](source/motion-unification.md)，所有已产出的动作仍为prototype。

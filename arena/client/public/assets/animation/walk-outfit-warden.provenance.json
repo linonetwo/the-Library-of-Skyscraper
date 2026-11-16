@@ -1,12 +1,19 @@
 {
   "schemaVersion": 1,
+  "action": "walk",
+  "layer": "outfit-warden",
   "status": "prototype",
   "releaseApproved": false,
-  "sourceSha256": "1bca500224a643dba1ad2577e014406d5d5ac183b6338196894bdb6ebc390b92",
-  "promptSha256": "5cf05a1de7a6e676af39a8293fe9d39e4f9ed52897482657c2b5214cda9f5155",
-  "recipeSha256": "0e3a209714e8fa255f66a800eecd8a4ee3e5fa35824215f39759659a6dde662e",
-  "atlasPngSha256": "136c576ac99ef3582b362b06414c4e92a0ebfafc277629382c0e035bbca391da",
   "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/idle-outfits.png",
+  "sourceSha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
+  "promptSha256": "53a58dbd944125ca6d529567fbe2db94bc0310d918d484c0e5ca67d3fdb15f0c",
+  "method": "Same generated costume design as idle, independent walk torso twist and hem phases; not a new image generation.",
+  "normalizationSha256": "1f65cebfdc98d606bc42584ab1fd00512d1da668ce13017fd72254656ca55e39",
+  "recipeSha256": "7255e215f15848384e6705e9400b0572840978062b235b1aa5b65b6c21b08c01",
+  "registration": "arena/art/source/walk-outfit-warden-normalized-registration.json",
+  "review": "Normalized to idle proportions; original four-phase gait retained. All direction/hand contacts require visual approval.",
+  "atlasPngSha256": "22e4d6007a0936c02a232ea4f9ba8b95a6d40bbf639a76fe8c3957ac3770aaf5",
   "cell": [
     192,
     192
@@ -14,6 +21,5 @@
   "anchor": [
     0.5,
     0.9
-  ],
-  "review": "32 authored leather-armor poses registered to body. Shoulder-cap occlusion and side/back direction refinement remains."
+  ]
 }

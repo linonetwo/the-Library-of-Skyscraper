@@ -23,7 +23,7 @@ const hairPlacements = [
   [61,9,70,62], [57,9,72,62], [59,9,68,62], [60,9,70,64],
   [61,9,70,64], [62,9,70,64], [65,9,68,62], [64,9,72,62],
 ];
-const hands = [[74,123],[73,122],[88,121],[116,122],[117,122],[118,122],[105,121],[119,122]];
+const hands = [[74,121],[73,121],[97,122],[112,120],[118,121],[117,121],[94,122],[118,121]];
 const all = {}, recipes = {}, registrations = [], layerRegistrations = {};
 const bodyProv = await sourceProvenance('idle-body.png', 'idle-body-prompt.txt',
   'Eight newly generated dedicated standing views, normalized to planted soles; four upper-body breathing deformations with unchanged lower body.');
@@ -105,10 +105,15 @@ for (let row = 0; row < 8; row++) {
   const sprite = staffSource.sprites[row * 4], { crop } = sprite;
   const localTop = Math.round(row * staffSource.sourceSize[1] / 8);
   const [gx, gy] = sourceGripTracks[row][0];
-  const scale = 0.53, w = Math.round(crop.w * scale), h = Math.round(crop.h * scale);
-  const x = Math.round(hands[row][0] - (gx-crop.x) * w/crop.w);
-  const y = Math.round(hands[row][1] - (gy-(crop.y-localTop)) * h/crop.h);
-  const base = await place(sprite.image, [x,y,w,h]);
+  const angle=row===6?14:0,radians=angle*Math.PI/180;
+  const rotated=await sharp(sprite.image).rotate(angle,{background:'#00000000'}).png().toBuffer();
+  const meta=await sharp(rotated).metadata(),localX=gx-crop.x,localY=gy-(crop.y-localTop);
+  const gripX=meta.width/2+(localX-crop.w/2)*Math.cos(radians)-(localY-crop.h/2)*Math.sin(radians);
+  const gripY=meta.height/2+(localX-crop.w/2)*Math.sin(radians)+(localY-crop.h/2)*Math.cos(radians);
+  const scale = 0.53, w = Math.round(meta.width * scale), h = Math.round(meta.height * scale);
+  const x = Math.round(hands[row][0] - gripX*w/meta.width);
+  const y = Math.round(hands[row][1] - gripY*h/meta.height);
+  const base = await place(rotated, [x,y,w,h]);
   for (const layer of ['weapon-staff', 'weapon-staff-back', 'weapon-staff-front']) all[layer][row] = [];
   for (let col = 0; col < 4; col++) {
     const cell = await breathe(base, col, { kind: 'staff' });
@@ -116,7 +121,7 @@ for (let row = 0; row < 8; row++) {
     for (const depth of ['back','front']) all[`weapon-staff-${depth}`][row].push(staffDepth[row] === depth ? cell : empty);
     staffAttachments.push({ frame: frameName('idle','weapon-staff',directions[row],col), hand: 'right',
       grip: { x: hands[row][0], y: registrations[row*4+col].attachments.rightHand[1] },
-      depth: staffDepth[row], sourceGrip: { x:gx, y:gy }, placement: [x,y,w,h], carryLeanDegrees: 0 });
+      depth: staffDepth[row], sourceGrip: { x:gx, y:gy }, placement: [x,y,w,h], carryLeanDegrees: angle });
   }
 }
 const packed = {};
