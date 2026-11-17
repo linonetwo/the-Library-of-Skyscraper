@@ -1,6 +1,7 @@
+import { openMenu, closeOverlay, stepTraining } from './hud-helpers';
 import { test, expect } from "@playwright/test";
 import { ActorMotion, facing } from "../../client/src/actorMotion";
-import { floorPoint } from "../../client/src/libraryLayout";
+import { actorSlot } from "../../client/src/mapLayout";
 
 test("eight facings and continuous motion across new destinations", () => {
   const directions = [
@@ -24,6 +25,7 @@ test("battlefield paper doll walks between authoritative room destinations", asy
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
+  await openMenu(page, '训练控制');
   await page.getByRole("button", { name: "暂停", exact: true }).click();
   const poses = () => page.locator(".pixi-map").getAttribute("data-actors")
     .then(value => JSON.parse(value || "[]") as {
@@ -41,12 +43,12 @@ test("battlefield paper doll walks between authoritative room destinations", asy
     await send({ type: "equip", actorId: "p1-scout",
       appearance: { outfit: "scholar", hair: "ivory", weapon: false } });
   });
-  await expect(page.getByText("TICK 0000", { exact: true })).toBeVisible();
+  await expect.poll(() => page.evaluate(async () => {const a=JSON.parse(sessionStorage.getItem("arena-session")!);return (await fetch(`/api/sessions/${a.sessionId}/state`,{headers:{Authorization:`Bearer ${a.token}`}}).then(r=>r.json())).tick;})).toBe(0);
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout"))
-    .toMatchObject({ x: 39, y: floorPoint(0, 0).y + 4, moving: false });
+    .toMatchObject({ ...actorSlot({q:0,r:0} as Parameters<typeof actorSlot>[0],2), moving: false });
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.animation)
     .toBe("idle");
-  await page.getByRole("button", { name: "单步", exact: true }).click();
+  await stepTraining(page);
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.moving,
     { intervals: [20, 20, 30] }).toBe(true);
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.moving).toBe(false);

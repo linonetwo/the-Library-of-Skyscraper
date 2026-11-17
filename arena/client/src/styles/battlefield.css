@@ -58,35 +58,6 @@
   background: #233735;
   box-shadow: inset 0 0 50px #0008;
 }
-.map-art {
-  position: absolute;
-  z-index: -3;
-  inset: 0;
-  background-image: url("/assets/library-map.png");
-  background-size: cover;
-  background-position: center;
-  filter: saturate(0.65) brightness(0.75);
-}
-.map-art:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, transparent, #12232866);
-}
-.map-shade {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    linear-gradient(
-      0deg,
-      #10252bd9,
-      transparent 20%,
-      transparent 78%,
-      #10252bbd
-    ),
-    radial-gradient(ellipse at 50% 50%, transparent, #0b202a55);
-}
 .map-shell:before,
 .map-shell:after {
   content: "";

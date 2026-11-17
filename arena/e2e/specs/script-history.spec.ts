@@ -1,3 +1,4 @@
+import { openMenu, closeOverlay } from './hud-helpers';
 import { test, expect, type Page } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -15,7 +16,7 @@ async function capture(page: Page, label: string) {
 }
 
 async function openScripts(page: Page) {
-  await page.getByRole("button", { name: "行动规则", exact: true }).click();
+  await openMenu(page, '行动规则');
   await page.getByRole("button", { name: "编写 TypeScript 规则 →" }).click();
   await expect(page.getByRole("textbox", { name: "TypeScript规则源码" })).toBeVisible({ timeout: 20000 });
 }
@@ -40,6 +41,7 @@ test("history loads a multi-file draft, shows differences and restores the battl
   page.on("pageerror", error => errors.push(error.stack ?? error.message));
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
+  await openMenu(page, '训练控制');
   await page.getByRole("button", { name: "重置训练局" }).click();
   const seeded = await page.evaluate(async () => {
     const session = JSON.parse(sessionStorage.getItem("arena-session")!);
@@ -104,6 +106,7 @@ export function decide(ctx: RuleContext) {
 test("a diagnostic opens its source file in the multi-file editor", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
+  await openMenu(page, '训练控制');
   await page.getByRole("button", { name: "重置训练局" }).click();
   await openScripts(page);
   await page.getByLabel("新规则文件名").fill("helpers.ts");
@@ -122,6 +125,7 @@ test("a diagnostic opens its source file in the multi-file editor", async ({ pag
 test("a delayed publication cannot replace a newly opened session", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
+  await openMenu(page, '训练控制');
   await openScripts(page);
   const previous = await page.evaluate(() => JSON.parse(sessionStorage.getItem("arena-session")!).sessionId);
   let release!: () => void;
@@ -136,7 +140,7 @@ test("a delayed publication cannot replace a newly opened session", async ({ pag
   });
   await page.getByRole("button", { name: "发布到战场" }).click();
   await intercepted;
-  await page.getByRole("button", { name: "联机大厅", exact: true }).click();
+  await openMenu(page, '联机大厅');
   await page.getByRole("dialog", { name: "赛局入口" }).getByRole("button", { name: "本地训练", exact: false }).click();
   await expect.poll(() => page.evaluate(() => JSON.parse(sessionStorage.getItem("arena-session")!).sessionId)).not.toBe(previous);
   const current = await page.evaluate(() => JSON.parse(sessionStorage.getItem("arena-session")!).sessionId);

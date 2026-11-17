@@ -30,6 +30,7 @@ export default function Battlefield() {
     showRoutes,
     setShowRoutes,
     view,
+    setView,
     setLobby,
     player,
     room,
@@ -178,6 +179,7 @@ export default function Battlefield() {
           </div>
         </div>
         {room && view === "map" && <RoomPopup room={room} />}
+        {view !== "map" && <button className="overlay-close" aria-label="关闭面板" onClick={() => setView("map")}>返回地图 ×</button>}
         {view === "rules" && (
           <div className="workspace-overlay">
             <RuleEditor />

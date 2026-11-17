@@ -54,7 +54,7 @@ export default function CharacterInspector() {
           hair={actor?.appearance.hair ?? "ivory"}
           weapon={actor?.appearance.weapon ?? true}
         />
-        <span className="portrait-caption">LAYERED DOLL / 共用动作图层</span>
+        <span className="portrait-caption">旅人装备</span>
         <div className="portrait-seal">
           <Feather size={19} />
         </div>
@@ -127,7 +127,7 @@ export default function CharacterInspector() {
             携带法杖
           </label>
         </div>
-        <small>行走试产：学者或守卫服／月白发型，支持持杖与空手。墨蓝发型行动层继续制作。</small>
+        <small>选择衣装、发型与随身持物。</small>
       </div>
       <div className="quick-actions">
         <button

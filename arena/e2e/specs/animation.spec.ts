@@ -13,11 +13,11 @@ test("eight directions play real distinct frames and allow deterministic inspect
   await page.getByText("图层与素材信息", {exact:true}).click();
   await expect(page.getByRole("note")).toContainText("32 帧独立图集");
   await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-outfit")).toHaveCount(8);
-  await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-hair")).toHaveCount(8);
+  await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-hair")).toHaveCount(16);
   await page.getByLabel("月白发型动画层").uncheck();
   await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-hair")).toHaveCount(0);
   await page.getByLabel("月白发型动画层").check();
-  await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-hair")).toHaveCount(8);
+  await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-hair")).toHaveCount(16);
   await page.getByLabel("学者服动画层").uncheck();
   await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-outfit")).toHaveCount(0);
   await page.getByLabel("学者服动画层").check();

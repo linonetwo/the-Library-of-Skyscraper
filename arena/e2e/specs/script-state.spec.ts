@@ -1,3 +1,4 @@
+import { openMenu, closeOverlay, stepTraining } from './hud-helpers';
 import { test, expect } from '@playwright/test';
 import path from 'node:path';
 import { writeFile } from 'node:fs/promises';
@@ -6,8 +7,9 @@ test('memory gather displays persistent counter, task queue and pure preview', a
   test.setTimeout(60000);
   await page.goto('/');
   await page.getByRole('button', { name: '开启训练远征' }).click();
+  await openMenu(page, '训练控制');
   await page.getByRole('button', { name: '重置训练局' }).click();
-  await page.getByRole('button', { name: '行动规则', exact: true }).click();
+  await openMenu(page, '行动规则');
   await page.getByRole('button', { name: '编写 TypeScript 规则 →' }).click();
   await page.getByLabel('载入规则模板').selectOption('memory-gather');
   await page.getByRole('button', { name: '发布到战场' }).click();
@@ -18,7 +20,7 @@ test('memory gather displays persistent counter, task queue and pure preview', a
     return response.json();
   });
   await expect.poll(async () => (await state()).sourceHash).toBeTruthy();
-  await page.getByRole('button', { name: '单步', exact: true }).click();
+  await stepTraining(page);
   await expect.poll(async () => (await state()).memory.ticks).toBe(1);
   await expect(page.getByLabel('规则记忆')).toContainText('"ticks": 1');
   await expect(page.getByLabel('规则任务队列').getByRole('listitem')).toHaveCount(3);
@@ -26,7 +28,7 @@ test('memory gather displays persistent counter, task queue and pure preview', a
   await page.getByRole('button', { name: '试跑当前快照' }).click();
   await expect(page.getByLabel('试跑状态补丁')).toBeVisible();
   expect(await state()).toEqual(before);
-  await page.getByRole('button', { name: '单步', exact: true }).click();
+  await stepTraining(page);
   await expect.poll(async () => (await state()).memory.ticks).toBe(2);
   await expect(page.getByLabel('规则记忆')).toContainText('"ticks": 2');
   if (process.env.ARENA_CAPTURE_DAY) {
@@ -51,9 +53,9 @@ test('slow online state responses render and changing sessions clears old memory
     await route.continue();
   });
   await page.goto('/');
-  await page.getByRole('button', { name: '联机大厅', exact: true }).click();
+  await openMenu(page, '联机大厅');
   await page.getByRole('button', { name: /创建联机/ }).click();
-  await page.getByRole('button', { name: '行动规则', exact: true }).click();
+  await openMenu(page, '行动规则');
   await page.getByRole('button', { name: '编写 TypeScript 规则 →' }).click();
   await page.getByLabel('载入规则模板').selectOption('memory-gather');
   await page.getByRole('button', { name: '发布到战场' }).click();
@@ -62,9 +64,9 @@ test('slow online state responses render and changing sessions clears old memory
   const first = await page.getByLabel('规则记忆').innerText();
   await expect.poll(() => page.getByLabel('规则记忆').innerText(), { timeout: 15000 }).not.toBe(first);
   holdNew = true;
-  await page.getByRole('button', { name: '联机大厅', exact: true }).click();
+  await openMenu(page, '联机大厅');
   await page.getByRole('dialog', { name: '赛局入口' }).getByRole('button', { name: /本地训练/ }).click();
-  await page.getByRole('button', { name: '行动规则', exact: true }).click();
+  await openMenu(page, '行动规则');
   await page.getByRole('button', { name: '编写 TypeScript 规则 →' }).click();
   await expect(page.getByRole('region', { name: '规则运行状态' })).toContainText('正在展开策略笔记');
   await expect(page.getByLabel('规则记忆')).toHaveCount(0);

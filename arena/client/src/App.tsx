@@ -1,3 +1,4 @@
+import { usePanelFocus } from "./usePanelFocus";
 import { Check, X } from "lucide-react";
 import { ArenaContext, useArenaWorkspace } from "./ArenaWorkspace";
 import GameHUD from "./GameHUD";
@@ -9,6 +10,8 @@ import HelpDialog from "./HelpDialog";
 export default function App() {
   const workspace = useArenaWorkspace();
   const { lobby, help, error, setError, notice, inspecting, setInspecting } = workspace;
+  usePanelFocus(inspecting, () => setInspecting(false));
+  usePanelFocus(workspace.view !== "map", () => workspace.setView("map"), ".game-top button");
   return (
     <ArenaContext.Provider value={workspace}>
       <div className="app-shell">

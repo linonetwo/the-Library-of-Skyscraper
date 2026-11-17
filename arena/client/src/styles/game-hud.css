@@ -234,3 +234,16 @@
 }
 .map-bottomline {bottom:170px}
 @media(max-width:700px){.map-bottomline {bottom:170px}}
+.character-drawer, .character-drawer * { box-sizing: border-box; min-width: 0; }
+.character-drawer { padding: 16px; }
+.character-drawer .outfit-options { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+.character-drawer .stat-value { overflow-wrap: anywhere; }
+.overlay-close { position: fixed; top: 72px; right: 24px; z-index: 45; }
+@media (max-width: 760px) {
+ .character-drawer .inspector { display: flex; flex-direction: column; width: 100%; padding: 0; gap: 16px; }
+ .character-drawer .inspector > * { width: 100%; margin-left: 0; margin-right: 0; grid-column: auto; }
+ .character-drawer .portrait-frame { height: 192px; }
+ .character-drawer .character-stats { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .character-drawer .wardrobe-options { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .character-drawer .appearance-options { display: flex; flex-wrap: wrap; }
+}
