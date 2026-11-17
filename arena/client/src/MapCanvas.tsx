@@ -36,7 +36,7 @@ export default function MapCanvas(props: MapProps) {
     let dragged=false;
     const applyCamera=()=>{
       const p=latest.current;controller.focus(p.focusIntent);
-      const camera=controller.apply(bounds,host.clientWidth,host.clientHeight,p.zoom,id=>poses.find(a=>a.id===id),id=>{const r=p.snapshot?.rooms.find(r=>r.id===id);return r?project(8*r.q+4*r.r,8*r.r):undefined;});
+      const camera=controller.apply(bounds,host.clientWidth,host.clientHeight,p.zoom,id=>{const actor=poses.find(a=>a.id===id);if(!actor)return undefined;const unit=p.snapshot?.actors.find(a=>a.id===id),room=p.snapshot?.rooms.find(r=>r.id===unit?.roomId);if(!room)return actor;const center=project(8*room.q+4*room.r,8*room.r);const neighbors=(p.snapshot?.rooms??[]).filter(r=>{const q=r.q-room.q,v=r.r-room.r;return (Math.abs(q)+Math.abs(v)+Math.abs(q+v))/2===1;}).map(r=>project(8*r.q+4*r.r,8*r.r)).sort((a,b)=>Math.hypot(a.x-center.x,a.y-center.y)-Math.hypot(b.x-center.x,b.y-center.y));const neighbor=neighbors[0]??center;return {x:actor.x*.82+neighbor.x*.18,y:actor.y*.82+neighbor.y*.18};},id=>{const r=p.snapshot?.rooms.find(r=>r.id===id);return r?project(8*r.q+4*r.r,8*r.r):undefined;});
       world.position.set(camera.x,camera.y);world.scale.set(camera.scale);host.dataset.camera=JSON.stringify(camera);
     };
     const pointerDown=(event:PointerEvent)=>{drag={x:event.clientX,y:event.clientY,camera:{...controller.transform}};dragged=false;};
