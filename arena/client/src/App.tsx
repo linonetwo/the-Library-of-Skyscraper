@@ -1,11 +1,9 @@
 import { Check, X } from "lucide-react";
 import { ArenaContext, useArenaWorkspace } from "./ArenaWorkspace";
-import NavigationRail from "./NavigationRail";
-import ArenaHeader from "./ArenaHeader";
+import GameHUD from "./GameHUD";
 import Battlefield from "./Battlefield";
 import CharacterInspector from "./CharacterInspector";
 import LobbyDialog from "./LobbyDialog";
-import SelectedActorHUD from "./SelectedActorHUD";
 import HelpDialog from "./HelpDialog";
 
 export default function App() {
@@ -14,12 +12,11 @@ export default function App() {
   return (
     <ArenaContext.Provider value={workspace}>
       <div className="app-shell">
-        <NavigationRail />
+
         <div className="main-shell" inert={lobby || help}>
-          <ArenaHeader />
+          <GameHUD />
           <main className="workspace">
             <Battlefield />
-            <SelectedActorHUD />
             {inspecting && <div className="character-drawer"><button className="drawer-close" aria-label="关闭角色面板" onClick={() => setInspecting(false)}>关闭 ×</button><CharacterInspector /></div>}
           </main>
         </div>

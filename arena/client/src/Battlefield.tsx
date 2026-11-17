@@ -10,8 +10,6 @@ import {
 import MapCanvas from "./MapCanvas";
 
 import { useArena } from "./ArenaWorkspace";
-import SquadPanel from "./SquadPanel";
-import SimulationBar from "./SimulationBar";
 import RoomPopup from "./RoomPopup";
 import JournalPanel from "./JournalPanel";
 import RuleEditor from "./RuleEditor";
@@ -185,9 +183,6 @@ export default function Battlefield() {
         )}
         {view === "journal" && <JournalPanel />}
       </div>
-      <SimulationBar />
-
-      <SquadPanel />
     </section>
   );
 }

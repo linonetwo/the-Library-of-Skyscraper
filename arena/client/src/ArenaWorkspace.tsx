@@ -56,6 +56,7 @@ export function useArenaWorkspace() {
   const isOwner = actor?.owner === session?.playerId;
   const selectActor = (id: string) => {
     setSelected(id);
+    setInspecting(false);
     setSelectedRoom(null);
   };
   useEffect(() => {
