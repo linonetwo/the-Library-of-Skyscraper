@@ -79,7 +79,8 @@ export async function walkFrames() {
     const attachment={frame:frameName('walk','weapon-staff',directions[row],col),hand:'right',grip:{x:hand[0],y:hand[1]},
       carryLeanDegrees:angle,depth:staffDepth[row],placement:p,sourceHandCenter:hands[row][col],durationMs:125};
     attachments.push(attachment);
-    for(const layer of dollLayers)recipes[layer].push({...entry,frame:frameName('walk',layer,directions[row],col),
+    for(const layer of dollLayers)recipes[layer].push({frame:frameName('walk',layer,directions[row],col),
+      bodyFrame:entry.frame,durationMs:125,sourceCrop:sprite.crop,
       ...(layer.startsWith('weapon')||layer==='hand-grip'?{attachment}:{}),
       ...(layer.startsWith('outfit')?{sourceCrop:clothes[layer.slice(7)].sprites[index].crop,
         placement:[garments[row][0]-(layer.endsWith('warden')?3:0),garments[row][1]+Math.round(bob),

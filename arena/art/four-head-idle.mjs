@@ -71,7 +71,8 @@ export async function idleFrames() {
         if(layer.startsWith('hair')){const width=layer.includes('ivory')?46:49;extra.placement=[Math.round(96-width/2),7,width,43];}
         if(layer.startsWith('weapon'))extra.placement=register.staffPlacement;
         if(layer==='hand-grip')extra.placement=[Math.round(register.attachments.rightHand[0]-3.5),Math.round(register.attachments.rightHand[1]-6.2),7,10];
-        recipes[layer].push({...entry,...extra,frame:frameName('idle',layer,directions[row],col)});
+        recipes[layer].push({frame:frameName('idle',layer,directions[row],col),bodyFrame:entry.frame,
+          durationMs:250,sourceCrop:register.sourceCrop,deformation:entry.deformation,...extra});
       }
       attachments.push({frame:frameName('idle','weapon-staff',directions[row],col),hand:'right',
         grip:{x:points.rightHand[0],y:points.rightHand[1]},carryLeanDegrees:0,depth:register.staffDepth,
