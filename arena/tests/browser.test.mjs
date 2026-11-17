@@ -32,6 +32,14 @@ test('MCP browser controls outfits, map, Monaco publication and captures PNG', {
   await action({ type: 'chooseHair', hair: 'midnight' });
   await action({ type: 'toggleStaff', equipped: false });
   await action({ type: 'selectRoom', room: 'room-1' });
+  const overview = JSON.parse((await call('Page.getState')).content[0].text).maps[0];
+  assert.equal(overview.roomTargets.length, 7);
+  await action({ type: 'panMap', dx: 90, dy: 40 });
+  const panned = JSON.parse((await call('Page.getState')).content[0].text).maps[0];
+  assert.notEqual(panned.camera.x, overview.camera.x);
+  await action({ type: 'overviewMap' });
+  await action({ type: 'selectRoom', room: 'room-1' });
+  await action({ type: 'moveToRoom' });
   await action({ type: 'zoom', direction: 'in' });
   await action({ type: 'setRule', preset: 'defend', retreatHp: 35 });
   const state = JSON.parse((await call('Page.getState')).content[0].text);
