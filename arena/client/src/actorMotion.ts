@@ -26,7 +26,10 @@ export class ActorMotion {
     let remaining=lengths.reduce((a,b)=>a+b,0)*progress;
     let index=0;while(index<lengths.length-1 && remaining>lengths[index])remaining-=lengths[index++];
     const a=path[index],b=path[index+1],t=lengths[index]?remaining/lengths[index]:1;
-    if(moving && lengths[index])this.direction=facing(a,b);
+    if(this.path.length){
+      if(moving && lengths[index])this.direction=facing(a,b);
+      else if(!moving){const final=lengths.findLastIndex(length=>length>0);if(final>=0)this.direction=facing(path[final],path[final+1]);}
+    }
     return {x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t,moving,direction:this.direction,
       frame:animationFrame(moving?'walk':'idle',moving?now-this.actionStarted:now)};
   }

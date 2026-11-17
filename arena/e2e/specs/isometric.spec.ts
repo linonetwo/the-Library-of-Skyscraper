@@ -12,7 +12,15 @@ test('isometric geometry, legal corridors and continuous paths',()=>{
  for(const link of layout.links)for(let i=1;i<link.points.length;i++)expect(Math.abs(link.points[i].x-link.points[i-1].x)+Math.abs(link.points[i].y-link.points[i-1].y)).toBe(1);
  expect(fitMap({minX:-400,minY:-200,maxX:400,maxY:200},360,800).scale*800).toBeLessThanOrEqual(288);
  const controller=new CameraController();controller.focus({kind:'actor',id:'a',revision:1});const bounds={minX:-500,minY:-500,maxX:500,maxY:500};const camera=controller.apply(bounds,400,800,1,()=>({x:100,y:100}),()=>undefined);controller.pan(30,20,400,800);const moved=controller.apply(bounds,400,800,1,()=>({x:900,y:900}),()=>undefined);expect(moved.x).toBeCloseTo(camera.x+30);controller.focus({kind:'actor',id:'a',revision:2});expect(controller.mode.kind).toBe('actor');
- const motion=new ActorMotion({x:0,y:0});motion.move({x:100,y:100},0,false,[{x:100,y:0}]);expect(motion.sample(225)).toMatchObject({x:100,y:0,moving:true});expect(motion.sample(450)).toMatchObject({x:100,y:100,moving:false});
+ const motion=new ActorMotion({x:0,y:0});motion.move({x:100,y:100},0,false,[{x:100,y:0}]);expect(motion.sample(225)).toMatchObject({x:100,y:0,moving:true});expect(motion.sample(450)).toMatchObject({x:100,y:100,moving:false,direction:'S'});const late=new ActorMotion({x:0,y:0});late.move({x:100,y:100},0,false,[{x:100,y:0}]);expect(late.sample(600).direction).toBe(motion.sample(600).direction);
+});
+
+test('overview pan keeps scale and zoom buttons affect overview',()=>{
+ const c=new CameraController(),bounds={minX:-1000,minY:-600,maxX:1000,maxY:600};
+ const apply=(zoom=1)=>c.apply(bounds,1200,800,zoom,()=>undefined,()=>undefined);
+ const before={...apply()};c.pan(100,30,1200,800);const after=apply();
+ expect(after.scale).toBe(before.scale);expect(after.x).toBeCloseTo(before.x+100);expect(after.y).toBeCloseTo(before.y+30);
+ c.overview();const base=apply().scale;expect(apply(1.1).scale).toBeCloseTo(base*1.1);
 });
 
 test('real tile stage preserves camera picking and movement',async({page})=>{
@@ -22,6 +30,7 @@ test('real tile stage preserves camera picking and movement',async({page})=>{
  const map=page.locator('.pixi-map').first();await expect(map.locator('canvas')).toBeVisible();await expect.poll(()=>page.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();await expect.poll(()=>map.getAttribute('data-actors')).toBeTruthy();
  const data=await page.evaluate(async()=>{const a=JSON.parse(sessionStorage.getItem('arena-session')!);const headers={Authorization:'Bearer '+a.token,'Content-Type':'application/json'};await fetch(`/api/sessions/${a.sessionId}/commands`,{method:'POST',headers,body:JSON.stringify({type:'reset'})});const state=await fetch(`/api/sessions/${a.sessionId}/state`,{headers}).then(r=>r.json());return {a,state};});
  await page.getByRole('button',{name:'全图总览',exact:true}).click();
+ const initialCamera=JSON.parse((await map.getAttribute('data-camera'))!);await page.getByRole('button',{name:'放大地图',exact:true}).click();await expect.poll(async()=>JSON.parse((await map.getAttribute('data-camera'))!).scale).toBeGreaterThan(initialCamera.scale);
  const destination=data.state.rooms.find((r:{q:number;r:number})=>r.q===1&&r.r===0);const point=project(8,0);
  const clickRoom=async()=>{const box=await map.boundingBox();const camera=JSON.parse((await map.getAttribute('data-camera'))!);await page.mouse.click(box!.x+camera.x+point.x*camera.scale,box!.y+camera.y+point.y*camera.scale);};
  await clickRoom();await expect(page.locator('body')).toContainText(destination.name);
@@ -29,7 +38,7 @@ test('real tile stage preserves camera picking and movement',async({page})=>{
  await expect.poll(async()=>JSON.parse((await map.getAttribute('data-actors'))!).find((a:{id:string})=>a.id==='p1-scout')?.moving,{intervals:[10,20]}).toBe(true);
  await expect.poll(async()=>JSON.parse((await map.getAttribute('data-actors'))!).find((a:{id:string})=>a.id==='p1-scout')?.animation).toBe('idle');
  await page.screenshot({path:'/tmp/arena-isometric-wide.png',fullPage:true});
- const before=JSON.parse((await map.getAttribute('data-camera'))!);const rect=await map.boundingBox();await page.mouse.move(rect!.x+rect!.width*.5,rect!.y+rect!.height*.6);await page.mouse.down();await page.mouse.move(rect!.x+rect!.width*.5+60,rect!.y+rect!.height*.6+30,{steps:6});await page.mouse.up();await expect.poll(async()=>Math.round(JSON.parse((await map.getAttribute('data-camera'))!).x-before.x)).toBe(60);
+ const before=JSON.parse((await map.getAttribute('data-camera'))!);const rect=await map.boundingBox();await page.mouse.move(rect!.x+rect!.width*.5,rect!.y+rect!.height*.6);await page.mouse.down();await page.mouse.move(rect!.x+rect!.width*.5+60,rect!.y+rect!.height*.6+30,{steps:6});await page.mouse.up();await expect.poll(async()=>Math.round(JSON.parse((await map.getAttribute('data-camera'))!).x-before.x)).toBe(60);expect(JSON.parse((await map.getAttribute('data-camera'))!).scale).toBe(before.scale);
  await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'全图总览',exact:true}).click();await clickRoom();expect(requests.some(r=>r.includes('/assets/tiles/'))).toBe(true);expect(requests.some(r=>r.includes('library-map.png'))).toBe(false);expect(errors).toEqual([]);await page.screenshot({path:'/tmp/arena-isometric-narrow.png',fullPage:true});
 });
 
