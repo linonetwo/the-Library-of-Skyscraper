@@ -8,10 +8,12 @@
   "source": "arena/art/source/walk-hair-ivory.png",
   "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
   "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
-  "method": "Shared directional hair artwork (column 0 only), re-registered to dedicated idle crown; low-amplitude lagged tip sway, not a reused walk animation.",
-  "recipeSha256": "d5aaaf23e4289a8b006447cc5cec2e6931e6fce0b8f31b343552d3f7c35213df",
-  "registration": "arena/art/source/idle-hair-ivory-registration.json",
-  "atlasPngSha256": "8fc89b8c979cdf1b355273116bfa63a8117e3530758b1192add7e291487b48c0",
+  "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks.",
+  "proportion": "four-head",
+  "registration": "arena/art/source/four-head-idle-hair-ivory-registration.json",
+  "recipeSha256": "ab6660e5eb8a7de46d3b77f07c15d7fd06d8c13a3a3915fcbe5defd02f0bd61b",
+  "review": "Four-head neutral fit passed independent production review; full action/runtime approval remains pending.",
+  "atlasPngSha256": "e9a9ec8a14a19db700ea88e0799664d3c6796371e73f03cc4f8474055a6497c4",
   "cell": [
     192,
     192

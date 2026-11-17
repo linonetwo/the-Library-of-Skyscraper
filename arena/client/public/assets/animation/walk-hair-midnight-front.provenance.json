@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "hair-midnight-front",
+  "status": "prototype",
+  "releaseApproved": false,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/walk-hair-midnight.png",
+  "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+  "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+  "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks.",
+  "proportion": "four-head",
+  "registration": "arena/art/source/four-head-walk-hair-midnight-front-registration.json",
+  "recipeSha256": "304ff26f3f3a2fae2ae3ac4f89ff5d67c2f39c5dd2fc41140361f7117634941d",
+  "review": "Four-head neutral fit passed independent production review; full action/runtime approval remains pending.",
+  "atlasPngSha256": "153de2598c6d5f6030c4c1a302617d5a12c7332b2ff716876de157707d9060f1",
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ]
+}

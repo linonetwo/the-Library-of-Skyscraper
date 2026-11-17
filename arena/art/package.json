@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "node build-atlas.mjs",
-    "build:animation": "node build-animation.mjs && node prepare-scholar-walk.mjs && node prepare-ivory-walk.mjs && node prepare-warden-walk.mjs && node prepare-staff-walk.mjs && node prepare-midnight-walk.mjs && node prepare-idle.mjs && node normalize-walk.mjs && node prepare-grips.mjs && node motion-previews.mjs",
-    "build:idle": "node prepare-idle.mjs && node prepare-grips.mjs && node motion-previews.mjs",
+    "build:animation": "node prepare-tiles.mjs && node prepare-four-head-fit.mjs && node prepare-four-head-actions.mjs && node motion-previews.mjs",
+    "build:idle": "npm run build:animation",
     "build:tiles": "node prepare-tiles.mjs",
     "build:fit": "node prepare-four-head-fit.mjs",
     "test": "node --test"

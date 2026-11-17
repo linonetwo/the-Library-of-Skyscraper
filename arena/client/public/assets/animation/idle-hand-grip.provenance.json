@@ -8,10 +8,12 @@
   "source": "arena/art/source/grip-hands.png",
   "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
   "promptSha256": "aef6a7206206fcdcc6cfe5405eb2b37fc75fe28fe8493d597bfe25f60a53f44a",
-  "method": "Eight newly generated anatomical right-hand closed-grip views, independently registered to idle and normalized walk staff grips. Foreground fingers cover the shaft; empty-hand combinations omit this layer.",
-  "registration": "arena/art/source/idle-hand-grip-registration.json",
-  "recipeSha256": "52ae6f671973d0bf4f35d71a5abaa9db08dd6d10f9177940acb703c112ee0c7f",
-  "atlasPngSha256": "7ef2d6a96fabef02bb1f2c56f25e940953a25907c6ae11a9d92a6ecece4c4e14",
+  "method": "Closed fingers over registered shaft, weapon-only.",
+  "proportion": "four-head",
+  "registration": "arena/art/source/four-head-idle-hand-grip-registration.json",
+  "recipeSha256": "82e6ca4dbf2ceba0eff40053b3f18146193dae07c131654f4b0b4b867151493e",
+  "review": "Four-head neutral fit passed independent production review; full action/runtime approval remains pending.",
+  "atlasPngSha256": "8a6eecbe225246e21918f6f8c70f91dffbcbb6d8ba6d3ec506b047a282ca48fe",
   "cell": [
     192,
     192

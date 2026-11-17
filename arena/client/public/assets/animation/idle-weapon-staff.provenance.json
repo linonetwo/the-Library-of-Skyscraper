@@ -8,10 +8,12 @@
   "source": "arena/art/source/walk-weapon-staff.png",
   "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
   "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
-  "method": "Shared directional staff design, column 0 only; dedicated relaxed standing right-hand grip and direction-specific depth, independent from walk carry track.",
-  "recipeSha256": "1b4aeaaf0696c63f2d9a6a82787262ccaea49ad870bf4b8be5b76c14f4a952fc",
-  "registration": "arena/art/source/idle-weapon-staff-registration.json",
-  "atlasPngSha256": "bc88bdc46381f7df94d948ab9b221b2a5b647c1b85863a57eac9428e39f9ded0",
+  "method": "Existing dedicated directional staff design, four-head hand registration.",
+  "proportion": "four-head",
+  "registration": "arena/art/source/four-head-idle-weapon-staff-registration.json",
+  "recipeSha256": "8eefe62fbf1f65e7244a7148161bec6cb20e6d66c2c2d3faf1bae914675a8ba1",
+  "review": "Four-head neutral fit passed independent production review; full action/runtime approval remains pending.",
+  "atlasPngSha256": "f4421a30e3f3beed0fe6ee19390f9388a822f10736f22a8474f0bc03deff66b2",
   "cell": [
     192,
     192

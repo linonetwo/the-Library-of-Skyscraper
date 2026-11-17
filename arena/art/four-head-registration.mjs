@@ -2,7 +2,7 @@ import sharp from 'sharp';
 import { interpolate } from './motion-registration.mjs';
 
 export const skeleton = {crown:12,chin:52,neck:56,shoulder:62,waist:94,hip:112,knee:142,sole:172};
-export async function normalizeNeutral(sprite) {
+export async function normalizeNeutral(sprite,pose={}) {
   const {data,info}=await sharp(sprite.image).ensureAlpha().raw().toBuffer({resolveWithObject:true});
   // Remove connected off-white matte around the preserved source, never interior skin highlights.
   const queue=[],visited=new Uint8Array(info.width*info.height);
@@ -17,13 +17,14 @@ export async function normalizeNeutral(sprite) {
       if(nx>=0&&nx<info.width&&ny>=0&&ny<info.height)queue.push(ny*info.width+nx);
   }
   let lo=info.width,hi=0;
-  for(let y=0;y<64;y++)for(let x=0;x<info.width;x++)if(data[(y*info.width+x)*4+3]>128) {
+  const headCut=pose.headCut??63;
+  for(let y=0;y<headCut+1;y++)for(let x=0;x<info.width;x++)if(data[(y*info.width+x)*4+3]>128) {
     lo=Math.min(lo,x);hi=Math.max(hi,x);
   }
-  const headCenter=(lo+hi)/2,headScale=40/(hi-lo+1),bodyCenter=info.width/2,bodyScale=.46;
-  const knots=[[0,12],[63,52],[76,58],[168,94],[210,112],[300,142],[info.height,173]];
+  const headCenter=(lo+hi)/2,headScale=40/(hi-lo+1),bodyCenter=pose.bodyCenter??info.width/2,bodyScale=pose.bodyScale??.46;
+  const knots=pose.knots??[[0,12],[63,52],[76,58],[168,94],[210,112],[300,142],[info.height,173]];
   const map=([x,y])=>{
-    const mix=Math.max(0,Math.min(1,(y-63)/25));
+    const mix=Math.max(0,Math.min(1,(y-headCut)/(pose.blendHeight??25)));
     const scale=headScale*(1-mix)+bodyScale*mix,center=headCenter*(1-mix)+bodyCenter*mix;
     return [96+(x-center)*scale,interpolate(y,knots)];
   };
@@ -40,8 +41,8 @@ export async function normalizeNeutral(sprite) {
     output[p+3]=Math.round(alpha*255);
   }
   return {image:await sharp(output,{raw:{width:192,height:192,channels:4}}).png().toBuffer(),
-    map,recipe:{sourceCrop:sprite.crop,sourceHeadBounds:[lo,0,hi,63],headCenter,headScale,bodyCenter,bodyScale,
-      yKnots:knots,skeleton,groundPivot:[96,172.8],solePixelRow:172,sourceDeviation:'Generated source was approximately six heads; piecewise anatomy registration corrects it to four.'}};
+    map,recipe:{sourceCrop:sprite.crop,sourceHeadBounds:[lo,0,hi,headCut],headCenter,headScale,bodyCenter,bodyScale,
+      yKnots:knots,skeleton,groundPivot:[96,172.8],solePixelRow:172,sourceDeviation:'Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.'}};
 }
 
 export async function frontArms(image) {

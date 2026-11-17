@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "arena-animation-2026-11-15.motion-grip.1",
-  "generatedOn": "2026-11-15",
+  "contentVersion": "arena-animation-2026-11-17.four-head.1",
+  "generatedOn": "2026-11-17",
   "source": {
-    "path": "arena/art/source/walk-body-eight-directions.png",
-    "sha256": "0ac437f4d2fc5f79510542ceee29b2ba885ee067a0e386ecd0ff13730ba0417f",
+    "path": "arena/art/source/four-head-walk-body.png",
+    "sha256": "63dc95d19943b8e01310ef88105a656c6f39ed8be5a65ff6f7d19de11680250d",
     "generator": "GPT Image 2 via proxy-imagegen"
   },
   "cell": [
@@ -77,24 +77,23 @@
     "SE": "toward camera right"
   },
   "defaultLayerOrder": [
-    "weapon-back",
+    "weapon-staff-back",
     "hair-back",
     "body",
     "outfit",
-    "hair-front",
-    "weapon-front"
+    "weapon-staff-front",
+    "body-front",
+    "hand-grip",
+    "hair-front"
   ],
   "releaseReady": false,
   "runtimePolicy": "prototype-preview-only; missing layers never count as animation coverage",
   "review": {
-    "directionViews": "Eight distinct source views visually inspected; NW/NE passing poses drift toward N.",
-    "gait": "Four authored poses per direction, cadence/foot-sliding needs review.",
-    "proportion": "Walk head volume/crown and body baseline normalized against measured idle anatomy, preserving the original 32 gait poses. See walk-registration.json for before/after bounds.",
-    "cleanup": "Chroma specks removed; connected pale edge halos still need manual cleanup.",
-    "alignment": "Scholar authored per-frame placements share cell anchor; original hand pixels restored as body-front. Vest width and side/back registration need art refinement.",
-    "paperDoll": "Idle and walk share both costume designs and hair scale. Dedicated directional walk gait and clothing twist remain independent.",
-    "idle": "Dedicated eight-direction standing body and garments. Four breathing/hem/hair deformation frames with bit-identical lower-body pixels. Both hair styles and staff use shared designs with idle-only registrations. All combinations remain prototype pending human approval of proportions, grip closure and transitions.",
-    "grip": "Dedicated closed right-hand artwork registered to both actions; foreground fingers occlude the shaft. Detailed wrist/shaft contact and all-direction anatomical approval remain prototype review."
+    "proportion": "Reviewed neutral four-head skeleton: crown12/chin52/sole172, common anchor172.8; both actions migrated together.",
+    "gait": "Dedicated newly generated 32 walk body poses; idle uses independent standing source and upper-body breath. Full runtime gait review pending.",
+    "paperDoll": "14 physical layers per action, 2 outfits × 2 hair designs × empty/staff; both actions include foreground hands and hair/staff depth splits.",
+    "grip": "Per-frame right-hand staff and weapon-only grip registration; all contacts require independent runtime approval.",
+    "cleanup": "Source near-white matte/chroma cleanup and alpha resampling; fine edges and limb joins remain prototype review."
   },
   "coverage": [
     {
@@ -3458,153 +3457,284 @@
       "releaseApproved": false
     }
   ],
-  "equipmentSources": [
-    {
-      "layer": "outfit-scholar",
-      "path": "arena/art/source/idle-outfits.png",
-      "sha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
-      "provenance": "walk-outfit-scholar.provenance.json"
-    },
-    {
-      "layer": "hair-ivory",
-      "path": "arena/art/source/walk-hair-ivory.png",
-      "sha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
-      "provenance": "walk-hair-ivory.provenance.json"
-    },
-    {
-      "layer": "outfit-warden",
-      "path": "arena/art/source/idle-outfits.png",
-      "sha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
-      "provenance": "walk-outfit-warden.provenance.json"
-    },
-    {
-      "layer": "weapon-staff",
-      "path": "arena/art/source/walk-weapon-staff.png",
-      "sha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
-      "provenance": "walk-weapon-staff.provenance.json"
-    },
-    {
-      "layer": "hair-midnight",
-      "path": "arena/art/source/walk-hair-midnight.png",
-      "sha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
-      "provenance": "walk-hair-midnight.provenance.json"
-    }
-  ],
   "auxiliaryLayers": [
-    {
-      "layer": "body-front",
-      "action": "walk",
-      "atlas": "walk-body-front.json",
-      "purpose": "Visible forearms and hands composited above sleeveless outfits; sampled from body source."
-    },
-    {
-      "layer": "weapon-staff-back",
-      "action": "walk",
-      "atlas": "walk-weapon-staff-back.json",
-      "purpose": "Directional back occlusion for the right-hand staff; opposite-depth rows are transparent."
-    },
-    {
-      "layer": "weapon-staff-front",
-      "action": "walk",
-      "atlas": "walk-weapon-staff-front.json",
-      "purpose": "Directional front occlusion for the right-hand staff; opposite-depth rows are transparent."
-    },
     {
       "action": "idle",
       "layer": "body-front",
       "atlas": "idle-body-front.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
-    },
-    {
-      "action": "idle",
-      "layer": "weapon-staff-back",
-      "atlas": "idle-weapon-staff-back.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
-    },
-    {
-      "action": "idle",
-      "layer": "weapon-staff-front",
-      "atlas": "idle-weapon-staff-front.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-ivory-back",
       "atlas": "idle-hair-ivory-back.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-ivory-front",
       "atlas": "idle-hair-ivory-front.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-midnight-back",
       "atlas": "idle-hair-midnight-back.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-midnight-front",
       "atlas": "idle-hair-midnight-front.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff-back",
+      "atlas": "idle-weapon-staff-back.json",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff-front",
+      "atlas": "idle-weapon-staff-front.json",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hand-grip",
       "atlas": "idle-hand-grip.json",
-      "purpose": "Weapon-only closed right-hand fingers over shaft and body-front; direction-specific generated source."
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "body-front",
+      "atlas": "walk-body-front.json",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory-back",
+      "atlas": "walk-hair-ivory-back.json",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory-front",
+      "atlas": "walk-hair-ivory-front.json",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight-back",
+      "atlas": "walk-hair-midnight-back.json",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight-front",
+      "atlas": "walk-hair-midnight-front.json",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff-back",
+      "atlas": "walk-weapon-staff-back.json",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff-front",
+      "atlas": "walk-weapon-staff-front.json",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "hand-grip",
       "atlas": "walk-hand-grip.json",
-      "purpose": "Weapon-only closed right-hand fingers over shaft and body-front; direction-specific generated source."
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     }
   ],
-  "idleSources": [
+  "fourHeadSources": [
     {
-      "source": "arena/art/source/idle-body.png",
-      "sourceSha256": "cfa4c561a348a3f0ae07f77315bbb431b0a9b038179eaebc25fb6512f5361fd9",
-      "promptSha256": "5afcf934b32be1f20170af3b9eb65014594b7980700739988cb8ea3cdb8b0a7c",
-      "method": "Eight newly generated dedicated standing views, normalized to planted soles; four upper-body breathing deformations with unchanged lower body."
+      "action": "idle",
+      "layers": {
+        "body": {
+          "source": "arena/art/source/four-head-neutral.png",
+          "sourceSha256": "b8f934e7cf81064127c3daf450963d9b52f1321333b0f3b5d2956acb086b888e",
+          "promptSha256": "5f3db292e4d3c934fdc1328e31e0cf9e00030ae100b19b36d8ce3c004aa74b53",
+          "method": "Dedicated standing source, reviewed four-head neutral anatomy registration, upper-body breath with unchanged feet."
+        },
+        "body-front": {
+          "source": "arena/art/source/four-head-neutral.png",
+          "sourceSha256": "b8f934e7cf81064127c3daf450963d9b52f1321333b0f3b5d2956acb086b888e",
+          "promptSha256": "5f3db292e4d3c934fdc1328e31e0cf9e00030ae100b19b36d8ce3c004aa74b53",
+          "method": "Dedicated standing source, reviewed four-head neutral anatomy registration, upper-body breath with unchanged feet."
+        },
+        "outfit-scholar": {
+          "source": "arena/art/source/four-head-outfits.png",
+          "sourceSha256": "e231bd6f4e5b78c1623300b9fa34bd2e1fbaa33bd5c973ad3223ff57bffc2039",
+          "promptSha256": "b3f53542d064f7b6487586823c02ddff9503f4bfa10dd8a894e22ec4282d9b16",
+          "method": "Independent neutral garment views, reviewed fit with four-head anatomy, shoulder breath and delayed hem flutter."
+        },
+        "outfit-warden": {
+          "source": "arena/art/source/four-head-outfits.png",
+          "sourceSha256": "e231bd6f4e5b78c1623300b9fa34bd2e1fbaa33bd5c973ad3223ff57bffc2039",
+          "promptSha256": "b3f53542d064f7b6487586823c02ddff9503f4bfa10dd8a894e22ec4282d9b16",
+          "method": "Independent neutral garment views, reviewed fit with four-head anatomy, shoulder breath and delayed hem flutter."
+        },
+        "hair-ivory": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-ivory-back": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-ivory-front": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-midnight": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-midnight-back": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-midnight-front": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "weapon-staff": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Existing dedicated directional staff design, four-head hand registration."
+        },
+        "weapon-staff-back": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Existing dedicated directional staff design, four-head hand registration."
+        },
+        "weapon-staff-front": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Existing dedicated directional staff design, four-head hand registration."
+        },
+        "hand-grip": {
+          "source": "arena/art/source/grip-hands.png",
+          "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
+          "promptSha256": "aef6a7206206fcdcc6cfe5405eb2b37fc75fe28fe8493d597bfe25f60a53f44a",
+          "method": "Closed fingers over registered shaft, weapon-only."
+        }
+      }
     },
     {
-      "source": "arena/art/source/idle-outfits.png",
-      "sourceSha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
-      "promptSha256": "53a58dbd944125ca6d529567fbe2db94bc0310d918d484c0e5ca67d3fdb15f0c",
-      "method": "Newly generated standing garments, eight dedicated directional views per outfit; registered breathing and hem flutter."
-    },
-    {
-      "source": "arena/art/source/walk-hair-ivory.png",
-      "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
-      "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
-      "method": "Shared directional hair artwork (column 0 only), re-registered to dedicated idle crown; low-amplitude lagged tip sway, not a reused walk animation."
-    },
-    {
-      "source": "arena/art/source/walk-hair-midnight.png",
-      "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
-      "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
-      "method": "Shared directional hair artwork (column 0 only), re-registered to dedicated idle crown; low-amplitude lagged tip sway, not a reused walk animation."
-    },
-    {
-      "source": "arena/art/source/walk-weapon-staff.png",
-      "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
-      "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
-      "method": "Shared directional staff design, column 0 only; dedicated relaxed standing right-hand grip and direction-specific depth, independent from walk carry track."
+      "action": "walk",
+      "layers": {
+        "body": {
+          "source": "arena/art/source/four-head-walk-body.png",
+          "sourceSha256": "63dc95d19943b8e01310ef88105a656c6f39ed8be5a65ff6f7d19de11680250d",
+          "promptSha256": "8cdd08e650993ed16d3af902698303767dd89a64b54350d1af273b7889412761",
+          "method": "32 independently generated walking poses; registered against reviewed neutral four-head skeleton, no neutral pose substitution."
+        },
+        "body-front": {
+          "source": "arena/art/source/four-head-walk-body.png",
+          "sourceSha256": "63dc95d19943b8e01310ef88105a656c6f39ed8be5a65ff6f7d19de11680250d",
+          "promptSha256": "8cdd08e650993ed16d3af902698303767dd89a64b54350d1af273b7889412761",
+          "method": "32 independently generated walking poses; registered against reviewed neutral four-head skeleton, no neutral pose substitution."
+        },
+        "outfit-scholar": {
+          "source": "arena/art/source/four-head-walk-scholar.png",
+          "sourceSha256": "6235e42160224baf85ca7a25d0369d286f7f686375a604547e7566d49cb09bca",
+          "promptSha256": "9f24ac2d1715deadf4778c0e8ca71eff8d375b62c824bc4907dc4cd990292891",
+          "method": "32 independently generated walking garment poses of the same four-head neutral costume design.",
+          "designSource": "arena/art/source/four-head-outfits.png"
+        },
+        "outfit-warden": {
+          "source": "arena/art/source/four-head-walk-warden.png",
+          "sourceSha256": "b79c46d7225f26886ec2ecd9c3d42b0ffc98065191540d3bda742951dc1a7e93",
+          "promptSha256": "7c7556efcb53c265a90558e71a9c61ffb314c63632c4325279207a5940f00d2c",
+          "method": "32 independently generated walking garment poses of the same four-head neutral costume design.",
+          "designSource": "arena/art/source/four-head-outfits.png"
+        },
+        "hair-ivory": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-ivory-back": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-ivory-front": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-midnight": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-midnight-back": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-midnight-front": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "weapon-staff": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Shared directional staff design; independently authored four-head walk hand tracks and carry angles."
+        },
+        "weapon-staff-back": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Shared directional staff design; independently authored four-head walk hand tracks and carry angles."
+        },
+        "weapon-staff-front": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Shared directional staff design; independently authored four-head walk hand tracks and carry angles."
+        },
+        "hand-grip": {
+          "source": "arena/art/source/grip-hands.png",
+          "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
+          "promptSha256": "aef6a7206206fcdcc6cfe5405eb2b37fc75fe28fe8493d597bfe25f60a53f44a",
+          "method": "Closed fingers registered over each corresponding shaft and original body palm."
+        }
+      }
     }
-  ],
-  "walkNormalization": {
-    "registration": "walk-registration.json",
-    "sha256": "1f65cebfdc98d606bc42584ab1fd00512d1da668ce13017fd72254656ca55e39",
-    "reference": "idle-body.png"
-  },
-  "gripSource": {
-    "source": "arena/art/source/grip-hands.png",
-    "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
-    "promptSha256": "aef6a7206206fcdcc6cfe5405eb2b37fc75fe28fe8493d597bfe25f60a53f44a",
-    "method": "Eight newly generated anatomical right-hand closed-grip views, independently registered to idle and normalized walk staff grips. Foreground fingers cover the shaft; empty-hand combinations omit this layer."
-  }
+  ]
 }
