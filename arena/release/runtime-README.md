@@ -4,7 +4,7 @@ Game source: {{sourceCommit}}. The package manifest records the game source and 
 
 ## Run
 
-Use Linux x86_64, Node.js 24 and a WebGL browser. The package includes debug Rust authority and V8 runner binaries, the production frontend, compiler, SDK and runtime Node dependencies.
+Use Linux x86_64 with `setsid` (util-linux), Node.js 24 and a WebGL browser. The package includes debug Rust authority and V8 runner binaries, the production frontend, compiler, SDK and runtime Node dependencies.
 
 With local ports 5173 and 8787 available, run `./start.sh` and open http://127.0.0.1:5173/ or http://127.0.0.1:5173/animation-lab. The frontend serves the production dist and proxies `/api` and `/ws` to the package-local authority. Ctrl-C stops the preview and authority.
 
