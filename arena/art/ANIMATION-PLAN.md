@@ -1,6 +1,7 @@
 # 纸娃娃八向动作美术合同
 
 状态：试产。最新矩阵：`../client/public/assets/animation/coverage.json`。
+2026-11-17 用户更正：四头身真实分层纸娃娃取代旧三头身目标；v0.2.0统一迁移idle/walk及全部换装，run移至v0.3.0候选。192px cell保留，四头身源骨架与128×64标准iso地块合同见`source/four-head-isometric-contract.md`；下文三头身说明仅描述历史试产，不再是验收目标。
 2026-11-05 已完成 walk 身体、学者服、守卫服、月白发、法杖各32帧叠层，以及前景手臂/前后杖遮挡处理。
 2026-11-14 新增午夜发32帧，复用头冠/耳线注册，接入检查台发型切换与战场行走。来源详见 `source/walk-hair-midnight-generation.md`；全部仍为 prototype。
 2026-11-14 新增完整 idle 试产：专用八向站姿基础体与两套新绘站姿衣装，复用两发型/法杖设计并注册独立待机挂点；四帧呼吸/衣摆/发梢微动，脚底固定。13个图集含前手、前后发片与前后法杖，2×2×2组合预览。来源及待修项见 `source/idle-generation.md`，全部仍为 prototype，未授予发布批准。
