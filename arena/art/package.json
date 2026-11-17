@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node build-atlas.mjs",
+    "build": "npm run build:animation",
+    "build:archive": "node build-atlas.mjs",
     "build:animation": "node prepare-tiles.mjs && node prepare-four-head-fit.mjs && node prepare-four-head-actions.mjs && node motion-previews.mjs",
     "build:idle": "npm run build:animation",
     "build:tiles": "node prepare-tiles.mjs",

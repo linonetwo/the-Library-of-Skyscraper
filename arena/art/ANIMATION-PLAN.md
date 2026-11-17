@@ -7,7 +7,7 @@
 - 独立中立身体`source/four-head-neutral.png`与衣装`source/four-head-outfits.png`经四头骨架注册；64中立换装方向组合已通过独立制作门。不是整套动作发布批准。
 - idle由该专用站姿源产生四帧呼吸/衣摆/发梢微动，y112以下身体像素不动；walk用`source/four-head-walk-body.png`、`four-head-walk-scholar.png`、`four-head-walk-warden.png`的独立动作源。两发型与法杖复用既有设计并重新注册，闭握为持杖专用层。
 - 当前每动作14个图集，共28个。每层保留源图/prompt哈希、源裁切、挂点/摆放和可复建注册。真实生成结果、源偏差与待修项仅记`source/four-head-generation.md`。
-- 主构建直接执行地块→四头中立fit→四头idle/walk→组合预览，不先生成历史角色再覆盖。`npm run build:animation && npm test`；地块单独`npm run build:tiles`，中立fit单独`npm run build:fit`。
+- 默认`npm run build`与`npm run build:animation`均直接执行地块→四头中立fit→四头idle/walk→组合预览，不生成历史整图/角色覆盖。验收`npm run build && npm test`；地块单独`npm run build:tiles`，中立fit单独`npm run build:fit`。旧整图构建仅保留为显式`npm run build:archive`历史入口。
 
 ## 统一接口
 
