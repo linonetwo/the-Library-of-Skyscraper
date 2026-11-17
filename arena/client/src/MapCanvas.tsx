@@ -27,16 +27,30 @@ export default function MapCanvas(props: MapProps) {
     let renderLayer = new Container();
     const entities = new Container({sortableChildren:true});
     let tiles:Record<string,Texture> = {};
-    const paint = () => {
+    let overview=false,pan={x:0,y:0},focusKey='',cameraZoom=1;
+    let drag:{x:number;y:number;startX:number;startY:number}|null=null;
+    let dragged=false;
+    const focus=()=>{const p=latest.current;const actor=p.snapshot?.actors.find(a=>a.id===p.selected);const room=p.snapshot?.rooms.find(r=>r.id===(p.selectedRoom??actor?.roomId));return room?project(8*room.q+4*room.r,8*room.r):{x:0,y:0};};
+    const pointerDown=(event:PointerEvent)=>{drag={x:event.clientX,y:event.clientY,startX:pan.x,startY:pan.y};dragged=false;};
+    const pointerMove=(event:PointerEvent)=>{if(!drag)return;const dx=event.clientX-drag.x,dy=event.clientY-drag.y;if(Math.hypot(dx,dy)>5)dragged=true;if(dragged){pan={x:drag.startX+dx,y:drag.startY+dy};paint(false);}};
+    const pointerUp=()=>{drag=null;};
+    const wheel=(event:WheelEvent)=>{event.preventDefault();cameraZoom=Math.max(.5,Math.min(2.5,cameraZoom*Math.exp(-event.deltaY*.001)));overview=false;paint(false);};
+    const paint = (scene=true) => {
       if (!actors || disposed) return;
       const p = latest.current;
       const points=mapLayout(p.snapshot?.rooms??[]).tiles.map(t=>project(t.x,t.y));
       if(points.length){const camera=fitMap({minX:Math.min(...points.map(p=>p.x))-64,maxX:Math.max(...points.map(p=>p.x))+64,minY:Math.min(...points.map(p=>p.y))-192,maxY:Math.max(...points.map(p=>p.y))+112},host.clientWidth,host.clientHeight,p.zoom);
+       const key=p.selectedRoom??p.selected??'';
+       if(key!==focusKey){focusKey=key;pan={x:0,y:0};overview=false;}
+       if(!overview){const center=focus();camera.scale=Math.max(.7,Math.min(1,host.clientWidth/900))*p.zoom*cameraZoom;camera.x=host.clientWidth/2-center.x*camera.scale;camera.y=host.clientHeight*.47-center.y*camera.scale;}
+       camera.x+=pan.x;camera.y+=pan.y;
        world.position.set(camera.x,camera.y);world.scale.set(camera.scale);host.dataset.camera=JSON.stringify(camera);}
+
+      if(!scene)return;
       renderLayer.destroy({children:true});renderLayer=new Container();world.addChildAt(renderLayer,0);
       for(const child of [...entities.children])if(!child.label.startsWith('actor:'))child.destroy({children:true});
-      paintMap(renderLayer,p,entities,tiles);
-      actors.update(p, performance.now());
+      paintMap(renderLayer,{...p,onRoom:id=>{if(!dragged)p.onRoom(id);}},entities,tiles);
+      actors.update({...p,onSelect:id=>{if(!dragged)p.onSelect(id);}}, performance.now());
     };
     redraw.current = paint;
     void (async () => {
@@ -69,6 +83,12 @@ export default function MapCanvas(props: MapProps) {
           host.dataset.actors = JSON.stringify(actors.render(performance.now()));
         });
         host.appendChild(app.canvas);
+        host.style.touchAction='none';
+        host.addEventListener('pointerdown',pointerDown);
+        window.addEventListener('pointermove',pointerMove);
+        window.addEventListener('pointerup',pointerUp);
+        host.addEventListener('wheel',wheel,{passive:false});
+        const overviewButton=document.createElement('button');overviewButton.textContent='全图总览';overviewButton.setAttribute('aria-label','全图总览');overviewButton.style.cssText='position:absolute;right:18px;bottom:120px;z-index:2';overviewButton.onclick=()=>{overview=true;pan={x:0,y:0};paint(false);};host.appendChild(overviewButton);
         app.stage.addChild(world);
         resize = new ResizeObserver(() => {
           app.renderer.resize(host.clientWidth, host.clientHeight);
@@ -87,6 +107,7 @@ export default function MapCanvas(props: MapProps) {
     return () => {
       disposed = true;
       resize?.disconnect();
+      host.removeEventListener('pointerdown',pointerDown);window.removeEventListener('pointermove',pointerMove);window.removeEventListener('pointerup',pointerUp);host.removeEventListener('wheel',wheel);
       document.removeEventListener("visibilitychange", visibility);
       redraw.current = () => {};
       // Live and replay maps share Pixi's global asset and batch pools.
