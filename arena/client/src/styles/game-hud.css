@@ -232,3 +232,5 @@
  .character-drawer {inset:60px 8px 116px;width:auto}
  .map-shell {height:100dvh;min-height:100dvh}
 }
+.map-bottomline {bottom:170px}
+@media(max-width:700px){.map-bottomline {bottom:170px}}
