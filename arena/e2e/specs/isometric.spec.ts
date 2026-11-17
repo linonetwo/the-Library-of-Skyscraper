@@ -43,6 +43,7 @@ test('two clients share grid destinations and select actors through the camera',
  await expect.poll(async()=>Boolean(await pose(guest))).toBe(true);
  await host.evaluate(async(a)=>{const headers={Authorization:'Bearer '+a.token,'Content-Type':'application/json'};await fetch(`/api/sessions/${a.sessionId}/scripts/publish`,{method:'POST',headers,body:JSON.stringify({files:{'main.ts':'export function decide(){return {intents:[]};}'}})});const r=await fetch(`/api/sessions/${a.sessionId}/commands`,{method:'POST',headers,body:JSON.stringify({type:'move',actorId:'p1-scout',roomId:'room-1'})});if(!r.ok)throw new Error(await r.text());},auth);
  await expect.poll(async()=>{const a=await pose(host),b=await pose(guest);return a&&!a.moving&&b&&!b.moving&&a.x===b.x&&a.y===b.y;}).toBe(true);
+ await host.getByRole('button',{name:'全图总览',exact:true}).click();
  const map=host.locator('.pixi-map').first(),box=await map.boundingBox(),camera=JSON.parse((await map.getAttribute('data-camera'))!),actor=await pose(host);
  await host.mouse.click(box!.x+camera.x+actor.x*camera.scale,box!.y+camera.y+(actor.y-70)*camera.scale);
  await expect(host.getByLabel('选中角色操作')).toContainText('巡书使');await host.screenshot({path:'/tmp/arena-isometric-online.png',fullPage:true});await one.close();await two.close();
