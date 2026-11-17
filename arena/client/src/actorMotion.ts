@@ -12,6 +12,7 @@ export class ActorMotion {
   private from: Point;
   private to: Point;
   private started = 0;
+  private actionStarted = 0;
   direction: Direction = "S";
   constructor(position: Point, readonly duration = 450) {
     this.from = this.to = position;
@@ -24,7 +25,7 @@ export class ActorMotion {
       y: this.from.y + (this.to.y - this.from.y) * progress,
       moving,
       direction: this.direction,
-      frame: animationFrame(moving ? "walk" : "idle", moving ? now - this.started : now),
+      frame: animationFrame(moving ? "run" : "idle", moving ? now - this.actionStarted : now),
     };
   }
   move(to: Point, now: number, snap = false) {
@@ -33,7 +34,9 @@ export class ActorMotion {
       return;
     }
     if (to.x === this.to.x && to.y === this.to.y) return;
-    this.from = this.sample(now);
+    const previous = this.sample(now);
+    if (!previous.moving) this.actionStarted = now;
+    this.from = previous;
     this.direction = facing(this.to, to);
     this.to = to;
     this.started = now;

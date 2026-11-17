@@ -45,7 +45,7 @@ export class ActorView {
     const pose = this.motion.sample(now);
     this.node.position.set(pose.x, pose.y);
     this.node.zIndex = pose.y;
-    const action = pose.moving ? "walk" : "idle";
+    const action = pose.moving ? "run" : "idle";
     const key = `${pose.direction}/${String(pose.frame).padStart(2, "0")}`;
     if (`${action}/${key}` !== this.frameKey) {
       this.frameKey = `${action}/${key}`;

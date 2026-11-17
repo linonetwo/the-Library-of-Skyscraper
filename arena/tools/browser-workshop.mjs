@@ -2,7 +2,7 @@ import { z } from 'zod';
 const directions = {S:'正面', SW:'左前', W:'左侧', NW:'左后', N:'背面', NE:'右后', E:'右侧', SE:'右前'};
 const empty = ['openWorkshop','returnToArena','playWorkshop','pauseWorkshop','stepWorkshop'];
 const fields = {
- setWorkshopAction:{action:z.enum(['idle','walk'])},
+ setWorkshopAction:{action:z.enum(['idle','walk','run'])},
  selectWorkshopDirection:{direction:z.enum(Object.keys(directions))},
  setWorkshopFps:{fps:z.union([2,4,8,12].map(z.literal))},
  setWorkshopOutfit:{outfit:z.enum(['scholar','warden'])},
