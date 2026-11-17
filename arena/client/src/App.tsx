@@ -4,13 +4,13 @@ import NavigationRail from "./NavigationRail";
 import ArenaHeader from "./ArenaHeader";
 import Battlefield from "./Battlefield";
 import CharacterInspector from "./CharacterInspector";
-import EventStrip from "./EventStrip";
 import LobbyDialog from "./LobbyDialog";
+import SelectedActorHUD from "./SelectedActorHUD";
 import HelpDialog from "./HelpDialog";
 
 export default function App() {
   const workspace = useArenaWorkspace();
-  const { lobby, help, error, setError, notice } = workspace;
+  const { lobby, help, error, setError, notice, inspecting, setInspecting } = workspace;
   return (
     <ArenaContext.Provider value={workspace}>
       <div className="app-shell">
@@ -19,9 +19,9 @@ export default function App() {
           <ArenaHeader />
           <main className="workspace">
             <Battlefield />
-            <CharacterInspector />
+            <SelectedActorHUD />
+            {inspecting && <div className="character-drawer"><button className="drawer-close" aria-label="关闭角色面板" onClick={() => setInspecting(false)}>关闭 ×</button><CharacterInspector /></div>}
           </main>
-          <EventStrip />
         </div>
         {error && (
           <div className="toast error" role="alert">

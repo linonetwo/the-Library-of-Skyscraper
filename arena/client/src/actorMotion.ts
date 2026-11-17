@@ -25,7 +25,7 @@ export class ActorMotion {
       y: this.from.y + (this.to.y - this.from.y) * progress,
       moving,
       direction: this.direction,
-      frame: animationFrame(moving ? "run" : "idle", moving ? now - this.actionStarted : now),
+      frame: animationFrame(moving ? "walk" : "idle", moving ? now - this.actionStarted : now),
     };
   }
   move(to: Point, now: number, snap = false) {

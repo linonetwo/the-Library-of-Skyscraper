@@ -54,7 +54,7 @@ export default function CharacterInspector() {
           hair={actor?.appearance.hair ?? "ivory"}
           weapon={actor?.appearance.weapon ?? true}
         />
-        <span className="portrait-caption">PAPER DOLL / 三头身纸娃娃</span>
+        <span className="portrait-caption">LAYERED DOLL / 共用动作图层</span>
         <div className="portrait-seal">
           <Feather size={19} />
         </div>

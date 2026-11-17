@@ -24,6 +24,7 @@ export const stateName = (value = "idle") => stateNames[value] || value;
 export function useArenaWorkspace() {
   const arena = useArenaSession();
   const { session, snapshot, connection, busy } = arena;
+  const [inspecting, setInspecting] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
   const [zoom, setZoom] = useState(1);
@@ -87,6 +88,8 @@ export function useArenaWorkspace() {
     start,
     resume,
     selected,
+    inspecting,
+    setInspecting,
     selectedRoom,
     setSelectedRoom,
     equip,

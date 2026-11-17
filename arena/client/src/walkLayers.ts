@@ -20,9 +20,6 @@ import type { AnimationAction } from "./animationCatalog";
 export type { AnimationAction } from "./animationCatalog";
 export const animationLayerNames: Record<AnimationAction, string[]> = {
   walk: walkLayerNames,
-  run: ["body", "body-front", "outfit-scholar", "outfit-warden",
-    "hair-ivory", "hair-ivory-back", "hair-ivory-front", "hair-midnight", "hair-midnight-back", "hair-midnight-front",
-    "weapon-staff", "weapon-staff-back", "weapon-staff-front", "hand-grip"],
   idle: [...walkLayerNames.filter(layer => !layer.startsWith("hair-")),
     "hair-ivory-back", "hair-ivory-front", "hair-midnight-back", "hair-midnight-front"],
 };

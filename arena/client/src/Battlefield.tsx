@@ -65,8 +65,6 @@ export default function Battlefield() {
         </div>
       </div>
       <div className="map-shell">
-        <div className="map-art" />
-        <div className="map-shade" />
         <div className="map-topline">
           <span>
             <Compass size={14} /> 第一书库 /
@@ -87,7 +85,7 @@ export default function Battlefield() {
                 ))}
               </select>
             ) : (
-              "六边形房间网络"
+              "书苑地块"
             )}
           </span>
           <button

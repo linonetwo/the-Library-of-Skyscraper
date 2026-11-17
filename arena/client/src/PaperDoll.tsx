@@ -1,49 +1,22 @@
-import type { Outfit } from "./types";
-import atlasData from "../public/assets/doll-atlas.json";
-import { dollLayers } from "./dollLayers";
+import { useEffect, useState } from "react";
+import { animationFrame } from "./animationCatalog";
+import type { Appearance } from "./types";
+import { AnimatedDollPreview, type AnimationAtlas } from "./AnimatedDollPreview";
+import { animationLayerNames, animationLayers } from "./walkLayers";
 
-interface Atlas {
-  frames: Record<
-    string,
-    { frame: { x: number; y: number; w: number; h: number } }
-  >;
-  meta: { size: { w: number; h: number } };
-}
-const atlas: Atlas = atlasData;
+const idleAtlases = Promise.all(animationLayerNames.idle.map(async layer => {
+  const response = await fetch(`/assets/animation/idle-${layer}.json`);
+  return [layer, await response.json()] as const;
+})).then(entries => Object.fromEntries(entries));
 
-export default function PaperDoll({
-  outfit = "scholar",
-  hair = "ivory",
-  weapon = true,
-  small = false,
-}: {
-  outfit?: Outfit;
-  hair?: "ivory" | "midnight";
-  weapon?: boolean;
-  small?: boolean;
-}) {
-  const layers = dollLayers({ outfit, hair, weapon });
-  return (
-    <div
-      className={`paper-doll ${small ? "small" : ""} ${outfit}`}
-      aria-label={`${outfit === "scholar" ? "学者长袍" : "守卫制服"}纸娃娃角色`}
-    >
-      <div className="doll-halo" />
-      {layers.map((name) => {
-        const { x, y, w, h } = atlas.frames[name].frame;
-        return (
-          <div
-            key={name}
-            className="doll-layer"
-            style={{
-              aspectRatio: `${w}/${h}`,
-              backgroundImage: "url(/assets/doll-atlas.png)",
-              backgroundSize: `${(atlas.meta.size.w / w) * 100}% ${(atlas.meta.size.h / h) * 100}%`,
-              backgroundPosition: `${(x / (atlas.meta.size.w - w)) * 100}% ${(y / (atlas.meta.size.h - h)) * 100}%`,
-            }}
-          />
-        );
-      })}
-    </div>
-  );
+export default function PaperDoll({outfit="scholar",hair="ivory",weapon=true,small=false}: Partial<Appearance> & {small?:boolean}) {
+ const [frame,setFrame]=useState(0);
+ useEffect(()=>{ const timer=window.setInterval(()=>setFrame(animationFrame("idle",performance.now())),250); return ()=>window.clearInterval(timer); },[]);
+ const [atlases,setAtlases]=useState<Record<string,AnimationAtlas>>();
+ useEffect(()=>{ void idleAtlases.then(setAtlases); },[]);
+ return <div className={`paper-doll layered-preview ${small?"small":""} ${outfit}`}
+  aria-label={`${outfit==="scholar"?"学者长袍":"守卫制服"}纸娃娃角色`}>
+  {atlases && <AnimatedDollPreview action="idle" atlases={atlases}
+   layers={animationLayers("idle",{outfit,hair,weapon})} direction="S" frame={frame} />}
+ </div>;
 }

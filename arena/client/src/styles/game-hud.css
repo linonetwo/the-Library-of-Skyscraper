@@ -1,0 +1,229 @@
+.app-shell,.main-shell,.workspace,.battle-section,.map-shell {
+ position:fixed;
+ inset:0;
+ width:100%;
+ height:100dvh;
+ max-width:none;
+ margin:0;
+ padding:0;
+ border:0;
+ border-radius:0;
+ min-height:0}
+
+.app-shell {
+ display:block;
+ overflow:hidden}
+.main-shell,.workspace,.battle-section {
+ display:block;
+ pointer-events:none}
+.map-shell {
+ pointer-events:auto;
+ background:#152a2d}
+.pixi-map {
+ inset:0!important;
+ width:100%;
+ height:100%}
+.map-shell:before,.map-shell:after,.section-heading,.map-compass,.map-bottomline>span {
+ display:none!important}
+
+.topbar {
+ position:fixed;
+ z-index:20;
+ left:16px;
+ right:16px;
+ top:12px;
+ height:62px;
+ padding:10px 16px;
+ background:#102228ed;
+ border:1px solid #9c875c55;
+ border-radius:8px;
+ pointer-events:auto}
+.wordmark {
+ display:none}
+.resource-strip {
+ gap:24px}
+.resource-strip>div:last-child,.session-button small {
+ display:none}
+.resource-strip small {
+ font-size:10px}
+.resource-strip b {
+ font-size:18px}
+.session-button {
+ margin-left:auto}
+.rail {
+ position:fixed;
+ z-index:21;
+ left:16px;
+ top:88px;
+ bottom:auto;
+ width:auto;
+ height:auto;
+ padding:6px;
+ border-radius:8px;
+ display:flex;
+ background:#102228ed;
+ pointer-events:none}
+.rail nav {
+ display:flex;
+ gap:4px}
+.rail button {
+ pointer-events:auto;
+ width:46px;
+ min-height:44px}
+.rail-mark,.rail-version,.brand-icon,.help-button {
+ display:none!important}
+
+.map-topline {
+ position:fixed;
+ top:94px;
+ right:16px;
+ left:auto;
+ background:#102228dd;
+ padding:8px;
+ border-radius:6px;
+ pointer-events:auto}
+.map-bottomline {
+ position:fixed;
+ right:16px;
+ bottom:100px;
+ left:auto;
+ padding:0;
+ pointer-events:auto}
+.squad-section {
+ position:fixed;
+ z-index:20;
+ left:16px;
+ bottom:16px;
+ max-width:650px;
+ padding:0;
+ pointer-events:auto}
+.squad-section>.panel-title,.squad-empty {
+ display:none}
+.squad-cards {
+ display:flex;
+ gap:8px}
+.squad-card {
+ width:145px;
+ padding:8px;
+ grid-template-columns:45px 1fr;
+ min-height:74px;
+ background:#102228ed;
+ border-radius:6px}
+.squad-card .card-number,.squad-card small,.squad-card em,.squad-card .health-track,.squad-card div>span {
+ display:none}
+.squad-card strong {
+ font-size:13px}
+.simulation-bar {
+ position:fixed;
+ z-index:20;
+ bottom:16px;
+ right:16px;
+ pointer-events:auto;
+ background:#102228ed}
+
+.character-drawer {
+ position:fixed;
+ z-index:30;
+ right:16px;
+ top:88px;
+ bottom:100px;
+ width:320px;
+ overflow:auto;
+ pointer-events:auto;
+ background:#102228f5;
+ border:1px solid #9c875c77;
+ border-radius:8px}
+.character-drawer .inspector {
+ width:100%;
+ height:auto;
+ border:0;
+ background:transparent}
+.drawer-close {
+ display:block;
+ margin:8px 8px 0 auto;
+ padding:8px 12px}
+.workspace-overlay,.journal-panel {
+ z-index:29;
+ pointer-events:auto;
+ position:fixed;
+ inset:88px 16px 110px auto;
+ width:min(700px,calc(100vw - 32px));
+ max-height:calc(100dvh - 198px);
+ overflow:auto;
+ background:#102228f5}
+.entry-card,.result-card,.room-popup {
+ pointer-events:auto}
+.entry-card {
+ z-index:10}
+.layered-preview {
+ background:none!important;
+ position:relative;
+ overflow:hidden;
+ width:192px;
+ height:192px}
+.layered-preview>div {
+ transform-origin:top left}
+.layered-preview.small {
+ width:44px;
+ height:60px}
+.layered-preview.small>div {
+ transform:scale(.32);
+ position:absolute;
+ left:-9px;
+ top:0}
+.portrait-frame .layered-preview {
+ margin:auto}
+
+@media(max-width:700px) {
+ .topbar {
+ left:8px;
+ right:8px;
+ top:8px;
+ height:54px;
+ padding:6px 10px}
+.resource-strip {
+ gap:12px}
+.resource-strip svg {
+ display:none}
+.session-button {
+ font-size:11px;
+ min-width:0}
+.rail {
+ left:8px;
+ top:72px}
+.map-topline {
+ top:130px;
+ right:8px;
+ font-size:11px}
+.squad-section {
+ left:8px;
+ bottom:8px;
+ max-width:calc(100vw - 16px)}
+.squad-card {
+ width:105px;
+ grid-template-columns:30px 1fr;
+ padding:5px}
+.squad-card .layered-preview {
+ width:30px}
+.simulation-bar {
+ bottom:90px;
+ left:8px;
+ right:auto}
+.character-drawer {
+ inset:72px 8px 100px auto;
+ width:min(320px,calc(100vw - 16px))}
+.map-bottomline {
+ bottom:150px;
+ right:8px}
+}
+
+
+.portrait-frame>.layered-preview {
+ width:192px;
+ height:192px}
+
+.topbar {left:16px;right:16px;width:auto;max-width:none;min-height:0;height:54px;box-sizing:border-box}
+.rail {height:auto;min-height:0;bottom:auto;display:flex;flex-direction:row}.rail nav {flex-direction:row;margin:0}.rail nav button {height:44px;margin:0}
+.selected-actor-hud {position:fixed;z-index:22;bottom:108px;left:16px;display:flex;gap:8px;align-items:center;pointer-events:auto;background:#102228ed;padding:8px;border:1px solid #9c875c55;border-radius:6px}
+.selected-actor-hud small {display:block;font-size:11px;color:#b7c4bd}.selected-actor-hud button {padding:8px;min-height:36px}
+@media(max-width:700px){.resource-strip{display:flex}.topbar{left:8px;right:8px}.rail{top:72px}.selected-actor-hud{left:8px;right:8px;bottom:155px;flex-wrap:wrap;gap:4px}.selected-actor-hud button{font-size:11px;padding:5px}.squad-cards{grid-template-columns:none}.map-shell{height:100dvh;min-height:100dvh}.simulation-bar{bottom:90px}}

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import AnimationLab from "./AnimationLab";
 import "./style.css";
+import "./styles/game-hud.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
