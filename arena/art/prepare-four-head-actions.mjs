@@ -10,7 +10,8 @@ for(const result of [await idleFrames(),await walkFrames()]) {
   const {action,cells,recipes,frames,attachments,provenance}=result,packed={};
   for(const layer of dollLayers) {
     const recipe={schemaVersion:1,action,layer,source:provenance[layer].source,
-      sourceSha256:provenance[layer].sourceSha256,frames:recipes[layer]};
+      sourceSha256:provenance[layer].sourceSha256,bodyRegistration:`arena/art/source/four-head-${action}-registration.json`,
+      frames:recipes[layer]};
     const bytes=Buffer.from(json(recipe)),path=`source/four-head-${action}-${layer}-registration.json`;
     await writeFile(new URL(path,art),bytes);
     packed[layer]=await packLayer(layer,cells[layer],{...provenance[layer],proportion:'four-head',
@@ -37,7 +38,7 @@ coverage.contentVersion='arena-animation-2026-11-17.four-head.1';coverage.genera
 coverage.source={path:'arena/art/source/four-head-walk-body.png',sha256:digest(await readFile(new URL('source/four-head-walk-body.png',art))),
   generator:'GPT Image 2 via proxy-imagegen'};
 coverage.review={proportion:'Reviewed neutral four-head skeleton: crown12/chin52/sole172, common anchor172.8; both actions migrated together.',
-  gait:'Dedicated newly generated 32 walk body poses; idle uses independent standing source and upper-body breath. Full runtime gait review pending.',
+  gait:'Dedicated generated walk source; independent review blocked repeated same-leg half-cycle in side/oblique views. Targeted opposite-phase source correction underway; no action approval. Idle uses independent standing source and upper-body breath.',
   paperDoll:'14 physical layers per action, 2 outfits × 2 hair designs × empty/staff; both actions include foreground hands and hair/staff depth splits.',
   grip:'Per-frame right-hand staff and weapon-only grip registration; all contacts require independent runtime approval.',
   cleanup:'Source near-white matte/chroma cleanup and alpha resampling; fine edges and limb joins remain prototype review.'};
