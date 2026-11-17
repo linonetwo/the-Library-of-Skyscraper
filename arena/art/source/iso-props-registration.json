@@ -1,0 +1,81 @@
+{
+  "source": "arena/art/source/iso-props.png",
+  "sourceSha256": "33f13e6a0ae67f85fde47266321ff3952cb7d70bff37ccc13284a56e6804116a",
+  "promptSha256": "0e25f5223acc2d52aa155d5dea79bc5887a08c5cedb8c2bc2738e885afd80ec8",
+  "atlasSha256": "f813c45c272b988a51c83446650850a380e310db2ea64e2f365e6b288007e8bc",
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "registrations": [
+    {
+      "id": "bookcase-u",
+      "sourceCrop": {
+        "x": 147,
+        "y": 20,
+        "w": 372,
+        "h": 670
+      },
+      "pivot": [
+        64,
+        160
+      ],
+      "exportSize": [
+        128,
+        192
+      ],
+      "method": "Generated isolated object; aspect-preserving fit, centered, visual base bottom y184."
+    },
+    {
+      "id": "bookcase-v",
+      "sourceCrop": {
+        "x": 735,
+        "y": 20,
+        "w": 372,
+        "h": 670
+      },
+      "pivot": [
+        64,
+        160
+      ],
+      "exportSize": [
+        128,
+        192
+      ],
+      "method": "Generated isolated object; aspect-preserving fit, centered, visual base bottom y184."
+    },
+    {
+      "id": "plinth",
+      "sourceCrop": {
+        "x": 139,
+        "y": 762,
+        "w": 399,
+        "h": 464
+      },
+      "pivot": [
+        64,
+        160
+      ],
+      "exportSize": [
+        128,
+        192
+      ],
+      "method": "Generated isolated object; aspect-preserving fit, centered, visual base bottom y184."
+    },
+    {
+      "id": "lectern",
+      "sourceCrop": {
+        "x": 694,
+        "y": 709,
+        "w": 424,
+        "h": 532
+      },
+      "pivot": [
+        64,
+        160
+      ],
+      "exportSize": [
+        128,
+        192
+      ],
+      "method": "Generated isolated object; aspect-preserving fit, centered, visual base bottom y184."
+    }
+  ]
+}
