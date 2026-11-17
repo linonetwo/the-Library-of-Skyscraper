@@ -97,6 +97,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -120,7 +122,7 @@
         ]
       },
       "durationMs": 125,
-      "phase": "left-contact",
+      "phase": "contact-a",
       "sourcePoseRetained": true
     },
     {
@@ -135,35 +137,35 @@
         20,
         0,
         59,
-        45
+        44.462151394422314
       ],
       "headCenter": 39.5,
       "headScale": 1,
       "bodyCenter": 40.5,
-      "bodyScale": 0.7,
+      "bodyScale": 0.7084677419354838,
       "yKnots": [
         [
           0,
           12.6
         ],
         [
-          45,
+          44.462151394422314,
           52.6
         ],
         [
-          54,
+          53.354581673306775,
           60.6
         ],
         [
-          100,
+          98.80478087649402,
           94
         ],
         [
-          132,
+          130.4223107569721,
           112
         ],
         [
-          198,
+          195.63346613545818,
           145
         ],
         [
@@ -187,6 +189,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -201,35 +205,35 @@
           112
         ],
         "rightHand": [
-          72.55,
-          109.75
+          72.26633064516129,
+          110.62096774193549
         ],
         "leftHand": [
-          118.75,
-          114.5
+          119.02520161290323,
+          115.32862903225806
         ]
       },
       "durationMs": 125,
-      "phase": "right-passing",
+      "phase": "passing-a",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/S/02",
       "sourceCrop": {
-        "x": 409,
+        "x": 139,
         "y": 12,
-        "w": 83,
+        "w": 82,
         "h": 251
       },
       "sourceHeadBounds": [
-        24,
+        22,
         0,
-        63,
+        62,
         45
       ],
-      "headCenter": 43.5,
-      "headScale": 1,
-      "bodyCenter": 41.5,
+      "headCenter": 42,
+      "headScale": 0.975609756097561,
+      "bodyCenter": 41,
       "bodyScale": 0.7,
       "yKnots": [
         [
@@ -261,6 +265,9 @@
           173
         ]
       ],
+      "legScale": 0.7,
+      "legFrom": 132,
+      "legBlend": 50,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -277,6 +284,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 409,
+          "y": 12,
+          "w": 83,
+          "h": 251
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -291,66 +314,69 @@
           112
         ],
         "rightHand": [
-          71.85,
-          115
+          72.2,
+          107.5
         ],
         "leftHand": [
-          118.75,
-          100.1875
+          118.4,
+          99.0625
         ]
       },
       "durationMs": 125,
-      "phase": "right-contact",
+      "phase": "opposite-contact",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/S/03",
       "sourceCrop": {
-        "x": 594,
+        "x": 503,
         "y": 12,
-        "w": 82,
-        "h": 248
+        "w": 77,
+        "h": 249
       },
       "sourceHeadBounds": [
-        22,
+        17,
         0,
-        60,
-        45
+        58,
+        44.64143426294821
       ],
-      "headCenter": 41,
-      "headScale": 1.0256410256410255,
-      "bodyCenter": 41,
-      "bodyScale": 0.7,
+      "headCenter": 37.5,
+      "headScale": 0.9523809523809523,
+      "bodyCenter": 38.5,
+      "bodyScale": 0.7056224899598393,
       "yKnots": [
         [
           0,
           12.4
         ],
         [
-          45,
+          44.64143426294821,
           52.4
         ],
         [
-          54,
+          53.569721115537845,
           60.4
         ],
         [
-          100,
+          99.20318725099602,
           94
         ],
         [
-          132,
+          130.94820717131475,
           112
         ],
         [
-          198,
+          196.4223107569721,
           145
         ],
         [
-          248,
+          249,
           173
         ]
       ],
+      "legScale": 0.7056224899598393,
+      "legFrom": 130.94820717131475,
+      "legBlend": 49.60159362549801,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -367,6 +393,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 594,
+          "y": 12,
+          "w": 82,
+          "h": 248
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -381,16 +423,16 @@
           112
         ],
         "rightHand": [
-          72.2,
-          109.1875
+          75.18413654618473,
+          89.43258250392876
         ],
         "leftHand": [
-          119.8,
-          112
+          118.22710843373494,
+          107.49322289156626
         ]
       },
       "durationMs": 125,
-      "phase": "left-passing",
+      "phase": "opposite-passing",
       "sourcePoseRetained": true
     },
     {
@@ -405,35 +447,35 @@
         31,
         0,
         70,
-        45
+        45.35856573705179
       ],
       "headCenter": 50.5,
       "headScale": 1,
       "bodyCenter": 51,
-      "bodyScale": 0.7,
+      "bodyScale": 0.6944664031620553,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.35856573705179,
           52
         ],
         [
-          54,
+          54.430278884462155,
           60
         ],
         [
-          100,
+          100.79681274900398,
           94
         ],
         [
-          132,
+          133.05179282868525,
           112
         ],
         [
-          198,
+          199.5776892430279,
           145
         ],
         [
@@ -457,6 +499,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -471,16 +515,16 @@
           112
         ],
         "rightHand": [
-          64.5,
-          99.0625
+          64.74901185770752,
+          98.5778162055336
         ],
         "leftHand": [
-          126.1,
-          112
+          125.86205533596838,
+          111.41304347826087
         ]
       },
       "durationMs": 125,
-      "phase": "left-contact",
+      "phase": "contact-a",
       "sourcePoseRetained": true
     },
     {
@@ -495,35 +539,35 @@
         27,
         0,
         65,
-        45
+        44.462151394422314
       ],
       "headCenter": 46,
       "headScale": 1.0256410256410255,
       "bodyCenter": 44,
-      "bodyScale": 0.7,
+      "bodyScale": 0.7084677419354838,
       "yKnots": [
         [
           0,
           12.6
         ],
         [
-          45,
+          44.462151394422314,
           52.6
         ],
         [
-          54,
+          53.354581673306775,
           60.6
         ],
         [
-          100,
+          98.80478087649402,
           94
         ],
         [
-          132,
+          130.4223107569721,
           112
         ],
         [
-          198,
+          195.63346613545818,
           145
         ],
         [
@@ -547,6 +591,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -561,59 +607,59 @@
           112
         ],
         "rightHand": [
-          69.4,
-          107.5
+          69.07822580645161,
+          108.34375
         ],
         "leftHand": [
-          121.9,
-          112
+          122.21330645161291,
+          112.79838709677419
         ]
       },
       "durationMs": 125,
-      "phase": "right-passing",
+      "phase": "passing-a",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/SW/02",
       "sourceCrop": {
-        "x": 398,
-        "y": 282,
-        "w": 104,
+        "x": 131,
+        "y": 281,
+        "w": 97,
         "h": 253
       },
       "sourceHeadBounds": [
-        33,
+        23,
         0,
-        71,
-        45
+        67,
+        45.35856573705179
       ],
-      "headCenter": 52,
-      "headScale": 1.0256410256410255,
-      "bodyCenter": 52,
-      "bodyScale": 0.7,
+      "headCenter": 45,
+      "headScale": 0.8888888888888888,
+      "bodyCenter": 48.5,
+      "bodyScale": 0.6944664031620553,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.35856573705179,
           52
         ],
         [
-          54,
+          54.430278884462155,
           60
         ],
         [
-          100,
+          100.79681274900398,
           94
         ],
         [
-          132,
+          133.05179282868525,
           112
         ],
         [
-          198,
+          199.5776892430279,
           145
         ],
         [
@@ -621,6 +667,9 @@
           173
         ]
       ],
+      "legScale": 0.6944664031620553,
+      "legFrom": 133.05179282868525,
+      "legBlend": 50.39840637450199,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -637,6 +686,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 398,
+          "y": 282,
+          "w": 104,
+          "h": 253
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -651,66 +716,69 @@
           112
         ],
         "rightHand": [
-          64.5,
-          110.875
+          122.04249011857708,
+          106.39056324110672
         ],
         "leftHand": [
-          126.8,
-          104.125
+          73.4298418972332,
+          98.01976284584981
         ]
       },
       "durationMs": 125,
-      "phase": "right-contact",
+      "phase": "opposite-contact",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/SW/03",
       "sourceCrop": {
-        "x": 586,
-        "y": 282,
-        "w": 90,
-        "h": 249
+        "x": 490,
+        "y": 281,
+        "w": 100,
+        "h": 252
       },
       "sourceHeadBounds": [
-        27,
+        23,
         0,
-        65,
-        45
+        68,
+        45.179282868525895
       ],
-      "headCenter": 46,
-      "headScale": 1.0256410256410255,
-      "bodyCenter": 45,
-      "bodyScale": 0.7,
+      "headCenter": 45.5,
+      "headScale": 0.8695652173913043,
+      "bodyCenter": 50,
+      "bodyScale": 0.6972222222222222,
       "yKnots": [
         [
           0,
           12.4
         ],
         [
-          45,
+          45.179282868525895,
           52.4
         ],
         [
-          54,
+          54.21513944223108,
           60.4
         ],
         [
-          100,
+          100.39840637450199,
           94
         ],
         [
-          132,
+          132.52589641434264,
           112
         ],
         [
-          198,
+          198.78884462151393,
           145
         ],
         [
-          249,
+          252,
           173
         ]
       ],
+      "legScale": 0.63,
+      "legFrom": 132.52589641434264,
+      "legBlend": 50.199203187250994,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -727,6 +795,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 586,
+          "y": 282,
+          "w": 90,
+          "h": 249
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -741,16 +825,16 @@
           112
         ],
         "rightHand": [
-          69.4,
-          108.0625
+          125.28333333333333,
+          107.22321428571428
         ],
         "leftHand": [
-          122.6,
-          112
+          66.71666666666667,
+          87.88985507246377
         ]
       },
       "durationMs": 125,
-      "phase": "left-passing",
+      "phase": "opposite-passing",
       "sourcePoseRetained": true
     },
     {
@@ -765,35 +849,35 @@
         36,
         0,
         77,
-        45
+        45.179282868525895
       ],
       "headCenter": 56.5,
       "headScale": 0.9523809523809523,
       "bodyCenter": 57.5,
-      "bodyScale": 0.7,
+      "bodyScale": 0.6972222222222222,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.179282868525895,
           52
         ],
         [
-          54,
+          54.21513944223108,
           60
         ],
         [
-          100,
+          100.39840637450199,
           94
         ],
         [
-          132,
+          132.52589641434264,
           112
         ],
         [
-          198,
+          198.78884462151393,
           145
         ],
         [
@@ -817,6 +901,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -831,16 +917,16 @@
           112
         ],
         "rightHand": [
-          63.45,
-          98.5
+          63.579166666666666,
+          98.25892857142857
         ],
         "leftHand": [
-          122.95,
-          112
+          122.84305555555555,
+          111.70535714285714
         ]
       },
       "durationMs": 125,
-      "phase": "left-contact",
+      "phase": "contact-a",
       "sourcePoseRetained": true
     },
     {
@@ -907,6 +993,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -930,50 +1018,50 @@
         ]
       },
       "durationMs": 125,
-      "phase": "right-passing",
+      "phase": "passing-a",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/W/02",
       "sourceCrop": {
-        "x": 391,
-        "y": 553,
-        "w": 116,
+        "x": 102,
+        "y": 552,
+        "w": 155,
         "h": 252
       },
       "sourceHeadBounds": [
-        37,
+        49,
         0,
-        79,
-        45
+        94,
+        45.179282868525895
       ],
-      "headCenter": 58,
-      "headScale": 0.9302325581395349,
-      "bodyCenter": 58,
-      "bodyScale": 0.7,
+      "headCenter": 71.5,
+      "headScale": 0.8695652173913043,
+      "bodyCenter": 77.5,
+      "bodyScale": 0.6972222222222222,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.179282868525895,
           52
         ],
         [
-          54,
+          54.21513944223108,
           60
         ],
         [
-          100,
+          100.39840637450199,
           94
         ],
         [
-          132,
+          132.52589641434264,
           112
         ],
         [
-          198,
+          198.78884462151393,
           145
         ],
         [
@@ -981,6 +1069,9 @@
           173
         ]
       ],
+      "legScale": 0.5238709677419354,
+      "legFrom": 132.52589641434264,
+      "legBlend": 50.199203187250994,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -997,6 +1088,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 391,
+          "y": 553,
+          "w": 116,
+          "h": 252
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -1011,66 +1118,69 @@
           112
         ],
         "rightHand": [
-          73.6,
-          108.625
+          126.32916666666667,
+          108.34375
         ],
         "leftHand": [
-          125.4,
-          109.1875
+          53.12083333333334,
+          97.69866071428571
         ]
       },
       "durationMs": 125,
-      "phase": "right-contact",
+      "phase": "opposite-contact",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/W/03",
       "sourceCrop": {
-        "x": 591,
-        "y": 553,
-        "w": 81,
-        "h": 251
+        "x": 473,
+        "y": 552,
+        "w": 126,
+        "h": 252
       },
       "sourceHeadBounds": [
-        20,
+        39,
         0,
-        61,
-        45
+        84,
+        45.179282868525895
       ],
-      "headCenter": 40.5,
-      "headScale": 0.9523809523809523,
-      "bodyCenter": 40.5,
-      "bodyScale": 0.7,
+      "headCenter": 61.5,
+      "headScale": 0.8695652173913043,
+      "bodyCenter": 63,
+      "bodyScale": 0.6972222222222222,
       "yKnots": [
         [
           0,
           12.4
         ],
         [
-          45,
+          45.179282868525895,
           52.4
         ],
         [
-          54,
+          54.21513944223108,
           60.4
         ],
         [
-          100,
+          100.39840637450199,
           94
         ],
         [
-          132,
+          132.52589641434264,
           112
         ],
         [
-          198,
+          198.78884462151393,
           145
         ],
         [
-          251,
+          252,
           173
         ]
       ],
+      "legScale": 0.45,
+      "legFrom": 132.52589641434264,
+      "legBlend": 50.199203187250994,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -1087,6 +1197,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 591,
+          "y": 553,
+          "w": 81,
+          "h": 251
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -1101,16 +1227,16 @@
           112
         ],
         "rightHand": [
-          73.95,
-          107.5
+          133.65,
+          108.34375
         ],
         "leftHand": [
-          118.75,
-          111.4375
+          58.35,
+          85.7072463768116
         ]
       },
       "durationMs": 125,
-      "phase": "left-passing",
+      "phase": "opposite-passing",
       "sourcePoseRetained": true
     },
     {
@@ -1125,35 +1251,35 @@
         34,
         0,
         73,
-        45
+        45.35856573705179
       ],
       "headCenter": 53.5,
       "headScale": 1,
       "bodyCenter": 58.5,
-      "bodyScale": 0.7,
+      "bodyScale": 0.6944664031620553,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.35856573705179,
           52
         ],
         [
-          54,
+          54.430278884462155,
           60
         ],
         [
-          100,
+          100.79681274900398,
           94
         ],
         [
-          132,
+          133.05179282868525,
           112
         ],
         [
-          198,
+          199.5776892430279,
           145
         ],
         [
@@ -1177,6 +1303,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -1191,16 +1319,16 @@
           112
         ],
         "rightHand": [
-          124.35,
-          110.875
+          124.12588932806324,
+          110.29693675889328
         ],
         "leftHand": [
-          63.45,
-          100.75
+          63.70731225296443,
+          100.25197628458498
         ]
       },
       "durationMs": 125,
-      "phase": "left-contact",
+      "phase": "contact-a",
       "sourcePoseRetained": true
     },
     {
@@ -1215,35 +1343,35 @@
         28,
         0,
         66,
-        45
+        45.35856573705179
       ],
       "headCenter": 47,
       "headScale": 1.0256410256410255,
       "bodyCenter": 44.5,
-      "bodyScale": 0.7,
+      "bodyScale": 0.6944664031620553,
       "yKnots": [
         [
           0,
           12.6
         ],
         [
-          45,
+          45.35856573705179,
           52.6
         ],
         [
-          54,
+          54.430278884462155,
           60.6
         ],
         [
-          100,
+          100.79681274900398,
           94
         ],
         [
-          132,
+          133.05179282868525,
           112
         ],
         [
-          198,
+          199.5776892430279,
           145
         ],
         [
@@ -1267,6 +1395,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -1281,66 +1411,69 @@
           112
         ],
         "rightHand": [
-          121.55,
-          109.75
+          121.34802371541502,
+          109.1808300395257
         ],
         "leftHand": [
-          70.45,
-          110.3125
+          70.65197628458498,
+          109.7388833992095
         ]
       },
       "durationMs": 125,
-      "phase": "right-passing",
+      "phase": "passing-a",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/NW/02",
       "sourceCrop": {
-        "x": 397,
+        "x": 108,
         "y": 822,
-        "w": 113,
-        "h": 255
+        "w": 143,
+        "h": 254
       },
       "sourceHeadBounds": [
-        35,
+        46,
         0,
-        74,
-        45
+        91,
+        45.537848605577686
       ],
-      "headCenter": 54.5,
-      "headScale": 1,
-      "bodyCenter": 56.5,
-      "bodyScale": 0.7,
+      "headCenter": 68.5,
+      "headScale": 0.8695652173913043,
+      "bodyCenter": 71.5,
+      "bodyScale": 0.6917322834645669,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.537848605577686,
           52
         ],
         [
-          54,
+          54.645418326693225,
           60
         ],
         [
-          100,
+          101.19521912350598,
           94
         ],
         [
-          132,
+          133.5776892430279,
           112
         ],
         [
-          198,
+          200.36653386454182,
           145
         ],
         [
-          255,
+          254,
           173
         ]
       ],
+      "legScale": 0.5531468531468531,
+      "legFrom": 133.5776892430279,
+      "legBlend": 50.59760956175299,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -1357,6 +1490,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 397,
+          "y": 822,
+          "w": 113,
+          "h": 255
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -1371,66 +1520,69 @@
           112
         ],
         "rightHand": [
-          126.45,
-          110.3125
+          133.6994094488189,
+          108.89960629921259
         ],
         "leftHand": [
-          69.75,
-          109.1875
+          53.45846456692913,
+          96.67076771653544
         ]
       },
       "durationMs": 125,
-      "phase": "right-contact",
+      "phase": "opposite-contact",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/NW/03",
       "sourceCrop": {
-        "x": 586,
+        "x": 480,
         "y": 822,
-        "w": 95,
-        "h": 253
+        "w": 118,
+        "h": 254
       },
       "sourceHeadBounds": [
-        28,
+        33,
         0,
-        66,
-        45
+        79,
+        45.537848605577686
       ],
-      "headCenter": 47,
-      "headScale": 1.0256410256410255,
-      "bodyCenter": 47.5,
-      "bodyScale": 0.7,
+      "headCenter": 56,
+      "headScale": 0.851063829787234,
+      "bodyCenter": 59,
+      "bodyScale": 0.6917322834645669,
       "yKnots": [
         [
           0,
           12.4
         ],
         [
-          45,
+          45.537848605577686,
           52.4
         ],
         [
-          54,
+          54.645418326693225,
           60.4
         ],
         [
-          100,
+          101.19521912350598,
           94
         ],
         [
-          132,
+          133.5776892430279,
           112
         ],
         [
-          198,
+          200.36653386454182,
           145
         ],
         [
-          253,
+          254,
           173
         ]
       ],
+      "legScale": 0.5635593220338982,
+      "legFrom": 133.5776892430279,
+      "legBlend": 50.59760956175299,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -1447,6 +1599,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 586,
+          "y": 822,
+          "w": 95,
+          "h": 253
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -1461,16 +1629,16 @@
           112
         ],
         "rightHand": [
-          124.35,
-          109.75
+          131.27834645669293,
+          108.89960629921259
         ],
         "leftHand": [
-          67.65,
-          109.75
+          61.41338582677165,
+          84.4755905511811
         ]
       },
       "durationMs": 125,
-      "phase": "left-passing",
+      "phase": "opposite-passing",
       "sourcePoseRetained": true
     },
     {
@@ -1485,35 +1653,35 @@
         23,
         0,
         61,
-        45
+        45.537848605577686
       ],
       "headCenter": 42,
       "headScale": 1.0256410256410255,
       "bodyCenter": 42.5,
-      "bodyScale": 0.7,
+      "bodyScale": 0.6917322834645669,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.537848605577686,
           52
         ],
         [
-          54,
+          54.645418326693225,
           60
         ],
         [
-          100,
+          101.19521912350598,
           94
         ],
         [
-          132,
+          133.5776892430279,
           112
         ],
         [
-          198,
+          200.36653386454182,
           145
         ],
         [
@@ -1537,6 +1705,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -1551,16 +1721,16 @@
           112
         ],
         "rightHand": [
-          120.15,
-          111.4375
+          119.86476377952756,
+          110.5671751968504
         ],
         "leftHand": [
-          71.15,
-          101.875
+          71.44350393700788,
+          101.11761811023622
         ]
       },
       "durationMs": 125,
-      "phase": "left-contact",
+      "phase": "contact-a",
       "sourcePoseRetained": true
     },
     {
@@ -1575,35 +1745,35 @@
         23,
         0,
         62,
-        45
+        44.820717131474105
       ],
       "headCenter": 42.5,
       "headScale": 1,
       "bodyCenter": 41,
-      "bodyScale": 0.7,
+      "bodyScale": 0.7028,
       "yKnots": [
         [
           0,
           12.6
         ],
         [
-          45,
+          44.820717131474105,
           52.6
         ],
         [
-          54,
+          53.78486055776892,
           60.6
         ],
         [
-          100,
+          99.60159362549801,
           94
         ],
         [
-          132,
+          131.47410358565736,
           112
         ],
         [
-          198,
+          197.21115537848607,
           145
         ],
         [
@@ -1627,6 +1797,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -1641,59 +1813,59 @@
           112
         ],
         "rightHand": [
-          121.2,
-          110.875
+          121.3008,
+          111.1675
         ],
         "leftHand": [
-          72.9,
-          109.75
+          72.80760000000001,
+          110.03800000000001
         ]
       },
       "durationMs": 125,
-      "phase": "right-passing",
+      "phase": "passing-a",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/N/02",
       "sourceCrop": {
-        "x": 404,
+        "x": 50,
         "y": 1094,
-        "w": 92,
+        "w": 85,
         "h": 254
       },
       "sourceHeadBounds": [
-        28,
+        23,
         0,
-        67,
-        45
+        61,
+        45.537848605577686
       ],
-      "headCenter": 47.5,
-      "headScale": 1,
-      "bodyCenter": 46,
-      "bodyScale": 0.7,
+      "headCenter": 42,
+      "headScale": 1.0256410256410255,
+      "bodyCenter": 42.5,
+      "bodyScale": 0.6917322834645669,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.537848605577686,
           52
         ],
         [
-          54,
+          54.645418326693225,
           60
         ],
         [
-          100,
+          101.19521912350598,
           94
         ],
         [
-          132,
+          133.5776892430279,
           112
         ],
         [
-          198,
+          200.36653386454182,
           145
         ],
         [
@@ -1717,6 +1889,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "Symmetric neck-down limb reflection of phase00/01; head and all asymmetric equipment unchanged; anatomical right grip re-registered. Review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -1731,22 +1905,22 @@
           112
         ],
         "rightHand": [
-          126.1,
-          102.4375
+          120.55649606299212,
+          101.11761811023622
         ],
         "leftHand": [
-          69.4,
-          113.5
+          72.13523622047244,
+          110.5671751968504
         ]
       },
       "durationMs": 125,
-      "phase": "right-contact",
+      "phase": "opposite-contact",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/N/03",
       "sourceCrop": {
-        "x": 591,
+        "x": 230,
         "y": 1094,
         "w": 82,
         "h": 250
@@ -1754,36 +1928,36 @@
       "sourceHeadBounds": [
         23,
         0,
-        61,
-        45
+        62,
+        44.820717131474105
       ],
-      "headCenter": 42,
-      "headScale": 1.0256410256410255,
+      "headCenter": 42.5,
+      "headScale": 1,
       "bodyCenter": 41,
-      "bodyScale": 0.7,
+      "bodyScale": 0.7028,
       "yKnots": [
         [
           0,
           12.4
         ],
         [
-          45,
+          44.820717131474105,
           52.4
         ],
         [
-          54,
+          53.78486055776892,
           60.4
         ],
         [
-          100,
+          99.60159362549801,
           94
         ],
         [
-          132,
+          131.47410358565736,
           112
         ],
         [
-          198,
+          197.21115537848607,
           145
         ],
         [
@@ -1807,6 +1981,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "Symmetric neck-down limb reflection of phase00/01; head and all asymmetric equipment unchanged; anatomical right grip re-registered. Review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -1821,16 +1997,16 @@
           112
         ],
         "rightHand": [
-          120.5,
-          110.875
+          119.19239999999999,
+          110.03800000000001
         ],
         "leftHand": [
-          72.9,
-          110.3125
+          70.6992,
+          111.1675
         ]
       },
       "durationMs": 125,
-      "phase": "left-passing",
+      "phase": "opposite-passing",
       "sourcePoseRetained": true
     },
     {
@@ -1845,35 +2021,35 @@
         28,
         0,
         66,
-        45
+        45.896414342629484
       ],
       "headCenter": 47,
       "headScale": 1.0256410256410255,
       "bodyCenter": 50.5,
-      "bodyScale": 0.7,
+      "bodyScale": 0.686328125,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.896414342629484,
           52
         ],
         [
-          54,
+          55.07569721115538,
           60
         ],
         [
-          100,
+          101.99203187250995,
           94
         ],
         [
-          132,
+          134.62948207171314,
           112
         ],
         [
-          198,
+          201.9442231075697,
           145
         ],
         [
@@ -1897,6 +2073,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -1911,16 +2089,16 @@
           112
         ],
         "rightHand": [
-          125.05,
-          109.75
+          124.4826171875,
+          108.34375
         ],
         "leftHand": [
-          65.55,
-          103.5625
+          66.1447265625,
+          102.277099609375
         ]
       },
       "durationMs": 125,
-      "phase": "left-contact",
+      "phase": "contact-a",
       "sourcePoseRetained": true
     },
     {
@@ -1935,35 +2113,35 @@
         28,
         0,
         66,
-        45
+        44.820717131474105
       ],
       "headCenter": 47,
       "headScale": 1.0256410256410255,
       "bodyCenter": 45,
-      "bodyScale": 0.7,
+      "bodyScale": 0.7028,
       "yKnots": [
         [
           0,
           12.6
         ],
         [
-          45,
+          44.820717131474105,
           52.6
         ],
         [
-          54,
+          53.78486055776892,
           60.6
         ],
         [
-          100,
+          99.60159362549801,
           94
         ],
         [
-          132,
+          131.47410358565736,
           112
         ],
         [
-          198,
+          197.21115537848607,
           145
         ],
         [
@@ -1987,6 +2165,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -2001,66 +2181,69 @@
           112
         ],
         "rightHand": [
-          122.6,
-          110.875
+          122.7064,
+          111.1675
         ],
         "leftHand": [
-          70.8,
-          105.8125
+          70.6992,
+          106.08475
         ]
       },
       "durationMs": 125,
-      "phase": "right-passing",
+      "phase": "passing-a",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/NE/02",
       "sourceCrop": {
-        "x": 399,
-        "y": 1367,
-        "w": 105,
-        "h": 256
+        "x": 133,
+        "y": 14,
+        "w": 280,
+        "h": 479
       },
       "sourceHeadBounds": [
-        34,
+        111,
         0,
-        72,
-        45
+        177,
+        85.87649402390439
       ],
-      "headCenter": 53,
-      "headScale": 1.0256410256410255,
-      "bodyCenter": 52.5,
-      "bodyScale": 0.7,
+      "headCenter": 144,
+      "headScale": 0.5970149253731343,
+      "bodyCenter": 140,
+      "bodyScale": 0.3668058455114822,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          85.87649402390439,
           52
         ],
         [
-          54,
+          103.05179282868527,
           60
         ],
         [
-          100,
+          190.8366533864542,
           94
         ],
         [
-          132,
+          251.90438247011954,
           112
         ],
         [
-          198,
+          377.8565737051793,
           145
         ],
         [
-          256,
+          479,
           173
         ]
       ],
+      "legScale": 0.26249999999999996,
+      "legFrom": 251.90438247011954,
+      "legBlend": 95.4183266932271,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -2077,6 +2260,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 399,
+          "y": 1367,
+          "w": 105,
+          "h": 256
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -2091,66 +2290,69 @@
           112
         ],
         "rightHand": [
-          128.55,
-          111.4375
+          135.98183716075155,
+          95.52192066805846
         ],
         "leftHand": [
-          64.15,
-          111.4375
+          62.25386221294364,
+          109.08063674321502
         ]
       },
       "durationMs": 125,
-      "phase": "right-contact",
+      "phase": "opposite-contact",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/NE/03",
       "sourceCrop": {
-        "x": 585,
-        "y": 1367,
-        "w": 95,
-        "h": 250
+        "x": 651,
+        "y": 14,
+        "w": 209,
+        "h": 482
       },
       "sourceHeadBounds": [
-        29,
+        65,
         0,
-        66,
-        45
+        131,
+        86.41434262948208
       ],
-      "headCenter": 47.5,
-      "headScale": 1.0526315789473684,
-      "bodyCenter": 47.5,
-      "bodyScale": 0.7,
+      "headCenter": 98,
+      "headScale": 0.5970149253731343,
+      "bodyCenter": 104.5,
+      "bodyScale": 0.36452282157676347,
       "yKnots": [
         [
           0,
           12.4
         ],
         [
-          45,
+          86.41434262948208,
           52.4
         ],
         [
-          54,
+          103.69721115537848,
           60.4
         ],
         [
-          100,
+          192.03187250996018,
           94
         ],
         [
-          132,
+          253.48207171314743,
           112
         ],
         [
-          198,
+          380.22310756972115,
           145
         ],
         [
-          250,
+          482,
           173
         ]
       ],
+      "legScale": 0.3181818181818182,
+      "legFrom": 253.48207171314743,
+      "legBlend": 96.01593625498009,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -2167,6 +2369,28 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 585,
+          "y": 1367,
+          "w": 95,
+          "h": 250
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "limbRepair": {
+        "module": "four-head-leg-repair.mjs",
+        "direction": "NE",
+        "method": "Generated leg pixels segmented and re-rooted at opposite hip; original feet direction preserved; near/far compositing corrected.",
+        "status": "candidate pending independent review"
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -2181,16 +2405,16 @@
           112
         ],
         "rightHand": [
-          122.95,
-          110.875
+          128.98931535269708,
+          81.8159841241205
         ],
         "leftHand": [
-          68.35,
-          110.3125
+          63.01068464730291,
+          107.75790975103735
         ]
       },
       "durationMs": 125,
-      "phase": "left-passing",
+      "phase": "opposite-passing",
       "sourcePoseRetained": true
     },
     {
@@ -2205,35 +2429,35 @@
         37,
         0,
         79,
-        45
+        45.35856573705179
       ],
       "headCenter": 58,
       "headScale": 0.9302325581395349,
       "bodyCenter": 57,
-      "bodyScale": 0.7,
+      "bodyScale": 0.6944664031620553,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.35856573705179,
           52
         ],
         [
-          54,
+          54.430278884462155,
           60
         ],
         [
-          100,
+          100.79681274900398,
           94
         ],
         [
-          132,
+          133.05179282868525,
           112
         ],
         [
-          198,
+          199.5776892430279,
           145
         ],
         [
@@ -2257,6 +2481,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -2271,16 +2497,16 @@
           112
         ],
         "rightHand": [
-          73.6,
-          111.4375
+          73.77707509881424,
+          110.85499011857708
         ],
         "leftHand": [
-          125.4,
-          100.75
+          125.16758893280632,
+          100.25197628458498
         ]
       },
       "durationMs": 125,
-      "phase": "left-contact",
+      "phase": "contact-a",
       "sourcePoseRetained": true
     },
     {
@@ -2347,6 +2573,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -2370,57 +2598,60 @@
         ]
       },
       "durationMs": 125,
-      "phase": "right-passing",
+      "phase": "passing-a",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/E/02",
       "sourceCrop": {
-        "x": 394,
-        "y": 1638,
-        "w": 113,
-        "h": 252
+        "x": 110,
+        "y": 526,
+        "w": 305,
+        "h": 481
       },
       "sourceHeadBounds": [
-        38,
+        124,
         0,
-        80,
-        45
+        191,
+        86.23505976095618
       ],
-      "headCenter": 59,
-      "headScale": 0.9302325581395349,
-      "bodyCenter": 56.5,
-      "bodyScale": 0.7,
+      "headCenter": 157.5,
+      "headScale": 0.5882352941176471,
+      "bodyCenter": 152.5,
+      "bodyScale": 0.3652806652806652,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          86.23505976095618,
           52
         ],
         [
-          54,
+          103.48207171314742,
           60
         ],
         [
-          100,
+          191.63346613545818,
           94
         ],
         [
-          132,
+          252.9561752988048,
           112
         ],
         [
-          198,
+          379.43426294820716,
           145
         ],
         [
-          252,
+          481,
           173
         ]
       ],
+      "legScale": 0.25934426229508195,
+      "legFrom": 252.9561752988048,
+      "legBlend": 95.81673306772909,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -2437,6 +2668,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 394,
+          "y": 1638,
+          "w": 113,
+          "h": 252
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -2451,66 +2698,69 @@
           112
         ],
         "rightHand": [
-          73.25,
-          110.875
+          65.13378378378378,
+          111.1322765072765
         ],
         "leftHand": [
-          130.65,
-          100.75
+          138.18991683991683,
+          95.28170478170478
         ]
       },
       "durationMs": 125,
-      "phase": "right-contact",
+      "phase": "opposite-contact",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/E/03",
       "sourceCrop": {
-        "x": 600,
-        "y": 1638,
-        "w": 76,
-        "h": 251
+        "x": 645,
+        "y": 526,
+        "w": 215,
+        "h": 485
       },
       "sourceHeadBounds": [
-        14,
+        62,
         0,
-        56,
-        45
+        129,
+        86.95219123505976
       ],
-      "headCenter": 35,
-      "headScale": 0.9302325581395349,
-      "bodyCenter": 38,
-      "bodyScale": 0.7,
+      "headCenter": 95.5,
+      "headScale": 0.5882352941176471,
+      "bodyCenter": 107.5,
+      "bodyScale": 0.36226804123711337,
       "yKnots": [
         [
           0,
           12.4
         ],
         [
-          45,
+          86.95219123505976,
           52.4
         ],
         [
-          54,
+          104.34262948207171,
           60.4
         ],
         [
-          100,
+          193.22709163346613,
           94
         ],
         [
-          132,
+          255.0597609561753,
           112
         ],
         [
-          198,
+          382.58964143426294,
           145
         ],
         [
-          251,
+          485,
           173
         ]
       ],
+      "legScale": 0.24744186046511626,
+      "legFrom": 255.0597609561753,
+      "legBlend": 96.61354581673307,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -2527,6 +2777,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 600,
+          "y": 1638,
+          "w": 76,
+          "h": 251
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -2541,16 +2807,16 @@
           112
         ],
         "rightHand": [
-          77.8,
-          110.3125
+          61.76567010309279,
+          111.10927835051547
         ],
         "leftHand": [
-          117,
-          104.6875
+          129.14752577319587,
+          86.73179740026893
         ]
       },
       "durationMs": 125,
-      "phase": "left-passing",
+      "phase": "opposite-passing",
       "sourcePoseRetained": true
     },
     {
@@ -2565,35 +2831,35 @@
         25,
         0,
         64,
-        45
+        45.537848605577686
       ],
       "headCenter": 44.5,
       "headScale": 1,
       "bodyCenter": 47,
-      "bodyScale": 0.7,
+      "bodyScale": 0.6917322834645669,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          45.537848605577686,
           52
         ],
         [
-          54,
+          54.645418326693225,
           60
         ],
         [
-          100,
+          101.19521912350598,
           94
         ],
         [
-          132,
+          133.5776892430279,
           112
         ],
         [
-          198,
+          200.36653386454182,
           145
         ],
         [
@@ -2617,6 +2883,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -2631,16 +2899,16 @@
           112
         ],
         "rightHand": [
-          68,
-          104.6875
+          68.33070866141732,
+          103.89689960629921
         ],
         "leftHand": [
-          124,
-          112
+          123.66929133858268,
+          111.12303149606299
         ]
       },
       "durationMs": 125,
-      "phase": "left-contact",
+      "phase": "contact-a",
       "sourcePoseRetained": true
     },
     {
@@ -2655,35 +2923,35 @@
         20,
         0,
         59,
-        45
+        44.820717131474105
       ],
       "headCenter": 39.5,
       "headScale": 1,
       "bodyCenter": 39.5,
-      "bodyScale": 0.7,
+      "bodyScale": 0.7028,
       "yKnots": [
         [
           0,
           12.6
         ],
         [
-          45,
+          44.820717131474105,
           52.6
         ],
         [
-          54,
+          53.78486055776892,
           60.6
         ],
         [
-          100,
+          99.60159362549801,
           94
         ],
         [
-          132,
+          131.47410358565736,
           112
         ],
         [
-          198,
+          197.21115537848607,
           145
         ],
         [
@@ -2707,6 +2975,8 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "correction": "original",
       "attachments": {
         "crown": [
           96,
@@ -2721,66 +2991,69 @@
           112
         ],
         "rightHand": [
-          73.95,
-          109.1875
+          73.8618,
+          109.47325000000001
         ],
         "leftHand": [
-          118.75,
-          110.3125
+          118.84100000000001,
+          110.60275
         ]
       },
       "durationMs": 125,
-      "phase": "right-passing",
+      "phase": "passing-a",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/SE/02",
       "sourceCrop": {
-        "x": 400,
-        "y": 1909,
-        "w": 105,
-        "h": 253
+        "x": 134,
+        "y": 1037,
+        "w": 273,
+        "h": 486
       },
       "sourceHeadBounds": [
-        33,
+        107,
         0,
-        73,
-        45
+        173,
+        87.13147410358566
       ],
-      "headCenter": 53,
-      "headScale": 0.975609756097561,
-      "bodyCenter": 52.5,
-      "bodyScale": 0.7,
+      "headCenter": 140,
+      "headScale": 0.5970149253731343,
+      "bodyCenter": 136.5,
+      "bodyScale": 0.36152263374485594,
       "yKnots": [
         [
           0,
           12
         ],
         [
-          45,
+          87.13147410358566,
           52
         ],
         [
-          54,
+          104.55776892430279,
           60
         ],
         [
-          100,
+          193.62549800796813,
           94
         ],
         [
-          132,
+          255.58565737051794,
           112
         ],
         [
-          198,
+          383.3784860557769,
           145
         ],
         [
-          253,
+          486,
           173
         ]
       ],
+      "legScale": 0.2692307692307692,
+      "legFrom": 255.58565737051794,
+      "legBlend": 96.81274900398407,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -2797,6 +3070,28 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 400,
+          "y": 1909,
+          "w": 105,
+          "h": 253
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "limbRepair": {
+        "module": "four-head-leg-repair.mjs",
+        "direction": "SE",
+        "method": "Generated leg pixels segmented and re-rooted at opposite hip; original feet direction preserved; near/far compositing corrected.",
+        "status": "candidate pending independent review"
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -2811,66 +3106,69 @@
           112
         ],
         "rightHand": [
-          64.15,
-          110.875
+          61.1130658436214,
+          110.66782407407408
         ],
         "leftHand": [
-          127.15,
-          96.8125
+          138.11738683127572,
+          98.17592592592592
         ]
       },
       "durationMs": 125,
-      "phase": "right-contact",
+      "phase": "opposite-contact",
       "sourcePoseRetained": true
     },
     {
       "frame": "walk/body/SE/03",
       "sourceCrop": {
-        "x": 594,
-        "y": 1908,
-        "w": 80,
-        "h": 249
+        "x": 629,
+        "y": 1038,
+        "w": 235,
+        "h": 488
       },
       "sourceHeadBounds": [
-        20,
+        83,
         0,
-        59,
-        45
+        149,
+        87.49003984063745
       ],
-      "headCenter": 39.5,
-      "headScale": 1,
-      "bodyCenter": 40,
-      "bodyScale": 0.7,
+      "headCenter": 116,
+      "headScale": 0.5970149253731343,
+      "bodyCenter": 117.5,
+      "bodyScale": 0.36004098360655734,
       "yKnots": [
         [
           0,
           12.4
         ],
         [
-          45,
+          87.49003984063745,
           52.4
         ],
         [
-          54,
+          104.98804780876495,
           60.4
         ],
         [
-          100,
+          194.4223107569721,
           94
         ],
         [
-          132,
+          256.6374501992032,
           112
         ],
         [
-          198,
+          384.9561752988048,
           145
         ],
         [
-          249,
+          488,
           173
         ]
       ],
+      "legScale": 0.23829787234042552,
+      "legFrom": 256.6374501992032,
+      "legBlend": 97.21115537848605,
       "skeleton": {
         "crown": 12,
         "chin": 52,
@@ -2887,6 +3185,22 @@
       ],
       "solePixelRow": 172,
       "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "headSource": {
+        "source": "arena/art/source/four-head-walk-body.png",
+        "crop": {
+          "x": 594,
+          "y": 1908,
+          "w": 80,
+          "h": 249
+        },
+        "retainedTargetRows": [
+          0,
+          56
+        ],
+        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "correction": "Dedicated opposite-half source pose; review candidate.",
       "attachments": {
         "crown": [
           96,
@@ -2901,16 +3215,16 @@
           112
         ],
         "rightHand": [
-          72.9,
-          108.625
+          62.85405095593869,
+          112.35040983606557
         ],
         "leftHand": [
-          119.1,
-          109.1875
+          133.62428278688523,
+          95.32441086065573
         ]
       },
       "durationMs": 125,
-      "phase": "left-passing",
+      "phase": "opposite-passing",
       "sourcePoseRetained": true
     }
   ]

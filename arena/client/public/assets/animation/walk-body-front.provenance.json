@@ -9,11 +9,25 @@
   "sourceSha256": "63dc95d19943b8e01310ef88105a656c6f39ed8be5a65ff6f7d19de11680250d",
   "promptSha256": "8cdd08e650993ed16d3af902698303767dd89a64b54350d1af273b7889412761",
   "method": "32 independently generated walking poses; registered against reviewed neutral four-head skeleton, no neutral pose substitution.",
+  "correctionSources": [
+    {
+      "source": "arena/art/source/four-head-walk-opposite.png",
+      "sourceSha256": "468c1fc66337f426467ba4323b62f2597b94452ac19bfcdcaf871ec4af6a8ce4",
+      "promptSha256": "5a31a1f7d6acae405602d02bbb8ea0e5e9ac61a5cd7e4d5576639bc607696f98",
+      "method": "Targeted opposite-half correction candidates; see per-frame bodySource and independent review record."
+    },
+    {
+      "source": "arena/art/source/four-head-walk-right-views.png",
+      "sourceSha256": "e0c2e16406365f04718c5d8bacfb16e5f1e578b97740afacbe4ccdfd1991affe",
+      "promptSha256": "cafbb962829e7ce9a7479cf32e4a21065afb06354a3967b5387e6d9eca0a9afe",
+      "method": "Targeted opposite-half correction candidates; see per-frame bodySource and independent review record."
+    }
+  ],
   "proportion": "four-head",
   "registration": "arena/art/source/four-head-walk-body-front-registration.json",
-  "recipeSha256": "badf42ed4e2c4183c465aaeb9e641b8758080c8f78c7a08538338e12b6bc362d",
+  "recipeSha256": "7c4f9a95a85ee02db79f4fc3ab838b7bb4b3bd105448fa5c1f97253b30eccc77",
   "review": "Four-head neutral fit passed independent production review; full action/runtime approval remains pending.",
-  "atlasPngSha256": "fd47b3459053000aa9c406d9a612f5d58a36c9c1b6938e03c392065fc3ca6112",
+  "atlasPngSha256": "e26c8603d9cc557d72ff15a47f599ca82236817d00ef9270a47410f82f89c826",
   "cell": [
     192,
     192

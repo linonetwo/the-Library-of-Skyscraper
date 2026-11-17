@@ -34,11 +34,11 @@ for(const result of [await idleFrames(),await walkFrames()]) {
     coverage.auxiliaryLayers.push({action,layer,atlas:`${action}-${layer}.json`,purpose:'Four-head paper-doll occlusion; matching action registration.'});
   coverage.fourHeadSources.push({action,layers:provenance});
 }
-coverage.contentVersion='arena-animation-2026-11-17.four-head.1';coverage.generatedOn='2026-11-17';
+coverage.contentVersion='arena-animation-2026-11-17.four-head.2';coverage.generatedOn='2026-11-17';
 coverage.source={path:'arena/art/source/four-head-walk-body.png',sha256:digest(await readFile(new URL('source/four-head-walk-body.png',art))),
   generator:'GPT Image 2 via proxy-imagegen'};
 coverage.review={proportion:'Reviewed neutral four-head skeleton: crown12/chin52/sole172, common anchor172.8; both actions migrated together.',
-  gait:'Dedicated generated walk source; independent review blocked repeated same-leg half-cycle in side/oblique views. Targeted opposite-phase source correction underway; no action approval. Idle uses independent standing source and upper-body breath.',
+  gait:'Opposite-half source/limb corrections passed targeted contact-sheet recheck, including E anatomical grip. Real-FPS playback still must review unequal knee-lift/limb thickness and arm transitions. No action release approval; idle uses independent standing source and upper-body breath.',
   paperDoll:'14 physical layers per action, 2 outfits × 2 hair designs × empty/staff; both actions include foreground hands and hair/staff depth splits.',
   grip:'Per-frame right-hand staff and weapon-only grip registration; all contacts require independent runtime approval.',
   cleanup:'Source near-white matte/chroma cleanup and alpha resampling; fine edges and limb joins remain prototype review.'};
