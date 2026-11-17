@@ -1,5 +1,5 @@
 import type { AnimationAction } from "./animationCatalog";
-import { Container, Graphics, Sprite, Texture } from "pixi.js";
+import { Container, Graphics, Sprite, Texture, Rectangle } from "pixi.js";
 import type { Actor } from "./types";
 import { animationLayers } from "./walkLayers";
 import { ActorMotion, type Point } from "./actorMotion";
@@ -23,6 +23,9 @@ export class ActorView {
     this.halo.ellipse(0, 0, 24, 8)
       .stroke({ color: 0xf5d18a, width: 2 }).fill({ color: 0xf5d18a, alpha: 0.15 });
     this.node.addChild(this.halo, this.doll, this.health);
+    // Input follows the visible head/body column rather than transparent atlas cells.
+    this.node.hitArea = new Rectangle(-20, -145, 40, 145);
+    this.node.interactiveChildren = false;
     this.node.eventMode = "static";
     this.node.cursor = "pointer";
     this.node.on("pointertap", event => { event.stopPropagation(); onSelect(actor.id); });
