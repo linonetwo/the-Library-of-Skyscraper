@@ -229,7 +229,7 @@
         22,
         0,
         62,
-        45
+        44
       ],
       "headCenter": 42,
       "headScale": 0.975609756097561,
@@ -241,12 +241,16 @@
           12
         ],
         [
-          45,
+          44,
           52
         ],
         [
-          54,
-          60
+          49,
+          56
+        ],
+        [
+          59,
+          64
         ],
         [
           100,
@@ -296,7 +300,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 49,
+        "neckTargetY": 56,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -338,7 +358,7 @@
         17,
         0,
         58,
-        44.64143426294821
+        44.0398406374502
       ],
       "headCenter": 37.5,
       "headScale": 0.9523809523809523,
@@ -350,12 +370,16 @@
           12.4
         ],
         [
-          44.64143426294821,
+          44.0398406374502,
           52.4
         ],
         [
-          53.569721115537845,
-          60.4
+          49,
+          56.4
+        ],
+        [
+          58.920318725099605,
+          64.4
         ],
         [
           99.20318725099602,
@@ -405,7 +429,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 49,
+        "neckTargetY": 56.4,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -424,7 +464,7 @@
         ],
         "rightHand": [
           75.18413654618473,
-          89.43258250392876
+          89.44187518544159
         ],
         "leftHand": [
           118.22710843373494,
@@ -631,7 +671,7 @@
         23,
         0,
         67,
-        45.35856573705179
+        47.9601593625498
       ],
       "headCenter": 45,
       "headScale": 0.8888888888888888,
@@ -643,12 +683,16 @@
           12
         ],
         [
-          45.35856573705179,
+          47.9601593625498,
           52
         ],
         [
-          54.430278884462155,
-          60
+          53,
+          56
+        ],
+        [
+          63.079681274900395,
+          64
         ],
         [
           100.79681274900398,
@@ -698,7 +742,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 53,
+        "neckTargetY": 56,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -740,7 +800,7 @@
         23,
         0,
         68,
-        45.179282868525895
+        47.9800796812749
       ],
       "headCenter": 45.5,
       "headScale": 0.8695652173913043,
@@ -752,12 +812,16 @@
           12.4
         ],
         [
-          45.179282868525895,
+          47.9800796812749,
           52.4
         ],
         [
-          54.21513944223108,
-          60.4
+          53,
+          56.4
+        ],
+        [
+          63.0398406374502,
+          64.4
         ],
         [
           100.39840637450199,
@@ -807,7 +871,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 53,
+        "neckTargetY": 56.4,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -830,7 +910,7 @@
         ],
         "leftHand": [
           66.71666666666667,
-          87.88985507246377
+          87.34576090434041
         ]
       },
       "durationMs": 125,
@@ -1033,7 +1113,7 @@
         49,
         0,
         94,
-        45.179282868525895
+        48.9800796812749
       ],
       "headCenter": 71.5,
       "headScale": 0.8695652173913043,
@@ -1045,12 +1125,16 @@
           12
         ],
         [
-          45.179282868525895,
+          48.9800796812749,
           52
         ],
         [
-          54.21513944223108,
-          60
+          54,
+          56
+        ],
+        [
+          64.0398406374502,
+          64
         ],
         [
           100.39840637450199,
@@ -1100,7 +1184,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 54,
+        "neckTargetY": 56,
+        "legWidthScale": 1.24,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -1142,7 +1242,7 @@
         39,
         0,
         84,
-        45.179282868525895
+        49.9800796812749
       ],
       "headCenter": 61.5,
       "headScale": 0.8695652173913043,
@@ -1154,12 +1254,16 @@
           12.4
         ],
         [
-          45.179282868525895,
+          49.9800796812749,
           52.4
         ],
         [
-          54.21513944223108,
-          60.4
+          55,
+          56.4
+        ],
+        [
+          65.0398406374502,
+          64.4
         ],
         [
           100.39840637450199,
@@ -1209,7 +1313,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 55,
+        "neckTargetY": 56.4,
+        "legWidthScale": 1.24,
+        "passingRetarget": "Hip anchored; articulated thigh/shin lower knee to y134 and ankle145–147, rather than translating the boot."
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -1232,7 +1352,7 @@
         ],
         "leftHand": [
           58.35,
-          85.7072463768116
+          84.45796056338028
         ]
       },
       "durationMs": 125,
@@ -1435,7 +1555,7 @@
         46,
         0,
         91,
-        45.537848605577686
+        48.940239043824704
       ],
       "headCenter": 68.5,
       "headScale": 0.8695652173913043,
@@ -1447,12 +1567,16 @@
           12
         ],
         [
-          45.537848605577686,
+          48.940239043824704,
           52
         ],
         [
-          54.645418326693225,
-          60
+          54,
+          56
+        ],
+        [
+          64.11952191235059,
+          64
         ],
         [
           101.19521912350598,
@@ -1502,7 +1626,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 54,
+        "neckTargetY": 56,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -1544,7 +1684,7 @@
         33,
         0,
         79,
-        45.537848605577686
+        48.940239043824704
       ],
       "headCenter": 56,
       "headScale": 0.851063829787234,
@@ -1556,12 +1696,16 @@
           12.4
         ],
         [
-          45.537848605577686,
+          48.940239043824704,
           52.4
         ],
         [
-          54.645418326693225,
-          60.4
+          54,
+          56.4
+        ],
+        [
+          64.11952191235059,
+          64.4
         ],
         [
           101.19521912350598,
@@ -1611,7 +1755,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 54,
+        "neckTargetY": 56.4,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -1634,7 +1794,7 @@
         ],
         "leftHand": [
           61.41338582677165,
-          84.4755905511811
+          83.46537717601548
         ]
       },
       "durationMs": 125,
@@ -2205,7 +2365,7 @@
         111,
         0,
         177,
-        85.87649402390439
+        68.4581673306773
       ],
       "headCenter": 144,
       "headScale": 0.5970149253731343,
@@ -2217,12 +2377,16 @@
           12
         ],
         [
-          85.87649402390439,
+          68.4581673306773,
           52
         ],
         [
-          103.05179282868527,
-          60
+          78,
+          56
+        ],
+        [
+          97.08366533864542,
+          64
         ],
         [
           190.8366533864542,
@@ -2272,7 +2436,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 78,
+        "neckTargetY": 56,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -2314,7 +2494,7 @@
         65,
         0,
         131,
-        86.41434262948208
+        65.39840637450199
       ],
       "headCenter": 98,
       "headScale": 0.5970149253731343,
@@ -2326,12 +2506,16 @@
           12.4
         ],
         [
-          86.41434262948208,
+          65.39840637450199,
           52.4
         ],
         [
-          103.69721115537848,
-          60.4
+          75,
+          56.4
+        ],
+        [
+          94.20318725099602,
+          64.4
         ],
         [
           192.03187250996018,
@@ -2381,13 +2565,29 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
       },
       "limbRepair": {
         "module": "four-head-leg-repair.mjs",
         "direction": "NE",
         "method": "Generated leg pixels segmented and re-rooted at opposite hip; original feet direction preserved; near/far compositing corrected.",
         "status": "candidate pending independent review"
+      },
+      "balance": {
+        "sourceNeck": 75,
+        "neckTargetY": 56.4,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -2406,7 +2606,7 @@
         ],
         "rightHand": [
           128.98931535269708,
-          81.8159841241205
+          84.30812461820403
         ],
         "leftHand": [
           63.01068464730291,
@@ -2613,7 +2813,7 @@
         124,
         0,
         191,
-        86.23505976095618
+        66.41832669322709
       ],
       "headCenter": 157.5,
       "headScale": 0.5882352941176471,
@@ -2625,12 +2825,16 @@
           12
         ],
         [
-          86.23505976095618,
+          66.41832669322709,
           52
         ],
         [
-          103.48207171314742,
-          60
+          76,
+          56
+        ],
+        [
+          95.16334661354583,
+          64
         ],
         [
           191.63346613545818,
@@ -2680,7 +2884,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 76,
+        "neckTargetY": 56,
+        "legWidthScale": 1.24,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -2722,7 +2942,7 @@
         62,
         0,
         129,
-        86.95219123505976
+        64.33864541832669
       ],
       "headCenter": 95.5,
       "headScale": 0.5882352941176471,
@@ -2734,12 +2954,16 @@
           12.4
         ],
         [
-          86.95219123505976,
+          64.33864541832669,
           52.4
         ],
         [
-          104.34262948207171,
-          60.4
+          74,
+          56.4
+        ],
+        [
+          93.32270916334662,
+          64.4
         ],
         [
           193.22709163346613,
@@ -2789,7 +3013,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 74,
+        "neckTargetY": 56.4,
+        "legWidthScale": 1.24,
+        "passingRetarget": "Hip anchored; articulated thigh/shin lower knee to y134 and ankle145–147, rather than translating the boot."
       },
       "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -2812,7 +3052,7 @@
         ],
         "leftHand": [
           129.14752577319587,
-          86.73179740026893
+          88.30333386505025
         ]
       },
       "durationMs": 125,
@@ -3015,7 +3255,7 @@
         107,
         0,
         173,
-        87.13147410358566
+        64.3187250996016
       ],
       "headCenter": 140,
       "headScale": 0.5970149253731343,
@@ -3027,12 +3267,16 @@
           12
         ],
         [
-          87.13147410358566,
+          64.3187250996016,
           52
         ],
         [
-          104.55776892430279,
-          60
+          74,
+          56
+        ],
+        [
+          93.36254980079681,
+          64
         ],
         [
           193.62549800796813,
@@ -3082,13 +3326,29 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
       },
       "limbRepair": {
         "module": "four-head-leg-repair.mjs",
         "direction": "SE",
         "method": "Generated leg pixels segmented and re-rooted at opposite hip; original feet direction preserved; near/far compositing corrected.",
         "status": "candidate pending independent review"
+      },
+      "balance": {
+        "sourceNeck": 74,
+        "neckTargetY": 56,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -3130,7 +3390,7 @@
         83,
         0,
         149,
-        87.49003984063745
+        64.2788844621514
       ],
       "headCenter": 116,
       "headScale": 0.5970149253731343,
@@ -3142,12 +3402,16 @@
           12.4
         ],
         [
-          87.49003984063745,
+          64.2788844621514,
           52.4
         ],
         [
-          104.98804780876495,
-          60.4
+          74,
+          56.4
+        ],
+        [
+          93.44223107569721,
+          64.4
         ],
         [
           194.4223107569721,
@@ -3197,7 +3461,23 @@
           0,
           56
         ],
-        "reason": "Keep reviewed character identity and direction; correction supplies below-neck anatomy only."
+        "neckJoin": {
+          "rows": [
+            57,
+            63
+          ],
+          "columns": [
+            84,
+            108
+          ]
+        },
+        "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
+      },
+      "balance": {
+        "sourceNeck": 74,
+        "neckTargetY": 56.4,
+        "legWidthScale": 1.15,
+        "passingRetarget": null
       },
       "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
