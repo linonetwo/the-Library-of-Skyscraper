@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import {project,inverse,containsTile} from '../../client/src/isoGeometry';
 import {mapLayout} from '../../client/src/mapLayout';
 import {fitMap} from '../../client/src/mapCamera';
+import {CameraController} from '../../client/src/cameraController';
 import {ActorMotion} from '../../client/src/actorMotion';
 test('isometric geometry, legal corridors and continuous paths',()=>{
  for(let x=-9;x<=9;x++)for(let y=-9;y<=9;y++){const p=project(x,y);expect(inverse(p.x,p.y)).toEqual({x,y});expect(containsTile(p,{x,y})).toBe(true);}
@@ -10,6 +11,7 @@ test('isometric geometry, legal corridors and continuous paths',()=>{
  const layout=mapLayout(rooms);expect(layout.links).toHaveLength(12);
  for(const link of layout.links)for(let i=1;i<link.points.length;i++)expect(Math.abs(link.points[i].x-link.points[i-1].x)+Math.abs(link.points[i].y-link.points[i-1].y)).toBe(1);
  expect(fitMap({minX:-400,minY:-200,maxX:400,maxY:200},360,800).scale*800).toBeLessThanOrEqual(288);
+ const controller=new CameraController();controller.focus({kind:'actor',id:'a',revision:1});const bounds={minX:-500,minY:-500,maxX:500,maxY:500};const camera=controller.apply(bounds,400,800,1,()=>({x:100,y:100}),()=>undefined);controller.pan(30,20,400,800);const moved=controller.apply(bounds,400,800,1,()=>({x:900,y:900}),()=>undefined);expect(moved.x).toBeCloseTo(camera.x+30);controller.focus({kind:'actor',id:'a',revision:2});expect(controller.mode.kind).toBe('actor');
  const motion=new ActorMotion({x:0,y:0});motion.move({x:100,y:100},0,false,[{x:100,y:0}]);expect(motion.sample(225)).toMatchObject({x:100,y:0,moving:true});expect(motion.sample(450)).toMatchObject({x:100,y:100,moving:false});
 });
 
@@ -27,6 +29,7 @@ test('real tile stage preserves camera picking and movement',async({page})=>{
  await expect.poll(async()=>JSON.parse((await map.getAttribute('data-actors'))!).find((a:{id:string})=>a.id==='p1-scout')?.moving,{intervals:[10,20]}).toBe(true);
  await expect.poll(async()=>JSON.parse((await map.getAttribute('data-actors'))!).find((a:{id:string})=>a.id==='p1-scout')?.animation).toBe('idle');
  await page.screenshot({path:'/tmp/arena-isometric-wide.png',fullPage:true});
+ const before=JSON.parse((await map.getAttribute('data-camera'))!);const rect=await map.boundingBox();await page.mouse.move(rect!.x+rect!.width*.5,rect!.y+rect!.height*.6);await page.mouse.down();await page.mouse.move(rect!.x+rect!.width*.5+60,rect!.y+rect!.height*.6+30,{steps:6});await page.mouse.up();await expect.poll(async()=>Math.round(JSON.parse((await map.getAttribute('data-camera'))!).x-before.x)).toBe(60);
  await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'全图总览',exact:true}).click();await clickRoom();expect(requests.some(r=>r.includes('/assets/tiles/'))).toBe(true);expect(requests.some(r=>r.includes('library-map.png'))).toBe(false);expect(errors).toEqual([]);await page.screenshot({path:'/tmp/arena-isometric-narrow.png',fullPage:true});
 });
 
