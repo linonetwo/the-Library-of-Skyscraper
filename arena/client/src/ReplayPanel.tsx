@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import MapCanvas from "./MapCanvas";
 import { useDialog } from "./useDialog";
@@ -13,6 +13,7 @@ export default function ReplayPanel({ session, onClose }: { session: Session; on
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
   const [focusIntent,setFocusIntent]=useState<import("./cameraController").FocusIntent>();
   const snapshot = replay.frame?.snapshot ?? null;
+  useEffect(()=>{ if(!selected && snapshot?.actors[0]) {const id=snapshot.actors[0].id;setSelected(id);setFocusIntent(old=>({kind:"actor",id,revision:(old?.revision??0)+1}));} },[snapshot,selected]);
   return createPortal(
     <div className="modal-backdrop">
       <section ref={dialog} className="modal replay-panel" role="dialog" aria-modal="true"

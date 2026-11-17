@@ -63,12 +63,11 @@ export function useArenaWorkspace() {
     setSelectedRoom(null);
   };
   useEffect(() => {
-    setSelected(
-      (current) =>
-        current ||
-        snapshot?.actors.find((a) => a.owner === session?.playerId)?.id ||
-        null,
-    );
+    const initial=snapshot?.actors.find(a=>a.owner===session?.playerId)?.id;
+    if(!selected && initial) {
+      setSelected(initial);
+      setFocusIntent(old=>({kind:"actor",id:initial,revision:(old?.revision??0)+1}));
+    }
   }, [snapshot, session?.playerId]);
   useEffect(() => {
     if (player) {
