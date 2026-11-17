@@ -3,6 +3,7 @@ import type { Snapshot } from "./types";
 import { project, diamond } from "./isoGeometry";
 import { mapLayout, roomCenter } from "./mapLayout";
 export type MapProps = {
+  focusIntent?:import("./cameraController").FocusIntent;
   snapshot: Snapshot | null;
   selected: string | null;
   selectedRoom: string | null;

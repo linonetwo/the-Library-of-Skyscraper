@@ -15,8 +15,9 @@ test('isometric geometry, legal corridors and continuous paths',()=>{
 
 test('real tile stage preserves camera picking and movement',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));const requests:string[]=[];page.on('request',r=>requests.push(r.url()));
- await page.goto('/');
- const map=page.locator('.pixi-map').first();await expect(map.locator('canvas')).toBeVisible();await expect.poll(()=>map.getAttribute('data-actors')).toBeTruthy();
+ const session=await page.request.post('/api/sessions',{data:{mode:'training'}}).then(r=>r.json());
+ await page.addInitScript(a=>sessionStorage.setItem('arena-session',JSON.stringify(a)),session);await page.goto('/');
+ const map=page.locator('.pixi-map').first();await expect(map.locator('canvas')).toBeVisible();await expect.poll(()=>page.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();await expect.poll(()=>map.getAttribute('data-actors')).toBeTruthy();
  const data=await page.evaluate(async()=>{const a=JSON.parse(sessionStorage.getItem('arena-session')!);const headers={Authorization:'Bearer '+a.token,'Content-Type':'application/json'};await fetch(`/api/sessions/${a.sessionId}/commands`,{method:'POST',headers,body:JSON.stringify({type:'reset'})});const state=await fetch(`/api/sessions/${a.sessionId}/state`,{headers}).then(r=>r.json());return {a,state};});
  await page.getByRole('button',{name:'全图总览',exact:true}).click();
  const destination=data.state.rooms.find((r:{q:number;r:number})=>r.q===1&&r.r===0);const point=project(8,0);
@@ -34,11 +35,12 @@ test('two clients share grid destinations and select actors through the camera',
  await host.goto('/');await host.getByRole('button',{name:'菜单',exact:true}).click();await host.getByRole('button',{name:'联机大厅',exact:true}).click();await host.getByRole('button',{name:/创建联机/}).click();
  await expect.poll(()=>host.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();const auth=await host.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session')!));
  await guest.goto('/');await guest.getByRole('button',{name:'菜单',exact:true}).click();await guest.getByRole('button',{name:'联机大厅',exact:true}).click();await guest.getByLabel('使用赛局编号加入').fill(auth.sessionId);await guest.getByRole('button',{name:'加入赛局',exact:true}).click();
+ await host.getByRole('button',{name:'菜单',exact:true}).click();
  const pose=async(page:typeof host)=>JSON.parse((await page.locator('.pixi-map').first().getAttribute('data-actors'))||'[]').find((a:{id:string})=>a.id==='p1-scout');
  await expect.poll(async()=>Boolean(await pose(guest))).toBe(true);
  await host.evaluate(async(a)=>{const headers={Authorization:'Bearer '+a.token,'Content-Type':'application/json'};await fetch(`/api/sessions/${a.sessionId}/scripts/publish`,{method:'POST',headers,body:JSON.stringify({files:{'main.ts':'export function decide(){return {intents:[]};}'}})});const r=await fetch(`/api/sessions/${a.sessionId}/commands`,{method:'POST',headers,body:JSON.stringify({type:'move',actorId:'p1-scout',roomId:'room-1'})});if(!r.ok)throw new Error(await r.text());},auth);
  await expect.poll(async()=>{const a=await pose(host),b=await pose(guest);return a&&!a.moving&&b&&!b.moving&&a.x===b.x&&a.y===b.y;}).toBe(true);
  const map=host.locator('.pixi-map').first(),box=await map.boundingBox(),camera=JSON.parse((await map.getAttribute('data-camera'))!),actor=await pose(host);
- await host.mouse.click(box!.x+camera.x+actor.x*camera.scale,box!.y+camera.y+(actor.y-40)*camera.scale);
- await expect(host.locator('body')).toContainText('巡书使');await host.screenshot({path:'/tmp/arena-isometric-online.png',fullPage:true});await one.close();await two.close();
+ await host.mouse.click(box!.x+camera.x+actor.x*camera.scale,box!.y+camera.y+(actor.y-70)*camera.scale);
+ await expect(host.getByLabel('选中角色操作')).toContainText('巡书使');await host.screenshot({path:'/tmp/arena-isometric-online.png',fullPage:true});await one.close();await two.close();
 });
