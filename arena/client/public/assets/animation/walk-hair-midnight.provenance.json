@@ -8,11 +8,12 @@
   "source": "arena/art/source/walk-hair-midnight.png",
   "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
   "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
-  "normalizationSha256": "1f65cebfdc98d606bc42584ab1fd00512d1da668ce13017fd72254656ca55e39",
-  "recipeSha256": "4db6adb6c7497d52059c38097b0c94b14c0e8563cffac54b73f01f815ad4437f",
-  "registration": "arena/art/source/walk-hair-midnight-normalized-registration.json",
-  "review": "Normalized to idle proportions; original four-phase gait retained. All direction/hand contacts require visual approval.",
-  "atlasPngSha256": "d48210d9f08ebace45f0375720db133bbc9173298b31b75b47d9907ec0f25bf7",
+  "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks.",
+  "proportion": "four-head",
+  "registration": "arena/art/source/four-head-walk-hair-midnight-registration.json",
+  "recipeSha256": "26c0688766f59f50b1bc6fc7c6e0b7c81a291c2d076556f899803df161e460af",
+  "review": "Four-head neutral fit passed independent production review; full action/runtime approval remains pending.",
+  "atlasPngSha256": "e2f3dfa1f9afa65be0e9ba65260fa2e5f8a186a2c6c1661d20ee3988d9bea88f",
   "cell": [
     192,
     192

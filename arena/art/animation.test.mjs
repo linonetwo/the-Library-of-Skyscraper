@@ -52,7 +52,8 @@ test('prototype atlas contains 32 distinct nonempty RGBA frames within padded bo
 });
 test('generated source is preserved and checksum is reproducible', async () => {
   const c = await json('coverage.json');
-  const source = await readFile(new URL('source/walk-body-eight-directions.png', import.meta.url));
+  assert.equal(c.source.path,'arena/art/source/four-head-walk-body.png');
+  const source = await readFile(new URL('source/four-head-walk-body.png', import.meta.url));
   assert.equal(createHash('sha256').update(source).digest('hex'), c.source.sha256);
 });
 test('outfits, both hair sets and foreground hands share the 32 body registrations', async () => {

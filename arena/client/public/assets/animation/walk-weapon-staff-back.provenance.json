@@ -8,11 +8,12 @@
   "source": "arena/art/source/walk-weapon-staff.png",
   "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
   "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
-  "normalizationSha256": "1f65cebfdc98d606bc42584ab1fd00512d1da668ce13017fd72254656ca55e39",
-  "recipeSha256": "5b41ab586665a4d0ca04ed44d2d0fbeedd904330eddb38299437b3ae60b867ee",
-  "registration": "arena/art/source/walk-weapon-staff-back-normalized-registration.json",
-  "review": "Normalized to idle proportions; original four-phase gait retained. All direction/hand contacts require visual approval.",
-  "atlasPngSha256": "4c1e82e11d68679b3a652c7eef8c615ba03b8695bf6b3686a470f1e83169277d",
+  "method": "Shared directional staff design; independently authored four-head walk hand tracks and carry angles.",
+  "proportion": "four-head",
+  "registration": "arena/art/source/four-head-walk-weapon-staff-back-registration.json",
+  "recipeSha256": "c2ace08babbd11e91da4e0fcefdb6c462ac87366bf1b9c880b8c8a3f54a08818",
+  "review": "Four-head neutral fit passed independent production review; full action/runtime approval remains pending.",
+  "atlasPngSha256": "e20288fbdf3ea5b175da8f9c363b7cf9cd116c7a28b0c9f30f6397f96398cb07",
   "cell": [
     192,
     192

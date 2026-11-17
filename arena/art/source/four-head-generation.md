@@ -18,3 +18,21 @@ Connected near-white background matte is flood-removed from the base source befo
 `node prepare-four-head-fit.mjs` writes eight independent direction×layer sets, anatomical registrations and eight 4×2 contact sheets under `four-head-fit/`. This is a design-fit output, not a replacement for the runtime idle/walk atlases. The two actions must migrate together after fit review; no old/new proportion mixture is considered delivered.
 
 The neutral anatomy test measures every view against the four-head contract and transparent cell boundary. Contact sheets are not runtime screenshots or independent approval. Collar/shoulder fit, scalp/ear coverage, hand–shaft joins, both hairstyles and directional consistency require visual review before expanding the action source production.
+
+## Independent fit gate and action production
+
+Independent Astra inspected all eight equipment sheets × eight neutral views (64 combinations) and approved the **neutral production fit gate**, not release art. The visible hair-to-sole silhouette reads approximately 3.7–4 heads; no further body elongation was requested. Collar/shoulder fit, side/back hair continuity and neutral empty/staff contact were accepted at contact-sheet scale. Subsequent action review must still inspect fingers over shaft, W/E hair/shoulder intersections and shoulder-guard motion.
+
+Three further proxy-imagegen/GPT Image 2 calls each succeeded on the first attempt:
+
+- `four-head-walk-body.png`: 1,396,487 bytes; 4×8 genuinely generated walking base poses.
+- `four-head-walk-scholar.png`: 1,729,121 bytes; 4×8 independent scholar garment poses.
+- `four-head-walk-warden.png`: 1,669,075 bytes; 4×8 independent warden garment poses.
+
+Prompts are adjacent; no image upload or successful-source rerun. Body and garment sources again have non-target proportions and are explicitly registered to the reviewed neutral anatomy. Source pose geometry is retained; no neutral body is reused to manufacture walking. The generated sheet contains side-view contact silhouettes that are quite similar between phases00/02; distinct pixel hashes do **not** prove a correct alternating gait. This remains a specific visual continuity review item, not an approved claim.
+
+`four-head-idle.mjs` creates four 250ms upper-body breathing/hem/hair phases from the independent neutral source, with every body pixel below y112 unchanged. `four-head-walk.mjs` registers the 32 dedicated walking body and garment poses, four existing hair poses per view and individually authored original-palm hand tracks. E carry lean is negative so the rear-depth shaft extends outside the body silhouette instead of disappearing behind it. Hair splits are made from final deformed aggregate cells so front+back reconstruct their source exactly.
+
+`prepare-four-head-actions.mjs` packs both actions together: 28 atlases, 32 cells each, 192px cells with 2px padding, anchor `(0.5,0.9)`, complete per-layer source crop/placement/hash recipes, durations and both-hand/hip/neck/crown tracks. It replaces both runtime actions, including four new walk front/back hair atlases. Body-front is a foreground arm/hand mask from the matching body; held-only small closed fingers cover the registered shaft rather than adding an independent floating fist. All eight equipment combinations are rendered by `motion-previews.mjs`; all remain prototype.
+
+Rebuild: `npm run build:animation`; tile rebuild: `npm run build:tiles`; tests: `npm test`. The 21 art tests include four-head proportion agreement, baseline, no idle lower-body movement, four distinct authored walk phases, current source/recipe hashes, all hair/staff depth masks and finger/shaft alpha contact. Tests and contact sheets do not replace real-client, independent frame-by-frame approval.
