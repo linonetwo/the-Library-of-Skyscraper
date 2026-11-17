@@ -23,6 +23,7 @@ export default function Battlefield() {
     expeditions,
     selected,
     selectedRoom,
+    focusIntent,
     setSelectedRoom,
     zoom,
     setZoom,
@@ -95,6 +96,7 @@ export default function Battlefield() {
           </button>
         </div>
         <MapCanvas
+          focusIntent={focusIntent}
           snapshot={snapshot}
           selected={selected}
           selectedRoom={selectedRoom}

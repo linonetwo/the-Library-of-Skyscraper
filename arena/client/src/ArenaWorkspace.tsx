@@ -26,7 +26,8 @@ export function useArenaWorkspace() {
   const { session, snapshot, connection, busy } = arena;
   const [inspecting, setInspecting] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
-  const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+  const [focusIntent,setFocusIntent]=useState<import("./cameraController").FocusIntent>();
+  const [selectedRoom, updateSelectedRoom] = useState<string | null>(null);
   const [zoom, setZoom] = useState(1);
   const [showRoutes, setShowRoutes] = useState(true);
   const [view, setView] = useState<"map" | "rules" | "journal">("map");
@@ -54,8 +55,10 @@ export function useArenaWorkspace() {
     snapshot.phase === "running";
   const training = snapshot?.mode === "training";
   const isOwner = actor?.owner === session?.playerId;
+  const setSelectedRoom=(id:string|null)=>{ updateSelectedRoom(id); if(id) {setInspecting(false);setFocusIntent(old=>({kind:"room",id,revision:(old?.revision??0)+1}));} };
   const selectActor = (id: string) => {
     setSelected(id);
+    setFocusIntent(old=>({kind:"actor",id,revision:(old?.revision??0)+1}));
     setInspecting(false);
     setSelectedRoom(null);
   };
@@ -92,6 +95,7 @@ export function useArenaWorkspace() {
     inspecting,
     setInspecting,
     selectedRoom,
+    focusIntent,
     setSelectedRoom,
     equip,
     zoom,
