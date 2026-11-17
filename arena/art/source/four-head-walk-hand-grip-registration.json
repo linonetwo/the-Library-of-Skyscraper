@@ -16,6 +16,7 @@
         "w": 277,
         "h": 370
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/S/00",
         "hand": "right",
@@ -35,6 +36,7 @@
           8,
           113
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -54,18 +56,19 @@
         "w": 277,
         "h": 370
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/S/01",
         "hand": "right",
         "grip": {
-          "x": 72.55,
-          "y": 109.75
+          "x": 72.26633064516129,
+          "y": 110.62096774193549
         },
         "carryLeanDegrees": -4,
         "depth": "front",
         "placement": [
           57,
-          55,
+          56,
           30,
           91
         ],
@@ -73,6 +76,7 @@
           7,
           128
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -92,30 +96,32 @@
         "w": 277,
         "h": 370
       },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "attachment": {
         "frame": "walk/weapon-staff/S/02",
         "hand": "right",
         "grip": {
-          "x": 71.85,
-          "y": 115
+          "x": 72.2,
+          "y": 107.5
         },
         "carryLeanDegrees": -12,
         "depth": "front",
         "placement": [
           49,
-          60,
+          53,
           42,
           92
         ],
         "sourceHandCenter": [
           7,
-          138
+          124
         ],
+        "bodySource": "arena/art/source/four-head-walk-opposite.png",
         "durationMs": 125
       },
       "placement": [
-        68,
-        109,
+        69,
+        101,
         7,
         10
       ]
@@ -130,30 +136,32 @@
         "w": 277,
         "h": 370
       },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "attachment": {
         "frame": "walk/weapon-staff/S/03",
         "hand": "right",
         "grip": {
-          "x": 72.2,
-          "y": 109.1875
+          "x": 75.18413654618473,
+          "y": 89.43258250392876
         },
         "carryLeanDegrees": -6,
         "depth": "front",
         "placement": [
-          55,
-          55,
+          58,
+          35,
           33,
           91
         ],
         "sourceHandCenter": [
-          7,
-          127
+          9,
+          93
         ],
+        "bodySource": "arena/art/source/four-head-walk-opposite.png",
         "durationMs": 125
       },
       "placement": [
-        69,
-        103,
+        72,
+        83,
         7,
         10
       ]
@@ -168,12 +176,13 @@
         "w": 304,
         "h": 375
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/SW/00",
         "hand": "right",
         "grip": {
-          "x": 64.5,
-          "y": 99.0625
+          "x": 64.74901185770752,
+          "y": 98.5778162055336
         },
         "carryLeanDegrees": -8,
         "depth": "front",
@@ -187,11 +196,12 @@
           6,
           109
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
         61,
-        93,
+        92,
         7,
         10
       ]
@@ -206,18 +216,19 @@
         "w": 304,
         "h": 375
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/SW/01",
         "hand": "right",
         "grip": {
-          "x": 69.4,
-          "y": 107.5
+          "x": 69.07822580645161,
+          "y": 108.34375
         },
         "carryLeanDegrees": -4,
         "depth": "front",
         "placement": [
-          53,
-          53,
+          52,
+          54,
           30,
           91
         ],
@@ -225,11 +236,12 @@
           6,
           124
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
         66,
-        101,
+        102,
         7,
         10
       ]
@@ -244,30 +256,32 @@
         "w": 304,
         "h": 375
       },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "attachment": {
         "frame": "walk/weapon-staff/SW/02",
         "hand": "right",
         "grip": {
-          "x": 64.5,
-          "y": 110.875
+          "x": 122.04249011857708,
+          "y": 106.39056324110672
         },
         "carryLeanDegrees": -12,
         "depth": "front",
         "placement": [
-          40,
-          56,
+          98,
+          51,
           42,
           93
         ],
         "sourceHandCenter": [
-          7,
-          130
+          86,
+          123
         ],
+        "bodySource": "arena/art/source/four-head-walk-opposite.png",
         "durationMs": 125
       },
       "placement": [
-        61,
-        105,
+        119,
+        100,
         7,
         10
       ]
@@ -282,30 +296,32 @@
         "w": 304,
         "h": 375
       },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "attachment": {
         "frame": "walk/weapon-staff/SW/03",
         "hand": "right",
         "grip": {
-          "x": 69.4,
-          "y": 108.0625
+          "x": 125.28333333333333,
+          "y": 107.22321428571428
         },
         "carryLeanDegrees": -6,
         "depth": "front",
         "placement": [
-          51,
-          53,
+          107,
+          52,
           33,
           92
         ],
         "sourceHandCenter": [
-          7,
-          125
+          92,
+          124
         ],
+        "bodySource": "arena/art/source/four-head-walk-opposite.png",
         "durationMs": 125
       },
       "placement": [
-        66,
-        102,
+        122,
+        101,
         7,
         10
       ]
@@ -320,12 +336,13 @@
         "w": 306,
         "h": 362
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/W/00",
         "hand": "right",
         "grip": {
-          "x": 63.45,
-          "y": 98.5
+          "x": 63.579166666666666,
+          "y": 98.25892857142857
         },
         "carryLeanDegrees": -8,
         "depth": "front",
@@ -339,6 +356,7 @@
           11,
           108
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -358,6 +376,7 @@
         "w": 306,
         "h": 362
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/W/01",
         "hand": "right",
@@ -377,6 +396,7 @@
           8,
           124
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -396,29 +416,31 @@
         "w": 306,
         "h": 362
       },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "attachment": {
         "frame": "walk/weapon-staff/W/02",
         "hand": "right",
         "grip": {
-          "x": 73.6,
-          "y": 108.625
+          "x": 126.32916666666667,
+          "y": 108.34375
         },
         "carryLeanDegrees": -12,
         "depth": "front",
         "placement": [
-          51,
+          104,
           54,
           37,
           91
         ],
         "sourceHandCenter": [
-          26,
+          121,
           126
         ],
+        "bodySource": "arena/art/source/four-head-walk-opposite.png",
         "durationMs": 125
       },
       "placement": [
-        70,
+        123,
         102,
         7,
         10
@@ -434,30 +456,32 @@
         "w": 306,
         "h": 362
       },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "attachment": {
         "frame": "walk/weapon-staff/W/03",
         "hand": "right",
         "grip": {
-          "x": 73.95,
-          "y": 107.5
+          "x": 133.65,
+          "y": 108.34375
         },
         "carryLeanDegrees": -6,
         "depth": "front",
         "placement": [
-          57,
+          117,
           53,
           28,
           91
         ],
         "sourceHandCenter": [
-          9,
-          124
+          117,
+          126
         ],
+        "bodySource": "arena/art/source/four-head-walk-opposite.png",
         "durationMs": 125
       },
       "placement": [
-        70,
-        101,
+        130,
+        102,
         7,
         10
       ]
@@ -472,18 +496,19 @@
         "w": 315,
         "h": 359
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/NW/00",
         "hand": "right",
         "grip": {
-          "x": 124.35,
-          "y": 110.875
+          "x": 124.12588932806324,
+          "y": 110.29693675889328
         },
         "carryLeanDegrees": 8,
         "depth": "back",
         "placement": [
-          108,
-          57,
+          107,
+          56,
           31,
           91
         ],
@@ -491,11 +516,12 @@
           99,
           130
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
         121,
-        105,
+        104,
         7,
         10
       ]
@@ -510,18 +536,19 @@
         "w": 315,
         "h": 359
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/NW/01",
         "hand": "right",
         "grip": {
-          "x": 121.55,
-          "y": 109.75
+          "x": 121.34802371541502,
+          "y": 109.1808300395257
         },
         "carryLeanDegrees": 4,
         "depth": "back",
         "placement": [
           107,
-          56,
+          55,
           25,
           90
         ],
@@ -529,11 +556,12 @@
           81,
           128
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
         118,
-        104,
+        103,
         7,
         10
       ]
@@ -548,30 +576,32 @@
         "w": 315,
         "h": 359
       },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "attachment": {
         "frame": "walk/weapon-staff/NW/02",
         "hand": "right",
         "grip": {
-          "x": 126.45,
-          "y": 110.3125
+          "x": 133.6994094488189,
+          "y": 108.89960629921259
         },
         "carryLeanDegrees": 12,
         "depth": "back",
         "placement": [
-          107,
-          56,
+          115,
+          54,
           37,
           91
         ],
         "sourceHandCenter": [
-          100,
-          129
+          126,
+          128
         ],
+        "bodySource": "arena/art/source/four-head-walk-opposite.png",
         "durationMs": 125
       },
       "placement": [
-        123,
-        104,
+        130,
+        103,
         7,
         10
       ]
@@ -586,30 +616,32 @@
         "w": 315,
         "h": 359
       },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "attachment": {
         "frame": "walk/weapon-staff/NW/03",
         "hand": "right",
         "grip": {
-          "x": 124.35,
-          "y": 109.75
+          "x": 131.27834645669293,
+          "y": 108.89960629921259
         },
         "carryLeanDegrees": 6,
         "depth": "back",
         "placement": [
-          109,
+          116,
           55,
           28,
           91
         ],
         "sourceHandCenter": [
-          88,
+          110,
           128
         ],
+        "bodySource": "arena/art/source/four-head-walk-opposite.png",
         "durationMs": 125
       },
       "placement": [
-        121,
-        104,
+        128,
+        103,
         7,
         10
       ]
@@ -624,12 +656,13 @@
         "w": 279,
         "h": 371
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/N/00",
         "hand": "right",
         "grip": {
-          "x": 120.15,
-          "y": 111.4375
+          "x": 119.86476377952756,
+          "y": 110.5671751968504
         },
         "carryLeanDegrees": 8,
         "depth": "back",
@@ -643,11 +676,12 @@
           77,
           131
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
-        117,
-        105,
+        116,
+        104,
         7,
         10
       ]
@@ -662,12 +696,13 @@
         "w": 279,
         "h": 371
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/N/01",
         "hand": "right",
         "grip": {
-          "x": 121.2,
-          "y": 110.875
+          "x": 121.3008,
+          "y": 111.1675
         },
         "carryLeanDegrees": 4,
         "depth": "back",
@@ -681,6 +716,7 @@
           77,
           130
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -700,30 +736,32 @@
         "w": 279,
         "h": 371
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/N/02",
         "hand": "right",
         "grip": {
-          "x": 126.1,
-          "y": 102.4375
+          "x": 120.55649606299212,
+          "y": 101.11761811023622
         },
         "carryLeanDegrees": 12,
         "depth": "back",
         "placement": [
-          105,
-          46,
+          100,
+          44,
           39,
           93
         ],
         "sourceHandCenter": [
-          89,
-          115
+          7,
+          114
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
-        123,
-        96,
+        117,
+        95,
         7,
         10
       ]
@@ -738,30 +776,32 @@
         "w": 279,
         "h": 371
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/N/03",
         "hand": "right",
         "grip": {
-          "x": 120.5,
-          "y": 110.875
+          "x": 119.19239999999999,
+          "y": 110.03800000000001
         },
         "carryLeanDegrees": 6,
         "depth": "back",
         "placement": [
-          103,
-          55,
+          102,
+          54,
           30,
           92
         ],
         "sourceHandCenter": [
-          76,
-          130
+          8,
+          128
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
-        117,
-        105,
+        116,
+        104,
         7,
         10
       ]
@@ -776,18 +816,19 @@
         "w": 300,
         "h": 373
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/NE/00",
         "hand": "right",
         "grip": {
-          "x": 125.05,
-          "y": 109.75
+          "x": 124.4826171875,
+          "y": 108.34375
         },
         "carryLeanDegrees": 8,
         "depth": "back",
         "placement": [
           107,
-          54,
+          53,
           34,
           92
         ],
@@ -795,11 +836,12 @@
           92,
           128
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
-        122,
-        104,
+        121,
+        102,
         7,
         10
       ]
@@ -814,12 +856,13 @@
         "w": 300,
         "h": 373
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/NE/01",
         "hand": "right",
         "grip": {
-          "x": 122.6,
-          "y": 110.875
+          "x": 122.7064,
+          "y": 111.1675
         },
         "carryLeanDegrees": 4,
         "depth": "back",
@@ -833,6 +876,7 @@
           83,
           130
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -852,30 +896,32 @@
         "w": 300,
         "h": 373
       },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "attachment": {
         "frame": "walk/weapon-staff/NE/02",
         "hand": "right",
         "grip": {
-          "x": 128.55,
-          "y": 111.4375
+          "x": 135.98183716075155,
+          "y": 95.52192066805846
         },
         "carryLeanDegrees": 12,
         "depth": "back",
         "placement": [
-          108,
-          55,
+          116,
+          39,
           40,
           93
         ],
         "sourceHandCenter": [
-          99,
-          131
+          249,
+          196
         ],
+        "bodySource": "arena/art/source/four-head-walk-right-views.png",
         "durationMs": 125
       },
       "placement": [
-        125,
-        105,
+        132,
+        89,
         7,
         10
       ]
@@ -890,30 +936,32 @@
         "w": 300,
         "h": 373
       },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "attachment": {
         "frame": "walk/weapon-staff/NE/03",
         "hand": "right",
         "grip": {
-          "x": 122.95,
-          "y": 110.875
+          "x": 128.98931535269708,
+          "y": 81.8159841241205
         },
         "carryLeanDegrees": 6,
         "depth": "back",
         "placement": [
-          106,
-          55,
+          112,
+          26,
           31,
           92
         ],
         "sourceHandCenter": [
-          86,
-          130
+          195,
+          160
         ],
+        "bodySource": "arena/art/source/four-head-walk-right-views.png",
         "durationMs": 125
       },
       "placement": [
-        119,
-        105,
+        125,
+        76,
         7,
         10
       ]
@@ -928,12 +976,13 @@
         "w": 291,
         "h": 371
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/E/00",
         "hand": "right",
         "grip": {
-          "x": 73.6,
-          "y": 111.4375
+          "x": 73.77707509881424,
+          "y": 110.85499011857708
         },
         "carryLeanDegrees": -18,
         "depth": "back",
@@ -947,6 +996,7 @@
           25,
           131
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -966,6 +1016,7 @@
         "w": 291,
         "h": 371
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/E/01",
         "hand": "right",
@@ -985,6 +1036,7 @@
           18,
           129
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -1004,29 +1056,31 @@
         "w": 291,
         "h": 371
       },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "attachment": {
         "frame": "walk/weapon-staff/E/02",
         "hand": "right",
         "grip": {
-          "x": 73.25,
-          "y": 110.875
+          "x": 65.13378378378378,
+          "y": 111.1322765072765
         },
         "carryLeanDegrees": -22,
         "depth": "back",
         "placement": [
-          42,
+          34,
           58,
           51,
           91
         ],
         "sourceHandCenter": [
-          24,
-          130
+          68,
+          250
         ],
+        "bodySource": "arena/art/source/four-head-walk-right-views.png",
         "durationMs": 125
       },
       "placement": [
-        70,
+        62,
         105,
         7,
         10
@@ -1042,30 +1096,32 @@
         "w": 291,
         "h": 371
       },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "attachment": {
         "frame": "walk/weapon-staff/E/03",
         "hand": "right",
         "grip": {
-          "x": 77.8,
-          "y": 110.3125
+          "x": 61.76567010309279,
+          "y": 111.10927835051547
         },
         "carryLeanDegrees": -17,
         "depth": "back",
         "placement": [
-          51,
-          56,
+          35,
+          57,
           44,
           92
         ],
         "sourceHandCenter": [
-          12,
-          129
+          13,
+          252
         ],
+        "bodySource": "arena/art/source/four-head-walk-right-views.png",
         "durationMs": 125
       },
       "placement": [
-        74,
-        104,
+        58,
+        105,
         7,
         10
       ]
@@ -1080,18 +1136,19 @@
         "w": 301,
         "h": 376
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/SE/00",
         "hand": "right",
         "grip": {
-          "x": 68,
-          "y": 104.6875
+          "x": 68.33070866141732,
+          "y": 103.89689960629921
         },
         "carryLeanDegrees": 8,
         "depth": "front",
         "placement": [
-          54,
-          51,
+          55,
+          50,
           31,
           91
         ],
@@ -1099,6 +1156,7 @@
           7,
           119
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -1118,12 +1176,13 @@
         "w": 301,
         "h": 376
       },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
       "attachment": {
         "frame": "walk/weapon-staff/SE/01",
         "hand": "right",
         "grip": {
-          "x": 73.95,
-          "y": 109.1875
+          "x": 73.8618,
+          "y": 109.47325000000001
         },
         "carryLeanDegrees": 4,
         "depth": "front",
@@ -1137,6 +1196,7 @@
           8,
           127
         ],
+        "bodySource": "arena/art/source/four-head-walk-body.png",
         "durationMs": 125
       },
       "placement": [
@@ -1156,30 +1216,32 @@
         "w": 301,
         "h": 376
       },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "attachment": {
         "frame": "walk/weapon-staff/SE/02",
         "hand": "right",
         "grip": {
-          "x": 64.15,
-          "y": 110.875
+          "x": 61.1130658436214,
+          "y": 110.66782407407408
         },
         "carryLeanDegrees": 12,
         "depth": "front",
         "placement": [
-          48,
+          45,
           57,
           36,
           91
         ],
         "sourceHandCenter": [
-          7,
-          130
+          40,
+          251
         ],
+        "bodySource": "arena/art/source/four-head-walk-right-views.png",
         "durationMs": 125
       },
       "placement": [
-        61,
-        105,
+        58,
+        104,
         7,
         10
       ]
@@ -1194,30 +1256,32 @@
         "w": 301,
         "h": 376
       },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "attachment": {
         "frame": "walk/weapon-staff/SE/03",
         "hand": "right",
         "grip": {
-          "x": 72.9,
-          "y": 108.625
+          "x": 62.85405095593869,
+          "y": 112.35040983606557
         },
         "carryLeanDegrees": 6,
         "depth": "front",
         "placement": [
-          61,
-          55,
+          51,
+          58,
           27,
           91
         ],
         "sourceHandCenter": [
-          7,
-          126
+          25,
+          258
         ],
+        "bodySource": "arena/art/source/four-head-walk-right-views.png",
         "durationMs": 125
       },
       "placement": [
-        69,
-        102,
+        59,
+        106,
         7,
         10
       ]

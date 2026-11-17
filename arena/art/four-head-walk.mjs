@@ -2,7 +2,8 @@ import sharp from 'sharp';
 import { readFile } from 'node:fs/promises';
 import { art,keepPixel,place,clearCell,sourceProvenance } from './idle-pipeline.mjs';
 import { extractSourceSprites } from './source-sprites.mjs';
-import { normalizeNeutral,frontArms } from './four-head-registration.mjs';
+import { frontArms } from './four-head-registration.mjs';
+import { walkPoseSources,registeredWalkPose } from './four-head-walk-poses.mjs';
 import { directions,frameName } from './animation-spec.mjs';
 import { sourceGripTracks,staffDepth } from './staff-registration.mjs';
 import { dollLayers } from './four-head-idle.mjs';
@@ -23,7 +24,7 @@ const leftHands=[
 const garments=[[77,55,38,62],[78,55,36,62],[85,55,25,62],[79,55,35,62],
   [77,55,38,62],[78,55,36,62],[82,55,25,62],[78,55,36,62]];
 export async function walkFrames() {
-  const bodies=await source('four-head-walk-body.png',4,8),clothes={},hair={};
+  const bodies=await walkPoseSources(),clothes={},hair={};
   for(const name of ['scholar','warden'])clothes[name]=await source(`four-head-walk-${name}.png`,4,8);
   for(const name of ['ivory','midnight'])hair[name]=await source(`walk-hair-${name}.png`,4,8);
   const staff=await source('walk-weapon-staff.png',4,8),grips=await source('grip-hands.png',2,4);
@@ -32,6 +33,9 @@ export async function walkFrames() {
   const bodyProv=await sourceProvenance('four-head-walk-body.png','four-head-walk-body-prompt.txt',
     '32 independently generated walking poses; registered against reviewed neutral four-head skeleton, no neutral pose substitution.');
   provenance.body=bodyProv;provenance['body-front']=bodyProv;
+  for(const layer of ['body','body-front'])provenance[layer]={...bodyProv,correctionSources:await Promise.all(
+    ['four-head-walk-opposite','four-head-walk-right-views'].map(name=>sourceProvenance(`${name}.png`,`${name}-prompt.txt`,
+      'Targeted opposite-half correction candidates; see per-frame bodySource and independent review record.')))};
   for(const name of ['scholar','warden'])provenance[`outfit-${name}`]={
     ...await sourceProvenance(`four-head-walk-${name}.png`,`four-head-walk-${name}-prompt.txt`,
       '32 independently generated walking garment poses of the same four-head neutral costume design.'),designSource:'arena/art/source/four-head-outfits.png'};
@@ -43,14 +47,12 @@ export async function walkFrames() {
   provenance['hand-grip']=await sourceProvenance('grip-hands.png','grip-hands-prompt.txt','Closed fingers registered over each corresponding shaft and original body palm.');
   const empty=await clearCell().png().toBuffer();
   for(let row=0;row<8;row++)for(let col=0;col<4;col++) {
-    const index=row*4+col,sprite=bodies.sprites[index],bob=[0,.6,0,.4][col];
-    const body=await normalizeNeutral(sprite,{headCut:45,blendHeight:18,bodyScale:.7,
-      knots:[[0,12+bob],[45,52+bob],[54,60+bob],[100,94],[132,112],[198,145],[sprite.crop.h,173]]});
+    const index=row*4+col,bob=[0,.6,0,.4][col];
+    const body=await registeredWalkPose(bodies,row,col,hands[row][col],leftHands[row][col]);
     cells.body[row].push(body.image);cells['body-front'][row].push(await frontArms(body.image));
-    const hand=body.map(hands[row][col]),points={crown:[96,12+bob],neck:[96,56+bob],hip:[96,112],
-      rightHand:hand,leftHand:body.map(leftHands[row][col])};
+    const hand=body.points.rightHand,points={crown:[96,12+bob],neck:[96,56+bob],hip:[96,112],...body.points};
     const entry={frame:frameName('walk','body',directions[row],col),...body.recipe,attachments:points,durationMs:125,
-      phase:['left-contact','right-passing','right-contact','left-passing'][col],sourcePoseRetained:true};
+      phase:['contact-a','passing-a','opposite-contact','opposite-passing'][col],sourcePoseRetained:true};
     frames.push(entry);
     for(const name of ['scholar','warden']) {
       const p=[...garments[row]];p[1]+=Math.round(bob);if(name==='warden'){p[0]-=3;p[2]+=6;}
@@ -77,10 +79,11 @@ export async function walkFrames() {
     for(const depth of ['back','front'])cells[`weapon-staff-${depth}`][row].push(staffDepth[row]===depth?staffCell:empty);
     cells['hand-grip'][row].push(await place(grips.sprites[row].image,[Math.round(hand[0]-3.5),Math.round(hand[1]-6.2),7,10]));
     const attachment={frame:frameName('walk','weapon-staff',directions[row],col),hand:'right',grip:{x:hand[0],y:hand[1]},
-      carryLeanDegrees:angle,depth:staffDepth[row],placement:p,sourceHandCenter:hands[row][col],durationMs:125};
+      carryLeanDegrees:angle,depth:staffDepth[row],placement:p,sourceHandCenter:body.sourceHands.right,
+      bodySource:body.recipe.bodySource,durationMs:125};
     attachments.push(attachment);
     for(const layer of dollLayers)recipes[layer].push({frame:frameName('walk',layer,directions[row],col),
-      bodyFrame:entry.frame,durationMs:125,sourceCrop:sprite.crop,
+      bodyFrame:entry.frame,durationMs:125,sourceCrop:body.recipe.sourceCrop,bodySource:body.recipe.bodySource,
       ...(layer.startsWith('weapon')||layer==='hand-grip'?{attachment}:{}),
       ...(layer.startsWith('outfit')?{sourceCrop:clothes[layer.slice(7)].sprites[index].crop,
         placement:[garments[row][0]-(layer.endsWith('warden')?3:0),garments[row][1]+Math.round(bob),

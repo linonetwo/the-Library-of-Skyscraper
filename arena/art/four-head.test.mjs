@@ -24,3 +24,20 @@ test('neutral source is registered to four-head anatomy with a single stable gro
     }
   }
 });
+
+test('walk correction recipes trace selected limb sources without switching the E anatomical grip',async()=>{
+  const root=new URL('../client/public/assets/animation/',import.meta.url);
+  const registration=JSON.parse(await readFile(new URL('walk-registration.json',root)));
+  const staff=JSON.parse(await readFile(new URL('walk-weapon-staff.attachments.json',root)));
+  for(let row=0;row<8;row++)for(const col of [2,3]) {
+    const frame=registration.frames[row*4+col];
+    assert.notEqual(frame.correction,'original');
+    if(row===4)assert.match(frame.correction,/neck-down limb reflection/);
+    else assert.deepEqual(frame.headSource.retainedTargetRows,[0,56]);
+  }
+  assert.equal(registration.frames[5*4+3].limbRepair.direction,'NE');
+  assert.equal(registration.frames[7*4+2].limbRepair.direction,'SE');
+  assert.deepEqual(staff.attachments[6*4+2].sourceHandCenter,[68,250]);
+  assert.deepEqual(staff.attachments[6*4+2].grip,{
+    x:registration.frames[6*4+2].attachments.rightHand[0],y:registration.frames[6*4+2].attachments.rightHand[1]});
+});

@@ -25,7 +25,9 @@ export async function normalizeNeutral(sprite,pose={}) {
   const knots=pose.knots??[[0,12],[63,52],[76,58],[168,94],[210,112],[300,142],[info.height,173]];
   const map=([x,y])=>{
     const mix=Math.max(0,Math.min(1,(y-headCut)/(pose.blendHeight??25)));
-    const scale=headScale*(1-mix)+bodyScale*mix,center=headCenter*(1-mix)+bodyCenter*mix;
+    let scale=headScale*(1-mix)+bodyScale*mix;
+    if(pose.legScale){const leg=Math.max(0,Math.min(1,(y-pose.legFrom)/pose.legBlend));scale=scale*(1-leg)+pose.legScale*leg;}
+    const center=headCenter*(1-mix)+bodyCenter*mix;
     return [96+(x-center)*scale,interpolate(y,knots)];
   };
   const output=Buffer.alloc(192*192*4),inverse=knots.map(([a,b])=>[b,a]);
@@ -42,7 +44,8 @@ export async function normalizeNeutral(sprite,pose={}) {
   }
   return {image:await sharp(output,{raw:{width:192,height:192,channels:4}}).png().toBuffer(),
     map,recipe:{sourceCrop:sprite.crop,sourceHeadBounds:[lo,0,hi,headCut],headCenter,headScale,bodyCenter,bodyScale,
-      yKnots:knots,skeleton,groundPivot:[96,172.8],solePixelRow:172,sourceDeviation:'Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.'}};
+      yKnots:knots,...(pose.legScale?{legScale:pose.legScale,legFrom:pose.legFrom,legBlend:pose.legBlend}:{}),
+      skeleton,groundPivot:[96,172.8],solePixelRow:172,sourceDeviation:'Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.'}};
 }
 
 export async function frontArms(image) {
