@@ -91,7 +91,7 @@ export default function MapCanvas(props: MapProps) {
         window.addEventListener('pointermove',pointerMove);
         window.addEventListener('pointerup',pointerUp);window.addEventListener('pointercancel',pointerUp);
         app.canvas.addEventListener('wheel',wheel,{passive:false});
-        const overviewButton=document.createElement('button');overviewButton.textContent='全图总览';overviewButton.setAttribute('aria-label','全图总览');overviewButton.style.cssText='position:absolute;right:18px;bottom:120px;z-index:2';overviewButton.onclick=()=>{controller.overview();applyCamera();};host.appendChild(overviewButton);
+        const overviewButton=document.createElement('button');overviewButton.textContent='全图总览';overviewButton.setAttribute('aria-label','全图总览');overviewButton.style.cssText='position:absolute;right:18px;bottom:120px;z-index:20';overviewButton.onclick=()=>{controller.overview();applyCamera();};host.appendChild(overviewButton);
         app.stage.addChild(world);
         resize = new ResizeObserver(() => {
           app.renderer.resize(host.clientWidth, host.clientHeight);

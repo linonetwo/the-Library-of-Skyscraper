@@ -11,7 +11,6 @@ export class CameraController {
   else {const center=this.mode.kind==='manual'?this.mode.center:this.mode.kind==='actor'?actor(this.mode.id):room(this.mode.id);const scale=Math.max(.7,Math.min(1,width/900))*zoom*this.scale;if(center)this.transform={x:width/2-center.x*scale,y:height*.47-center.y*scale,scale};}
   return this.transform;
  }
- manual(){const t=this.transform;this.mode={kind:'manual',center:{x:-t.x/t.scale,y:-t.y/t.scale}};}
  pan(dx:number,dy:number,width:number,height:number){const t=this.transform;this.mode={kind:'manual',center:{x:(width/2-t.x-dx)/t.scale,y:(height*.47-t.y-dy)/t.scale}};}
  wheel(x:number,y:number,delta:number,width:number,height:number,zoom:number){const t=this.transform;const world={x:(x-t.x)/t.scale,y:(y-t.y)/t.scale};const scale=Math.max(.35,Math.min(2.5,t.scale*Math.exp(-delta*.001)));this.scale=scale/(Math.max(.7,Math.min(1,width/900))*zoom);this.mode={kind:'manual',center:{x:world.x+(width/2-x)/scale,y:world.y+(height*.47-y)/scale}};}
  overview(){this.mode={kind:'overview'};this.scale=1;}
