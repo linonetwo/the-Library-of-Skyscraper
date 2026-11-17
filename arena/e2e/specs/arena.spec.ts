@@ -50,6 +50,7 @@ test('single player: atlas, rule publication, tick control and real screenshot',
 });
 
 test('two independent browsers join a live room and reconnect with same player', async ({ browser }) => {
+  test.setTimeout(60000); // Two live software-rendered maps, wardrobe updates and both reconnects.
   const first = await browser.newContext();
   const second = await browser.newContext();
   const host = await first.newPage();
