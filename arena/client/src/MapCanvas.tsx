@@ -1,8 +1,10 @@
 import { animationActions } from "./animationCatalog";
 import { useEffect, useRef, useState } from "react";
-import { Application, Assets, Container, Sprite } from "pixi.js";
+import { Application, Assets, Container, Texture } from "pixi.js";
 import { paintMap, type MapProps } from "./mapScene";
-import { libraryLayout } from "./libraryLayout";
+import { mapLayout } from "./mapLayout";
+import { project } from "./isoGeometry";
+import { fitMap } from "./mapCamera";
 import { ActorScene } from "./ActorScene";
 import { animationLayerNames } from "./walkLayers";
 
@@ -23,17 +25,17 @@ export default function MapCanvas(props: MapProps) {
     let actors: ActorScene;
     const world = new Container();
     let renderLayer = new Container();
+    const entities = new Container({sortableChildren:true});
+    let tiles:Record<string,Texture> = {};
     const paint = () => {
       if (!actors || disposed) return;
       const p = latest.current;
-      world.position.set(host.clientWidth / 2, host.clientHeight / 2);
-      const fit =
-        Math.min(host.clientWidth / 922, host.clientHeight / 614, 1.5) * p.zoom;
-      world.scale.set(fit);
-      renderLayer.destroy({ children: true });
-      renderLayer = new Container();
-      world.addChildAt(renderLayer, 1);
-      paintMap(renderLayer, p);
+      const points=mapLayout(p.snapshot?.rooms??[]).tiles.map(t=>project(t.x,t.y));
+      if(points.length){const camera=fitMap({minX:Math.min(...points.map(p=>p.x))-64,maxX:Math.max(...points.map(p=>p.x))+64,minY:Math.min(...points.map(p=>p.y))-192,maxY:Math.max(...points.map(p=>p.y))+112},host.clientWidth,host.clientHeight,p.zoom);
+       world.position.set(camera.x,camera.y);world.scale.set(camera.scale);host.dataset.camera=JSON.stringify(camera);}
+      renderLayer.destroy({children:true});renderLayer=new Container();world.addChildAt(renderLayer,0);
+      for(const child of [...entities.children])if(!child.label.startsWith('actor:'))child.destroy({children:true});
+      paintMap(renderLayer,p,entities,tiles);
       actors.update(p, performance.now());
     };
     redraw.current = paint;
@@ -58,15 +60,11 @@ export default function MapCanvas(props: MapProps) {
           return [action, Object.assign({}, ...sheets.map(sheet => sheet.textures))] as const;
         }));
         if (disposed) return;
-        const illustration = await Assets.load("/assets/library-map.png");
-        if (disposed) return;
-        const background = new Sprite(illustration);
-        background.anchor.set(0.5);
-        background.scale.set(libraryLayout.scale);
-        background.alpha = 0.85;
-        world.addChild(background);
-        actors = new ActorScene(Object.fromEntries(actionTextures) as import("./ActorView").DollTextures);
-        world.addChild(renderLayer, actors.node);
+        const manifest=await (await fetch('/assets/tiles/manifest.json')).json();
+        tiles=Object.fromEntries(await Promise.all(Object.entries(manifest.assets as Record<string,{image:string}>).map(async([id,asset])=>[id,await Assets.load('/assets/tiles/'+asset.image)])));
+        if(disposed)return;
+        actors = new ActorScene(Object.fromEntries(actionTextures) as import('./ActorView').DollTextures,entities);
+        world.addChild(renderLayer,entities);
         app.ticker.add(() => {
           host.dataset.actors = JSON.stringify(actors.render(performance.now()));
         });
@@ -107,7 +105,7 @@ export default function MapCanvas(props: MapProps) {
   ]);
 
   return (
-    <div ref={mount} className="pixi-map" aria-label="六边形书苑地图">
+    <div ref={mount} className="pixi-map" aria-label="等距书苑地图">
       {error && (
         <div className="map-error" role="alert">
           {error}
