@@ -46,10 +46,10 @@ export function registerBrowserTools(server) {
         const result = await run(args);
         return { content: [image ? { type: 'image', data: result.toString('base64'), mimeType: 'image/png' }
           : { type: 'text', text: JSON.stringify(result) }] };
-      } catch {
+      } catch (error) {
         if (name === 'Page.open') await close().catch(() => {});
         return { isError: true, content: [{ type: 'text',
-          text: 'Browser action failed. Ensure the local UI (127.0.0.1:5173), authority (127.0.0.1:8787), and Playwright Chromium are available, and open the page before controlling it.' }] };
+          text: `${name}: ${error.message}` }] };
       }
     });
   }
@@ -179,7 +179,7 @@ export function registerBrowserTools(server) {
         await click('开启训练远征');
         await active.getByRole('button', { name: '选择巡书使', exact: true }).waitFor();
         break;
-      case 'resetTraining': await menu('训练控制'); await click('关闭菜单'); await click('重置训练局'); await click('收起训练控制'); break;
+      case 'resetTraining': await menu('训练控制'); await click('重置训练局'); await click('收起训练控制'); break;
       case 'openLobby': await menu('联机大厅'); break;
       case 'closeLobby': await click('关闭赛局入口'); break;
       case 'openRules': await menu('行动规则'); break;
