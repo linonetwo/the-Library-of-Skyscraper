@@ -3,8 +3,10 @@
 From a checkout containing this command, run:
 
 ```sh
-node arena/release/build.mjs 0.1.0 59403162b5638c9a843af35613b78e770bdb408c /absolute/new/output
+node arena/release/build.mjs 0.2.0 SOURCE_COMMIT /absolute/new/output
 ```
+
+Replace `SOURCE_COMMIT` with the frozen v0.2.0 commit containing `arena/art/approval-v0.2.0.json`. The package includes that approval record at the same path and records its SHA256 in the manifest. Rebuilding v0.1.0 uses its contemporary packaging recipe and game commit.
 
 Use a new output directory per build. Git, Node/npm, Rust/Cargo, a C/C++ build toolchain, Linux tar and sha256sum are required. Network access fetches locked npm and Cargo dependencies; native V8 requirements match arena/script-runner. CARGO_TARGET_DIR may reuse a local Cargo build cache.
 

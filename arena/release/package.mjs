@@ -7,8 +7,9 @@ import { platform, release, arch } from 'node:os';
 
 export async function collectPackage({ source, destination, version, sourceCommit, recipeCommit }) {
  const payload=resolve(destination,'package');
- for(const dir of ['bin','data','logs','arena/client']) mkdirSync(resolve(payload,dir),{recursive:true});
+ for(const dir of ['bin','data','logs','arena/client','arena/art']) mkdirSync(resolve(payload,dir),{recursive:true});
  const copy=(from,to)=>cpSync(from,to,{recursive:true});
+ copy(resolve(source,'arena/art/approval-v0.2.0.json'),resolve(payload,'arena/art/approval-v0.2.0.json'));
  for(const name of ['server','script-runner']) {
   const binary=`skyscraper-arena-${name}`;
   const target=process.env.CARGO_TARGET_DIR ? resolve(source,process.env.CARGO_TARGET_DIR) : resolve(source,`arena/${name}/target`);
