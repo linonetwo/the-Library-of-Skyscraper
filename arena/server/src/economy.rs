@@ -1,4 +1,4 @@
-use crate::{Actor, Session};
+use crate::{Actor, MovementKind, Session};
 use bevy_ecs::prelude::Entity;
 
 impl Session {
@@ -48,7 +48,7 @@ impl Session {
         }
         let depleted = self.rooms[current].kind == "resource" && self.rooms[current].resources == 0;
         if actor.cargo == actor.cargo_capacity || depleted {
-            actor.room_id = "room-0".into();
+            self.record_movement(&mut actor, MovementKind::Walk, None, "room-0".into());
             actor.state = "transporting".into();
             self.event(
                 "transport",

@@ -2,8 +2,9 @@ import type { ActionRuleModule, RuleContext, ActionIntentDraft } from '../src/in
 import * as gather from '../examples/gather.ts';
 import * as defend from '../examples/defend.ts';
 import * as explore from '../examples/explore.ts';
+import * as run from '../examples/run.ts';
 
-const officialRules: readonly ActionRuleModule[] = [gather, defend, explore];
+const officialRules: readonly ActionRuleModule[] = [gather, defend, explore, run];
 void officialRules;
 
 function readonlyContract(ctx: RuleContext): void {

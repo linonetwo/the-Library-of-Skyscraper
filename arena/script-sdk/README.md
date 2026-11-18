@@ -70,3 +70,6 @@ export function decide(ctx: RuleContext): RuleDecisionResult {
 
 当前包只承诺上述 v0 类型和官方示例。测试覆盖采集运输交付、资源耗尽重选、
 低血量携货回撤、守卫/探索、战斗后编目、多人争夺与确定性输出。
+
+
+SDK 0.1.0 增加 `RunIntentDraft` 和可选 `ActorScriptView.lastMovement`。`examples/run.ts` 的“疾跑赶路”示例对相邻目标发送 move，对最短距离为两条边的目标按 roomId 排序选中间房间并发送 run；可读取现有 move 任务作为目的地，无任务时演示前往 room-4。任务本身不执行动作。服务端原子验证完整路线，共享每角色每 tick 一次行动额度。游戏版本在整版集成时单独更新。

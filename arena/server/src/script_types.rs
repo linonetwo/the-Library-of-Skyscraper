@@ -54,6 +54,12 @@ pub enum ScriptAction {
         #[serde(rename = "roomId")]
         room_id: String,
     },
+    Run {
+        #[serde(rename = "viaRoomId")]
+        via_room_id: String,
+        #[serde(rename = "roomId")]
+        room_id: String,
+    },
     Gather,
     Deliver,
     Attack,
@@ -71,6 +77,14 @@ impl ScriptIntent {
         match &self.action {
             ScriptAction::Move { room_id } => crate::Command::Move {
                 actor_id,
+                room_id: room_id.clone(),
+            },
+            ScriptAction::Run {
+                via_room_id,
+                room_id,
+            } => crate::Command::Run {
+                actor_id,
+                via_room_id: via_room_id.clone(),
                 room_id: room_id.clone(),
             },
             ScriptAction::Gather => crate::Command::Gather { actor_id },
