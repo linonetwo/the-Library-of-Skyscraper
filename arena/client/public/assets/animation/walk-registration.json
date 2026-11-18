@@ -1153,7 +1153,7 @@
           173
         ]
       ],
-      "legScale": 0.5238709677419354,
+      "legScale": 0.6024516129032257,
       "legFrom": 132.52589641434264,
       "legBlend": 50.199203187250994,
       "skeleton": {
@@ -1199,8 +1199,8 @@
       "balance": {
         "sourceNeck": 54,
         "neckTargetY": 56,
-        "legWidthScale": 1.24,
-        "passingRetarget": null
+        "legWidthScale": 1,
+        "contactSourceWidthScale": 1.15
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -1325,11 +1325,65 @@
         },
         "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
       },
+      "sidePassing": {
+        "module": "four-head-side-passing.mjs",
+        "direction": "W",
+        "sourceCrop": {
+          "x": 473,
+          "y": 552,
+          "w": 126,
+          "h": 252
+        },
+        "sourceJoints": [
+          [
+            64,
+            136
+          ],
+          [
+            36,
+            156
+          ],
+          [
+            64,
+            185
+          ]
+        ],
+        "targetJoints": [
+          [
+            98,
+            112
+          ],
+          [
+            88,
+            130
+          ],
+          [
+            102,
+            139
+          ]
+        ],
+        "transverseScale": [
+          0.6,
+          0.66
+        ],
+        "bootScale": 0.45,
+        "supportSource": "arena/art/source/four-head-walk-body.png",
+        "supportPhase": "01",
+        "supportShiftX": -2,
+        "method": "Source-resolution thigh/shin joint registration; complete generated boot; original phase01 support leg moved behind near swing leg. No scanline dilation or atlas-stage erasure patches.",
+        "status": "candidate pending independent real-FPS review",
+        "supportSourceCrop": {
+          "x": 225,
+          "y": 553,
+          "w": 78,
+          "h": 251
+        }
+      },
       "balance": {
         "sourceNeck": 55,
         "neckTargetY": 56.4,
-        "legWidthScale": 1.24,
-        "passingRetarget": "Hip anchored; articulated thigh/shin lower knee to y134 and ankle145–147, rather than translating the boot."
+        "legWidthScale": 1,
+        "contactSourceWidthScale": 1
       },
       "bodySource": "arena/art/source/four-head-walk-opposite.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -2853,7 +2907,7 @@
           173
         ]
       ],
-      "legScale": 0.25934426229508195,
+      "legScale": 0.2982459016393442,
       "legFrom": 252.9561752988048,
       "legBlend": 95.81673306772909,
       "skeleton": {
@@ -2899,8 +2953,8 @@
       "balance": {
         "sourceNeck": 76,
         "neckTargetY": 56,
-        "legWidthScale": 1.24,
-        "passingRetarget": null
+        "legWidthScale": 1,
+        "contactSourceWidthScale": 1.15
       },
       "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
@@ -3025,11 +3079,65 @@
         },
         "reason": "Keep reviewed head and narrow neck; source-neck registration aligns corrected shoulders below this join."
       },
+      "sidePassing": {
+        "module": "four-head-side-passing.mjs",
+        "direction": "E",
+        "sourceCrop": {
+          "x": 645,
+          "y": 526,
+          "w": 215,
+          "h": 485
+        },
+        "sourceJoints": [
+          [
+            116,
+            240
+          ],
+          [
+            173,
+            275
+          ],
+          [
+            136,
+            347
+          ]
+        ],
+        "targetJoints": [
+          [
+            97,
+            110
+          ],
+          [
+            106,
+            130
+          ],
+          [
+            91,
+            139
+          ]
+        ],
+        "transverseScale": [
+          0.25,
+          0.26
+        ],
+        "bootScale": 0.24,
+        "supportSource": "arena/art/source/four-head-walk-body.png",
+        "supportPhase": "01",
+        "supportShiftX": 2,
+        "method": "Source-resolution thigh/shin joint registration; complete generated boot; original phase01 support leg moved behind near swing leg. No scanline dilation or atlas-stage erasure patches.",
+        "status": "candidate pending independent real-FPS review",
+        "supportSourceCrop": {
+          "x": 237,
+          "y": 1638,
+          "w": 71,
+          "h": 251
+        }
+      },
       "balance": {
         "sourceNeck": 74,
         "neckTargetY": 56.4,
-        "legWidthScale": 1.24,
-        "passingRetarget": "Hip anchored; articulated thigh/shin lower knee to y134 and ankle145–147, rather than translating the boot."
+        "legWidthScale": 1,
+        "contactSourceWidthScale": 1
       },
       "bodySource": "arena/art/source/four-head-walk-right-views.png",
       "correction": "Dedicated opposite-half source pose; review candidate.",
