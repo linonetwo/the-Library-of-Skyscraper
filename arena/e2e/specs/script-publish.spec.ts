@@ -1,10 +1,14 @@
+import { openMenu, closeOverlay } from './hud-helpers';
 import { test, expect } from "@playwright/test";
 
 test("publish TypeScript to training ticks, hold, then return to preset", async ({ page }, testInfo) => {
+  // Two publications and preset restoration accumulate CI rendering time.
+  test.setTimeout(60000);
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
+  await openMenu(page, '训练控制');
   await page.getByRole("button", { name: "重置训练局" }).click();
-  await page.getByRole("button", { name: "行动规则", exact: true }).click();
+  await openMenu(page, '行动规则');
   await page.getByRole("button", { name: "编写 TypeScript 规则 →" }).click();
   const input = page.getByRole("textbox", { name: "TypeScript规则源码" });
   await expect(input).toBeVisible({ timeout: 20000 });
@@ -62,8 +66,9 @@ export function decide(ctx: RuleContext) {
 test("official resource template publishes a gathering strategy", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
+  await openMenu(page, '训练控制');
   await page.getByRole("button", { name: "重置训练局" }).click();
-  await page.getByRole("button", { name: "行动规则", exact: true }).click();
+  await openMenu(page, '行动规则');
   await page.getByRole("button", { name: "编写 TypeScript 规则 →" }).click();
   await expect(page.getByRole("textbox", { name: "TypeScript规则源码" })).toBeVisible({ timeout: 20000 });
   await page.getByLabel("载入规则模板").selectOption("gather");

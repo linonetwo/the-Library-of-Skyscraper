@@ -1,0 +1,522 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "body",
+  "source": "arena/art/source/four-head-neutral.png",
+  "sourceSha256": "b8f934e7cf81064127c3daf450963d9b52f1321333b0f3b5d2956acb086b888e",
+  "bodyRegistration": "arena/art/source/four-head-idle-registration.json",
+  "frames": [
+    {
+      "frame": "idle/body/S/00",
+      "bodyFrame": "idle/body/S/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 166,
+        "y": 39,
+        "w": 112,
+        "h": 393
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/S/01",
+      "bodyFrame": "idle/body/S/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 166,
+        "y": 39,
+        "w": 112,
+        "h": 393
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/S/02",
+      "bodyFrame": "idle/body/S/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 166,
+        "y": 39,
+        "w": 112,
+        "h": 393
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/S/03",
+      "bodyFrame": "idle/body/S/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 166,
+        "y": 39,
+        "w": 112,
+        "h": 393
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/SW/00",
+      "bodyFrame": "idle/body/SW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 608,
+        "y": 39,
+        "w": 105,
+        "h": 394
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/SW/01",
+      "bodyFrame": "idle/body/SW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 608,
+        "y": 39,
+        "w": 105,
+        "h": 394
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/SW/02",
+      "bodyFrame": "idle/body/SW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 608,
+        "y": 39,
+        "w": 105,
+        "h": 394
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/SW/03",
+      "bodyFrame": "idle/body/SW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 608,
+        "y": 39,
+        "w": 105,
+        "h": 394
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/W/00",
+      "bodyFrame": "idle/body/W/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 184,
+        "y": 482,
+        "w": 69,
+        "h": 394
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/W/01",
+      "bodyFrame": "idle/body/W/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 184,
+        "y": 482,
+        "w": 69,
+        "h": 394
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/W/02",
+      "bodyFrame": "idle/body/W/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 184,
+        "y": 482,
+        "w": 69,
+        "h": 394
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/W/03",
+      "bodyFrame": "idle/body/W/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 184,
+        "y": 482,
+        "w": 69,
+        "h": 394
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/NW/00",
+      "bodyFrame": "idle/body/NW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 608,
+        "y": 482,
+        "w": 100,
+        "h": 395
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/NW/01",
+      "bodyFrame": "idle/body/NW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 608,
+        "y": 482,
+        "w": 100,
+        "h": 395
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/NW/02",
+      "bodyFrame": "idle/body/NW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 608,
+        "y": 482,
+        "w": 100,
+        "h": 395
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/NW/03",
+      "bodyFrame": "idle/body/NW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 608,
+        "y": 482,
+        "w": 100,
+        "h": 395
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/N/00",
+      "bodyFrame": "idle/body/N/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 166,
+        "y": 926,
+        "w": 112,
+        "h": 393
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/N/01",
+      "bodyFrame": "idle/body/N/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 166,
+        "y": 926,
+        "w": 112,
+        "h": 393
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/N/02",
+      "bodyFrame": "idle/body/N/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 166,
+        "y": 926,
+        "w": 112,
+        "h": 393
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/N/03",
+      "bodyFrame": "idle/body/N/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 166,
+        "y": 926,
+        "w": 112,
+        "h": 393
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/NE/00",
+      "bodyFrame": "idle/body/NE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 620,
+        "y": 926,
+        "w": 101,
+        "h": 394
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/NE/01",
+      "bodyFrame": "idle/body/NE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 620,
+        "y": 926,
+        "w": 101,
+        "h": 394
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/NE/02",
+      "bodyFrame": "idle/body/NE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 620,
+        "y": 926,
+        "w": 101,
+        "h": 394
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/NE/03",
+      "bodyFrame": "idle/body/NE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 620,
+        "y": 926,
+        "w": 101,
+        "h": 394
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/E/00",
+      "bodyFrame": "idle/body/E/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 191,
+        "y": 1370,
+        "w": 69,
+        "h": 393
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/E/01",
+      "bodyFrame": "idle/body/E/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 191,
+        "y": 1370,
+        "w": 69,
+        "h": 393
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/E/02",
+      "bodyFrame": "idle/body/E/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 191,
+        "y": 1370,
+        "w": 69,
+        "h": 393
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/E/03",
+      "bodyFrame": "idle/body/E/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 191,
+        "y": 1370,
+        "w": 69,
+        "h": 393
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/SE/00",
+      "bodyFrame": "idle/body/SE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 616,
+        "y": 1370,
+        "w": 107,
+        "h": 395
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/SE/01",
+      "bodyFrame": "idle/body/SE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 616,
+        "y": 1370,
+        "w": 107,
+        "h": 395
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/SE/02",
+      "bodyFrame": "idle/body/SE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 616,
+        "y": 1370,
+        "w": 107,
+        "h": 395
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      }
+    },
+    {
+      "frame": "idle/body/SE/03",
+      "bodyFrame": "idle/body/SE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 616,
+        "y": 1370,
+        "w": 107,
+        "h": 395
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      }
+    }
+  ]
+}

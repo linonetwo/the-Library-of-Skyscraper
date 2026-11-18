@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import MapCanvas from "./MapCanvas";
 import { useDialog } from "./useDialog";
@@ -11,7 +11,9 @@ export default function ReplayPanel({ session, onClose }: { session: Session; on
   const replay = useReplay(session);
   const [selected, setSelected] = useState<string | null>(null);
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+  const [focusIntent,setFocusIntent]=useState<import("./cameraController").FocusIntent>();
   const snapshot = replay.frame?.snapshot ?? null;
+  useEffect(()=>{ if(!selected && snapshot?.actors[0]) {const id=snapshot.actors[0].id;setSelected(id);setFocusIntent(old=>({kind:"actor",id,revision:(old?.revision??0)+1}));} },[snapshot,selected]);
   return createPortal(
     <div className="modal-backdrop">
       <section ref={dialog} className="modal replay-panel" role="dialog" aria-modal="true"
@@ -25,8 +27,8 @@ export default function ReplayPanel({ session, onClose }: { session: Session; on
         {replay.timeline ? <>
           <div style={{ position: "relative", height: "min(52vh, 540px)", background: "#172b2e", borderRadius: "16px", overflow: "hidden" }}>
             <MapCanvas snapshot={snapshot} selected={selected} selectedRoom={selectedRoom}
-              zoom={1} showRoutes
-              onSelect={setSelected} onRoom={setSelectedRoom} />
+              zoom={1} showRoutes focusIntent={focusIntent}
+              onSelect={id=>{setSelected(id);setSelectedRoom(null);setFocusIntent(old=>({kind:"actor",id,revision:(old?.revision??0)+1}));}} onRoom={id=>{setSelectedRoom(id);setFocusIntent(old=>({kind:"room",id,revision:(old?.revision??0)+1}));}} />
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", marginTop: "16px", flexWrap: "wrap" }}>
             <button onClick={replay.toggle}>{replay.playing ? "暂停回放" : "播放回放"}</button>

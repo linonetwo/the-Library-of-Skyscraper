@@ -1,14 +1,16 @@
+import { project } from "./isoGeometry";
 import { Container } from "pixi.js";
 import { ActorView, type DollTextures } from "./ActorView";
 import type { MapProps } from "./mapScene";
-import { floorPoint } from "./libraryLayout";
+import { actorSlot, mapLayout } from "./mapLayout";
 
 export class ActorScene {
-  readonly node = new Container({ sortableChildren: true });
+  readonly node:Container;
   private views = new Map<string, ActorView>();
   private session = "";
   private tick = -1;
-  constructor(private textures: DollTextures) {}
+  private rooms=new Map<string,string>();
+  constructor(private textures: DollTextures,node=new Container({sortableChildren:true})) {this.node=node;}
 
   update(props: MapProps, now: number) {
     const snapshot = props.snapshot;
@@ -22,19 +24,20 @@ export class ActorScene {
     }
     for (const actor of snapshot.actors) {
       const room = snapshot.rooms.find(room => room.id === actor.roomId)!;
-      const point = floorPoint(room.q, room.r);
-      const group = snapshot.actors.filter(unit => unit.roomId === actor.roomId);
-      const position = {
-        x: point.x + (group.findIndex(unit => unit.id === actor.id) - (group.length - 1) / 2) * 39,
-        y: point.y + 4,
-      };
+      const group=snapshot.actors.filter(unit=>unit.roomId===actor.roomId).sort((a,b)=>a.id.localeCompare(b.id));
+      const position=actorSlot(room,group.findIndex(unit=>unit.id===actor.id));
       let view = this.views.get(actor.id);
       if (!view) {
         view = new ActorView(actor, position, this.textures, props.onSelect);
         this.views.set(actor.id, view);
+        view.node.label="actor:"+actor.id;
         this.node.addChild(view.node);
       }
-      view.update(actor, actor.id === props.selected, position, now, snap);
+      const previous=this.rooms.get(actor.id);
+      const link=mapLayout(snapshot.rooms).links.find(l=>(l.from===previous&&l.to===actor.roomId)||(l.to===previous&&l.from===actor.roomId));
+      const path=previous!==actor.roomId&&link?(link.from===previous?link.points:[...link.points].reverse()).map(p=>project(p.x,p.y)):[];
+      view.update(actor, actor.id === props.selected, position, now, snap,path);
+      this.rooms.set(actor.id,actor.roomId);
     }
   }
 

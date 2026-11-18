@@ -1,8 +1,11 @@
 # Arena protocol v1
 
 Local authority: `http://127.0.0.1:8787`, fixed tick 500 ms, integer deterministic simulation.
-In-memory prototype: restarting loses sessions. Each online session supports four players;
-training sessions are private. No arbitrary scripts or code evaluation.
+The Rust authority serves HTTP commands and WebSocket snapshots, persists checkpoints,
+and restores sessions after restart. Online sessions support four players; training sessions
+are private. TypeScript rules run through the independent V8 runner, and appearance changes
+are synchronized and recorded. See [server runtime](server/README.md),
+[rule SDK](script-sdk/README.md) and [runner](script-runner/README.md).
 
 ## Session and authorization
 
@@ -72,7 +75,8 @@ Rooms `room-0`…`room-6`, axial coordinates `(0,0),(1,0),(0,1),(-1,1),(-1,0),(0
 Event IDs increase within each run and only the latest 100 are retained. State is shared
 between authenticated session participants; fog-of-war is not implemented. Sessions settle
 after 120 ticks, winner highest catalog score, player ID breaks ties.
-Snapshots are diagnostic state, **not a complete replay stream**; persistent replay remains planned.
+Snapshots describe current state; the authenticated replay routes below export recorded
+operations and reconstruct the timeline.
 Online rooms are casual integration-test rooms, not ranked/fair competitive matches:
 there is no ready lobby, the clock starts immediately, and late joiners have less time.
 # Gameplay additions

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "hair-ivory-front",
+  "status": "approved",
+  "releaseApproved": true,
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "source": "arena/art/source/walk-hair-ivory.png",
+  "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+  "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+  "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks.",
+  "proportion": "four-head",
+  "registration": "arena/art/source/four-head-walk-hair-ivory-front-registration.json",
+  "recipeSha256": "819f5070332afa475c0859c8abddae58b782c5907c80307ff0c592720491f85a",
+  "approvalRecord": "arena/art/approval-v0.2.0.json",
+  "contentVersion": "arena-art-2026-11-18.four-head.3",
+  "review": "Approved four-head idle/walk visual scope; reviewed pixels and evidence are pinned in the approval record.",
+  "atlasPngSha256": "739e3e600a7ff9b5bab31b74c5079d777e43023ffbb613bbf59a0f3a54ad64f0",
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ]
+}

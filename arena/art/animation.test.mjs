@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 import { directions, layers, modules, frameName } from './animation-spec.mjs';
+import { approvalRecord, contentVersion, approvedActions } from './art-approval.mjs';
 
 const base = new URL('../client/public/assets/animation/', import.meta.url);
 const json = async name => JSON.parse(await readFile(new URL(name, base), 'utf8'));
@@ -19,16 +20,27 @@ test('animation coverage enumerates every action / equipment / direction without
     assert(!keys.has(key)); keys.add(key);
     assert(modules[entry.action]); assert(layers.includes(entry.layer)); assert(directions.includes(entry.direction));
     assert.equal(entry.expectedFrames, modules[entry.action].frames);
-    assert.equal(entry.releaseApproved, false);
-    if (entry.status === 'prototype') {
-      assert(['walk', 'idle'].includes(entry.action)); assert(layers.includes(entry.layer));
+    if (approvedActions.includes(entry.action)) {
+      assert.equal(entry.status,'approved');assert.equal(entry.releaseApproved,true);
+      assert.equal(entry.approvalRecord,approvalRecord);assert.equal(entry.contentVersion,contentVersion);
       assert.equal(entry.frames.length, entry.expectedFrames);
-    } else { assert.equal(entry.status, 'missing'); assert.equal(entry.frames.length, 0); assert.equal(entry.atlas, null); }
+      const atlas=await json(entry.atlas);
+      assert.deepEqual(entry.frames,atlas.animations[`${entry.action}/${entry.layer}/${entry.direction}`]);
+      for(const frame of entry.frames)assert(atlas.frames[frame]);
+    } else { assert.equal(entry.status, 'missing'); assert.equal(entry.releaseApproved,false);assert.equal(entry.frames.length, 0); assert.equal(entry.atlas, null); }
   }
-  assert.equal(c.releaseReady, false);
-  assert.equal(c.coverage.filter(x => x.status === 'prototype').length, 96);
+  assert.equal(c.releaseReady, true);
+  assert.equal(c.allPlannedActionsReady,false);
+  assert.deepEqual(c.releaseScope,{version:'0.2.0',actions:approvedActions,appearanceCombinations:8,compositeFrames:512});
+  assert.equal(c.coverage.filter(x => x.status === 'approved').length, 96);
+  assert.equal(c.auxiliaryLayers.length,16);
+  for(const entry of c.auxiliaryLayers) {
+    assert(approvedActions.includes(entry.action));assert.equal(entry.status,'approved');
+    assert.equal(entry.approvalRecord,approvalRecord);
+    assert.equal(Object.keys((await json(entry.atlas)).frames).length,32);
+  }
 });
-test('prototype atlas contains 32 distinct nonempty RGBA frames within padded bounds', async () => {
+test('approved walk atlas contains 32 distinct nonempty RGBA frames within padded bounds', async () => {
   const atlas = await json('walk-body.json'), c = await json('coverage.json');
   const image = new URL(atlas.meta.image, base);
   const metadata = await sharp(await readFile(image)).metadata();
@@ -52,7 +64,8 @@ test('prototype atlas contains 32 distinct nonempty RGBA frames within padded bo
 });
 test('generated source is preserved and checksum is reproducible', async () => {
   const c = await json('coverage.json');
-  const source = await readFile(new URL('source/walk-body-eight-directions.png', import.meta.url));
+  assert.equal(c.source.path,'arena/art/source/four-head-walk-body.png');
+  const source = await readFile(new URL('source/four-head-walk-body.png', import.meta.url));
   assert.equal(createHash('sha256').update(source).digest('hex'), c.source.sha256);
 });
 test('outfits, both hair sets and foreground hands share the 32 body registrations', async () => {
@@ -79,7 +92,8 @@ test('midnight hair has 32 unique poses, transparent borders and reproducible so
   const source = await readFile(new URL('source/walk-hair-midnight.png', import.meta.url));
   assert.equal(provenance.sourceSha256, createHash('sha256').update(source).digest('hex'));
   assert.equal(provenance.atlasPngSha256, createHash('sha256').update(image).digest('hex'));
-  assert.equal(provenance.releaseApproved, false);
+  assert.equal(provenance.releaseApproved, true);
+  assert.equal(provenance.approvalRecord,approvalRecord);
   const hashes = new Set();
   for (const { frame: { x, y, w, h } } of Object.values(atlas.frames)) {
     const raw = await sharp(image).extract({ left: x, top: y, width: w, height: h }).raw().toBuffer();

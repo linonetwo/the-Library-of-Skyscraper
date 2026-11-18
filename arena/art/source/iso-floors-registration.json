@@ -1,0 +1,85 @@
+{
+  "source": "arena/art/source/iso-floors.png",
+  "sourceSha256": "066365167bf06f61842d241dcd27567d273a2897fe9c4324740f7c354cb8f955",
+  "promptSha256": "4a94ec0f85d713529a7c71e3d439e815a0ee124c0619b9673ea4cc9110e5c0ae",
+  "atlasSha256": "5d99d1e89a356c32a47fb90b89e0ba6110dc1dc01b404be051f6326d6fe2bf30",
+  "generator": "GPT Image 2 via proxy-imagegen",
+  "status": "approved",
+  "releaseApproved": true,
+  "approvalRecord": "arena/art/approval-v0.2.0.json",
+  "contentVersion": "arena-art-2026-11-18.four-head.3",
+  "registrations": [
+    {
+      "id": "floor-stone",
+      "sourceCrop": {
+        "x": 38,
+        "y": 100,
+        "w": 693,
+        "h": 351
+      },
+      "pivot": [
+        64,
+        32
+      ],
+      "exportSize": [
+        128,
+        64
+      ],
+      "method": "Generated texture; exact 2:1 diamond mask and common 8%-wide edge blend."
+    },
+    {
+      "id": "floor-worn",
+      "sourceCrop": {
+        "x": 806,
+        "y": 100,
+        "w": 693,
+        "h": 351
+      },
+      "pivot": [
+        64,
+        32
+      ],
+      "exportSize": [
+        128,
+        64
+      ],
+      "method": "Generated texture; exact 2:1 diamond mask and common 8%-wide edge blend."
+    },
+    {
+      "id": "floor-inlay",
+      "sourceCrop": {
+        "x": 38,
+        "y": 612,
+        "w": 693,
+        "h": 351
+      },
+      "pivot": [
+        64,
+        32
+      ],
+      "exportSize": [
+        128,
+        64
+      ],
+      "method": "Generated texture; exact 2:1 diamond mask and common 8%-wide edge blend."
+    },
+    {
+      "id": "floor-cracked",
+      "sourceCrop": {
+        "x": 806,
+        "y": 612,
+        "w": 693,
+        "h": 351
+      },
+      "pivot": [
+        64,
+        32
+      ],
+      "exportSize": [
+        128,
+        64
+      ],
+      "method": "Generated texture; exact 2:1 diamond mask and common 8%-wide edge blend."
+    }
+  ]
+}

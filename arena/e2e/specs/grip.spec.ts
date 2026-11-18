@@ -16,7 +16,7 @@ test('grip atlases use the shared action index and equip-only foreground orderin
    for (const hair of ['ivory','midnight'] as const) {
     const layers = animationLayers(action, {outfit,hair,weapon:true});
     expect(layers.indexOf('hand-grip')).toBe(layers.indexOf('body-front')+1);
-    expect(layers.indexOf('hand-grip')).toBeLessThan(layers.indexOf(action === 'idle' ? `hair-${hair}-front` : `hair-${hair}`));
+    expect(layers.indexOf('hand-grip')).toBeLessThan(layers.indexOf(`hair-${hair}-front`));
     expect(animationLayers(action, {outfit,hair,weapon:false})).not.toContain('hand-grip');
    }
   }

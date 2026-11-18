@@ -1,0 +1,714 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "hair-midnight-back",
+  "source": "arena/art/source/walk-hair-midnight.png",
+  "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+  "bodyRegistration": "arena/art/source/four-head-idle-registration.json",
+  "frames": [
+    {
+      "frame": "idle/hair-midnight-back/S/00",
+      "bodyFrame": "idle/body/S/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/S/01",
+      "bodyFrame": "idle/body/S/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/S/02",
+      "bodyFrame": "idle/body/S/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/S/03",
+      "bodyFrame": "idle/body/S/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 22,
+        "y": 52,
+        "w": 177,
+        "h": 127
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/SW/00",
+      "bodyFrame": "idle/body/SW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/SW/01",
+      "bodyFrame": "idle/body/SW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/SW/02",
+      "bodyFrame": "idle/body/SW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/SW/03",
+      "bodyFrame": "idle/body/SW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 22,
+        "y": 271,
+        "w": 179,
+        "h": 133
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/W/00",
+      "bodyFrame": "idle/body/W/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/W/01",
+      "bodyFrame": "idle/body/W/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/W/02",
+      "bodyFrame": "idle/body/W/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/W/03",
+      "bodyFrame": "idle/body/W/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 26,
+        "y": 494,
+        "w": 174,
+        "h": 141
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/NW/00",
+      "bodyFrame": "idle/body/NW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/NW/01",
+      "bodyFrame": "idle/body/NW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/NW/02",
+      "bodyFrame": "idle/body/NW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/NW/03",
+      "bodyFrame": "idle/body/NW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 30,
+        "y": 717,
+        "w": 168,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/N/00",
+      "bodyFrame": "idle/body/N/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/N/01",
+      "bodyFrame": "idle/body/N/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/N/02",
+      "bodyFrame": "idle/body/N/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/N/03",
+      "bodyFrame": "idle/body/N/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 939,
+        "w": 178,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/NE/00",
+      "bodyFrame": "idle/body/NE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/NE/01",
+      "bodyFrame": "idle/body/NE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/NE/02",
+      "bodyFrame": "idle/body/NE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/NE/03",
+      "bodyFrame": "idle/body/NE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 1160,
+        "w": 175,
+        "h": 140
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/E/00",
+      "bodyFrame": "idle/body/E/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/E/01",
+      "bodyFrame": "idle/body/E/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/E/02",
+      "bodyFrame": "idle/body/E/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/E/03",
+      "bodyFrame": "idle/body/E/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 23,
+        "y": 1383,
+        "w": 170,
+        "h": 137
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/SE/00",
+      "bodyFrame": "idle/body/SE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/SE/01",
+      "bodyFrame": "idle/body/SE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/SE/02",
+      "bodyFrame": "idle/body/SE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-midnight-back/SE/03",
+      "bodyFrame": "idle/body/SE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 21,
+        "y": 1604,
+        "w": 175,
+        "h": 136
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        72,
+        7,
+        49,
+        43
+      ]
+    }
+  ]
+}

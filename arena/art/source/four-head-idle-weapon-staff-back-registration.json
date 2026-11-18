@@ -1,0 +1,714 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "weapon-staff-back",
+  "source": "arena/art/source/walk-weapon-staff.png",
+  "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+  "bodyRegistration": "arena/art/source/four-head-idle-registration.json",
+  "frames": [
+    {
+      "frame": "idle/weapon-staff-back/S/00",
+      "bodyFrame": "idle/body/S/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 89,
+        "y": 23,
+        "w": 50,
+        "h": 186
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        64,
+        59,
+        24,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/S/01",
+      "bodyFrame": "idle/body/S/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 89,
+        "y": 23,
+        "w": 50,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        64,
+        59,
+        24,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/S/02",
+      "bodyFrame": "idle/body/S/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 89,
+        "y": 23,
+        "w": 50,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        64,
+        59,
+        24,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/S/03",
+      "bodyFrame": "idle/body/S/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 89,
+        "y": 23,
+        "w": 50,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        64,
+        59,
+        24,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/SW/00",
+      "bodyFrame": "idle/body/SW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 87,
+        "y": 244,
+        "w": 49,
+        "h": 187
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        65,
+        59,
+        24,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/SW/01",
+      "bodyFrame": "idle/body/SW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 87,
+        "y": 244,
+        "w": 49,
+        "h": 187
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        65,
+        59,
+        24,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/SW/02",
+      "bodyFrame": "idle/body/SW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 87,
+        "y": 244,
+        "w": 49,
+        "h": 187
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        65,
+        59,
+        24,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/SW/03",
+      "bodyFrame": "idle/body/SW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 87,
+        "y": 244,
+        "w": 49,
+        "h": 187
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        65,
+        59,
+        24,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/W/00",
+      "bodyFrame": "idle/body/W/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 90,
+        "y": 466,
+        "w": 40,
+        "h": 186
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        88,
+        59,
+        19,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/W/01",
+      "bodyFrame": "idle/body/W/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 90,
+        "y": 466,
+        "w": 40,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        88,
+        59,
+        19,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/W/02",
+      "bodyFrame": "idle/body/W/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 90,
+        "y": 466,
+        "w": 40,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        88,
+        59,
+        19,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/W/03",
+      "bodyFrame": "idle/body/W/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 90,
+        "y": 466,
+        "w": 40,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        88,
+        59,
+        19,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/NW/00",
+      "bodyFrame": "idle/body/NW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 89,
+        "y": 688,
+        "w": 40,
+        "h": 186
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        102,
+        60,
+        19,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/NW/01",
+      "bodyFrame": "idle/body/NW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 89,
+        "y": 688,
+        "w": 40,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        102,
+        60,
+        19,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/NW/02",
+      "bodyFrame": "idle/body/NW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 89,
+        "y": 688,
+        "w": 40,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        102,
+        60,
+        19,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/NW/03",
+      "bodyFrame": "idle/body/NW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 89,
+        "y": 688,
+        "w": 40,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        102,
+        60,
+        19,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/N/00",
+      "bodyFrame": "idle/body/N/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 85,
+        "y": 908,
+        "w": 43,
+        "h": 188
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        102,
+        58,
+        21,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/N/01",
+      "bodyFrame": "idle/body/N/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 85,
+        "y": 908,
+        "w": 43,
+        "h": 188
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        102,
+        58,
+        21,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/N/02",
+      "bodyFrame": "idle/body/N/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 85,
+        "y": 908,
+        "w": 43,
+        "h": 188
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        102,
+        58,
+        21,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/N/03",
+      "bodyFrame": "idle/body/N/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 85,
+        "y": 908,
+        "w": 43,
+        "h": 188
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        102,
+        58,
+        21,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/NE/00",
+      "bodyFrame": "idle/body/NE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 87,
+        "y": 1130,
+        "w": 45,
+        "h": 188
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        97,
+        58,
+        22,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/NE/01",
+      "bodyFrame": "idle/body/NE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 87,
+        "y": 1130,
+        "w": 45,
+        "h": 188
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        97,
+        58,
+        22,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/NE/02",
+      "bodyFrame": "idle/body/NE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 87,
+        "y": 1130,
+        "w": 45,
+        "h": 188
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        97,
+        58,
+        22,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/NE/03",
+      "bodyFrame": "idle/body/NE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 87,
+        "y": 1130,
+        "w": 45,
+        "h": 188
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        97,
+        58,
+        22,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/E/00",
+      "bodyFrame": "idle/body/E/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 92,
+        "y": 1352,
+        "w": 39,
+        "h": 188
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        83,
+        59,
+        19,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/E/01",
+      "bodyFrame": "idle/body/E/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 92,
+        "y": 1352,
+        "w": 39,
+        "h": 188
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        83,
+        59,
+        19,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/E/02",
+      "bodyFrame": "idle/body/E/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 92,
+        "y": 1352,
+        "w": 39,
+        "h": 188
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        83,
+        59,
+        19,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/E/03",
+      "bodyFrame": "idle/body/E/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 92,
+        "y": 1352,
+        "w": 39,
+        "h": 188
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        83,
+        59,
+        19,
+        90
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/SE/00",
+      "bodyFrame": "idle/body/SE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 98,
+        "y": 1574,
+        "w": 38,
+        "h": 186
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        68,
+        60,
+        18,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/SE/01",
+      "bodyFrame": "idle/body/SE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 98,
+        "y": 1574,
+        "w": 38,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        68,
+        60,
+        18,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/SE/02",
+      "bodyFrame": "idle/body/SE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 98,
+        "y": 1574,
+        "w": 38,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        68,
+        60,
+        18,
+        89
+      ]
+    },
+    {
+      "frame": "idle/weapon-staff-back/SE/03",
+      "bodyFrame": "idle/body/SE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 98,
+        "y": 1574,
+        "w": 38,
+        "h": 186
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        68,
+        60,
+        18,
+        89
+      ]
+    }
+  ]
+}

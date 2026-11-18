@@ -1,6 +1,7 @@
 name: Arena checks
 on:
   push:
+    branches: [master]
     paths: ['arena/**', '.github/workflows/arena.yml']
   pull_request:
     paths: ['arena/**', '.github/workflows/arena.yml']

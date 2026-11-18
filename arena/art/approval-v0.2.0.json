@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "release": "0.2.0",
+  "contentVersion": "arena-art-2026-11-18.four-head.3",
+  "status": "approved",
+  "reviewedOn": "2026-11-18",
+  "reviewer": {
+    "name": "Astra independent art reviewer",
+    "agent": "/root/release_review_astra",
+    "recordedBy": "/root/asset_approval_astra",
+    "basis": "Completed independent visual review retained by the coordinating agent; this record transcribes that decision and pins the unchanged reviewed PNGs."
+  },
+  "reviewedArtCommit": "7720bea2166735f4930abea1fa4f350ffdd4d69a",
+  "reviewedIntegrationCommit": "7fd2a93d68c4396b2d535a7d43ca7e7d5566d37d",
+  "scope": {
+    "actions": ["idle", "walk"],
+    "directions": ["S", "SW", "W", "NW", "N", "NE", "E", "SE"],
+    "framesPerDirection": 4,
+    "fps": {"idle": 4, "walk": 8},
+    "outfits": ["scholar", "warden"],
+    "hair": ["ivory", "midnight"],
+    "weapons": ["empty", "staff"],
+    "appearanceCombinations": 8,
+    "compositeFrames": 512,
+    "physicalLayersPerAction": 14,
+    "animationPngs": 28,
+    "independentTilesAndProps": 8,
+    "tileAtlasPngs": 2,
+    "spareAssetOnly": ["floor-cracked", "bookcase-v"],
+    "deferredMissingActions": ["run", "jump", "climb", "weapon-staff"],
+    "exclusions": "No approval of later action batches, unproduced frames, or map placement of the two spare assets."
+  },
+  "decision": {
+    "result": "Approved for the v0.2.0 idle/walk eight-appearance scope and the eight pinned independent tile/prop assets.",
+    "reviewedContactSheets": 16,
+    "reviewedRealtimeVideoFrames": 87,
+    "realtimeDirections": ["E", "W", "NE", "SE"],
+    "closedFindings": [
+      "W/E walk phase02/03 smear, flattened boots and excessive knee lift",
+      "Shoulder/neck joins and anatomical hand-switching",
+      "Outfit, front/back hair, front/back staff and grip missing-frame or layering defects"
+    ],
+    "tiles": "All eight individual PNGs and the floor seam preview passed visual review; floor-cracked and bookcase-v were inspected as spare assets, not as runtime map placements.",
+    "hud": {
+      "result": "Wide and narrow normal full-screen HUD/map layout passed a separate independent Astra review, as retained by the coordinating agent.",
+      "reviewedCommits": [
+        "9177d12a5e91a303d8fe06b20e76f7bd1aca15c5",
+        "b6b3a8603f16eb74bd8476d1c2b5920c2ad8e37d"
+      ]
+    }
+  },
+  "evidence": {
+    "originalReview": {
+      "formerRoot": "/tmp/hud-fourhead-clean",
+      "availability": "Temporary files were lost during the environment restart; the completed independent review decision is retained by the coordinating agent."
+    },
+    "persistentRecapture": {
+      "status": "captured",
+      "sourceCommit": "984f1a47316f4e7b48265750b50c813364e23eca",
+      "artPixelCommit": "7720bea2166735f4930abea1fa4f350ffdd4d69a",
+      "index": "/home/user/arena-v020-evidence/visual/capture.json",
+      "mcpIndex": "/home/user/arena-v020-evidence/visual/mcp-capture.json",
+      "contactSheets": "/home/user/arena-v020-evidence/visual/contacts",
+      "gallery": "/home/user/arena-v020-evidence/gallery",
+      "videos": "/home/user/arena-v020-evidence/video",
+      "sampledVideoFrames": "/home/user/arena-v020-evidence/visual/video-frames",
+      "mapScreenshot": "/home/user/arena-v020-evidence/visual/today-map.png",
+      "equippedScreenshot": "/home/user/arena-v020-evidence/visual/today-equipped.png",
+      "contactSheetCount": 16,
+      "galleryImageCount": 64,
+      "compositeFrames": 512,
+      "videoCount": 4,
+      "sampledVideoFrameCount": 87,
+      "note": "Persistent recapture of the same pinned art pixels after restart; capture alone is not claimed to be a new independent visual review. The index lists exact contact, gallery, video and sampled-frame filenames."
+    },
+    "repositoryTileEvidence": {
+      "independentPngDirectory": "arena/client/public/assets/tiles",
+      "seamPreview": "arena/art/iso-floor-seam-preview.png"
+    }
+  },
+  "assets": {
+    "animation": [
+      {"path":"animation/idle-body-front.png","sha256":"21116d1d5393649fdb58ae76dd9ebfbc3dad96e0094fef7638864da44abdaae6"},
+      {"path":"animation/idle-body.png","sha256":"41cbc35faf1ea4fa3e9f287372f0e893a800b1c829c36f562a966330bb7e4c9d"},
+      {"path":"animation/idle-hair-ivory-back.png","sha256":"1372585ed05871bbfdb5b78a7c86520e31f5ba870ca67630897fabe692c67567"},
+      {"path":"animation/idle-hair-ivory-front.png","sha256":"096a5eb9e5fb917f529325ca08841aa4f9ce6287d3c0c50f4d31fc2c3ab96106"},
+      {"path":"animation/idle-hair-ivory.png","sha256":"e9a9ec8a14a19db700ea88e0799664d3c6796371e73f03cc4f8474055a6497c4"},
+      {"path":"animation/idle-hair-midnight-back.png","sha256":"69ebbd538955e751d8f71b70ae7fe2c1be69b69b84498a4192bb4d4e62edb73e"},
+      {"path":"animation/idle-hair-midnight-front.png","sha256":"491538732e818412f401d322c422ce1f782d1c719ccd04e9fd9edef52e8bf4b7"},
+      {"path":"animation/idle-hair-midnight.png","sha256":"837246582c26eab8dffa4a34fa1f9435d41236fab10bfe24afb0b83c60217bbe"},
+      {"path":"animation/idle-hand-grip.png","sha256":"8a6eecbe225246e21918f6f8c70f91dffbcbb6d8ba6d3ec506b047a282ca48fe"},
+      {"path":"animation/idle-outfit-scholar.png","sha256":"d5df7400defa10bc7d965e4508823c18fbdc729b34d7bb6f41697d99d91cd481"},
+      {"path":"animation/idle-outfit-warden.png","sha256":"e35bf3c0bca90d07587be1b8dc0b5321d73d67fb4f51fa606f19bbb8390331bf"},
+      {"path":"animation/idle-weapon-staff-back.png","sha256":"02140ea3b7597ad48fab8cce8302cf21c0e2616ebfe66f4a55df84f4440c1ba5"},
+      {"path":"animation/idle-weapon-staff-front.png","sha256":"5cb33c0029a2d23122d308948d68a4203b74e4c461aaa6b0bcad604cbc47fbcb"},
+      {"path":"animation/idle-weapon-staff.png","sha256":"f4421a30e3f3beed0fe6ee19390f9388a822f10736f22a8474f0bc03deff66b2"},
+      {"path":"animation/walk-body-front.png","sha256":"ddb85cfcb12e6d7a6e8cce835b1b2831b0fae092fe04eca240d3d9be4587f869"},
+      {"path":"animation/walk-body.png","sha256":"51daabfa5675e4de03aaa60d95cd9782833fe0838d00332ea0f807452ae94474"},
+      {"path":"animation/walk-hair-ivory-back.png","sha256":"633f96ee8a9253aaed2e5277eb4ad313b22a144e562a5dc0f37bde9152dedf78"},
+      {"path":"animation/walk-hair-ivory-front.png","sha256":"739e3e600a7ff9b5bab31b74c5079d777e43023ffbb613bbf59a0f3a54ad64f0"},
+      {"path":"animation/walk-hair-ivory.png","sha256":"a0141c54b849ddae1853d7f9b8cf4040995e698f2055ba9cdec3817a9bb44ac7"},
+      {"path":"animation/walk-hair-midnight-back.png","sha256":"f2b12802dfb61c22528e1c43e9d1f28eacd16b7748639f3ef3e95f367a97af19"},
+      {"path":"animation/walk-hair-midnight-front.png","sha256":"153de2598c6d5f6030c4c1a302617d5a12c7332b2ff716876de157707d9060f1"},
+      {"path":"animation/walk-hair-midnight.png","sha256":"e2f3dfa1f9afa65be0e9ba65260fa2e5f8a186a2c6c1661d20ee3988d9bea88f"},
+      {"path":"animation/walk-hand-grip.png","sha256":"15a9e4c6fa172695b945503ab1b61de9efcdcf9f9f319766d3a9507e924df780"},
+      {"path":"animation/walk-outfit-scholar.png","sha256":"c41ac7255150f455092f3be1be216af8b4de33a5754816fd564efdc9870aa8f2"},
+      {"path":"animation/walk-outfit-warden.png","sha256":"ab4d10d6b60437e7931e58e3415a5caae19eb41384bc20e4d5e66e9833aba7db"},
+      {"path":"animation/walk-weapon-staff-back.png","sha256":"f0a4c47d5bcdeb2cb0aff82ca65d4694697d27750711191ee5eda844c0b6b369"},
+      {"path":"animation/walk-weapon-staff-front.png","sha256":"08a7891571f7a7a1ed879c27f2d774f7ae628471d1aab41f665d15739872bf60"},
+      {"path":"animation/walk-weapon-staff.png","sha256":"9ec5af1909725b8769ff2c59261463f9f341c6198b626a9f8602f023a8acdcd6"}
+    ],
+    "tiles": [
+      {"path":"tiles/bookcase-u.png","sha256":"bc6538474b116d7101607db3d1bdaec630a57013c161d9669bcceb077acea2d4"},
+      {"path":"tiles/bookcase-v.png","sha256":"4786bd165aa9274b59628d0f92a675dc83a96bc5b7842c1b1939fe7b3d9ab981"},
+      {"path":"tiles/floor-cracked.png","sha256":"011d815fa74fd0efdac541764a4103fccca3268bb90b4ad3bf96164d08b898fe"},
+      {"path":"tiles/floor-inlay.png","sha256":"b934dee6edcdfb70951fcadc125c2c0b852466a6f4d17863fb47d33f5959ecc2"},
+      {"path":"tiles/floor-stone.png","sha256":"6a75eced7cd18bbb80de6ecea78536e9f38c601ce0ef2fc5b93f10105d0971fc"},
+      {"path":"tiles/floor-worn.png","sha256":"b79a42d516b4e6e5341bffb581d877a62fa342b296ff0efe316385bfeec2669c"},
+      {"path":"tiles/lectern.png","sha256":"58ba63cf5eff52c45772ee738d027f7203bf38d7ef3cbeb0a3d3ec2ad64f9cd2"},
+      {"path":"tiles/plinth.png","sha256":"67a2a722ff5c3965841d1763f7e8a4b88031ec7931d8f552b1b2d6f4b91a393b"}
+    ],
+    "tileAtlases": [
+      {"path":"tiles/floors.png","sha256":"5d99d1e89a356c32a47fb90b89e0ba6110dc1dc01b404be051f6326d6fe2bf30"},
+      {"path":"tiles/props.png","sha256":"f813c45c272b988a51c83446650850a380e310db2ea64e2f365e6b288007e8bc"}
+    ]
+  },
+  "assetPathBase": "arena/client/public/assets"
+}

@@ -1,0 +1,714 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "outfit-scholar",
+  "source": "arena/art/source/four-head-outfits.png",
+  "sourceSha256": "e231bd6f4e5b78c1623300b9fa34bd2e1fbaa33bd5c973ad3223ff57bffc2039",
+  "bodyRegistration": "arena/art/source/four-head-idle-registration.json",
+  "frames": [
+    {
+      "frame": "idle/outfit-scholar/S/00",
+      "bodyFrame": "idle/body/S/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 159,
+        "y": 9,
+        "w": 126,
+        "h": 205
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        77,
+        55,
+        38,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/S/01",
+      "bodyFrame": "idle/body/S/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 159,
+        "y": 9,
+        "w": 126,
+        "h": 205
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        77,
+        55,
+        38,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/S/02",
+      "bodyFrame": "idle/body/S/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 159,
+        "y": 9,
+        "w": 126,
+        "h": 205
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        77,
+        55,
+        38,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/S/03",
+      "bodyFrame": "idle/body/S/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 159,
+        "y": 9,
+        "w": 126,
+        "h": 205
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        77,
+        55,
+        38,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/SW/00",
+      "bodyFrame": "idle/body/SW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 165,
+        "y": 229,
+        "w": 116,
+        "h": 206
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/SW/01",
+      "bodyFrame": "idle/body/SW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 165,
+        "y": 229,
+        "w": 116,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/SW/02",
+      "bodyFrame": "idle/body/SW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 165,
+        "y": 229,
+        "w": 116,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/SW/03",
+      "bodyFrame": "idle/body/SW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 165,
+        "y": 229,
+        "w": 116,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/W/00",
+      "bodyFrame": "idle/body/W/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 172,
+        "y": 451,
+        "w": 94,
+        "h": 206
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        85,
+        55,
+        25,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/W/01",
+      "bodyFrame": "idle/body/W/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 172,
+        "y": 451,
+        "w": 94,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        85,
+        55,
+        25,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/W/02",
+      "bodyFrame": "idle/body/W/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 172,
+        "y": 451,
+        "w": 94,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        85,
+        55,
+        25,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/W/03",
+      "bodyFrame": "idle/body/W/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 172,
+        "y": 451,
+        "w": 94,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        85,
+        55,
+        25,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/NW/00",
+      "bodyFrame": "idle/body/NW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 170,
+        "y": 673,
+        "w": 109,
+        "h": 206
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        79,
+        55,
+        35,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/NW/01",
+      "bodyFrame": "idle/body/NW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 170,
+        "y": 673,
+        "w": 109,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        79,
+        55,
+        35,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/NW/02",
+      "bodyFrame": "idle/body/NW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 170,
+        "y": 673,
+        "w": 109,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        79,
+        55,
+        35,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/NW/03",
+      "bodyFrame": "idle/body/NW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 170,
+        "y": 673,
+        "w": 109,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        79,
+        55,
+        35,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/N/00",
+      "bodyFrame": "idle/body/N/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 161,
+        "y": 895,
+        "w": 125,
+        "h": 205
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        77,
+        55,
+        38,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/N/01",
+      "bodyFrame": "idle/body/N/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 161,
+        "y": 895,
+        "w": 125,
+        "h": 205
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        77,
+        55,
+        38,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/N/02",
+      "bodyFrame": "idle/body/N/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 161,
+        "y": 895,
+        "w": 125,
+        "h": 205
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        77,
+        55,
+        38,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/N/03",
+      "bodyFrame": "idle/body/N/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 161,
+        "y": 895,
+        "w": 125,
+        "h": 205
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        77,
+        55,
+        38,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/NE/00",
+      "bodyFrame": "idle/body/NE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 162,
+        "y": 1115,
+        "w": 112,
+        "h": 207
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/NE/01",
+      "bodyFrame": "idle/body/NE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 162,
+        "y": 1115,
+        "w": 112,
+        "h": 207
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/NE/02",
+      "bodyFrame": "idle/body/NE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 162,
+        "y": 1115,
+        "w": 112,
+        "h": 207
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/NE/03",
+      "bodyFrame": "idle/body/NE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 162,
+        "y": 1115,
+        "w": 112,
+        "h": 207
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/E/00",
+      "bodyFrame": "idle/body/E/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 176,
+        "y": 1338,
+        "w": 97,
+        "h": 206
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        82,
+        55,
+        25,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/E/01",
+      "bodyFrame": "idle/body/E/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 176,
+        "y": 1338,
+        "w": 97,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        82,
+        55,
+        25,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/E/02",
+      "bodyFrame": "idle/body/E/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 176,
+        "y": 1338,
+        "w": 97,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        82,
+        55,
+        25,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/E/03",
+      "bodyFrame": "idle/body/E/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 176,
+        "y": 1338,
+        "w": 97,
+        "h": 206
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        82,
+        55,
+        25,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/SE/00",
+      "bodyFrame": "idle/body/SE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 164,
+        "y": 1560,
+        "w": 116,
+        "h": 205
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/SE/01",
+      "bodyFrame": "idle/body/SE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 164,
+        "y": 1560,
+        "w": 116,
+        "h": 205
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/SE/02",
+      "bodyFrame": "idle/body/SE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 164,
+        "y": 1560,
+        "w": 116,
+        "h": 205
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    },
+    {
+      "frame": "idle/outfit-scholar/SE/03",
+      "bodyFrame": "idle/body/SE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 164,
+        "y": 1560,
+        "w": 116,
+        "h": 205
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        78,
+        55,
+        36,
+        62
+      ]
+    }
+  ]
+}

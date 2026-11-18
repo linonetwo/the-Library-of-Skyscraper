@@ -6,29 +6,29 @@ import { output, art, digest } from './idle-pipeline.mjs';
 import { cellBytes, bounds } from './motion-registration.mjs';
 
 const read=name=>readFile(new URL(name,output)),json=async name=>JSON.parse(await read(name));
-test('walk normalization measurably matches idle head volume and sole baseline while retaining 32 gait poses',async()=>{
+test('four-head walk matches reviewed idle anatomy and sole baseline while retaining 32 independent gait poses',async()=>{
   const recipe=await json('walk-registration.json'),body=await read('walk-body.png'),idle=await read('idle-body.png');
   assert.equal(recipe.frames.length,32);
-  let oldError=0,newError=0;
   const hashes=new Set();
   for(const [index,frame]of recipe.frames.entries()) {
     assert(frame.sourcePoseRetained);
-    const target=frame.registration.targetHead;
-    oldError+=Math.abs(frame.before.head.height-target.height);
-    newError+=Math.abs(frame.after.head.height-target.height);
-    assert(Math.abs(frame.after.head.width-target.width)<=2);
-    assert.equal(frame.after.body.bottom,172);
     const row=Math.floor(index/4),col=index%4,pixels=await cellBytes(body,row,col);
+    const target=bounds(await cellBytes(idle,row,0),0,53),head=bounds(pixels,0,54);
+    assert(Math.abs(head.width-target.width)<=2);assert(Math.abs(head.height-target.height)<=2);
+    assert.equal(bounds(pixels).bottom,172);
+    assert.equal(frame.skeleton.sole-frame.skeleton.crown,4*(frame.skeleton.chin-frame.skeleton.crown));
+    assert.deepEqual(frame.groundPivot,[96,172.8]);assert.equal(frame.durationMs,125);
     hashes.add(digest(pixels));assert.notEqual(digest(pixels),digest(await cellBytes(idle,row,0)));
   }
   assert.equal(hashes.size,32);
-  assert(newError<oldError*0.25,`head-height error ${oldError} → ${newError}`);
 });
 test('both walk costumes use the same authored designs as idle with four independent motion phases',async()=>{
   for(const outfit of ['scholar','warden']) {
     const walk=await json(`walk-outfit-${outfit}.provenance.json`),idle=await json(`idle-outfit-${outfit}.provenance.json`);
-    assert.equal(walk.sourceSha256,idle.sourceSha256);
-    assert.equal(walk.source,'arena/art/source/idle-outfits.png');
+    assert.equal(walk.designSource,idle.designSource);
+    assert.equal(walk.designSource,'arena/art/source/four-head-outfits.png');
+    assert.notEqual(walk.sourceSha256,idle.sourceSha256,'walk has independent generated garment poses');
+    assert.equal(walk.source,`arena/art/source/four-head-walk-${outfit}.png`);
     const image=await read(`walk-outfit-${outfit}.png`);
     for(let row=0;row<8;row++) {
       const hashes=new Set();
@@ -41,7 +41,8 @@ test('generated grip artwork covers each registered shaft contact in both action
   const source=await readFile(new URL('source/grip-hands.png',art));
   for(const action of ['idle','walk']) {
     const provenance=await json(`${action}-hand-grip.provenance.json`),atlas=await json(`${action}-hand-grip.json`);
-    assert.equal(provenance.sourceSha256,digest(source));assert.equal(provenance.releaseApproved,false);
+    assert.equal(provenance.sourceSha256,digest(source));assert.equal(provenance.releaseApproved,true);
+    assert.equal(provenance.approvalRecord,'arena/art/approval-v0.2.0.json');
     const hand=await read(`${action}-hand-grip.png`),staff=await read(`${action}-weapon-staff.png`);
     assert.equal(provenance.atlasPngSha256,digest(hand));
     const tracks=(await json(`${action}-weapon-staff.attachments.json`)).attachments;

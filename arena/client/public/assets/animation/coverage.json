@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "arena-animation-2026-11-15.motion-grip.1",
-  "generatedOn": "2026-11-15",
+  "contentVersion": "arena-art-2026-11-18.four-head.3",
+  "generatedOn": "2026-11-18",
   "source": {
-    "path": "arena/art/source/walk-body-eight-directions.png",
-    "sha256": "0ac437f4d2fc5f79510542ceee29b2ba885ee067a0e386ecd0ff13730ba0417f",
+    "path": "arena/art/source/four-head-walk-body.png",
+    "sha256": "63dc95d19943b8e01310ef88105a656c6f39ed8be5a65ff6f7d19de11680250d",
     "generator": "GPT Image 2 via proxy-imagegen"
   },
   "cell": [
@@ -77,24 +77,24 @@
     "SE": "toward camera right"
   },
   "defaultLayerOrder": [
-    "weapon-back",
+    "weapon-staff-back",
     "hair-back",
     "body",
     "outfit",
-    "hair-front",
-    "weapon-front"
+    "weapon-staff-front",
+    "body-front",
+    "hand-grip",
+    "hair-front"
   ],
-  "releaseReady": false,
-  "runtimePolicy": "prototype-preview-only; missing layers never count as animation coverage",
+  "releaseReady": true,
+  "runtimePolicy": "approved idle/walk release scope; deferred actions remain missing",
   "review": {
-    "directionViews": "Eight distinct source views visually inspected; NW/NE passing poses drift toward N.",
-    "gait": "Four authored poses per direction, cadence/foot-sliding needs review.",
-    "proportion": "Walk head volume/crown and body baseline normalized against measured idle anatomy, preserving the original 32 gait poses. See walk-registration.json for before/after bounds.",
-    "cleanup": "Chroma specks removed; connected pale edge halos still need manual cleanup.",
-    "alignment": "Scholar authored per-frame placements share cell anchor; original hand pixels restored as body-front. Vest width and side/back registration need art refinement.",
-    "paperDoll": "Idle and walk share both costume designs and hair scale. Dedicated directional walk gait and clothing twist remain independent.",
-    "idle": "Dedicated eight-direction standing body and garments. Four breathing/hem/hair deformation frames with bit-identical lower-body pixels. Both hair styles and staff use shared designs with idle-only registrations. All combinations remain prototype pending human approval of proportions, grip closure and transitions.",
-    "grip": "Dedicated closed right-hand artwork registered to both actions; foreground fingers occlude the shaft. Detailed wrist/shaft contact and all-direction anatomical approval remain prototype review."
+    "proportion": "Reviewed neutral four-head skeleton: crown12/chin52/sole172, common anchor172.8; both actions migrated together.",
+    "gait": "Independent Astra review passed all 16 action/appearance contact sheets and real-FPS playback, including W/E phase02/03, NE/SE limb corrections, shoulder/neck joins and anatomical grip.",
+    "paperDoll": "14 physical layers per action, 2 outfits × 2 hair designs × empty/staff; both actions include foreground hands and hair/staff depth splits.",
+    "grip": "Per-frame right-hand staff and weapon-only grip registration approved across idle/walk and all eight appearance combinations.",
+    "cleanup": "Source near-white matte/chroma cleanup and alpha resampling approved for the pinned v0.2.0 pixels.",
+    "deferred": "Run, jump, climb and staff attack remain missing; approval does not cover later action batches."
   },
   "coverage": [
     {
@@ -102,7 +102,7 @@
       "layer": "body",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/S/00",
         "idle/body/S/01",
@@ -110,14 +110,16 @@
         "idle/body/S/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/SW/00",
         "idle/body/SW/01",
@@ -125,14 +127,16 @@
         "idle/body/SW/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/W/00",
         "idle/body/W/01",
@@ -140,14 +144,16 @@
         "idle/body/W/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/NW/00",
         "idle/body/NW/01",
@@ -155,14 +161,16 @@
         "idle/body/NW/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/N/00",
         "idle/body/N/01",
@@ -170,14 +178,16 @@
         "idle/body/N/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/NE/00",
         "idle/body/NE/01",
@@ -185,14 +195,16 @@
         "idle/body/NE/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/E/00",
         "idle/body/E/01",
@@ -200,14 +212,16 @@
         "idle/body/E/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/SE/00",
         "idle/body/SE/01",
@@ -215,14 +229,16 @@
         "idle/body/SE/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/S/00",
         "idle/outfit-scholar/S/01",
@@ -230,14 +246,16 @@
         "idle/outfit-scholar/S/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/SW/00",
         "idle/outfit-scholar/SW/01",
@@ -245,14 +263,16 @@
         "idle/outfit-scholar/SW/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/W/00",
         "idle/outfit-scholar/W/01",
@@ -260,14 +280,16 @@
         "idle/outfit-scholar/W/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/NW/00",
         "idle/outfit-scholar/NW/01",
@@ -275,14 +297,16 @@
         "idle/outfit-scholar/NW/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/N/00",
         "idle/outfit-scholar/N/01",
@@ -290,14 +314,16 @@
         "idle/outfit-scholar/N/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/NE/00",
         "idle/outfit-scholar/NE/01",
@@ -305,14 +331,16 @@
         "idle/outfit-scholar/NE/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/E/00",
         "idle/outfit-scholar/E/01",
@@ -320,14 +348,16 @@
         "idle/outfit-scholar/E/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/SE/00",
         "idle/outfit-scholar/SE/01",
@@ -335,14 +365,16 @@
         "idle/outfit-scholar/SE/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/S/00",
         "idle/outfit-warden/S/01",
@@ -350,14 +382,16 @@
         "idle/outfit-warden/S/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/SW/00",
         "idle/outfit-warden/SW/01",
@@ -365,14 +399,16 @@
         "idle/outfit-warden/SW/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/W/00",
         "idle/outfit-warden/W/01",
@@ -380,14 +416,16 @@
         "idle/outfit-warden/W/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/NW/00",
         "idle/outfit-warden/NW/01",
@@ -395,14 +433,16 @@
         "idle/outfit-warden/NW/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/N/00",
         "idle/outfit-warden/N/01",
@@ -410,14 +450,16 @@
         "idle/outfit-warden/N/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/NE/00",
         "idle/outfit-warden/NE/01",
@@ -425,14 +467,16 @@
         "idle/outfit-warden/NE/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/E/00",
         "idle/outfit-warden/E/01",
@@ -440,14 +484,16 @@
         "idle/outfit-warden/E/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/SE/00",
         "idle/outfit-warden/SE/01",
@@ -455,14 +501,16 @@
         "idle/outfit-warden/SE/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/S/00",
         "idle/hair-ivory/S/01",
@@ -470,14 +518,16 @@
         "idle/hair-ivory/S/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/SW/00",
         "idle/hair-ivory/SW/01",
@@ -485,14 +535,16 @@
         "idle/hair-ivory/SW/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/W/00",
         "idle/hair-ivory/W/01",
@@ -500,14 +552,16 @@
         "idle/hair-ivory/W/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/NW/00",
         "idle/hair-ivory/NW/01",
@@ -515,14 +569,16 @@
         "idle/hair-ivory/NW/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/N/00",
         "idle/hair-ivory/N/01",
@@ -530,14 +586,16 @@
         "idle/hair-ivory/N/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/NE/00",
         "idle/hair-ivory/NE/01",
@@ -545,14 +603,16 @@
         "idle/hair-ivory/NE/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/E/00",
         "idle/hair-ivory/E/01",
@@ -560,14 +620,16 @@
         "idle/hair-ivory/E/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/SE/00",
         "idle/hair-ivory/SE/01",
@@ -575,14 +637,16 @@
         "idle/hair-ivory/SE/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/S/00",
         "idle/hair-midnight/S/01",
@@ -590,14 +654,16 @@
         "idle/hair-midnight/S/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/SW/00",
         "idle/hair-midnight/SW/01",
@@ -605,14 +671,16 @@
         "idle/hair-midnight/SW/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/W/00",
         "idle/hair-midnight/W/01",
@@ -620,14 +688,16 @@
         "idle/hair-midnight/W/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/NW/00",
         "idle/hair-midnight/NW/01",
@@ -635,14 +705,16 @@
         "idle/hair-midnight/NW/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/N/00",
         "idle/hair-midnight/N/01",
@@ -650,14 +722,16 @@
         "idle/hair-midnight/N/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/NE/00",
         "idle/hair-midnight/NE/01",
@@ -665,14 +739,16 @@
         "idle/hair-midnight/NE/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/E/00",
         "idle/hair-midnight/E/01",
@@ -680,14 +756,16 @@
         "idle/hair-midnight/E/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/SE/00",
         "idle/hair-midnight/SE/01",
@@ -695,14 +773,16 @@
         "idle/hair-midnight/SE/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/S/00",
         "idle/weapon-staff/S/01",
@@ -710,14 +790,16 @@
         "idle/weapon-staff/S/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/SW/00",
         "idle/weapon-staff/SW/01",
@@ -725,14 +807,16 @@
         "idle/weapon-staff/SW/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/W/00",
         "idle/weapon-staff/W/01",
@@ -740,14 +824,16 @@
         "idle/weapon-staff/W/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/NW/00",
         "idle/weapon-staff/NW/01",
@@ -755,14 +841,16 @@
         "idle/weapon-staff/NW/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/N/00",
         "idle/weapon-staff/N/01",
@@ -770,14 +858,16 @@
         "idle/weapon-staff/N/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/NE/00",
         "idle/weapon-staff/NE/01",
@@ -785,14 +875,16 @@
         "idle/weapon-staff/NE/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/E/00",
         "idle/weapon-staff/E/01",
@@ -800,14 +892,16 @@
         "idle/weapon-staff/E/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/SE/00",
         "idle/weapon-staff/SE/01",
@@ -815,14 +909,16 @@
         "idle/weapon-staff/SE/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/S/00",
         "walk/body/S/01",
@@ -830,14 +926,16 @@
         "walk/body/S/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/SW/00",
         "walk/body/SW/01",
@@ -845,14 +943,16 @@
         "walk/body/SW/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/W/00",
         "walk/body/W/01",
@@ -860,14 +960,16 @@
         "walk/body/W/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/NW/00",
         "walk/body/NW/01",
@@ -875,14 +977,16 @@
         "walk/body/NW/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/N/00",
         "walk/body/N/01",
@@ -890,14 +994,16 @@
         "walk/body/N/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/NE/00",
         "walk/body/NE/01",
@@ -905,14 +1011,16 @@
         "walk/body/NE/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/E/00",
         "walk/body/E/01",
@@ -920,14 +1028,16 @@
         "walk/body/E/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/SE/00",
         "walk/body/SE/01",
@@ -935,14 +1045,16 @@
         "walk/body/SE/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/S/00",
         "walk/outfit-scholar/S/01",
@@ -950,14 +1062,16 @@
         "walk/outfit-scholar/S/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/SW/00",
         "walk/outfit-scholar/SW/01",
@@ -965,14 +1079,16 @@
         "walk/outfit-scholar/SW/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/W/00",
         "walk/outfit-scholar/W/01",
@@ -980,14 +1096,16 @@
         "walk/outfit-scholar/W/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/NW/00",
         "walk/outfit-scholar/NW/01",
@@ -995,14 +1113,16 @@
         "walk/outfit-scholar/NW/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/N/00",
         "walk/outfit-scholar/N/01",
@@ -1010,14 +1130,16 @@
         "walk/outfit-scholar/N/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/NE/00",
         "walk/outfit-scholar/NE/01",
@@ -1025,14 +1147,16 @@
         "walk/outfit-scholar/NE/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/E/00",
         "walk/outfit-scholar/E/01",
@@ -1040,14 +1164,16 @@
         "walk/outfit-scholar/E/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/SE/00",
         "walk/outfit-scholar/SE/01",
@@ -1055,14 +1181,16 @@
         "walk/outfit-scholar/SE/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/S/00",
         "walk/outfit-warden/S/01",
@@ -1070,14 +1198,16 @@
         "walk/outfit-warden/S/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/SW/00",
         "walk/outfit-warden/SW/01",
@@ -1085,14 +1215,16 @@
         "walk/outfit-warden/SW/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/W/00",
         "walk/outfit-warden/W/01",
@@ -1100,14 +1232,16 @@
         "walk/outfit-warden/W/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/NW/00",
         "walk/outfit-warden/NW/01",
@@ -1115,14 +1249,16 @@
         "walk/outfit-warden/NW/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/N/00",
         "walk/outfit-warden/N/01",
@@ -1130,14 +1266,16 @@
         "walk/outfit-warden/N/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/NE/00",
         "walk/outfit-warden/NE/01",
@@ -1145,14 +1283,16 @@
         "walk/outfit-warden/NE/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/E/00",
         "walk/outfit-warden/E/01",
@@ -1160,14 +1300,16 @@
         "walk/outfit-warden/E/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/SE/00",
         "walk/outfit-warden/SE/01",
@@ -1175,14 +1317,16 @@
         "walk/outfit-warden/SE/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/S/00",
         "walk/hair-ivory/S/01",
@@ -1190,14 +1334,16 @@
         "walk/hair-ivory/S/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/SW/00",
         "walk/hair-ivory/SW/01",
@@ -1205,14 +1351,16 @@
         "walk/hair-ivory/SW/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/W/00",
         "walk/hair-ivory/W/01",
@@ -1220,14 +1368,16 @@
         "walk/hair-ivory/W/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/NW/00",
         "walk/hair-ivory/NW/01",
@@ -1235,14 +1385,16 @@
         "walk/hair-ivory/NW/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/N/00",
         "walk/hair-ivory/N/01",
@@ -1250,14 +1402,16 @@
         "walk/hair-ivory/N/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/NE/00",
         "walk/hair-ivory/NE/01",
@@ -1265,14 +1419,16 @@
         "walk/hair-ivory/NE/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/E/00",
         "walk/hair-ivory/E/01",
@@ -1280,14 +1436,16 @@
         "walk/hair-ivory/E/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/SE/00",
         "walk/hair-ivory/SE/01",
@@ -1295,14 +1453,16 @@
         "walk/hair-ivory/SE/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/S/00",
         "walk/hair-midnight/S/01",
@@ -1310,14 +1470,16 @@
         "walk/hair-midnight/S/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/SW/00",
         "walk/hair-midnight/SW/01",
@@ -1325,14 +1487,16 @@
         "walk/hair-midnight/SW/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/W/00",
         "walk/hair-midnight/W/01",
@@ -1340,14 +1504,16 @@
         "walk/hair-midnight/W/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/NW/00",
         "walk/hair-midnight/NW/01",
@@ -1355,14 +1521,16 @@
         "walk/hair-midnight/NW/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/N/00",
         "walk/hair-midnight/N/01",
@@ -1370,14 +1538,16 @@
         "walk/hair-midnight/N/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/NE/00",
         "walk/hair-midnight/NE/01",
@@ -1385,14 +1555,16 @@
         "walk/hair-midnight/NE/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/E/00",
         "walk/hair-midnight/E/01",
@@ -1400,14 +1572,16 @@
         "walk/hair-midnight/E/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/SE/00",
         "walk/hair-midnight/SE/01",
@@ -1415,14 +1589,16 @@
         "walk/hair-midnight/SE/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/S/00",
         "walk/weapon-staff/S/01",
@@ -1430,14 +1606,16 @@
         "walk/weapon-staff/S/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/SW/00",
         "walk/weapon-staff/SW/01",
@@ -1445,14 +1623,16 @@
         "walk/weapon-staff/SW/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/W/00",
         "walk/weapon-staff/W/01",
@@ -1460,14 +1640,16 @@
         "walk/weapon-staff/W/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/NW/00",
         "walk/weapon-staff/NW/01",
@@ -1475,14 +1657,16 @@
         "walk/weapon-staff/NW/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/N/00",
         "walk/weapon-staff/N/01",
@@ -1490,14 +1674,16 @@
         "walk/weapon-staff/N/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/NE/00",
         "walk/weapon-staff/NE/01",
@@ -1505,14 +1691,16 @@
         "walk/weapon-staff/NE/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/E/00",
         "walk/weapon-staff/E/01",
@@ -1520,14 +1708,16 @@
         "walk/weapon-staff/E/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/SE/00",
         "walk/weapon-staff/SE/01",
@@ -1535,7 +1725,9 @@
         "walk/weapon-staff/SE/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "run",
@@ -3456,155 +3648,389 @@
       "frames": [],
       "atlas": null,
       "releaseApproved": false
-    }
-  ],
-  "equipmentSources": [
-    {
-      "layer": "outfit-scholar",
-      "path": "arena/art/source/idle-outfits.png",
-      "sha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
-      "provenance": "walk-outfit-scholar.provenance.json"
-    },
-    {
-      "layer": "hair-ivory",
-      "path": "arena/art/source/walk-hair-ivory.png",
-      "sha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
-      "provenance": "walk-hair-ivory.provenance.json"
-    },
-    {
-      "layer": "outfit-warden",
-      "path": "arena/art/source/idle-outfits.png",
-      "sha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
-      "provenance": "walk-outfit-warden.provenance.json"
-    },
-    {
-      "layer": "weapon-staff",
-      "path": "arena/art/source/walk-weapon-staff.png",
-      "sha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
-      "provenance": "walk-weapon-staff.provenance.json"
-    },
-    {
-      "layer": "hair-midnight",
-      "path": "arena/art/source/walk-hair-midnight.png",
-      "sha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
-      "provenance": "walk-hair-midnight.provenance.json"
     }
   ],
   "auxiliaryLayers": [
     {
-      "layer": "body-front",
-      "action": "walk",
-      "atlas": "walk-body-front.json",
-      "purpose": "Visible forearms and hands composited above sleeveless outfits; sampled from body source."
-    },
-    {
-      "layer": "weapon-staff-back",
-      "action": "walk",
-      "atlas": "walk-weapon-staff-back.json",
-      "purpose": "Directional back occlusion for the right-hand staff; opposite-depth rows are transparent."
-    },
-    {
-      "layer": "weapon-staff-front",
-      "action": "walk",
-      "atlas": "walk-weapon-staff-front.json",
-      "purpose": "Directional front occlusion for the right-hand staff; opposite-depth rows are transparent."
-    },
-    {
       "action": "idle",
       "layer": "body-front",
       "atlas": "idle-body-front.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
-    },
-    {
-      "action": "idle",
-      "layer": "weapon-staff-back",
-      "atlas": "idle-weapon-staff-back.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
-    },
-    {
-      "action": "idle",
-      "layer": "weapon-staff-front",
-      "atlas": "idle-weapon-staff-front.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-ivory-back",
       "atlas": "idle-hair-ivory-back.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-ivory-front",
       "atlas": "idle-hair-ivory-front.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-midnight-back",
       "atlas": "idle-hair-midnight-back.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-midnight-front",
       "atlas": "idle-hair-midnight-front.json",
-      "purpose": "Dedicated idle occlusion layer; see idle-registration.json and idle-weapon-staff.attachments.json."
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff-back",
+      "atlas": "idle-weapon-staff-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "idle",
+      "layer": "weapon-staff-front",
+      "atlas": "idle-weapon-staff-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hand-grip",
       "atlas": "idle-hand-grip.json",
-      "purpose": "Weapon-only closed right-hand fingers over shaft and body-front; direction-specific generated source."
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "body-front",
+      "atlas": "walk-body-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory-back",
+      "atlas": "walk-hair-ivory-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "hair-ivory-front",
+      "atlas": "walk-hair-ivory-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight-back",
+      "atlas": "walk-hair-midnight-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "hair-midnight-front",
+      "atlas": "walk-hair-midnight-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff-back",
+      "atlas": "walk-weapon-staff-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
+    },
+    {
+      "action": "walk",
+      "layer": "weapon-staff-front",
+      "atlas": "walk-weapon-staff-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "hand-grip",
       "atlas": "walk-hand-grip.json",
-      "purpose": "Weapon-only closed right-hand fingers over shaft and body-front; direction-specific generated source."
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
+      "purpose": "Four-head paper-doll occlusion; matching action registration."
     }
   ],
-  "idleSources": [
+  "fourHeadSources": [
     {
-      "source": "arena/art/source/idle-body.png",
-      "sourceSha256": "cfa4c561a348a3f0ae07f77315bbb431b0a9b038179eaebc25fb6512f5361fd9",
-      "promptSha256": "5afcf934b32be1f20170af3b9eb65014594b7980700739988cb8ea3cdb8b0a7c",
-      "method": "Eight newly generated dedicated standing views, normalized to planted soles; four upper-body breathing deformations with unchanged lower body."
+      "action": "idle",
+      "layers": {
+        "body": {
+          "source": "arena/art/source/four-head-neutral.png",
+          "sourceSha256": "b8f934e7cf81064127c3daf450963d9b52f1321333b0f3b5d2956acb086b888e",
+          "promptSha256": "5f3db292e4d3c934fdc1328e31e0cf9e00030ae100b19b36d8ce3c004aa74b53",
+          "method": "Dedicated standing source, reviewed four-head neutral anatomy registration, upper-body breath with unchanged feet."
+        },
+        "body-front": {
+          "source": "arena/art/source/four-head-neutral.png",
+          "sourceSha256": "b8f934e7cf81064127c3daf450963d9b52f1321333b0f3b5d2956acb086b888e",
+          "promptSha256": "5f3db292e4d3c934fdc1328e31e0cf9e00030ae100b19b36d8ce3c004aa74b53",
+          "method": "Dedicated standing source, reviewed four-head neutral anatomy registration, upper-body breath with unchanged feet."
+        },
+        "outfit-scholar": {
+          "source": "arena/art/source/four-head-outfits.png",
+          "sourceSha256": "e231bd6f4e5b78c1623300b9fa34bd2e1fbaa33bd5c973ad3223ff57bffc2039",
+          "promptSha256": "b3f53542d064f7b6487586823c02ddff9503f4bfa10dd8a894e22ec4282d9b16",
+          "method": "Independent neutral garment views, reviewed fit with four-head anatomy, shoulder breath and delayed hem flutter."
+        },
+        "outfit-warden": {
+          "source": "arena/art/source/four-head-outfits.png",
+          "sourceSha256": "e231bd6f4e5b78c1623300b9fa34bd2e1fbaa33bd5c973ad3223ff57bffc2039",
+          "promptSha256": "b3f53542d064f7b6487586823c02ddff9503f4bfa10dd8a894e22ec4282d9b16",
+          "method": "Independent neutral garment views, reviewed fit with four-head anatomy, shoulder breath and delayed hem flutter."
+        },
+        "hair-ivory": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-ivory-back": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-ivory-front": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-midnight": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-midnight-back": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "hair-midnight-front": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Existing dedicated directional hairstyle design, four-head crown registration, breathing and tip lag; split masks."
+        },
+        "weapon-staff": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Existing dedicated directional staff design, four-head hand registration."
+        },
+        "weapon-staff-back": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Existing dedicated directional staff design, four-head hand registration."
+        },
+        "weapon-staff-front": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Existing dedicated directional staff design, four-head hand registration."
+        },
+        "hand-grip": {
+          "source": "arena/art/source/grip-hands.png",
+          "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
+          "promptSha256": "aef6a7206206fcdcc6cfe5405eb2b37fc75fe28fe8493d597bfe25f60a53f44a",
+          "method": "Closed fingers over registered shaft, weapon-only."
+        }
+      }
     },
     {
-      "source": "arena/art/source/idle-outfits.png",
-      "sourceSha256": "ae226eb078583e4bab959b5498038aa29c1d1e7b14232f83aaddcc7b5e5757fd",
-      "promptSha256": "53a58dbd944125ca6d529567fbe2db94bc0310d918d484c0e5ca67d3fdb15f0c",
-      "method": "Newly generated standing garments, eight dedicated directional views per outfit; registered breathing and hem flutter."
-    },
-    {
-      "source": "arena/art/source/walk-hair-ivory.png",
-      "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
-      "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
-      "method": "Shared directional hair artwork (column 0 only), re-registered to dedicated idle crown; low-amplitude lagged tip sway, not a reused walk animation."
-    },
-    {
-      "source": "arena/art/source/walk-hair-midnight.png",
-      "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
-      "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
-      "method": "Shared directional hair artwork (column 0 only), re-registered to dedicated idle crown; low-amplitude lagged tip sway, not a reused walk animation."
-    },
-    {
-      "source": "arena/art/source/walk-weapon-staff.png",
-      "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
-      "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
-      "method": "Shared directional staff design, column 0 only; dedicated relaxed standing right-hand grip and direction-specific depth, independent from walk carry track."
+      "action": "walk",
+      "layers": {
+        "body": {
+          "source": "arena/art/source/four-head-walk-body.png",
+          "sourceSha256": "63dc95d19943b8e01310ef88105a656c6f39ed8be5a65ff6f7d19de11680250d",
+          "promptSha256": "8cdd08e650993ed16d3af902698303767dd89a64b54350d1af273b7889412761",
+          "method": "32 independently generated walking poses; registered against reviewed neutral four-head skeleton, no neutral pose substitution.",
+          "correctionSources": [
+            {
+              "source": "arena/art/source/four-head-walk-opposite.png",
+              "sourceSha256": "468c1fc66337f426467ba4323b62f2597b94452ac19bfcdcaf871ec4af6a8ce4",
+              "promptSha256": "5a31a1f7d6acae405602d02bbb8ea0e5e9ac61a5cd7e4d5576639bc607696f98",
+              "method": "Targeted opposite-half correction candidates; see per-frame bodySource and independent review record."
+            },
+            {
+              "source": "arena/art/source/four-head-walk-right-views.png",
+              "sourceSha256": "e0c2e16406365f04718c5d8bacfb16e5f1e578b97740afacbe4ccdfd1991affe",
+              "promptSha256": "cafbb962829e7ce9a7479cf32e4a21065afb06354a3967b5387e6d9eca0a9afe",
+              "method": "Targeted opposite-half correction candidates; see per-frame bodySource and independent review record."
+            }
+          ]
+        },
+        "body-front": {
+          "source": "arena/art/source/four-head-walk-body.png",
+          "sourceSha256": "63dc95d19943b8e01310ef88105a656c6f39ed8be5a65ff6f7d19de11680250d",
+          "promptSha256": "8cdd08e650993ed16d3af902698303767dd89a64b54350d1af273b7889412761",
+          "method": "32 independently generated walking poses; registered against reviewed neutral four-head skeleton, no neutral pose substitution.",
+          "correctionSources": [
+            {
+              "source": "arena/art/source/four-head-walk-opposite.png",
+              "sourceSha256": "468c1fc66337f426467ba4323b62f2597b94452ac19bfcdcaf871ec4af6a8ce4",
+              "promptSha256": "5a31a1f7d6acae405602d02bbb8ea0e5e9ac61a5cd7e4d5576639bc607696f98",
+              "method": "Targeted opposite-half correction candidates; see per-frame bodySource and independent review record."
+            },
+            {
+              "source": "arena/art/source/four-head-walk-right-views.png",
+              "sourceSha256": "e0c2e16406365f04718c5d8bacfb16e5f1e578b97740afacbe4ccdfd1991affe",
+              "promptSha256": "cafbb962829e7ce9a7479cf32e4a21065afb06354a3967b5387e6d9eca0a9afe",
+              "method": "Targeted opposite-half correction candidates; see per-frame bodySource and independent review record."
+            }
+          ]
+        },
+        "outfit-scholar": {
+          "source": "arena/art/source/four-head-walk-scholar.png",
+          "sourceSha256": "6235e42160224baf85ca7a25d0369d286f7f686375a604547e7566d49cb09bca",
+          "promptSha256": "9f24ac2d1715deadf4778c0e8ca71eff8d375b62c824bc4907dc4cd990292891",
+          "method": "32 independently generated walking garment poses of the same four-head neutral costume design.",
+          "designSource": "arena/art/source/four-head-outfits.png"
+        },
+        "outfit-warden": {
+          "source": "arena/art/source/four-head-walk-warden.png",
+          "sourceSha256": "b79c46d7225f26886ec2ecd9c3d42b0ffc98065191540d3bda742951dc1a7e93",
+          "promptSha256": "7c7556efcb53c265a90558e71a9c61ffb314c63632c4325279207a5940f00d2c",
+          "method": "32 independently generated walking garment poses of the same four-head neutral costume design.",
+          "designSource": "arena/art/source/four-head-outfits.png"
+        },
+        "hair-ivory": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-ivory-back": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-ivory-front": {
+          "source": "arena/art/source/walk-hair-ivory.png",
+          "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+          "promptSha256": "2b2fde1c9dd64b75d12d67f1fd4f310005115869d482134e9be826751d0f0d51",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-midnight": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-midnight-back": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "hair-midnight-front": {
+          "source": "arena/art/source/walk-hair-midnight.png",
+          "sourceSha256": "23131fafe7e44e2c8483fdb81371bd565ccb082125245581526fc34e4d223864",
+          "promptSha256": "7e2bfa11f7cb965005157bfcfbb26e4e72756015c0a75dd853ddcd077ed765e0",
+          "method": "Four dedicated directional hair poses re-registered to four-head crowns, with split hanging locks."
+        },
+        "weapon-staff": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Shared directional staff design; independently authored four-head walk hand tracks and carry angles."
+        },
+        "weapon-staff-back": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Shared directional staff design; independently authored four-head walk hand tracks and carry angles."
+        },
+        "weapon-staff-front": {
+          "source": "arena/art/source/walk-weapon-staff.png",
+          "sourceSha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8",
+          "promptSha256": "e3b00acc0c5aca839ef789a03465c343e27aa86f5078d5f160cd71b96f94e63d",
+          "method": "Shared directional staff design; independently authored four-head walk hand tracks and carry angles."
+        },
+        "hand-grip": {
+          "source": "arena/art/source/grip-hands.png",
+          "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
+          "promptSha256": "aef6a7206206fcdcc6cfe5405eb2b37fc75fe28fe8493d597bfe25f60a53f44a",
+          "method": "Closed fingers registered over each corresponding shaft and original body palm."
+        }
+      }
     }
   ],
-  "walkNormalization": {
-    "registration": "walk-registration.json",
-    "sha256": "1f65cebfdc98d606bc42584ab1fd00512d1da668ce13017fd72254656ca55e39",
-    "reference": "idle-body.png"
+  "approvalRecord": "arena/art/approval-v0.2.0.json",
+  "releaseScope": {
+    "version": "0.2.0",
+    "actions": [
+      "idle",
+      "walk"
+    ],
+    "appearanceCombinations": 8,
+    "compositeFrames": 512
   },
-  "gripSource": {
-    "source": "arena/art/source/grip-hands.png",
-    "sourceSha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90",
-    "promptSha256": "aef6a7206206fcdcc6cfe5405eb2b37fc75fe28fe8493d597bfe25f60a53f44a",
-    "method": "Eight newly generated anatomical right-hand closed-grip views, independently registered to idle and normalized walk staff grips. Foreground fingers cover the shaft; empty-hand combinations omit this layer."
-  }
+  "allPlannedActionsReady": false
 }

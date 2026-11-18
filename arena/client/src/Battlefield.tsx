@@ -10,8 +10,6 @@ import {
 import MapCanvas from "./MapCanvas";
 
 import { useArena } from "./ArenaWorkspace";
-import SquadPanel from "./SquadPanel";
-import SimulationBar from "./SimulationBar";
 import RoomPopup from "./RoomPopup";
 import JournalPanel from "./JournalPanel";
 import RuleEditor from "./RuleEditor";
@@ -25,12 +23,14 @@ export default function Battlefield() {
     expeditions,
     selected,
     selectedRoom,
+    focusIntent,
     setSelectedRoom,
     zoom,
     setZoom,
     showRoutes,
     setShowRoutes,
     view,
+    setView,
     setLobby,
     player,
     room,
@@ -65,8 +65,6 @@ export default function Battlefield() {
         </div>
       </div>
       <div className="map-shell">
-        <div className="map-art" />
-        <div className="map-shade" />
         <div className="map-topline">
           <span>
             <Compass size={14} /> 第一书库 /
@@ -87,7 +85,7 @@ export default function Battlefield() {
                 ))}
               </select>
             ) : (
-              "六边形房间网络"
+              "书苑地块"
             )}
           </span>
           <button
@@ -99,6 +97,7 @@ export default function Battlefield() {
           </button>
         </div>
         <MapCanvas
+          focusIntent={focusIntent}
           snapshot={snapshot}
           selected={selected}
           selectedRoom={selectedRoom}
@@ -180,6 +179,7 @@ export default function Battlefield() {
           </div>
         </div>
         {room && view === "map" && <RoomPopup room={room} />}
+        {view !== "map" && <button className="overlay-close" aria-label="关闭面板" onClick={() => setView("map")}>返回地图 ×</button>}
         {view === "rules" && (
           <div className="workspace-overlay">
             <RuleEditor />
@@ -187,9 +187,6 @@ export default function Battlefield() {
         )}
         {view === "journal" && <JournalPanel />}
       </div>
-      <SimulationBar />
-
-      <SquadPanel />
     </section>
   );
 }

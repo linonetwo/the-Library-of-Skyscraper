@@ -1,27 +1,27 @@
+import { usePanelFocus } from "./usePanelFocus";
 import { Check, X } from "lucide-react";
 import { ArenaContext, useArenaWorkspace } from "./ArenaWorkspace";
-import NavigationRail from "./NavigationRail";
-import ArenaHeader from "./ArenaHeader";
+import GameHUD from "./GameHUD";
 import Battlefield from "./Battlefield";
 import CharacterInspector from "./CharacterInspector";
-import EventStrip from "./EventStrip";
 import LobbyDialog from "./LobbyDialog";
 import HelpDialog from "./HelpDialog";
 
 export default function App() {
   const workspace = useArenaWorkspace();
-  const { lobby, help, error, setError, notice } = workspace;
+  const { lobby, help, error, setError, notice, inspecting, setInspecting } = workspace;
+  usePanelFocus(inspecting, () => setInspecting(false));
+  usePanelFocus(workspace.view !== "map", () => workspace.setView("map"), ".game-top button");
   return (
     <ArenaContext.Provider value={workspace}>
       <div className="app-shell">
-        <NavigationRail />
+
         <div className="main-shell" inert={lobby || help}>
-          <ArenaHeader />
+          <GameHUD />
           <main className="workspace">
             <Battlefield />
-            <CharacterInspector />
+            {inspecting && <div className="character-drawer"><button className="drawer-close" aria-label="关闭角色面板" onClick={() => setInspecting(false)}>关闭 ×</button><CharacterInspector /></div>}
           </main>
-          <EventStrip />
         </div>
         {error && (
           <div className="toast error" role="alert">

@@ -1,0 +1,93 @@
+{
+  "frames": {
+    "floor-stone": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 128,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 64
+      }
+    },
+    "floor-worn": {
+      "frame": {
+        "x": 134,
+        "y": 2,
+        "w": 128,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 64
+      }
+    },
+    "floor-inlay": {
+      "frame": {
+        "x": 266,
+        "y": 2,
+        "w": 128,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 64
+      }
+    },
+    "floor-cracked": {
+      "frame": {
+        "x": 398,
+        "y": 2,
+        "w": 128,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 64
+      }
+    }
+  },
+  "meta": {
+    "image": "floors.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 528,
+      "h": 68
+    },
+    "scale": "1"
+  }
+}

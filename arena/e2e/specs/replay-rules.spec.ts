@@ -1,3 +1,4 @@
+import { openMenu, closeOverlay } from './hud-helpers';
 import { test, expect } from '@playwright/test';
 import path from 'node:path';
 import { writeFile } from 'node:fs/promises';
@@ -6,6 +7,7 @@ test('real rule history follows seeks, versions, reset, source jumps and playbac
  test.setTimeout(90000);
  await page.goto('/');
  await page.getByRole('button',{name:'开启训练远征'}).click();
+  await openMenu(page, '训练控制');
  const data=await page.evaluate(async()=>{
   const auth=JSON.parse(sessionStorage.getItem('arena-session')!);
   const route=async(suffix:string,body?:unknown)=>{
@@ -25,7 +27,7 @@ test('real rule history follows seeks, versions, reset, source jumps and playbac
   await route('scripts/disable',{});
   return route('replay/timeline');
  });
- await page.getByRole('button',{name:'赛局日志',exact:true}).click();
+ await openMenu(page, '赛局日志');
  await page.getByRole('button',{name:'播放赛局回放'}).click();
  const slider=page.getByRole('slider',{name:'回放进度'});
  const patches=data.ruleHistory.changes.filter((change:any)=>change.memoryPatch);

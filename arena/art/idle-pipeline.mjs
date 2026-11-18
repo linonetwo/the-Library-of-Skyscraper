@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { directions, frameName } from './animation-spec.mjs';
+import { directions, frameName, modules } from './animation-spec.mjs';
 
 export const art = new URL('./', import.meta.url);
 export const output = new URL('../client/public/assets/animation/', import.meta.url);
@@ -62,10 +62,10 @@ export async function foregroundHands(image) {
 }
 
 export async function packLayer(layer, cells, provenance, action = 'idle') {
-  const composites = [], frames = {}, animations = {};
+  const composites = [], frames = {}, animations = {},columns=modules[action].frames,width=196*columns;
   for (const [row, direction] of directions.entries()) {
     const key = `${action}/${layer}/${direction}`; animations[key] = [];
-    for (let col = 0; col < 4; col++) {
+    for (let col = 0; col < columns; col++) {
       const name = frameName(action, layer, direction, col), x = col * 196 + 2, y = row * 196 + 2;
       composites.push({ input: cells[row][col], left: x, top: y });
       frames[name] = { frame: { x, y, w: 192, h: 192 }, rotated: false, trimmed: false,
@@ -73,10 +73,10 @@ export async function packLayer(layer, cells, provenance, action = 'idle') {
       animations[key].push(name);
     }
   }
-  const image = await sharp({ create: { width: 784, height: 1568, channels: 4, background: '#00000000' } })
+  const image = await sharp({ create: { width, height: 1568, channels: 4, background: '#00000000' } })
     .composite(composites).png().toBuffer();
   const atlas = { frames, animations, meta: { app: 'arena-idle-paper-doll-pipeline', version: '1',
-    image: `${action}-${layer}.png`, format: 'RGBA8888', size: { w: 784, h: 1568 }, scale: '1' } };
+    image: `${action}-${layer}.png`, format: 'RGBA8888', size: { w: width, h: 1568 }, scale: '1' } };
   await writeFile(new URL(`${action}-${layer}.png`, output), image);
   await writeFile(new URL(`${action}-${layer}.json`, output), json(atlas));
   await writeFile(new URL(`${action}-${layer}.provenance.json`, output), json({

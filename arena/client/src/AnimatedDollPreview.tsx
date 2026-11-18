@@ -1,3 +1,4 @@
+import type { AnimationAction } from "./animationCatalog";
 export type AnimationAtlas = {
   frames: Record<string, { frame: { x: number; y: number; w: number; h: number } }>;
   meta: { size: { w: number; h: number } };
@@ -8,7 +9,7 @@ export function AnimatedDollPreview({ atlases, layers, direction, frame, action 
   layers: string[];
   direction: string;
   frame: number;
-  action?: "idle" | "walk";
+  action?: AnimationAction;
 }) {
   const style = (layer: string) => {
     const atlas = atlases[layer];

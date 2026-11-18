@@ -1,5 +1,8 @@
+import { openMenu, closeOverlay } from './hud-helpers';
 import { test, expect } from "@playwright/test";
 import { facing } from "../../client/src/actorMotion";
+import { project } from "../../client/src/isoGeometry";
+import { mapLayout, actorSlot } from "../../client/src/mapLayout";
 import { floorPoint } from "../../client/src/libraryLayout";
 import { animationLayers } from "../../client/src/walkLayers";
 
@@ -37,12 +40,12 @@ test("two clients see equipped actor idle walk and stop", async ({ browser }) =>
  const a = await browser.newContext(), b = await browser.newContext();
  const host = await a.newPage(), guest = await b.newPage();
  await host.goto('/');
- await host.getByRole('button',{name:'联机大厅',exact:true}).click();
+ await openMenu(host, '联机大厅');
  await host.getByRole('button',{name:/创建联机/}).click();
  await expect.poll(()=>host.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();
  const auth=await host.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session')!));
  await guest.goto('/');
- await guest.getByRole('button',{name:'联机大厅',exact:true}).click();
+ await openMenu(guest, '联机大厅');
  await guest.getByLabel('使用赛局编号加入').fill(auth.sessionId);
  await guest.getByRole('button',{name:'加入赛局',exact:true}).click();
  await expect.poll(()=>guest.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();
@@ -55,11 +58,20 @@ test("two clients see equipped actor idle walk and stop", async ({ browser }) =>
   if(!response.ok) throw new Error(await response.text());
  });
  const pose=(page: typeof host)=>page.locator('.pixi-map').getAttribute('data-actors').then(v=>JSON.parse(v||'[]').find((p:{id:string})=>p.id==='p1-scout'));
- await host.getByRole('button',{name:'书库守卫',exact:true}).click();
+ await host.getByRole('button', {name:'详情 / 换装',exact:true}).click();
+  await host.getByRole('button',{name:'书库守卫',exact:true}).click();
  await expect.poll(async () => {
   const poses=await Promise.all([pose(host),pose(guest)]);
   return poses.every(p=>p?.animation==='idle') && poses[0].x===poses[1].x && poses[0].y===poses[1].y;
  }).toBe(true);
+ await Promise.all([host,guest].map(page=>page.evaluate(()=>{
+  const map=document.querySelector('.pixi-map')!;
+  (window as any).actorMotionEvents=[];
+  new MutationObserver(()=>{
+   const actor=JSON.parse(map.getAttribute('data-actors')||'[]').find((a:any)=>a.id==='p1-scout');
+   if(actor)(window as any).actorMotionEvents.push({moving:actor.moving,animation:actor.animation});
+  }).observe(map,{attributes:true,attributeFilter:['data-actors']});
+ })));
  const origin = await pose(host);
  const destination = await host.evaluate(async () => {
  const auth=JSON.parse(sessionStorage.getItem('arena-session')!);
@@ -73,13 +85,15 @@ test("two clients see equipped actor idle walk and stop", async ({ browser }) =>
  if(!response.ok) throw new Error(await response.text());
  const result=await response.json();
  const group=result.actors.filter((a:{roomId:string})=>a.roomId===room.id);
- return {room, offset:(group.findIndex((a:{id:string})=>a.id===actor.id)-(group.length-1)/2)*39};
+ return {room, source, rooms:state.rooms, index:group.sort((a:{id:string},b:{id:string})=>a.id.localeCompare(b.id)).findIndex((a:{id:string})=>a.id===actor.id)};
  });
- const targetPoint = floorPoint(destination.room.q, destination.room.r);
- const expectedDirection = facing(origin, {x:targetPoint.x + destination.offset,y:targetPoint.y+4});
- await Promise.all([host,guest].map(page=>expect.poll(async()=>(await pose(page))?.moving,{intervals:[10,20]}).toBe(true)));
- const target = floorPoint(destination.room.q, destination.room.r);
- const stopped = {x:target.x + destination.offset, y:target.y+4};
+ const targetPoint = actorSlot(destination.room, destination.index);
+ const link=mapLayout(destination.rooms).links.find(l=>(l.from===destination.source.id&&l.to===destination.room.id)||(l.to===destination.source.id&&l.from===destination.room.id))!;
+ const last=(link.from===destination.source.id?link.points:[...link.points].reverse()).at(-1)!;
+ const expectedDirection = facing(project(last.x,last.y), targetPoint);
+ await Promise.all([host,guest].map(page=>expect.poll(()=>page.evaluate(()=>{const events=(window as any).actorMotionEvents;const moving=events.findIndex((e:any)=>e.moving&&e.animation==='walk');return moving>=0&&events.slice(moving+1).some((e:any)=>!e.moving&&e.animation==='idle');})).toBe(true)));
+ const target = actorSlot(destination.room, destination.index);
+ const stopped = {x:target.x, y:target.y};
  await expect.poll(async () => {
   const poses = await Promise.all([pose(host), pose(guest)]);
   return poses.map(p => ({animation:p?.animation, x:Math.round(p?.x*1000)/1000, y:Math.round(p?.y*1000)/1000, direction:p?.direction}));

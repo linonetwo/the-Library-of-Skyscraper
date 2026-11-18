@@ -1,0 +1,714 @@
+{
+  "schemaVersion": 1,
+  "action": "idle",
+  "layer": "hair-ivory-back",
+  "source": "arena/art/source/walk-hair-ivory.png",
+  "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+  "bodyRegistration": "arena/art/source/four-head-idle-registration.json",
+  "frames": [
+    {
+      "frame": "idle/hair-ivory-back/S/00",
+      "bodyFrame": "idle/body/S/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 34,
+        "y": 31,
+        "w": 168,
+        "h": 134
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/S/01",
+      "bodyFrame": "idle/body/S/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 34,
+        "y": 31,
+        "w": 168,
+        "h": 134
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/S/02",
+      "bodyFrame": "idle/body/S/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 34,
+        "y": 31,
+        "w": 168,
+        "h": 134
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/S/03",
+      "bodyFrame": "idle/body/S/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 34,
+        "y": 31,
+        "w": 168,
+        "h": 134
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/SW/00",
+      "bodyFrame": "idle/body/SW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 32,
+        "y": 251,
+        "w": 168,
+        "h": 139
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/SW/01",
+      "bodyFrame": "idle/body/SW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 32,
+        "y": 251,
+        "w": 168,
+        "h": 139
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/SW/02",
+      "bodyFrame": "idle/body/SW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 32,
+        "y": 251,
+        "w": 168,
+        "h": 139
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/SW/03",
+      "bodyFrame": "idle/body/SW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 32,
+        "y": 251,
+        "w": 168,
+        "h": 139
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/W/00",
+      "bodyFrame": "idle/body/W/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 473,
+        "w": 162,
+        "h": 140
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/W/01",
+      "bodyFrame": "idle/body/W/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 473,
+        "w": 162,
+        "h": 140
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/W/02",
+      "bodyFrame": "idle/body/W/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 473,
+        "w": 162,
+        "h": 140
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/W/03",
+      "bodyFrame": "idle/body/W/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 473,
+        "w": 162,
+        "h": 140
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/NW/00",
+      "bodyFrame": "idle/body/NW/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 696,
+        "w": 158,
+        "h": 138
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/NW/01",
+      "bodyFrame": "idle/body/NW/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 696,
+        "w": 158,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/NW/02",
+      "bodyFrame": "idle/body/NW/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 696,
+        "w": 158,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/NW/03",
+      "bodyFrame": "idle/body/NW/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 696,
+        "w": 158,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/N/00",
+      "bodyFrame": "idle/body/N/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 37,
+        "y": 918,
+        "w": 165,
+        "h": 140
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/N/01",
+      "bodyFrame": "idle/body/N/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 37,
+        "y": 918,
+        "w": 165,
+        "h": 140
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/N/02",
+      "bodyFrame": "idle/body/N/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 37,
+        "y": 918,
+        "w": 165,
+        "h": 140
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/N/03",
+      "bodyFrame": "idle/body/N/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 37,
+        "y": 918,
+        "w": 165,
+        "h": 140
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/NE/00",
+      "bodyFrame": "idle/body/NE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 1142,
+        "w": 157,
+        "h": 138
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/NE/01",
+      "bodyFrame": "idle/body/NE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 1142,
+        "w": 157,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/NE/02",
+      "bodyFrame": "idle/body/NE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 1142,
+        "w": 157,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/NE/03",
+      "bodyFrame": "idle/body/NE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 38,
+        "y": 1142,
+        "w": 157,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/E/00",
+      "bodyFrame": "idle/body/E/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 33,
+        "y": 1364,
+        "w": 159,
+        "h": 138
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/E/01",
+      "bodyFrame": "idle/body/E/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 33,
+        "y": 1364,
+        "w": 159,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/E/02",
+      "bodyFrame": "idle/body/E/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 33,
+        "y": 1364,
+        "w": 159,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/E/03",
+      "bodyFrame": "idle/body/E/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 33,
+        "y": 1364,
+        "w": 159,
+        "h": 138
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/SE/00",
+      "bodyFrame": "idle/body/SE/00",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 34,
+        "y": 1588,
+        "w": 166,
+        "h": 137
+      },
+      "deformation": {
+        "lift": 0,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/SE/01",
+      "bodyFrame": "idle/body/SE/01",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 34,
+        "y": 1588,
+        "w": 166,
+        "h": 137
+      },
+      "deformation": {
+        "lift": -0.65,
+        "hemSway": 0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/SE/02",
+      "bodyFrame": "idle/body/SE/02",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 34,
+        "y": 1588,
+        "w": 166,
+        "h": 137
+      },
+      "deformation": {
+        "lift": -1.1,
+        "hemSway": 0,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "idle/hair-ivory-back/SE/03",
+      "bodyFrame": "idle/body/SE/03",
+      "durationMs": 250,
+      "sourceCrop": {
+        "x": 34,
+        "y": 1588,
+        "w": 166,
+        "h": 137
+      },
+      "deformation": {
+        "lift": -0.4,
+        "hemSway": -0.4,
+        "lowerBodyFixedFromY": 112
+      },
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    }
+  ]
+}

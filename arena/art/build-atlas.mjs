@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const output = path.resolve(root, '../client/public/assets');
+// Historical three-head concept only; never overwrite the current public assets.
+const output = path.join(root, 'archive');
 await mkdir(output, { recursive: true });
 const source = path.join(root, 'source/doll-sheet.png');
 const { data, info } = await sharp(source).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -73,5 +74,5 @@ await writeFile(path.join(output, 'manifest.json'), JSON.stringify({
 await blank().composite([
   { input: layers.body }, { input: layers['outfit-scholar'] },
   { input: layers['hair-midnight'] }, { input: layers['weapon-staff'] },
-]).png().toFile(path.join(root, 'doll-preview.png'));
+]).png().toFile(path.join(output, 'doll-preview.png'));
 console.log(`Packed ${Object.keys(frames).length} aligned RGBA layers → ${output}`);

@@ -4,9 +4,9 @@ import { art, output } from './idle-pipeline.mjs';
 
 const composed={};
 for(const action of ['idle','walk'])for(const outfit of ['scholar','warden'])for(const hair of ['ivory','midnight'])for(const held of [false,true]) {
-  const layers=[...(held?['weapon-staff-back']:[]),...(action==='idle'?[`hair-${hair}-back`]:[]),
+  const layers=[...(held?['weapon-staff-back']:[]),`hair-${hair}-back`,
     'body',`outfit-${outfit}`,...(held?['weapon-staff-front']:[]),'body-front',
-    ...(held?['hand-grip']:[]),`hair-${hair}${action==='idle'?'-front':''}`];
+    ...(held?['hand-grip']:[]),`hair-${hair}-front`];
   const inputs=await Promise.all(layers.map(name=>readFile(new URL(`${action}-${name}.png`,output))));
   const image=await sharp({create:{width:784,height:1568,channels:4,background:'#00000000'}})
     .composite(inputs.map(input=>({input}))).png().toBuffer();

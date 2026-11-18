@@ -1,3 +1,4 @@
+import { mapActionSchemas, performMapAction, readMapState } from './browser-map.mjs';
 import { z } from 'zod';
 import { workshopActionSchemas, performWorkshopAction, readWorkshopState } from './browser-workshop.mjs';
 
@@ -8,6 +9,7 @@ export function registerBrowserTools(server) {
   let page;
   const actionSchema = z.discriminatedUnion('type', [
     ...workshopActionSchemas,
+    ...mapActionSchemas,
     ...['openReplay', 'closeReplay', 'playReplay', 'pauseReplay', 'locateReplayTaskSource', 'startTraining', 'resetTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'openScriptHistory', 'loadScriptVersion', 'restoreScriptVersion', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
     z.object({ type: z.literal('seekReplay'), operationIndex: z.number().int().min(0) }).strict(),
     z.object({ type: z.literal('selectReplayTask'), index: z.number().int().min(0) }).strict(),
@@ -24,7 +26,6 @@ export function registerBrowserTools(server) {
     z.object({ type: z.literal('toggleStaff'), equipped: z.boolean() }).strict(),
     z.object({ type: z.literal('setRule'), preset: z.enum(['gather', 'defend', 'explore']), retreatHp: z.number().int().min(0).max(100) }).strict(),
     z.object({ type: z.literal('zoom'), direction: z.enum(['in', 'out']) }).strict(),
-    z.object({ type: z.literal('selectRoom'), room: z.enum(['room-0', 'room-1', 'room-2', 'room-3', 'room-4', 'room-5', 'room-6']) }).strict(),
   ]);
   function current() {
     if (!page || page.isClosed()) throw new Error('Page is not open');
@@ -45,10 +46,10 @@ export function registerBrowserTools(server) {
         const result = await run(args);
         return { content: [image ? { type: 'image', data: result.toString('base64'), mimeType: 'image/png' }
           : { type: 'text', text: JSON.stringify(result) }] };
-      } catch {
+      } catch (error) {
         if (name === 'Page.open') await close().catch(() => {});
         return { isError: true, content: [{ type: 'text',
-          text: 'Browser action failed. Ensure the local UI (127.0.0.1:5173), authority (127.0.0.1:8787), and Playwright Chromium are available, and open the page before controlling it.' }] };
+          text: `${name}: ${error.message}` }] };
       }
     });
   }
@@ -72,6 +73,7 @@ export function registerBrowserTools(server) {
       buttons.push({ label: await button.getAttribute('aria-label') || (await button.innerText()).trim(),
         disabled: await button.isDisabled() });
     }
+    const maps = await readMapState(active);
     const battlefields = await active.locator('.pixi-map').evaluateAll(maps =>
       maps.map(map => JSON.parse(map.dataset.actors || '[]')));
     const scriptVersions = await active.getByLabel('规则历史版本').locator('option').evaluateAll(options =>
@@ -84,14 +86,23 @@ export function registerBrowserTools(server) {
       memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
       tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
     } : null;
-    return { workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    return { maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   register('Input.action', 'Control training, characters, outfits, TypeScript editing/publication, rules and gameplay through the UI.', { action: actionSchema }, async ({ action }) => {
     const active = current();
+    if (await performMapAction(active, action)) return { performed: action.type };
     if (await performWorkshopAction(active, action)) return { performed: action.type };
     const click = name => active.getByRole('button', { name, exact: true }).click();
+    const menu = async name => {
+      if (!await active.getByRole('navigation', { name: '游戏菜单' }).isVisible()) await click('菜单');
+      await click(name);
+    };
+    const details = async () => {
+      if (!await active.locator('.character-drawer').isVisible()) await click('详情 / 换装');
+    };
+    if (['chooseOutfit', 'chooseHair', 'toggleStaff', 'attack', 'capture'].includes(action.type)) await details();
     switch (action.type) {
-      case 'openReplay': await click('赛局日志'); await click('播放赛局回放'); break;
+      case 'openReplay': await menu('赛局日志'); await click('播放赛局回放'); break;
       case 'closeReplay': await click('返回实时赛局'); break;
       case 'playReplay': await click('播放回放'); break;
       case 'pauseReplay': await click('暂停回放'); break;
@@ -99,7 +110,7 @@ export function registerBrowserTools(server) {
       case 'selectReplayTask': await active.getByLabel('回放任务队列').getByRole('button').nth(action.index).click(); break;
       case 'locateReplayTaskSource': await click('定位任务来源'); break;
       case 'openScripts':
-        await click('行动规则');
+        await menu('行动规则');
         await click('编写 TypeScript 规则 →');
         await active.getByRole('textbox', { name: 'TypeScript规则源码' }).waitFor({ timeout: 20000 });
         break;
@@ -166,14 +177,14 @@ export function registerBrowserTools(server) {
       case 'resumeSession': await click(`继续远征 ${action.sessionId}`); break;
       case 'startTraining':
         await click('开启训练远征');
-        await active.locator('.squad-card').first().waitFor();
+        await active.getByRole('button', { name: '选择巡书使', exact: true }).waitFor();
         break;
-      case 'resetTraining': await click('重置训练局'); break;
-      case 'openLobby': await click('联机大厅'); break;
+      case 'resetTraining': await menu('训练控制'); await click('重置训练局'); await click('收起训练控制'); break;
+      case 'openLobby': await menu('联机大厅'); break;
       case 'closeLobby': await click('关闭赛局入口'); break;
-      case 'openRules': await click('行动规则'); break;
+      case 'openRules': await menu('行动规则'); break;
       case 'selectActor':
-        await active.locator('.squad-card').filter({ hasText: { scout: '巡书使', gatherer: '采撷师', guard: '守卷人' }[action.role] }).click();
+        await click(`选择${{ scout: '巡书使', gatherer: '采撷师', guard: '守卷人' }[action.role]}`);
         break;
       case 'chooseOutfit': await click({ scholar: '星墨学者', warden: '书库守卫' }[action.outfit]); break;
       case 'chooseHair': await click(action.hair === 'ivory' ? '月白发色' : '墨蓝发色'); break;
@@ -187,7 +198,7 @@ export function registerBrowserTools(server) {
         break;
       }
       case 'setRule': {
-        await click('行动规则');
+        await menu('行动规则');
         await active.locator('.presets button').nth(['gather', 'defend', 'explore'].indexOf(action.preset)).click();
         const range = active.getByRole('slider', { name: /生命值撤退阈值/ });
         await range.focus();
@@ -197,9 +208,9 @@ export function registerBrowserTools(server) {
         break;
       }
       case 'zoom': await click(action.direction === 'in' ? '放大地图' : '缩小地图'); break;
-      case 'selectRoom': await active.getByRole('combobox', { name: '定位地图房间' }).selectOption(action.room); break;
-      case 'gather': await click('采集'); break;
-      case 'deliver': await click('卸货入库'); break;
+      
+      case 'gather': await active.getByRole('region', { name: '选中角色操作', exact: true }).getByRole('button', { name: '采集', exact: true }).click(); break;
+      case 'deliver': await active.getByRole('region', { name: '选中角色操作', exact: true }).getByRole('button', { name: '卸货入库', exact: true }).click(); break;
       case 'attack': await click('攻击'); break;
       case 'capture': await click('编目'); break;
     }

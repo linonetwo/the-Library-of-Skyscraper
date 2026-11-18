@@ -40,11 +40,12 @@ export async function performWorkshopAction(page, action) {
 }
 export async function readWorkshopState(page) {
  if(new URL(page.url()).pathname!=='/animation-lab') return null;
+ const [, frame, frameCount]=(await page.getByLabel('当前帧').innerText()).match(/帧 (\d+) \/ (\d+)/);
  const value=label=>page.getByLabel(label,{exact:true}).inputValue();
  const selection=gallery(page).locator('[aria-pressed=true]');
  const selected=await selection.count()?await selection.getAttribute('aria-label'):null;
  return {action:await value('动作'),direction:selected?.split(' ').at(-1) ?? null,
-  frame:Number((await page.getByLabel('当前帧').innerText()).match(/帧 (\d+)/)?.[1])-1,frameCount:4,
+  frame:Number(frame)-1,frameCount:Number(frameCount),
   fps:Number(await value('播放速度')),playing:await page.getByRole('button',{name:'暂停动画',exact:true}).count()>0,
   appearance:{outfit:await value('动画衣装'),hair:await value('动画发型'),weapon:await layerControl(page,'weapon').isChecked()},
   layers:{outfit:await layerControl(page,'outfit').isChecked(),hair:await layerControl(page,'hair').isChecked()},

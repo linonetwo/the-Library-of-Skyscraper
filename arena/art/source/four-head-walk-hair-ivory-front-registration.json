@@ -1,0 +1,586 @@
+{
+  "schemaVersion": 1,
+  "action": "walk",
+  "layer": "hair-ivory-front",
+  "source": "arena/art/source/walk-hair-ivory.png",
+  "sourceSha256": "957db3906838a191ec2dcd8de7451bb407aca36e8a85a53ca3a10a90baff5a88",
+  "bodyRegistration": "arena/art/source/four-head-walk-registration.json",
+  "frames": [
+    {
+      "frame": "walk/hair-ivory-front/S/00",
+      "bodyFrame": "walk/body/S/00",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 34,
+        "y": 31,
+        "w": 168,
+        "h": 134
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/S/01",
+      "bodyFrame": "walk/body/S/01",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 257,
+        "y": 31,
+        "w": 166,
+        "h": 134
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        8,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/S/02",
+      "bodyFrame": "walk/body/S/02",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 480,
+        "y": 31,
+        "w": 167,
+        "h": 134
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/S/03",
+      "bodyFrame": "walk/body/S/03",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 703,
+        "y": 31,
+        "w": 163,
+        "h": 134
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/SW/00",
+      "bodyFrame": "walk/body/SW/00",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 32,
+        "y": 251,
+        "w": 168,
+        "h": 139
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/SW/01",
+      "bodyFrame": "walk/body/SW/01",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 252,
+        "y": 252,
+        "w": 168,
+        "h": 137
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        8,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/SW/02",
+      "bodyFrame": "walk/body/SW/02",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 477,
+        "y": 252,
+        "w": 163,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/SW/03",
+      "bodyFrame": "walk/body/SW/03",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 698,
+        "y": 252,
+        "w": 164,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/W/00",
+      "bodyFrame": "walk/body/W/00",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 38,
+        "y": 473,
+        "w": 162,
+        "h": 140
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/W/01",
+      "bodyFrame": "walk/body/W/01",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 258,
+        "y": 473,
+        "w": 162,
+        "h": 139
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        8,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/W/02",
+      "bodyFrame": "walk/body/W/02",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 484,
+        "y": 474,
+        "w": 160,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/W/03",
+      "bodyFrame": "walk/body/W/03",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 706,
+        "y": 474,
+        "w": 159,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/NW/00",
+      "bodyFrame": "walk/body/NW/00",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 38,
+        "y": 696,
+        "w": 158,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/NW/01",
+      "bodyFrame": "walk/body/NW/01",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 259,
+        "y": 697,
+        "w": 158,
+        "h": 137
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        8,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/NW/02",
+      "bodyFrame": "walk/body/NW/02",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 481,
+        "y": 697,
+        "w": 159,
+        "h": 136
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/NW/03",
+      "bodyFrame": "walk/body/NW/03",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 704,
+        "y": 697,
+        "w": 157,
+        "h": 136
+      },
+      "bodySource": "arena/art/source/four-head-walk-opposite.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/N/00",
+      "bodyFrame": "walk/body/N/00",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 37,
+        "y": 918,
+        "w": 165,
+        "h": 140
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/N/01",
+      "bodyFrame": "walk/body/N/01",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 259,
+        "y": 918,
+        "w": 164,
+        "h": 141
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        8,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/N/02",
+      "bodyFrame": "walk/body/N/02",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 478,
+        "y": 918,
+        "w": 167,
+        "h": 140
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/N/03",
+      "bodyFrame": "walk/body/N/03",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 703,
+        "y": 918,
+        "w": 164,
+        "h": 140
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/NE/00",
+      "bodyFrame": "walk/body/NE/00",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 38,
+        "y": 1142,
+        "w": 157,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/NE/01",
+      "bodyFrame": "walk/body/NE/01",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 260,
+        "y": 1141,
+        "w": 158,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        8,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/NE/02",
+      "bodyFrame": "walk/body/NE/02",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 480,
+        "y": 1142,
+        "w": 161,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/NE/03",
+      "bodyFrame": "walk/body/NE/03",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 704,
+        "y": 1141,
+        "w": 156,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/E/00",
+      "bodyFrame": "walk/body/E/00",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 33,
+        "y": 1364,
+        "w": 159,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/E/01",
+      "bodyFrame": "walk/body/E/01",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 257,
+        "y": 1365,
+        "w": 157,
+        "h": 137
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        8,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/E/02",
+      "bodyFrame": "walk/body/E/02",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 478,
+        "y": 1364,
+        "w": 156,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/E/03",
+      "bodyFrame": "walk/body/E/03",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 702,
+        "y": 1364,
+        "w": 155,
+        "h": 138
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/SE/00",
+      "bodyFrame": "walk/body/SE/00",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 34,
+        "y": 1588,
+        "w": 166,
+        "h": 137
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/SE/01",
+      "bodyFrame": "walk/body/SE/01",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 256,
+        "y": 1588,
+        "w": 166,
+        "h": 136
+      },
+      "bodySource": "arena/art/source/four-head-walk-body.png",
+      "placement": [
+        73,
+        8,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/SE/02",
+      "bodyFrame": "walk/body/SE/02",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 477,
+        "y": 1587,
+        "w": 168,
+        "h": 136
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    },
+    {
+      "frame": "walk/hair-ivory-front/SE/03",
+      "bodyFrame": "walk/body/SE/03",
+      "durationMs": 125,
+      "sourceCrop": {
+        "x": 698,
+        "y": 1587,
+        "w": 169,
+        "h": 136
+      },
+      "bodySource": "arena/art/source/four-head-walk-right-views.png",
+      "placement": [
+        73,
+        7,
+        46,
+        43
+      ]
+    }
+  ]
+}

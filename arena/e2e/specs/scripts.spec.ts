@@ -1,3 +1,4 @@
+import { openMenu, closeOverlay, stepTraining } from './hud-helpers';
 import { test, expect } from "@playwright/test";
 
 test("Monaco compiles and V8 previews a rule against a paused authoritative snapshot", async ({ page }, testInfo) => {
@@ -5,9 +6,10 @@ test("Monaco compiles and V8 previews a rule against a paused authoritative snap
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
+  await openMenu(page, '训练控制');
   await page.getByRole("button", { name: "重置训练局" }).click();
-  await page.getByRole("button", { name: "单步", exact: true }).click();
-  await page.getByRole("button", { name: "行动规则", exact: true }).click();
+  await stepTraining(page);
+  await openMenu(page, '行动规则');
   await page.getByRole("button", { name: "编写 TypeScript 规则 →" }).click();
   await expect(page.getByRole("textbox", { name: "TypeScript规则源码" })).toBeVisible({ timeout: 20000 });
   await page.getByRole("button", { name: "试跑当前快照" }).click();

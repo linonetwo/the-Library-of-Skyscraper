@@ -1,0 +1,854 @@
+{
+  "schemaVersion": 1,
+  "status": "approved",
+  "releaseApproved": true,
+  "approvalRecord": "arena/art/approval-v0.2.0.json",
+  "contentVersion": "arena-art-2026-11-18.four-head.3",
+  "bodySourceSha256": "b8f934e7cf81064127c3daf450963d9b52f1321333b0f3b5d2956acb086b888e",
+  "garmentSourceSha256": "e231bd6f4e5b78c1623300b9fa34bd2e1fbaa33bd5c973ad3223ff57bffc2039",
+  "directionOrder": [
+    "S",
+    "SW",
+    "W",
+    "NW",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "frames": [
+    {
+      "direction": "S",
+      "sourceCrop": {
+        "x": 166,
+        "y": 39,
+        "w": 112,
+        "h": 393
+      },
+      "sourceHeadBounds": [
+        27,
+        0,
+        84,
+        63
+      ],
+      "headCenter": 55.5,
+      "headScale": 0.6896551724137931,
+      "bodyCenter": 56,
+      "bodyScale": 0.46,
+      "yKnots": [
+        [
+          0,
+          12
+        ],
+        [
+          63,
+          52
+        ],
+        [
+          76,
+          58
+        ],
+        [
+          168,
+          94
+        ],
+        [
+          210,
+          112
+        ],
+        [
+          300,
+          142
+        ],
+        [
+          393,
+          173
+        ]
+      ],
+      "skeleton": {
+        "crown": 12,
+        "chin": 52,
+        "neck": 56,
+        "shoulder": 62,
+        "waist": 94,
+        "hip": 112,
+        "knee": 142,
+        "sole": 172
+      },
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "solePixelRow": 172,
+      "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "attachments": {
+        "crown": [
+          96,
+          12
+        ],
+        "neck": [
+          96,
+          56
+        ],
+        "hip": [
+          96,
+          112
+        ],
+        "rightHand": [
+          75.75999999999999,
+          113
+        ],
+        "leftHand": [
+          116.24000000000001,
+          113
+        ]
+      },
+      "outfitPlacement": [
+        77,
+        55,
+        38,
+        62
+      ],
+      "staffPlacement": [
+        64,
+        59,
+        24,
+        89
+      ],
+      "staffDepth": "front",
+      "sourceHandCenter": [
+        12,
+        213
+      ]
+    },
+    {
+      "direction": "SW",
+      "sourceCrop": {
+        "x": 608,
+        "y": 39,
+        "w": 105,
+        "h": 394
+      },
+      "sourceHeadBounds": [
+        26,
+        0,
+        82,
+        63
+      ],
+      "headCenter": 54,
+      "headScale": 0.7017543859649122,
+      "bodyCenter": 52.5,
+      "bodyScale": 0.46,
+      "yKnots": [
+        [
+          0,
+          12
+        ],
+        [
+          63,
+          52
+        ],
+        [
+          76,
+          58
+        ],
+        [
+          168,
+          94
+        ],
+        [
+          210,
+          112
+        ],
+        [
+          300,
+          142
+        ],
+        [
+          394,
+          173
+        ]
+      ],
+      "skeleton": {
+        "crown": 12,
+        "chin": 52,
+        "neck": 56,
+        "shoulder": 62,
+        "waist": 94,
+        "hip": 112,
+        "knee": 142,
+        "sole": 172
+      },
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "solePixelRow": 172,
+      "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "attachments": {
+        "crown": [
+          96,
+          12
+        ],
+        "neck": [
+          96,
+          56
+        ],
+        "hip": [
+          96,
+          112
+        ],
+        "rightHand": [
+          77.83,
+          113
+        ],
+        "leftHand": [
+          114.17,
+          113
+        ]
+      },
+      "outfitPlacement": [
+        78,
+        55,
+        36,
+        62
+      ],
+      "staffPlacement": [
+        65,
+        59,
+        24,
+        90
+      ],
+      "staffDepth": "front",
+      "sourceHandCenter": [
+        13,
+        213
+      ]
+    },
+    {
+      "direction": "W",
+      "sourceCrop": {
+        "x": 184,
+        "y": 482,
+        "w": 69,
+        "h": 394
+      },
+      "sourceHeadBounds": [
+        9,
+        0,
+        68,
+        63
+      ],
+      "headCenter": 38.5,
+      "headScale": 0.6666666666666666,
+      "bodyCenter": 34.5,
+      "bodyScale": 0.46,
+      "yKnots": [
+        [
+          0,
+          12
+        ],
+        [
+          63,
+          52
+        ],
+        [
+          76,
+          58
+        ],
+        [
+          168,
+          94
+        ],
+        [
+          210,
+          112
+        ],
+        [
+          300,
+          142
+        ],
+        [
+          394,
+          173
+        ]
+      ],
+      "skeleton": {
+        "crown": 12,
+        "chin": 52,
+        "neck": 56,
+        "shoulder": 62,
+        "waist": 94,
+        "hip": 112,
+        "knee": 142,
+        "sole": 172
+      },
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "solePixelRow": 172,
+      "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "attachments": {
+        "crown": [
+          96,
+          12
+        ],
+        "neck": [
+          96,
+          56
+        ],
+        "hip": [
+          96,
+          112
+        ],
+        "rightHand": [
+          99.45,
+          113.33333333333333
+        ],
+        "leftHand": [
+          92.55,
+          113.33333333333333
+        ]
+      },
+      "outfitPlacement": [
+        85,
+        55,
+        25,
+        62
+      ],
+      "staffPlacement": [
+        88,
+        59,
+        19,
+        89
+      ],
+      "staffDepth": "front",
+      "sourceHandCenter": [
+        42,
+        214
+      ]
+    },
+    {
+      "direction": "NW",
+      "sourceCrop": {
+        "x": 608,
+        "y": 482,
+        "w": 100,
+        "h": 395
+      },
+      "sourceHeadBounds": [
+        26,
+        0,
+        84,
+        63
+      ],
+      "headCenter": 55,
+      "headScale": 0.6779661016949152,
+      "bodyCenter": 50,
+      "bodyScale": 0.46,
+      "yKnots": [
+        [
+          0,
+          12
+        ],
+        [
+          63,
+          52
+        ],
+        [
+          76,
+          58
+        ],
+        [
+          168,
+          94
+        ],
+        [
+          210,
+          112
+        ],
+        [
+          300,
+          142
+        ],
+        [
+          395,
+          173
+        ]
+      ],
+      "skeleton": {
+        "crown": 12,
+        "chin": 52,
+        "neck": 56,
+        "shoulder": 62,
+        "waist": 94,
+        "hip": 112,
+        "knee": 142,
+        "sole": 172
+      },
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "solePixelRow": 172,
+      "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "attachments": {
+        "crown": [
+          96,
+          12
+        ],
+        "neck": [
+          96,
+          56
+        ],
+        "hip": [
+          96,
+          112
+        ],
+        "rightHand": [
+          113.48,
+          113.33333333333333
+        ],
+        "leftHand": [
+          78.52,
+          113.33333333333333
+        ]
+      },
+      "outfitPlacement": [
+        79,
+        55,
+        35,
+        62
+      ],
+      "staffPlacement": [
+        102,
+        60,
+        19,
+        89
+      ],
+      "staffDepth": "back",
+      "sourceHandCenter": [
+        88,
+        214
+      ]
+    },
+    {
+      "direction": "N",
+      "sourceCrop": {
+        "x": 166,
+        "y": 926,
+        "w": 112,
+        "h": 393
+      },
+      "sourceHeadBounds": [
+        27,
+        0,
+        84,
+        63
+      ],
+      "headCenter": 55.5,
+      "headScale": 0.6896551724137931,
+      "bodyCenter": 56,
+      "bodyScale": 0.46,
+      "yKnots": [
+        [
+          0,
+          12
+        ],
+        [
+          63,
+          52
+        ],
+        [
+          76,
+          58
+        ],
+        [
+          168,
+          94
+        ],
+        [
+          210,
+          112
+        ],
+        [
+          300,
+          142
+        ],
+        [
+          393,
+          173
+        ]
+      ],
+      "skeleton": {
+        "crown": 12,
+        "chin": 52,
+        "neck": 56,
+        "shoulder": 62,
+        "waist": 94,
+        "hip": 112,
+        "knee": 142,
+        "sole": 172
+      },
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "solePixelRow": 172,
+      "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "attachments": {
+        "crown": [
+          96,
+          12
+        ],
+        "neck": [
+          96,
+          56
+        ],
+        "hip": [
+          96,
+          112
+        ],
+        "rightHand": [
+          116.24000000000001,
+          113
+        ],
+        "leftHand": [
+          75.75999999999999,
+          113
+        ]
+      },
+      "outfitPlacement": [
+        77,
+        55,
+        38,
+        62
+      ],
+      "staffPlacement": [
+        102,
+        58,
+        21,
+        90
+      ],
+      "staffDepth": "back",
+      "sourceHandCenter": [
+        100,
+        213
+      ]
+    },
+    {
+      "direction": "NE",
+      "sourceCrop": {
+        "x": 620,
+        "y": 926,
+        "w": 101,
+        "h": 394
+      },
+      "sourceHeadBounds": [
+        15,
+        0,
+        72,
+        63
+      ],
+      "headCenter": 43.5,
+      "headScale": 0.6896551724137931,
+      "bodyCenter": 50.5,
+      "bodyScale": 0.46,
+      "yKnots": [
+        [
+          0,
+          12
+        ],
+        [
+          63,
+          52
+        ],
+        [
+          76,
+          58
+        ],
+        [
+          168,
+          94
+        ],
+        [
+          210,
+          112
+        ],
+        [
+          300,
+          142
+        ],
+        [
+          394,
+          173
+        ]
+      ],
+      "skeleton": {
+        "crown": 12,
+        "chin": 52,
+        "neck": 56,
+        "shoulder": 62,
+        "waist": 94,
+        "hip": 112,
+        "knee": 142,
+        "sole": 172
+      },
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "solePixelRow": 172,
+      "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "attachments": {
+        "crown": [
+          96,
+          12
+        ],
+        "neck": [
+          96,
+          56
+        ],
+        "hip": [
+          96,
+          112
+        ],
+        "rightHand": [
+          110.03,
+          113
+        ],
+        "leftHand": [
+          81.97,
+          113
+        ]
+      },
+      "outfitPlacement": [
+        78,
+        55,
+        36,
+        62
+      ],
+      "staffPlacement": [
+        97,
+        58,
+        22,
+        90
+      ],
+      "staffDepth": "back",
+      "sourceHandCenter": [
+        81,
+        213
+      ]
+    },
+    {
+      "direction": "E",
+      "sourceCrop": {
+        "x": 191,
+        "y": 1370,
+        "w": 69,
+        "h": 393
+      },
+      "sourceHeadBounds": [
+        0,
+        0,
+        59,
+        63
+      ],
+      "headCenter": 29.5,
+      "headScale": 0.6666666666666666,
+      "bodyCenter": 34.5,
+      "bodyScale": 0.46,
+      "yKnots": [
+        [
+          0,
+          12
+        ],
+        [
+          63,
+          52
+        ],
+        [
+          76,
+          58
+        ],
+        [
+          168,
+          94
+        ],
+        [
+          210,
+          112
+        ],
+        [
+          300,
+          142
+        ],
+        [
+          393,
+          173
+        ]
+      ],
+      "skeleton": {
+        "crown": 12,
+        "chin": 52,
+        "neck": 56,
+        "shoulder": 62,
+        "waist": 94,
+        "hip": 112,
+        "knee": 142,
+        "sole": 172
+      },
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "solePixelRow": 172,
+      "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "attachments": {
+        "crown": [
+          96,
+          12
+        ],
+        "neck": [
+          96,
+          56
+        ],
+        "hip": [
+          96,
+          112
+        ],
+        "rightHand": [
+          94.39,
+          113.33333333333333
+        ],
+        "leftHand": [
+          97.61,
+          113.33333333333333
+        ]
+      },
+      "outfitPlacement": [
+        82,
+        55,
+        25,
+        62
+      ],
+      "staffPlacement": [
+        83,
+        59,
+        19,
+        90
+      ],
+      "staffDepth": "back",
+      "sourceHandCenter": [
+        31,
+        214
+      ]
+    },
+    {
+      "direction": "SE",
+      "sourceCrop": {
+        "x": 616,
+        "y": 1370,
+        "w": 107,
+        "h": 395
+      },
+      "sourceHeadBounds": [
+        20,
+        0,
+        76,
+        63
+      ],
+      "headCenter": 48,
+      "headScale": 0.7017543859649122,
+      "bodyCenter": 53.5,
+      "bodyScale": 0.46,
+      "yKnots": [
+        [
+          0,
+          12
+        ],
+        [
+          63,
+          52
+        ],
+        [
+          76,
+          58
+        ],
+        [
+          168,
+          94
+        ],
+        [
+          210,
+          112
+        ],
+        [
+          300,
+          142
+        ],
+        [
+          395,
+          173
+        ]
+      ],
+      "skeleton": {
+        "crown": 12,
+        "chin": 52,
+        "neck": 56,
+        "shoulder": 62,
+        "waist": 94,
+        "hip": 112,
+        "knee": 142,
+        "sole": 172
+      },
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "solePixelRow": 172,
+      "sourceDeviation": "Generated source was approximately five–six heads; piecewise anatomy registration corrects it to reviewed four-head reference.",
+      "attachments": {
+        "crown": [
+          96,
+          12
+        ],
+        "neck": [
+          96,
+          56
+        ],
+        "hip": [
+          96,
+          112
+        ],
+        "rightHand": [
+          76.91,
+          113
+        ],
+        "leftHand": [
+          115.09,
+          113
+        ]
+      },
+      "outfitPlacement": [
+        78,
+        55,
+        36,
+        62
+      ],
+      "staffPlacement": [
+        68,
+        60,
+        18,
+        89
+      ],
+      "staffDepth": "front",
+      "sourceHandCenter": [
+        12,
+        213
+      ]
+    }
+  ],
+  "review": "Reviewed neutral fit underlying approved v0.2.0 idle/walk; later action expansion is outside this approval."
+}

@@ -1,6 +1,7 @@
+import { openMenu, closeOverlay, stepTraining } from './hud-helpers';
 import { test, expect } from "@playwright/test";
 import { ActorMotion, facing } from "../../client/src/actorMotion";
-import { floorPoint } from "../../client/src/libraryLayout";
+import { actorSlot } from "../../client/src/mapLayout";
 
 test("eight facings and continuous motion across new destinations", () => {
   const directions = [
@@ -11,7 +12,7 @@ test("eight facings and continuous motion across new destinations", () => {
     expect(facing({ x: 0, y: 0 }, { x, y })).toBe(direction);
   const motion = new ActorMotion({ x: 0, y: 0 }, 400);
   motion.move({ x: 100, y: 0 }, 1000);
-  expect(motion.sample(1200)).toMatchObject({ x: 50, y: 0, moving: true, direction: "E", frame: 2 });
+  expect(motion.sample(1200)).toMatchObject({ x: 50, y: 0, moving: true, direction: "E", frame: 1 });
   motion.move({ x: 50, y: 100 }, 1200);
   expect(motion.sample(1400)).toMatchObject({ x: 50, y: 50, direction: "SW" });
   expect(motion.sample(1600)).toMatchObject({ x: 50, y: 100, moving: false, frame: 2 });
@@ -24,6 +25,7 @@ test("battlefield paper doll walks between authoritative room destinations", asy
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
+  await openMenu(page, '训练控制');
   await page.getByRole("button", { name: "暂停", exact: true }).click();
   const poses = () => page.locator(".pixi-map").getAttribute("data-actors")
     .then(value => JSON.parse(value || "[]") as {
@@ -41,12 +43,12 @@ test("battlefield paper doll walks between authoritative room destinations", asy
     await send({ type: "equip", actorId: "p1-scout",
       appearance: { outfit: "scholar", hair: "ivory", weapon: false } });
   });
-  await expect(page.getByText("TICK 0000", { exact: true })).toBeVisible();
+  await expect.poll(() => page.evaluate(async () => {const a=JSON.parse(sessionStorage.getItem("arena-session")!);return (await fetch(`/api/sessions/${a.sessionId}/state`,{headers:{Authorization:`Bearer ${a.token}`}}).then(r=>r.json())).tick;})).toBe(0);
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout"))
-    .toMatchObject({ x: 39, y: floorPoint(0, 0).y + 4, moving: false });
+    .toMatchObject({ ...actorSlot({q:0,r:0} as Parameters<typeof actorSlot>[0],2), moving: false });
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.animation)
     .toBe("idle");
-  await page.getByRole("button", { name: "单步", exact: true }).click();
+  await stepTraining(page);
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.moving,
     { intervals: [20, 20, 30] }).toBe(true);
   await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.moving).toBe(false);
@@ -71,4 +73,11 @@ test("facing follows authoritative segments independently of packet timing", () 
   expect(motion.sample(1000 + delay)).toMatchObject({ x: before.x, y: before.y });
   expect(motion.sample(2000)).toMatchObject({ x: 80, y: 0, moving: false, direction: "W" });
  }
+});
+
+test("walk uses authored 125ms frames", () => {
+ const motion=new ActorMotion({x:0,y:0});
+ motion.move({x:100,y:0},1000);
+ expect(motion.sample(1124).frame).toBe(0);
+ expect(motion.sample(1125).frame).toBe(1);
 });
