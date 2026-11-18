@@ -227,6 +227,22 @@ impl Session {
         for (index, operation) in replay.operations.iter().enumerate() {
             session.replay_operation(index, operation)?;
         }
+        // Old recordings have no movement descriptor. Preserve their exact
+        // snapshot result while verifying descriptors present in newer recordings.
+        for mut actor in session
+            .world
+            .query::<&mut crate::Actor>()
+            .iter_mut(&mut session.world)
+        {
+            if replay
+                .final_snapshot
+                .actors
+                .iter()
+                .any(|old| old.id == actor.id && old.last_movement.is_none())
+            {
+                actor.last_movement = None;
+            }
+        }
         if serde_json::to_value(session.snapshot()).map_err(|_| "snapshot serialization failed")?
             != serde_json::to_value(&replay.final_snapshot)
                 .map_err(|_| "snapshot serialization failed")?

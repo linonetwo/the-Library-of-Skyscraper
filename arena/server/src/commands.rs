@@ -58,6 +58,7 @@ impl Session {
         }
         let action_actor = match &command {
             Command::Move { actor_id, .. }
+            | Command::Run { actor_id, .. }
             | Command::Gather { actor_id }
             | Command::Deliver { actor_id }
             | Command::Attack { actor_id }
@@ -118,14 +119,10 @@ impl Session {
                 let (entity, mut actor) = self.actor(owner, &actor_id)?;
                 let target = self.room_index(&room_id)?;
                 let from = self.room_index(&actor.room_id)?;
-                let a = &self.rooms[from];
-                let b = &self.rooms[target];
-                let distance =
-                    ((a.q - b.q).abs() + (a.r - b.r).abs() + ((a.q + a.r) - (b.q + b.r)).abs()) / 2;
-                if distance > 1 {
+                if self.room_distance(from, target) > 1 {
                     return Err("target must be an adjacent room".into());
                 }
-                actor.room_id = room_id;
+                self.record_movement(&mut actor, MovementKind::Walk, None, room_id);
                 actor.state = "moving".into();
                 self.world.entity_mut(entity).insert(actor);
                 self.event(
@@ -133,6 +130,18 @@ impl Session {
                     format!("{actor_id} 前往 {}", self.rooms[target].name),
                     Some(owner),
                 );
+            }
+            Command::Run {
+                actor_id,
+                via_room_id,
+                room_id,
+            } => {
+                let (entity, mut actor) = self.actor(owner, &actor_id)?;
+                self.validate_run(&actor, &via_room_id, &room_id)?;
+                self.record_movement(&mut actor, MovementKind::Run, Some(via_room_id), room_id);
+                actor.state = "moving".into();
+                self.world.entity_mut(entity).insert(actor);
+                self.event("run", format!("{actor_id} 疾跑赶路"), Some(owner));
             }
             Command::Gather { actor_id } => {
                 let (e, a) = self.actor(owner, &actor_id)?;

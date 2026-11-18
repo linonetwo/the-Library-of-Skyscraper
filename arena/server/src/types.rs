@@ -37,7 +37,27 @@ pub struct Actor {
     pub cargo: u32,
     pub cargo_capacity: u32,
     pub appearance: Appearance,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_movement: Option<Movement>,
 }
+#[derive(Clone, Copy, Debug, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "lowercase")]
+pub enum MovementKind {
+    Walk,
+    Run,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct Movement {
+    pub kind: MovementKind,
+    pub from_room_id: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub via_room_id: Option<String>,
+    pub to_room_id: String,
+    pub tick: u64,
+}
+
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Room {
@@ -99,6 +119,14 @@ pub enum Command {
     Move {
         #[serde(rename = "actorId")]
         actor_id: String,
+        #[serde(rename = "roomId")]
+        room_id: String,
+    },
+    Run {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+        #[serde(rename = "viaRoomId")]
+        via_room_id: String,
         #[serde(rename = "roomId")]
         room_id: String,
     },

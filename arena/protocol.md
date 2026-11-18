@@ -29,6 +29,7 @@ of those ports to prevent DNS rebinding.
 ```ts
 type Command =
  | {type:"move";actorId:string;roomId:string}
+ | {type:"run";actorId:string;viaRoomId:string;roomId:string}
  | {type:"gather";actorId:string}
  | {type:"attack";actorId:string}
  | {type:"capture";actorId:string}
@@ -41,7 +42,11 @@ type Command =
 
 `retreatHp` is integer 0..100; `ticks` integer 1..120. Pause/step/reset are training-only.
 Step requires paused state; reset preserves credentials and seed and pauses simulation.
-Movement is one adjacent hex edge. Building costs 25 materials, requires a living owned
+Move retains its existing adjacent-hex behavior. Run crosses exactly two adjacent
+edges A→B→C, with distinct rooms and shortest A→C hex distance exactly two.
+The authority validates the full route before updating directly to C; no collection,
+combat or delivery occurs in B. Adjacent destinations require move. Run shares
+move's actor ownership, alive and per-tick manual action constraints, even while paused. Building costs 25 materials, requires a living owned
 actor in the room, no hostiles, and no duplicate building kind. Actor commands validate ownership.
 Each actor accepts at most one successful manual command per tick (including movement).
 That command replaces the actor's next autonomous turn rather than granting an extra action.
@@ -91,3 +96,12 @@ Authenticated `GET /api/sessions/:id/replay` exports a command recording.
 `{sessionId,frames:[{operationIndex,tick,snapshot}]}`. Index 0 is the initial
 world; operation indices increase through resets while tick follows the replayed
 world clock. Playback owns a separate reconstructed session.
+
+
+### Authority movement descriptors (SDK 0.1.0)
+
+Actors optionally expose `lastMovement: {kind:"walk"|"run",fromRoomId:string,viaRoomId?:string,toRoomId:string,tick:number}`. Only authority movement generates this field, including preset walking, transport and retreat. Run includes the submitted intermediate room. Unchanged/same-room state updates retain the last actual movement. Tick and route tuple identify movement within live snapshot/operation ordering; no additional movement ID exists. The field is absent on untouched actors and old saves.
+
+The additive run intent has `{type:"run",actorId,viaRoomId,roomId,priority,reason?}` in SDK 0.1.0. It passes through the existing priority selection and Command path, including manual-action replacement. `script-sdk/examples/run.ts` chooses the lowest roomId valid intermediate for distance-two destinations and walk for adjacent targets. It reads existing move tasks; tasks still do not execute actions themselves. Product version remains unchanged until v0.3 integration.
+
+Checkpoint version 1 and replay versions 1/2 remain readable. Descriptors serialize with actors; run commands and script decisions use existing operation/source provenance. Old final snapshots without the optional descriptor retain their exact restored result; present descriptors are verified during replay reconstruction. First load/reconnect/seek renders the endpoint, while sequential playback may use A→B→C and existing operation order for same-tick updates.

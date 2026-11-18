@@ -120,6 +120,8 @@ mod history_tests;
 #[cfg(test)]
 mod publish_tests;
 #[cfg(test)]
+mod run_tests;
+#[cfg(test)]
 mod tests;
 
 pub async fn state(

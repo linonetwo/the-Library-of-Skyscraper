@@ -16,11 +16,20 @@ export interface PlayerScriptView {
   };
 }
 
+export interface MovementView {
+  readonly kind: 'walk' | 'run';
+  readonly fromRoomId: EntityId;
+  readonly viaRoomId?: EntityId;
+  readonly toRoomId: EntityId;
+  readonly tick: number;
+}
+
 export interface ActorScriptView {
   readonly id: EntityId;
   readonly owner: string;
   readonly role: 'scout' | 'gatherer' | 'guard';
   readonly roomId: EntityId;
+  readonly lastMovement?: MovementView;
   readonly hp: number;
   readonly maxHp: number;
   readonly state: string;

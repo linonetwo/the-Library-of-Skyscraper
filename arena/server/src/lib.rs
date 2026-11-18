@@ -3,6 +3,7 @@ mod appearance;
 mod checkpoint;
 mod commands;
 mod economy;
+mod movement;
 pub mod script_state;
 mod script_tasks;
 mod script_types;
@@ -30,6 +31,8 @@ mod appearance_tests;
 mod checkpoint_tests;
 #[cfg(test)]
 mod economy_tests;
+#[cfg(test)]
+mod movement_tests;
 #[cfg(test)]
 mod script_versions_tests;
 #[cfg(test)]

@@ -1,4 +1,4 @@
-use crate::{Actor, ReplayOperation, ResultSummary, Session};
+use crate::{Actor, MovementKind, ReplayOperation, ResultSummary, Session};
 use bevy_ecs::prelude::Entity;
 
 impl Session {
@@ -38,7 +38,7 @@ impl Session {
                 continue;
             }
             if a.hp <= rule.retreat_hp {
-                a.room_id = "room-0".into();
+                self.record_movement(&mut a, MovementKind::Walk, None, "room-0".into());
                 a.hp = (a.hp + 10).min(100);
                 a.state = "retreating".into();
                 self.world.entity_mut(entity).insert(a);
@@ -89,7 +89,12 @@ impl Session {
             };
             if current != desired {
                 // All destinations connect through the central hex; one edge per tick.
-                a.room_id = format!("room-{}", if current == 0 { desired } else { 0 });
+                self.record_movement(
+                    &mut a,
+                    MovementKind::Walk,
+                    None,
+                    format!("room-{}", if current == 0 { desired } else { 0 }),
+                );
                 a.state = "moving".into();
             } else {
                 a.state = if rule.preset == "defend" {
