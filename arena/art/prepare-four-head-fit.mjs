@@ -5,6 +5,7 @@ import { extractSourceSprites } from './source-sprites.mjs';
 import { art,place,keepPixel,json,digest,clearCell } from './idle-pipeline.mjs';
 import { normalizeNeutral,frontArms } from './four-head-registration.mjs';
 import { sourceGripTracks,staffDepth } from './staff-registration.mjs';
+import { approvedMetadata } from './art-approval.mjs';
 
 const root=new URL('four-head-fit/',art);await mkdir(root,{recursive:true});
 const read=name=>readFile(new URL(`source/${name}`,art));
@@ -55,7 +56,7 @@ for(let row=0;row<8;row++) {
 for(const [key,composites] of Object.entries(sheets))
   await sharp({create:{width:784,height:392,channels:4,background:'#24363cff'}}).composite(composites).png()
     .toFile(new URL(`${key}.png`,root).pathname);
-await writeFile(new URL('registration.json',root),json({schemaVersion:1,status:'prototype',releaseApproved:false,
+await writeFile(new URL('registration.json',root),json({schemaVersion:1,...approvedMetadata,
   bodySourceSha256:digest(await read('four-head-neutral.png')),garmentSourceSha256:digest(await read('four-head-outfits.png')),
-  directionOrder:directions,frames:records,review:'Neutral fit only; no runtime replacement or approval. Body normalized to four heads from imperfect source.'}));
-console.log('Built eight-direction four-head neutral layered fit and eight outfit/hair/weapon contact sheets; review before action expansion.');
+  directionOrder:directions,frames:records,review:'Reviewed neutral fit underlying approved v0.2.0 idle/walk; later action expansion is outside this approval.'}));
+console.log('Built approved eight-direction four-head neutral layered fit and eight outfit/hair/weapon contact sheets.');

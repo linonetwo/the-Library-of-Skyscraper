@@ -2,6 +2,7 @@ import sharp from 'sharp';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { extractSourceSprites } from './source-sprites.mjs';
 import { art, json, digest, keepPixel } from './idle-pipeline.mjs';
+import { approvedMetadata } from './art-approval.mjs';
 
 const output = new URL('../client/public/assets/tiles/', import.meta.url);
 await mkdir(output, { recursive: true });
@@ -55,7 +56,7 @@ for (const kind of ['floors', 'props']) {
       sourceSize:{w:128,h:height}};
     assets[id] = {image:`${id}.png`,atlas:`${kind}.json`,frame:id,tileSize:[128,64],
       footprint:[1,1],pivot:kind==='floors'?[64,32]:[64,160],kind:kind==='floors'?'floor':'prop',
-      status:'prototype',releaseApproved:false};
+      ...approvedMetadata};
     registrations.push({id,sourceCrop:sprite.crop,pivot:assets[id].pivot,exportSize:[128,height],
       method:kind==='floors'?'Generated texture; exact 2:1 diamond mask and common 8%-wide edge blend.':
         'Generated isolated object; aspect-preserving fit, centered, visual base bottom y184.'});
@@ -67,15 +68,15 @@ for (const kind of ['floors', 'props']) {
     format:'RGBA8888',size:{w:528,h:height+4},scale:'1'}}));
   const provenance = {source:`arena/art/source/${name}.png`,sourceSha256:digest(bytes),
     promptSha256:digest(await readFile(new URL(`source/${name}-prompt.txt`,art))),
-    atlasSha256:digest(atlas),generator:'GPT Image 2 via proxy-imagegen',registrations};
+    atlasSha256:digest(atlas),generator:'GPT Image 2 via proxy-imagegen',...approvedMetadata,registrations};
   await writeFile(new URL(`source/${name}-registration.json`,art),json(provenance));
   sources.push(provenance);
 }
 await writeFile(new URL('manifest.json',output),json({schemaVersion:1,tileSize:[128,64],
-  projection:'orthographic-2:1-isometric',walkableZ:0,status:'prototype',releaseApproved:false,
-  assets,sources,review:'Exact floor seam geometry tested; prop ground pivot and runtime depth require visual approval.'}));
+  projection:'orthographic-2:1-isometric',walkableZ:0,...approvedMetadata,
+  assets,sources,review:'All eight independent assets and floor seams visually approved. floor-cracked and bookcase-v are approved spare assets, not placed in the reviewed map; see approval record for runtime scope.'}));
 const floor = await readFile(new URL('floor-stone.png',output)), pieces=[];
 for(let u=0;u<3;u++)for(let v=0;v<3;v++)pieces.push({input:floor,left:128+(u-v)*64,top:(u+v)*32});
 await sharp({create:{width:384,height:192,channels:4,background:'#24363cff'}}).composite(pieces)
   .png().toFile(new URL('iso-floor-seam-preview.png',art).pathname);
-console.log('Packed four exact 128×64 floor tiles and four independent props; prototype, not runtime-approved.');
+console.log('Packed four approved exact 128×64 floor tiles and four independent props; runtime/spare scope is recorded.');

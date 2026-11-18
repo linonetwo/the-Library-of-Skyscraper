@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm run build:animation",
     "build:archive": "node build-atlas.mjs",
-    "build:animation": "node prepare-tiles.mjs && node prepare-four-head-fit.mjs && node prepare-four-head-actions.mjs && node motion-previews.mjs",
+    "build:animation": "node prepare-tiles.mjs && node prepare-four-head-fit.mjs && node prepare-four-head-actions.mjs && node motion-previews.mjs && node build-manifest.mjs",
     "build:idle": "npm run build:animation",
     "build:tiles": "node prepare-tiles.mjs",
     "build:fit": "node prepare-four-head-fit.mjs",

@@ -6,8 +6,10 @@
   ],
   "projection": "orthographic-2:1-isometric",
   "walkableZ": 0,
-  "status": "prototype",
-  "releaseApproved": false,
+  "status": "approved",
+  "releaseApproved": true,
+  "approvalRecord": "arena/art/approval-v0.2.0.json",
+  "contentVersion": "arena-art-2026-11-18.four-head.3",
   "assets": {
     "floor-stone": {
       "image": "floor-stone.png",
@@ -26,8 +28,10 @@
         32
       ],
       "kind": "floor",
-      "status": "prototype",
-      "releaseApproved": false
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     "floor-worn": {
       "image": "floor-worn.png",
@@ -46,8 +50,10 @@
         32
       ],
       "kind": "floor",
-      "status": "prototype",
-      "releaseApproved": false
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     "floor-inlay": {
       "image": "floor-inlay.png",
@@ -66,8 +72,10 @@
         32
       ],
       "kind": "floor",
-      "status": "prototype",
-      "releaseApproved": false
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     "floor-cracked": {
       "image": "floor-cracked.png",
@@ -86,8 +94,10 @@
         32
       ],
       "kind": "floor",
-      "status": "prototype",
-      "releaseApproved": false
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     "bookcase-u": {
       "image": "bookcase-u.png",
@@ -106,8 +116,10 @@
         160
       ],
       "kind": "prop",
-      "status": "prototype",
-      "releaseApproved": false
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     "bookcase-v": {
       "image": "bookcase-v.png",
@@ -126,8 +138,10 @@
         160
       ],
       "kind": "prop",
-      "status": "prototype",
-      "releaseApproved": false
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     "plinth": {
       "image": "plinth.png",
@@ -146,8 +160,10 @@
         160
       ],
       "kind": "prop",
-      "status": "prototype",
-      "releaseApproved": false
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     "lectern": {
       "image": "lectern.png",
@@ -166,8 +182,10 @@
         160
       ],
       "kind": "prop",
-      "status": "prototype",
-      "releaseApproved": false
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     }
   },
   "sources": [
@@ -177,6 +195,10 @@
       "promptSha256": "4a94ec0f85d713529a7c71e3d439e815a0ee124c0619b9673ea4cc9110e5c0ae",
       "atlasSha256": "5d99d1e89a356c32a47fb90b89e0ba6110dc1dc01b404be051f6326d6fe2bf30",
       "generator": "GPT Image 2 via proxy-imagegen",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "registrations": [
         {
           "id": "floor-stone",
@@ -258,6 +280,10 @@
       "promptSha256": "0e25f5223acc2d52aa155d5dea79bc5887a08c5cedb8c2bc2738e885afd80ec8",
       "atlasSha256": "f813c45c272b988a51c83446650850a380e310db2ea64e2f365e6b288007e8bc",
       "generator": "GPT Image 2 via proxy-imagegen",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "registrations": [
         {
           "id": "bookcase-u",
@@ -334,5 +360,5 @@
       ]
     }
   ],
-  "review": "Exact floor seam geometry tested; prop ground pivot and runtime depth require visual approval."
+  "review": "All eight independent assets and floor seams visually approved. floor-cracked and bookcase-v are approved spare assets, not placed in the reviewed map; see approval record for runtime scope."
 }

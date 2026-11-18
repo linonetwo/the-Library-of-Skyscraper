@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "arena-animation-2026-11-17.four-head.2",
-  "generatedOn": "2026-11-17",
+  "contentVersion": "arena-art-2026-11-18.four-head.3",
+  "generatedOn": "2026-11-18",
   "source": {
     "path": "arena/art/source/four-head-walk-body.png",
     "sha256": "63dc95d19943b8e01310ef88105a656c6f39ed8be5a65ff6f7d19de11680250d",
@@ -86,14 +86,15 @@
     "hand-grip",
     "hair-front"
   ],
-  "releaseReady": false,
-  "runtimePolicy": "prototype-preview-only; missing layers never count as animation coverage",
+  "releaseReady": true,
+  "runtimePolicy": "approved idle/walk release scope; deferred actions remain missing",
   "review": {
     "proportion": "Reviewed neutral four-head skeleton: crown12/chin52/sole172, common anchor172.8; both actions migrated together.",
-    "gait": "Opposite-half source/limb corrections passed targeted contact-sheet recheck, including E anatomical grip. Real-FPS playback still must review unequal knee-lift/limb thickness and arm transitions. No action release approval; idle uses independent standing source and upper-body breath.",
+    "gait": "Independent Astra review passed all 16 action/appearance contact sheets and real-FPS playback, including W/E phase02/03, NE/SE limb corrections, shoulder/neck joins and anatomical grip.",
     "paperDoll": "14 physical layers per action, 2 outfits × 2 hair designs × empty/staff; both actions include foreground hands and hair/staff depth splits.",
-    "grip": "Per-frame right-hand staff and weapon-only grip registration; all contacts require independent runtime approval.",
-    "cleanup": "Source near-white matte/chroma cleanup and alpha resampling; fine edges and limb joins remain prototype review."
+    "grip": "Per-frame right-hand staff and weapon-only grip registration approved across idle/walk and all eight appearance combinations.",
+    "cleanup": "Source near-white matte/chroma cleanup and alpha resampling approved for the pinned v0.2.0 pixels.",
+    "deferred": "Run, jump, climb and staff attack remain missing; approval does not cover later action batches."
   },
   "coverage": [
     {
@@ -101,7 +102,7 @@
       "layer": "body",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/S/00",
         "idle/body/S/01",
@@ -109,14 +110,16 @@
         "idle/body/S/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/SW/00",
         "idle/body/SW/01",
@@ -124,14 +127,16 @@
         "idle/body/SW/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/W/00",
         "idle/body/W/01",
@@ -139,14 +144,16 @@
         "idle/body/W/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/NW/00",
         "idle/body/NW/01",
@@ -154,14 +161,16 @@
         "idle/body/NW/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/N/00",
         "idle/body/N/01",
@@ -169,14 +178,16 @@
         "idle/body/N/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/NE/00",
         "idle/body/NE/01",
@@ -184,14 +195,16 @@
         "idle/body/NE/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/E/00",
         "idle/body/E/01",
@@ -199,14 +212,16 @@
         "idle/body/E/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "body",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/body/SE/00",
         "idle/body/SE/01",
@@ -214,14 +229,16 @@
         "idle/body/SE/03"
       ],
       "atlas": "idle-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/S/00",
         "idle/outfit-scholar/S/01",
@@ -229,14 +246,16 @@
         "idle/outfit-scholar/S/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/SW/00",
         "idle/outfit-scholar/SW/01",
@@ -244,14 +263,16 @@
         "idle/outfit-scholar/SW/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/W/00",
         "idle/outfit-scholar/W/01",
@@ -259,14 +280,16 @@
         "idle/outfit-scholar/W/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/NW/00",
         "idle/outfit-scholar/NW/01",
@@ -274,14 +297,16 @@
         "idle/outfit-scholar/NW/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/N/00",
         "idle/outfit-scholar/N/01",
@@ -289,14 +314,16 @@
         "idle/outfit-scholar/N/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/NE/00",
         "idle/outfit-scholar/NE/01",
@@ -304,14 +331,16 @@
         "idle/outfit-scholar/NE/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/E/00",
         "idle/outfit-scholar/E/01",
@@ -319,14 +348,16 @@
         "idle/outfit-scholar/E/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-scholar",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-scholar/SE/00",
         "idle/outfit-scholar/SE/01",
@@ -334,14 +365,16 @@
         "idle/outfit-scholar/SE/03"
       ],
       "atlas": "idle-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/S/00",
         "idle/outfit-warden/S/01",
@@ -349,14 +382,16 @@
         "idle/outfit-warden/S/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/SW/00",
         "idle/outfit-warden/SW/01",
@@ -364,14 +399,16 @@
         "idle/outfit-warden/SW/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/W/00",
         "idle/outfit-warden/W/01",
@@ -379,14 +416,16 @@
         "idle/outfit-warden/W/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/NW/00",
         "idle/outfit-warden/NW/01",
@@ -394,14 +433,16 @@
         "idle/outfit-warden/NW/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/N/00",
         "idle/outfit-warden/N/01",
@@ -409,14 +450,16 @@
         "idle/outfit-warden/N/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/NE/00",
         "idle/outfit-warden/NE/01",
@@ -424,14 +467,16 @@
         "idle/outfit-warden/NE/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/E/00",
         "idle/outfit-warden/E/01",
@@ -439,14 +484,16 @@
         "idle/outfit-warden/E/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "outfit-warden",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/outfit-warden/SE/00",
         "idle/outfit-warden/SE/01",
@@ -454,14 +501,16 @@
         "idle/outfit-warden/SE/03"
       ],
       "atlas": "idle-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/S/00",
         "idle/hair-ivory/S/01",
@@ -469,14 +518,16 @@
         "idle/hair-ivory/S/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/SW/00",
         "idle/hair-ivory/SW/01",
@@ -484,14 +535,16 @@
         "idle/hair-ivory/SW/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/W/00",
         "idle/hair-ivory/W/01",
@@ -499,14 +552,16 @@
         "idle/hair-ivory/W/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/NW/00",
         "idle/hair-ivory/NW/01",
@@ -514,14 +569,16 @@
         "idle/hair-ivory/NW/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/N/00",
         "idle/hair-ivory/N/01",
@@ -529,14 +586,16 @@
         "idle/hair-ivory/N/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/NE/00",
         "idle/hair-ivory/NE/01",
@@ -544,14 +603,16 @@
         "idle/hair-ivory/NE/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/E/00",
         "idle/hair-ivory/E/01",
@@ -559,14 +620,16 @@
         "idle/hair-ivory/E/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-ivory",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-ivory/SE/00",
         "idle/hair-ivory/SE/01",
@@ -574,14 +637,16 @@
         "idle/hair-ivory/SE/03"
       ],
       "atlas": "idle-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/S/00",
         "idle/hair-midnight/S/01",
@@ -589,14 +654,16 @@
         "idle/hair-midnight/S/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/SW/00",
         "idle/hair-midnight/SW/01",
@@ -604,14 +671,16 @@
         "idle/hair-midnight/SW/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/W/00",
         "idle/hair-midnight/W/01",
@@ -619,14 +688,16 @@
         "idle/hair-midnight/W/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/NW/00",
         "idle/hair-midnight/NW/01",
@@ -634,14 +705,16 @@
         "idle/hair-midnight/NW/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/N/00",
         "idle/hair-midnight/N/01",
@@ -649,14 +722,16 @@
         "idle/hair-midnight/N/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/NE/00",
         "idle/hair-midnight/NE/01",
@@ -664,14 +739,16 @@
         "idle/hair-midnight/NE/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/E/00",
         "idle/hair-midnight/E/01",
@@ -679,14 +756,16 @@
         "idle/hair-midnight/E/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "hair-midnight",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/hair-midnight/SE/00",
         "idle/hair-midnight/SE/01",
@@ -694,14 +773,16 @@
         "idle/hair-midnight/SE/03"
       ],
       "atlas": "idle-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/S/00",
         "idle/weapon-staff/S/01",
@@ -709,14 +790,16 @@
         "idle/weapon-staff/S/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/SW/00",
         "idle/weapon-staff/SW/01",
@@ -724,14 +807,16 @@
         "idle/weapon-staff/SW/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/W/00",
         "idle/weapon-staff/W/01",
@@ -739,14 +824,16 @@
         "idle/weapon-staff/W/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/NW/00",
         "idle/weapon-staff/NW/01",
@@ -754,14 +841,16 @@
         "idle/weapon-staff/NW/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/N/00",
         "idle/weapon-staff/N/01",
@@ -769,14 +858,16 @@
         "idle/weapon-staff/N/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/NE/00",
         "idle/weapon-staff/NE/01",
@@ -784,14 +875,16 @@
         "idle/weapon-staff/NE/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/E/00",
         "idle/weapon-staff/E/01",
@@ -799,14 +892,16 @@
         "idle/weapon-staff/E/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "idle",
       "layer": "weapon-staff",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "idle/weapon-staff/SE/00",
         "idle/weapon-staff/SE/01",
@@ -814,14 +909,16 @@
         "idle/weapon-staff/SE/03"
       ],
       "atlas": "idle-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/S/00",
         "walk/body/S/01",
@@ -829,14 +926,16 @@
         "walk/body/S/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/SW/00",
         "walk/body/SW/01",
@@ -844,14 +943,16 @@
         "walk/body/SW/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/W/00",
         "walk/body/W/01",
@@ -859,14 +960,16 @@
         "walk/body/W/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/NW/00",
         "walk/body/NW/01",
@@ -874,14 +977,16 @@
         "walk/body/NW/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/N/00",
         "walk/body/N/01",
@@ -889,14 +994,16 @@
         "walk/body/N/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/NE/00",
         "walk/body/NE/01",
@@ -904,14 +1011,16 @@
         "walk/body/NE/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/E/00",
         "walk/body/E/01",
@@ -919,14 +1028,16 @@
         "walk/body/E/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "body",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/body/SE/00",
         "walk/body/SE/01",
@@ -934,14 +1045,16 @@
         "walk/body/SE/03"
       ],
       "atlas": "walk-body.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/S/00",
         "walk/outfit-scholar/S/01",
@@ -949,14 +1062,16 @@
         "walk/outfit-scholar/S/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/SW/00",
         "walk/outfit-scholar/SW/01",
@@ -964,14 +1079,16 @@
         "walk/outfit-scholar/SW/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/W/00",
         "walk/outfit-scholar/W/01",
@@ -979,14 +1096,16 @@
         "walk/outfit-scholar/W/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/NW/00",
         "walk/outfit-scholar/NW/01",
@@ -994,14 +1113,16 @@
         "walk/outfit-scholar/NW/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/N/00",
         "walk/outfit-scholar/N/01",
@@ -1009,14 +1130,16 @@
         "walk/outfit-scholar/N/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/NE/00",
         "walk/outfit-scholar/NE/01",
@@ -1024,14 +1147,16 @@
         "walk/outfit-scholar/NE/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/E/00",
         "walk/outfit-scholar/E/01",
@@ -1039,14 +1164,16 @@
         "walk/outfit-scholar/E/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-scholar",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-scholar/SE/00",
         "walk/outfit-scholar/SE/01",
@@ -1054,14 +1181,16 @@
         "walk/outfit-scholar/SE/03"
       ],
       "atlas": "walk-outfit-scholar.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/S/00",
         "walk/outfit-warden/S/01",
@@ -1069,14 +1198,16 @@
         "walk/outfit-warden/S/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/SW/00",
         "walk/outfit-warden/SW/01",
@@ -1084,14 +1215,16 @@
         "walk/outfit-warden/SW/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/W/00",
         "walk/outfit-warden/W/01",
@@ -1099,14 +1232,16 @@
         "walk/outfit-warden/W/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/NW/00",
         "walk/outfit-warden/NW/01",
@@ -1114,14 +1249,16 @@
         "walk/outfit-warden/NW/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/N/00",
         "walk/outfit-warden/N/01",
@@ -1129,14 +1266,16 @@
         "walk/outfit-warden/N/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/NE/00",
         "walk/outfit-warden/NE/01",
@@ -1144,14 +1283,16 @@
         "walk/outfit-warden/NE/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/E/00",
         "walk/outfit-warden/E/01",
@@ -1159,14 +1300,16 @@
         "walk/outfit-warden/E/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "outfit-warden",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/outfit-warden/SE/00",
         "walk/outfit-warden/SE/01",
@@ -1174,14 +1317,16 @@
         "walk/outfit-warden/SE/03"
       ],
       "atlas": "walk-outfit-warden.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/S/00",
         "walk/hair-ivory/S/01",
@@ -1189,14 +1334,16 @@
         "walk/hair-ivory/S/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/SW/00",
         "walk/hair-ivory/SW/01",
@@ -1204,14 +1351,16 @@
         "walk/hair-ivory/SW/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/W/00",
         "walk/hair-ivory/W/01",
@@ -1219,14 +1368,16 @@
         "walk/hair-ivory/W/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/NW/00",
         "walk/hair-ivory/NW/01",
@@ -1234,14 +1385,16 @@
         "walk/hair-ivory/NW/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/N/00",
         "walk/hair-ivory/N/01",
@@ -1249,14 +1402,16 @@
         "walk/hair-ivory/N/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/NE/00",
         "walk/hair-ivory/NE/01",
@@ -1264,14 +1419,16 @@
         "walk/hair-ivory/NE/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/E/00",
         "walk/hair-ivory/E/01",
@@ -1279,14 +1436,16 @@
         "walk/hair-ivory/E/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-ivory",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-ivory/SE/00",
         "walk/hair-ivory/SE/01",
@@ -1294,14 +1453,16 @@
         "walk/hair-ivory/SE/03"
       ],
       "atlas": "walk-hair-ivory.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/S/00",
         "walk/hair-midnight/S/01",
@@ -1309,14 +1470,16 @@
         "walk/hair-midnight/S/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/SW/00",
         "walk/hair-midnight/SW/01",
@@ -1324,14 +1487,16 @@
         "walk/hair-midnight/SW/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/W/00",
         "walk/hair-midnight/W/01",
@@ -1339,14 +1504,16 @@
         "walk/hair-midnight/W/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/NW/00",
         "walk/hair-midnight/NW/01",
@@ -1354,14 +1521,16 @@
         "walk/hair-midnight/NW/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/N/00",
         "walk/hair-midnight/N/01",
@@ -1369,14 +1538,16 @@
         "walk/hair-midnight/N/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/NE/00",
         "walk/hair-midnight/NE/01",
@@ -1384,14 +1555,16 @@
         "walk/hair-midnight/NE/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/E/00",
         "walk/hair-midnight/E/01",
@@ -1399,14 +1572,16 @@
         "walk/hair-midnight/E/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "hair-midnight",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/hair-midnight/SE/00",
         "walk/hair-midnight/SE/01",
@@ -1414,14 +1589,16 @@
         "walk/hair-midnight/SE/03"
       ],
       "atlas": "walk-hair-midnight.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "S",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/S/00",
         "walk/weapon-staff/S/01",
@@ -1429,14 +1606,16 @@
         "walk/weapon-staff/S/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "SW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/SW/00",
         "walk/weapon-staff/SW/01",
@@ -1444,14 +1623,16 @@
         "walk/weapon-staff/SW/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "W",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/W/00",
         "walk/weapon-staff/W/01",
@@ -1459,14 +1640,16 @@
         "walk/weapon-staff/W/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "NW",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/NW/00",
         "walk/weapon-staff/NW/01",
@@ -1474,14 +1657,16 @@
         "walk/weapon-staff/NW/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "N",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/N/00",
         "walk/weapon-staff/N/01",
@@ -1489,14 +1674,16 @@
         "walk/weapon-staff/N/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "NE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/NE/00",
         "walk/weapon-staff/NE/01",
@@ -1504,14 +1691,16 @@
         "walk/weapon-staff/NE/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "E",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/E/00",
         "walk/weapon-staff/E/01",
@@ -1519,14 +1708,16 @@
         "walk/weapon-staff/E/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "walk",
       "layer": "weapon-staff",
       "direction": "SE",
       "expectedFrames": 4,
-      "status": "prototype",
+      "status": "approved",
       "frames": [
         "walk/weapon-staff/SE/00",
         "walk/weapon-staff/SE/01",
@@ -1534,7 +1725,9 @@
         "walk/weapon-staff/SE/03"
       ],
       "atlas": "walk-weapon-staff.json",
-      "releaseApproved": false
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3"
     },
     {
       "action": "run",
@@ -3462,96 +3655,160 @@
       "action": "idle",
       "layer": "body-front",
       "atlas": "idle-body-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-ivory-back",
       "atlas": "idle-hair-ivory-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-ivory-front",
       "atlas": "idle-hair-ivory-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-midnight-back",
       "atlas": "idle-hair-midnight-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hair-midnight-front",
       "atlas": "idle-hair-midnight-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "weapon-staff-back",
       "atlas": "idle-weapon-staff-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "weapon-staff-front",
       "atlas": "idle-weapon-staff-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "idle",
       "layer": "hand-grip",
       "atlas": "idle-hand-grip.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "body-front",
       "atlas": "walk-body-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "hair-ivory-back",
       "atlas": "walk-hair-ivory-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "hair-ivory-front",
       "atlas": "walk-hair-ivory-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "hair-midnight-back",
       "atlas": "walk-hair-midnight-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "hair-midnight-front",
       "atlas": "walk-hair-midnight-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "weapon-staff-back",
       "atlas": "walk-weapon-staff-back.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "weapon-staff-front",
       "atlas": "walk-weapon-staff-front.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     },
     {
       "action": "walk",
       "layer": "hand-grip",
       "atlas": "walk-hand-grip.json",
+      "status": "approved",
+      "releaseApproved": true,
+      "approvalRecord": "arena/art/approval-v0.2.0.json",
+      "contentVersion": "arena-art-2026-11-18.four-head.3",
       "purpose": "Four-head paper-doll occlusion; matching action registration."
     }
   ],
@@ -3764,5 +4021,16 @@
         }
       }
     }
-  ]
+  ],
+  "approvalRecord": "arena/art/approval-v0.2.0.json",
+  "releaseScope": {
+    "version": "0.2.0",
+    "actions": [
+      "idle",
+      "walk"
+    ],
+    "appearanceCombinations": 8,
+    "compositeFrames": 512
+  },
+  "allPlannedActionsReady": false
 }

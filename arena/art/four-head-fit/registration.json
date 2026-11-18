@@ -1,7 +1,9 @@
 {
   "schemaVersion": 1,
-  "status": "prototype",
-  "releaseApproved": false,
+  "status": "approved",
+  "releaseApproved": true,
+  "approvalRecord": "arena/art/approval-v0.2.0.json",
+  "contentVersion": "arena-art-2026-11-18.four-head.3",
   "bodySourceSha256": "b8f934e7cf81064127c3daf450963d9b52f1321333b0f3b5d2956acb086b888e",
   "garmentSourceSha256": "e231bd6f4e5b78c1623300b9fa34bd2e1fbaa33bd5c973ad3223ff57bffc2039",
   "directionOrder": [
@@ -848,5 +850,5 @@
       ]
     }
   ],
-  "review": "Neutral fit only; no runtime replacement or approval. Body normalized to four heads from imperfect source."
+  "review": "Reviewed neutral fit underlying approved v0.2.0 idle/walk; later action expansion is outside this approval."
 }

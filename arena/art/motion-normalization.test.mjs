@@ -41,7 +41,8 @@ test('generated grip artwork covers each registered shaft contact in both action
   const source=await readFile(new URL('source/grip-hands.png',art));
   for(const action of ['idle','walk']) {
     const provenance=await json(`${action}-hand-grip.provenance.json`),atlas=await json(`${action}-hand-grip.json`);
-    assert.equal(provenance.sourceSha256,digest(source));assert.equal(provenance.releaseApproved,false);
+    assert.equal(provenance.sourceSha256,digest(source));assert.equal(provenance.releaseApproved,true);
+    assert.equal(provenance.approvalRecord,'arena/art/approval-v0.2.0.json');
     const hand=await read(`${action}-hand-grip.png`),staff=await read(`${action}-weapon-staff.png`);
     assert.equal(provenance.atlasPngSha256,digest(hand));
     const tracks=(await json(`${action}-weapon-staff.attachments.json`)).attachments;

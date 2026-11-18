@@ -55,6 +55,7 @@ test('side passing corrections retain source joints and low knee while avoiding 
     assert.equal(passing.sidePassing.supportPhase,'01');
     assert.match(passing.sidePassing.supportSource,/four-head-walk-body.png$/);
     assert.equal(passing.sidePassing.sourceJoints.length,3);
-    assert.equal(passing.sidePassing.status,'candidate pending independent real-FPS review');
+    assert.equal(passing.sidePassing.status,'approved');
+    assert.equal(passing.sidePassing.approvalRecord,'arena/art/approval-v0.2.0.json');
   }
 });

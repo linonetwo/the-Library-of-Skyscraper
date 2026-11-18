@@ -100,5 +100,5 @@ export async function sidePassing(image,sprite,supportImage,direction) {
       sourceJoints:spec.sourceJoints,targetJoints:spec.targetJoints,transverseScale:spec.widths,bootScale:spec.bootScale,
       supportSource:'arena/art/source/four-head-walk-body.png',supportPhase:'01',supportShiftX:spec.shift,
       method:'Source-resolution thigh/shin joint registration; complete generated boot; original phase01 support leg moved behind near swing leg. No scanline dilation or atlas-stage erasure patches.',
-      status:'candidate pending independent real-FPS review'}};
+      status:'approved',approvalRecord:'arena/art/approval-v0.2.0.json'}};
 }
