@@ -2,6 +2,8 @@ import { openMenu, closeOverlay } from './hud-helpers';
 import { test, expect } from "@playwright/test";
 
 test("publish TypeScript to training ticks, hold, then return to preset", async ({ page }, testInfo) => {
+  // Two publications and preset restoration accumulate CI rendering time.
+  test.setTimeout(60000);
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
   await openMenu(page, '训练控制');
