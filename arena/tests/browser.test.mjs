@@ -31,6 +31,8 @@ test('MCP browser controls outfits, map, Monaco publication and captures PNG', {
   await action({ type: 'chooseOutfit', outfit: 'scholar' });
   await action({ type: 'chooseHair', hair: 'midnight' });
   await action({ type: 'toggleStaff', equipped: false });
+  // Both the HUD and open appearance drawer expose the same action labels.
+  await action({ type: 'gather' });
   await action({ type: 'selectRoom', room: 'room-1' });
   const overview = JSON.parse((await call('Page.getState')).content[0].text).maps[0];
   assert.equal(overview.roomTargets.length, 7);

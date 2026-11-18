@@ -209,8 +209,8 @@ export function registerBrowserTools(server) {
       }
       case 'zoom': await click(action.direction === 'in' ? '放大地图' : '缩小地图'); break;
       
-      case 'gather': await click('采集'); break;
-      case 'deliver': await click('卸货入库'); break;
+      case 'gather': await active.getByRole('region', { name: '选中角色操作', exact: true }).getByRole('button', { name: '采集', exact: true }).click(); break;
+      case 'deliver': await active.getByRole('region', { name: '选中角色操作', exact: true }).getByRole('button', { name: '卸货入库', exact: true }).click(); break;
       case 'attack': await click('攻击'); break;
       case 'capture': await click('编目'); break;
     }
