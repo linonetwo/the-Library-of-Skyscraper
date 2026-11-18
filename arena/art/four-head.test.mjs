@@ -41,3 +41,20 @@ test('walk correction recipes trace selected limb sources without switching the 
   assert.deepEqual(staff.attachments[6*4+2].grip,{
     x:registration.frames[6*4+2].attachments.rightHand[0],y:registration.frames[6*4+2].attachments.rightHand[1]});
 });
+
+test('side passing corrections retain source joints and low knee while avoiding atlas scanline dilation',async()=>{
+  const registration=JSON.parse(await readFile(new URL('../client/public/assets/animation/walk-registration.json',import.meta.url)));
+  for(const [row,direction] of [[2,'W'],[6,'E']]) {
+    const contact=registration.frames[row*4+2],passing=registration.frames[row*4+3];
+    assert.equal(contact.balance.legWidthScale,1);
+    assert.equal(contact.balance.contactSourceWidthScale,1.15);
+    assert.equal(passing.balance.legWidthScale,1);
+    assert.equal(passing.sidePassing.direction,direction);
+    assert.equal(passing.sidePassing.module,'four-head-side-passing.mjs');
+    assert.equal(passing.sidePassing.targetJoints[1][1],130);
+    assert.equal(passing.sidePassing.supportPhase,'01');
+    assert.match(passing.sidePassing.supportSource,/four-head-walk-body.png$/);
+    assert.equal(passing.sidePassing.sourceJoints.length,3);
+    assert.equal(passing.sidePassing.status,'candidate pending independent real-FPS review');
+  }
+});

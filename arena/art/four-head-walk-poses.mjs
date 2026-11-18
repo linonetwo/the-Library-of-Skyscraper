@@ -5,7 +5,8 @@ import { extractSourceSprites } from './source-sprites.mjs';
 import { normalizeNeutral } from './four-head-registration.mjs';
 import { cellPng } from './motion-registration.mjs';
 import { repairLegs } from './four-head-leg-repair.mjs';
-import { lowerPassing,restoreLegVolume } from './four-head-walk-balance.mjs';
+import { restoreLegVolume } from './four-head-walk-balance.mjs';
+import { sidePassing } from './four-head-side-passing.mjs';
 
 const load=async(name,columns,rows)=>extractSourceSprites(await readFile(new URL(`source/${name}`,art)),{columns,rows,keepPixel});
 const oppositeHands=[[[7,124],[9,93]],[[86,123],[92,124]],[[121,126],[117,126]],[[126,128],[110,128]]];
@@ -41,7 +42,8 @@ export async function registeredWalkPose(sources,row,col,rightHand,leftHand) {
       if(width<minimum){minimum=width;neck=y;}
     }
   }
-  const legScale=.7*Math.min(1/ratio,original.crop.w/sprite.crop.w);
+  const side=[2,6].includes(row);
+  const legScale=.7*Math.min(1/ratio,original.crop.w/sprite.crop.w)*(side&&col===2?1.15:1);
   const pose=await normalizeNeutral(sprite,{headCut:corrected?neck-5*ratio:45*ratio,blendHeight:18*ratio,bodyScale:.7/ratio,
     ...(corrected?{legScale,legFrom:132*ratio,legBlend:50*ratio}:{}),
     knots:[[0,12+bob],...(corrected?[[neck-5*ratio,52+bob],[neck,56+bob],[neck+10*ratio,64+bob]]:
@@ -85,10 +87,14 @@ export async function registeredWalkPose(sources,row,col,rightHand,leftHand) {
       status:'candidate pending independent review'};
   }
   if(corrected) {
-    if(col===3&&[2,6].includes(row))pose.image=await lowerPassing(pose.image,row===2?'W':'E');
-    pose.image=await restoreLegVolume(pose.image,row===2?1.24:row===6?1.24:1.15);
-    pose.recipe.balance={sourceNeck:neck,neckTargetY:56+bob,legWidthScale:row===2||row===6?1.24:1.15,
-      passingRetarget:col===3&&[2,6].includes(row)?'Hip anchored; articulated thigh/shin lower knee to y134 and ankle145–147, rather than translating the boot.':null};
+    if(side&&col===3) {
+      const support=await registeredWalkPose(sources,row,1,[0,0],[0,0]);
+      const passing=await sidePassing(pose.image,sprite,support.image,row===2?'W':'E');
+      passing.recipe.supportSourceCrop=support.recipe.sourceCrop;
+      pose.image=passing.image;pose.recipe.sidePassing=passing.recipe;
+    } else if(!side)pose.image=await restoreLegVolume(pose.image,1.15);
+    pose.recipe.balance={sourceNeck:neck,neckTargetY:56+bob,legWidthScale:side?1:1.15,
+      ...(side?{contactSourceWidthScale:col===2?1.15:1}:{passingRetarget:null})};
   }
   return {...pose,sourceName,points,sourceHands:{right,left},recipe:{...pose.recipe,
     bodySource:`arena/art/source/${sourceName}`,correction:mirrored?

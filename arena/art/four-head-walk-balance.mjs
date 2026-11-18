@@ -1,50 +1,5 @@
 import sharp from 'sharp';
-import { cellPng,resample } from './motion-registration.mjs';
-
-const inside=(x,y,polygon)=>{
-  let hit=false;
-  for(let i=0,j=polygon.length-1;i<polygon.length;j=i++) {
-    const [a,b]=polygon[i],[c,d]=polygon[j];
-    if((b>y)!==(d>y)&&x<(c-a)*(y-b)/(d-b)+a)hit=!hit;
-  }
-  return hit;
-};
-function inverseBone(x,y,[a,b],[c,d]) {
-  const sl=Math.hypot(b[0]-a[0],b[1]-a[1]),tl=Math.hypot(d[0]-c[0],d[1]-c[1]);
-  const su=[(b[0]-a[0])/sl,(b[1]-a[1])/sl],tu=[(d[0]-c[0])/tl,(d[1]-c[1])/tl];
-  const dx=x-c[0],dy=y-c[1],along=(dx*tu[0]+dy*tu[1])*sl/tl,across=-dx*tu[1]+dy*tu[0];
-  return [a[0]+along*su[0]-across*su[1],a[1]+along*su[1]+across*su[0]];
-}
-
-export async function lowerPassing(image,direction) {
-  const raw=await sharp(image).raw().toBuffer(),body=Buffer.from(raw);
-  const west=direction==='W';
-  const polygons=west?[
-    [[86,109],[101,107],[105,115],[88,123],[78,128],[72,124],[73,118]],
-    [[75,120],[84,119],[101,138],[102,144],[93,146],[80,132]],
-    [[93,138],[103,138],[107,147],[103,156],[98,158],[93,155],[94,149]],
-  ]:[
-    [[94,101],[102,101],[123,110],[125,119],[115,126],[96,117]],
-    [[113,115],[125,116],[116,133],[106,144],[98,143],[101,132]],
-    [[99,136],[109,138],[109,146],[113,151],[109,155],[101,153],[94,144]],
-  ];
-  const source=west?[[98,112],[79,122],[98,141]]:[[98,108],[116,117],[103,139]];
-  const target=west?[[98,112],[91,134],[104,145]]:[[98,108],[101,134],[91,147]];
-  const pieces=polygons.map(()=>Buffer.alloc(raw.length));
-  for(let y=100;y<161;y++)for(let x=65;x<135;x++)for(let part=0;part<3;part++) {
-    if(inside(x+.5,y+.5,polygons[part])) {
-      const p=(y*192+x)*4;raw.copy(pieces[part],p,p,p+4);body.fill(0,p,p+4);
-    }
-  }
-  const envelope=west?[[84,107],[103,106],[106,118],[96,130],[109,148],[105,160],[92,160],[91,143],[72,126],[71,117]]:
-    [[94,100],[126,108],[128,122],[115,136],[115,158],[94,158],[93,140],[97,128],[96,120]];
-  for(let y=100;y<161;y++)for(let x=65;x<135;x++)if((west?x<=100:x>=96)&&inside(x+.5,y+.5,envelope))
-    body.fill(0,(y*192+x)*4,(y*192+x)*4+4);
-  const posed=pieces.map((piece,part)=>resample(piece,(x,y)=>part===2?
-    [x-target[2][0]+source[2][0],y-target[2][1]+source[2][1]]:
-    inverseBone(x,y,[source[part],source[part+1]],[target[part],target[part+1]])));
-  return sharp(await cellPng(body)).composite(await Promise.all(posed.map(async p=>({input:await cellPng(p)})))).png().toBuffer();
-}
+import { cellPng } from './motion-registration.mjs';
 
 export async function restoreLegVolume(image,scale) {
   const raw=await sharp(image).raw().toBuffer(),result=Buffer.from(raw);
