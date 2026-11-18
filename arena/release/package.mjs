@@ -1,3 +1,4 @@
+import { buildMetadata } from './manifest.mjs';
 import { execFileSync } from 'node:child_process';
 import { cpSync, mkdirSync, readFileSync, writeFileSync, chmodSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -19,10 +20,11 @@ export async function collectPackage({ source, destination, version, sourceCommi
   copy(resolve(source,'arena',module),resolve(payload,'arena',module));
  copy(fileURLToPath(new URL('./start.sh',import.meta.url)),resolve(payload,'start.sh'));
  chmodSync(resolve(payload,'start.sh'),0o755);
+ copy(fileURLToPath(new URL('./notes-v0.2.0.md',import.meta.url)),resolve(payload,'notes-v0.2.0.md'));
  const readme=readFileSync(new URL('./runtime-README.md',import.meta.url),'utf8')
   .replaceAll('{{version}}',version).replaceAll('{{sourceCommit}}',sourceCommit);
  writeFileSync(resolve(payload,'README.md'),readme);
- writeFileSync(resolve(payload,'manifest.json'),JSON.stringify({version,status:'local-candidate',sourceCommit,recipeCommit,
+ writeFileSync(resolve(payload,'manifest.json'),JSON.stringify({version,status:'local-candidate',sourceCommit,recipeCommit,...buildMetadata(source),
   platform:`${platform()} ${release()} ${arch()}`,node:process.version,binaries:'cargo debug --locked',ports:[5173,8787],
   data:'empty package-local directory',steamDesktopArtifact:false},null,2)+'\n');
  execFileSync('bash',['-c',"find . -type f ! -name FILES.sha256 -print0 | sort -z | xargs -0 sha256sum > FILES.sha256"],{cwd:payload});
