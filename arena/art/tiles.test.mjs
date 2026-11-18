@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import sharp from 'sharp';
 import { readFile } from 'node:fs/promises';
 import { digest } from './idle-pipeline.mjs';
+import { approvedMetadata } from './art-approval.mjs';
 
 const root=new URL('../client/public/assets/tiles/',import.meta.url);
 test('isometric floors share exact 2:1 alpha support and identical seam texels',async()=>{
@@ -23,10 +24,12 @@ test('isometric floors share exact 2:1 alpha support and identical seam texels',
 test('tile manifest separates ground geometry from tall sprite size and records reproducible sources',async()=>{
   const manifest=JSON.parse(await readFile(new URL('manifest.json',root)));
   assert.deepEqual(manifest.tileSize,[128,64]);assert.equal(manifest.walkableZ,0);
+  for(const [key,value] of Object.entries(approvedMetadata))assert.equal(manifest[key],value);
   assert.equal(Object.keys(manifest.assets).length,8);
   for(const asset of Object.values(manifest.assets)) {
     const meta=await sharp(await readFile(new URL(asset.image,root))).metadata();
-    assert.deepEqual(asset.footprint,[1,1]);assert.equal(asset.releaseApproved,false);
+    assert.deepEqual(asset.footprint,[1,1]);
+    for(const [key,value] of Object.entries(approvedMetadata))assert.equal(asset[key],value);
     assert.deepEqual(asset.pivot,asset.kind==='floor'?[64,32]:[64,160]);
     assert.equal(meta.height,asset.kind==='floor'?64:192);
   }

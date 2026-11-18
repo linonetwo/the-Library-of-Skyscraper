@@ -1,35 +1,73 @@
 {
-  "contentVersion": "arena-art-2026-10-27.1",
-  "sources": [
-    {
-      "path": "source/doll-sheet.png",
-      "sha256": "c32308a7f3407a87e3499b95f0411ea05501c73b39e159f68dcb5243e0864172",
-      "generator": "GPT Image 2 via proxy-imagegen",
-      "generatedOn": "2026-10-27"
-    },
-    {
-      "path": "source/library-map.png",
-      "sha256": "fc742bef08af8d9d9013afc363a245f0cbe436443dcc62cd31d76afbfff7d5a3",
-      "generator": "GPT Image 2 via proxy-imagegen",
-      "generatedOn": "2026-10-27"
-    }
-  ],
-  "frameSize": [
-    384,
-    384
-  ],
-  "padding": 2,
-  "layers": [
-    "body",
-    "outfit-scholar",
-    "outfit-warden",
-    "hair-ivory",
-    "hair-midnight",
+  "schemaVersion": 2,
+  "status": "approved",
+  "releaseApproved": true,
+  "approvalRecord": "arena/art/approval-v0.2.0.json",
+  "contentVersion": "arena-art-2026-11-18.four-head.3",
+  "scope": "v0.2.0 four-head paper doll and independent 2:1 isometric tiles",
+  "animation": {
+    "coverage": "animation/coverage.json",
+    "actions": [
+      "idle",
+      "walk"
+    ],
+    "atlases": [
+      "animation/idle-body.json",
+      "animation/idle-body-front.json",
+      "animation/idle-outfit-scholar.json",
+      "animation/idle-outfit-warden.json",
+      "animation/idle-hair-ivory.json",
+      "animation/idle-hair-ivory-back.json",
+      "animation/idle-hair-ivory-front.json",
+      "animation/idle-hair-midnight.json",
+      "animation/idle-hair-midnight-back.json",
+      "animation/idle-hair-midnight-front.json",
+      "animation/idle-weapon-staff.json",
+      "animation/idle-weapon-staff-back.json",
+      "animation/idle-weapon-staff-front.json",
+      "animation/idle-hand-grip.json",
+      "animation/walk-body.json",
+      "animation/walk-body-front.json",
+      "animation/walk-outfit-scholar.json",
+      "animation/walk-outfit-warden.json",
+      "animation/walk-hair-ivory.json",
+      "animation/walk-hair-ivory-back.json",
+      "animation/walk-hair-ivory-front.json",
+      "animation/walk-hair-midnight.json",
+      "animation/walk-hair-midnight-back.json",
+      "animation/walk-hair-midnight-front.json",
+      "animation/walk-weapon-staff.json",
+      "animation/walk-weapon-staff-back.json",
+      "animation/walk-weapon-staff-front.json",
+      "animation/walk-hand-grip.json"
+    ],
+    "cell": [
+      192,
+      192
+    ],
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "padding": 2,
+    "appearanceCombinations": 8,
+    "compositeFrames": 512
+  },
+  "tiles": {
+    "manifest": "tiles/manifest.json",
+    "atlases": [
+      "tiles/floors.json",
+      "tiles/props.json"
+    ],
+    "tileSize": [
+      128,
+      64
+    ]
+  },
+  "deferredActions": [
+    "run",
+    "jump",
+    "climb",
     "weapon-staff"
-  ],
-  "anchor": [
-    0.5,
-    1
-  ],
-  "notes": "AI-generated source; alpha cleanup and authored alignment. Cosmetics only. Release rights review pending."
+  ]
 }

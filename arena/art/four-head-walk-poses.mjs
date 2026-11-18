@@ -84,7 +84,7 @@ export async function registeredWalkPose(sources,row,col,rightHand,leftHand) {
     pose.image=await repairLegs(pose.image,direction);
     pose.recipe.limbRepair={module:'four-head-leg-repair.mjs',direction,
       method:'Generated leg pixels segmented and re-rooted at opposite hip; original feet direction preserved; near/far compositing corrected.',
-      status:'candidate pending independent review'};
+      status:'approved',approvalRecord:'arena/art/approval-v0.2.0.json'};
   }
   if(corrected) {
     if(side&&col===3) {
@@ -98,6 +98,6 @@ export async function registeredWalkPose(sources,row,col,rightHand,leftHand) {
   }
   return {...pose,sourceName,points,sourceHands:{right,left},recipe:{...pose.recipe,
     bodySource:`arena/art/source/${sourceName}`,correction:mirrored?
-      'Symmetric neck-down limb reflection of phase00/01; head and all asymmetric equipment unchanged; anatomical right grip re-registered. Review candidate.':
-      sourceName==='four-head-walk-body.png'?'original':'Dedicated opposite-half source pose; review candidate.'}};
+      'Symmetric neck-down limb reflection of phase00/01; head and all asymmetric equipment unchanged; anatomical right grip re-registered. Approved v0.2.0.':
+      sourceName==='four-head-walk-body.png'?'original':'Dedicated opposite-half source pose; approved v0.2.0.'}};
 }

@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import sharp from 'sharp';
 import { directions, layers, frameName } from './animation-spec.mjs';
 import { output, digest } from './idle-pipeline.mjs';
+import { approvalRecord, contentVersion } from './art-approval.mjs';
 
 const json = async name => JSON.parse(await readFile(new URL(name,output),'utf8'));
 async function cell(layer,row,col) {
@@ -12,11 +13,13 @@ async function cell(layer,row,col) {
 }
 test('idle covers all six logical layers, eight directions, four real distinct frames with provenance',async()=>{
   const coverage=await json('coverage.json');
-  assert.equal(coverage.coverage.filter(e=>e.action==='idle'&&e.status==='prototype').length,48);
+  assert.equal(coverage.coverage.filter(e=>e.action==='idle'&&e.status==='approved').length,48);
   for (const layer of layers) {
     const atlas=await json(`idle-${layer}.json`), provenance=await json(`idle-${layer}.provenance.json`);
     assert.equal(Object.keys(atlas.frames).length,32);
-    assert.equal(provenance.releaseApproved,false);
+    assert.equal(provenance.releaseApproved,true);
+    assert.equal(provenance.status,'approved');assert.equal(provenance.approvalRecord,approvalRecord);
+    assert.equal(provenance.contentVersion,contentVersion);
     assert.equal(provenance.atlasPngSha256,digest(await readFile(new URL(atlas.meta.image,output))));
     const source=await readFile(new URL(provenance.source,new URL('../../',import.meta.url)));
     assert.equal(provenance.sourceSha256,digest(source));
