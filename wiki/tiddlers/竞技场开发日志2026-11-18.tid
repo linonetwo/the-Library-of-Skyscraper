@@ -6,7 +6,7 @@ type: text/vnd.tiddlywiki
 
 当前整版仍依据[[竞技场v0.2.0版本计划]]的R1–R6推进。场景使用128×64独立手绘地块与独立书架／台座／讲台；世界投影、镜头、实体足底排序与点击沿共用坐标运行。HUD为单行资源栏和紧凑小队操作，详情、规则、工坊与回放按需展开。Astra已通过上一轮宽窄屏场景与390宽换装布局。
 
-主代理委托Sol通过真实stdio MCP开启训练、选巡书使、切换守卫衣装／午夜发型／法杖，采集下面两张最新截图并亲自查看。采集源码984f1a4，动作像素7720bea；当前5d00333已追加MCP详情展开后的采集／卸货按钮定位修正。地图与角色预览读取相同纸娃娃图层，衣装、发型和持物分别替换；地图由128×64独立地块拼装，全屏画布常驻资源栏和小队操作栏。
+主代理组织Astra设计／美术批准、Sol实现与集中测试，亲自查看最新包内实机结果。下面两张图片来自最终固定提交e140aea700b2c96ef37dd88a75473f8ac40c80bd的独立生产候选包：通过真实stdio MCP开启训练、选巡书使、切换守卫衣装／午夜发型／法杖。动作像素7720bea，发布内容版本arena-art-2026-11-18.four-head.3。地图与角色预览读取相同纸娃娃图层，衣装、发型和持物分别替换；地图由128×64独立地块拼装，全屏画布常驻资源栏和小队操作栏。
 
 [img[竞技场2026-11-18全屏地块实机.png]]
 
@@ -42,3 +42,18 @@ Sol从实际客户端重新采集64张八向gallery（512组合帧）及E／W／
 独立技术Astra审阅全屏场景、共用纸娃娃、投影／深度、HUD输入和固定源打包方案，指出详情面板展开时MCP的全页“采集／卸货入库”定位命中两处。Sol在5d00333将两项定位限定到常驻“选中角色操作”区域，并补充换装后采集流程；完整真实MCP浏览器回归102秒通过。
 
 0a1beca与984f1a4补齐v0.2.0候选产物的源提交／打包配方、产品版本、arena.v1协议、资产与lockfile哈希、工具链版本及独立美术批准记录；客户端、服务端、V8 runner为0.2.0，兼容工具保留各自版本。GitHub Actions改为PR测试与master合入测试，去除同分支重复push运行。R6整版固定提交的集中验收和候选包实测接续进行。
+
+
+!! 整版集中验收与v0.2.0发布
+
+最终固定源与Tag v0.2.0均指向e140aea700b2c96ef37dd88a75473f8ac40c80bd；[[游戏PR22|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/22]]经Astra正式源／视觉／产物批准后，由Sol以merge commit合入master731b174ee3ee6256df663384d63144a0b5ae5749，保留已测试提交。[[GitHub开发预览与下载|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.2.0]]已发布，包含Linux x86_64本地Web／Rust debug包、SHA256文件、manifest及16MB集中接受证据包。
+
+[[最终CI44345034318|https://github.com/linonetwo/the-Library-of-Skyscraper/actions/runs/44345034318]]与同源本地18项集中命令全部通过。服务端51项及clippy、5项真实V8、SDK9项及typecheck、TS编译工具链7项、独立运行器1项、工具单元2项、HTTP／WebSocket集成17项、MCP浏览器4／4、端到端29／29、美术24／24；条件启用的browser用例在独立浏览器套件实际执行。默认完整美术复建的38张PNG与批准记录逐一同哈希，生产客户端构建通过。
+
+候选包从git archive固定源生成，使用自身的服务端、V8 runner、TS工具链、SDK、生产Web客户端与独立data目录实际运行；单机、双端共享权威状态、换装、重连、规则发布和回放均在包上完成。MCP另从可见控件采集当前两张新图，来源与manifest写入package-capture-source.json。start.sh首次结束后authority／preview均回收，随后重新开启通过验收的生产包，当前本地入口http://127.0.0.1:5173。
+
+包文件arena-v0.2.0-linux-x64-candidate.tar.gz大小156210599字节，SHA256：1c7c723aed3907724c71dc4dac028cb269b07b2857508e7aa9b3e09a2ac80dfe。归档与包内FILES.sha256校验通过。源与打包配方相同；client／server／runner为0.2.0、协议arena.v1、SDK0.0.2、TS工具链0.0.1、MCP工具0.1.0。资产版本、批准记录与依赖lockfile哈希随manifest交付；完整本地证据/home/user/arena-v020-evidence/r6-e140aea/acceptance。
+
+首次591ff38候选在本地整轮通过，同源CI44333265331的TS发布长流程在最后step耗尽整例30秒。Astra根据trace确认前面的可见输入、两次发布、截图及恢复预设均成功，批准Sol只为该多阶段流程设60秒总预算，保留全局30秒、全部产品断言和现有重试策略。e140aea据此重新冻结、完整重建与集中测试，最终CI通过；591历史候选保留原结果。
+
+本次发布完成[[竞技场v0.2.0版本计划]]的R1–R6。v0.1.0保留可追溯历史候选基线；下一版由Astra按[[竞技场版本发布规则]]重新冻结完整需求。八向跑／跳／攀爬／武器动作、完整战斗与Steam桌面体验继续纳入后续明确版本，整体开发目标持续推进。
