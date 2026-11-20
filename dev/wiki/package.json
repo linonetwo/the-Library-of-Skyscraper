@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/tiddlywiki/tiddlywiki.js +plugins/tiddlywiki/filesystem +plugins/tiddlywiki/tiddlyweb ../../wiki --listen host=0.0.0.0 port=3000"
+  },
+  "dependencies": {
+    "tiddlywiki": "^5.4.1"
+  }
+}
