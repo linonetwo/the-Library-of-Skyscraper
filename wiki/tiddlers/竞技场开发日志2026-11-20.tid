@@ -15,3 +15,16 @@ v0.3.0后端疾跑已有f34425d候选与PR34；前端6758601候选和局部路�
 [img[竞技场2026-11-20知识库实时更新实机.png]]
 
 连接修复a1ac0ac已通过Astra源审阅，[[PR35|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/35]]进行固定源产物接受；首轮HTTP／WebSocket／重连、切换／切回服务器、多标签连接稳定及远征隔离均通过，生产运行包接续测试。
+
+
+!! 连接补丁已部署稳定入口
+
+固定源a1ac0ac27102380cc65fb43ecfb200941e20c00c的0.2.1运行包已完成生产HTTPS／WSS、转发Host／Origin、同源WebSocket代理、切换／切回服务器及重连测试；Astra接受网络产物。主代理实际查看完整游戏截图，地块、书架、角色均显示。Sol正常结束旧服务并保留checkpoint，复制至独立livepackage后启动5173／8787，52组旧凭据可恢复原赛局。网页直接游玩，Rust模拟和TS运行器留在服务器。
+
+[img[竞技场2026-11-20远程游戏实机.png]]
+
+[img[竞技场2026-11-20服务器设置实机.png]]
+
+菜单→联机大厅提供服务器地址；空值使用当前网站的同源API／WS代理，填写HTTPS服务器则使用HTTPS／WSS。用户转发3000访问Wiki、5173游玩即可；独立公开authority时再转发8787。内部Wiki3001只在本机服务。Linux下载包包含Rust二进制，使用Node.js 24和start.sh启动。
+
+原始候选包SHA256：08150b028a4fa08074e14c5d4902d2842c153fdef72dfc02a0150859ae20c402。运行数据保存在独立livepackage，原始发布归档保留空data。生产证据与迁移结果位于/home/user/arena-v021-evidence。CI44699475677的两条MCP长流程分别在180／90秒整例预算取消，另两条工坊流程通过；正式Tag／Release与PR35合并继续处理，当前记录区分实际可玩部署与正式发布状态。
