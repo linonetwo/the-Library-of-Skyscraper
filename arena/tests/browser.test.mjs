@@ -16,7 +16,11 @@ test('MCP browser controls outfits, map, Monaco publication and captures PNG', {
   }));
   t.after(() => client.close());
   async function call(name, args = {}) {
+    const step = args.action?.type || name;
+    const started = performance.now();
+    console.log(`MCP START ${step}`);
     const response = await client.callTool({ name, arguments: args });
+    console.log(`MCP END ${step} ${Math.round(performance.now() - started)}ms`);
     assert.notEqual(response.isError, true, response.content[0].text);
     return response;
   }

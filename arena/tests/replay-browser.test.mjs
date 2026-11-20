@@ -7,7 +7,11 @@ test('MCP browser exposes replay seeks and rendered private state', {skip:proces
  const client=new Client({name:'replay-browser',version:'1'});
  await client.connect(new StdioClientTransport({command:process.execPath,args:[fileURLToPath(new URL('../tools/server.mjs',import.meta.url))],env:process.env,stderr:'pipe'}));
  t.after(()=>client.close());
- const call=async(name,args={})=>{const response=await client.callTool({name,arguments:args});assert.notEqual(response.isError,true,response.content[0].text);return JSON.parse(response.content[0].text);};
+ const call=async(name,args={})=>{const step = args.action?.type || name;
+    const started = performance.now();
+    console.log(`MCP START ${step}`);
+    const response=await client.callTool({name,arguments:args});
+    console.log(`MCP END ${step} ${Math.round(performance.now() - started)}ms`);assert.notEqual(response.isError,true,response.content[0].text);return JSON.parse(response.content[0].text);};
  const action=action=>call('Input.action',{action});
  await call('Page.open');
  t.after(async()=>{try{await call('Page.close');}catch{}});
