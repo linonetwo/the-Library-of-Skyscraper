@@ -1,3 +1,4 @@
+import { serverStorageKey } from "./serverConnection";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { arenaApi } from "./arenaApi";
 import type { Command, Session, Snapshot } from "./types";
@@ -5,7 +6,7 @@ import { readExpeditions, rememberExpedition } from "./expeditionLibrary";
 
 export function useArenaSession() {
   const [session, setSession] = useState<Session | null>(() =>
-    JSON.parse(sessionStorage.getItem("arena-session") || "null"),
+    JSON.parse(sessionStorage.getItem(serverStorageKey("arena-session")) || "null"),
   );
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
   const [expeditions, setExpeditions] = useState(readExpeditions);
@@ -99,14 +100,14 @@ export function useArenaSession() {
         : arenaApi.join(joinId));
       const state = await arenaApi.state(next);
       setExpeditions(rememberExpedition(next, state));
-      sessionStorage.setItem("arena-session", JSON.stringify(next));
+      sessionStorage.setItem(serverStorageKey("arena-session"), JSON.stringify(next));
       setSnapshot(null);
       setSession(next);
       return next;
     });
   const resume = (next: Session) => perform(async () => {
     const state = await arenaApi.state(next);
-    sessionStorage.setItem("arena-session", JSON.stringify(next));
+    sessionStorage.setItem(serverStorageKey("arena-session"), JSON.stringify(next));
     setSnapshot(state);
     setSession(next);
     setExpeditions(rememberExpedition(next, state));

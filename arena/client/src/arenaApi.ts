@@ -1,3 +1,4 @@
+import { serverUrl, socketUrl } from "./serverConnection";
 import type { Command, Session, Snapshot } from "./types";
 import type { ReplayTimeline } from "./useReplay";
 import type { CompileResult, RuleSourceProject, ScriptPreview, ScriptPublication, RuleVersionList, RuleVersionSource, RuleRuntimeState } from "./scriptTypes";
@@ -7,7 +8,7 @@ async function request<T>(
   session?: Session,
   body?: unknown,
 ): Promise<T> {
-  const response = await fetch(`/api/sessions${path}`, {
+  const response = await fetch(serverUrl(`/api/sessions${path}`), {
     method: body === undefined ? "GET" : "POST",
     headers: {
       "Content-Type": "application/json",
@@ -54,6 +55,6 @@ export const arenaApi = {
     ),
   subscribe: (session: Session) =>
     new WebSocket(
-      `${location.protocol === "https:" ? "wss:" : "ws:"}//${location.host}/ws/${session.sessionId}?token=${encodeURIComponent(session.token)}`,
+      socketUrl(`/ws/${session.sessionId}?token=${encodeURIComponent(session.token)}`),
     ),
 };

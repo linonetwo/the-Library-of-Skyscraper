@@ -7,7 +7,7 @@ export function buildMetadata(source) {
  const read=path=>readFileSync(resolve(source,path),'utf8');
  const json=path=>JSON.parse(read(path));
  const sha256=path=>createHash('sha256').update(readFileSync(resolve(source,path))).digest('hex');
- const approvalPath='arena/art/approval-v0.2.0.json';
+ const approvalPath=json('arena/client/public/assets/manifest.json').approvalRecord;
  const animationPath='arena/client/public/assets/animation/coverage.json';
  const tilesPath='arena/client/public/assets/tiles/manifest.json';
  const animation=json(animationPath),tiles=json(tilesPath);

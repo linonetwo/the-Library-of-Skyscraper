@@ -1193,7 +1193,7 @@ dependencies = [
 
 [[package]]
 name = "skyscraper-arena-script-runner"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "deno_core",
  "serde",

@@ -67,12 +67,14 @@ export function registerBrowserTools(server) {
   });
   register('Page.getState', 'Read rendered text, controls and battlefield actor poses (position, direction, animation frame).', {}, async () => {
     const active = current();
-    const buttons = [];
-    for (const button of await active.getByRole('button').all()) {
-      if (!await button.isVisible()) continue;
-      buttons.push({ label: await button.getAttribute('aria-label') || (await button.innerText()).trim(),
-        disabled: await button.isDisabled() });
-    }
+    const buttons = await active.getByRole('button').evaluateAll(elements => elements
+      .filter(button => {
+        const style = getComputedStyle(button);
+        const box = button.getBoundingClientRect();
+        return style.visibility !== 'hidden' && style.visibility !== 'collapse' && box.width > 0 && box.height > 0;
+      })
+      .map(button => ({ label: button.getAttribute('aria-label') || button.innerText.trim(),
+        disabled: button.matches(':disabled') || button.closest('[aria-disabled]')?.getAttribute('aria-disabled') === 'true' })));
     const maps = await readMapState(active);
     const battlefields = await active.locator('.pixi-map').evaluateAll(maps =>
       maps.map(map => JSON.parse(map.dataset.actors || '[]')));
@@ -201,9 +203,7 @@ export function registerBrowserTools(server) {
         await menu('行动规则');
         await active.locator('.presets button').nth(['gather', 'defend', 'explore'].indexOf(action.preset)).click();
         const range = active.getByRole('slider', { name: /生命值撤退阈值/ });
-        await range.focus();
-        await range.press('Home');
-        for (let i = 0; i < action.retreatHp; i++) await range.press('ArrowRight');
+        await range.fill(String(action.retreatHp));
         await active.getByRole('button', { name: /确认并发布规则/ }).click();
         break;
       }

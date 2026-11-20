@@ -1,18 +1,17 @@
 use axum::{
     Json, Router,
     extract::{
-        Path, Query, Request, State,
+        Path, Query, State,
         ws::{Message, WebSocketUpgrade},
     },
-    http::{HeaderMap, HeaderValue, Method, StatusCode, header},
-    middleware::{self, Next},
+    http::{HeaderMap, Method, StatusCode, header},
     response::{IntoResponse, Response},
     routing::{get, post},
 };
 use serde::{Deserialize, Serialize};
 use skyscraper_arena_server::{Command, Mode, Session};
 use std::time::Duration;
-use tower_http::cors::CorsLayer;
+use tower_http::cors::{Any, CorsLayer};
 use uuid::Uuid;
 
 mod lifecycle;
@@ -25,42 +24,6 @@ mod script_version_routes;
 mod script_worker;
 mod store;
 use store::{Error, Store, error};
-const ALLOWED_ORIGINS: [&str; 6] = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:4173",
-    "http://127.0.0.1:4173",
-    "http://localhost:8787",
-    "http://127.0.0.1:8787",
-];
-fn origin_allowed(headers: &HeaderMap) -> bool {
-    // CLI/MCP clients do not send Origin. Browser origins must match exactly:
-    // suffix matching would admit malicious origins such as localhost.attacker.tld.
-    headers.get_all(header::ORIGIN).iter().all(|value| {
-        value
-            .to_str()
-            .is_ok_and(|origin| ALLOWED_ORIGINS.contains(&origin))
-    })
-}
-async fn guard_origin(State(port): State<u16>, request: Request, next: Next) -> Response {
-    if !origin_allowed(request.headers()) {
-        return error(StatusCode::FORBIDDEN, "browser origin is not allowed").into_response();
-    }
-    let host = request
-        .headers()
-        .get(header::HOST)
-        .and_then(|value| value.to_str().ok());
-    if !host.is_some_and(|host| {
-        host == format!("127.0.0.1:{port}")
-            || host == format!("localhost:{port}")
-            || ALLOWED_ORIGINS
-                .iter()
-                .any(|origin| origin.strip_prefix("http://") == Some(host))
-    }) {
-        return error(StatusCode::FORBIDDEN, "request host is not allowed").into_response();
-    }
-    next.run(request).await
-}
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 struct Create {
@@ -186,9 +149,12 @@ async fn main() {
         .unwrap_or_else(|_| "8787".into())
         .parse()
         .expect("ARENA_PORT must be a port number");
-    let listener = tokio::net::TcpListener::bind(("127.0.0.1", port))
-        .await
-        .expect("bind local arena port");
+    let listener = tokio::net::TcpListener::bind((
+        std::env::var("ARENA_BIND_ADDR").unwrap_or_else(|_| "0.0.0.0".into()),
+        port,
+    ))
+    .await
+    .expect("bind arena port");
     let address = listener.local_addr().unwrap();
     let clock = lifecycle::start_clock(store.clone());
     let app = Router::new()
@@ -242,11 +208,10 @@ async fn main() {
         .route("/ws/{id}", get(ws))
         .layer(
             CorsLayer::new()
-                .allow_origin(ALLOWED_ORIGINS.map(HeaderValue::from_static))
+                .allow_origin(Any)
                 .allow_headers([header::AUTHORIZATION, header::CONTENT_TYPE])
                 .allow_methods([Method::GET, Method::POST, Method::OPTIONS]),
         )
-        .layer(middleware::from_fn_with_state(address.port(), guard_origin))
         .with_state(store.clone());
     println!("Arena authority listening on http://{address}");
     axum::serve(listener, app)
@@ -257,27 +222,4 @@ async fn main() {
         .checkpoint()
         .await
         .expect("save arena sessions on shutdown");
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    #[test]
-    fn browser_origins_are_exactly_allowlisted() {
-        let mut headers = HeaderMap::new();
-        assert!(origin_allowed(&headers));
-        for origin in ALLOWED_ORIGINS {
-            headers.insert(header::ORIGIN, HeaderValue::from_static(origin));
-            assert!(origin_allowed(&headers));
-        }
-        for origin in [
-            "null",
-            "https://attacker.example",
-            "http://localhost.attacker.example:5173",
-            "http://127.0.0.1:9999",
-        ] {
-            headers.insert(header::ORIGIN, HeaderValue::from_static(origin));
-            assert!(!origin_allowed(&headers));
-        }
-    }
 }

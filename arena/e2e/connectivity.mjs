@@ -1,0 +1,64 @@
+import { chromium } from '@playwright/test';
+import assert from 'node:assert/strict';
+const browser = await chromium.launch({ headless: true, args: ['--no-sandbox','--disable-dev-shm-usage'] });
+try {
+ const context = await browser.newContext();
+ const page = await context.newPage();
+ await page.goto('http://127.0.0.1:5174');
+ const remote = await page.evaluate(async () => {
+  const base='http://localhost:8788';
+  const create=await fetch(`${base}/api/sessions`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'online'})});
+  const credentials=await create.json();
+  const state=await fetch(`${base}/api/sessions/${credentials.sessionId}/state`,{headers:{Authorization:`Bearer ${credentials.token}`}});
+  const snapshot=await state.json();
+  const receive=()=>new Promise((resolve,reject)=>{
+   const socket=new WebSocket(`ws://localhost:8788/ws/${credentials.sessionId}?token=${credentials.token}`);
+   const timeout=setTimeout(()=>{socket.close();reject(new Error('ws timeout'));},5000);
+   socket.onmessage=e=>{clearTimeout(timeout);socket.close();resolve(JSON.parse(e.data).sessionId)};
+   socket.onerror=()=>reject(new Error('ws failed'));
+  });
+  return {id:credentials.sessionId,state:snapshot.sessionId,first:await receive(),reconnect:await receive()};
+ });
+ assert.equal(remote.id,remote.state); assert.equal(remote.id,remote.first); assert.equal(remote.id,remote.reconnect);
+ const proxy=await page.evaluate(async()=>{
+  const response=await fetch('/api/sessions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'training'})});
+  const c=await response.json(); sessionStorage.setItem('arena-session',JSON.stringify(c));return c;
+ });
+ await page.reload();
+ await page.waitForFunction(()=>document.querySelector('[title="connected"]'));
+ await page.waitForFunction(()=>localStorage.getItem('arena-expeditions'));
+ const originalHistory=await page.evaluate(()=>localStorage.getItem('arena-expeditions'));
+ const otherTab=await context.newPage();
+ await otherTab.goto('http://127.0.0.1:5174');
+ await otherTab.evaluate(()=>localStorage.setItem('arena-server-address','http://localhost:8788'));
+ const frozen=await page.evaluate(async()=>{ const m=await import('/src/serverConnection.ts'); return {address:m.serverAddress(),key:m.serverStorageKey('arena-session'),url:m.serverUrl('/api/sessions')}; });
+ assert.deepEqual(frozen,{address:'',key:'arena-session',url:'/api/sessions'});
+ await otherTab.evaluate(()=>localStorage.removeItem('arena-server-address'));
+ await otherTab.close();
+ await page.getByRole('button',{name:'菜单',exact:true}).click();
+ await page.getByRole('button',{name:'联机大厅',exact:true}).click();
+ await page.getByLabel('服务器地址').fill('http://localhost:8788');
+ await page.getByRole('button',{name:'连接服务器',exact:true}).click();
+ await page.waitForLoadState('networkidle');
+ assert.equal(await page.evaluate(()=>sessionStorage.getItem('arena-session:http://localhost:8788')),null);
+ await page.getByRole('button',{name:'菜单',exact:true}).click();
+ await page.getByRole('button',{name:'联机大厅',exact:true}).click();
+ await page.getByRole('button',{name:'创建联机'}).click();
+ await page.waitForFunction(()=>sessionStorage.getItem('arena-session:http://localhost:8788'));
+ const saved=await page.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session:http://localhost:8788')));
+ await page.reload();
+ await page.waitForFunction(()=>document.querySelector('[title="connected"]'));
+ assert.equal(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session')).token),proxy.token);
+ assert.equal(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session:http://localhost:8788')).token),saved.token);
+ assert.ok(await page.evaluate(()=>localStorage.getItem('arena-expeditions:http://localhost:8788')));
+ await page.getByRole('button',{name:'菜单',exact:true}).click();
+ await page.getByRole('button',{name:'联机大厅',exact:true}).click();
+ await page.getByLabel('服务器地址').fill('');
+ await page.getByRole('button',{name:'连接服务器',exact:true}).click();
+ await page.waitForFunction(()=>document.querySelector('[title="connected"]'));
+ assert.equal(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session')).token),proxy.token);
+ await page.waitForFunction(()=>localStorage.getItem('arena-expeditions'));
+ const historySessions=value=>JSON.parse(value).map(entry=>entry.session);
+ assert.deepEqual(historySessions(await page.evaluate(()=>localStorage.getItem('arena-expeditions'))),historySessions(originalHistory));
+ console.log('PASS multi-tab connection stability; switch-back credentials/history; cross-origin HTTP + WS + WS reconnect; same-origin proxy; UI server switch; credentials/history isolation; reload reconnect');
+} finally { await browser.close(); }
