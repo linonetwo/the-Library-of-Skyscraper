@@ -9,7 +9,8 @@ export async function collectPackage({ source, destination, version, sourceCommi
  const payload=resolve(destination,'package');
  for(const dir of ['bin','data','logs','arena/client','arena/art']) mkdirSync(resolve(payload,dir),{recursive:true});
  const copy=(from,to)=>cpSync(from,to,{recursive:true});
- copy(resolve(source,'arena/art/approval-v0.2.0.json'),resolve(payload,'arena/art/approval-v0.2.0.json'));
+ const metadata=buildMetadata(source);
+ copy(resolve(source,metadata.assets.approval.path),resolve(payload,metadata.assets.approval.path));
  for(const name of ['server','script-runner']) {
   const binary=`skyscraper-arena-${name}`;
   const target=process.env.CARGO_TARGET_DIR ? resolve(source,process.env.CARGO_TARGET_DIR) : resolve(source,`arena/${name}/target`);
@@ -21,11 +22,11 @@ export async function collectPackage({ source, destination, version, sourceCommi
   copy(resolve(source,'arena',module),resolve(payload,'arena',module));
  copy(fileURLToPath(new URL('./start.sh',import.meta.url)),resolve(payload,'start.sh'));
  chmodSync(resolve(payload,'start.sh'),0o755);
- copy(fileURLToPath(new URL('./notes-v0.2.0.md',import.meta.url)),resolve(payload,'notes-v0.2.0.md'));
+ copy(fileURLToPath(new URL(`./notes-v${version}.md`,import.meta.url)),resolve(payload,`notes-v${version}.md`));
  const readme=readFileSync(new URL('./runtime-README.md',import.meta.url),'utf8')
   .replaceAll('{{version}}',version).replaceAll('{{sourceCommit}}',sourceCommit);
  writeFileSync(resolve(payload,'README.md'),readme);
- writeFileSync(resolve(payload,'manifest.json'),JSON.stringify({version,status:'local-candidate',sourceCommit,recipeCommit,...buildMetadata(source),
+ writeFileSync(resolve(payload,'manifest.json'),JSON.stringify({version,status:'local-candidate',sourceCommit,recipeCommit,...metadata,
   platform:`${platform()} ${release()} ${arch()}`,node:process.version,binaries:'cargo debug --locked',ports:[5173,8787],
   data:'empty package-local directory',steamDesktopArtifact:false},null,2)+'\n');
  execFileSync('bash',['-c',"find . -type f ! -name FILES.sha256 -print0 | sort -z | xargs -0 sha256sum > FILES.sha256"],{cwd:payload});

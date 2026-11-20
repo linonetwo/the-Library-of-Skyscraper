@@ -141,31 +141,28 @@ export function decide(ctx: RuleContext): RuleDecisionResult {
   const snapshot = await call('Session.getState', { handle: joined.handle });
   assert.equal(snapshot.players[0].rule.retreatHp, 25);
 });
-test('HTTP and WebSocket upgrade reject hostile Origin and Host', { skip: !enabled }, async () => {
-  const credential = await create('online');
-  for (const path of ['/api/sessions', `/api/sessions/${credential.sessionId}/join`]) {
-    const response = await fetch(`${base}${path}`, {
-      method: 'POST',
-      headers: { Origin: 'http://attacker.invalid', 'Content-Type': 'application/json' },
-      body: JSON.stringify(path === '/api/sessions' ? { mode: 'online' } : {}),
-    });
-    assert.equal(response.status, 403);
-  }
-  const badHost = await new Promise((resolve, reject) => {
-    const request = rawRequest(`${base}/health`, { headers: { Host: 'attacker.invalid:8787' } }, response => {
+test('HTTP accepts remote browser origins and forwarded hosts', { skip: !enabled }, async () => {
+  const origin = 'https://forwarded-game.example';
+  const preflight = await fetch(`${base}/api/sessions`, { method: 'OPTIONS', headers: {
+    Origin: origin, 'Access-Control-Request-Method': 'POST',
+    'Access-Control-Request-Headers': 'authorization,content-type',
+  }});
+  assert.equal(preflight.status, 200);
+  assert.equal(preflight.headers.get('access-control-allow-origin'), '*');
+  const response = await fetch(`${base}/api/sessions`, {
+    method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ mode: 'online' }),
+  });
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get('access-control-allow-origin'), '*');
+  const credential = await response.json();
+  await state(credential);
+  await state({ ...credential, token: 'invalid' }, 401);
+  const forwarded = await new Promise((resolve, reject) => {
+    const request = rawRequest(`${base}/health`, { headers: { Host: 'forwarded-game.example' } }, response => {
       response.resume(); resolve(response.statusCode);
     });
-    request.on('error', reject);
-    request.end();
+    request.on('error', reject); request.end();
   });
-  assert.equal(badHost, 403);
-  // A regular HTTP request with the exact WS path hits the same origin guard,
-  // before upgrade parsing or token lookup. No token is included in diagnostics.
-  const badWS = await fetch(`${base}/ws/${credential.sessionId}?token=${credential.token}`, {
-    headers: { Origin: 'http://attacker.invalid' },
-  });
-  assert.equal(badWS.status, 403);
-  const allowed = await fetch(`${base}/health`, { headers: { Origin: 'http://localhost:5173' } });
-  assert.equal(allowed.status, 200);
-  assert.equal(allowed.headers.get('access-control-allow-origin'), 'http://localhost:5173');
+  assert.equal(forwarded, 200);
 });

@@ -15,3 +15,9 @@ The launcher selects the package's runner, TS compiler and independent `data/` d
 Configure a stdio MCP client with `node arena/tools/server.mjs`. Browser controls use Playwright Chromium; install it through `cd arena/tools && npx playwright install --with-deps chromium`. Page.open and Input.action drive the game; Page.captureScreenshot returns actual PNG output.
 
 TS publication and restoration, version memory and shared tasks, replay timelines and paper-doll workshop controls are available. `manifest.json` records the environment and profile; `FILES.sha256` lists payload hashes. The build output's `evidence/` directory holds build and acceptance records. Version tags and hosted releases follow the version delivery plan.
+
+## Remote browser access
+
+Both services listen on all interfaces by default. Forward frontend port **5173** to play through its `/api` and `/ws` proxy; only this port needs a public browser URL. The authority defaults to **8787**. Use `ARENA_BIND_ADDR` (default `0.0.0.0`) and `ARENA_PORT` to change its listener, `ARENA_WEB_PORT` to change the frontend port, and `ARENA_PROXY_TARGET` to point the frontend at another HTTP(S) authority. The default proxy follows `ARENA_PORT`.
+
+Open the game menu → 联机大厅 → 服务器地址. Leave blank for the current website, or enter an HTTP(S) authority origin such as `https://server.example` and press 连接服务器. HTTPS automatically uses WSS. A page served over HTTPS needs an HTTPS authority when connecting directly. The address is saved locally; connecting reloads the page and restores only that server's session and expedition history. Existing blank-address sessions stay available when returning to the current website.

@@ -1,3 +1,4 @@
+import { serverStorageKey } from "./serverConnection";
 import type { Session, Snapshot } from "./types";
 
 export interface Expedition {
@@ -7,9 +8,9 @@ export interface Expedition {
   phase: Snapshot["phase"];
   updatedAt: number;
 }
-const key = "arena-expeditions";
+const key = () => serverStorageKey("arena-expeditions");
 export const readExpeditions = (): Expedition[] =>
-  JSON.parse(localStorage.getItem(key) || "[]");
+  JSON.parse(localStorage.getItem(key()) || "[]");
 
 export function rememberExpedition(session: Session, snapshot: Snapshot) {
   const entries = readExpeditions();
@@ -22,6 +23,6 @@ export function rememberExpedition(session: Session, snapshot: Snapshot) {
   if (previous) Object.assign(previous, entry);
   else entries.push(entry);
   entries.sort((left, right) => right.updatedAt - left.updatedAt);
-  localStorage.setItem(key, JSON.stringify(entries));
+  localStorage.setItem(key(), JSON.stringify(entries));
   return entries;
 }

@@ -1,3 +1,4 @@
+import ServerSettings from "./ServerSettings";
 import {
   BookOpen,
   Compass,
@@ -48,6 +49,7 @@ export default function LobbyDialog() {
         <p>
           训练局支持暂停与单步推进。联机局由服务器持续推进，同一编号的玩家共享战场。
         </p>
+        <ServerSettings />
         <div className="lobby-options">
           <button disabled={busy} onClick={() => void start("training")}>
             <Compass size={25} />
