@@ -32,13 +32,12 @@ impl Session {
         }
         // Enemy travel consumes exactly the same fixed-point path integrator.
         for enemy in &mut self.enemies {
-            if enemy.hp > 0 {
-                if let Some(room) =
+            if enemy.hp > 0
+                && let Some(room) =
                     crate::travel::advance_motion(&mut enemy.world_position, &mut enemy.travel)
-                {
-                    enemy.room_id = room;
-                    enemy.state = "guarding".into();
-                }
+            {
+                enemy.room_id = room;
+                enemy.state = "guarding".into();
             }
         }
         self.combat_tick();

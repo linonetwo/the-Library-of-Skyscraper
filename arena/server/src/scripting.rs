@@ -89,14 +89,18 @@ impl Session {
                 {
                     continue;
                 }
-                let result = if let crate::ScriptAction::Build { room_id, .. } = &intent.action {
-                    self.actor(&decision.player_id, &intent.actor_id)
-                        .and_then(|(_, actor)| {
-                            if actor.room_id != *room_id {
-                                return Err("builder must be in the target room".into());
-                            }
-                            self.apply_command(&decision.player_id, intent.command())
-                        })
+                let result = if let crate::ScriptAction::Build { room_id, kind } = &intent.action {
+                    if self.simulation_version >= 3 {
+                        self.build_with_actor(&decision.player_id, &intent.actor_id, room_id, kind)
+                    } else {
+                        self.actor(&decision.player_id, &intent.actor_id)
+                            .and_then(|(_, actor)| {
+                                if actor.room_id != *room_id {
+                                    return Err("builder must be in the target room".into());
+                                }
+                                self.apply_command(&decision.player_id, intent.command())
+                            })
+                    }
                 } else {
                     self.apply_command(&decision.player_id, intent.command())
                 };

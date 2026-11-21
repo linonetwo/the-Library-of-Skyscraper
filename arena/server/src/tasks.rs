@@ -146,11 +146,11 @@ impl Session {
         match task.kind.as_str() {
             "gather" => {
                 task.stage = "gathering".into();
-                if self.tick >= a.action_tick + crate::scenario::number("gatherIntervalTicks") {
-                    if let Err(e) = self.gather_playable(a) {
-                        task.blocked_reason = Some(e);
-                        task.stage = "blocked".into();
-                    }
+                if self.tick >= a.action_tick + crate::scenario::number("gatherIntervalTicks")
+                    && let Err(e) = self.gather_playable(a)
+                {
+                    task.blocked_reason = Some(e);
+                    task.stage = "blocked".into();
                 }
             }
             "build" => {

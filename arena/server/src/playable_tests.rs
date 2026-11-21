@@ -337,3 +337,76 @@ fn script_wait_holds_fire_manual_conflicts_and_attack_uses_one_cooldown() {
     s.advance_scripted(vec![]);
     assert_eq!(s.enemies[0].hp, 68);
 }
+
+#[test]
+fn restored_old_checkpoint_continues_export_and_timeline_consistently() {
+    let mut s = Session::new_legacy("old-chain".into(), Mode::Training, 42);
+    s.join("token".into()).unwrap();
+    for _ in 0..10 {
+        s.advance();
+    }
+    let mut checkpoint = serde_json::to_value(s.checkpoint()).unwrap();
+    for a in checkpoint["snapshot"]["actors"].as_array_mut().unwrap() {
+        a.as_object_mut().unwrap().remove("worldPosition");
+    }
+    let mut restored =
+        Session::from_checkpoint(serde_json::from_value(checkpoint).unwrap()).unwrap();
+    for _ in 0..10 {
+        restored.advance();
+    }
+    let replay = restored.export_replay().unwrap();
+    let mut rebuilt = Session::from_replay(&replay).unwrap();
+    assert_eq!(
+        serde_json::to_value(restored.snapshot()).unwrap(),
+        serde_json::to_value(rebuilt.snapshot()).unwrap()
+    );
+    let timeline = replay.timeline().unwrap();
+    assert_eq!(
+        serde_json::to_value(timeline.frames.last().unwrap().snapshot.clone()).unwrap(),
+        serde_json::to_value(restored.snapshot()).unwrap()
+    );
+}
+#[test]
+fn script_build_uses_specified_second_actor_and_preserves_first_task() {
+    let mut s = game();
+    s.players.get_mut("p1").unwrap().materials = 100;
+    task(&mut s, "gatherer", "gather", "room-1", None);
+    s.advance_scripted(vec![ScriptDecision {
+        player_id: "p1".into(),
+        source_hash: None,
+        memory_patch: None,
+        task_patches: None,
+        failure: None,
+        intents: vec![ScriptIntent {
+            actor_id: "p1-scout".into(),
+            priority: 10.,
+            action: ScriptAction::Build {
+                room_id: "room-0".into(),
+                kind: "tower".into(),
+            },
+        }],
+    }]);
+    assert_eq!(actor(&mut s, "scout").task.unwrap().kind, "build");
+    assert_eq!(actor(&mut s, "gatherer").task.unwrap().kind, "gather");
+}
+
+#[test]
+fn four_owners_have_twelve_distinct_legal_birth_slots() {
+    let mut s = Session::new("four".into(), Mode::Online, 42);
+    for i in 0..4 {
+        s.join(format!("token-{i}")).unwrap();
+    }
+    let actors = s.snapshot().actors;
+    assert_eq!(actors.len(), 12);
+    for (i, a) in actors.iter().enumerate() {
+        assert!(a.world_position.x.abs() <= 2.5 && a.world_position.y.abs() <= 2.5);
+        for b in &actors[i + 1..] {
+            assert!(
+                crate::travel::distance(a.world_position, b.world_position) >= 1000,
+                "{} overlaps {}",
+                a.id,
+                b.id
+            );
+        }
+    }
+}

@@ -58,25 +58,30 @@ impl Session {
                 name: names[i].into(),
                 kind: kinds[i].into(),
                 resources: if kinds[i] == "resource" {
-                    160 + (seed % 41) as u32
+                    crate::scenario::number("initialResourceBase") as u32
+                        + (seed % crate::scenario::number("initialResourceVariance")) as u32
                 } else {
                     0
                 },
-                enemy_hp: if i == 3 { 80 } else { 0 },
+                enemy_hp: if i == 3 {
+                    crate::scenario::number("enemyHp") as u32
+                } else {
+                    0
+                },
                 owner: None,
             })
             .collect();
         Self {
             simulation_version: 3,
             scenario: Scenario {
-                remaining_ticks: 960,
+                remaining_ticks: crate::scenario::number("durationTicks"),
                 ..Default::default()
             },
             enemies: vec![Enemy {
                 id: "guardian-1".into(),
                 room_id: "room-3".into(),
-                hp: 80,
-                max_hp: 80,
+                hp: crate::scenario::number("enemyHp") as u32,
+                max_hp: crate::scenario::number("enemyHp") as u32,
                 world_position: crate::travel::center("room-3"),
                 state: "guarding".into(),
                 action_tick: 0,
@@ -116,11 +121,19 @@ impl Session {
             Player {
                 id: id.clone(),
                 name: format!("司书 {}", self.players.len() + 1),
-                materials: if self.simulation_version >= 3 { 10 } else { 40 },
+                materials: if self.simulation_version >= 3 {
+                    crate::scenario::number("initialMaterials") as u32
+                } else {
+                    40
+                },
                 score: 0,
                 rule: Rule {
                     preset: "gather".into(),
-                    retreat_hp: if self.simulation_version >= 3 { 35 } else { 30 },
+                    retreat_hp: if self.simulation_version >= 3 {
+                        crate::scenario::number("retreatHp") as u32
+                    } else {
+                        30
+                    },
                 },
                 script: None,
             },
@@ -132,14 +145,18 @@ impl Session {
                 owner: id.clone(),
                 role: role.into(),
                 room_id: "room-0".into(),
-                hp: 100,
-                max_hp: 100,
+                hp: crate::scenario::number("actorHp") as u32,
+                max_hp: crate::scenario::number("actorHp") as u32,
                 state: "idle".into(),
                 cargo: 0,
-                cargo_capacity: if role == "gatherer" { 24 } else { 12 },
+                cargo_capacity: if role == "gatherer" {
+                    crate::scenario::number("gathererCapacity") as u32
+                } else {
+                    crate::scenario::number("actorCapacity") as u32
+                },
                 appearance: Appearance::for_role(role),
                 world_position: if self.simulation_version >= 3 {
-                    crate::travel::slot("room-0", role)
+                    crate::travel::slot("room-0", role, &id)
                 } else {
                     Position::default()
                 },
@@ -156,8 +173,8 @@ impl Session {
                     owner: id.clone(),
                     room_id: "room-0".into(),
                     kind: kind.into(),
-                    hp: 100,
-                    max_hp: 100,
+                    hp: crate::scenario::number("actorHp") as u32,
+                    max_hp: crate::scenario::number("actorHp") as u32,
                     construction_ticks: 0,
                     required_ticks: 0,
                 });
@@ -186,14 +203,26 @@ impl Session {
         let mut query = self.world.query::<&Actor>();
         let mut actors: Vec<_> = query.iter(&self.world).cloned().collect();
         actors.sort_by(|a, b| a.id.cmp(&b.id));
+        if self.simulation_version < 3 {
+            for a in &mut actors {
+                a.world_position = crate::travel::center(&a.room_id);
+            }
+        }
         Snapshot {
             simulation_version: self.simulation_version,
             map_version: if self.simulation_version >= 3 {
-                "library-v3".into()
+                crate::travel::world_map()["version"]
+                    .as_str()
+                    .unwrap()
+                    .into()
             } else {
                 String::new()
             },
-            tick_duration_ms: if self.simulation_version >= 3 { 500 } else { 0 },
+            tick_duration_ms: if self.simulation_version >= 3 {
+                crate::scenario::number("tickDurationMs") as u32
+            } else {
+                0
+            },
             world_map: if self.simulation_version >= 3 {
                 crate::travel::world_map().clone()
             } else {
