@@ -9,6 +9,12 @@ impl Session {
         self.scenario.report.materials_delivered += amount;
         a.cargo = 0;
         a.state = "delivering".into();
+        a.action_cue = crate::ActionCue::new(
+            "deliver",
+            self.tick,
+            2,
+            Some(crate::travel::center(&a.room_id)),
+        );
         self.event(
             "deliver",
             format!("{} 入库 {amount} 建材", a.id),
@@ -42,6 +48,12 @@ impl Session {
         a.cargo += n;
         a.action_tick = self.tick;
         a.state = "gathering".into();
+        a.action_cue = crate::ActionCue::new(
+            "gather",
+            self.tick,
+            4,
+            Some(crate::travel::center(&a.room_id)),
+        );
         self.event(
             "gather",
             format!(
@@ -155,6 +167,11 @@ impl Session {
             }
             "build" => {
                 let kind = task.building_kind.as_deref().unwrap_or("catalog");
+                crate::travel::approach(
+                    &mut a.world_position,
+                    crate::travel::build_anchor(&a.room_id, kind),
+                    750,
+                );
                 if self.buildings.iter().any(|b| {
                     b.owner == a.owner
                         && b.room_id == a.room_id

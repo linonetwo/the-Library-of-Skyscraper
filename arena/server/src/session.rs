@@ -78,6 +78,7 @@ impl Session {
                 ..Default::default()
             },
             enemies: vec![Enemy {
+                action_cue: None,
                 id: "guardian-1".into(),
                 room_id: "room-3".into(),
                 hp: crate::scenario::number("enemyHp") as u32,
@@ -141,6 +142,7 @@ impl Session {
         self.tokens.insert(token, id.clone());
         for role in ["scout", "gatherer", "guard"] {
             self.world.spawn(Actor {
+                action_cue: None,
                 id: format!("{id}-{role}"),
                 owner: id.clone(),
                 role: role.into(),
@@ -169,6 +171,7 @@ impl Session {
         if self.simulation_version >= 3 {
             for kind in ["core", "warehouse"] {
                 self.buildings.push(Building {
+                    world_position: crate::travel::build_anchor("room-0", kind),
                     id: format!("{id}-base-{kind}"),
                     owner: id.clone(),
                     room_id: "room-0".into(),
@@ -249,7 +252,17 @@ impl Session {
             rooms: self.rooms.clone(),
             players: self.players.values().cloned().collect(),
             actors,
-            buildings: self.buildings.clone(),
+            buildings: self
+                .buildings
+                .iter()
+                .cloned()
+                .map(|mut b| {
+                    if self.simulation_version < 3 {
+                        b.world_position = crate::travel::center(&b.room_id);
+                    }
+                    b
+                })
+                .collect(),
             events: self.events.clone(),
             result: self.result.clone(),
         }

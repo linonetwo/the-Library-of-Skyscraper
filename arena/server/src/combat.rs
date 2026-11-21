@@ -23,6 +23,13 @@ impl Session {
         }) as u32;
         let e = &mut self.enemies[target];
         e.hp = e.hp.saturating_sub(dmg);
+        e.action_cue = crate::ActionCue::new(
+            if e.hp == 0 { "down" } else { "hit" },
+            self.tick,
+            if e.hp == 0 { 0 } else { 1 },
+            Some(a.world_position),
+        );
+        a.action_cue = crate::ActionCue::new("attack", self.tick, 2, Some(e.world_position));
         e.state = if e.hp == 0 { "downed" } else { "fighting" }.into();
         let id = e.id.clone();
         a.action_tick = self.tick;
@@ -106,6 +113,14 @@ impl Session {
                     self.enemies[i].action_tick = self.tick;
                     let dmg = crate::scenario::number("enemyDamage") as u32;
                     a.hp = a.hp.saturating_sub(dmg);
+                    self.enemies[i].action_cue =
+                        crate::ActionCue::new("attack", self.tick, 2, Some(a.world_position));
+                    a.action_cue = crate::ActionCue::new(
+                        if a.hp == 0 { "down" } else { "hit" },
+                        self.tick,
+                        if a.hp == 0 { 0 } else { 1 },
+                        Some(self.enemies[i].world_position),
+                    );
                     self.event(
                         "damage",
                         format!(
@@ -138,7 +153,7 @@ impl Session {
                     .collect();
                 bs.sort_by(|a, b| a.1.cmp(&b.1).then_with(|| a.2.cmp(&b.2)));
                 if let Some((j, _, _)) = bs.first() {
-                    let p = crate::travel::center(&self.buildings[*j].room_id);
+                    let p = self.buildings[*j].world_position;
                     crate::travel::approach(&mut self.enemies[i].world_position, p, 1800);
                     if self.tick
                         >= self.enemies[i].action_tick
@@ -176,13 +191,17 @@ impl Session {
             for b in towers {
                 if let Some(e) = self.enemies.iter_mut().find(|e| {
                     e.hp > 0
-                        && crate::travel::distance(
-                            e.world_position,
-                            crate::travel::center(&b.room_id),
-                        ) <= crate::scenario::number("towerRange") * 1000
+                        && crate::travel::distance(e.world_position, b.world_position)
+                            <= crate::scenario::number("towerRange") * 1000
                 }) {
                     let dmg = crate::scenario::number("towerDamage") as u32;
                     e.hp = e.hp.saturating_sub(dmg);
+                    e.action_cue = crate::ActionCue::new(
+                        if e.hp == 0 { "down" } else { "hit" },
+                        self.tick,
+                        if e.hp == 0 { 0 } else { 1 },
+                        Some(b.world_position),
+                    );
                     self.event(
                         "tower-attack",
                         format!("{} 防御射击 {dmg}伤害", b.id),

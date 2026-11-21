@@ -144,6 +144,7 @@ impl Session {
                 }
                 p.materials -= 25;
                 self.buildings.push(Building {
+                    world_position: Default::default(),
                     hp: 0,
                     max_hp: 0,
                     construction_ticks: 0,

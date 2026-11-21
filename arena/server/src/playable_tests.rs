@@ -461,3 +461,52 @@ fn explicit_props_clear_roads_slots_and_central_interaction_space() {
         }
     }
 }
+
+#[test]
+fn tower_and_enemy_use_building_anchor_for_range_and_attack() {
+    let mut s = game();
+    s.players.get_mut("p1").unwrap().materials = 100;
+    s.ensure_site("p1", "room-1", "tower").unwrap();
+    let idx = s.buildings.iter().position(|b| b.kind == "tower").unwrap();
+    s.buildings[idx].construction_ticks = s.buildings[idx].required_ticks;
+    let anchor = s.buildings[idx].world_position;
+    assert_eq!(anchor, crate::travel::build_anchor("room-1", "tower"));
+    s.enemies[0].room_id = "room-1".into();
+    s.enemies[0].world_position = Position {
+        x: anchor.x + 4.001,
+        y: anchor.y,
+    };
+    s.enemies[0].travel = Some(Travel {
+        travel_id: "range-test".into(),
+        target_room_id: "room-1".into(),
+        path: vec![s.enemies[0].world_position, anchor],
+        segment: 0,
+        distance_milli: 0,
+        total_distance_milli: 4001,
+        started_tick: 0,
+        speed_milli_per_tick: 750,
+        progress: 0.,
+    });
+    s.tick = 4;
+    s.combat_tick();
+    assert_eq!(s.enemies[0].hp, 80);
+    s.enemies[0].world_position = Position {
+        x: anchor.x + 4.,
+        y: anchor.y,
+    };
+    s.tick = 8;
+    s.combat_tick();
+    assert_eq!(s.enemies[0].hp, 74);
+    s.enemies[0].world_position = Position {
+        x: anchor.x + 1.9,
+        y: anchor.y,
+    };
+    s.enemies[0].travel = None;
+    s.tick = 12;
+    s.combat_tick();
+    assert_eq!(s.buildings[idx].hp, 112);
+    assert_eq!(
+        s.enemies[0].action_cue.as_ref().unwrap().target_position,
+        Some(anchor)
+    );
+}

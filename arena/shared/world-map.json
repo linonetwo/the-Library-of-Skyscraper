@@ -1,5 +1,5 @@
 {
-  "version": "library-v3.1",
+  "version": "library-v3.2",
   "units": "tile",
   "rooms": [
     {
@@ -258,5 +258,23 @@
         "depth": 1
       }
     }
-  ]
+  ],
+  "buildOffsets": {
+    "tower": {
+      "x": 1.5,
+      "y": 1
+    },
+    "catalog": {
+      "x": -1.5,
+      "y": 1
+    },
+    "warehouse": {
+      "x": 1.5,
+      "y": -1
+    },
+    "core": {
+      "x": -1.5,
+      "y": -1
+    }
+  }
 }
