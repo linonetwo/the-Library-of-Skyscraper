@@ -6,16 +6,14 @@ test("Monaco compiles and V8 previews a rule against a paused authoritative snap
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
-  await openMenu(page, '训练控制');
-  await page.getByRole("button", { name: "重置训练局" }).click();
   await stepTraining(page);
   await openMenu(page, '行动规则');
   await page.getByRole("button", { name: "编写 TypeScript 规则 →" }).click();
   await expect(page.getByRole("textbox", { name: "TypeScript规则源码" })).toBeVisible({ timeout: 20000 });
+  await page.getByLabel("载入规则模板").selectOption("gather");
   await page.getByRole("button", { name: "试跑当前快照" }).click();
   await expect(page.getByRole("region", { name: "脚本运行结果" })).toContainText("动作意图 3 条", { timeout: 20000 });
   await expect(page.getByRole("region", { name: "脚本运行结果" })).toContainText("T1 · V8");
-  await page.screenshot({ path: testInfo.outputPath("script-preview.png") });
   const input = page.getByRole("textbox", { name: "TypeScript规则源码" });
   await input.focus();
   await page.keyboard.press("ControlOrMeta+a");

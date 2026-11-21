@@ -36,3 +36,13 @@ mod script_versions_tests;
 mod scripting_tests;
 #[cfg(test)]
 mod tests;
+
+mod combat;
+mod construction;
+mod legacy_commands;
+mod legacy_simulation;
+#[cfg(test)]
+mod playable_tests;
+mod scenario;
+mod tasks;
+mod travel;

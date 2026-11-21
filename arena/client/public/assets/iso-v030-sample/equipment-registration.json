@@ -1,0 +1,103 @@
+{
+  "status": "prototype",
+  "releaseApproved": false,
+  "sourcePoseOnly": true,
+  "walkApproved": false,
+  "source": "arena/art/source/iso-v030-scholar-ivory-sample.png",
+  "sourceSha256": "af39726174227e0f4bd8e92f0876fcead0093749b02b37d997edcfeccb3c12b1",
+  "promptSha256": "5970c9f1e4660fddf7dd12010dae903532b4f28f1b8de6d464dd7ce180191ebd",
+  "generator": "GPT Image 2 via text-only proxy-imagegen; first attempt successful, no repeat success",
+  "layers": [
+    "hair-ivory-back",
+    "body",
+    "outfit-scholar",
+    "body-front",
+    "hair-ivory-front"
+  ],
+  "cell": [
+    192,
+    192
+  ],
+  "renderScale": 1,
+  "records": [
+    {
+      "direction": "NE",
+      "layer": "outfit-scholar",
+      "crop": [
+        176,
+        72,
+        344,
+        524
+      ],
+      "scale": 0.122,
+      "at": [
+        76,
+        74
+      ]
+    },
+    {
+      "direction": "NE",
+      "layer": "hair-ivory",
+      "crop": [
+        688,
+        96,
+        440,
+        408
+      ],
+      "scale": 0.105,
+      "at": [
+        74,
+        38
+      ]
+    },
+    {
+      "direction": "SW",
+      "layer": "outfit-scholar",
+      "crop": [
+        160,
+        672,
+        368,
+        528
+      ],
+      "scale": 0.122,
+      "at": [
+        75,
+        75
+      ]
+    },
+    {
+      "direction": "SW",
+      "layer": "hair-ivory",
+      "crop": [
+        688,
+        696,
+        448,
+        432
+      ],
+      "scale": 0.105,
+      "at": [
+        73,
+        38
+      ]
+    }
+  ],
+  "collarOpeningMasks": [
+    {
+      "cx": 355,
+      "cy": 108,
+      "rx": 45,
+      "ry": 12
+    },
+    {
+      "cx": 335,
+      "cy": 720,
+      "rx": 43,
+      "ry": 22
+    }
+  ],
+  "pending": [
+    "Independent front/back camera and garment fit review",
+    "Product layer-mask review",
+    "Rig attachment adaptation"
+  ]
+}

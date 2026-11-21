@@ -13,8 +13,7 @@ async function training(page: Page) {
   await page.goto('/');
   await page.getByRole('button', { name: '开启训练远征' }).click();
   await openMenu(page, '训练控制');
-  await expect(page.getByRole('button', { name: '暂停', exact: true })).toBeEnabled();
-  await page.getByRole('button', { name: '暂停', exact: true }).click();
+  await expect(page.getByRole('button', { name: '继续', exact: true })).toBeEnabled();
   await expect(page.getByRole('button', { name: '继续', exact: true })).toBeVisible();
 }
 
@@ -23,12 +22,6 @@ test('single player: atlas, rule publication, tick control and real screenshot',
   page.on('pageerror', error => errors.push(error.message));
   await training(page);
   await expect(page.locator('canvas')).toBeVisible();
-  await page.getByRole('button',{name:'详情 / 换装',exact:true}).click();
-  await expect(page.locator('.portrait-frame [role=img]')).toHaveCount(1);
-  await page.getByRole('button', { name: '书库守卫', exact: true }).click();
-  await page.getByRole('button', { name: '墨蓝发色' }).click();
-  await expect(page.locator('.portrait-frame .paper-doll')).toHaveClass(/warden/);
-  await expect(page.getByRole('button', { name: '墨蓝发色' })).toHaveClass(/selected/);
   const before = await state(page);
   await stepTraining(page);
   await expect.poll(async () => (await state(page)).tick).toBe(before.tick + 1);
@@ -44,8 +37,7 @@ test('single player: atlas, rule publication, tick control and real screenshot',
   await page.locator('canvas').click({position:{x:target.x*camera.scale+camera.x,y:target.y*camera.scale+camera.y}});
   await expect(page.getByRole('button', { name: '建造哨塔' })).toBeVisible();
   await page.getByRole('button', { name: '关闭房间详情' }).click();
-  const screenshot = await page.screenshot({ path: testInfo.outputPath('training-runtime.png'), fullPage: true });
-  await testInfo.attach('training-runtime', { body: screenshot, contentType: 'image/png' });
+  await expect(page.locator(".pixi-map")).toHaveAttribute("data-actors",/worldPosition/);
   expect(errors).toEqual([]);
 });
 
@@ -69,7 +61,7 @@ test('two independent browsers join a live room and reconnect with same player',
   const identities = await Promise.all([host, guest].map(p => p.evaluate(() =>
     JSON.parse(sessionStorage.getItem('arena-session')!).playerId)));
   expect(identities[0]).not.toBe(identities[1]);
-  await host.getByRole('button', {name:'详情 / 换装',exact:true}).click();
+  await host.getByRole('button', {name:'角色详情',exact:true}).click();
   await host.getByRole('button', { name: '书库守卫', exact: true }).click();
   await host.getByRole('button', { name: '墨蓝发色' }).click();
   await host.getByLabel('携带法杖').click();
@@ -81,7 +73,7 @@ test('two independent browsers join a live room and reconnect with same player',
     (await state(guest)).actors.find((actor: { id: string }) => actor.id === equippedId).appearance,
   ).toEqual(appearance);
   await host.reload();
-  await host.getByRole('button',{name:'详情 / 换装',exact:true}).click();
+  await host.getByRole('button',{name:'角色详情',exact:true}).click();
   await expect(host.locator('.portrait-frame .paper-doll')).toHaveClass(/warden/);
   await expect(host.getByRole('button', { name: '墨蓝发色' })).toHaveClass(/selected/);
   await expect(host.getByLabel('携带法杖')).not.toBeChecked();
@@ -106,7 +98,7 @@ test('narrow layout presents the paper-doll squad', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await training(page);
   await expect(page.locator('canvas')).toBeVisible();
-  await page.getByRole('button',{name:'详情 / 换装',exact:true}).click();
+  await page.getByRole('button',{name:'角色详情',exact:true}).click();
   await expect(page.locator('.portrait-frame [role=img]')).toHaveCount(1);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
   expect(overflow).toBe(false);

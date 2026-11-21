@@ -1,6 +1,6 @@
 # Arena MCP (stdio)
 
-Requires Node 22+ and the Rust authority on `127.0.0.1:8787`.
+Requires Node 22+ and a running Rust authority (default `127.0.0.1:8787`).
 
 ```sh
 cd arena/tools
@@ -10,7 +10,7 @@ npm start
 
 Configure an MCP client with command `node` and absolute argument
 `/path/to/the-Library-of-Skyscraper/arena/tools/server.mjs`.
-Optional `ARENA_BASE_URL` accepts a plain HTTP loopback origin only. Redirects are
+Optional `ARENA_BASE_URL` accepts an HTTP or HTTPS authority origin, including public servers. URL credentials, paths, queries and fragments are rejected. Redirects are
 disabled. Standard output is reserved for official SDK protocol messages.
 
 Twenty-two tools expose CDP-style domains: `Session.create`, `Session.join`,
@@ -42,7 +42,7 @@ holds position. `Script.disable({handle})` resumes the player's action preset.
 ticks, preserving the other players' rule choices.
 
 Browser control is optional and isolated from simulation handles. It launches
-headless Chromium at `http://127.0.0.1:5173`. It supports
+headless Chromium at `ARENA_UI_URL` (default `http://127.0.0.1:5173`). This is independent of `ARENA_BASE_URL`; configure the game UI’s server address through its existing settings. It supports
 training/lobby navigation, selecting actors/rooms, outfits/hair/staff, rules,
 map zoom and player commands. `Page.getState` reads rendered body text and visible
 button labels. `Page.captureScreenshot` returns PNG image content directly via
@@ -98,3 +98,24 @@ operation indexes, so resets with repeated ticks remain unambiguous.
 `Page.captureScreenshot` 可直接捕获当前工坊。原竞技场换装动作保持原用途。
 
 真实 stdio 浏览器验证：`ARENA_BROWSER=1 node --test ../tests/workshop-browser.test.mjs`。
+
+For a candidate: `ARENA_UI_URL=http://127.0.0.1:5175 ARENA_BASE_URL=http://127.0.0.1:8790 npm start`.
+
+`Simulation.command` accepts `{type:"task",actorId,kind,target,buildingKind?}`;
+kind is `gather`, `build`, `guard`, or `return`, target is the room ID, and build
+requires `warehouse`, `tower`, or `catalog`. The authority enforces task rules.
+`Input.action` accepts `{action:{type,...}}`.
+Use `selectActor({role})`, then `assignTask({kind,target,buildingKind?})` to click
+the visible task and destination controls. `startExpedition`, `pauseExpedition`,
+`stepTraining`, and `retryExpedition` use the normal UI buttons. Retry is available
+at settlement and keeps the seed. Training-only controls stay unavailable online.
+`setRule` publishes through the visible rules editor, preserving arbitrary 0–100 thresholds. A select-only UI accepts only its listed thresholds. `Simulation.command` rule accepts optional `assignTasks`; true publishes the preset’s tasks, while the default false preserves manual tasks when adjusting thresholds.
+`Page.getState.expedition` reads the visible objective, squad/tasks, selected actor
+travel summary, available targets and settlement report. It never reads browser
+session credentials. No tool accepts arbitrary JavaScript, shell or navigation.
+
+Candidate integration check (keeps the existing 180-second browser budget):
+`ARENA_EXPEDITION_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5176 ARENA_BASE_URL=http://127.0.0.1:8791 node --test ../tests/expedition-mcp-browser.test.mjs`.
+This checks three tasks via UI, start/pause, travel and one UI step, then uses a
+separate private Simulation handle for settlement and same-seed reset. It does
+not claim to verify clicking the browser’s settlement retry button.

@@ -1,0 +1,11 @@
+import { chromium } from '@playwright/test';
+const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://127.0.0.1:5175');await page.getByRole('button',{name:'开启训练远征',exact:true}).click();
+await page.locator('canvas').waitFor();await page.waitForTimeout(1500);
+await page.screenshot({path:'/home/user/arena-v030-playable-evidence/client/hud-preparation.png',fullPage:true});
+await page.getByRole('button',{name:'选择采撷师',exact:true}).click();await page.locator('.task-targets button').first().click();
+await page.getByRole('button',{name:'选择守卷人',exact:true}).click();await page.getByRole('button',{name:'护卫编目',exact:true}).click();await page.locator('.task-targets button').filter({hasText:'★'}).click();
+await page.getByRole('button',{name:'选择巡书使',exact:true}).click();await page.getByRole('button',{name:'建设',exact:true}).click();await page.locator('.task-targets button').filter({hasText:'★'}).click();
+await page.screenshot({path:'/home/user/arena-v030-playable-evidence/client/hud-assigned.png',fullPage:true});
+console.log(JSON.stringify({errors,body:await page.locator('.game-hud').innerText()}));await browser.close();

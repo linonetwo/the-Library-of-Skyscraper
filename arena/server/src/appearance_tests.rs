@@ -1,7 +1,8 @@
+// These assertions preserve the historical v0.2 timing/economy for old recordings.
 use super::*;
 
 fn session() -> Session {
-    let mut session = Session::new("wardrobe".into(), Mode::Online, 42);
+    let mut session = Session::new_legacy("wardrobe".into(), Mode::Online, 42);
     session.join("first".into()).unwrap();
     session.join("second".into()).unwrap();
     session

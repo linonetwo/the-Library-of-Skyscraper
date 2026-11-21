@@ -1,0 +1,87 @@
+{
+  "id": "first-expedition",
+  "targetRoomId": "room-3",
+  "catalogGoal": 60,
+  "durationTicks": 960,
+  "tickDurationMs": 500,
+  "speedMilliPerTick": 750,
+  "gatherIntervalTicks": 4,
+  "gatherAmount": 4,
+  "constructionTicks": 16,
+  "initialMaterials": 10,
+  "buildingCosts": {
+    "warehouse": 20,
+    "tower": 25,
+    "catalog": 25
+  },
+  "buildingHp": {
+    "warehouse": 100,
+    "tower": 120,
+    "catalog": 100,
+    "core": 100
+  },
+  "combatIntervalTicks": 4,
+  "guardDamage": 12,
+  "actorDamage": 4,
+  "enemyDamage": 8,
+  "enemyHp": 80,
+  "attackRange": 2,
+  "towerRange": 4,
+  "towerDamage": 6,
+  "healIntervalTicks": 2,
+  "healAmount": 4,
+  "recoverHp": 80,
+  "counterattackProgress": 30,
+  "counterattackDelayTicks": 20,
+  "actorHp": 100,
+  "gathererCapacity": 24,
+  "actorCapacity": 12,
+  "retreatHp": 35,
+  "initialResourceBase": 160,
+  "initialResourceVariance": 41,
+  "presetTasks": {
+    "gather": {
+      "gatherer": {
+        "kind": "gather",
+        "target": "room-1"
+      },
+      "guard": {
+        "kind": "guard",
+        "target": "room-3"
+      },
+      "scout": {
+        "kind": "build",
+        "target": "room-3",
+        "buildingKind": "catalog"
+      }
+    },
+    "defend": {
+      "gatherer": {
+        "kind": "guard",
+        "target": "room-0"
+      },
+      "guard": {
+        "kind": "guard",
+        "target": "room-0"
+      },
+      "scout": {
+        "kind": "guard",
+        "target": "room-0"
+      }
+    },
+    "explore": {
+      "gatherer": {
+        "kind": "gather",
+        "target": "room-4"
+      },
+      "guard": {
+        "kind": "guard",
+        "target": "room-3"
+      },
+      "scout": {
+        "kind": "guard",
+        "target": "room-6"
+      }
+    }
+  }
+}

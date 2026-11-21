@@ -1,0 +1,21 @@
+Use case: stylized-concept
+Asset type: complete independent limb attachments for an offline 2D skeletal paper-doll game rig, NOT a whole character and NOT an animation sheet.
+
+Create ONE clean 1536x1024 transparent sprite source sheet with exactly FOUR columns and TWO rows, eight separated attachments. Each cell contains just ONE complete limb, with generous empty margin. No head, body, face, mannequin, torso, text, label, grid, floor, shadows, weapon or accessories. Use genuine transparent alpha, otherwise plain white.
+
+Same compact FOUR-HEAD adult anime adventurer anatomy, warm fair skin, plain dark-brown short ankle boots on legs, charcoal shorts upper-thigh cuff at the top of each leg. Warm dark outline and restrained painted cel shading. Not pixel art, not photorealistic, not giant muscular realistic limbs. Retain clean rounded connection surfaces at shoulder/hip caps and enough overlapping skin around elbows/knees so a rigger can separate segments without holes.
+
+Fixed camera in every cell: orthographic yaw45 degrees, elevation30 degrees ABOVE horizontal looking down, same camera as a 128x64 2:1 diamond floor. Top surfaces of shoulders, boot insteps and joint caps are visible. The camera does NOT move between rows.
+
+TOP ROW character heading is NE: the person would face screen UPPER RIGHT, away from viewer, rear three-quarter. BOTTOM ROW heading is SW: person would face screen LOWER LEFT, toward viewer, front three-quarter. Rotate the underlying limb in world space, not the whole image. Do NOT mirror one row to make the other.
+
+Columns in EACH ROW:
+1: COMPLETE anatomical LEFT ARM from rounded shoulder cap through upper arm, elbow, forearm, wrist, relaxed open hand and individual fingers.
+2: COMPLETE anatomical RIGHT ARM with the same physical segment lengths, separately drawn for this direction's correct visible surfaces.
+3: COMPLETE anatomical LEFT LEG from hip cap / charcoal shorts cuff through full thigh, knee, full shin, ankle and brown ankle boot.
+4: COMPLETE anatomical RIGHT LEG with the same physical segment lengths, separately drawn for this direction's correct visible surfaces.
+
+CRITICAL POSE/LENGTH: This is a NEUTRAL RIGGING SOURCE, NOT walking. Both legs hang vertically extended with a tiny natural knee relaxation only; both boots flat on the same imaginary ground, parallel to the character heading. Do not lift, cross, hide or bend one leg toward camera. Every thigh and every shin must be fully visible, complete and nearly equal projected length between left/right, suitable for either leg to become the planted support limb. No strong perspective foreshortening, no far leg reduced to half length. A physical thigh is about 0.35m and shin about 0.32m, ankle/boot about 0.08m; physical scale intended for a 1.7m four-head character. At the final 128x64 tile scale a complete extended leg will be roughly 58px tall before stride changes.
+Arms hang down and 15 degrees outward from the side with elbows nearly straight (about 10 degrees bend); hands relaxed. Complete shoulder-to-hand length about 0.55m. Arms should be shorter than the complete legs at the SAME scale, not enlarged to fill their cells.
+
+Important: only the intended limb in each cell. No neighboring body pieces or opposite limb. Do not crop toes/fingers/connection caps. All eight attachments use consistent physical scale, skin tone, boot design, world lighting from upper-left and line weight. No cast shadows; isolated clean sprite edges.

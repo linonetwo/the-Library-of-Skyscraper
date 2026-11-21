@@ -1,13 +1,16 @@
+import { expeditionActionSchemas, performExpeditionAction, readExpeditionState } from './browser-expedition.mjs';
+import { serviceOrigin } from './origins.mjs';
 import { mapActionSchemas, performMapAction, readMapState } from './browser-map.mjs';
 import { z } from 'zod';
 import { workshopActionSchemas, performWorkshopAction, readWorkshopState } from './browser-workshop.mjs';
 
 // Local game UI adapter. Actions share the player's visible controls.
-const uiURL = 'http://127.0.0.1:5173';
+const uiURL = serviceOrigin(process.env.ARENA_UI_URL ?? 'http://127.0.0.1:5173', 'ARENA_UI_URL');
 export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
+    ...expeditionActionSchemas,
     ...workshopActionSchemas,
     ...mapActionSchemas,
     ...['openReplay', 'closeReplay', 'playReplay', 'pauseReplay', 'locateReplayTaskSource', 'startTraining', 'resetTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'openScriptHistory', 'loadScriptVersion', 'restoreScriptVersion', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
@@ -53,7 +56,7 @@ export function registerBrowserTools(server) {
       }
     });
   }
-  register('Page.open', 'Open Arena at 127.0.0.1:5173 in headless Chromium.', {}, async () => {
+  register('Page.open', 'Open the configured ARENA_UI_URL in headless Chromium.', {}, async () => {
     await close();
     const { chromium } = await import('playwright');
     browser = await chromium.launch({ headless: true });
@@ -88,10 +91,11 @@ export function registerBrowserTools(server) {
       memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
       tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
     } : null;
-    return { maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    return { expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
-  register('Input.action', 'Control training, characters, outfits, TypeScript editing/publication, rules and gameplay through the UI.', { action: actionSchema }, async ({ action }) => {
+  const perform = async ({ action }) => {
     const active = current();
+    if (await performExpeditionAction(active, action)) return { performed: action.type };
     if (await performMapAction(active, action)) return { performed: action.type };
     if (await performWorkshopAction(active, action)) return { performed: action.type };
     const click = name => active.getByRole('button', { name, exact: true }).click();
@@ -100,7 +104,10 @@ export function registerBrowserTools(server) {
       await click(name);
     };
     const details = async () => {
-      if (!await active.locator('.character-drawer').isVisible()) await click('详情 / 换装');
+      if (!await active.locator('.character-drawer').isVisible()) {
+        const detailsButton = active.getByRole('button', { name: '角色详情', exact: true });
+        await (await detailsButton.isVisible() ? detailsButton : active.getByRole('button', { name: '详情 / 换装', exact: true })).click();
+      }
     };
     if (['chooseOutfit', 'chooseHair', 'toggleStaff', 'attack', 'capture'].includes(action.type)) await details();
     switch (action.type) {
@@ -203,7 +210,13 @@ export function registerBrowserTools(server) {
         await menu('行动规则');
         await active.locator('.presets button').nth(['gather', 'defend', 'explore'].indexOf(action.preset)).click();
         const range = active.getByRole('slider', { name: /生命值撤退阈值/ });
-        await range.fill(String(action.retreatHp));
+        if (await range.isVisible()) await range.fill(String(action.retreatHp));
+        else {
+          const threshold = active.getByRole('combobox', { name: '撤退阈值', exact: true });
+          const values = await threshold.locator('option').evaluateAll(options => options.map(option => option.value));
+          if (!values.includes(String(action.retreatHp))) throw new Error('Retreat threshold is not available in this UI');
+          await threshold.selectOption(String(action.retreatHp));
+        }
         await active.getByRole('button', { name: /确认并发布规则/ }).click();
         break;
       }
@@ -215,7 +228,8 @@ export function registerBrowserTools(server) {
       case 'capture': await click('编目'); break;
     }
     return { performed: action.type };
-  });
+  };
+  register('Input.action', 'Perform a typed action through visible game controls.', { action: actionSchema }, perform);
   register('Page.captureScreenshot', 'Capture the current 1440×1000 game viewport as a PNG MCP image.', {},
     () => current().screenshot({ type: 'png', animations: 'disabled' }), true, true);
   register('Page.close', 'Close the isolated browser and discard its temporary session credentials.', {}, close);

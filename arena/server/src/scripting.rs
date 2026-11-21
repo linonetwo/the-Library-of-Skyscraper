@@ -13,7 +13,22 @@ impl Session {
     }
 
     pub(crate) fn set_script_metadata(&mut self, owner: &str, script: Option<ScriptMetadata>) {
+        if script.is_some() && self.simulation_version >= 3 {
+            let entities: Vec<_> = self
+                .world
+                .query::<(bevy_ecs::prelude::Entity, &crate::Actor)>()
+                .iter(&self.world)
+                .filter(|(_, a)| a.owner == owner)
+                .map(|(e, _)| e)
+                .collect();
+            for e in entities {
+                self.world.get_mut::<crate::Actor>(e).unwrap().task = None;
+            }
+        }
         self.players.get_mut(owner).unwrap().script = script.clone();
+        if script.is_none() {
+            self.apply_preset(owner);
+        }
         self.event(
             "script",
             if script.is_some() {
@@ -77,14 +92,18 @@ impl Session {
                 {
                     continue;
                 }
-                let result = if let crate::ScriptAction::Build { room_id, .. } = &intent.action {
-                    self.actor(&decision.player_id, &intent.actor_id)
-                        .and_then(|(_, actor)| {
-                            if actor.room_id != *room_id {
-                                return Err("builder must be in the target room".into());
-                            }
-                            self.apply_command(&decision.player_id, intent.command())
-                        })
+                let result = if let crate::ScriptAction::Build { room_id, kind } = &intent.action {
+                    if self.simulation_version >= 3 {
+                        self.build_with_actor(&decision.player_id, &intent.actor_id, room_id, kind)
+                    } else {
+                        self.actor(&decision.player_id, &intent.actor_id)
+                            .and_then(|(_, actor)| {
+                                if actor.room_id != *room_id {
+                                    return Err("builder must be in the target room".into());
+                                }
+                                self.apply_command(&decision.player_id, intent.command())
+                            })
+                    }
                 } else {
                     self.apply_command(&decision.player_id, intent.command())
                 };

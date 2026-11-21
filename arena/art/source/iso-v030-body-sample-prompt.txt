@@ -1,0 +1,21 @@
+Use case: stylized-concept
+Asset type: independent base-body sprite sheet for a modular isometric anime game paper doll, camera/proportion validation sample, NOT a complete dressed character and NOT a scene.
+
+Produce ONE clean landscape sprite sheet, ideally 1536x1024, exactly four columns and two rows (8 full-body sprites total). Uniform pure white background, no labels, no grid lines, no objects, no shadows, no floor. Each sprite is centered in its own equal rectangle with ample white margin; no overlapping or cropped hands/feet.
+
+The SAME compact adult anime adventurer base mannequin appears in every cell. Four-head anatomy is essential: anatomical skull crown to chin is ONE unit and crown to sole is exactly FOUR units before camera projection; generous rounded adult-anime head, compact torso and compact legs, NOT a normal 6-to-8-head fashion model and NOT a toddler. Warm fair skin, dark brown eyes, bald skull to expose the camera angle. Fitted charcoal sleeveless undershirt, fitted plain charcoal shorts ending at upper-mid thigh, simple dark brown ankle boots. No hair, no outer garment, no armor, no robe, no weapon, no jewelry, no bag. Modest practical fully covered base model. Restrained warm dark outlines, crisp readable cel/painterly shading, illustrated game sprite, not pixel art and not photorealism.
+
+CRITICAL CAMERA: fixed orthographic camera looking DOWN at the ground from 30 degrees ABOVE the horizontal, world yaw 45 degrees, the classic 2:1 diamond floor camera. All 8 sprites use exactly this elevated camera, not an eye-level character turnaround. Clearly see the curved TOP of the bald skull, the TOP planes of shoulders, and boot insteps. Head partly occludes the far shoulder/upper torso because we look down. Far limbs occlude naturally behind the body. Body verticals remain vertical; do not tilt the whole person or vertically squash an eye-level portrait. The imaginary ground X/Y axes project with screen slopes +0.5 and -0.5, and every foot sole sits on that same imaginary ground. Entity height is 1.7 world meters, world tile=1m; intended runtime vertical projection about 133px against 128x64 ground tile.
+
+ROW 1: walking toward screen upper-right (NE), moving away from the viewer, rear three-quarter view. Face is mostly hidden, near side of head may show a small cheek/ear. Hips, shoulders, boots all point along that ground-plane direction.
+ROW 2: walking toward screen lower-left (SW), moving toward the viewer, front three-quarter view. Face visible from above, head top/near shoulder tops visible. Hips, shoulders, boots point along that ground-plane direction.
+Do not confuse screen NE with a frontal view. The two rows are opposite headings through the same fixed camera; rotate the body in world space, do not change the camera.
+
+In EACH ROW the FOUR COLUMNS are distinct natural WALK phases:
+1. Left foot forward contacting ground with heel, right foot behind pushing off with toe; right arm slightly forward.
+2. Left foot planted under hip, right leg bent passing forward with toe lifted; arms near passing.
+3. Right foot forward contacting ground with heel, left foot behind pushing off with toe; left arm slightly forward.
+4. Right foot planted under hip, left leg bent passing forward with toe lifted; arms near passing.
+This is relaxed walking, not running: no flight pose, no high knees, no exaggerated lunges, no arms raised. Opposite arms swing modestly and hands stay relaxed/open, separated enough from torso to register as a future foreground paper-doll layer. Keep head/face/body identity and segment lengths exactly the same across all frames. Let natural small head bob and perspective foreshortening remain; do not force all moving soles into one row.
+
+Lighting: soft upper-left world light, consistent throughout, warm controlled palette; no dramatic rim light or bloom. Render only the requested eight isolated base-body sprites. No text, watermark, charts, diamonds, architecture, existing outfits or complete game screenshot.

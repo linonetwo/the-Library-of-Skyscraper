@@ -1,29 +1,31 @@
 use crate::{ReplayOperation, Session, types::*};
 use bevy_ecs::prelude::Entity;
-
 impl Session {
-    fn owned_actor(&mut self, owner: &str, id: &str) -> Result<(Entity, Actor), String> {
-        let (entity, actor) = self
+    pub(crate) fn owned_actor(&mut self, owner: &str, id: &str) -> Result<(Entity, Actor), String> {
+        let (e, a) = self
             .world
             .query::<(Entity, &Actor)>()
             .iter(&self.world)
             .find(|(_, a)| a.id == id)
             .map(|(e, a)| (e, a.clone()))
             .ok_or("actor not found")?;
-        if actor.owner != owner {
+        if a.owner != owner {
             return Err("actor ownership denied".into());
         }
-        Ok((entity, actor))
+        Ok((e, a))
     }
     pub(crate) fn actor(&mut self, owner: &str, id: &str) -> Result<(Entity, Actor), String> {
-        let (entity, actor) = self.owned_actor(owner, id)?;
-        if actor.hp == 0 {
+        let (e, a) = self.owned_actor(owner, id)?;
+        if a.hp == 0 {
             return Err("actor downed".into());
+        }
+        if a.travel.is_some() {
+            return Err("actor travelling; interactions require arrival".into());
         }
         if self.manual_actions.get(id) == Some(&self.tick) {
             return Err("actor already acted this tick".into());
         }
-        Ok((entity, actor))
+        Ok((e, a))
     }
     pub(crate) fn room_index(&self, id: &str) -> Result<usize, String> {
         self.rooms
@@ -32,8 +34,21 @@ impl Session {
             .ok_or("room not found".into())
     }
     pub fn command(&mut self, owner: &str, command: Command) -> Result<(), String> {
-        // Record only accepted operations. Internal Step ticks and Reset joins
-        // deliberately use unrecorded paths to avoid replaying them twice.
+        if self.simulation_version >= 3
+            && self.players.get(owner).is_some_and(|p| p.script.is_some())
+            && matches!(
+                command,
+                Command::Task { .. }
+                    | Command::Move { .. }
+                    | Command::Gather { .. }
+                    | Command::Deliver { .. }
+                    | Command::Attack { .. }
+                    | Command::Capture { .. }
+                    | Command::Build { .. }
+            )
+        {
+            return Err("TypeScript驱动小队，请先停用脚本再下达手动任务".into());
+        }
         let recorded = command.clone();
         self.apply_command(owner, command)?;
         self.record_operation(ReplayOperation::Command {
@@ -43,152 +58,144 @@ impl Session {
         Ok(())
     }
     pub(crate) fn apply_command(&mut self, owner: &str, command: Command) -> Result<(), String> {
+        if self.simulation_version < 3 {
+            return self.legacy_apply_command(owner, command);
+        }
         if !self.players.contains_key(owner) {
             return Err("player not found".into());
         }
-        if matches!(
-            command,
-            Command::Pause { .. } | Command::Step { .. } | Command::Reset {}
-        ) && self.mode != Mode::Training
-        {
-            return Err("debug commands require training session".into());
-        }
         if self.result.is_some() && !matches!(command, Command::Reset {}) {
-            return Err("session settled; reset training or create a new session".into());
+            return Err("session settled; reset to retry same seed".into());
         }
-        let action_actor = match &command {
-            Command::Move { actor_id, .. }
-            | Command::Gather { actor_id }
-            | Command::Deliver { actor_id }
-            | Command::Attack { actor_id }
-            | Command::Capture { actor_id } => Some(actor_id.clone()),
-            _ => None,
-        };
         match command {
-            Command::Equip {
+            Command::Task {
                 actor_id,
-                appearance,
+                kind,
+                target,
+                building_kind,
             } => {
-                let (entity, mut actor) = self.owned_actor(owner, &actor_id)?;
-                actor.appearance = appearance;
-                self.world.entity_mut(entity).insert(actor);
-                self.event("equip", format!("{actor_id} 更新了装束"), Some(owner));
-            }
-            Command::Pause { paused } => self.paused = paused,
-            Command::Step { ticks } => {
-                self.validate_step(ticks)?;
-                for _ in 0..ticks {
-                    self.advance_unrecorded();
+                self.room_index(&target)?;
+                if !["gather", "build", "guard", "return"].contains(&kind.as_str()) {
+                    return Err("invalid task kind".into());
                 }
+                if kind == "build"
+                    && !matches!(
+                        building_kind.as_deref(),
+                        Some("warehouse" | "tower" | "catalog")
+                    )
+                {
+                    return Err("buildingKind required: warehouse, tower or catalog".into());
+                }
+                let (e, mut a) = self.owned_actor(owner, &actor_id)?;
+                if a.hp == 0 {
+                    return Err("actor downed".into());
+                }
+                if let Some(t) = &a.travel {
+                    if a.task.as_ref().is_some_and(|task| {
+                        task.kind == kind
+                            && task.target == target
+                            && task.building_kind == building_kind
+                    }) {
+                        return Ok(());
+                    }
+                    return Err(format!(
+                        "travel in progress to {}; assign task after arrival",
+                        t.target_room_id
+                    ));
+                }
+                a.task = Some(ActorTask {
+                    kind,
+                    target,
+                    stage: "queued".into(),
+                    blocked_reason: None,
+                    building_kind,
+                });
+                self.world.entity_mut(e).insert(a);
             }
-            Command::Reset {} => {
-                let tokens = self.tokens.clone();
-                let scripts = std::mem::take(&mut self.scripts);
-                let script_versions = std::mem::take(&mut self.script_versions);
-                let metadata: Vec<_> = self
-                    .players
-                    .iter()
-                    .map(|(id, player)| (id.clone(), player.script.clone()))
+            Command::Move { actor_id, room_id } => {
+                self.room_index(&room_id)?;
+                let (e, mut a) = self.owned_actor(owner, &actor_id)?;
+                crate::travel::start(&mut a, &room_id, self.tick)?;
+                a.task = None;
+                self.world.entity_mut(e).insert(a);
+            }
+            Command::Gather { actor_id } => {
+                let (e, mut a) = self.actor(owner, &actor_id)?;
+                if self.tick < a.action_tick + crate::scenario::number("gatherIntervalTicks") {
+                    return Err("gather cooldown".into());
+                }
+                self.gather_playable(&mut a)?;
+                self.world.entity_mut(e).insert(a);
+            }
+            Command::Deliver { actor_id } => {
+                let (e, mut a) = self.actor(owner, &actor_id)?;
+                if a.cargo == 0
+                    || a.travel.is_some()
+                    || self.deposit_anchor(owner, &a.room_id).is_none()
+                {
+                    return Err("delivery requires cargo after arrival".into());
+                }
+                a.pending_delivery = true;
+                self.world.entity_mut(e).insert(a);
+            }
+            Command::Attack { actor_id } => {
+                let (e, mut a) = self.actor(owner, &actor_id)?;
+                self.actor_attack(&mut a)?;
+                self.world.entity_mut(e).insert(a);
+            }
+            Command::Capture { actor_id } => {
+                let (e, mut a) = self.actor(owner, &actor_id)?;
+                a.task = Some(ActorTask {
+                    kind: "guard".into(),
+                    target: a.room_id.clone(),
+                    stage: "guarding".into(),
+                    blocked_reason: None,
+                    building_kind: None,
+                });
+                self.world.entity_mut(e).insert(a);
+            }
+            Command::Build { room_id, kind } => {
+                let mut candidates: Vec<_> = self
+                    .world
+                    .query::<(Entity, &Actor)>()
+                    .iter(&self.world)
+                    .filter(|(_, a)| {
+                        a.owner == owner && a.room_id == room_id && a.hp > 0 && a.travel.is_none()
+                    })
+                    .map(|(e, a)| (e, a.clone()))
                     .collect();
-                let operations = std::mem::take(&mut self.replay_operations);
-                let overflowed = self.replay_overflowed;
-                *self = Self::new(self.id.clone(), self.mode, self.seed);
-                for token in tokens.keys() {
-                    self.join(token.clone())?;
-                }
-                self.replay_operations = operations;
-                self.replay_overflowed = overflowed;
-                self.scripts = scripts;
-                self.script_versions = script_versions;
-                for (id, script) in metadata {
-                    self.players.get_mut(&id).unwrap().script = script;
-                }
-                self.paused = true;
+                candidates.sort_by(|a, b| a.1.id.cmp(&b.1.id));
+                let (e, mut a) = candidates
+                    .into_iter()
+                    .next()
+                    .ok_or("builder must be present, alive and stationary")?;
+                self.ensure_site(owner, &room_id, &kind)?;
+                a.task = Some(ActorTask {
+                    kind: "build".into(),
+                    target: room_id,
+                    stage: "construction".into(),
+                    blocked_reason: None,
+                    building_kind: Some(kind),
+                });
+                self.world.entity_mut(e).insert(a);
             }
-            Command::Rule { preset, retreat_hp } => {
+            Command::Rule {
+                preset,
+                retreat_hp,
+                assign_tasks,
+            } => {
                 if !["gather", "defend", "explore"].contains(&preset.as_str()) || retreat_hp > 100 {
                     return Err("invalid preset or retreatHp (0..100)".into());
                 }
                 self.players.get_mut(owner).unwrap().rule = Rule { preset, retreat_hp };
-                self.players.get_mut(owner).unwrap().script = None;
-                self.scripts.remove(owner);
-                self.event("rule", "行动规则已发布".into(), Some(owner));
-            }
-            Command::Move { actor_id, room_id } => {
-                let (entity, mut actor) = self.actor(owner, &actor_id)?;
-                let target = self.room_index(&room_id)?;
-                let from = self.room_index(&actor.room_id)?;
-                let a = &self.rooms[from];
-                let b = &self.rooms[target];
-                let distance =
-                    ((a.q - b.q).abs() + (a.r - b.r).abs() + ((a.q + a.r) - (b.q + b.r)).abs()) / 2;
-                if distance > 1 {
-                    return Err("target must be an adjacent room".into());
+                if assign_tasks {
+                    self.players.get_mut(owner).unwrap().script = None;
+                    self.scripts.remove(owner);
+                    self.apply_preset(owner);
+                    self.event("rule", "预设已发布为实际岗位任务".into(), Some(owner));
                 }
-                actor.room_id = room_id;
-                actor.state = "moving".into();
-                self.world.entity_mut(entity).insert(actor);
-                self.event(
-                    "move",
-                    format!("{actor_id} 前往 {}", self.rooms[target].name),
-                    Some(owner),
-                );
             }
-            Command::Gather { actor_id } => {
-                let (e, a) = self.actor(owner, &actor_id)?;
-                self.gather(e, a)?;
-            }
-            Command::Deliver { actor_id } => {
-                let (e, a) = self.actor(owner, &actor_id)?;
-                self.deliver(e, a)?;
-            }
-            Command::Attack { actor_id } => {
-                let (e, a) = self.actor(owner, &actor_id)?;
-                self.attack(e, a)?;
-            }
-            Command::Capture { actor_id } => {
-                let (_, a) = self.actor(owner, &actor_id)?;
-                self.capture(&a)?;
-            }
-            Command::Build { room_id, kind } => {
-                if !["tower", "catalog"].contains(&kind.as_str()) {
-                    return Err("invalid building kind".into());
-                }
-                let idx = self.room_index(&room_id)?;
-                if self.rooms[idx].enemy_hp > 0 {
-                    return Err("clear hostiles before building".into());
-                }
-                let present = self
-                    .world
-                    .query::<&Actor>()
-                    .iter(&self.world)
-                    .any(|a| a.owner == owner && a.room_id == room_id && a.hp > 0);
-                if !present {
-                    return Err("owned actor must be in room".into());
-                }
-                if self
-                    .buildings
-                    .iter()
-                    .any(|b| b.room_id == room_id && b.kind == kind)
-                {
-                    return Err("building already exists".into());
-                }
-                let p = self.players.get_mut(owner).unwrap();
-                if p.materials < 25 {
-                    return Err("need 25 materials".into());
-                }
-                p.materials -= 25;
-                self.buildings.push(Building {
-                    id: format!("building-{}", self.buildings.len() + 1),
-                    owner: owner.into(),
-                    room_id,
-                    kind,
-                });
-                self.event("build", "消耗 25 建材，建筑完工".into(), Some(owner));
-            }
-        }
-        if let Some(actor_id) = action_actor {
-            self.manual_actions.insert(actor_id, self.tick);
+            other => self.legacy_apply_command(owner, other)?,
         }
         Ok(())
     }

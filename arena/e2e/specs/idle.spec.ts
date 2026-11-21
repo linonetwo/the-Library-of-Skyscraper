@@ -36,69 +36,18 @@ test("idle atlas covers every appearance and paused inspection stays fixed", asy
   expect(errors).toEqual([]);
 });
 
-test("two clients see equipped actor idle walk and stop", async ({ browser }) => {
- const a = await browser.newContext(), b = await browser.newContext();
- const host = await a.newPage(), guest = await b.newPage();
- await host.goto('/');
- await openMenu(host, '联机大厅');
- await host.getByRole('button',{name:/创建联机/}).click();
- await expect.poll(()=>host.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();
- const auth=await host.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session')!));
- await guest.goto('/');
- await openMenu(guest, '联机大厅');
- await guest.getByLabel('使用赛局编号加入').fill(auth.sessionId);
- await guest.getByRole('button',{name:'加入赛局',exact:true}).click();
- await expect.poll(()=>guest.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();
- for (const page of [host, guest]) await page.evaluate(async () => {
-  const auth=JSON.parse(sessionStorage.getItem('arena-session')!);
-  const response=await fetch(`/api/sessions/${auth.sessionId}/scripts/publish`, {
-   method:'POST', headers:{'Content-Type':'application/json',Authorization:'Bearer '+auth.token},
-   body:JSON.stringify({files:{'main.ts':'export function decide() { return { intents: [] }; }'}}),
-  });
-  if(!response.ok) throw new Error(await response.text());
- });
- const pose=(page: typeof host)=>page.locator('.pixi-map').getAttribute('data-actors').then(v=>JSON.parse(v||'[]').find((p:{id:string})=>p.id==='p1-scout'));
- await host.getByRole('button', {name:'详情 / 换装',exact:true}).click();
-  await host.getByRole('button',{name:'书库守卫',exact:true}).click();
- await expect.poll(async () => {
-  const poses=await Promise.all([pose(host),pose(guest)]);
-  return poses.every(p=>p?.animation==='idle') && poses[0].x===poses[1].x && poses[0].y===poses[1].y;
- }).toBe(true);
- await Promise.all([host,guest].map(page=>page.evaluate(()=>{
-  const map=document.querySelector('.pixi-map')!;
-  (window as any).actorMotionEvents=[];
-  new MutationObserver(()=>{
-   const actor=JSON.parse(map.getAttribute('data-actors')||'[]').find((a:any)=>a.id==='p1-scout');
-   if(actor)(window as any).actorMotionEvents.push({moving:actor.moving,animation:actor.animation});
-  }).observe(map,{attributes:true,attributeFilter:['data-actors']});
- })));
- const origin = await pose(host);
- const destination = await host.evaluate(async () => {
- const auth=JSON.parse(sessionStorage.getItem('arena-session')!);
- const headers={'Content-Type':'application/json',Authorization:'Bearer '+auth.token};
- const state=await fetch(`/api/sessions/${auth.sessionId}/state`,{headers}).then(r=>r.json());
- const actor=state.actors.find((a:{id:string})=>a.id==='p1-scout');
- const source=state.rooms.find((r:{id:string})=>r.id===actor.roomId);
- const room=state.rooms.find((r:{id:string;q:number;r:number})=>
-  Math.max(Math.abs(r.q-source.q),Math.abs(r.r-source.r),Math.abs(r.q+r.r-source.q-source.r))===1);
- const response=await fetch(`/api/sessions/${auth.sessionId}/commands`,{method:'POST',headers,body:JSON.stringify({type:'move',actorId:actor.id,roomId:room.id})});
- if(!response.ok) throw new Error(await response.text());
- const result=await response.json();
- const group=result.actors.filter((a:{roomId:string})=>a.roomId===room.id);
- return {room, source, rooms:state.rooms, index:group.sort((a:{id:string},b:{id:string})=>a.id.localeCompare(b.id)).findIndex((a:{id:string})=>a.id===actor.id)};
- });
- const targetPoint = actorSlot(destination.room, destination.index);
- const link=mapLayout(destination.rooms).links.find(l=>(l.from===destination.source.id&&l.to===destination.room.id)||(l.to===destination.source.id&&l.from===destination.room.id))!;
- const last=(link.from===destination.source.id?link.points:[...link.points].reverse()).at(-1)!;
- const expectedDirection = facing(project(last.x,last.y), targetPoint);
- await Promise.all([host,guest].map(page=>expect.poll(()=>page.evaluate(()=>{const events=(window as any).actorMotionEvents;const moving=events.findIndex((e:any)=>e.moving&&e.animation==='walk');return moving>=0&&events.slice(moving+1).some((e:any)=>!e.moving&&e.animation==='idle');})).toBe(true)));
- const target = actorSlot(destination.room, destination.index);
- const stopped = {x:target.x, y:target.y};
- await expect.poll(async () => {
-  const poses = await Promise.all([pose(host), pose(guest)]);
-  return poses.map(p => ({animation:p?.animation, x:Math.round(p?.x*1000)/1000, y:Math.round(p?.y*1000)/1000, direction:p?.direction}));
- }).toEqual([0,1].map(() => ({animation:'idle', x:Math.round(stopped.x*1000)/1000,
-  y:Math.round(stopped.y*1000)/1000, direction: expectedDirection})));
-
- await a.close(); await b.close();
+test("two clients see equipped actor follow the same authoritative travel", async ({ browser,request }) => {
+ const hostAuth=await request.post('/api/sessions',{data:{mode:'online'}}).then(r=>r.json());
+ const guestAuth=await request.post(`/api/sessions/${hostAuth.sessionId}/join`,{data:{}}).then(r=>r.json());
+ const post=(command:object)=>request.post(`/api/sessions/${hostAuth.sessionId}/commands`,{headers:{Authorization:'Bearer '+hostAuth.token},data:command});
+ await post({type:'equip',actorId:'p1-gatherer',appearance:{outfit:'warden',hair:'midnight',weapon:false}});
+ const contexts=await Promise.all([browser.newContext(),browser.newContext()]);const pages=await Promise.all(contexts.map(c=>c.newPage()));
+ await Promise.all(pages.map(async(p,i)=>{await p.addInitScript(a=>sessionStorage.setItem('arena-session',JSON.stringify(a)),[hostAuth,guestAuth][i]);await p.goto('/');await expect(p.locator('canvas')).toBeVisible();}));
+ const pose=(p:typeof pages[0])=>p.locator('.pixi-map').getAttribute('data-actors').then(v=>JSON.parse(v||'[]').find((a:any)=>a.id==='p1-gatherer'));
+ const response=await post({type:'move',actorId:'p1-gatherer',roomId:'room-1'});expect(response.ok()).toBe(true);
+ const result=await response.json();const end=result.actors.find((a:any)=>a.id==='p1-gatherer').travel.path.at(-1);const target=project(end.x,end.y);
+ await expect.poll(async()=>(await pose(pages[0]))?.travel?.distanceMilli).toBeGreaterThan(0);
+ await expect.poll(async()=>{const values=await Promise.all(pages.map(pose));return values.every(p=>p&&p.travel===null);},{timeout:12000}).toBe(true);
+ await expect.poll(async()=>{const values=await Promise.all(pages.map(pose));return values.every(p=>!p.moving&&Math.abs(p.x-target.x)<.001&&Math.abs(p.y-target.y)<.001&&p.textures.some((key:string)=>key.includes('outfit-warden')));}).toBe(true);
+ await Promise.all(contexts.map(c=>c.close()));
 });

@@ -6,17 +6,33 @@ const ScriptWorkbench = lazy(() => import("./ScriptWorkbench"));
 
 export default function RuleEditor() {
   const [coding, setCoding] = useState(false);
-  const { command, preset, setPreset, threshold, setThreshold, player, ready, session } =
-    useArena();
-  if (coding) return <Suspense fallback={<p>正在加载规则工作台…</p>}>
-    <ScriptWorkbench key={`${session?.sessionId}:${session?.playerId}`} onBack={() => setCoding(false)} />
-  </Suspense>;
+  const {
+    command,
+    preset,
+    setPreset,
+    threshold,
+    setThreshold,
+    player,
+    ready,
+    session,
+  } = useArena();
+  if (coding)
+    return (
+      <Suspense fallback={<p>正在加载规则工作台…</p>}>
+        <ScriptWorkbench
+          key={`${session?.sessionId}:${session?.playerId}`}
+          onBack={() => setCoding(false)}
+        />
+      </Suspense>
+    );
 
   return (
     <div className="rule-editor">
       <span className="eyebrow">AUTONOMOUS DOCTRINE</span>
       <h2>把意图交给小队。</h2>
-      <button className="text-button" onClick={() => setCoding(true)}>编写 TypeScript 规则 →</button>
+      <button className="text-button" onClick={() => setCoding(true)}>
+        编写 TypeScript 规则 →
+      </button>
       <p>
         角色依照已发布的行动规则自主探索、采集与守卫。调整策略，观察每一步的真实结果。
       </p>
@@ -63,15 +79,20 @@ export default function RuleEditor() {
           {player?.script
             ? `TS · ${player.script.sourceHash.slice(0, 12)} · 发布预设后切换`
             : player
-            ? `${presetNames[player.rule.preset]} · 低于 ${player.rule.retreatHp}% 生命值撤退`
-            : "尚未创建赛局"}
+              ? `${presetNames[player.rule.preset]} · 低于 ${player.rule.retreatHp}% 生命值撤退`
+              : "尚未创建赛局"}
         </span>
       </div>
       <button
         className="primary wide"
         disabled={!ready}
         onClick={() =>
-          void command({ type: "rule", preset, retreatHp: threshold })
+          void command({
+            type: "rule",
+            preset,
+            retreatHp: threshold,
+            assignTasks: true,
+          })
         }
       >
         确认并发布规则 <ArrowUpRight size={16} />

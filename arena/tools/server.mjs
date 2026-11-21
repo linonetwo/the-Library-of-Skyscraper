@@ -4,24 +4,22 @@ import { z } from 'zod';
 import { randomUUID } from 'node:crypto';
 import { registerBrowserTools } from './browser.mjs';
 
-// No arbitrary URLs, JavaScript execution, shell execution, or token disclosure.
-const base = new URL(process.env.ARENA_BASE_URL ?? 'http://127.0.0.1:8787');
-if (base.protocol !== 'http:' || !['localhost', '127.0.0.1', '[::1]'].includes(base.hostname)
-    || base.username || base.password || base.pathname !== '/' || base.search || base.hash) {
-  throw new Error('ARENA_BASE_URL must be a plain HTTP loopback origin');
-}
+import { serviceOrigin } from './origins.mjs';
+
+const base = serviceOrigin(process.env.ARENA_BASE_URL ?? 'http://127.0.0.1:8787', 'ARENA_BASE_URL');
 const sessions = new Map();
 const server = new McpServer({ name: 'skyscraper-arena', version: '0.1.0' });
 const identifier = z.string().min(1).max(128);
 const handleSchema = { handle: identifier.describe('Opaque local handle returned by Session.create/join; not a player credential.') };
 const commandSchema = z.discriminatedUnion('type', [
+  z.object({ type: z.literal('task'), actorId: identifier, target: identifier, kind: z.enum(['gather', 'build', 'guard', 'return']), buildingKind: z.enum(['warehouse', 'tower', 'catalog']).optional() }).strict(),
   z.object({ type: z.literal('equip'), actorId: identifier, appearance: z.object({
     outfit: z.enum(['scholar', 'warden']), hair: z.enum(['ivory', 'midnight']), weapon: z.boolean(),
   }).strict() }).strict(),
   z.object({ type: z.literal('move'), actorId: identifier, roomId: identifier }).strict(),
   ...['gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type), actorId: identifier }).strict()),
   z.object({ type: z.literal('build'), roomId: identifier, kind: z.enum(['tower', 'catalog']) }).strict(),
-  z.object({ type: z.literal('rule'), preset: z.enum(['gather', 'defend', 'explore']), retreatHp: z.number().int().min(0).max(100) }).strict(),
+  z.object({ type: z.literal('rule'), preset: z.enum(['gather', 'defend', 'explore']), retreatHp: z.number().int().min(0).max(100), assignTasks: z.boolean().optional() }).strict(),
 ]);
 async function request(path, body, token) {
   const response = await fetch(new URL(path, base), {
@@ -70,7 +68,7 @@ function tool(name, description, inputSchema, run, readOnly = false) {
       // Fixed SDK/API messages only, no stack or credentials on stdout.
       const message = error.message?.startsWith('Arena authority rejected')
         || error.message?.startsWith('Unknown session handle')
-        ? error.message : 'Arena request failed; check the local authority is running';
+        ? error.message : 'Arena request failed; check the configured authority is running';
       return { isError: true, content: [{ type: 'text', text: message }] };
     }
   });

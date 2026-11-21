@@ -50,6 +50,9 @@ test('official MCP initialize, tools/list, tools/call and private credentials', 
   assert.equal(tools.tools.find(tool => tool.name === 'Script.getVersion').annotations.readOnlyHint, true);
   assert.equal(tools.tools.find(tool => tool.name === 'Script.rollback').annotations.readOnlyHint, false);
   assert(tools.tools.find(tool => tool.name === 'Simulation.step').description.includes('Online'));
+  const commands = tools.tools.find(tool => tool.name === 'Simulation.command').inputSchema.properties.command;
+  assert(JSON.stringify(commands).includes('assignTasks'));
+
   const created = await call(connection.client, 'Session.create', { mode: 'training', seed: 42 });
   assert.equal(created.playerId, 'p1');
   assert.equal(created.token, undefined);
@@ -91,9 +94,15 @@ test('official MCP initialize, tools/list, tools/call and private credentials', 
   assert.equal(requests.at(-1).path, '/api/sessions/session-1/scripts/state');
   assert.equal(requests.at(-1).auth, 'Bearer PRIVATE_TEST_TOKEN');
   assert.equal(requests.at(-1).body, null);
+  for (const kind of ['gather', 'build', 'guard', 'return']) {
+    const command = { type: 'task', actorId: 'p1-scout', kind, target: 'room-3', ...(kind === 'build' ? { buildingKind: 'warehouse' } : {}) };
+    await call(connection.client, 'Simulation.command', { handle: created.handle, command });
+    assert.deepEqual(requests.at(-1).body, command);
+  }
+
 });
-test('MCP refuses remote origins and URL credentials before transport starts', async () => {
-  for (const baseURL of ['https://example.com', 'http://example.com', 'http://user:secret@localhost:8787', 'http://localhost:8787/api']) {
+test('MCP refuses non-HTTP URLs and URL credentials before transport starts', async () => {
+  for (const baseURL of ['file:///tmp/arena', 'ftp://example.com', 'http://user:secret@localhost:8787', 'http://localhost:8787/api']) {
     const child = spawn(process.execPath, [fileURLToPath(new URL('../tools/server.mjs', import.meta.url))], {
       env: { ...process.env, ARENA_BASE_URL: baseURL }, stdio: ['pipe', 'pipe', 'pipe'],
     });
@@ -104,4 +113,10 @@ test('MCP refuses remote origins and URL credentials before transport starts', a
     assert.notEqual(code, 0);
     assert.equal(output, '');
   }
+});
+
+test('configured origins support public HTTP and HTTPS without leaking credentials in errors', async () => {
+  const { serviceOrigin } = await import('../tools/origins.mjs');
+  for (const value of ['https://arena.example.com', 'http://arena.example.com:8787']) assert.equal(serviceOrigin(value, 'ARENA_BASE_URL'), value);
+  assert.throws(() => serviceOrigin('http://user:SECRET@example.com', 'ARENA_BASE_URL'), error => !error.message.includes('SECRET'));
 });
