@@ -8,6 +8,8 @@ export type MapProps = {
   samplePose?: "NE" | "SW";
   sampleOutfit?: boolean;
   sampleHair?: boolean;
+  sampleWalk?: boolean;
+  sampleFrameMs?: number;
   selected: string | null;
   selectedRoom: string | null;
   zoom: number;

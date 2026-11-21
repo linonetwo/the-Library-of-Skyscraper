@@ -14,6 +14,8 @@ export class ActorView {
   samplePose?: "NE" | "SW";
   sampleOutfit = false;
   sampleHair = false;
+  sampleWalk = false;
+  sampleFrameMs = 125;
   private doll = new Container();
   private shadow = new Graphics()
     .ellipse(0, 1, 18, 9)
@@ -183,14 +185,17 @@ export class ActorView {
         .lineTo(40, -85)
         .stroke({ color: 0xf3d28a, width: 3 });
     const action = pose.moving ? "walk" : "idle";
+    const sampleFrame = this.sampleWalk
+      ? Math.floor(simNow / this.sampleFrameMs) % 4
+      : 0;
     const key = this.samplePose
-      ? `${this.samplePose}/00`
+      ? `${this.samplePose}/${String(sampleFrame).padStart(2, "0")}`
       : `${pose.direction}/${String(pose.frame).padStart(2, "0")}`;
     if (
-      `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}` !==
+      `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}/${this.sampleWalk}` !==
       this.frameKey
     ) {
-      this.frameKey = `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}`;
+      this.frameKey = `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}/${this.sampleWalk}`;
       const layers = this.samplePose
         ? [
             ...(this.sampleHair ? ["hair-ivory-back"] : []),
@@ -211,7 +216,9 @@ export class ActorView {
         sprite.visible = index < layers.length;
         if (!sprite.visible) return;
         sprite.texture = this.samplePose
-          ? this.textures.idle[`sample/${layers[index]}/${this.samplePose}/00`]
+          ? this.textures.idle[
+              `${this.sampleWalk ? "walk" : "sample"}/${layers[index]}/${key}`
+            ]
           : this.textures[action][`${action}/${layers[index]}/${key}`];
         sprite.scale.set(this.samplePose ? 1 : 136 / sprite.texture.height);
       });

@@ -80,6 +80,23 @@ export default function GameHUD() {
             己方倒地 {downed.length} · {roleNames[downed[0].role]}
           </button>
         )}
+        {snapshot.mode === "training" &&
+          snapshot.paused &&
+          snapshot.tick === 0 &&
+          !player?.script && (
+            <button
+              onClick={() =>
+                void command({
+                  type: "rule",
+                  preset: "gather",
+                  retreatHp: player?.rule.retreatHp ?? 35,
+                  assignTasks: true,
+                })
+              }
+            >
+              推荐分工
+            </button>
+          )}
         <span className="hud-risk">
           {snapshot?.scenario?.counterattackSpawned
             ? "反扑已至"

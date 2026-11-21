@@ -28,6 +28,13 @@ export default function CameraSample() {
   const [direction, setDirection] = useState<"NE" | "SW">("SW");
   const [outfit, setOutfit] = useState(false),
     [hair, setHair] = useState(false);
+  const [walk, setWalk] = useState(false);
+  const [frameMs, setFrameMs] = useState(125);
+  useEffect(() => {
+    void fetch("/assets/iso-v030-walk-study/pose.json")
+      .then((r) => r.json())
+      .then((p) => setFrameMs(p.directions.NE.poses[0].durationMs));
+  }, []);
   const [tick, setTick] = useState(0);
   const [moving, setMoving] = useState(false);
   useEffect(() => {
@@ -35,7 +42,8 @@ export default function CameraSample() {
     const timer = setInterval(() => setTick((t) => t + 1), 500);
     return () => clearInterval(timer);
   }, [moving]);
-  const x = Math.min(8, tick * 0.75);
+  const distance = Math.min(8, tick * 0.75);
+  const y = direction === "NE" ? 8 - distance : distance;
   const snapshot: Snapshot = {
     sessionId: "camera-sample",
     mode: "training",
@@ -50,7 +58,7 @@ export default function CameraSample() {
       version: "camera-sample",
       rooms: [
         { id: "sample-a", center: { x: 0, y: 0 }, floorHalfSize: 1 },
-        { id: "sample-b", center: { x: 8, y: 0 }, floorHalfSize: 1 },
+        { id: "sample-b", center: { x: 0, y: 8 }, floorHalfSize: 1 },
       ],
       props: [
         {
@@ -64,7 +72,7 @@ export default function CameraSample() {
           id: "v",
           roomId: "sample-b",
           asset: "bookcase-v",
-          position: { x: 9, y: -1 },
+          position: { x: 1, y: 7 },
           footprint: { width: 1, depth: 1 },
         },
       ],
@@ -74,7 +82,7 @@ export default function CameraSample() {
           to: "sample-b",
           points: [
             { x: 0, y: 0 },
-            { x: 8, y: 0 },
+            { x: 0, y: 8 },
           ],
         },
       ],
@@ -87,7 +95,7 @@ export default function CameraSample() {
         owner: "sample",
         role: "scout",
         roomId: "sample-a",
-        worldPosition: { x, y: 0 },
+        worldPosition: { x: 0, y },
         hp: 100,
         maxHp: 100,
         cargo: 0,
@@ -116,6 +124,8 @@ export default function CameraSample() {
         samplePose={direction}
         sampleOutfit={outfit}
         sampleHair={hair}
+        sampleWalk={walk}
+        sampleFrameMs={frameMs}
         selected="camera-pose"
         selectedRoom={null}
         zoom={1}
@@ -140,7 +150,15 @@ export default function CameraSample() {
           />
           象牙白发
         </label>
-        <strong>相机样板 · 固定源姿势（尚非行走动画）</strong>
+        <label>
+          <input
+            type="checkbox"
+            checked={walk}
+            onChange={(e) => setWalk(e.target.checked)}
+          />
+          两向步态候选
+        </label>
+        <strong>相机样板 · 独立美术候选（未发布）</strong>
         <span>45° / 30° · 1格=1m · 人高1.7m · renderScale 1</span>
         <button onClick={() => setDirection((d) => (d === "NE" ? "SW" : "NE"))}>
           {direction} 切换
