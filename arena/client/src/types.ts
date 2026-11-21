@@ -20,6 +20,9 @@ export type ActionCue = {
 };
 export interface Actor {
   actionCue?: ActionCue | null;
+  impactCue?: ActionCue | null;
+  motionDistanceMilli?: number;
+  lastMoveDirection?: WorldPoint;
   worldPosition?: WorldPoint;
   travel?: null | {
     travelId: string;
@@ -36,6 +39,7 @@ export interface Actor {
     kind: TaskKind;
     target: string;
     stage: string;
+    stageStartedTick?: number;
     blockedReason: string | null;
     buildingKind?: BuildingKind | null;
   };
@@ -98,6 +102,9 @@ export interface Snapshot {
   };
   enemies?: {
     actionCue?: ActionCue | null;
+    impactCue?: ActionCue | null;
+    motionDistanceMilli?: number;
+    lastMoveDirection?: WorldPoint;
     id: string;
     roomId: string;
     hp: number;

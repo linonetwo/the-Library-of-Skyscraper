@@ -1,13 +1,7 @@
 import { animationFrame } from "./animationCatalog";
 export type Point = { x: number; y: number };
-export type Direction = "S" | "SW" | "W" | "NW" | "N" | "NE" | "E" | "SE";
-const compass: Direction[] = ["E", "SE", "S", "SW", "W", "NW", "N", "NE"];
-export function facing(from: Point, to: Point): Direction {
-  const sector = Math.round(
-    Math.atan2(to.y - from.y, to.x - from.x) / (Math.PI / 4),
-  );
-  return compass[(sector + 8) % 8];
-}
+import { facing, type Direction } from "./directions";
+export { facing, type Direction } from "./directions";
 
 /** Presentation motion follows authoritative destinations; it never changes simulation. */
 export class ActorMotion {
