@@ -109,7 +109,13 @@ Use `selectActor({role})`, then `assignTask({kind,target,buildingKind?})` to cli
 the visible task and destination controls. `startExpedition`, `pauseExpedition`,
 `stepTraining`, and `retryExpedition` use the normal UI buttons. Retry is available
 at settlement and keeps the seed. Training-only controls stay unavailable online.
-`setRule` supports the current retreat select and the existing rules editor.
+`setRule` publishes through the visible rules editor, preserving arbitrary 0–100 thresholds. A select-only UI accepts only its listed thresholds. `Simulation.command` rule accepts optional `assignTasks`; true publishes the preset’s tasks, while the default false preserves manual tasks when adjusting thresholds.
 `Page.getState.expedition` reads the visible objective, squad/tasks, selected actor
 travel summary, available targets and settlement report. It never reads browser
 session credentials. No tool accepts arbitrary JavaScript, shell or navigation.
+
+Candidate integration check (keeps the existing 180-second browser budget):
+`ARENA_EXPEDITION_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5176 ARENA_BASE_URL=http://127.0.0.1:8791 node --test ../tests/expedition-mcp-browser.test.mjs`.
+This checks three tasks via UI, start/pause, travel and one UI step, then uses a
+separate private Simulation handle for settlement and same-seed reset. It does
+not claim to verify clicking the browser’s settlement retry button.

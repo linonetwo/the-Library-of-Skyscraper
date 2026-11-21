@@ -50,6 +50,9 @@ test('official MCP initialize, tools/list, tools/call and private credentials', 
   assert.equal(tools.tools.find(tool => tool.name === 'Script.getVersion').annotations.readOnlyHint, true);
   assert.equal(tools.tools.find(tool => tool.name === 'Script.rollback').annotations.readOnlyHint, false);
   assert(tools.tools.find(tool => tool.name === 'Simulation.step').description.includes('Online'));
+  const commands = tools.tools.find(tool => tool.name === 'Simulation.command').inputSchema.properties.command;
+  assert(JSON.stringify(commands).includes('assignTasks'));
+
   const created = await call(connection.client, 'Session.create', { mode: 'training', seed: 42 });
   assert.equal(created.playerId, 'p1');
   assert.equal(created.token, undefined);
