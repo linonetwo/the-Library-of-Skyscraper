@@ -1,7 +1,7 @@
 import { openMenu, closeOverlay } from './hud-helpers';
 import { test, expect } from "@playwright/test";
 
-test("publish TypeScript to training ticks, hold, then return to preset", async ({ page }, testInfo) => {
+test("publish TypeScript to training ticks, hold, then return to manual tasks", async ({ page }, testInfo) => {
   // Two publications and preset restoration accumulate CI rendering time.
   test.setTimeout(60000);
   await page.goto("/");
@@ -45,7 +45,7 @@ export function decide(ctx: RuleContext) {
       }).then(response => response.json());
     }, ticks);
   }
-  const moved = await step(1);
+  const moved = await step(20);
   expect(moved.actors.every((actor: { roomId: string }) => actor.roomId === "room-1")).toBe(true);
   await writeRule("export function decide() { return { intents: [] }; }");
   const held = page.waitForResponse(response => response.url().endsWith("/scripts/publish"));
@@ -58,7 +58,11 @@ export function decide(ctx: RuleContext) {
   const disabled = page.waitForResponse(response => response.url().endsWith("/scripts/disable"));
   await page.getByRole("button", { name: "恢复行动预设" }).click();
   expect((await disabled).status()).toBe(200);
-  const resumed = await step(1);
+  await closeOverlay(page);
+  await page.getByRole("button",{name:"选择采撷师",exact:true}).click();
+  await page.getByRole("button",{name:"采集运输",exact:true}).click();
+  await page.locator('.task-targets button[data-room-id="room-1"]').click();
+  const resumed = await step(4);
   expect(resumed.actors.some((actor: { cargo: number }) => actor.cargo > 0)).toBe(true);
   expect(resumed.players[0].script).toBeUndefined();
 });
@@ -82,7 +86,7 @@ test("official resource template publishes a gathering strategy", async ({ page 
     return fetch(`/api/sessions/${session.sessionId}/commands`, {
       method: "POST",
       headers: { Authorization: `Bearer ${session.token}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ type: "step", ticks: 2 }),
+      body: JSON.stringify({ type: "step", ticks: 20 }),
     }).then(response => response.json());
   });
   const gatherer = snapshot.actors.find((actor: { role: string }) => actor.role === "gatherer");
