@@ -1,4 +1,4 @@
-use crate::{Actor, Enemy, ResultSummary, Session};
+use crate::{Actor, Building, Enemy, ResultSummary, Session};
 pub fn config() -> &'static serde_json::Value {
     static CONFIG: std::sync::OnceLock<serde_json::Value> = std::sync::OnceLock::new();
     CONFIG.get_or_init(|| {
@@ -7,6 +7,20 @@ pub fn config() -> &'static serde_json::Value {
 }
 pub fn number(key: &str) -> u64 {
     config()[key].as_u64().unwrap()
+}
+fn catalog_occupant(a: &Actor, b: &Building) -> bool {
+    a.hp > 0 && a.travel.is_none() && !a.retreating && a.room_id == b.room_id && a.owner == b.owner
+}
+pub(crate) fn catalog_working(a: &Actor, buildings: &[Building], enemies: &[Enemy]) -> bool {
+    let target = config()["targetRoomId"].as_str().unwrap();
+    !enemies.iter().any(|e| e.hp > 0 && e.room_id == target)
+        && buildings.iter().any(|b| {
+            b.room_id == target
+                && b.kind == "catalog"
+                && b.hp > 0
+                && b.construction_ticks >= b.required_ticks
+                && catalog_occupant(a, b)
+        })
 }
 impl Session {
     pub(crate) fn scenario_tick(&mut self) {
@@ -23,13 +37,10 @@ impl Session {
             })
             .cloned();
         let occupied = catalog.as_ref().is_some_and(|b| {
-            self.world.query::<&Actor>().iter(&self.world).any(|a| {
-                a.hp > 0
-                    && a.travel.is_none()
-                    && !a.retreating
-                    && a.room_id == target
-                    && a.owner == b.owner
-            })
+            self.world
+                .query::<&Actor>()
+                .iter(&self.world)
+                .any(|a| catalog_occupant(a, b))
         });
         self.scenario.blocked_reason = if catalog.is_none() {
             Some("请在遗失书库建设编目台".into())
@@ -81,6 +92,9 @@ impl Session {
             self.enemies.push(Enemy {
                 last_moved_tick: 0,
                 action_cue: None,
+                impact_cue: None,
+                motion_distance_milli: 0,
+                last_move_direction: crate::action_runtime::default_direction(),
                 id: "guardian-counterattack".into(),
                 room_id: "room-4".into(),
                 hp: number("enemyHp") as u32,

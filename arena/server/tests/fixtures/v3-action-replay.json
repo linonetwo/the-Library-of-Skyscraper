@@ -1,0 +1,766 @@
+{
+  "version": 2,
+  "simulationVersion": 3,
+  "mapVersion": "library-v3.2",
+  "sessionId": "81093ea3-19a8-4d3e-85fd-429984d2d81d",
+  "mode": "training",
+  "seed": 42,
+  "operations": [
+    {
+      "type": "join",
+      "playerId": "p1"
+    },
+    {
+      "type": "command",
+      "playerId": "p1",
+      "command": {
+        "type": "task",
+        "actorId": "p1-guard",
+        "kind": "guard",
+        "target": "room-3",
+        "buildingKind": null
+      }
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "advance"
+    }
+  ],
+  "finalSnapshot": {
+    "simulationVersion": 3,
+    "mapVersion": "library-v3.2",
+    "tickDurationMs": 500,
+    "worldMap": {
+      "buildOffsets": {
+        "catalog": {
+          "x": -1.5,
+          "y": 1
+        },
+        "core": {
+          "x": -1.5,
+          "y": -1
+        },
+        "tower": {
+          "x": 1.5,
+          "y": 1
+        },
+        "warehouse": {
+          "x": 1.5,
+          "y": -1
+        }
+      },
+      "links": [
+        {
+          "from": "room-0",
+          "points": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 8,
+              "y": 0
+            }
+          ],
+          "to": "room-1"
+        },
+        {
+          "from": "room-0",
+          "points": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "to": "room-2"
+        },
+        {
+          "from": "room-0",
+          "points": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": -8,
+              "y": 0
+            },
+            {
+              "x": -8,
+              "y": 8
+            }
+          ],
+          "to": "room-3"
+        },
+        {
+          "from": "room-0",
+          "points": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": -8,
+              "y": 0
+            }
+          ],
+          "to": "room-4"
+        },
+        {
+          "from": "room-0",
+          "points": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 0,
+              "y": -8
+            }
+          ],
+          "to": "room-5"
+        },
+        {
+          "from": "room-0",
+          "points": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 8,
+              "y": 0
+            },
+            {
+              "x": 8,
+              "y": -8
+            }
+          ],
+          "to": "room-6"
+        }
+      ],
+      "props": [
+        {
+          "asset": "bookcase-u",
+          "footprint": {
+            "depth": 1,
+            "width": 1
+          },
+          "id": "room-0-shelf-1",
+          "position": {
+            "x": -2.5,
+            "y": -2.5
+          },
+          "roomId": "room-0"
+        },
+        {
+          "asset": "bookcase-v",
+          "footprint": {
+            "depth": 1,
+            "width": 1
+          },
+          "id": "room-0-shelf-2",
+          "position": {
+            "x": 2.5,
+            "y": -2.5
+          },
+          "roomId": "room-0"
+        },
+        {
+          "asset": "bookcase-u",
+          "footprint": {
+            "depth": 1,
+            "width": 1
+          },
+          "id": "room-1-shelf-1",
+          "position": {
+            "x": 5.5,
+            "y": 2.5
+          },
+          "roomId": "room-1"
+        },
+        {
+          "asset": "bookcase-v",
+          "footprint": {
+            "depth": 1,
+            "width": 1
+          },
+          "id": "room-1-shelf-2",
+          "position": {
+            "x": 10.5,
+            "y": 2.5
+          },
+          "roomId": "room-1"
+        },
+        {
+          "asset": "bookcase-u",
+          "footprint": {
+            "depth": 1,
+            "width": 1
+          },
+          "id": "room-3-shelf-1",
+          "position": {
+            "x": -10.5,
+            "y": 10.5
+          },
+          "roomId": "room-3"
+        },
+        {
+          "asset": "bookcase-v",
+          "footprint": {
+            "depth": 1,
+            "width": 1
+          },
+          "id": "room-3-shelf-2",
+          "position": {
+            "x": -5.5,
+            "y": 10.5
+          },
+          "roomId": "room-3"
+        },
+        {
+          "asset": "bookcase-u",
+          "footprint": {
+            "depth": 1,
+            "width": 1
+          },
+          "id": "room-3-shelf-3",
+          "position": {
+            "x": -5.5,
+            "y": 8
+          },
+          "roomId": "room-3"
+        },
+        {
+          "asset": "bookcase-v",
+          "footprint": {
+            "depth": 1,
+            "width": 1
+          },
+          "id": "room-3-shelf-4",
+          "position": {
+            "x": -5.5,
+            "y": 5.5
+          },
+          "roomId": "room-3"
+        }
+      ],
+      "rooms": [
+        {
+          "center": {
+            "x": 0,
+            "y": 0
+          },
+          "floorHalfSize": 3,
+          "id": "room-0"
+        },
+        {
+          "center": {
+            "x": 8,
+            "y": 0
+          },
+          "floorHalfSize": 3,
+          "id": "room-1"
+        },
+        {
+          "center": {
+            "x": 0,
+            "y": 8
+          },
+          "floorHalfSize": 2,
+          "id": "room-2"
+        },
+        {
+          "center": {
+            "x": -8,
+            "y": 8
+          },
+          "floorHalfSize": 3,
+          "id": "room-3"
+        },
+        {
+          "center": {
+            "x": -8,
+            "y": 0
+          },
+          "floorHalfSize": 2,
+          "id": "room-4"
+        },
+        {
+          "center": {
+            "x": 0,
+            "y": -8
+          },
+          "floorHalfSize": 2,
+          "id": "room-5"
+        },
+        {
+          "center": {
+            "x": 8,
+            "y": -8
+          },
+          "floorHalfSize": 2,
+          "id": "room-6"
+        }
+      ],
+      "units": "tile",
+      "version": "library-v3.2"
+    },
+    "scenarioConfig": {
+      "actorCapacity": 12,
+      "actorDamage": 4,
+      "actorHp": 100,
+      "attackRange": 2,
+      "buildingCosts": {
+        "catalog": 25,
+        "tower": 25,
+        "warehouse": 20
+      },
+      "buildingHp": {
+        "catalog": 100,
+        "core": 100,
+        "tower": 120,
+        "warehouse": 100
+      },
+      "catalogGoal": 60,
+      "combatIntervalTicks": 4,
+      "constructionTicks": 16,
+      "counterattackDelayTicks": 20,
+      "counterattackProgress": 30,
+      "durationTicks": 960,
+      "enemyDamage": 8,
+      "enemyHp": 80,
+      "gatherAmount": 4,
+      "gatherIntervalTicks": 4,
+      "gathererCapacity": 24,
+      "guardDamage": 12,
+      "healAmount": 4,
+      "healIntervalTicks": 2,
+      "id": "first-expedition",
+      "initialMaterials": 10,
+      "initialResourceBase": 160,
+      "initialResourceVariance": 41,
+      "presetTasks": {
+        "defend": {
+          "gatherer": {
+            "kind": "guard",
+            "target": "room-0"
+          },
+          "guard": {
+            "kind": "guard",
+            "target": "room-0"
+          },
+          "scout": {
+            "kind": "guard",
+            "target": "room-0"
+          }
+        },
+        "explore": {
+          "gatherer": {
+            "kind": "gather",
+            "target": "room-4"
+          },
+          "guard": {
+            "kind": "guard",
+            "target": "room-3"
+          },
+          "scout": {
+            "kind": "guard",
+            "target": "room-6"
+          }
+        },
+        "gather": {
+          "gatherer": {
+            "kind": "gather",
+            "target": "room-1"
+          },
+          "guard": {
+            "kind": "guard",
+            "target": "room-3"
+          },
+          "scout": {
+            "buildingKind": "catalog",
+            "kind": "build",
+            "target": "room-3"
+          }
+        }
+      },
+      "recoverHp": 80,
+      "retreatHp": 35,
+      "speedMilliPerTick": 750,
+      "targetRoomId": "room-3",
+      "tickDurationMs": 500,
+      "towerDamage": 6,
+      "towerRange": 4
+    },
+    "scenario": {
+      "catalogProgress": 0,
+      "counterattackTick": null,
+      "counterattackSpawned": false,
+      "remainingTicks": 935,
+      "blockedReason": "请在遗失书库建设编目台",
+      "report": {
+        "materialsDelivered": 0,
+        "materialsSpent": 0,
+        "cargoLost": 0,
+        "downed": 0,
+        "catalogTicks": 0
+      }
+    },
+    "enemies": [
+      {
+        "lastMovedTick": 0,
+        "actionCue": {
+          "kind": "attack",
+          "startedTick": 25,
+          "durationTicks": 2,
+          "targetPosition": {
+            "x": -7.0,
+            "y": 8.0
+          }
+        },
+        "id": "guardian-1",
+        "roomId": "room-3",
+        "hp": 68,
+        "maxHp": 80,
+        "worldPosition": {
+          "x": -8.0,
+          "y": 7.8
+        },
+        "state": "fighting",
+        "actionTick": 25,
+        "travel": null
+      }
+    ],
+    "sessionId": "81093ea3-19a8-4d3e-85fd-429984d2d81d",
+    "mode": "training",
+    "seed": 42,
+    "tick": 25,
+    "paused": true,
+    "phase": "running",
+    "rooms": [
+      {
+        "id": "room-0",
+        "q": 0,
+        "r": 0,
+        "name": "归档中庭",
+        "kind": "base",
+        "resources": 0,
+        "enemyHp": 0,
+        "owner": null
+      },
+      {
+        "id": "room-1",
+        "q": 1,
+        "r": 0,
+        "name": "琥珀纸林",
+        "kind": "resource",
+        "resources": 161,
+        "enemyHp": 0,
+        "owner": null
+      },
+      {
+        "id": "room-2",
+        "q": 0,
+        "r": 1,
+        "name": "星砂编目台",
+        "kind": "catalog",
+        "resources": 0,
+        "enemyHp": 0,
+        "owner": null
+      },
+      {
+        "id": "room-3",
+        "q": -1,
+        "r": 1,
+        "name": "遗失书库",
+        "kind": "ruins",
+        "resources": 0,
+        "enemyHp": 68,
+        "owner": null
+      },
+      {
+        "id": "room-4",
+        "q": -1,
+        "r": 0,
+        "name": "墨晶回廊",
+        "kind": "resource",
+        "resources": 161,
+        "enemyHp": 0,
+        "owner": null
+      },
+      {
+        "id": "room-5",
+        "q": 0,
+        "r": -1,
+        "name": "月灯书架",
+        "kind": "catalog",
+        "resources": 0,
+        "enemyHp": 0,
+        "owner": null
+      },
+      {
+        "id": "room-6",
+        "q": 1,
+        "r": -1,
+        "name": "旧日索引",
+        "kind": "ruins",
+        "resources": 0,
+        "enemyHp": 0,
+        "owner": null
+      }
+    ],
+    "players": [
+      {
+        "id": "p1",
+        "name": "司书 1",
+        "materials": 10,
+        "score": 0,
+        "rule": {
+          "preset": "gather",
+          "retreatHp": 35
+        }
+      }
+    ],
+    "actors": [
+      {
+        "lastMovedTick": 0,
+        "pendingDelivery": false,
+        "actionCue": null,
+        "id": "p1-gatherer",
+        "owner": "p1",
+        "role": "gatherer",
+        "roomId": "room-0",
+        "hp": 100,
+        "maxHp": 100,
+        "state": "idle",
+        "cargo": 0,
+        "cargoCapacity": 24,
+        "appearance": {
+          "outfit": "scholar",
+          "hair": "ivory",
+          "weapon": true
+        },
+        "worldPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "travel": null,
+        "task": null,
+        "actionTick": 0,
+        "retreating": false
+      },
+      {
+        "lastMovedTick": 25,
+        "pendingDelivery": false,
+        "actionCue": {
+          "kind": "hit",
+          "startedTick": 25,
+          "durationTicks": 1,
+          "targetPosition": {
+            "x": -8.0,
+            "y": 7.8
+          }
+        },
+        "id": "p1-guard",
+        "owner": "p1",
+        "role": "guard",
+        "roomId": "room-3",
+        "hp": 84,
+        "maxHp": 100,
+        "state": "fighting",
+        "cargo": 0,
+        "cargoCapacity": 12,
+        "appearance": {
+          "outfit": "warden",
+          "hair": "ivory",
+          "weapon": true
+        },
+        "worldPosition": {
+          "x": -7.0,
+          "y": 8.0
+        },
+        "travel": null,
+        "task": {
+          "kind": "guard",
+          "target": "room-3",
+          "stage": "guarding",
+          "blockedReason": null,
+          "buildingKind": null
+        },
+        "actionTick": 25,
+        "retreating": false
+      },
+      {
+        "lastMovedTick": 0,
+        "pendingDelivery": false,
+        "actionCue": null,
+        "id": "p1-scout",
+        "owner": "p1",
+        "role": "scout",
+        "roomId": "room-0",
+        "hp": 100,
+        "maxHp": 100,
+        "state": "idle",
+        "cargo": 0,
+        "cargoCapacity": 12,
+        "appearance": {
+          "outfit": "scholar",
+          "hair": "ivory",
+          "weapon": true
+        },
+        "worldPosition": {
+          "x": -1.0,
+          "y": 0.0
+        },
+        "travel": null,
+        "task": null,
+        "actionTick": 0,
+        "retreating": false
+      }
+    ],
+    "buildings": [
+      {
+        "worldPosition": {
+          "x": -1.5,
+          "y": -1.0
+        },
+        "hp": 100,
+        "maxHp": 100,
+        "constructionTicks": 0,
+        "requiredTicks": 0,
+        "id": "p1-base-core",
+        "owner": "p1",
+        "roomId": "room-0",
+        "kind": "core"
+      },
+      {
+        "worldPosition": {
+          "x": 1.5,
+          "y": -1.0
+        },
+        "hp": 100,
+        "maxHp": 100,
+        "constructionTicks": 0,
+        "requiredTicks": 0,
+        "id": "p1-base-warehouse",
+        "owner": "p1",
+        "roomId": "room-0",
+        "kind": "warehouse"
+      }
+    ],
+    "events": [
+      {
+        "id": 1,
+        "tick": 0,
+        "kind": "join",
+        "message": "p1 的三人小队抵达中庭",
+        "playerId": "p1"
+      },
+      {
+        "id": 2,
+        "tick": 21,
+        "kind": "damage",
+        "message": "guardian-1 对 p1-guard 造成8伤害，HP 92",
+        "playerId": "p1"
+      },
+      {
+        "id": 3,
+        "tick": 25,
+        "kind": "combat",
+        "message": "p1-guard → guardian-1: 12伤害",
+        "playerId": "p1"
+      },
+      {
+        "id": 4,
+        "tick": 25,
+        "kind": "damage",
+        "message": "guardian-1 对 p1-guard 造成8伤害，HP 84",
+        "playerId": "p1"
+      }
+    ],
+    "result": null
+  },
+  "finalRuleState": {
+    "playerId": "p1",
+    "state": {
+      "memories": {},
+      "tasks": {}
+    }
+  }
+}

@@ -12,13 +12,20 @@ impl Session {
             return Err("builder must be in the target room".into());
         }
         self.ensure_site(owner, room, kind)?;
-        a.task = Some(crate::ActorTask {
-            kind: "build".into(),
-            target: room.into(),
-            stage: "construction".into(),
-            blocked_reason: None,
-            building_kind: Some(kind.into()),
-        });
+        let stage = crate::action_runtime::build_stage(&a, kind, self.simulation_version);
+        crate::action_runtime::assign_task(
+            &mut a.task,
+            crate::ActorTask {
+                kind: "build".into(),
+                target: room.into(),
+                stage,
+                stage_started_tick: 0,
+                blocked_reason: None,
+                building_kind: Some(kind.into()),
+            },
+            self.tick,
+            self.simulation_version,
+        );
         self.world.entity_mut(e).insert(a);
         Ok(())
     }

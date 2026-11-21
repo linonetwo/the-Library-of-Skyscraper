@@ -72,7 +72,7 @@ impl Session {
             })
             .collect();
         Self {
-            simulation_version: 3,
+            simulation_version: 4,
             scenario: Scenario {
                 remaining_ticks: crate::scenario::number("durationTicks"),
                 ..Default::default()
@@ -80,6 +80,9 @@ impl Session {
             enemies: vec![Enemy {
                 last_moved_tick: 0,
                 action_cue: None,
+                impact_cue: None,
+                motion_distance_milli: 0,
+                last_move_direction: crate::action_runtime::default_direction(),
                 id: "guardian-1".into(),
                 room_id: "room-3".into(),
                 hp: crate::scenario::number("enemyHp") as u32,
@@ -146,6 +149,9 @@ impl Session {
                 last_moved_tick: 0,
                 pending_delivery: false,
                 action_cue: None,
+                impact_cue: None,
+                motion_distance_milli: 0,
+                last_move_direction: crate::action_runtime::default_direction(),
                 id: format!("{id}-{role}"),
                 owner: id.clone(),
                 role: role.into(),

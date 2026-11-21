@@ -104,7 +104,7 @@ pub fn start(actor: &mut Actor, target: &str, tick: u64) -> Result<(), String> {
     actor.state = "moving".into();
     Ok(())
 }
-pub fn advance(actor: &mut Actor) -> bool {
+pub fn advance(actor: &mut Actor, version: u32) -> bool {
     let Some(t) = actor.travel.as_mut() else {
         return false;
     };
@@ -120,6 +120,11 @@ pub fn advance(actor: &mut Actor) -> bool {
             }
         }
         if let Some(node) = junction {
+            crate::action_runtime::Motion::between(actor.world_position, node).record(
+                version,
+                &mut actor.motion_distance_milli,
+                &mut actor.last_move_direction,
+            );
             actor.world_position = node;
             let map = world_map();
             let found =
@@ -157,7 +162,12 @@ pub fn advance(actor: &mut Actor) -> bool {
             return true;
         }
     }
-    let arrived = advance_motion(&mut actor.world_position, &mut actor.travel);
+    let (arrived, motion) = advance_motion(&mut actor.world_position, &mut actor.travel);
+    motion.record(
+        version,
+        &mut actor.motion_distance_milli,
+        &mut actor.last_move_direction,
+    );
     if let Some(room) = arrived {
         actor.room_id = room;
         actor.state = "idle".into();
@@ -165,9 +175,32 @@ pub fn advance(actor: &mut Actor) -> bool {
     true
 }
 /// Pure path integrator shared by actors and enemies; no action-source state.
-pub fn advance_motion(position: &mut Position, travel: &mut Option<Travel>) -> Option<String> {
-    let t = travel.as_mut()?;
+pub fn advance_motion(
+    position: &mut Position,
+    travel: &mut Option<Travel>,
+) -> (Option<String>, crate::action_runtime::Motion) {
+    let Some(t) = travel.as_mut() else {
+        return (None, Default::default());
+    };
+    let old_distance = t.distance_milli;
     t.distance_milli = (t.distance_milli + t.speed_milli_per_tick).min(t.total_distance_milli);
+    let mut motion = crate::action_runtime::Motion::default();
+    let mut offset = 0;
+    for w in t.path.windows(2) {
+        let len = distance(w[0], w[1]);
+        let moved = t
+            .distance_milli
+            .min(offset + len)
+            .saturating_sub(old_distance.max(offset));
+        if moved > 0 {
+            motion.distance_milli += moved;
+            motion.direction = Position {
+                x: w[1].x - w[0].x,
+                y: w[1].y - w[0].y,
+            };
+        }
+        offset += len;
+    }
     let mut remaining = t.distance_milli;
     for (i, w) in t.path.windows(2).enumerate() {
         let len = distance(w[0], w[1]);
@@ -188,9 +221,9 @@ pub fn advance_motion(position: &mut Position, travel: &mut Option<Travel>) -> O
     if t.distance_milli == t.total_distance_milli {
         let target = t.target_room_id.clone();
         *travel = None;
-        Some(target)
+        (Some(target), motion)
     } else {
-        None
+        (None, motion)
     }
 }
 
@@ -206,12 +239,36 @@ pub fn approach(position: &mut Position, target: Position, stop: u64) {
 }
 
 /// One authority tick has one actor movement budget across road and room work.
-pub fn approach_actor(a: &mut Actor, target: Position, stop: u64, tick: u64) {
+pub fn approach_actor(a: &mut Actor, target: Position, stop: u64, tick: u64, version: u32) {
     if a.last_moved_tick == tick || a.hp == 0 || a.travel.is_some() {
         return;
     }
     if distance(a.world_position, target) > stop {
+        let from = a.world_position;
         approach(&mut a.world_position, target, stop);
+        crate::action_runtime::Motion::between(from, a.world_position).record(
+            version,
+            &mut a.motion_distance_milli,
+            &mut a.last_move_direction,
+        );
         a.last_moved_tick = tick;
     }
+}
+
+/// Enemy pursuit uses the same displacement record and movement budget as roads.
+pub fn approach_enemy(e: &mut crate::Enemy, target: Position, stop: u64, tick: u64, version: u32) {
+    if e.last_moved_tick == tick || e.hp == 0 || e.travel.is_some() {
+        return;
+    }
+    let from = e.world_position;
+    approach(&mut e.world_position, target, stop);
+    let motion = crate::action_runtime::Motion::between(from, e.world_position);
+    if version >= 4 && motion.distance_milli > 0 {
+        e.last_moved_tick = tick;
+    }
+    motion.record(
+        version,
+        &mut e.motion_distance_milli,
+        &mut e.last_move_direction,
+    );
 }
