@@ -59,7 +59,8 @@ def main():
     payload = json.loads(Path(event_file).read_text()) if event_file else {}
     pr = payload.get('pull_request', {})
     full = event == 'workflow_dispatch' or ref.startswith('refs/tags/')
-    full |= 'integration' in os.environ.get('GITHUB_HEAD_REF', '') or 'integration' in ref
+    full |= any('integration' in value for value in (
+        os.environ.get('GITHUB_HEAD_REF', ''), os.environ.get('GITHUB_BASE_REF', ''), ref))
     base = pr.get('base', {}).get('sha') or payload.get('before')
     head = pr.get('head', {}).get('sha') or os.environ.get('GITHUB_SHA')
     paths = []
