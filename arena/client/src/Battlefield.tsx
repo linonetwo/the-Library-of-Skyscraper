@@ -95,6 +95,7 @@ export default function Battlefield() {
           </button>
         </div>
         <MapCanvas
+          suspended={view !== "map"}
           focusIntent={focusIntent}
           snapshot={snapshot}
           selected={selected}
