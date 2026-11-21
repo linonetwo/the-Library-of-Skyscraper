@@ -20,3 +20,11 @@
 `weapon-staff-back → hair-back → body → outfit → weapon-staff-front → body-front → hand-grip → hair-front`
 
 样板阶段只启用body、body-front，所有层共用同帧注册；先证明相机/四头/足点，再量产外观。完整14层目标与原源保持不变。
+
+## 独立装备与完整肢体追加
+
+`build-equipment.mjs`把成功一次的新scholar/ivory源注册为独立衣、前发、后发；领口显式透明开口，未将整个人像作为替代。`build-complete-attachments.mjs`使用另一张成功一次的完整伸展臂腿源，输出`attachments-complete/rig.json`及两向各15个附件（身体12件+衣发3件）；原`attachments/`真实短腿源保留用于追溯，不拉伸。
+
+新完整双腿每方向的thigh/shin长度一致；髋关节位于原“crotch”参考点上10px、躯干遮挡内。头/躯干不变，肢体仅等比缩放，近远顺序和脚接触待离线pose工具与实机复核。`complete-limbs-rest-preview.png`只是zero-transform注册查看，不是walk通过。
+
+验证：`node --test iso-v030-sample/sample.test.mjs`。它检查画布/可见高度单位、独立层keys、裁边、无重复缩放、左右完整骨长一致；不替代视觉验画。
