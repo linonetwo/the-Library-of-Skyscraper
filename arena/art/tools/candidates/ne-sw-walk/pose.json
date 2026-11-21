@@ -356,31 +356,29 @@
             "pelvis": {
               "offset": [0, 3]
             },
-            "leftShoulder": {
-              "rotation": -15
-            },
-            "leftElbow": {
-              "rotation": -5
-            },
-            "rightShoulder": {
-              "rotation": 15
-            },
-            "rightElbow": {
-              "rotation": 5
-            },
             "leftHip": {
-              "offset": [0, -2]
+              "offset": [0, -3.1172]
             },
             "rightHip": {
-              "offset": [0, 2]
+              "offset": [0, 3.1172]
             }
           },
           "footTargets": {
-            "left": [101.6175, 165.1956],
-            "right": [90.0863, 175.1956]
+            "left": [100.1175, 163.3284],
+            "right": [91.5863, 177.0628]
           },
           "contactFoot": "left",
-          "rootScreenDelta": [0.0, -0.0]
+          "rootScreenDelta": [0.0, -0.0],
+          "wristTargets": {
+            "leftWrist": {
+              "point": [79, 120],
+              "bend": -1
+            },
+            "rightWrist": {
+              "point": [113, 123],
+              "bend": 1
+            }
+          }
         },
         {
           "durationMs": 125,
@@ -388,31 +386,29 @@
             "pelvis": {
               "offset": [0, 3]
             },
-            "leftShoulder": {
-              "rotation": 0
-            },
-            "leftElbow": {
-              "rotation": 5
-            },
-            "rightShoulder": {
-              "rotation": 0
-            },
-            "rightElbow": {
-              "rotation": 5
-            },
             "leftHip": {
-              "offset": [0, -2]
+              "offset": [0, -3.1172]
             },
             "rightHip": {
-              "offset": [0, 2]
+              "offset": [0, 3.1172]
             }
           },
           "footTargets": {
-            "left": [89.6175, 171.1956],
-            "right": [102.0863, 171.1956]
+            "left": [88.1175, 169.3284],
+            "right": [103.5863, 173.0628]
           },
           "contactFoot": "left",
-          "rootScreenDelta": [12.0, -6.0]
+          "rootScreenDelta": [12.0, -6.0],
+          "wristTargets": {
+            "leftWrist": {
+              "point": [81, 119],
+              "bend": -1
+            },
+            "rightWrist": {
+              "point": [111, 124],
+              "bend": 1
+            }
+          }
         },
         {
           "durationMs": 125,
@@ -420,31 +416,29 @@
             "pelvis": {
               "offset": [0, 3]
             },
-            "leftShoulder": {
-              "rotation": 15
-            },
-            "leftElbow": {
-              "rotation": 5
-            },
-            "rightShoulder": {
-              "rotation": -15
-            },
-            "rightElbow": {
-              "rotation": -5
-            },
             "leftHip": {
-              "offset": [0, -2]
+              "offset": [0, -3.1172]
             },
             "rightHip": {
-              "offset": [0, 2]
+              "offset": [0, 3.1172]
             }
           },
           "footTargets": {
-            "left": [77.6175, 171.1956],
-            "right": [114.0863, 169.1956]
+            "left": [76.1175, 169.3284],
+            "right": [115.5863, 171.0628]
           },
           "contactFoot": "right",
-          "rootScreenDelta": [24.0, -12.0]
+          "rootScreenDelta": [24.0, -12.0],
+          "wristTargets": {
+            "leftWrist": {
+              "point": [83, 118],
+              "bend": -1
+            },
+            "rightWrist": {
+              "point": [109, 125],
+              "bend": 1
+            }
+          }
         },
         {
           "durationMs": 125,
@@ -452,31 +446,29 @@
             "pelvis": {
               "offset": [0, 3]
             },
-            "leftShoulder": {
-              "rotation": 0
-            },
-            "leftElbow": {
-              "rotation": 5
-            },
-            "rightShoulder": {
-              "rotation": 0
-            },
-            "rightElbow": {
-              "rotation": 5
-            },
             "leftHip": {
-              "offset": [0, -2]
+              "offset": [0, -3.1172]
             },
             "rightHip": {
-              "offset": [0, 2]
+              "offset": [0, 3.1172]
             }
           },
           "footTargets": {
-            "left": [89.6175, 167.1956],
-            "right": [102.0863, 175.1956]
+            "left": [88.1175, 165.3284],
+            "right": [103.5863, 177.0628]
           },
           "contactFoot": "right",
-          "rootScreenDelta": [36.0, -18.0]
+          "rootScreenDelta": [36.0, -18.0],
+          "wristTargets": {
+            "leftWrist": {
+              "point": [81, 119],
+              "bend": -1
+            },
+            "rightWrist": {
+              "point": [111, 124],
+              "bend": 1
+            }
+          }
         }
       ]
     },
@@ -804,31 +796,29 @@
             "pelvis": {
               "offset": [0, 4]
             },
-            "leftShoulder": {
-              "rotation": 15
-            },
-            "leftElbow": {
-              "rotation": -5
-            },
-            "rightShoulder": {
-              "rotation": -15
-            },
-            "rightElbow": {
-              "rotation": 5
-            },
             "leftHip": {
-              "offset": [0, 2]
+              "offset": [0, 2.707]
             },
             "rightHip": {
-              "offset": [0, -2]
+              "offset": [0, -2.707]
             }
           },
           "footTargets": {
-            "left": [89.4625, 178.9238],
-            "right": [102.6344, 168.5956]
+            "left": [91.9625, 179.8808],
+            "right": [100.1344, 167.1386]
           },
           "contactFoot": "left",
-          "rootScreenDelta": [-0.0, 0.0]
+          "rootScreenDelta": [-0.0, 0.0],
+          "wristTargets": {
+            "leftWrist": {
+              "point": [115, 127.5],
+              "bend": 1
+            },
+            "rightWrist": {
+              "point": [76, 126],
+              "bend": -1
+            }
+          }
         },
         {
           "durationMs": 125,
@@ -836,31 +826,29 @@
             "pelvis": {
               "offset": [0, 4]
             },
-            "leftShoulder": {
-              "rotation": 0
-            },
-            "leftElbow": {
-              "rotation": 5
-            },
-            "rightShoulder": {
-              "rotation": 0
-            },
-            "rightElbow": {
-              "rotation": 5
-            },
             "leftHip": {
-              "offset": [0, 2]
+              "offset": [0, 2.707]
             },
             "rightHip": {
-              "offset": [0, -2]
+              "offset": [0, -2.707]
             }
           },
           "footTargets": {
-            "left": [101.4625, 172.9238],
-            "right": [90.6344, 164.5956]
+            "left": [103.9625, 173.8808],
+            "right": [89.1344, 163.1386]
           },
           "contactFoot": "left",
-          "rootScreenDelta": [-12.0, 6.0]
+          "rootScreenDelta": [-12.0, 6.0],
+          "wristTargets": {
+            "leftWrist": {
+              "point": [113, 128.5],
+              "bend": 1
+            },
+            "rightWrist": {
+              "point": [78, 125],
+              "bend": -1
+            }
+          }
         },
         {
           "durationMs": 125,
@@ -868,31 +856,29 @@
             "pelvis": {
               "offset": [0, 4]
             },
-            "leftShoulder": {
-              "rotation": -15
-            },
-            "leftElbow": {
-              "rotation": 5
-            },
-            "rightShoulder": {
-              "rotation": 15
-            },
-            "rightElbow": {
-              "rotation": -5
-            },
             "leftHip": {
-              "offset": [0, 2]
+              "offset": [0, 2.707]
             },
             "rightHip": {
-              "offset": [0, -2]
+              "offset": [0, -2.707]
             }
           },
           "footTargets": {
-            "left": [113.4625, 172.9238],
-            "right": [78.6344, 174.5956]
+            "left": [113.9625, 174.3808],
+            "right": [78.1344, 172.6386]
           },
           "contactFoot": "right",
-          "rootScreenDelta": [-24.0, 12.0]
+          "rootScreenDelta": [-24.0, 12.0],
+          "wristTargets": {
+            "leftWrist": {
+              "point": [111, 129.5],
+              "bend": 1
+            },
+            "rightWrist": {
+              "point": [80, 124],
+              "bend": -1
+            }
+          }
         },
         {
           "durationMs": 125,
@@ -900,41 +886,40 @@
             "pelvis": {
               "offset": [0, 4]
             },
-            "leftShoulder": {
-              "rotation": 0
-            },
-            "leftElbow": {
-              "rotation": 5
-            },
-            "rightShoulder": {
-              "rotation": 0
-            },
-            "rightElbow": {
-              "rotation": 5
-            },
             "leftHip": {
-              "offset": [0, 2]
+              "offset": [0, 2.707]
             },
             "rightHip": {
-              "offset": [0, -2]
+              "offset": [0, -2.707]
             }
           },
           "footTargets": {
-            "left": [101.4625, 168.9238],
-            "right": [90.6344, 168.5956]
+            "left": [104.4625, 171.1308],
+            "right": [90.1344, 166.6386]
           },
           "contactFoot": "right",
-          "rootScreenDelta": [-36.0, 18.0]
+          "rootScreenDelta": [-36.0, 18.0],
+          "wristTargets": {
+            "leftWrist": {
+              "point": [113, 128.5],
+              "bend": 1
+            },
+            "rightWrist": {
+              "point": [78, 125],
+              "bend": -1
+            }
+          }
         }
       ]
     }
   },
   "cycleWorldStride": [0.75, 0],
   "reviewNotes": [
-    "Prototype only; not published or approved as natural walking.",
-    "NE frame1: supporting and passing feet nearly merge at the same projected y.",
-    "SW frame3: knee/ankle silhouettes still cross.",
-    "NE shoulder-only arm swing reads as lateral arm opening; needs direction-specific shoulder/elbow poses.",
-    "Next gate: actual ten-second product movement at1.5 world units/s; static contact page and numeric foot lock do not pass that gate."
+    "Unpublished pass5 prototype; natural walking is not approved until actual product movement review.",
+    "Art contact-page review: inward elbow branches and near-straight wrists remove hands-on-hips silhouette; approved to freeze for next125ms dynamic study.",
+    "NE/SW projected leg overlap may be correct isometric occlusion; preserve anatomical knee direction instead of flipping a leg to maintain screen left/right.",
+    "Motion contract unchanged:1.5 world units/s, four125ms poses, cycle stride0.75 world units, renderScale1.",
+    "Foot-lock residual applies only to baked keyframes. During held sprite frames a continuously moving root can displace the textured foot by up to13.4 screen pixels before the next frame; continuous contact is not proven.",
+    "Next gate: actual ten-second NE/SW product movement at the declared speed, with natural arm swing and continuous silhouette assessed from video."
   ]
 }
