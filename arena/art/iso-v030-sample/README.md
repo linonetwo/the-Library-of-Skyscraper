@@ -7,7 +7,7 @@
 - 来源：`../source/iso-v030-body-sample.png`，由用户指定 proxy-imagegen / GPT Image 2 新生成；一旦成功不重复请求同一源。
 - 首次SSE中断后第二次成功；原PNG具有真实透明alpha，查看器若忽略alpha会显示隐藏褐色RGB。`source-on-white.png`仅为正确透明合成的检查图。
 - 首源的1/3、2/4步态重复，**不通过walk**；当前只取NE/SW单帧用于camera-pose样板，不伪装成完整idle/walk。
-- 仅NE/SW各4个真实步态，body与对应帧前臂/手的body-front拆层；不能用旧平视图纵向挤压。
+- 第一批动作目标为NE/SW各4个交替步态，body与对应帧前臂/手的body-front拆层；当前完成状态见生产矩阵。
 - 四头解剖、正交yaw45°/elevation30°；`X=64(x-y), Y=32(x+y)-78.3837z`，1格=1m，tile128×64。
 - 人高1.7m（垂直投影133.25px），保留192×192透明格与ground pivot `(96,172.8)`。此高度不包含头部水平深度带来的投影包围盒增量。
 - 注册后角色约131–133px crown-to-ground，产品样板`renderScale=1`；不能将整张192透明画布缩成136px。原始源的等比缩放只做一次，attachment里的`sourceScale`仅溯源。
@@ -28,3 +28,11 @@
 新完整双腿每方向的thigh/shin长度一致；髋关节位于原“crotch”参考点上10px、躯干遮挡内。头/躯干不变，肢体仅等比缩放，近远顺序和脚接触待离线pose工具与实机复核。`complete-limbs-rest-preview.png`只是zero-transform注册查看，不是walk通过。
 
 验证：`node --test iso-v030-sample/sample.test.mjs`。它检查画布/可见高度单位、独立层keys、裁边、无重复缩放、左右完整骨长一致；不替代视觉验画。
+
+## 首批世界物件
+
+`build-world-assets.mjs`生成`client/public/assets/iso-v030-world/manifest.json`所列独立资源堆、携带包、NE/SW墨影中立sprite和脚手架前后层。每条记录显式canvas、pivot、anchor、footprint、source crop/scale；runtime按元数据和scale1放置。`build-inkguard-rig.mjs`保留对应方向的头/躯干/臂/下摆/靴切分与关节；墨影完整运动/攻击/受击/倒地仍待制作。
+
+资源堆约1.3×1.0格、0.8m高；手持包40格透明画布中约27px宽，以pelvis/手部contact注册，跟角色pose。施工顺序为back→实际建筑→front，三者共用建筑worldPosition；前后mask仅决定遮挡。敌人中立图共用128×160画布、ground `(64,144)`，高约1.35m。
+
+验证：`node --test iso-v030-sample/world-assets.test.mjs`；实际产品布局与方向显示由前端接入后独立验看。完整八向动作及装备目标见`P3-PRODUCTION-MATRIX.md`。
