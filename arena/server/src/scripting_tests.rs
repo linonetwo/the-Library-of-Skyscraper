@@ -151,6 +151,7 @@ fn reset_retains_script_and_rule_command_switches_to_preset() {
         .command(
             "p1",
             Command::Rule {
+                assign_tasks: false,
                 preset: "explore".into(),
                 retreat_hp: 40,
             },

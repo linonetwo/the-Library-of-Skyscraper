@@ -148,3 +148,12 @@ attack, damage and down transitions emit `gather|deliver|attack|hit|down` cues;
 clients use simulation ticks and the target world point for action/facing.
 `down` with duration 0 is the permanent end pose. Travel remains independent.
 Historical simulation exports no new action cues.
+
+`rule` accepts optional `assignTasks` (default false). Publishing a preset with
+`assignTasks:true` disables TS and generates the configured role tasks from
+`scenarioConfig.presetTasks` (gather/defend/explore). Updating a retreat threshold
+without this flag preserves the current tasks, in-flight travel and TS source.
+Disabling TS restores the current preset as actual tasks. Generated tasks use
+the same travel/economy/construction implementation as manual tasks. Warehouse
+delivery requires a completed owned warehouse within 1.5 world tiles, and
+records its actual world position in the delivery cue.

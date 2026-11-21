@@ -70,7 +70,9 @@ impl Session {
                 }
                 self.paused = true;
             }
-            Command::Rule { preset, retreat_hp } => {
+            Command::Rule {
+                preset, retreat_hp, ..
+            } => {
                 if !["gather", "defend", "explore"].contains(&preset.as_str()) || retreat_hp > 100 {
                     return Err("invalid preset or retreatHp (0..100)".into());
                 }
