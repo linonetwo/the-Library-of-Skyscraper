@@ -201,7 +201,7 @@ export default function MapCanvas(props: MapProps) {
         renderLayer = new Container();
         world.addChildAt(renderLayer, 0);
         for (const child of [...entities.children])
-          if (child.label.startsWith("shelf:"))
+          if (child.label?.startsWith("shelf:"))
             child.destroy({ children: true });
         paintMap(
           renderLayer,

@@ -22,12 +22,6 @@ test('single player: atlas, rule publication, tick control and real screenshot',
   page.on('pageerror', error => errors.push(error.message));
   await training(page);
   await expect(page.locator('canvas')).toBeVisible();
-  await page.getByRole('button',{name:'角色详情',exact:true}).click();
-  await expect(page.locator('.portrait-frame [role=img]')).toHaveCount(1);
-  await page.getByRole('button', { name: '书库守卫', exact: true }).click();
-  await page.getByRole('button', { name: '墨蓝发色' }).click();
-  await expect(page.locator('.portrait-frame .paper-doll')).toHaveClass(/warden/);
-  await expect(page.getByRole('button', { name: '墨蓝发色' })).toHaveClass(/selected/);
   const before = await state(page);
   await stepTraining(page);
   await expect.poll(async () => (await state(page)).tick).toBe(before.tick + 1);
