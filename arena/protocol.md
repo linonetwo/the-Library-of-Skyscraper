@@ -94,7 +94,7 @@ world clock. Playback owns a separate reconstructed session.
 
 ## First library expedition (simulationVersion 3)
 
-New sessions use `simulationVersion:3`, `mapVersion:"library-v3"`, and
+New sessions use `simulationVersion:3`, `mapVersion:"library-v3.1"`, and
 `tickDurationMs:500`. Training starts paused; `pause:false` starts the clock,
 `reset` retries the same seed in preparation. Victory locks simulation at 60
 catalogue progress with a survivor; 960 ticks or squad elimination loses.
