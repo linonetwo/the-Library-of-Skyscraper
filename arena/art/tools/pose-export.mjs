@@ -289,6 +289,7 @@ export async function exportPoses(configPath, output) {
     JSON.stringify(
       {
         approved: false,
+        reviewNotes: config.reviewNotes || [],
         activeLayers,
         inactiveLayers: layers.filter((layer) => !activeLayers.includes(layer)),
         renderScale: config.renderScale,
