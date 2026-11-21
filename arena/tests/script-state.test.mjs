@@ -86,7 +86,14 @@ test('online owners share source hash but keep memory, tasks and replay private'
  assert(second.tasks.items.every(task=>task.actorId.startsWith(two.playerId)));
  await route(one,'scripts/disable',{});
  const frozen=await route(one,'scripts/state');
- await new Promise(resolve=>setTimeout(resolve,1100));
+ const before=await route(two,'state');
+ const deadline=Date.now()+1100;
+ let later=before;
+ while(later.tick<=before.tick && Date.now()<deadline){
+   await new Promise(resolve=>setTimeout(resolve,50));
+   later=await route(two,'state');
+ }
+ assert(later.tick>before.tick,'online authority advances within the original observation window');
  assert.deepEqual((await route(one,'scripts/state')).memory,frozen.memory);
  assert((await route(two,'scripts/state')).memory.ticks>second.memory.ticks);
  const replay=await route(one,'replay');
