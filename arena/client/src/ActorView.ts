@@ -1,3 +1,5 @@
+import { RegisteredCargo, type SampleRig } from "./RegisteredCargo";
+import type { WorldAssets } from "./worldAssets";
 import type { AnimationAction } from "./animationCatalog";
 import { Container, Graphics, Sprite, Texture, Rectangle, Text } from "pixi.js";
 import { roleNames } from "./types";
@@ -16,6 +18,8 @@ export class ActorView {
   sampleHair = false;
   sampleWalk = false;
   sampleFrameMs = 125;
+  sampleRig?: SampleRig;
+  private cargo?: RegisteredCargo;
   private doll = new Container();
   private shadow = new Graphics()
     .ellipse(0, 1, 18, 9)
@@ -50,9 +54,11 @@ export class ActorView {
     position: Point,
     private textures: DollTextures,
     onSelect: (id: string) => void,
+    assets?: WorldAssets,
   ) {
     this.actor = actor;
     this.motion = new ActorMotion(position);
+    if (assets) this.cargo = new RegisteredCargo(this.doll, assets);
     this.halo
       .ellipse(0, 0, 24, 12)
       .stroke({ color: 0xf5d18a, width: 2 })
@@ -156,7 +162,7 @@ export class ActorView {
       this.activity
         .circle(0, -55, 40)
         .stroke({ color: 0xf49a80, width: 3, alpha: 0.7 });
-    if (this.actor.cargo > 0)
+    if (this.actor.cargo > 0 && !this.sampleRig)
       this.activity
         .roundRect(14, -40, 13, 18, 3)
         .fill(0xc9a56d)
@@ -192,10 +198,10 @@ export class ActorView {
       ? `${this.samplePose}/${String(sampleFrame).padStart(2, "0")}`
       : `${pose.direction}/${String(pose.frame).padStart(2, "0")}`;
     if (
-      `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}/${this.sampleWalk}` !==
+      `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}/${this.sampleWalk}/${!!this.sampleRig}` !==
       this.frameKey
     ) {
-      this.frameKey = `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}/${this.sampleWalk}`;
+      this.frameKey = `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}/${this.sampleWalk}/${!!this.sampleRig}`;
       const layers = this.samplePose
         ? [
             ...(this.sampleHair ? ["hair-ivory-back"] : []),
@@ -217,12 +223,22 @@ export class ActorView {
         if (!sprite.visible) return;
         sprite.texture = this.samplePose
           ? this.textures.idle[
-              `${this.sampleWalk ? "walk" : "sample"}/${layers[index]}/${key}`
+              `${this.sampleRig ? "walk" : "sample"}/${layers[index]}/${key}`
             ]
           : this.textures[action][`${action}/${layers[index]}/${key}`];
         sprite.scale.set(this.samplePose ? 1 : 136 / sprite.texture.height);
       });
     }
+    this.cargo?.update(
+      this.sampleRig,
+      this.samplePose,
+      sampleFrame,
+      this.actor.cargo > 0,
+      this.sprites.find(
+        (sprite) =>
+          sprite.visible && sprite.texture.label?.includes("/body-front/"),
+      ),
+    );
     return {
       id: this.actor.id,
       ...pose,

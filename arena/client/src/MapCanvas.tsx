@@ -1,3 +1,4 @@
+import { loadWorldAssets } from "./worldAssets";
 import { WorldEntities } from "./WorldEntities";
 import { animationActions } from "./animationCatalog";
 import { useEffect, useRef, useState } from "react";
@@ -228,7 +229,7 @@ export default function MapCanvas(props: MapProps) {
         performance.now(),
       );
       poses = actors.render(performance.now());
-      host.dataset.actors=JSON.stringify(poses);
+      host.dataset.actors = JSON.stringify(poses);
       applyCamera();
     };
     redraw.current = paint;
@@ -302,12 +303,15 @@ export default function MapCanvas(props: MapProps) {
           ),
         );
         if (disposed) return;
-        dynamics = new WorldEntities(entities, tiles);
+        const worldAssets = await loadWorldAssets();
+        if (disposed) return;
+        dynamics = new WorldEntities(entities, tiles, worldAssets);
         actors = new ActorScene(
           Object.fromEntries(
             actionTextures,
           ) as import("./ActorView").DollTextures,
           entities,
+          worldAssets,
         );
         world.addChild(renderLayer, entities);
         app.ticker.add(() => {

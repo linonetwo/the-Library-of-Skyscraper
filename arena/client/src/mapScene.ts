@@ -11,6 +11,7 @@ export type MapProps = {
   sampleHair?: boolean;
   sampleWalk?: boolean;
   sampleFrameMs?: number;
+  sampleRig?: import("./RegisteredCargo").SampleRig;
   selected: string | null;
   selectedRoom: string | null;
   zoom: number;
