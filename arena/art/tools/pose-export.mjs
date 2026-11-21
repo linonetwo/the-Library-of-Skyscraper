@@ -42,7 +42,15 @@ export async function exportPoses(configPath, output) {
   if (!count || dirs.some(([, d]) => d.poses.length !== count))
     throw Error("Directions need equal nonzero pose counts");
   await mkdir(output, { recursive: true });
-  const cells = Object.fromEntries(layers.map((l) => [l, []])),
+  const layerNames = config.trimAtlases
+    ? [...new Set(dirs.flatMap(([, d]) => d.attachments.map((a) => a.layer)))]
+    : [
+        ...new Set([
+          ...layers,
+          ...dirs.flatMap(([, d]) => d.attachments.map((a) => a.layer)),
+        ]),
+      ];
+  const cells = Object.fromEntries(layerNames.map((l) => [l, []])),
     contact = [],
     report = [];
   for (const [row, [name, direction]] of dirs.entries()) {
@@ -123,7 +131,7 @@ export async function exportPoses(configPath, output) {
       } else planted = null;
       previous = input.contactFoot;
       const buffers = Object.fromEntries(
-        layers.map((l) => [l, Buffer.alloc(width * height * 4)]),
+        layerNames.map((l) => [l, Buffer.alloc(width * height * 4)]),
       );
       const sorted = [...attachments].sort(
         (a, b) =>
@@ -144,7 +152,7 @@ export async function exportPoses(configPath, output) {
         );
       }
       const composite = [];
-      for (const layer of layers) {
+      for (const layer of layerNames) {
         const png = await sharp(buffers[layer], {
           raw: { width, height, channels: 4 },
         })
@@ -204,7 +212,7 @@ export async function exportPoses(configPath, output) {
     }
   }
   const atlasBudget = [];
-  for (const layer of layers) {
+  for (const layer of layerNames) {
     if (config.trimAtlases) {
       atlasBudget.push(
         await packTrimmedLayer(layer, cells[layer], config, output),

@@ -18,19 +18,13 @@
     "body-front",
     "outfit-scholar",
     "hair-ivory-back",
-    "hair-ivory-front"
-  ],
-  "inactiveLayers": [
+    "hair-ivory-front",
     "outfit-warden",
-    "hair-ivory",
-    "hair-midnight",
+    "outfit-warden-front",
     "hair-midnight-back",
-    "hair-midnight-front",
-    "weapon-staff",
-    "weapon-staff-back",
-    "weapon-staff-front",
-    "hand-grip"
+    "hair-midnight-front"
   ],
+  "inactiveLayers": [],
   "layers": [
     {
       "layer": "body",
@@ -90,22 +84,6 @@
       "decodedBytes": 416484
     },
     {
-      "layer": "outfit-warden",
-      "active": false,
-      "sourceFrames": 32,
-      "nonemptyFrames": 0,
-      "pages": [],
-      "decodedBytes": 0
-    },
-    {
-      "layer": "hair-ivory",
-      "active": false,
-      "sourceFrames": 32,
-      "nonemptyFrames": 0,
-      "pages": [],
-      "decodedBytes": 0
-    },
-    {
       "layer": "hair-ivory-back",
       "active": true,
       "sourceFrames": 32,
@@ -144,62 +122,82 @@
       "decodedBytes": 317716
     },
     {
-      "layer": "hair-midnight",
-      "active": false,
+      "layer": "outfit-warden",
+      "active": true,
       "sourceFrames": 32,
-      "nonemptyFrames": 0,
-      "pages": [],
-      "decodedBytes": 0
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 66688,
+      "pages": [
+        {
+          "image": "walk-outfit-warden-0.png",
+          "json": "walk-outfit-warden-0.json",
+          "width": 1275,
+          "height": 63,
+          "decodedBytes": 321300,
+          "pngBytes": 29043
+        }
+      ],
+      "decodedBytes": 321300
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 24134,
+      "pages": [
+        {
+          "image": "walk-outfit-warden-front-0.png",
+          "json": "walk-outfit-warden-front-0.json",
+          "width": 670,
+          "height": 50,
+          "decodedBytes": 134000,
+          "pngBytes": 22837
+        }
+      ],
+      "decodedBytes": 134000
     },
     {
       "layer": "hair-midnight-back",
-      "active": false,
+      "active": true,
       "sourceFrames": 32,
-      "nonemptyFrames": 0,
-      "pages": [],
-      "decodedBytes": 0
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 28208,
+      "pages": [
+        {
+          "image": "walk-hair-midnight-back-0.png",
+          "json": "walk-hair-midnight-back-0.json",
+          "width": 725,
+          "height": 47,
+          "decodedBytes": 136300,
+          "pngBytes": 4317
+        }
+      ],
+      "decodedBytes": 136300
     },
     {
       "layer": "hair-midnight-front",
-      "active": false,
+      "active": true,
       "sourceFrames": 32,
-      "nonemptyFrames": 0,
-      "pages": [],
-      "decodedBytes": 0
-    },
-    {
-      "layer": "weapon-staff",
-      "active": false,
-      "sourceFrames": 32,
-      "nonemptyFrames": 0,
-      "pages": [],
-      "decodedBytes": 0
-    },
-    {
-      "layer": "weapon-staff-back",
-      "active": false,
-      "sourceFrames": 32,
-      "nonemptyFrames": 0,
-      "pages": [],
-      "decodedBytes": 0
-    },
-    {
-      "layer": "weapon-staff-front",
-      "active": false,
-      "sourceFrames": 32,
-      "nonemptyFrames": 0,
-      "pages": [],
-      "decodedBytes": 0
-    },
-    {
-      "layer": "hand-grip",
-      "active": false,
-      "sourceFrames": 32,
-      "nonemptyFrames": 0,
-      "pages": [],
-      "decodedBytes": 0
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 75904,
+      "pages": [
+        {
+          "image": "walk-hair-midnight-front-0.png",
+          "json": "walk-hair-midnight-front-0.json",
+          "width": 1541,
+          "height": 60,
+          "decodedBytes": 369840,
+          "pngBytes": 11791
+        }
+      ],
+      "decodedBytes": 369840
     }
   ],
-  "decodedBytes": 1959080,
+  "decodedBytes": 2920520,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

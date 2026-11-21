@@ -7,21 +7,24 @@
     "The full ground anchor is192px original coordinate space; active layers are trimmed separately.",
     "Art inspected the full colored contact sheet and accepted freezing only for the next eight-second product-renderer review.",
     "Dynamic focus: SW frames2–4 and11–13 knee occlusion, NE frames2–4 foot outlines; verify bald/hair and outfit toggles with true trim/orig pivot.",
-    "Frame-hold residual remains4.83screen px at45ms; natural continuous walking is not yet approved."
+    "Frame-hold residual remains4.83screen px at45ms; natural continuous walking is not yet approved.",
+    "Second wardrobe export adds independently registered warden coat/front sleeves and midnight back/front hair; per-layer output, not prebaked appearance combinations.",
+    "Weapon-on state is not part of this second commit; actual staff/grip source is scheduled separately."
   ],
   "activeLayers": [
     "body",
     "body-front",
     "outfit-scholar",
     "hair-ivory-back",
-    "hair-ivory-front"
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front"
   ],
   "inactiveLayers": [
-    "outfit-warden",
     "hair-ivory",
     "hair-midnight",
-    "hair-midnight-back",
-    "hair-midnight-front",
     "weapon-staff",
     "weapon-staff-back",
     "weapon-staff-front",

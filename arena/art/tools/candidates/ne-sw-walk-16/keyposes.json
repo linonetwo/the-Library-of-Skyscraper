@@ -321,6 +321,113 @@
           "restTopLeft": [0, 0],
           "size": [192, 192],
           "sourceSet": "scholar-ivory"
+        },
+        {
+          "id": "coat",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "attachments/equipment-warden/NE/coat.png",
+          "pivot": [96.359375, 120.265625],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 5,
+          "sourceAnchor": [289, 52],
+          "sourceScale": 0.12,
+          "neckHole": [290, 45, 45, 11]
+        },
+        {
+          "id": "left-upper-sleeve",
+          "layer": "outfit-warden",
+          "joint": "leftShoulder",
+          "image": "attachments/equipment-warden/NE/left-upper-sleeve.png",
+          "pivot": [83.890625, 81.21875],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 1,
+          "sourceJoint": [781, 125],
+          "sourceEnd": [751, 274],
+          "targetJoint": [83.890625, 81.21875],
+          "targetEnd": [78.310625, 100.11875],
+          "explicitClothingFit": {
+            "axisScale": 0.12965648740833638,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "left-fore-sleeve",
+          "layer": "outfit-warden",
+          "joint": "leftElbow",
+          "image": "attachments/equipment-warden/NE/left-fore-sleeve.png",
+          "pivot": [78.310625, 100.11875],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 2,
+          "sourceJoint": [751, 274],
+          "sourceEnd": [718, 457],
+          "targetJoint": [78.310625, 100.11875],
+          "targetEnd": [71.830625, 115.41874999999999],
+          "explicitClothingFit": {
+            "axisScale": 0.0893547929399595,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "right-upper-sleeve",
+          "layer": "outfit-warden-front",
+          "joint": "rightShoulder",
+          "image": "attachments/equipment-warden/NE/right-upper-sleeve.png",
+          "pivot": [107.84375, 86.796875],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 1,
+          "sourceJoint": [1228, 125],
+          "sourceEnd": [1231, 273],
+          "targetJoint": [107.84375, 86.796875],
+          "targetEnd": [113.60375, 105.696875],
+          "explicitClothingFit": {
+            "axisScale": 0.1334741266716472,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "right-fore-sleeve",
+          "layer": "outfit-warden-front",
+          "joint": "rightElbow",
+          "image": "attachments/equipment-warden/NE/right-fore-sleeve.png",
+          "pivot": [113.60375, 105.696875],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 2,
+          "sourceJoint": [1231, 273],
+          "sourceEnd": [1280, 457],
+          "targetJoint": [113.60375, 105.696875],
+          "targetEnd": [119.72375, 120.99687499999999],
+          "explicitClothingFit": {
+            "axisScale": 0.08654151468812192,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "attachments/equipment-midnight/NE/hair-midnight-back.png",
+          "pivot": [95.703125, 79.25],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 0,
+          "sourceSet": "midnight-independent-silhouette"
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "attachments/equipment-midnight/NE/hair-midnight-front.png",
+          "pivot": [95.703125, 79.25],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 0,
+          "sourceSet": "midnight-independent-silhouette"
         }
       ],
       "feet": {
@@ -761,6 +868,113 @@
           "restTopLeft": [0, 0],
           "size": [192, 192],
           "sourceSet": "scholar-ivory"
+        },
+        {
+          "id": "coat",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "attachments/equipment-warden/SW/coat.png",
+          "pivot": [96.34375, 120.59375],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 5,
+          "sourceAnchor": [288, 565],
+          "sourceScale": 0.12,
+          "neckHole": [289, 565, 45, 12]
+        },
+        {
+          "id": "left-upper-sleeve",
+          "layer": "outfit-warden-front",
+          "joint": "leftShoulder",
+          "image": "attachments/equipment-warden/SW/left-upper-sleeve.png",
+          "pivot": [110.125, 89.09375],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 1,
+          "sourceJoint": [754, 635],
+          "sourceEnd": [767, 796],
+          "targetJoint": [110.125, 89.09375],
+          "targetEnd": [104.185, 107.63374999999999],
+          "explicitClothingFit": {
+            "axisScale": 0.1205289224938629,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "left-fore-sleeve",
+          "layer": "outfit-warden-front",
+          "joint": "leftElbow",
+          "image": "attachments/equipment-warden/SW/left-fore-sleeve.png",
+          "pivot": [104.185, 107.63374999999999],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 2,
+          "sourceJoint": [767, 796],
+          "sourceEnd": [773, 968],
+          "targetJoint": [104.185, 107.63374999999999],
+          "targetEnd": [97.705, 123.83375000000001],
+          "explicitClothingFit": {
+            "axisScale": 0.10137981212524337,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "right-upper-sleeve",
+          "layer": "outfit-warden",
+          "joint": "rightShoulder",
+          "image": "attachments/equipment-warden/SW/right-upper-sleeve.png",
+          "pivot": [80.921875, 85.8125],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 1,
+          "sourceJoint": [1234, 635],
+          "sourceEnd": [1219, 793],
+          "targetJoint": [80.921875, 85.8125],
+          "targetEnd": [75.161875, 104.35249999999999],
+          "explicitClothingFit": {
+            "axisScale": 0.12232434696857633,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "right-fore-sleeve",
+          "layer": "outfit-warden",
+          "joint": "rightElbow",
+          "image": "attachments/equipment-warden/SW/right-fore-sleeve.png",
+          "pivot": [75.161875, 104.35249999999999],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 2,
+          "sourceJoint": [1219, 793],
+          "sourceEnd": [1190, 968],
+          "targetJoint": [75.161875, 104.35249999999999],
+          "targetEnd": [68.681875, 120.55250000000001],
+          "explicitClothingFit": {
+            "axisScale": 0.09836106898538101,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "attachments/equipment-midnight/SW/hair-midnight-back.png",
+          "pivot": [93.390625, 84.171875],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 0,
+          "sourceSet": "midnight-independent-silhouette"
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "attachments/equipment-midnight/SW/hair-midnight-front.png",
+          "pivot": [93.390625, 84.171875],
+          "restTopLeft": [0, 0],
+          "size": [192, 192],
+          "zOrder": 0,
+          "sourceSet": "midnight-independent-silhouette"
         }
       ],
       "feet": {
@@ -921,7 +1135,9 @@
     "The full ground anchor is192px original coordinate space; active layers are trimmed separately.",
     "Art inspected the full colored contact sheet and accepted freezing only for the next eight-second product-renderer review.",
     "Dynamic focus: SW frames2\u20134 and11\u201313 knee occlusion, NE frames2\u20134 foot outlines; verify bald/hair and outfit toggles with true trim/orig pivot.",
-    "Frame-hold residual remains4.83screen px at45ms; natural continuous walking is not yet approved."
+    "Frame-hold residual remains4.83screen px at45ms; natural continuous walking is not yet approved.",
+    "Second wardrobe export adds independently registered warden coat/front sleeves and midnight back/front hair; per-layer output, not prebaked appearance combinations.",
+    "Weapon-on state is not part of this second commit; actual staff/grip source is scheduled separately."
   ],
   "trimAtlases": true,
   "frameMs": 45,
@@ -936,5 +1152,62 @@
       "NE": [0.01512, -0.00894],
       "SW": [0.03372, 0.06434]
     }
+  },
+  "equipmentSources": {
+    "equipment-warden": {
+      "status": "static-registration-prototype",
+      "releaseApproved": false,
+      "cell": [192, 192],
+      "groundPivot": [96, 172.8],
+      "renderScale": 1,
+      "source": "arena/art/source/iso-v030-warden-ne-sw.png",
+      "sourceSha256": "23204d496c82908268ad49470efa29a4f470b9cdb43b6ba2a86a1cc07a5314b1",
+      "sourceSuccessCount": 1,
+      "sourceAttempts": "first process exited143 without image; next invocation succeeded",
+      "notes": [
+        "Source sleeves explicitly registered to shared arm joints; coat independent of body.",
+        "Near sleeves use outfit-warden-front above bare arm; hands extend beyond registered cuff.",
+        "Action export and actual sleeve/hand overlap remain product review gates."
+      ]
+    },
+    "equipment-midnight": {
+      "status": "static-prototype",
+      "cell": [192, 192],
+      "groundPivot": [96, 172.8],
+      "renderScale": 1,
+      "baseRig": "../attachments-complete/rig.json"
+    }
+  },
+  "previewLooks": {
+    "scholar-ivory": [
+      "hair-ivory-back",
+      "body",
+      "outfit-scholar",
+      "body-front",
+      "hair-ivory-front"
+    ],
+    "scholar-midnight": [
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "body-front",
+      "hair-midnight-front"
+    ],
+    "warden-ivory": [
+      "hair-ivory-back",
+      "body",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hair-ivory-front"
+    ],
+    "warden-midnight": [
+      "hair-midnight-back",
+      "body",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hair-midnight-front"
+    ]
   }
 }

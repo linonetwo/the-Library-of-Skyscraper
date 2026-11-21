@@ -34,3 +34,16 @@ await exportPoses(generated, destination);
 console.log(
   "Exported16x45ms projected world-leg prototype; see world-cycle-report.json and atlas-budget.json; visual approval pending",
 );
+
+if (config.previewLooks) {
+  const { execFileSync } = await import("node:child_process");
+  execFileSync(
+    process.execPath,
+    [
+      new URL("./preview-looks.mjs", import.meta.url).pathname,
+      generated,
+      destination,
+    ],
+    { stdio: "inherit" },
+  );
+}
