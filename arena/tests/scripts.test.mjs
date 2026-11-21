@@ -32,7 +32,7 @@ const ownedActors = (snapshot, session) => snapshot.actors.filter(actor => actor
 const actorProgress = (snapshot, session) => ownedActors(snapshot, session)
   .map(({ state, ...progress }) => progress);
 
-test('HTTP publication drives ticks, holds empty intents, disables to preset and replays exactly', { skip: !enabled }, async () => {
+test('HTTP publication drives ticks, holds empty intents, disables to explicit tasks and replays exactly', { skip: !enabled }, async () => {
   const session = await http('/api/sessions', { mode: 'training', seed: 23 });
   await command(session, { type: 'reset' });
   const published = await route(session, 'scripts/publish', { files: move });
@@ -41,13 +41,17 @@ test('HTTP publication drives ticks, holds empty intents, disables to preset and
   assert.equal(metadata.sourceHash, published.compilation.bundle.sourceHash);
   assert.equal(metadata.entry, 'main.ts');
   assert.equal(metadata.publishedAtTick, 0);
-  const moved = await command(session, { type: 'step', ticks: 1 });
+  let moved = await command(session, { type: 'step', ticks: 1 });
+  assert(ownedActors(moved, session).every(actor => actor.travel?.targetRoomId === 'room-1'));
+  const remaining = Math.max(...ownedActors(moved, session).map(actor => Math.ceil((actor.travel.totalDistanceMilli - actor.travel.distanceMilli) / actor.travel.speedMilliPerTick)));
+  moved = await command(session, { type: 'step', ticks: remaining });
   assert(ownedActors(moved, session).every(actor => actor.roomId === 'room-1'));
   const held = await route(session, 'scripts/publish', { files: hold });
   const heldAfter = await command(session, { type: 'step', ticks: 3 });
   assert.deepEqual(actorProgress(heldAfter, session), actorProgress(held.snapshot, session));
   const disabled = await route(session, 'scripts/disable', {});
   assert.equal(disabled.players.find(player => player.id === session.playerId).script, undefined);
+  for (const actor of ownedActors(heldAfter, session)) await command(session, { type: 'task', actorId: actor.id, kind: 'gather', target: 'room-1' });
   const resumed = await command(session, { type: 'step', ticks: 1 });
   assert(ownedActors(resumed, session).some(actor => actor.cargo > 0));
   const replay = await route(session, 'replay');
@@ -86,7 +90,8 @@ test('HTTP online players bind independent rules and the clock executes both', {
   const second = await route(two, 'scripts/publish', { files: travel });
   const later = await nextSnapshot(two, second.snapshot.tick + 2);
   assert.deepEqual(actorProgress(later, one), actorProgress(first.snapshot, one));
-  assert(ownedActors(later, two).every(actor => actor.roomId === 'room-1'));
+  assert(ownedActors(later, two).every(actor => actor.roomId === 'room-1' || actor.travel?.targetRoomId === 'room-1'));
+  assert(ownedActors(later, two).some(actor => actor.travel?.distanceMilli > 0));
   const p1 = later.players.find(player => player.id === one.playerId);
   const p2 = later.players.find(player => player.id === two.playerId);
   assert.equal(p1.script.sourceHash, first.compilation.bundle.sourceHash);
@@ -94,7 +99,7 @@ test('HTTP online players bind independent rules and the clock executes both', {
   assert.notEqual(p1.script.sourceHash, p2.script.sourceHash);
 });
 
-test('MCP publication and disable control real training decisions', { skip: !enabled }, async t => {
+test('MCP publication and disable allow real training task decisions', { skip: !enabled }, async t => {
   const client = new Client({ name: 'arena-script-publication', version: '1.0.0' });
   await client.connect(new StdioClientTransport({
     command: process.execPath,
@@ -112,12 +117,16 @@ test('MCP publication and disable control real training decisions', { skip: !ena
   await call('Simulation.reset', args);
   const published = await call('Script.publish', { ...args, files: move });
   assert.equal(published.snapshot.players[0].script.sourceHash, published.compilation.bundle.sourceHash);
-  const moved = await call('Simulation.step', { ...args, ticks: 1 });
+  let moved = await call('Simulation.step', { ...args, ticks: 1 });
+  assert(ownedActors(moved, session).every(actor => actor.travel?.targetRoomId === 'room-1'));
+  const remaining = Math.max(...ownedActors(moved, session).map(actor => Math.ceil((actor.travel.totalDistanceMilli - actor.travel.distanceMilli) / actor.travel.speedMilliPerTick)));
+  moved = await call('Simulation.step', { ...args, ticks: remaining });
   assert(ownedActors(moved, session).every(actor => actor.roomId === 'room-1'));
   await call('Script.publish', { ...args, files: hold });
   const held = await call('Simulation.step', { ...args, ticks: 2 });
   assert.deepEqual(actorProgress(held, session), actorProgress(moved, session));
   await call('Script.disable', args);
+  for (const actor of ownedActors(held, session)) await call('Simulation.command', { ...args, command: { type: 'task', actorId: actor.id, kind: 'gather', target: 'room-1' } });
   const resumed = await call('Simulation.step', { ...args, ticks: 1 });
   assert(ownedActors(resumed, session).some(actor => actor.cargo > 0));
   assert.deepEqual((await call('Replay.export', args)).finalSnapshot, resumed);
