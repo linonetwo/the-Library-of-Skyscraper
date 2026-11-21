@@ -1,27 +1,38 @@
 name: Arena checks
 on:
   push:
-    branches: [master]
-    paths: ['arena/**', '.github/workflows/arena.yml']
+    branches: [master, '**integration**']
+    tags: ['**']
   pull_request:
-    paths: ['arena/**', '.github/workflows/arena.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Select checks from changed paths
+        id: scope
+        run: python3 .github/scripts/arena-scope.py
       - uses: dtolnay/rust-toolchain@stable
+        if: steps.scope.outputs.rust == 'true'
         with:
           components: clippy
       - uses: Swatinem/rust-cache@v2
+        if: steps.scope.outputs.rust == 'true'
         with:
           workspaces: |
             arena/server
             arena/script-runner
       - uses: actions/setup-node@v4
+        if: steps.scope.outputs.node == 'true'
         with:
           node-version: '24'
           cache: npm
@@ -29,31 +40,57 @@ jobs:
             arena/client/package-lock.json
             arena/tools/package-lock.json
       - run: cargo test --locked
+        if: steps.scope.outputs.core == 'true'
+        working-directory: arena/server
+      - name: Map data and legacy replay library tests
+        if: steps.scope.outputs.map_lib == 'true' && steps.scope.outputs.core != 'true'
+        run: cargo test --locked --lib
         working-directory: arena/server
       - run: cargo clippy --locked --all-targets -- -D warnings
+        if: steps.scope.outputs.core == 'true'
         working-directory: arena/server
       - run: npm ci && npm run build
+        if: steps.scope.outputs.build == 'true'
         working-directory: arena/client
       - name: TypeScript rule SDK and official strategies
+        if: steps.scope.outputs.core == 'true'
         run: npm run typecheck && npm test
         working-directory: arena/script-sdk
       - name: TypeScript compilation toolchain
+        if: steps.scope.outputs.core == 'true'
         run: npm ci && npm test
         working-directory: arena/script-toolchain
+      - name: Prepare compilation dependency for real routes
+        if: steps.scope.outputs.runtime == 'true' && steps.scope.outputs.core != 'true'
+        run: npm ci
+        working-directory: arena/script-toolchain
       - name: Independent V8 runner
+        if: steps.scope.outputs.core == 'true'
         run: cargo test --locked && cargo build --locked
         working-directory: arena/script-runner
+      - name: Prepare V8 runner for real routes
+        if: steps.scope.outputs.runtime == 'true' && steps.scope.outputs.core != 'true'
+        run: cargo build --locked
+        working-directory: arena/script-runner
       - name: Authority TypeScript routes and persistent V8 workers
+        if: steps.scope.outputs.core == 'true'
         run: |
           export ARENA_SCRIPT_RUNNER="$GITHUB_WORKSPACE/arena/script-runner/target/debug/skyscraper-arena-script-runner"
           cargo test --locked --bin skyscraper-arena-server -- --ignored
         working-directory: arena/server
       - run: npm ci && npm test
+        if: steps.scope.outputs.tools_unit == 'true'
+        working-directory: arena/tools
+      - name: Prepare browser and MCP dependencies
+        if: steps.scope.outputs.tools == 'true' && steps.scope.outputs.tools_unit != 'true'
+        run: npm ci
         working-directory: arena/tools
       - name: Build authority
+        if: steps.scope.outputs.runtime == 'true'
         run: cargo build --locked
         working-directory: arena/server
       - name: Real HTTP, WebSocket, and MCP integration
+        if: steps.scope.outputs.http == 'true'
         working-directory: arena/tools
         run: |
           export ARENA_SCRIPT_RUNNER="$GITHUB_WORKSPACE/arena/script-runner/target/debug/skyscraper-arena-script-runner"
@@ -66,9 +103,11 @@ jobs:
           done
           npm run test:integration
       - name: Install browser test runtime
+        if: steps.scope.outputs.browser == 'true'
         run: npx playwright install --with-deps chromium
         working-directory: arena/tools
       - name: MCP browser controls
+        if: steps.scope.outputs.browser == 'true'
         working-directory: arena/tools
         run: |
           export ARENA_SCRIPT_RUNNER="$GITHUB_WORKSPACE/arena/script-runner/target/debug/skyscraper-arena-script-runner"
@@ -82,14 +121,30 @@ jobs:
             sleep 1
           done
           mkdir -p ../e2e/test-results
-          npm run test:browser 2>&1 | tee ../e2e/test-results/mcp-browser.log
-          npm --prefix ../e2e ci
-          npm --prefix ../e2e test
+          if [[ '${{ steps.scope.outputs.mcp_browser }}' == 'true' ]]; then
+            npm run test:browser 2>&1 | tee ../e2e/test-results/mcp-browser.log
+          fi
+          if [[ '${{ steps.scope.outputs.e2e }}' == 'true' ]]; then
+            npm --prefix ../e2e ci
+            if [[ '${{ steps.scope.outputs.e2e_full }}' == 'true' ]]; then
+              npm --prefix ../e2e test
+            else
+              specs=()
+              if [[ '${{ steps.scope.outputs.e2e_assets }}' == 'true' ]]; then
+                specs+=(specs/camera-sample.spec.ts specs/animation.spec.ts specs/grip.spec.ts)
+              fi
+              if [[ '${{ steps.scope.outputs.e2e_map }}' == 'true' ]]; then
+                specs+=(specs/isometric.spec.ts)
+              fi
+              npm --prefix ../e2e test -- "${specs[@]}"
+            fi
+          fi
       - name: Art pipeline checks
+        if: steps.scope.outputs.art == 'true'
         working-directory: arena/art
         run: npm ci && npm test
       - name: Preserve browser evidence
-        if: always()
+        if: always() && steps.scope.outputs.browser == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: arena-browser-evidence
