@@ -24,14 +24,17 @@ impl Session {
             .collect();
         actors.sort_by(|a, b| a.1.id.cmp(&b.1.id));
         for (e, mut a) in actors {
-            if a.hp > 0 {
-                crate::travel::advance(&mut a);
+            if a.hp > 0 && crate::travel::advance(&mut a) {
+                a.last_moved_tick = self.tick;
             }
             self.task_tick(&mut a);
             self.world.entity_mut(e).insert(a);
         }
         // Enemy travel consumes exactly the same fixed-point path integrator.
         for enemy in &mut self.enemies {
+            if enemy.hp > 0 && enemy.travel.is_some() {
+                enemy.last_moved_tick = self.tick;
+            }
             if enemy.hp > 0
                 && let Some(room) =
                     crate::travel::advance_motion(&mut enemy.world_position, &mut enemy.travel)

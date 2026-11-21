@@ -596,3 +596,56 @@ fn warehouse_deposit_requires_world_distance_and_cue_matches_anchor() {
     assert_eq!(cue.kind, "deliver");
     assert_eq!(cue.target_position, Some(anchor));
 }
+
+#[test]
+fn repeated_deliver_commands_queue_one_tick_budget_and_then_deposit() {
+    let mut s = game();
+    let (e, mut a) = s.owned_actor("p1", "p1-gatherer").unwrap();
+    a.cargo = 4;
+    a.world_position = Position { x: -2., y: 2. };
+    s.world.entity_mut(e).insert(a);
+    let initial = actor(&mut s, "gatherer").world_position;
+    for _ in 0..20 {
+        s.command(
+            "p1",
+            Command::Deliver {
+                actor_id: "p1-gatherer".into(),
+            },
+        )
+        .unwrap();
+    }
+    assert_eq!(actor(&mut s, "gatherer").world_position, initial);
+    assert_eq!(s.players["p1"].materials, 10);
+    let mut previous = initial;
+    for _ in 0..20 {
+        s.advance();
+        let a = actor(&mut s, "gatherer");
+        assert!(crate::travel::distance(previous, a.world_position) <= 751);
+        previous = a.world_position;
+        if a.cargo == 0 {
+            break;
+        }
+    }
+    assert_eq!(actor(&mut s, "gatherer").cargo, 0);
+    assert_eq!(s.players["p1"].materials, 14);
+}
+#[test]
+fn road_arrival_and_room_approach_share_one_movement_budget() {
+    let mut s = game();
+    task(&mut s, "scout", "build", "room-3", Some("catalog"));
+    task(&mut s, "guard", "guard", "room-3", None);
+    let mut previous = s.snapshot().actors;
+    for _ in 0..50 {
+        s.advance();
+        let current = s.snapshot().actors;
+        for a in &current {
+            let old = previous.iter().find(|b| b.id == a.id).unwrap();
+            assert!(
+                crate::travel::distance(old.world_position, a.world_position) <= 751,
+                "{} moved too far",
+                a.id
+            );
+        }
+        previous = current;
+    }
+}

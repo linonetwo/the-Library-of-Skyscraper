@@ -129,7 +129,13 @@ impl Session {
             }
             Command::Deliver { actor_id } => {
                 let (e, mut a) = self.actor(owner, &actor_id)?;
-                self.deposit(&mut a)?;
+                if a.cargo == 0
+                    || a.travel.is_some()
+                    || self.deposit_anchor(owner, &a.room_id).is_none()
+                {
+                    return Err("delivery requires cargo after arrival".into());
+                }
+                a.pending_delivery = true;
                 self.world.entity_mut(e).insert(a);
             }
             Command::Attack { actor_id } => {

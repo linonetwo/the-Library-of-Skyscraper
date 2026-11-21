@@ -157,3 +157,10 @@ Disabling TS restores the current preset as actual tasks. Generated tasks use
 the same travel/economy/construction implementation as manual tasks. Warehouse
 delivery requires a completed owned warehouse within 1.5 world tiles, and
 records its actual world position in the delivery cue.
+
+`deliver` queues the actor's `pendingDelivery` interaction. It never advances
+position during command handling: room approach and deposit execute on authority
+ticks, so repeated HTTP/TS delivery commands cannot exceed movement speed.
+`lastMovedTick` enforces one movement budget across road arrival and room
+approach (including builder, guard and warehouse work). Script actors can thus
+move to a warehouse room and issue `deliver` without a world-move API.

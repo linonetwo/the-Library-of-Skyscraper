@@ -28,6 +28,10 @@ pub struct Player {
 #[serde(rename_all = "camelCase")]
 pub struct Actor {
     #[serde(default)]
+    pub last_moved_tick: u64,
+    #[serde(default)]
+    pub pending_delivery: bool,
+    #[serde(default)]
     pub action_cue: Option<ActionCue>,
     pub id: String,
     pub owner: String,
@@ -232,6 +236,8 @@ pub struct Report {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Enemy {
+    #[serde(default)]
+    pub last_moved_tick: u64,
     #[serde(default)]
     pub action_cue: Option<ActionCue>,
     pub id: String,

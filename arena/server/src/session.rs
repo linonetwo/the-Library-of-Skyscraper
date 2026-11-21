@@ -78,6 +78,7 @@ impl Session {
                 ..Default::default()
             },
             enemies: vec![Enemy {
+                last_moved_tick: 0,
                 action_cue: None,
                 id: "guardian-1".into(),
                 room_id: "room-3".into(),
@@ -142,6 +143,8 @@ impl Session {
         self.tokens.insert(token, id.clone());
         for role in ["scout", "gatherer", "guard"] {
             self.world.spawn(Actor {
+                last_moved_tick: 0,
+                pending_delivery: false,
                 action_cue: None,
                 id: format!("{id}-{role}"),
                 owner: id.clone(),
