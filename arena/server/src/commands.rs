@@ -173,6 +173,22 @@ impl Session {
                 });
                 self.world.entity_mut(e).insert(a);
             }
+            Command::Rule {
+                preset,
+                retreat_hp,
+                assign_tasks,
+            } => {
+                if !["gather", "defend", "explore"].contains(&preset.as_str()) || retreat_hp > 100 {
+                    return Err("invalid preset or retreatHp (0..100)".into());
+                }
+                self.players.get_mut(owner).unwrap().rule = Rule { preset, retreat_hp };
+                if assign_tasks {
+                    self.players.get_mut(owner).unwrap().script = None;
+                    self.scripts.remove(owner);
+                    self.apply_preset(owner);
+                    self.event("rule", "预设已发布为实际岗位任务".into(), Some(owner));
+                }
+            }
             other => self.legacy_apply_command(owner, other)?,
         }
         Ok(())

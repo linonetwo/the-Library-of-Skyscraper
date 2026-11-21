@@ -502,11 +502,97 @@ fn tower_and_enemy_use_building_anchor_for_range_and_attack() {
         y: anchor.y,
     };
     s.enemies[0].travel = None;
-    s.tick = 12;
+    s.tick = 13;
     s.combat_tick();
     assert_eq!(s.buildings[idx].hp, 112);
+    assert_eq!(s.enemies[0].action_cue.as_ref().unwrap().kind, "attack");
     assert_eq!(
         s.enemies[0].action_cue.as_ref().unwrap().target_position,
         Some(anchor)
     );
+}
+
+#[test]
+fn presets_assign_real_distinct_tasks_threshold_preserves_and_disable_restores() {
+    let mut s = game();
+    s.command(
+        "p1",
+        Command::Rule {
+            preset: "gather".into(),
+            retreat_hp: 35,
+            assign_tasks: true,
+        },
+    )
+    .unwrap();
+    assert_eq!(actor(&mut s, "gatherer").task.unwrap().target, "room-1");
+    assert_eq!(actor(&mut s, "scout").task.unwrap().kind, "build");
+    for _ in 0..4 {
+        s.advance();
+    }
+    let travel_id = actor(&mut s, "gatherer").travel.unwrap().travel_id;
+    s.command(
+        "p1",
+        Command::Rule {
+            preset: "gather".into(),
+            retreat_hp: 50,
+            assign_tasks: false,
+        },
+    )
+    .unwrap();
+    assert_eq!(
+        actor(&mut s, "gatherer").travel.unwrap().travel_id,
+        travel_id
+    );
+    s.command(
+        "p1",
+        Command::Rule {
+            preset: "explore".into(),
+            retreat_hp: 35,
+            assign_tasks: true,
+        },
+    )
+    .unwrap();
+    assert_eq!(actor(&mut s, "gatherer").task.unwrap().target, "room-4");
+    assert_eq!(actor(&mut s, "scout").task.unwrap().target, "room-6");
+    let metadata = ScriptMetadata {
+        source_hash: "wait".into(),
+        entry: "main.ts".into(),
+        published_at_tick: s.tick,
+    };
+    s.set_script_metadata("p1", Some(metadata));
+    assert!(actor(&mut s, "gatherer").task.is_none());
+    s.command(
+        "p1",
+        Command::Rule {
+            preset: "defend".into(),
+            retreat_hp: 60,
+            assign_tasks: false,
+        },
+    )
+    .unwrap();
+    assert!(s.players["p1"].script.is_some());
+    assert!(actor(&mut s, "gatherer").task.is_none());
+    s.disable_script("p1");
+    for a in s.snapshot().actors {
+        let t = a.task.unwrap();
+        assert_eq!(t.target, "room-0");
+        assert_eq!(t.kind, "guard");
+    }
+}
+#[test]
+fn warehouse_deposit_requires_world_distance_and_cue_matches_anchor() {
+    let mut s = game();
+    let (_, mut a) = s.owned_actor("p1", "p1-gatherer").unwrap();
+    a.cargo = 4;
+    a.world_position = Position { x: -2., y: 2. };
+    let before = s.players["p1"].materials;
+    assert!(s.deposit(&mut a).is_err());
+    assert_eq!(s.players["p1"].materials, before);
+    let anchor = crate::travel::build_anchor("room-0", "warehouse");
+    a.world_position = anchor;
+    s.deposit(&mut a).unwrap();
+    assert_eq!(s.players["p1"].materials, before + 4);
+    let cue = a.action_cue.unwrap();
+    assert_eq!(cue.kind, "deliver");
+    assert_eq!(cue.target_position, Some(anchor));
 }

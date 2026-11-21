@@ -83,6 +83,7 @@ fn validate_rules_and_steps() {
         s.command(
             "p1",
             Command::Rule {
+                assign_tasks: false,
                 preset: "eval".into(),
                 retreat_hp: 30
             }
@@ -93,6 +94,7 @@ fn validate_rules_and_steps() {
         s.command(
             "p1",
             Command::Rule {
+                assign_tasks: false,
                 preset: "gather".into(),
                 retreat_hp: 101
             }

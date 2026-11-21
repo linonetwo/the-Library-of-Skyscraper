@@ -168,6 +168,8 @@ pub enum Command {
         kind: String,
     },
     Rule {
+        #[serde(default, rename = "assignTasks")]
+        assign_tasks: bool,
         preset: String,
         #[serde(rename = "retreatHp")]
         retreat_hp: u32,

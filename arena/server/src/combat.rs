@@ -161,6 +161,8 @@ impl Session {
                         && crate::travel::distance(self.enemies[i].world_position, p) <= 2000
                     {
                         self.enemies[i].action_tick = self.tick;
+                        self.enemies[i].action_cue =
+                            crate::ActionCue::new("attack", self.tick, 2, Some(p));
                         self.buildings[*j].hp = self.buildings[*j]
                             .hp
                             .saturating_sub(crate::scenario::number("enemyDamage") as u32);

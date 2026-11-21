@@ -1,20 +1,59 @@
 use crate::{Actor, Session};
 impl Session {
+    pub(crate) fn apply_preset(&mut self, owner: &str) {
+        if self.simulation_version < 3 || self.players[owner].script.is_some() {
+            return;
+        }
+        let preset = self.players[owner].rule.preset.clone();
+        let template = &crate::scenario::config()["presetTasks"][&preset];
+        let entities: Vec<_> = self
+            .world
+            .query::<(bevy_ecs::prelude::Entity, &Actor)>()
+            .iter(&self.world)
+            .filter(|(_, a)| a.owner == owner && a.hp > 0)
+            .map(|(e, a)| (e, a.role.clone()))
+            .collect();
+        for (e, role) in entities {
+            let t = &template[role];
+            let mut a = self.world.get_mut::<Actor>(e).unwrap();
+            a.task = Some(crate::ActorTask {
+                kind: t["kind"].as_str().unwrap().into(),
+                target: t["target"].as_str().unwrap().into(),
+                building_kind: t["buildingKind"].as_str().map(str::to_owned),
+                stage: "queued".into(),
+                blocked_reason: None,
+            });
+        }
+    }
+    fn deposit_anchor(&self, owner: &str, room: &str) -> Option<crate::Position> {
+        self.buildings
+            .iter()
+            .find(|b| {
+                b.owner == owner
+                    && b.room_id == room
+                    && b.kind == "warehouse"
+                    && b.hp > 0
+                    && b.construction_ticks >= b.required_ticks
+            })
+            .map(|b| b.world_position)
+    }
+
     pub(crate) fn deposit(&mut self, a: &mut Actor) -> Result<(), String> {
         if a.travel.is_some() || a.cargo == 0 || !self.deposit_room(&a.owner, &a.room_id) {
             return Err("deposit requires cargo at a completed owned warehouse".into());
+        }
+        let anchor = self
+            .deposit_anchor(&a.owner, &a.room_id)
+            .ok_or("no completed warehouse")?;
+        if crate::travel::distance(a.world_position, anchor) > 1500 {
+            return Err("approach warehouse within 1.5 tiles before depositing".into());
         }
         let amount = a.cargo;
         self.players.get_mut(&a.owner).unwrap().materials += amount;
         self.scenario.report.materials_delivered += amount;
         a.cargo = 0;
         a.state = "delivering".into();
-        a.action_cue = crate::ActionCue::new(
-            "deliver",
-            self.tick,
-            2,
-            Some(crate::travel::center(&a.room_id)),
-        );
+        a.action_cue = crate::ActionCue::new("deliver", self.tick, 2, Some(anchor));
         self.event(
             "deliver",
             format!("{} 入库 {amount} 建材", a.id),
@@ -141,8 +180,15 @@ impl Session {
                 .unwrap();
             task.stage = "transporting".into();
         }
-        if a.cargo > 0 && self.deposit_room(&a.owner, &a.room_id) {
-            let _ = self.deposit(a);
+        if a.cargo > 0
+            && let Some(anchor) = self.deposit_anchor(&a.owner, &a.room_id)
+        {
+            crate::travel::approach(&mut a.world_position, anchor, 750);
+            if self.deposit(a).is_err() {
+                task.stage = "depositing".into();
+                a.task = Some(task);
+                return;
+            }
         }
         if a.room_id != destination {
             let _ = crate::travel::start(a, &destination, self.tick);

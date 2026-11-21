@@ -24,6 +24,7 @@ fn two_player_commands_ticks_rejections_and_future_simulation() {
         .command(
             "p2",
             Command::Rule {
+                assign_tasks: false,
                 preset: "explore".into(),
                 retreat_hp: 45,
             },

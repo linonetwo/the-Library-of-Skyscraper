@@ -26,6 +26,9 @@ impl Session {
             }
         }
         self.players.get_mut(owner).unwrap().script = script.clone();
+        if script.is_none() {
+            self.apply_preset(owner);
+        }
         self.event(
             "script",
             if script.is_some() {

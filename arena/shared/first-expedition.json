@@ -38,5 +38,50 @@
   "actorCapacity": 12,
   "retreatHp": 35,
   "initialResourceBase": 160,
-  "initialResourceVariance": 41
+  "initialResourceVariance": 41,
+  "presetTasks": {
+    "gather": {
+      "gatherer": {
+        "kind": "gather",
+        "target": "room-1"
+      },
+      "guard": {
+        "kind": "guard",
+        "target": "room-3"
+      },
+      "scout": {
+        "kind": "build",
+        "target": "room-3",
+        "buildingKind": "catalog"
+      }
+    },
+    "defend": {
+      "gatherer": {
+        "kind": "guard",
+        "target": "room-0"
+      },
+      "guard": {
+        "kind": "guard",
+        "target": "room-0"
+      },
+      "scout": {
+        "kind": "guard",
+        "target": "room-0"
+      }
+    },
+    "explore": {
+      "gatherer": {
+        "kind": "gather",
+        "target": "room-4"
+      },
+      "guard": {
+        "kind": "guard",
+        "target": "room-3"
+      },
+      "scout": {
+        "kind": "guard",
+        "target": "room-6"
+      }
+    }
+  }
 }
