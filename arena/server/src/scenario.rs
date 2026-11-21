@@ -81,6 +81,9 @@ impl Session {
             self.enemies.push(Enemy {
                 last_moved_tick: 0,
                 action_cue: None,
+                impact_cue: None,
+                motion_distance_milli: 0,
+                last_move_direction: crate::action_runtime::default_direction(),
                 id: "guardian-counterattack".into(),
                 room_id: "room-4".into(),
                 hp: number("enemyHp") as u32,

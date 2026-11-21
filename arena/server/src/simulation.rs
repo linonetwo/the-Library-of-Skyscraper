@@ -24,7 +24,7 @@ impl Session {
             .collect();
         actors.sort_by(|a, b| a.1.id.cmp(&b.1.id));
         for (e, mut a) in actors {
-            if a.hp > 0 && crate::travel::advance(&mut a) {
+            if a.hp > 0 && crate::travel::advance(&mut a, self.simulation_version) {
                 a.last_moved_tick = self.tick;
             }
             self.task_tick(&mut a);
@@ -35,12 +35,18 @@ impl Session {
             if enemy.hp > 0 && enemy.travel.is_some() {
                 enemy.last_moved_tick = self.tick;
             }
-            if enemy.hp > 0
-                && let Some(room) =
-                    crate::travel::advance_motion(&mut enemy.world_position, &mut enemy.travel)
-            {
-                enemy.room_id = room;
-                enemy.state = "guarding".into();
+            if enemy.hp > 0 {
+                let (arrived, motion) =
+                    crate::travel::advance_motion(&mut enemy.world_position, &mut enemy.travel);
+                motion.record(
+                    self.simulation_version,
+                    &mut enemy.motion_distance_milli,
+                    &mut enemy.last_move_direction,
+                );
+                if let Some(room) = arrived {
+                    enemy.room_id = room;
+                    enemy.state = "guarding".into();
+                }
             }
         }
         self.combat_tick();

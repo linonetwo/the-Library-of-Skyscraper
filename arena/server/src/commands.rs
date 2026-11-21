@@ -103,13 +103,19 @@ impl Session {
                         t.target_room_id
                     ));
                 }
-                a.task = Some(ActorTask {
-                    kind,
-                    target,
-                    stage: "queued".into(),
-                    blocked_reason: None,
-                    building_kind,
-                });
+                crate::action_runtime::assign_task(
+                    &mut a.task,
+                    ActorTask {
+                        kind,
+                        target,
+                        stage: "queued".into(),
+                        stage_started_tick: 0,
+                        blocked_reason: None,
+                        building_kind,
+                    },
+                    self.tick,
+                    self.simulation_version,
+                );
                 self.world.entity_mut(e).insert(a);
             }
             Command::Move { actor_id, room_id } => {
@@ -145,13 +151,19 @@ impl Session {
             }
             Command::Capture { actor_id } => {
                 let (e, mut a) = self.actor(owner, &actor_id)?;
-                a.task = Some(ActorTask {
-                    kind: "guard".into(),
-                    target: a.room_id.clone(),
-                    stage: "guarding".into(),
-                    blocked_reason: None,
-                    building_kind: None,
-                });
+                crate::action_runtime::assign_task(
+                    &mut a.task,
+                    ActorTask {
+                        kind: "guard".into(),
+                        target: a.room_id.clone(),
+                        stage: "guarding".into(),
+                        stage_started_tick: 0,
+                        blocked_reason: None,
+                        building_kind: None,
+                    },
+                    self.tick,
+                    self.simulation_version,
+                );
                 self.world.entity_mut(e).insert(a);
             }
             Command::Build { room_id, kind } => {
@@ -170,13 +182,20 @@ impl Session {
                     .next()
                     .ok_or("builder must be present, alive and stationary")?;
                 self.ensure_site(owner, &room_id, &kind)?;
-                a.task = Some(ActorTask {
-                    kind: "build".into(),
-                    target: room_id,
-                    stage: "construction".into(),
-                    blocked_reason: None,
-                    building_kind: Some(kind),
-                });
+                let stage = crate::action_runtime::build_stage(&a, &kind, self.simulation_version);
+                crate::action_runtime::assign_task(
+                    &mut a.task,
+                    ActorTask {
+                        kind: "build".into(),
+                        target: room_id,
+                        stage,
+                        stage_started_tick: 0,
+                        blocked_reason: None,
+                        building_kind: Some(kind),
+                    },
+                    self.tick,
+                    self.simulation_version,
+                );
                 self.world.entity_mut(e).insert(a);
             }
             Command::Rule {

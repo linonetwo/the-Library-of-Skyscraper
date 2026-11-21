@@ -23,13 +23,19 @@ impl Session {
         }) as u32;
         let e = &mut self.enemies[target];
         e.hp = e.hp.saturating_sub(dmg);
-        e.action_cue = crate::ActionCue::new(
-            if e.hp == 0 { "down" } else { "hit" },
+        crate::action_runtime::impact(
+            &mut e.action_cue,
+            &mut e.impact_cue,
+            e.hp,
             self.tick,
-            if e.hp == 0 { 0 } else { 1 },
-            Some(a.world_position),
+            a.world_position,
+            self.simulation_version,
         );
-        a.action_cue = crate::ActionCue::new("attack", self.tick, 2, Some(e.world_position));
+        crate::action_runtime::action(
+            &mut a.action_cue,
+            crate::ActionCue::new("attack", self.tick, 2, Some(e.world_position)).unwrap(),
+            self.simulation_version,
+        );
         e.state = if e.hp == 0 { "downed" } else { "fighting" }.into();
         let id = e.id.clone();
         a.action_tick = self.tick;
@@ -59,7 +65,13 @@ impl Session {
                     .iter()
                     .find(|enemy| enemy.hp > 0 && enemy.room_id == a.room_id)
             {
-                crate::travel::approach_actor(&mut a, enemy.world_position, 1800, self.tick);
+                crate::travel::approach_actor(
+                    &mut a,
+                    enemy.world_position,
+                    1800,
+                    self.tick,
+                    self.simulation_version,
+                );
             }
             if self.players[&a.owner].script.is_none() {
                 let _ = self.actor_attack(&mut a);
@@ -99,10 +111,12 @@ impl Session {
                 ) <= 4000
                     && self.enemies[i].last_moved_tick != self.tick
                 {
-                    crate::travel::approach(
-                        &mut self.enemies[i].world_position,
+                    crate::travel::approach_enemy(
+                        &mut self.enemies[i],
                         a.world_position,
                         1800,
+                        self.tick,
+                        self.simulation_version,
                     );
                 }
                 if crate::travel::distance(a.world_position, self.enemies[i].world_position)
@@ -116,11 +130,13 @@ impl Session {
                     a.hp = a.hp.saturating_sub(dmg);
                     self.enemies[i].action_cue =
                         crate::ActionCue::new("attack", self.tick, 2, Some(a.world_position));
-                    a.action_cue = crate::ActionCue::new(
-                        if a.hp == 0 { "down" } else { "hit" },
+                    crate::action_runtime::impact(
+                        &mut a.action_cue,
+                        &mut a.impact_cue,
+                        a.hp,
                         self.tick,
-                        if a.hp == 0 { 0 } else { 1 },
-                        Some(self.enemies[i].world_position),
+                        self.enemies[i].world_position,
+                        self.simulation_version,
                     );
                     self.event(
                         "damage",
@@ -156,7 +172,13 @@ impl Session {
                 if let Some((j, _, _)) = bs.first() {
                     let p = self.buildings[*j].world_position;
                     if self.enemies[i].last_moved_tick != self.tick {
-                        crate::travel::approach(&mut self.enemies[i].world_position, p, 1800);
+                        crate::travel::approach_enemy(
+                            &mut self.enemies[i],
+                            p,
+                            1800,
+                            self.tick,
+                            self.simulation_version,
+                        );
                         self.enemies[i].last_moved_tick = self.tick;
                     }
                     if self.tick
@@ -202,11 +224,13 @@ impl Session {
                 }) {
                     let dmg = crate::scenario::number("towerDamage") as u32;
                     e.hp = e.hp.saturating_sub(dmg);
-                    e.action_cue = crate::ActionCue::new(
-                        if e.hp == 0 { "down" } else { "hit" },
+                    crate::action_runtime::impact(
+                        &mut e.action_cue,
+                        &mut e.impact_cue,
+                        e.hp,
                         self.tick,
-                        if e.hp == 0 { 0 } else { 1 },
-                        Some(b.world_position),
+                        b.world_position,
+                        self.simulation_version,
                     );
                     self.event(
                         "tower-attack",

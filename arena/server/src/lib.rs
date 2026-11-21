@@ -1,3 +1,4 @@
+mod action_runtime;
 mod actions;
 mod appearance;
 mod checkpoint;
@@ -46,3 +47,6 @@ mod playable_tests;
 mod scenario;
 mod tasks;
 mod travel;
+
+#[cfg(test)]
+mod action_runtime_tests;

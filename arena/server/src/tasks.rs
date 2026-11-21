@@ -16,13 +16,19 @@ impl Session {
         for (e, role) in entities {
             let t = &template[role];
             let mut a = self.world.get_mut::<Actor>(e).unwrap();
-            a.task = Some(crate::ActorTask {
-                kind: t["kind"].as_str().unwrap().into(),
-                target: t["target"].as_str().unwrap().into(),
-                building_kind: t["buildingKind"].as_str().map(str::to_owned),
-                stage: "queued".into(),
-                blocked_reason: None,
-            });
+            crate::action_runtime::assign_task(
+                &mut a.task,
+                crate::ActorTask {
+                    kind: t["kind"].as_str().unwrap().into(),
+                    target: t["target"].as_str().unwrap().into(),
+                    building_kind: t["buildingKind"].as_str().map(str::to_owned),
+                    stage: "queued".into(),
+                    stage_started_tick: 0,
+                    blocked_reason: None,
+                },
+                self.tick,
+                self.simulation_version,
+            );
         }
     }
     pub(crate) fn deposit_anchor(&self, owner: &str, room: &str) -> Option<crate::Position> {
@@ -53,7 +59,11 @@ impl Session {
         self.scenario.report.materials_delivered += amount;
         a.cargo = 0;
         a.state = "delivering".into();
-        a.action_cue = crate::ActionCue::new("deliver", self.tick, 2, Some(anchor));
+        crate::action_runtime::action(
+            &mut a.action_cue,
+            crate::ActionCue::new("deliver", self.tick, 2, Some(anchor)).unwrap(),
+            self.simulation_version,
+        );
         self.event(
             "deliver",
             format!("{} 入库 {amount} 建材", a.id),
@@ -65,7 +75,7 @@ impl Session {
         let Some(anchor) = self.deposit_anchor(&a.owner, &a.room_id) else {
             return false;
         };
-        crate::travel::approach_actor(a, anchor, 750, self.tick);
+        crate::travel::approach_actor(a, anchor, 750, self.tick, self.simulation_version);
         if self.deposit(a).is_ok() {
             a.pending_delivery = false;
         }
@@ -97,11 +107,16 @@ impl Session {
         a.cargo += n;
         a.action_tick = self.tick;
         a.state = "gathering".into();
-        a.action_cue = crate::ActionCue::new(
-            "gather",
-            self.tick,
-            4,
-            Some(crate::travel::center(&a.room_id)),
+        crate::action_runtime::action(
+            &mut a.action_cue,
+            crate::ActionCue::new(
+                "gather",
+                self.tick,
+                4,
+                Some(crate::travel::center(&a.room_id)),
+            )
+            .unwrap(),
+            self.simulation_version,
         );
         self.event(
             "gather",
@@ -118,7 +133,7 @@ impl Session {
             a.travel = None;
             a.state = "downed".into();
             if let Some(t) = &mut a.task {
-                t.stage = "failed".into();
+                crate::action_runtime::set_stage(t, "failed", self.tick, self.simulation_version);
                 t.blocked_reason = Some("队员已倒地".into());
             }
             return;
@@ -130,7 +145,12 @@ impl Session {
         if a.retreating {
             a.state = "retreating".into();
             if let Some(t) = &mut a.task {
-                t.stage = "retreating".into();
+                crate::action_runtime::set_stage(
+                    t,
+                    "retreating",
+                    self.tick,
+                    self.simulation_version,
+                );
                 t.blocked_reason = Some("生命过低，正返回据点恢复".into());
             }
             if a.travel.is_some() {
@@ -155,7 +175,12 @@ impl Session {
         }
         if a.travel.is_some() {
             if let Some(t) = &mut a.task {
-                t.stage = "travelling".into();
+                crate::action_runtime::set_stage(
+                    t,
+                    "travelling",
+                    self.tick,
+                    self.simulation_version,
+                );
             }
             return;
         }
@@ -198,6 +223,12 @@ impl Session {
             self.delivery_tick(a);
             if a.pending_delivery {
                 task.stage = "depositing".into();
+                crate::action_runtime::commit_stage(
+                    &a.task,
+                    &mut task,
+                    self.tick,
+                    self.simulation_version,
+                );
                 a.task = Some(task);
                 return;
             }
@@ -210,13 +241,22 @@ impl Session {
                 "travelling"
             }
             .into();
+            crate::action_runtime::commit_stage(
+                &a.task,
+                &mut task,
+                self.tick,
+                self.simulation_version,
+            );
             a.task = Some(task);
             return;
         }
         match task.kind.as_str() {
             "gather" => {
                 task.stage = "gathering".into();
-                if self.tick >= a.action_tick + crate::scenario::number("gatherIntervalTicks")
+                let unavailable = self.simulation_version >= 4
+                    && self.rooms[self.room_index(&a.room_id).unwrap()].resources == 0;
+                if (unavailable
+                    || self.tick >= a.action_tick + crate::scenario::number("gatherIntervalTicks"))
                     && let Err(e) = self.gather_playable(a)
                 {
                     task.blocked_reason = Some(e);
@@ -230,6 +270,7 @@ impl Session {
                     crate::travel::build_anchor(&a.room_id, kind),
                     750,
                     self.tick,
+                    self.simulation_version,
                 );
                 if self.buildings.iter().any(|b| {
                     b.owner == a.owner
@@ -246,6 +287,15 @@ impl Session {
                         task.stage = "blocked".into();
                         task.blocked_reason = Some(e);
                     }
+                    if self.simulation_version >= 4
+                        && task.stage == "construction"
+                        && crate::travel::distance(
+                            a.world_position,
+                            crate::travel::build_anchor(&a.room_id, kind),
+                        ) > 2000
+                    {
+                        task.stage = "approaching".into();
+                    }
                     a.state = "building".into();
                 }
             }
@@ -259,6 +309,7 @@ impl Session {
             }
             _ => {}
         }
+        crate::action_runtime::commit_stage(&a.task, &mut task, self.tick, self.simulation_version);
         a.task = Some(task);
     }
 }

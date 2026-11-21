@@ -92,9 +92,9 @@ Authenticated `GET /api/sessions/:id/replay` exports a command recording.
 world; operation indices increase through resets while tick follows the replayed
 world clock. Playback owns a separate reconstructed session.
 
-## First library expedition (simulationVersion 3)
+## First library expedition (simulationVersion 4)
 
-New sessions use `simulationVersion:3`, `mapVersion:"library-v3.1"`, and
+New sessions use `simulationVersion:4`, `mapVersion:"library-v3.2"`, and
 `tickDurationMs:500`. Training starts paused; `pause:false` starts the clock,
 `reset` retries the same seed in preparation. Victory locks simulation at 60
 catalogue progress with a survivor; 960 ticks or squad elimination loses.
@@ -119,7 +119,7 @@ Assign a persistent player task:
 
 Kinds are `gather|guard|build|return`; build requires
 `warehouse|tower|catalog`. Actor task state contains
-`kind,target,stage,blockedReason,buildingKind`; completed construction is a
+`kind,target,stage,stageStartedTick,blockedReason,buildingKind`; completed construction is a
 successful `completed` stage. Scripts and manual tasks cannot drive an actor
 simultaneously: manual tactical commands explicitly require disabling a
 published script; publishing clears manual tasks. Script move intents use the
@@ -142,12 +142,31 @@ builder within 2 tiles; tower range and guardian approach/damage use this exact
 point. Missing v3 save positions migrate to that anchor. Layout is versioned
 `library-v3.2` so client geometry caches rebuild.
 
-Actors and enemies expose nullable `actionCue`:
-`{kind,startedTick,durationTicks,targetPosition}`. Real gather, delivery,
-attack, damage and down transitions emit `gather|deliver|attack|hit|down` cues;
-clients use simulation ticks and the target world point for action/facing.
-`down` with duration 0 is the permanent end pose. Travel remains independent.
-Historical simulation exports no new action cues.
+Actors and enemies expose nullable `actionCue` and `impactCue`, each
+`{kind,startedTick,durationTicks,targetPosition}`. Real gather/delivery/attack
+write active `gather|deliver|attack` cues. Damage writes `hit|down` to impactCue,
+without replacing an attack in the same tick. Multiple hits preserve the first
+source/tick; a lethal hit upgrades to terminal `down` (duration 0). HP=0 takes
+presentation priority. Active cue ties use attack > deliver > work. Effective
+cue interval is `[startedTick, startedTick+durationTicks)`; down holds its last
+pose. Continuous build/catalog work uses the actual task stage rather than a
+second cue. `approaching`/`blocked` stages do not imply active construction.
+
+`motionDistanceMilli` accumulates actual road segment and room approach distance
+in thousandths of a ground tile; bends count each segment. `lastMoveDirection`
+keeps the last nonzero world displacement vector (not necessarily normalized),
+including after long idle periods. `task.stageStartedTick` changes only when the
+committed task stage changes or a different task starts; repeated work/intents
+retain its anchor. These facts persist in checkpoints and replay snapshots, so
+random seek needs no scan of earlier frames.
+
+Simulation version 4 introduces these presentation facts; product version is
+still v0.3. Old checkpoints keep their simulation version. Version 3 replay uses
+its original single-cue overwrite behavior and leaves new facts at defaults:
+`impactCue:null`, `motionDistanceMilli:0`, `lastMoveDirection:{x:1,y:1}`,
+`stageStartedTick:0`. Historical v0.2 exports no new cues. Consumers of old v3
+snapshots may display `actionCue.hit/down` as impact; the authority preserves the
+recorded facts for strict replay comparison rather than silently upgrading.
 
 `rule` accepts optional `assignTasks` (default false). Publishing a preset with
 `assignTasks:true` disables TS and generates the configured role tasks from
