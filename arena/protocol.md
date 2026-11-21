@@ -91,3 +91,47 @@ Authenticated `GET /api/sessions/:id/replay` exports a command recording.
 `{sessionId,frames:[{operationIndex,tick,snapshot}]}`. Index 0 is the initial
 world; operation indices increase through resets while tick follows the replayed
 world clock. Playback owns a separate reconstructed session.
+
+## First library expedition (simulationVersion 3)
+
+New sessions use `simulationVersion:3`, `mapVersion:"library-v3"`, and
+`tickDurationMs:500`. Training starts paused; `pause:false` starts the clock,
+`reset` retries the same seed in preparation. Victory locks simulation at 60
+catalogue progress with a survivor; 960 ticks or squad elimination loses.
+
+The authority embeds `shared/world-map.json` as `snapshot.worldMap` (room
+centers and road polylines) and `shared/first-expedition.json` as
+`scenarioConfig`. Positions use ground tiles. Actors expose `worldPosition`,
+`travel`, `task`, `retreating`, and `actionTick`. Travel advances 750 thousandths
+of a tile each tick; the path includes legal role work slots. `roomId` stays at
+the departure room until arrival, and travelling actors cannot interact.
+`travel` contains `travelId,targetRoomId,path,segment,distanceMilli,
+totalDistanceMilli,startedTick,speedMilliPerTick,progress`. Midroute changes are
+rejected explicitly; low HP takes precedence and reroutes at the next path node.
+
+Assign a persistent player task:
+
+```json
+{"type":"task","actorId":"p1-gatherer","kind":"gather","target":"room-1"}
+{"type":"task","actorId":"p1-guard","kind":"guard","target":"room-3"}
+{"type":"task","actorId":"p1-scout","kind":"build","target":"room-3","buildingKind":"catalog"}
+```
+
+Kinds are `gather|guard|build|return`; build requires
+`warehouse|tower|catalog`. Actor task state contains
+`kind,target,stage,blockedReason,buildingKind`; completed construction is a
+successful `completed` stage. Scripts and manual tasks cannot drive an actor
+simultaneously: manual tactical commands explicitly require disabling a
+published script; publishing clears manual tasks. Script move intents use the
+same travel integrator and repeated destinations preserve progress. An empty
+script decision does not fire automatic player attacks.
+
+`enemies` expose HP, world position and travel. Buildings expose HP and
+`constructionTicks/requiredTicks`. `scenario` exposes `catalogProgress`,
+`counterattackTick`, `counterattackSpawned`, `remainingTicks`, `blockedReason`,
+and `report` with `materialsDelivered/materialsSpent/cargoLost/downed/catalogTicks`.
+A single warning at progress 30 schedules the counterattack 20 ticks later.
+Checkpoint and replay restore this state without respawning it. Replay exports
+include `simulationVersion/mapVersion`; recordings without these fields retain
+the historical v0.2 simulation and its time semantics. Missing old checkpoint
+actor positions migrate to their room center.

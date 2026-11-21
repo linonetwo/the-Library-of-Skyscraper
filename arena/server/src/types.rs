@@ -37,6 +37,16 @@ pub struct Actor {
     pub cargo: u32,
     pub cargo_capacity: u32,
     pub appearance: Appearance,
+    #[serde(default)]
+    pub world_position: Position,
+    #[serde(default)]
+    pub travel: Option<Travel>,
+    #[serde(default)]
+    pub task: Option<ActorTask>,
+    #[serde(default)]
+    pub action_tick: u64,
+    #[serde(default)]
+    pub retreating: bool,
 }
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -53,6 +63,14 @@ pub struct Room {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Building {
+    #[serde(default)]
+    pub hp: u32,
+    #[serde(default)]
+    pub max_hp: u32,
+    #[serde(default)]
+    pub construction_ticks: u32,
+    #[serde(default)]
+    pub required_ticks: u32,
     pub id: String,
     pub owner: String,
     pub room_id: String,
@@ -75,6 +93,20 @@ pub struct ResultSummary {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Snapshot {
+    #[serde(default)]
+    pub simulation_version: u32,
+    #[serde(default)]
+    pub map_version: String,
+    #[serde(default)]
+    pub tick_duration_ms: u32,
+    #[serde(default)]
+    pub world_map: serde_json::Value,
+    #[serde(default)]
+    pub scenario_config: serde_json::Value,
+    #[serde(default)]
+    pub scenario: Scenario,
+    #[serde(default)]
+    pub enemies: Vec<Enemy>,
     pub session_id: String,
     pub mode: Mode,
     pub seed: u64,
@@ -91,6 +123,14 @@ pub struct Snapshot {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(tag = "type", rename_all = "camelCase", deny_unknown_fields)]
 pub enum Command {
+    Task {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+        kind: String,
+        target: String,
+        #[serde(default, rename = "buildingKind")]
+        building_kind: Option<String>,
+    },
     Equip {
         #[serde(rename = "actorId")]
         actor_id: String,
@@ -135,4 +175,63 @@ pub enum Command {
         ticks: u32,
     },
     Reset {},
+}
+
+#[derive(Clone, Copy, Debug, Default, Deserialize, Serialize, PartialEq)]
+pub struct Position {
+    pub x: f64,
+    pub y: f64,
+}
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Travel {
+    pub travel_id: String,
+    pub target_room_id: String,
+    pub path: Vec<Position>,
+    pub segment: usize,
+    pub distance_milli: u64,
+    pub total_distance_milli: u64,
+    pub started_tick: u64,
+    pub speed_milli_per_tick: u64,
+    pub progress: f64,
+}
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ActorTask {
+    pub kind: String,
+    pub target: String,
+    pub stage: String,
+    pub blocked_reason: Option<String>,
+    pub building_kind: Option<String>,
+}
+#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Scenario {
+    pub catalog_progress: u32,
+    pub counterattack_tick: Option<u64>,
+    pub counterattack_spawned: bool,
+    pub remaining_ticks: u64,
+    pub blocked_reason: Option<String>,
+    pub report: Report,
+}
+#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Report {
+    pub materials_delivered: u32,
+    pub materials_spent: u32,
+    pub cargo_lost: u32,
+    pub downed: u32,
+    pub catalog_ticks: u32,
+}
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Enemy {
+    pub id: String,
+    pub room_id: String,
+    pub hp: u32,
+    pub max_hp: u32,
+    pub world_position: Position,
+    pub state: String,
+    pub action_tick: u64,
+    pub travel: Option<Travel>,
 }

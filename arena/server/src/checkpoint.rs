@@ -10,6 +10,7 @@ pub struct SessionCheckpoint {
     #[serde(default)]
     rule_runtime: BTreeMap<String, crate::script_state::RuleRuntimeState>,
     version: u32,
+    #[serde(deserialize_with = "deserialize_snapshot")]
     snapshot: Snapshot,
     tokens: BTreeMap<String, String>,
     manual_actions: BTreeMap<String, u64>,
@@ -46,6 +47,9 @@ impl Session {
         let mut world = World::new();
         world.spawn_batch(snapshot.actors);
         let mut session = Self {
+            simulation_version: snapshot.simulation_version,
+            scenario: snapshot.scenario,
+            enemies: snapshot.enemies,
             rule_runtime: checkpoint.rule_runtime,
             id: snapshot.session_id,
             mode: snapshot.mode,
@@ -73,4 +77,19 @@ impl Session {
         session.migrate_script_versions();
         Ok(session)
     }
+}
+
+fn deserialize_snapshot<'de, D: serde::Deserializer<'de>>(
+    deserializer: D,
+) -> Result<Snapshot, D::Error> {
+    let mut value = serde_json::Value::deserialize(deserializer)?;
+    if let Some(actors) = value["actors"].as_array_mut() {
+        for actor in actors {
+            if actor.get("worldPosition").is_none() {
+                let room = actor["roomId"].as_str().unwrap_or("room-0");
+                actor["worldPosition"] = serde_json::to_value(crate::travel::center(room)).unwrap();
+            }
+        }
+    }
+    serde_json::from_value(value).map_err(serde::de::Error::custom)
 }

@@ -1,9 +1,10 @@
+// These assertions preserve the historical v0.2 timing/economy for old recordings.
 use super::*;
 use serde_json::{json, to_value};
 use std::collections::BTreeMap;
 
 fn session() -> Session {
-    let mut session = Session::new("scripted".into(), Mode::Training, 42);
+    let mut session = Session::new_legacy("scripted".into(), Mode::Training, 42);
     session.join("private-token".into()).unwrap();
     session
         .command("p1", Command::Pause { paused: true })

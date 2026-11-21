@@ -10,6 +10,10 @@ pub const MAX_REPLAY_BYTES: usize = 2 * 1024 * 1024;
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct Replay {
     pub version: u32,
+    #[serde(default)]
+    pub simulation_version: u32,
+    #[serde(default)]
+    pub map_version: String,
     pub session_id: String,
     pub mode: Mode,
     pub seed: u64,
@@ -68,6 +72,7 @@ impl Replay {
     pub fn timeline(&self) -> Result<ReplayTimeline, String> {
         self.validate_limits()?;
         let mut session = Session::new(self.session_id.clone(), self.mode, self.seed);
+        session.configure_replay_version(self.simulation_version);
         let mut rule_history = crate::replay_rule_history::RuleHistory::for_replay(self);
         let mut frames = Vec::with_capacity(self.operations.len() + 1);
         frames.push(ReplayFrame {
@@ -134,6 +139,21 @@ impl Replay {
 }
 
 impl Session {
+    pub(crate) fn configure_replay_version(&mut self, version: u32) {
+        self.simulation_version = version;
+        if version < 3 {
+            self.paused = false;
+            self.enemies.clear();
+            self.scenario = Default::default();
+            for (i, r) in self.rooms.iter_mut().enumerate() {
+                r.enemy_hp = if i == 3 || i == 6 {
+                    60 + (self.seed % 21) as u32
+                } else {
+                    0
+                };
+            }
+        }
+    }
     fn replay_operation(
         &mut self,
         index: usize,
@@ -196,6 +216,12 @@ impl Session {
         }
         let mut replay = Replay {
             version: REPLAY_VERSION,
+            simulation_version: self.simulation_version,
+            map_version: if self.simulation_version >= 3 {
+                "library-v3".into()
+            } else {
+                String::new()
+            },
             session_id: self.id.clone(),
             mode: self.mode,
             seed: self.seed,
@@ -224,6 +250,7 @@ impl Session {
     pub fn from_replay(replay: &Replay) -> Result<Self, String> {
         replay.validate_limits()?;
         let mut session = Self::new(replay.session_id.clone(), replay.mode, replay.seed);
+        session.configure_replay_version(replay.simulation_version);
         for (index, operation) in replay.operations.iter().enumerate() {
             session.replay_operation(index, operation)?;
         }
