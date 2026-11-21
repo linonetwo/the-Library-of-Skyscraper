@@ -158,11 +158,19 @@ export class ActorView {
       this.sprites.forEach((sprite, index) => {
         sprite.visible = index < layers.length;
         if (!sprite.visible) return;
-        sprite.texture =
-          this.textures[action][`${action}/${layers[index]}/${key}`];
+        sprite.texture = this.samplePose
+          ? this.textures.idle[`sample/${layers[index]}/${this.samplePose}/00`]
+          : this.textures[action][`${action}/${layers[index]}/${key}`];
         sprite.scale.set(this.samplePose ? 1 : 136 / sprite.texture.height);
       });
     }
-    return { id: this.actor.id, ...pose, animation: action };
+    return {
+      id: this.actor.id,
+      ...pose,
+      animation: action,
+      textures: this.sprites
+        .filter((s) => s.visible)
+        .map((s) => s.texture.label),
+    };
   }
 }
