@@ -5,15 +5,15 @@ test('fullscreen HUD keeps actions and optional panels accessible',async({page})
  for(const width of [1440,390]){
   await page.setViewportSize({width,height:844});
   const map=await page.locator('.pixi-map').boundingBox();expect(map?.width).toBe(width);expect(map?.height).toBe(844);
-  await page.getByRole('button',{name:'详情 / 换装'}).click();
+  await page.getByRole('button',{name:'角色详情'}).click();
   await expect(page.locator('.character-drawer .animated-outfit')).toBeVisible();
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('button',{name:'详情 / 换装'})).toBeFocused();
+  await expect(page.getByRole('button',{name:'角色详情'})).toBeFocused();
   await expect(page.locator('.character-drawer')).toHaveCount(0);
   await page.getByRole('button',{name:'菜单',exact:true}).click();
   await expect(page.getByRole('navigation',{name:'游戏菜单'})).toBeVisible();
-  await page.getByRole('button',{name:'关闭菜单',exact:true}).click();
-  await expect(page.getByRole('button',{name:'采集',exact:true})).toBeEnabled();
+  await page.getByRole('button',{name:'菜单',exact:true}).click();
+  await expect(page.getByRole('button',{name:'采集运输',exact:true})).toBeEnabled();
   await page.getByRole('button',{name:'菜单',exact:true}).click();
   await page.getByRole('button',{name:'行动规则',exact:true}).click();
   await page.keyboard.press('Escape');

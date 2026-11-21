@@ -1,7 +1,7 @@
 import { openMenu, closeOverlay, stepTraining } from './hud-helpers';
 import { test, expect } from "@playwright/test";
 import { ActorMotion, facing } from "../../client/src/actorMotion";
-import { actorSlot } from "../../client/src/mapLayout";
+
 
 test("eight facings and continuous motion across new destinations", () => {
   const directions = [
@@ -20,39 +20,24 @@ test("eight facings and continuous motion across new destinations", () => {
   expect(motion.sample(1700)).toMatchObject({ x: 0, y: 0, moving: false });
 });
 
-test("battlefield paper doll walks between authoritative room destinations", async ({ page }) => {
-  const errors: string[] = [];
-  page.on("pageerror", error => errors.push(error.message));
-  await page.goto("/");
-  await page.getByRole("button", { name: "开启训练远征" }).click();
-  await openMenu(page, '训练控制');
-  await page.getByRole("button", { name: "暂停", exact: true }).click();
-  const poses = () => page.locator(".pixi-map").getAttribute("data-actors")
-    .then(value => JSON.parse(value || "[]") as {
-      id: string; x: number; y: number; moving: boolean; animation: string; direction: string;
-    }[]);
-  await expect.poll(async () => (await poses()).filter(p => p.animation === "idle").length)
-    .toBe(3);
-  await page.evaluate(async () => {
-    const session = JSON.parse(sessionStorage.getItem("arena-session")!);
-    const send = (command: object) => fetch(`/api/sessions/${session.sessionId}/commands`, {
-      method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.token}` },
-      body: JSON.stringify(command),
-    });
-    await send({ type: "reset" });
-    await send({ type: "equip", actorId: "p1-scout",
-      appearance: { outfit: "scholar", hair: "ivory", weapon: false } });
-  });
-  await expect.poll(() => page.evaluate(async () => {const a=JSON.parse(sessionStorage.getItem("arena-session")!);return (await fetch(`/api/sessions/${a.sessionId}/state`,{headers:{Authorization:`Bearer ${a.token}`}}).then(r=>r.json())).tick;})).toBe(0);
-  await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout"))
-    .toMatchObject({ ...actorSlot({q:0,r:0} as Parameters<typeof actorSlot>[0],2), moving: false });
-  await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.animation)
-    .toBe("idle");
-  await stepTraining(page);
-  await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.moving,
-    { intervals: [20, 20, 30] }).toBe(true);
-  await expect.poll(async () => (await poses()).find(p => p.id === "p1-scout")?.moving).toBe(false);
-  expect(errors).toEqual([]);
+test("battlefield follows authoritative travel and reconnect restores world position", async ({ page }) => {
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/');await page.getByRole('button',{name:'开启训练远征',exact:true}).click();
+ await page.getByRole('button',{name:'选择采撷师',exact:true}).click();
+ await page.locator('.task-targets button[data-room-id="room-1"]').click();
+ await page.getByRole('button',{name:'开始远征',exact:true}).click();
+ const poses=()=>page.locator('.pixi-map').getAttribute('data-actors').then(v=>JSON.parse(v||'[]'));
+ await expect.poll(async()=>(await poses()).find((a:any)=>a.id==='p1-gatherer')?.travel?.distanceMilli).toBeGreaterThan(0);
+ const paused=page.waitForResponse(r=>r.url().endsWith('/commands')&&r.request().postDataJSON()?.type==='pause');
+ await page.locator('.game-top').getByRole('button',{name:'暂停',exact:true}).click();await paused;
+ await expect(page.getByRole('button',{name:'开始远征',exact:true})).toBeVisible();
+ const before=(await poses()).find((a:any)=>a.id==='p1-gatherer');
+ expect(before.travel).toBeTruthy();expect(before.travel.distanceMilli).toBeLessThan(before.travel.totalDistanceMilli);
+ await page.reload();await expect.poll(async()=>(await poses()).find((a:any)=>a.id==='p1-gatherer')?.worldPosition).toEqual(before.worldPosition);
+ const after=(await poses()).find((a:any)=>a.id==='p1-gatherer');
+ expect(after.x).toBeCloseTo(64*(before.worldPosition.x-before.worldPosition.y));
+ expect(after.y).toBeCloseTo(32*(before.worldPosition.x+before.worldPosition.y));
+ expect(after.moving).toBe(false);expect(errors).toEqual([]);
 });
 
 test("idle samples are deterministic and retain final facing", () => {
