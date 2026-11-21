@@ -13,6 +13,18 @@ impl Session {
     }
 
     pub(crate) fn set_script_metadata(&mut self, owner: &str, script: Option<ScriptMetadata>) {
+        if script.is_some() && self.simulation_version >= 3 {
+            let entities: Vec<_> = self
+                .world
+                .query::<(bevy_ecs::prelude::Entity, &crate::Actor)>()
+                .iter(&self.world)
+                .filter(|(_, a)| a.owner == owner)
+                .map(|(e, _)| e)
+                .collect();
+            for e in entities {
+                self.world.get_mut::<crate::Actor>(e).unwrap().task = None;
+            }
+        }
         self.players.get_mut(owner).unwrap().script = script.clone();
         self.event(
             "script",

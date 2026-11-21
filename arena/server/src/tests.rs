@@ -1,6 +1,7 @@
+// These assertions preserve the historical v0.2 timing/economy for old recordings.
 use super::*;
 fn session() -> Session {
-    let mut s = Session::new("test".into(), Mode::Training, 42);
+    let mut s = Session::new_legacy("test".into(), Mode::Training, 42);
     s.join("secret".into()).unwrap();
     s
 }
@@ -59,7 +60,7 @@ fn combat_and_settlement() {
 }
 #[test]
 fn ownership_and_online_debug() {
-    let mut s = Session::new("test".into(), Mode::Online, 42);
+    let mut s = Session::new_legacy("test".into(), Mode::Online, 42);
     s.join("a".into()).unwrap();
     s.join("b".into()).unwrap();
     assert!(
@@ -160,7 +161,7 @@ fn reset_reproduces_seed_and_preserves_credentials() {
 #[test]
 fn different_seed_changes_resources() {
     let a = session();
-    let b = Session::new("test".into(), Mode::Training, 43);
+    let b = Session::new_legacy("test".into(), Mode::Training, 43);
     assert_ne!(a.rooms[1].resources, b.rooms[1].resources);
 }
 #[test]
@@ -202,7 +203,7 @@ fn manual_command_replaces_next_autonomous_action() {
 }
 #[test]
 fn symmetric_online_squads_cannot_steal_by_iteration_order() {
-    let mut s = Session::new("test".into(), Mode::Online, 42);
+    let mut s = Session::new_legacy("test".into(), Mode::Online, 42);
     s.join("a".into()).unwrap();
     s.join("b".into()).unwrap();
     for _ in 0..120 {

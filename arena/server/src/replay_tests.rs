@@ -1,3 +1,4 @@
+// These assertions preserve the historical v0.2 timing/economy for old recordings.
 use super::*;
 
 fn round_trip(session: &mut Session) -> Session {
@@ -15,7 +16,7 @@ fn round_trip(session: &mut Session) -> Session {
 
 #[test]
 fn two_player_commands_ticks_rejections_and_future_simulation() {
-    let mut session = Session::new("online-replay".into(), Mode::Online, 937);
+    let mut session = Session::new_legacy("online-replay".into(), Mode::Online, 937);
     session.join("live-secret-one".into()).unwrap();
     session.advance();
     session.join("live-secret-two".into()).unwrap();
@@ -66,7 +67,7 @@ fn two_player_commands_ticks_rejections_and_future_simulation() {
 
 #[test]
 fn training_steps_reset_preserve_history_without_duplicate_ticks_or_joins() {
-    let mut session = Session::new("training-replay".into(), Mode::Training, 31);
+    let mut session = Session::new_legacy("training-replay".into(), Mode::Training, 31);
     session.join("live-secret".into()).unwrap();
     assert!(session.command("p1", Command::Step { ticks: 1 }).is_err());
     session
@@ -87,7 +88,7 @@ fn training_steps_reset_preserve_history_without_duplicate_ticks_or_joins() {
 
 #[test]
 fn tampering_versions_invalid_operations_and_limits_rejected() {
-    let mut session = Session::new("bounds".into(), Mode::Training, 1);
+    let mut session = Session::new_legacy("bounds".into(), Mode::Training, 1);
     session.join("live-secret".into()).unwrap();
     let replay = session.export_replay().unwrap();
     let mut tampered = replay.clone();
@@ -120,7 +121,7 @@ fn tampering_versions_invalid_operations_and_limits_rejected() {
 
 #[test]
 fn timeline_follows_operations_across_reset_and_keeps_live_state() {
-    let mut session = Session::new("timeline".into(), Mode::Training, 42);
+    let mut session = Session::new_legacy("timeline".into(), Mode::Training, 42);
     session.join("live-secret".into()).unwrap();
     session
         .command("p1", Command::Pause { paused: true })
@@ -156,7 +157,7 @@ fn timeline_follows_operations_across_reset_and_keeps_live_state() {
 
 #[test]
 fn legacy_script_advance_keeps_per_intent_rejection_semantics() {
-    let mut session = Session::new("legacy-script".into(), Mode::Online, 42);
+    let mut session = Session::new_legacy("legacy-script".into(), Mode::Online, 42);
     session.join("owner".into()).unwrap();
     session.join("other".into()).unwrap();
     let decision: crate::ScriptDecision = serde_json::from_value(serde_json::json!({

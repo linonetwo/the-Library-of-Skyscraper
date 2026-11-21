@@ -3,6 +3,9 @@ use bevy_ecs::prelude::World;
 use std::collections::BTreeMap;
 
 pub struct Session {
+    pub simulation_version: u32,
+    pub scenario: Scenario,
+    pub enemies: Vec<Enemy>,
     pub rule_runtime: BTreeMap<String, crate::script_state::RuleRuntimeState>,
     pub id: String,
     pub mode: Mode,
@@ -24,6 +27,13 @@ pub struct Session {
     pub(crate) replay_overflowed: bool,
 }
 impl Session {
+    /// Historical v0.2 simulation, retained solely for replay compatibility.
+    pub fn new_legacy(id: String, mode: Mode, seed: u64) -> Self {
+        let mut session = Self::new(id, mode, seed);
+        session.configure_replay_version(0);
+        session
+    }
+
     pub fn new(id: String, mode: Mode, seed: u64) -> Self {
         let names = [
             "归档中庭",
@@ -52,20 +62,31 @@ impl Session {
                 } else {
                     0
                 },
-                enemy_hp: if kinds[i] == "ruins" {
-                    60 + (seed % 21) as u32
-                } else {
-                    0
-                },
+                enemy_hp: if i == 3 { 80 } else { 0 },
                 owner: None,
             })
             .collect();
         Self {
+            simulation_version: 3,
+            scenario: Scenario {
+                remaining_ticks: 960,
+                ..Default::default()
+            },
+            enemies: vec![Enemy {
+                id: "guardian-1".into(),
+                room_id: "room-3".into(),
+                hp: 80,
+                max_hp: 80,
+                world_position: crate::travel::center("room-3"),
+                state: "guarding".into(),
+                action_tick: 0,
+                travel: None,
+            }],
             id,
             mode,
             seed,
             tick: 0,
-            paused: false,
+            paused: mode == Mode::Training,
             players: BTreeMap::new(),
             tokens: BTreeMap::new(),
             rooms,
@@ -95,11 +116,11 @@ impl Session {
             Player {
                 id: id.clone(),
                 name: format!("司书 {}", self.players.len() + 1),
-                materials: 40,
+                materials: if self.simulation_version >= 3 { 10 } else { 40 },
                 score: 0,
                 rule: Rule {
                     preset: "gather".into(),
-                    retreat_hp: 30,
+                    retreat_hp: if self.simulation_version >= 3 { 35 } else { 30 },
                 },
                 script: None,
             },
@@ -117,7 +138,30 @@ impl Session {
                 cargo: 0,
                 cargo_capacity: if role == "gatherer" { 24 } else { 12 },
                 appearance: Appearance::for_role(role),
+                world_position: if self.simulation_version >= 3 {
+                    crate::travel::slot("room-0", role)
+                } else {
+                    Position::default()
+                },
+                travel: None,
+                task: None,
+                action_tick: 0,
+                retreating: false,
             });
+        }
+        if self.simulation_version >= 3 {
+            for kind in ["core", "warehouse"] {
+                self.buildings.push(Building {
+                    id: format!("{id}-base-{kind}"),
+                    owner: id.clone(),
+                    room_id: "room-0".into(),
+                    kind: kind.into(),
+                    hp: 100,
+                    max_hp: 100,
+                    construction_ticks: 0,
+                    required_ticks: 0,
+                });
+            }
         }
         self.event("join", format!("{id} 的三人小队抵达中庭"), Some(&id));
         self.record_operation(ReplayOperation::Join {
@@ -143,6 +187,25 @@ impl Session {
         let mut actors: Vec<_> = query.iter(&self.world).cloned().collect();
         actors.sort_by(|a, b| a.id.cmp(&b.id));
         Snapshot {
+            simulation_version: self.simulation_version,
+            map_version: if self.simulation_version >= 3 {
+                "library-v3".into()
+            } else {
+                String::new()
+            },
+            tick_duration_ms: if self.simulation_version >= 3 { 500 } else { 0 },
+            world_map: if self.simulation_version >= 3 {
+                crate::travel::world_map().clone()
+            } else {
+                serde_json::Value::Null
+            },
+            scenario_config: if self.simulation_version >= 3 {
+                crate::scenario::config().clone()
+            } else {
+                serde_json::Value::Null
+            },
+            scenario: self.scenario.clone(),
+            enemies: self.enemies.clone(),
             session_id: self.id.clone(),
             mode: self.mode,
             seed: self.seed,

@@ -1,7 +1,8 @@
+// These assertions preserve the historical v0.2 timing/economy for old recordings.
 use crate::*;
 
 fn training() -> Session {
-    let mut session = Session::new("economy".into(), Mode::Training, 42);
+    let mut session = Session::new_legacy("economy".into(), Mode::Training, 42);
     session.join("local".into()).unwrap();
     session
 }
@@ -126,7 +127,7 @@ fn retreat_preserves_cargo_and_unloads_at_base() {
 
 #[test]
 fn online_materials_are_conserved_through_full_match() {
-    let mut s = Session::new("shared".into(), Mode::Online, 42);
+    let mut s = Session::new_legacy("shared".into(), Mode::Online, 42);
     s.join("one".into()).unwrap();
     s.join("two".into()).unwrap();
     let total = materials(&mut s);
