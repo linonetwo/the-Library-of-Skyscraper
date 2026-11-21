@@ -30,6 +30,14 @@ pub fn slot(room: &str, role: &str, owner: &str) -> Position {
     };
     p
 }
+pub fn build_anchor(room: &str, kind: &str) -> Position {
+    let c = center(room);
+    let offset = &world_map()["buildOffsets"][kind];
+    Position {
+        x: c.x + offset["x"].as_f64().unwrap_or(0.),
+        y: c.y + offset["y"].as_f64().unwrap_or(0.),
+    }
+}
 pub fn distance(a: Position, b: Position) -> u64 {
     (((a.x - b.x).hypot(a.y - b.y)) * 1000.).round() as u64
 }

@@ -27,6 +27,8 @@ pub struct Player {
 #[derive(Component, Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Actor {
+    #[serde(default)]
+    pub action_cue: Option<ActionCue>,
     pub id: String,
     pub owner: String,
     pub role: String,
@@ -63,6 +65,8 @@ pub struct Room {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Building {
+    #[serde(default)]
+    pub world_position: Position,
     #[serde(default)]
     pub hp: u32,
     #[serde(default)]
@@ -226,6 +230,8 @@ pub struct Report {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Enemy {
+    #[serde(default)]
+    pub action_cue: Option<ActionCue>,
     pub id: String,
     pub room_id: String,
     pub hp: u32,
@@ -234,4 +240,23 @@ pub struct Enemy {
     pub state: String,
     pub action_tick: u64,
     pub travel: Option<Travel>,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ActionCue {
+    pub kind: String,
+    pub started_tick: u64,
+    pub duration_ticks: u32,
+    pub target_position: Option<Position>,
+}
+impl ActionCue {
+    pub fn new(kind: &str, tick: u64, duration: u32, target: Option<Position>) -> Option<Self> {
+        Some(Self {
+            kind: kind.into(),
+            started_tick: tick,
+            duration_ticks: duration,
+            target_position: target,
+        })
+    }
 }

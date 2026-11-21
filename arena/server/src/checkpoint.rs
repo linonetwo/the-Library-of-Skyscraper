@@ -91,5 +91,20 @@ fn deserialize_snapshot<'de, D: serde::Deserializer<'de>>(
             }
         }
     }
+    let legacy = value["simulationVersion"].as_u64().unwrap_or(0) < 3;
+    if let Some(buildings) = value["buildings"].as_array_mut() {
+        for b in buildings {
+            if b.get("worldPosition").is_none() {
+                let room = b["roomId"].as_str().unwrap_or("room-0");
+                let kind = b["kind"].as_str().unwrap_or("core");
+                b["worldPosition"] = serde_json::to_value(if legacy {
+                    crate::travel::center(room)
+                } else {
+                    crate::travel::build_anchor(room, kind)
+                })
+                .unwrap();
+            }
+        }
+    }
     serde_json::from_value(value).map_err(serde::de::Error::custom)
 }

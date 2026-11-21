@@ -79,6 +79,7 @@ impl Session {
                 progress: 0.,
             };
             self.enemies.push(Enemy {
+                action_cue: None,
                 id: "guardian-counterattack".into(),
                 room_id: "room-4".into(),
                 hp: number("enemyHp") as u32,

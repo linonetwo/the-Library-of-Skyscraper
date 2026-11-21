@@ -60,6 +60,7 @@ impl Session {
         self.scenario.report.materials_spent += cost;
         let hp = cfg["buildingHp"][kind].as_u64().unwrap() as u32;
         self.buildings.push(Building {
+            world_position: crate::travel::build_anchor(room, kind),
             id: format!("building-{}", self.buildings.len() + 1),
             owner: owner.into(),
             room_id: room.into(),
@@ -94,6 +95,7 @@ impl Session {
                     && a.travel.is_none()
                     && a.owner == b.owner
                     && a.room_id == b.room_id
+                    && crate::travel::distance(a.world_position, b.world_position) <= 2000
                     && a.task.as_ref().is_some_and(|t| {
                         t.kind == "build" && t.building_kind.as_deref() == Some(&b.kind)
                     })

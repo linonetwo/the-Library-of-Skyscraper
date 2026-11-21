@@ -267,6 +267,9 @@ impl Session {
             for a in &mut expected.actors {
                 a.world_position = crate::travel::center(&a.room_id);
             }
+            for b in &mut expected.buildings {
+                b.world_position = crate::travel::center(&b.room_id);
+            }
         }
         if serde_json::to_value(session.snapshot()).map_err(|_| "snapshot serialization failed")?
             != serde_json::to_value(&expected).map_err(|_| "snapshot serialization failed")?
