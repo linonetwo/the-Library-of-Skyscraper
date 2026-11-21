@@ -26,6 +26,8 @@ const rooms: Snapshot["rooms"] = [
 /** Isolated pose-only asset review; never changes the gameplay atlas. */
 export default function CameraSample() {
   const [direction, setDirection] = useState<"NE" | "SW">("SW");
+  const [outfit, setOutfit] = useState(false),
+    [hair, setHair] = useState(false);
   const [tick, setTick] = useState(0);
   const [moving, setMoving] = useState(false);
   useEffect(() => {
@@ -112,6 +114,8 @@ export default function CameraSample() {
       <MapCanvas
         snapshot={snapshot}
         samplePose={direction}
+        sampleOutfit={outfit}
+        sampleHair={hair}
         selected="camera-pose"
         selectedRoom={null}
         zoom={1}
@@ -120,6 +124,22 @@ export default function CameraSample() {
         onRoom={() => {}}
       />
       <div className="game-top" style={{ zIndex: 30 }}>
+        <label>
+          <input
+            type="checkbox"
+            checked={outfit}
+            onChange={(e) => setOutfit(e.target.checked)}
+          />
+          学者衣装
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={hair}
+            onChange={(e) => setHair(e.target.checked)}
+          />
+          象牙白发
+        </label>
         <strong>相机样板 · 固定源姿势（尚非行走动画）</strong>
         <span>45° / 30° · 1格=1m · 人高1.7m · renderScale 1</span>
         <button onClick={() => setDirection((d) => (d === "NE" ? "SW" : "NE"))}>

@@ -11,7 +11,14 @@ export interface Room {
 export type WorldPoint = { x: number; y: number };
 export type TaskKind = "gather" | "build" | "guard" | "return";
 export type BuildingKind = "warehouse" | "tower" | "catalog";
+export type ActionCue = {
+  kind: "gather" | "deliver" | "attack" | "hit" | "down";
+  startedTick: number;
+  durationTicks: number;
+  targetPosition: WorldPoint | null;
+};
 export interface Actor {
+  actionCue?: ActionCue | null;
   worldPosition?: WorldPoint;
   travel?: null | {
     travelId: string;
@@ -31,6 +38,7 @@ export interface Actor {
     blockedReason: string | null;
     buildingKind?: BuildingKind | null;
   };
+  actionTick?: number;
   appearance: Appearance;
   id: string;
   owner: string;
@@ -75,6 +83,8 @@ export interface Snapshot {
     targetRoomId?: string;
     catalogGoal?: number;
     buildingCosts?: Record<BuildingKind, number>;
+    gatherIntervalTicks?: number;
+    combatIntervalTicks?: number;
     [key: string]: unknown;
   };
   scenario?: {
@@ -107,6 +117,7 @@ export interface Snapshot {
     owner: string;
     roomId: string;
     kind: BuildingKind;
+    worldPosition?: WorldPoint;
     hp?: number;
     maxHp?: number;
     constructionTicks?: number;
@@ -138,7 +149,12 @@ export type Command =
   | { type: "move"; actorId: string; roomId: string }
   | { type: "gather" | "deliver" | "attack" | "capture"; actorId: string }
   | { type: "build"; roomId: string; kind: "tower" | "catalog" }
-  | { type: "rule"; preset: Player["rule"]["preset"]; retreatHp: number }
+  | {
+      type: "rule";
+      preset: Player["rule"]["preset"];
+      retreatHp: number;
+      assignTasks?: boolean;
+    }
   | { type: "pause"; paused: boolean }
   | { type: "step"; ticks: number }
   | { type: "reset" };

@@ -9,18 +9,33 @@ import HelpDialog from "./HelpDialog";
 
 export default function App() {
   const workspace = useArenaWorkspace();
-  const { lobby, help, error, setError, notice, inspecting, setInspecting } = workspace;
+  const { lobby, help, error, setError, notice, inspecting, setInspecting } =
+    workspace;
   usePanelFocus(inspecting, () => setInspecting(false));
-  usePanelFocus(workspace.view !== "map", () => workspace.setView("map"), ".game-top button");
+  usePanelFocus(
+    workspace.view !== "map",
+    () => workspace.setView("map"),
+    ".game-top .menu-trigger",
+  );
   return (
     <ArenaContext.Provider value={workspace}>
       <div className="app-shell">
-
         <div className="main-shell" inert={lobby || help}>
           <GameHUD />
           <main className="workspace">
             <Battlefield />
-            {inspecting && <div className="character-drawer"><button className="drawer-close" aria-label="关闭角色面板" onClick={() => setInspecting(false)}>关闭 ×</button><CharacterInspector /></div>}
+            {inspecting && (
+              <div className="character-drawer">
+                <button
+                  className="drawer-close"
+                  aria-label="关闭角色面板"
+                  onClick={() => setInspecting(false)}
+                >
+                  关闭 ×
+                </button>
+                <CharacterInspector />
+              </div>
+            )}
           </main>
         </div>
         {error && (

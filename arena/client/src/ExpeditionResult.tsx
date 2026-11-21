@@ -1,7 +1,8 @@
 import { useArena } from "./ArenaWorkspace";
 export default function ExpeditionResult() {
-  const { snapshot, session, command, setView, setLobby } = useArena();
-  if (!snapshot?.result) return null;
+  const { snapshot, session, command, setView, setLobby, view, lobby } =
+    useArena();
+  if (!snapshot?.result || view !== "map" || lobby) return null;
   const report = snapshot.scenario?.report;
   const labels: Record<string, string> = {
     downed: "倒地人数",
