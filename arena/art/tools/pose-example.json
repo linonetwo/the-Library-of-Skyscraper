@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 1,
+  "cell": [
+    192,
+    192
+  ],
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "action": "walk",
+  "previewLayers": [
+    "body"
+  ],
+  "directions": {
+    "NE": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "restOffset": [
+            0,
+            -40
+          ]
+        },
+        "hipL": {
+          "parent": "root",
+          "restOffset": [
+            -5,
+            0
+          ]
+        },
+        "kneeL": {
+          "parent": "hipL",
+          "restOffset": [
+            -5,
+            20
+          ]
+        },
+        "ankleL": {
+          "parent": "kneeL",
+          "restOffset": [
+            5,
+            20
+          ]
+        },
+        "hipR": {
+          "parent": "root",
+          "restOffset": [
+            5,
+            0
+          ]
+        },
+        "kneeR": {
+          "parent": "hipR",
+          "restOffset": [
+            5,
+            20
+          ]
+        },
+        "ankleR": {
+          "parent": "kneeR",
+          "restOffset": [
+            -5,
+            20
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "thighL",
+          "layer": "body",
+          "image": "attachments/NE/thighL.png",
+          "joint": "hipL",
+          "pivot": [
+            4,
+            2
+          ]
+        },
+        {
+          "id": "shinL",
+          "layer": "body",
+          "image": "attachments/NE/shinL.png",
+          "joint": "kneeL",
+          "pivot": [
+            4,
+            2
+          ]
+        },
+        {
+          "id": "thighR",
+          "layer": "body",
+          "image": "attachments/NE/thighR.png",
+          "joint": "hipR",
+          "pivot": [
+            4,
+            2
+          ]
+        },
+        {
+          "id": "shinR",
+          "layer": "body",
+          "image": "attachments/NE/shinR.png",
+          "joint": "kneeR",
+          "pivot": [
+            4,
+            2
+          ]
+        }
+      ],
+      "feet": {
+        "L": {
+          "joint": "ankleL",
+          "bend": 1
+        },
+        "R": {
+          "joint": "ankleR",
+          "bend": -1
+        }
+      },
+      "poses": [
+        {
+          "durationMs": 125,
+          "joints": {},
+          "contactFoot": "L",
+          "rootScreenDelta": [
+            0,
+            0
+          ]
+        },
+        {
+          "durationMs": 125,
+          "joints": {},
+          "contactFoot": "L",
+          "rootScreenDelta": [
+            0.5,
+            0
+          ]
+        },
+        {
+          "durationMs": 125,
+          "joints": {},
+          "contactFoot": "R",
+          "rootScreenDelta": [
+            1,
+            0
+          ]
+        },
+        {
+          "durationMs": 125,
+          "joints": {},
+          "contactFoot": "R",
+          "rootScreenDelta": [
+            1.5,
+            0
+          ]
+        }
+      ]
+    },
+    "SW": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "restOffset": [
+            0,
+            -40
+          ]
+        },
+        "hipL": {
+          "parent": "root",
+          "restOffset": [
+            -5,
+            0
+          ]
+        },
+        "kneeL": {
+          "parent": "hipL",
+          "restOffset": [
+            -5,
+            20
+          ]
+        },
+        "ankleL": {
+          "parent": "kneeL",
+          "restOffset": [
+            5,
+            20
+          ]
+        },
+        "hipR": {
+          "parent": "root",
+          "restOffset": [
+            5,
+            0
+          ]
+        },
+        "kneeR": {
+          "parent": "hipR",
+          "restOffset": [
+            5,
+            20
+          ]
+        },
+        "ankleR": {
+          "parent": "kneeR",
+          "restOffset": [
+            -5,
+            20
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "thighL",
+          "layer": "body",
+          "image": "attachments/SW/thighL.png",
+          "joint": "hipL",
+          "pivot": [
+            4,
+            2
+          ]
+        },
+        {
+          "id": "shinL",
+          "layer": "body",
+          "image": "attachments/SW/shinL.png",
+          "joint": "kneeL",
+          "pivot": [
+            4,
+            2
+          ]
+        },
+        {
+          "id": "thighR",
+          "layer": "body",
+          "image": "attachments/SW/thighR.png",
+          "joint": "hipR",
+          "pivot": [
+            4,
+            2
+          ]
+        },
+        {
+          "id": "shinR",
+          "layer": "body",
+          "image": "attachments/SW/shinR.png",
+          "joint": "kneeR",
+          "pivot": [
+            4,
+            2
+          ]
+        }
+      ],
+      "feet": {
+        "L": {
+          "joint": "ankleL",
+          "bend": 1
+        },
+        "R": {
+          "joint": "ankleR",
+          "bend": -1
+        }
+      },
+      "poses": [
+        {
+          "durationMs": 125,
+          "joints": {},
+          "contactFoot": "L",
+          "rootScreenDelta": [
+            0,
+            0
+          ]
+        },
+        {
+          "durationMs": 125,
+          "joints": {},
+          "contactFoot": "L",
+          "rootScreenDelta": [
+            0.5,
+            0
+          ]
+        },
+        {
+          "durationMs": 125,
+          "joints": {},
+          "contactFoot": "R",
+          "rootScreenDelta": [
+            1,
+            0
+          ]
+        },
+        {
+          "durationMs": 125,
+          "joints": {},
+          "contactFoot": "R",
+          "rootScreenDelta": [
+            1.5,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "note": "Interface example only; replace all images/joints/poses with independently authored and registered direction art. Not an approved motion source. Sample art uses scale1; other clients must explicitly declare their own atlas-to-screen renderScale.",
+  "renderScale": 1,
+  "cycleWorldStride": [
+    0.75,
+    0
+  ]
+}
