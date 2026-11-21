@@ -23,19 +23,40 @@ const rooms: Snapshot["rooms"] = [
     owner: null,
   },
 ];
-/** Isolated pose-only asset review; never changes the gameplay atlas. */
+/** Isolated registered rig review; never changes the gameplay atlas. */
 export default function CameraSample() {
   const [direction, setDirection] = useState<"NE" | "SW">("SW");
   const [outfit, setOutfit] = useState(false),
     [hair, setHair] = useState(false);
+  const [cargo, setCargo] = useState(false);
+  const [rig, setRig] = useState<import("./RegisteredCargo").SampleRig>();
+  const [walk, setWalk] = useState(false);
+  const [frameMs, setFrameMs] = useState(125);
+  useEffect(() => {
+    void fetch("/assets/iso-v030-walk-study/pose.json")
+      .then((r) => r.json())
+      .then(
+        (p) => (setFrameMs(p.directions.NE.poses[0].durationMs), setRig(p)),
+      );
+  }, []);
   const [tick, setTick] = useState(0);
   const [moving, setMoving] = useState(false);
   useEffect(() => {
     if (!moving) return;
-    const timer = setInterval(() => setTick((t) => t + 1), 500);
+    const start = performance.now() - tick * 500;
+    const timer = setInterval(() => {
+      const next = Math.min(
+        Math.ceil(8 / 0.75),
+        Math.floor((performance.now() - start) / 500),
+      );
+      setTick(next);
+      if (next >= Math.ceil(8 / 0.75)) setMoving(false);
+    }, 50);
     return () => clearInterval(timer);
   }, [moving]);
-  const x = Math.min(8, tick * 0.75);
+
+  const distance = Math.min(8, tick * 0.75);
+  const y = direction === "NE" ? 8 - distance : distance;
   const snapshot: Snapshot = {
     sessionId: "camera-sample",
     mode: "training",
@@ -50,7 +71,7 @@ export default function CameraSample() {
       version: "camera-sample",
       rooms: [
         { id: "sample-a", center: { x: 0, y: 0 }, floorHalfSize: 1 },
-        { id: "sample-b", center: { x: 8, y: 0 }, floorHalfSize: 1 },
+        { id: "sample-b", center: { x: 0, y: 8 }, floorHalfSize: 1 },
       ],
       props: [
         {
@@ -64,7 +85,7 @@ export default function CameraSample() {
           id: "v",
           roomId: "sample-b",
           asset: "bookcase-v",
-          position: { x: 9, y: -1 },
+          position: { x: 1, y: 7 },
           footprint: { width: 1, depth: 1 },
         },
       ],
@@ -74,7 +95,7 @@ export default function CameraSample() {
           to: "sample-b",
           points: [
             { x: 0, y: 0 },
-            { x: 8, y: 0 },
+            { x: 0, y: 8 },
           ],
         },
       ],
@@ -87,10 +108,10 @@ export default function CameraSample() {
         owner: "sample",
         role: "scout",
         roomId: "sample-a",
-        worldPosition: { x, y: 0 },
+        worldPosition: { x: 0, y },
         hp: 100,
         maxHp: 100,
-        cargo: 0,
+        cargo: cargo ? 4 : 0,
         cargoCapacity: 12,
         state: "idle",
         appearance: { outfit: "scholar", hair: "ivory", weapon: false },
@@ -116,6 +137,9 @@ export default function CameraSample() {
         samplePose={direction}
         sampleOutfit={outfit}
         sampleHair={hair}
+        sampleWalk={walk && tick < Math.ceil(8 / 0.75)}
+        sampleFrameMs={frameMs}
+        sampleRig={rig}
         selected="camera-pose"
         selectedRoom={null}
         zoom={1}
@@ -138,14 +162,35 @@ export default function CameraSample() {
             checked={hair}
             onChange={(e) => setHair(e.target.checked)}
           />
-          象牙白发
+          象牙白短发（关闭为裸头）
         </label>
-        <strong>相机样板 · 固定源姿势（尚非行走动画）</strong>
-        <span>45° / 30° · 1格=1m · 人高1.7m · renderScale 1</span>
+        <label>
+          <input
+            type="checkbox"
+            checked={walk}
+            onChange={(e) => setWalk(e.target.checked)}
+          />
+          两向步态候选
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={cargo}
+            onChange={(e) => setCargo(e.target.checked)}
+          />
+          骨盆挂包（手持动作待制）
+        </label>
+        <strong>相机样板 · pass5 动作候选（未批准）</strong>
+        <span>45° / 30° · 1格=1m · 人高1.7m · renderScale 1 · 束发待注册</span>
         <button onClick={() => setDirection((d) => (d === "NE" ? "SW" : "NE"))}>
           {direction} 切换
         </button>
-        <button onClick={() => setMoving(!moving)}>
+        <button
+          onClick={() => {
+            if (!moving && tick >= Math.ceil(8 / 0.75)) setTick(0);
+            setMoving(!moving);
+          }}
+        >
           {moving ? "暂停" : "沿8格道移动1.5格/秒"}
         </button>
         <button

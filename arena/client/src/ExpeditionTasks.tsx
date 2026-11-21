@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useArena } from "./ArenaWorkspace";
 import type { BuildingKind, TaskKind } from "./types";
 export const taskNames: Record<TaskKind, string> = {
@@ -17,6 +17,10 @@ export default function ExpeditionTasks() {
   const [kind, setKind] = useState<TaskKind>("gather");
   const [expanded, setExpanded] = useState(true);
   const [building, setBuilding] = useState<BuildingKind>("catalog");
+  useEffect(() => {
+    setKind(actor?.task?.kind ?? "gather");
+    setBuilding(actor?.task?.buildingKind ?? "catalog");
+  }, [actor?.id, actor?.task?.kind, actor?.task?.buildingKind]);
   if (!actor || !snapshot) return null;
   const target =
     snapshot.scenarioConfig?.targetRoomId ??
@@ -66,6 +70,11 @@ export default function ExpeditionTasks() {
             <button
               key={room.id}
               data-room-id={room.id}
+              className={
+                actor.task?.target === room.id && actor.task.kind === kind
+                  ? "selected"
+                  : ""
+              }
               disabled={!ready || !isOwner || actor.hp <= 0}
               onClick={() => {
                 setExpanded(false);

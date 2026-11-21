@@ -15,6 +15,7 @@ export class ActorScene {
   constructor(
     private textures: DollTextures,
     node = new Container({ sortableChildren: true }),
+    private assets?: import("./worldAssets").WorldAssets,
   ) {
     this.node = node;
   }
@@ -52,7 +53,13 @@ export class ActorScene {
             );
       let view = this.views.get(actor.id);
       if (!view) {
-        view = new ActorView(actor, position, this.textures, props.onSelect);
+        view = new ActorView(
+          actor,
+          position,
+          this.textures,
+          props.onSelect,
+          this.assets,
+        );
         this.views.set(actor.id, view);
         view.node.label = "actor:" + actor.id;
         this.node.addChild(view.node);
@@ -79,8 +86,11 @@ export class ActorScene {
       view.gatherInterval =
         (snapshot.scenarioConfig?.gatherIntervalTicks ?? 4) * view.tickDuration;
       view.samplePose = props.samplePose;
+      view.sampleRig = props.sampleRig;
       view.sampleOutfit = props.sampleOutfit ?? false;
       view.sampleHair = props.sampleHair ?? false;
+      view.sampleWalk = props.sampleWalk ?? false;
+      view.sampleFrameMs = props.sampleFrameMs ?? 125;
       view.update(
         actor,
         actor.id === props.selected,

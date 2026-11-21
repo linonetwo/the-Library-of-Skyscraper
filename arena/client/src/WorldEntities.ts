@@ -1,17 +1,33 @@
+import { worldSprite, type WorldAssets } from "./worldAssets";
 import { Container, Graphics, Sprite, Text, type Texture } from "pixi.js";
 import type { Snapshot } from "./types";
 import { project } from "./isoGeometry";
 import { roomCenter } from "./mapLayout";
-const names = { warehouse: "前线仓库", tower: "防御塔", catalog: "编目台" };
+const names = {
+  core: "据点核心",
+  warehouse: "前线仓库",
+  tower: "防御塔",
+  catalog: "编目台",
+};
 /** Battlefield feedback independent of the cached floor. */
 export class WorldEntities {
   private roomLabels = new Map<string, Text>();
+  private annotations = new Container();
+  private roomAnnotations = new Container();
   private nodes = new Map<string, Container>();
   constructor(
     private parent: Container,
     private textures: Record<string, Texture>,
-  ) {}
+    private assets: WorldAssets,
+  ) {
+    this.annotations.zIndex = Number.MAX_SAFE_INTEGER;
+    this.roomAnnotations.zIndex = Number.MAX_SAFE_INTEGER;
+    this.parent.addChild(this.annotations, this.roomAnnotations);
+  }
   update(snapshot: Snapshot) {
+    const worldMap =
+      (snapshot.simulationVersion ?? 0) >= 3 ? snapshot.worldMap : undefined;
+    for (const child of this.annotations.removeChildren()) child.destroy();
     const ids = new Set<string>();
     const nodeFor = (id: string) => {
       ids.add(id);
@@ -40,8 +56,8 @@ export class WorldEntities {
         },
       });
       title.anchor.set(0.5);
-      title.y = y;
-      node.addChild(title);
+      title.position.set(node.x, node.y + y);
+      this.annotations.addChild(title);
     };
     const bar = (
       node: Container,
@@ -50,13 +66,14 @@ export class WorldEntities {
       y: number,
       color: number,
     ) => {
-      node.addChild(
-        new Graphics()
-          .rect(-26, y, 52, 5)
-          .fill(0x173438)
-          .rect(-26, y, 52 * Math.max(0, hp / max), 5)
-          .fill(color),
-      );
+      const graphic = new Graphics();
+      graphic.position.copyFrom(node.position);
+      this.annotations.addChild(graphic);
+      graphic
+        .rect(-26, y, 52, 5)
+        .fill(0x173438)
+        .rect(-26, y, 52 * Math.max(0, hp / max), 5)
+        .fill(color);
     };
     for (const room of snapshot.rooms) {
       let title = this.roomLabels.get(room.id);
@@ -72,10 +89,10 @@ export class WorldEntities {
         title.anchor.set(0.5);
         title.eventMode = "none";
         this.roomLabels.set(room.id, title);
-        this.parent.addChild(title);
+        this.roomAnnotations.addChild(title);
       }
       const c =
-        snapshot.worldMap?.rooms.find((r) => r.id === room.id)?.center ??
+        worldMap?.rooms.find((r) => r.id === room.id)?.center ??
         roomCenter(room.q, room.r);
       const p = project(c.x, c.y);
       title.position.set(p.x, p.y + 115);
@@ -94,6 +111,18 @@ export class WorldEntities {
                 snapshot.scenarioConfig.catalogGoal
               : "安全");
     }
+    for (const room of snapshot.rooms.filter(
+      (r) => r.kind === "resource" && r.resources > 0,
+    )) {
+      const c =
+        worldMap?.rooms.find((r) => r.id === room.id)?.center ??
+        roomCenter(room.q, room.r);
+      const p = project(c.x, c.y),
+        node = nodeFor("resource:" + room.id);
+      node.position.copyFrom(p);
+      node.zIndex = p.y;
+      node.addChild(worldSprite(this.assets, "resource-cache"));
+    }
     for (const enemy of snapshot.enemies ?? []) {
       const node = nodeFor(enemy.id),
         p = project(enemy.worldPosition.x, enemy.worldPosition.y);
@@ -101,16 +130,19 @@ export class WorldEntities {
       node.zIndex = p.y;
       node.addChild(
         new Graphics()
-          .ellipse(0, 0, 24, 12)
-          .fill({ color: 0xe28675, alpha: 0.25 })
-          .poly([0, -83, 24, -57, 18, -14, 0, 0, -18, -14, -24, -57])
-          .fill(0x663d43)
-          .stroke({ color: 0xe8a08b, width: 2 })
-          .circle(-7, -57, 3)
-          .fill(0xffd69c)
-          .circle(7, -57, 3)
-          .fill(0xffd69c),
+          .ellipse(0, 1, 19, 9.5)
+          .fill({ color: 0x081b22, alpha: 0.3 }),
       );
+      const target = enemy.actionCue?.targetPosition;
+      const direction =
+        target &&
+        project(
+          target.x - enemy.worldPosition.x,
+          target.y - enemy.worldPosition.y,
+        ).y < 0
+          ? "NE"
+          : "SW";
+      node.addChild(worldSprite(this.assets, "inkguard-" + direction));
       node.alpha = enemy.hp > 0 ? 1 : 0.3;
       label(
         node,
@@ -130,7 +162,7 @@ export class WorldEntities {
     for (const building of snapshot.buildings) {
       const room = snapshot.rooms.find((r) => r.id === building.roomId)!;
       const center =
-        snapshot.worldMap?.rooms.find((r) => r.id === room.id)?.center ??
+        worldMap?.rooms.find((r) => r.id === room.id)?.center ??
         roomCenter(room.q, room.r);
       const position = building.worldPosition ?? {
         x: center.x + 1.5,
@@ -152,7 +184,11 @@ export class WorldEntities {
       );
       sprite.anchor.set(0.5, 160 / 192);
       sprite.alpha = complete ? 1 : 0.45;
+      if (!complete)
+        node.addChild(worldSprite(this.assets, "construction-site-back"));
       node.addChild(sprite);
+      if (!complete)
+        node.addChild(worldSprite(this.assets, "construction-site-front"));
       if (building.kind === "tower")
         node.addChild(
           new Graphics()
@@ -167,11 +203,7 @@ export class WorldEntities {
             .rect(-32, -50, 64, 36)
             .stroke({ color: 0xe4c582, width: 2 }),
         );
-      label(
-        node,
-        `${names[building.kind]}${complete ? "" : " · 施工中"}`,
-        -124,
-      );
+      label(node, `${names[building.kind]}${complete ? "" : " · 施工中"}`, 30);
       if (!complete) {
         bar(
           node,

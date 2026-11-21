@@ -1,0 +1,12 @@
+Use case: stylized-concept
+Asset type: ONE independent transparent construction-site game sprite, reusable around a library building base.
+
+Draw a single low wooden work scaffold with a compact pile of spare binder-boards and a rolled blank blueprint tied with cord, isolated on genuine transparent alpha. No people, hands, floor tile, base diamond, scene, text, labels, UI, progress bar, cast shadow or finished building.
+
+Fixed orthographic isometric camera: world yaw45 degrees, camera elevation30 degrees ABOVE horizontal looking down. Ground-plane axes have screen slopes +0.5 and -0.5, matching a 128x64 2:1 tile; vertical posts are exactly vertical. No perspective convergence.
+
+Physical footprint is 1.0x1.0 world meter, overall scaffold height0.55m. Four short mahogany square posts and two diagonal structural braces make a clearly unfinished open work frame. The center remains EMPTY and transparent so an independently rendered plinth, archive crate or lectern base can later sit behind it. Keep front posts and braces low enough not to hide a full character. A few ivory/wood binder boards rest against one side, one rolled parchment blueprint at the foot. This is a practical work site, not a tower, altar, decorative fence or fully boarded crate.
+
+Style matches warm ivory-stone library, mahogany bookcases and compact anime adventurers: warm dark contour, restrained painterly/cel shading, antique-gold fasteners, subtle wood grain, simple readable silhouette at about128px wide. Warm upper-left light. No bright hazard stripes, modern metal tools, signs, text or overly tiny scattered debris.
+
+Center the entire independent sprite with generous transparent margins, nothing cropped. Preserve the empty interior and transparent holes between posts. No baked ground shadow; contact shading only on the actual wooden structure.

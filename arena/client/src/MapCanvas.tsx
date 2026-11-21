@@ -1,3 +1,4 @@
+import { loadWorldAssets } from "./worldAssets";
 import { WorldEntities } from "./WorldEntities";
 import { animationActions } from "./animationCatalog";
 import { useEffect, useRef, useState } from "react";
@@ -228,7 +229,7 @@ export default function MapCanvas(props: MapProps) {
         performance.now(),
       );
       poses = actors.render(performance.now());
-      host.dataset.actors=JSON.stringify(poses);
+      host.dataset.actors = JSON.stringify(poses);
       applyCamera();
     };
     redraw.current = paint;
@@ -274,6 +275,18 @@ export default function MapCanvas(props: MapProps) {
           );
           const idle = actionTextures.find(([action]) => action === "idle")!;
           Object.assign(idle[1], ...samples.map((sheet) => sheet.textures));
+          const walks = await Promise.all(
+            [
+              "body",
+              "body-front",
+              "outfit-scholar",
+              "hair-ivory-back",
+              "hair-ivory-front",
+            ].map((layer) =>
+              Assets.load(`/assets/iso-v030-walk-study/walk-${layer}.json`),
+            ),
+          );
+          Object.assign(idle[1], ...walks.map((sheet) => sheet.textures));
         }
         if (disposed) return;
         const manifest = await (
@@ -290,12 +303,15 @@ export default function MapCanvas(props: MapProps) {
           ),
         );
         if (disposed) return;
-        dynamics = new WorldEntities(entities, tiles);
+        const worldAssets = await loadWorldAssets();
+        if (disposed) return;
+        dynamics = new WorldEntities(entities, tiles, worldAssets);
         actors = new ActorScene(
           Object.fromEntries(
             actionTextures,
           ) as import("./ActorView").DollTextures,
           entities,
+          worldAssets,
         );
         world.addChild(renderLayer, entities);
         app.ticker.add(() => {
