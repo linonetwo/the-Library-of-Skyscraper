@@ -22,6 +22,9 @@ export const layers = [
 ];
 import { skeleton, solveLimb } from "./pose-kinematics.mjs";
 import { stamp } from "./pose-raster.mjs";
+import { packTrimmedLayer } from "./trim-atlas.mjs";
+import { applyWorldLegs } from "./world-pose.mjs";
+import { auditWorldCycle } from "./world-walk.mjs";
 const rotate = ([x, y], a) => [
   x * Math.cos(a) - y * Math.sin(a),
   x * Math.sin(a) + y * Math.cos(a),
@@ -87,6 +90,18 @@ export async function exportPoses(configPath, output) {
           target.point,
         );
       }
+      let projected = null;
+      if (input.worldLegPhase !== undefined) {
+        projected = applyWorldLegs(
+          state,
+          direction,
+          name,
+          input.worldLegPhase,
+          config.groundPivot,
+          config.worldRegistration,
+        );
+        state = projected.state;
+      }
       const foot = direction.feet?.[input.contactFoot];
       if (foot) {
         if (previous !== input.contactFoot)
@@ -97,13 +112,14 @@ export async function exportPoses(configPath, output) {
             ),
             root,
           );
-        state = solveLimb(
-          direction,
-          pose,
-          config.groundPivot,
-          foot,
-          sub(planted, root),
-        );
+        if (!projected)
+          state = solveLimb(
+            direction,
+            pose,
+            config.groundPivot,
+            foot,
+            sub(planted, root),
+          );
       } else planted = null;
       previous = input.contactFoot;
       const buffers = Object.fromEntries(
@@ -124,6 +140,7 @@ export async function exportPoses(configPath, output) {
           joint.point,
           a.pivot,
           joint.angle + ((a.rotation || 0) * Math.PI) / 180,
+          projected?.mapping[a.id],
         );
       }
       const composite = [];
@@ -180,11 +197,20 @@ export async function exportPoses(configPath, output) {
             },
           ]),
         ),
+        worldLegs: projected?.world.legs,
+        projectionMappings: projected?.ratios,
         joints: state,
       });
     }
   }
+  const atlasBudget = [];
   for (const layer of layers) {
+    if (config.trimAtlases) {
+      atlasBudget.push(
+        await packTrimmedLayer(layer, cells[layer], config, output),
+      );
+      continue;
+    }
     const image = `${config.action}-${layer}.png`,
       frames = {},
       animations = {};
@@ -237,6 +263,48 @@ export async function exportPoses(configPath, output) {
       ) + "\n",
     );
   }
+  if (config.worldRegistration)
+    await writeFile(
+      path.join(output, "world-cycle-report.json"),
+      JSON.stringify(
+        {
+          approved: false,
+          space: "ground world xy, sole z=0 from registered boot footprint",
+          directions: dirs.map(([name, d]) =>
+            auditWorldCycle(
+              name,
+              d.feet,
+              config.groundPivot,
+              config.worldRegistration,
+            ),
+          ),
+        },
+        null,
+        2,
+      ),
+    );
+  if (config.trimAtlases)
+    await writeFile(
+      path.join(output, "atlas-budget.json"),
+      JSON.stringify(
+        {
+          renderScale: config.renderScale,
+          groundPivot: config.groundPivot,
+          sourceSize: config.cell,
+          directions: dirs.map(([name]) => name),
+          maxPageDimension: 2048,
+          activeLayers: atlasBudget.filter((l) => l.active).map((l) => l.layer),
+          inactiveLayers: atlasBudget
+            .filter((l) => !l.active)
+            .map((l) => l.layer),
+          layers: atlasBudget,
+          decodedBytes: atlasBudget.reduce((sum, l) => sum + l.decodedBytes, 0),
+          mipmapMultiplierIfEnabled: 4 / 3,
+        },
+        null,
+        2,
+      ),
+    );
   await sharp({
     create: {
       width: count * width,
