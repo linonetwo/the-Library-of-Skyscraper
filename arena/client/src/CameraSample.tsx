@@ -39,9 +39,13 @@ export default function CameraSample() {
   const [moving, setMoving] = useState(false);
   useEffect(() => {
     if (!moving) return;
+    if (tick >= Math.ceil(8 / 0.75)) {
+      setMoving(false);
+      return;
+    }
     const timer = setInterval(() => setTick((t) => t + 1), 500);
     return () => clearInterval(timer);
-  }, [moving]);
+  }, [moving, tick]);
   const distance = Math.min(8, tick * 0.75);
   const y = direction === "NE" ? 8 - distance : distance;
   const snapshot: Snapshot = {
@@ -124,7 +128,7 @@ export default function CameraSample() {
         samplePose={direction}
         sampleOutfit={outfit}
         sampleHair={hair}
-        sampleWalk={walk}
+        sampleWalk={walk && tick < Math.ceil(8 / 0.75)}
         sampleFrameMs={frameMs}
         selected="camera-pose"
         selectedRoom={null}
