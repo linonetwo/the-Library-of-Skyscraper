@@ -22,7 +22,7 @@
 
 一处纯取帧函数将时长数组累加为边界，选择当前时间所在的半开区间；一次动作先将 cue 的模拟时长比例映射到素材总时长，再查累计边界，末尾钳到末帧；循环动作取模后同样查表。这样起手/接触/收招可以不等时，目录只描述时长与帧，不增加事件脚本。工作循环以权威工作开始 tick 为锚；相同任务连续 tick 保持锚，任务/阶段重新进入时更新。
 
-只使用一个随快照推进、最多外推一个 tick 的 `simTimeMs`，暂停冻结，回放拖动直接按目标时间求解；新 session 重置时间原点。有效 cue 区间为 `[startedTick, startedTick+durationTicks)`。down 的 durationTicks=0 表示终态，使用该 clip 的素材时长播放后保持；旧数据缺 down cue 时直接显示末帧。各 cue 重复到达不会重启动画。
+只使用一个随快照推进、最多外推一个 tick 的 `simTimeMs`，暂停冻结，回放拖动直接按目标时间求解；新 session 重置时间原点。有效 cue 区间为 `[startedTick, startedTick+durationTicks)`。down 的 durationTicks=0 表示终态，使用该 clip 的素材时长播放后保持；旧数据缺 down cue 时直接显示末帧。重复快照保持原动作起点。
 
 walk/carry 相位以实体累计 `motionDistanceMilli / 1000 / cycleWorldStride` 求模；共享移动执行点按实际位移累加，静止保持。该快照字段覆盖 travel 和房内 approach，存档/回放保留，旧数据默认 0；客户端按与位置相同的快照插值比例插值距离。每次移动恢复上次步相，换行走方向保持相位。这样变速/暂停/回放使用同一规律；180ms 步频候选对应 1.5m/s、0.72s 一周期、1.08m 周期步幅。idle 用模拟时间循环。
 
@@ -32,7 +32,7 @@ walk/carry 相位以实体累计 `motionDistanceMilli / 1000 / cycleWorldStride`
 
 当前 combat 中“先受击后攻击”会覆盖同 tick hit；简单改成 hit 优先，又会令每 4 tick 同步对打的敌人始终只播受击。服务端保留两份小信息，客户端仍只选一个主 clip：
 
-- `actionCue` 保存 attack/deliver/gather/build/catalog 主动动作；新增可空 `impactCue` 复用 cue DTO，保存 hit/down、受击 tick 和来源坐标。各自写入对应信息，受击不会覆盖主动动作。旧 checkpoint 的 impactCue 默认 null，读取旧 actionCue.hit/down 时映射到 impact 信息。
+- `actionCue` 保存 attack/deliver/gather/build/catalog 主动动作；新增可空 `impactCue` 复用 cue DTO，保存 hit/down、受击 tick 和来源坐标。各自写入对应信息，主动动作与受击各自保留。旧 checkpoint 的 impactCue 默认 null，读取旧 actionCue.hit/down 时映射到 impact 信息。
 - HP=0 优先进入 down，起点取 impactCue.down.startedTick。存活且主动动作有效时保留 attack/unload 主 clip，并按 impactCue 的模拟时间显示短受击 tint；主动动作空档才使用 hit clip。持续工作可被 hit clip 短暂打断，随后按原阶段时间恢复。
 - 同 tick 多次命中保持首个 hit 起点/来源，最后一次致死命中升级为 down；HP/伤害仍按实际全部结算。主动动作同 tick 冲突按 attack > deliver > 工作确定主表现。双方同步攻击必须同时保留各自 attack 与 impact，动画结果不依赖二者写入顺序。
 - gather→collect、deliver→unload 是客户端唯一命名映射；build/catalog 共用 build-catalog clip。持续工作通过实际任务阶段和 Task.stageStartedTick 表达；阶段改变时设置，重复写相同阶段时保留，旧数据默认 0。
@@ -43,7 +43,7 @@ walk/carry 相位以实体累计 `motionDistanceMilli / 1000 / cycleWorldStride`
 
 `weapon-back → hair-back → body → outfit → weapon-front → body-front → outfit-front → hand-front 或 hand-grip → hair-front`
 
-`outfit` 含躯干衣与后侧袖；新增 `outfit-<id>-front` 是近侧袖/衣摆，覆盖共用裸近臂，袖口透明露手。`body-front` 保留近臂；自然手 `hand-front` 与握持手 `hand-grip` 互斥。握持动作由素材定义，weapon 开关决定是否显示道具；完整手掌不会重复叠两份。特定动作确需遮挡变化时，目录提供该 clip/方向的固定层序，保持一个选层入口。
+`outfit` 含躯干衣与后侧袖；新增 `outfit-<id>-front` 是近侧袖/衣摆，覆盖共用裸近臂，袖口透明露手。`body-front` 保留近臂；自然手 `hand-front` 与握持手 `hand-grip` 互斥。握持动作由素材定义，weapon 开关决定是否显示道具；每只手使用唯一一份自然手或握持手素材。特定动作确需遮挡变化时，目录提供该 clip/方向的固定层序，保持一个选层入口。
 
 所有衣发、工具、挂件沿同 pose 独立导出；共用裸身体保留服装无关轮廓。旧 atlas 走原层序兼容，新 clip 按新声明一次接入。目录只登记完整可用的素材集合；候选缺片清单单独可见，发布验收逐项核对完整动作与八方向。
 
@@ -82,17 +82,17 @@ walk/carry 相位以实体累计 `motionDistanceMilli / 1000 / cycleWorldStride`
 
 艺术 Astra 冻结自然垂臂与近远腿足轨四关键 pose；工具 Sol 在新候选目录实现16相位重采样/逐相IK、trim atlas及报告；客户端 Sol 仅接产品样板目录参数与正确 trim 锚，输出两向8秒实播。先检查袖口/握把/足点注册、相位接缝、可辨自然步态与实际资源预算，再扩八向；本批不修改 PR45 或替换正式动作目录。
 
-## 几何校正增补：离线 world 腿链（待艺术静态注册确认）
+## 几何校正增补：离线 world 腿链
 
-16相位审计显示旧屏幕骨链总长48.976px，而 NE toe-off 目标距髋62.83px。增加相位不能改变可达域。相机投影为：
+16相位审计显示旧屏幕骨链总长48.976px，而 NE toe-off 目标距髋62.83px。可达域由骨长与目标几何决定，相位数控制帧间采样密度。相机投影为：
 
 `P(x,y,z)=(64(x-y),32(x+y)-78.38367177z)`
 
 这是 yaw45/elevation30、最大投影尺度90.509668px/world 的正交投影。真实骨长固定，投影长随骨朝向改变；固定屏幕骨长只能覆盖部分姿态。同时，62.83px 至少需要0.69418world的真实髋踝距离，无法直接把当前错误屏幕目标送入 world IK 就解决。
 
-最小候选采用 **2.5D 矢状面腿 IK → 投影 → 附件烘焙**，身体其余已注册部分保留。每腿在其独立横向轨道上，以沿行走 heading 的 `s` 和高度 `z` 求两段骨，world 骨长固定。候选标定按当前近竖直源段24.98637/23.98948px除以78.38367，得到大腿0.318770、小腿0.306052world；这是一组待美术确认的标定假设，单张2D源无法唯一恢复真实骨长。
+最小候选采用 **2.5D 矢状面腿 IK → 投影 → 附件烘焙**，身体其余已注册部分保留。每腿在其独立横向轨道上，以沿行走 heading 的 `s` 和高度 `z` 求两段骨，world 骨长固定。候选标定按当前近竖直源段24.98637/23.98948px除以78.38367，得到大腿0.318770、小腿0.306052world；艺术已确认本批标定：hipZ=0.66、ankleZ=0.11、两足横轨间距0.18world；单张2D源有多种world解释，本批采用该明确注册。
 
-先测髋踝高度差0.55world、支撑接触/离地前后位移±0.27world：
+本批髋踝高度差0.55world、支撑接触/离地前后位移±0.27world：
 
 - 髋踝距离 `sqrt(.55²+.27²)=.612699 < .624822`，真实骨长可达。
 - 相对双腿竖直高度下降 `.074822world = 5.864834px`，保持在本批≤6px髋降范围。
@@ -104,6 +104,6 @@ walk/carry 相位以实体累计 `motionDistanceMilli / 1000 / cycleWorldStride`
 
 - `world-leg`：输入固定world两段长度、髋/踝位置、明确向前弯膝方向；在heading-z平面解膝点。用余弦定理求膝沿髋踝线的投影与垂距，选择已确认向前分支；输出world髋/膝/踝与可达报告。
 - 既有投影函数：统一相机参数将world点投影，报告各骨world长度与screen长度，保持世界长度恒定。
-- 既有 raster 模块：按投影骨端点对独立肢体裁片作显式沿骨轴映射，横向厚度先沿用方向源；缩短/拉长的是投影长度，不是world骨长。报告映射比例，遇到轮廓压扁/拉糊由艺术给该方向或相位独立附件变体；保持头/躯干比例和既定袖口注册。渲染仍输出sprite atlas。
+- 既有 raster 模块：按投影骨端点对独立肢体裁片作显式沿骨轴映射，横向厚度先沿用方向源；映射保持固定world骨长，按真实相机改变屏幕骨段投影。报告映射比例，遇到轮廓压扁/拉糊由艺术给该方向或相位独立附件变体；保持头/躯干比例和既定袖口注册。渲染仍输出sprite atlas。
 
 本批先两向骨架线页与一套裸模/衣发静态相位，艺术核对髋高、膝前后与近远肢遮挡后，再出16相位8秒产品候选。保留旧125ms样板对照；固定世界速度、世界骨长和≤6px髋降，不以大蹲姿补偿旧screen目标。
