@@ -6,7 +6,9 @@ import { readExpeditions, rememberExpedition } from "./expeditionLibrary";
 
 export function useArenaSession() {
   const [session, setSession] = useState<Session | null>(() =>
-    JSON.parse(sessionStorage.getItem(serverStorageKey("arena-session")) || "null"),
+    JSON.parse(
+      sessionStorage.getItem(serverStorageKey("arena-session")) || "null",
+    ),
   );
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
   const [expeditions, setExpeditions] = useState(readExpeditions);
@@ -82,8 +84,14 @@ export function useArenaSession() {
   }, [notice]);
 
   useEffect(() => {
-    if (session && snapshot && session.sessionId === snapshot.sessionId
-      && (snapshot.paused || snapshot.phase === "settled" || snapshot.tick % 10 === 0)) {
+    if (
+      session &&
+      snapshot &&
+      session.sessionId === snapshot.sessionId &&
+      (snapshot.paused ||
+        snapshot.phase === "settled" ||
+        snapshot.tick % 10 === 0)
+    ) {
       setExpeditions(rememberExpedition(session, snapshot));
     }
   }, [session, snapshot]);
@@ -100,25 +108,33 @@ export function useArenaSession() {
         : arenaApi.join(joinId));
       const state = await arenaApi.state(next);
       setExpeditions(rememberExpedition(next, state));
-      sessionStorage.setItem(serverStorageKey("arena-session"), JSON.stringify(next));
+      sessionStorage.setItem(
+        serverStorageKey("arena-session"),
+        JSON.stringify(next),
+      );
       setSnapshot(null);
       setSession(next);
       return next;
     });
-  const resume = (next: Session) => perform(async () => {
-    const state = await arenaApi.state(next);
-    sessionStorage.setItem(serverStorageKey("arena-session"), JSON.stringify(next));
-    setSnapshot(state);
-    setSession(next);
-    setExpeditions(rememberExpedition(next, state));
-    setNotice("远征已接续，原小队与装束已恢复。");
-    return next;
-  });
+  const resume = (next: Session) =>
+    perform(async () => {
+      const state = await arenaApi.state(next);
+      sessionStorage.setItem(
+        serverStorageKey("arena-session"),
+        JSON.stringify(next),
+      );
+      setSnapshot(state);
+      setSession(next);
+      setExpeditions(rememberExpedition(next, state));
+      setNotice("远征已接续，原小队与装束已恢复。");
+      return next;
+    });
   const command = (value: Command) =>
     perform(async () => {
       const next = await arenaApi.command(session!, value);
       acceptSnapshot(next);
       if (value.type === "rule") setNotice("行动规则已发布，下一模拟步生效。");
+      return next;
     });
   const exportReplay = () =>
     perform(async () => {

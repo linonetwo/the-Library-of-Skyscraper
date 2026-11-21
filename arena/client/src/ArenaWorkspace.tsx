@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useArenaSession } from "./useArenaSession";
 import type { Appearance, Session } from "./types";
 
@@ -9,19 +9,19 @@ export const presetNames = {
 };
 const stateNames: Record<string, string> = {
   idle: "等待指令",
-  queued:"待出发",
-  construction:"施工中",
-  complete:"任务完成",
-  completed:"任务完成",
-  failed:"任务失败",
-  travelling:"前往目标",
-  building:"施工中",
-  waiting:"等待条件",
-  cataloging:"驻守编目",
-  returning:"运返回库",
-  recovering:"据点恢复",
-  downed:"倒地",
-  blocked:"任务受阻",
+  queued: "待出发",
+  construction: "施工中",
+  complete: "任务完成",
+  completed: "任务完成",
+  failed: "任务失败",
+  travelling: "前往目标",
+  building: "施工中",
+  waiting: "等待条件",
+  cataloging: "驻守编目",
+  returning: "运返回库",
+  recovering: "据点恢复",
+  downed: "倒地",
+  blocked: "任务受阻",
   moving: "探索行进",
   gathering: "采集藏材",
   transporting: "运返中庭",
@@ -39,7 +39,8 @@ export function useArenaWorkspace() {
   const { session, snapshot, connection, busy } = arena;
   const [inspecting, setInspecting] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
-  const [focusIntent,setFocusIntent]=useState<import("./cameraController").FocusIntent>();
+  const [focusIntent, setFocusIntent] =
+    useState<import("./cameraController").FocusIntent>();
   const [selectedRoom, updateSelectedRoom] = useState<string | null>(null);
   const [zoom, setZoom] = useState(1);
   const [showRoutes, setShowRoutes] = useState(true);
@@ -59,8 +60,11 @@ export function useArenaWorkspace() {
     snapshot?.actors.filter((a) => a.owner === session?.playerId) || [];
   const outfit = actor?.appearance.outfit ?? "scholar";
   const equip = (change: Partial<Appearance>) =>
-    arena.command({ type: "equip", actorId: actor!.id,
-      appearance: { ...actor!.appearance, ...change } });
+    arena.command({
+      type: "equip",
+      actorId: actor!.id,
+      appearance: { ...actor!.appearance, ...change },
+    });
   const ready =
     !!snapshot &&
     connection === "connected" &&
@@ -68,19 +72,49 @@ export function useArenaWorkspace() {
     snapshot.phase === "running";
   const training = snapshot?.mode === "training";
   const isOwner = actor?.owner === session?.playerId;
-  const setSelectedRoom=(id:string|null)=>{ updateSelectedRoom(id); if(id) {setInspecting(false);setFocusIntent(old=>({kind:"room",id,revision:(old?.revision??0)+1}));} };
+  const setSelectedRoom = (id: string | null) => {
+    updateSelectedRoom(id);
+    if (id) {
+      setInspecting(false);
+      setFocusIntent((old) => ({
+        kind: "room",
+        id,
+        revision: (old?.revision ?? 0) + 1,
+      }));
+    }
+  };
   const selectActor = (id: string) => {
     setSelected(id);
-    setFocusIntent(old=>({kind:"actor",id,revision:(old?.revision??0)+1}));
+    setFocusIntent((old) => ({
+      kind: "actor",
+      id,
+      revision: (old?.revision ?? 0) + 1,
+    }));
     setInspecting(false);
     setSelectedRoom(null);
   };
+  const focusedSession = useRef("");
+  const lastTick = useRef(-1);
   useEffect(() => {
-    const initial=snapshot?.actors.find(a=>a.owner===session?.playerId)?.id;
-    if(!selected && initial) {
-      setSelected(initial);
-      setFocusIntent(old=>({kind:"actor",id:initial,revision:(old?.revision??0)+1}));
+    if (!snapshot || !session) return;
+    const initial = snapshot.actors.find(
+      (a) => a.owner === session.playerId && a.hp > 0,
+    );
+    if (!initial) return;
+    const key = `${snapshot.sessionId}/${session.playerId}`;
+    const retry = snapshot.tick === 0 && lastTick.current > 0;
+    if (focusedSession.current !== key || retry) {
+      focusedSession.current = key;
+      setSelected(initial.id);
+      setSelectedRoom(null);
+      setZoom(1);
+      setFocusIntent((old) => ({
+        kind: "actor",
+        id: initial.id,
+        revision: (old?.revision ?? 0) + 1,
+      }));
     }
+    lastTick.current = snapshot.tick;
   }, [snapshot, session?.playerId]);
   useEffect(() => {
     if (player) {
