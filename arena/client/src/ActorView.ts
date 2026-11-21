@@ -1,5 +1,6 @@
 import type { AnimationAction } from "./animationCatalog";
 import { Container, Graphics, Sprite, Texture, Rectangle, Text } from "pixi.js";
+import { roleNames } from "./types";
 import type { Actor } from "./types";
 import { animationLayers } from "./walkLayers";
 import { ActorMotion, type Point } from "./actorMotion";
@@ -9,6 +10,7 @@ export type DollTextures = Record<AnimationAction, Record<string, Texture>>;
 export class ActorView {
   readonly node = new Container();
   readonly motion: ActorMotion;
+  samplePose?: "NE" | "SW";
   private doll = new Container();
   private halo = new Graphics();
   private health = new Graphics();
@@ -89,6 +91,8 @@ export class ActorView {
                 : actor.task?.stage === "building"
                   ? "施工中"
                   : "";
+    this.status.text = `${actor.owner.toUpperCase()} · ${roleNames[actor.role]}${this.status.text ? " · " + this.status.text : ""}`;
+    this.status.style.fill = actor.owner === "p1" ? 0xc7e7c0 : 0xb1d7f3;
     this.doll.alpha = actor.hp <= 0 ? 0.45 : 1;
     this.doll.rotation = actor.hp <= 0 ? -Math.PI / 2 : 0;
     this.halo.visible = selected;
@@ -136,10 +140,14 @@ export class ActorView {
         .lineTo(40, -85)
         .stroke({ color: 0xf3d28a, width: 3 });
     const action = pose.moving ? "walk" : "idle";
-    const key = `${pose.direction}/${String(pose.frame).padStart(2, "0")}`;
+    const key = this.samplePose
+      ? `${this.samplePose}/00`
+      : `${pose.direction}/${String(pose.frame).padStart(2, "0")}`;
     if (`${action}/${key}` !== this.frameKey) {
       this.frameKey = `${action}/${key}`;
-      const layers = animationLayers(action, this.actor.appearance);
+      const layers = this.samplePose
+        ? ["body", "body-front"]
+        : animationLayers(action, this.actor.appearance);
       while (this.sprites.length < layers.length) {
         const sprite = new Sprite();
         sprite.anchor.set(0.5, 0.9);
@@ -152,7 +160,7 @@ export class ActorView {
         if (!sprite.visible) return;
         sprite.texture =
           this.textures[action][`${action}/${layers[index]}/${key}`];
-        sprite.scale.set(136 / sprite.texture.height);
+        sprite.scale.set(this.samplePose ? 1 : 136 / sprite.texture.height);
       });
     }
     return { id: this.actor.id, ...pose, animation: action };

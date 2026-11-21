@@ -1,6 +1,6 @@
 import { useArena } from "./ArenaWorkspace";
 export default function ExpeditionResult() {
-  const { snapshot, session, command, setView } = useArena();
+  const { snapshot, session, command, setView, setLobby } = useArena();
   if (!snapshot?.result) return null;
   const report = snapshot.scenario?.report;
   const labels: Record<string, string> = {
@@ -58,12 +58,18 @@ export default function ExpeditionResult() {
       </div>
       <p>{snapshot.scenario?.blockedReason}</p>
       <button onClick={() => setView("journal")}>查看关键事件与规则</button>
-      <button
-        className="primary"
-        onClick={() => void command({ type: "reset" })}
-      >
-        相同 seed 重试
-      </button>
+      {snapshot.mode === "training" ? (
+        <button
+          className="primary"
+          onClick={() => void command({ type: "reset" })}
+        >
+          相同 seed 重试
+        </button>
+      ) : (
+        <button className="primary" onClick={() => setLobby(true)}>
+          返回联机大厅
+        </button>
+      )}
     </div>
   );
 }
