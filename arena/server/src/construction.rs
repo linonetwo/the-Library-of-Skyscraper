@@ -1,5 +1,28 @@
 use crate::{Actor, Building, Session};
 impl Session {
+    pub(crate) fn build_with_actor(
+        &mut self,
+        owner: &str,
+        actor_id: &str,
+        room: &str,
+        kind: &str,
+    ) -> Result<(), String> {
+        let (e, mut a) = self.actor(owner, actor_id)?;
+        if a.room_id != room {
+            return Err("builder must be in the target room".into());
+        }
+        self.ensure_site(owner, room, kind)?;
+        a.task = Some(crate::ActorTask {
+            kind: "build".into(),
+            target: room.into(),
+            stage: "construction".into(),
+            blocked_reason: None,
+            building_kind: Some(kind.into()),
+        });
+        self.world.entity_mut(e).insert(a);
+        Ok(())
+    }
+
     pub(crate) fn ensure_site(
         &mut self,
         owner: &str,

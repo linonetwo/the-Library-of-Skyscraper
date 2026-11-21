@@ -146,6 +146,11 @@ impl Session {
             self.enemies.clear();
             self.scenario = Default::default();
             for (i, r) in self.rooms.iter_mut().enumerate() {
+                r.resources = if r.kind == "resource" {
+                    160 + (self.seed % 41) as u32
+                } else {
+                    0
+                };
                 r.enemy_hp = if i == 3 || i == 6 {
                     60 + (self.seed % 21) as u32
                 } else {
@@ -218,7 +223,10 @@ impl Session {
             version: REPLAY_VERSION,
             simulation_version: self.simulation_version,
             map_version: if self.simulation_version >= 3 {
-                "library-v3".into()
+                crate::travel::world_map()["version"]
+                    .as_str()
+                    .unwrap()
+                    .into()
             } else {
                 String::new()
             },
@@ -254,9 +262,14 @@ impl Session {
         for (index, operation) in replay.operations.iter().enumerate() {
             session.replay_operation(index, operation)?;
         }
+        let mut expected = replay.final_snapshot.clone();
+        if replay.simulation_version < 3 {
+            for a in &mut expected.actors {
+                a.world_position = crate::travel::center(&a.room_id);
+            }
+        }
         if serde_json::to_value(session.snapshot()).map_err(|_| "snapshot serialization failed")?
-            != serde_json::to_value(&replay.final_snapshot)
-                .map_err(|_| "snapshot serialization failed")?
+            != serde_json::to_value(&expected).map_err(|_| "snapshot serialization failed")?
         {
             return Err("replay final snapshot mismatch".into());
         }

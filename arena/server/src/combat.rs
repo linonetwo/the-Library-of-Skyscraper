@@ -46,14 +46,13 @@ impl Session {
             if a.hp == 0 || a.travel.is_some() || a.retreating {
                 continue;
             }
-            if a.task.as_ref().is_some_and(|t| t.kind == "guard") {
-                if let Some(enemy) = self
+            if a.task.as_ref().is_some_and(|t| t.kind == "guard")
+                && let Some(enemy) = self
                     .enemies
                     .iter()
                     .find(|enemy| enemy.hp > 0 && enemy.room_id == a.room_id)
-                {
-                    crate::travel::approach(&mut a.world_position, enemy.world_position, 1800);
-                }
+            {
+                crate::travel::approach(&mut a.world_position, enemy.world_position, 1800);
             }
             if self.players[&a.owner].script.is_none() {
                 let _ = self.actor_attack(&mut a);

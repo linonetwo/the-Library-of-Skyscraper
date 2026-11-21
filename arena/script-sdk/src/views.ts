@@ -31,6 +31,7 @@ export interface ActorScriptView {
   readonly travel?: { readonly travelId: string; readonly targetRoomId: string; readonly path: readonly { readonly x: number; readonly y: number }[]; readonly distanceMilli: number; readonly totalDistanceMilli: number; readonly speedMilliPerTick: number; readonly progress: number } | null;
   readonly task?: { readonly kind: 'gather' | 'build' | 'guard' | 'return'; readonly target: string; readonly stage: string; readonly blockedReason: string | null } | null;
   readonly retreating?: boolean;
+  readonly actionTick?: number;
   readonly appearance: {
     readonly outfit: 'scholar' | 'warden';
     readonly hair: 'ivory' | 'midnight';
@@ -57,7 +58,7 @@ export interface BuildingScriptView {
   readonly id: EntityId;
   readonly owner: string;
   readonly roomId: EntityId;
-  readonly kind: 'tower' | 'catalog' | 'warehouse';
+  readonly kind: 'tower' | 'catalog' | 'warehouse' | 'core';
   readonly hp?: number;
   readonly maxHp?: number;
   readonly constructionTicks?: number;

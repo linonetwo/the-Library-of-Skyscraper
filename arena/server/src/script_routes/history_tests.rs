@@ -22,7 +22,7 @@ fn movement(target: &str) -> SourceProject {
 async fn published_a_b_rollback_a_drives_actual_ticks() {
     let directory = std::env::temp_dir().join(format!("arena-history-v8-{}", uuid::Uuid::new_v4()));
     let store = Store::open(directory.clone()).unwrap();
-    let mut session = Session::new("history".into(), Mode::Training, 42);
+    let mut session = Session::new_legacy("history".into(), Mode::Training, 42);
     session.join("token".into()).unwrap();
     session
         .command("p1", Command::Pause { paused: true })

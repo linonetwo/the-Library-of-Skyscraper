@@ -15,16 +15,19 @@ pub fn center(room: &str) -> Position {
     serde_json::from_value(c.clone()).unwrap()
 }
 /// Distinct legal work slots keep squad members readable inside a 5x5 room.
-pub fn slot(room: &str, role: &str) -> Position {
+pub fn slot(room: &str, role: &str, owner: &str) -> Position {
     let mut p = center(room);
-    match role {
-        "guard" => p.x += 1.,
-        "scout" => {
-            p.x -= 1.;
-            p.y += 1.;
-        }
-        _ => {}
-    }
+    p.x += match role {
+        "guard" => 1.,
+        "scout" => -1.,
+        _ => 0.,
+    };
+    p.y += match owner {
+        "p2" => 1.,
+        "p3" => -1.,
+        "p4" => 2.,
+        _ => 0.,
+    };
     p
 }
 pub fn distance(a: Position, b: Position) -> u64 {
@@ -74,7 +77,7 @@ pub fn start(actor: &mut Actor, target: &str, tick: u64) -> Result<(), String> {
     if distance(actor.world_position, path[0]) > 0 {
         path.insert(0, actor.world_position);
     }
-    let destination = slot(target, &actor.role);
+    let destination = slot(target, &actor.role, &actor.owner);
     if path.last() != Some(&destination) {
         path.push(destination);
     }
