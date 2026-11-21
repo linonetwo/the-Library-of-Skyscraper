@@ -428,7 +428,11 @@ fn explicit_props_clear_roads_slots_and_central_interaction_space() {
             .unwrap()["floorHalfSize"]
             .as_f64()
             .unwrap();
-        assert!((p.x - c.x).abs() + half_x <= half && (p.y - c.y).abs() + half_y <= half);
+        // floorHalfSize counts tile centers; the outer tile extends another half tile.
+        let floor_edge = half + 0.5;
+        assert!(
+            (p.x - c.x).abs() + half_x <= floor_edge && (p.y - c.y).abs() + half_y <= floor_edge
+        );
         assert!(
             (p.x - c.x).abs() - half_x >= 1.5 || (p.y - c.y).abs() - half_y >= 1.5,
             "central interaction overlap {prop}"
