@@ -5,7 +5,7 @@ import { animationLayers, animationLayerNames } from '../../client/src/walkLayer
 test('grip atlases use the shared action index and equip-only foreground ordering', async () => {
  for (const action of ['idle', 'walk'] as const) {
   expect(animationLayerNames[action].filter(layer => layer === 'hand-grip')).toHaveLength(1);
-  const atlas = JSON.parse(await readFile(`../client/public/assets/animation/${action}-hand-grip.json`, 'utf8'));
+  const atlas = JSON.parse(await readFile(new URL(`../../client/public/assets/animation/${action}-hand-grip.json`,import.meta.url), 'utf8'));
   expect(Object.keys(atlas.frames)).toHaveLength(32);
   for (const direction of ['N','NE','E','SE','S','SW','W','NW']) {
    for (let frame = 0; frame < 4; frame++) {

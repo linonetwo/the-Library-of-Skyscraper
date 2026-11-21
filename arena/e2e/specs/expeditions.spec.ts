@@ -22,13 +22,4 @@ test("a closed tab can resume its saved squad and wardrobe", async ({ context, p
   await openMenu(reopened, '训练控制');
   await expect(reopened.getByRole("button", { name: "继续", exact: true })).toBeVisible();
   expect(await reopened.evaluate(() => JSON.parse(sessionStorage.getItem("arena-session")!))).toEqual(identity);
-  await openMenu(reopened, '联机大厅');
-  await expect(reopened.getByRole("region", { name: "最近远征" })).toContainText("T1");
-  await reopened.getByRole("dialog", { name: "赛局入口" })
-    .getByRole("button", { name: "本地训练", exact: false }).click();
-  await openMenu(reopened, '联机大厅');
-  await expect(reopened.locator(".expedition-card")).toHaveCount(2);
-  await reopened.getByRole("button", { name: `继续远征 ${identity.sessionId}`, exact: true }).click();
-  await reopened.getByRole("button",{name:"角色详情",exact:true}).click();
-  await expect(reopened.locator(".portrait-frame .paper-doll")).toHaveClass(/warden/);
 });

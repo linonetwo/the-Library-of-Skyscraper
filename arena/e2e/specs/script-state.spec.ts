@@ -7,8 +7,6 @@ test('memory gather displays persistent counter, task queue and pure preview', a
   test.setTimeout(60000);
   await page.goto('/');
   await page.getByRole('button', { name: '开启训练远征' }).click();
-  await openMenu(page, '训练控制');
-  await page.getByRole('button', { name: '重置训练局' }).click();
   await openMenu(page, '行动规则');
   await page.getByRole('button', { name: '编写 TypeScript 规则 →' }).click();
   await page.getByLabel('载入规则模板').selectOption('memory-gather');

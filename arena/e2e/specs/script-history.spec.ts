@@ -41,8 +41,6 @@ test("history loads a multi-file draft, shows differences and restores the battl
   page.on("pageerror", error => errors.push(error.stack ?? error.message));
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
-  await openMenu(page, '训练控制');
-  await page.getByRole("button", { name: "重置训练局" }).click();
   const seeded = await page.evaluate(async () => {
     const session = JSON.parse(sessionStorage.getItem("arena-session")!);
     const post = (suffix: string, body: object) => fetch(`/api/sessions/${session.sessionId}/${suffix}`, {
@@ -106,8 +104,6 @@ export function decide(ctx: RuleContext) {
 test("a diagnostic opens its source file in the multi-file editor", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
-  await openMenu(page, '训练控制');
-  await page.getByRole("button", { name: "重置训练局" }).click();
   await openScripts(page);
   await page.getByLabel("新规则文件名").fill("helpers.ts");
   await page.getByRole("button", { name: "添加文件", exact: true }).click();
@@ -125,7 +121,6 @@ test("a diagnostic opens its source file in the multi-file editor", async ({ pag
 test("a delayed publication cannot replace a newly opened session", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
-  await openMenu(page, '训练控制');
   await openScripts(page);
   const previous = await page.evaluate(() => JSON.parse(sessionStorage.getItem("arena-session")!).sessionId);
   let release!: () => void;
