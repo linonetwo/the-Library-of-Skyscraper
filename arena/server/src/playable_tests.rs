@@ -410,3 +410,54 @@ fn four_owners_have_twelve_distinct_legal_birth_slots() {
         }
     }
 }
+
+#[test]
+fn explicit_props_clear_roads_slots_and_central_interaction_space() {
+    let map = crate::travel::world_map();
+    for prop in map["props"].as_array().unwrap() {
+        let p: Position = serde_json::from_value(prop["position"].clone()).unwrap();
+        let half_x = prop["footprint"]["width"].as_f64().unwrap() / 2.;
+        let half_y = prop["footprint"]["depth"].as_f64().unwrap() / 2.;
+        let room = prop["roomId"].as_str().unwrap();
+        let c = crate::travel::center(room);
+        let half = map["rooms"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|r| r["id"] == room)
+            .unwrap()["floorHalfSize"]
+            .as_f64()
+            .unwrap();
+        assert!((p.x - c.x).abs() + half_x <= half && (p.y - c.y).abs() + half_y <= half);
+        assert!(
+            (p.x - c.x).abs() - half_x >= 1.5 || (p.y - c.y).abs() - half_y >= 1.5,
+            "central interaction overlap {prop}"
+        );
+        for owner in ["p1", "p2", "p3", "p4"] {
+            for role in ["gatherer", "guard", "scout"] {
+                let slot = crate::travel::slot(room, role, owner);
+                assert!(
+                    (p.x - slot.x).abs() > half_x || (p.y - slot.y).abs() > half_y,
+                    "slot overlap {prop}"
+                );
+            }
+        }
+        for link in map["links"].as_array().unwrap() {
+            let points: Vec<Position> = serde_json::from_value(link["points"].clone()).unwrap();
+            for w in points.windows(2) {
+                assert!(w[0].x == w[1].x || w[0].y == w[1].y);
+                let left = w[0].x.min(w[1].x) - 1.5;
+                let right = w[0].x.max(w[1].x) + 1.5;
+                let top = w[0].y.min(w[1].y) - 1.5;
+                let bottom = w[0].y.max(w[1].y) + 1.5;
+                assert!(
+                    p.x + half_x <= left
+                        || p.x - half_x >= right
+                        || p.y + half_y <= top
+                        || p.y - half_y >= bottom,
+                    "road overlap {prop}"
+                );
+            }
+        }
+    }
+}
