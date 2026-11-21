@@ -29,60 +29,57 @@ export function skeleton(joints, pose, origin) {
   for (const id of Object.keys(joints)) resolve(id);
   return result;
 }
-export function lockFoot(direction, pose, origin, foot, target) {
+export function solveLimb(direction, pose, origin, chain, target) {
   const joints = direction.joints,
-    ankleId = foot.joint,
-    kneeId = joints[ankleId].parent,
-    hipId = joints[kneeId].parent;
+    endId = chain.joint,
+    midId = joints[endId].parent,
+    startId = joints[midId].parent;
   let state = skeleton(joints, pose, origin);
-  const ankleAngle = state[ankleId].angle;
-  const destination = sub(
-    target,
-    rotate(foot.soleOffset || [0, 0], ankleAngle),
-  );
-  const hip = state[hipId],
+  const endAngle = state[endId].angle;
+  const destination = sub(target, rotate(chain.soleOffset || [0, 0], endAngle));
+  const hip = state[startId],
     v = sub(destination, hip.point),
-    l1 = length(joints[kneeId].restOffset),
-    l2 = length(joints[ankleId].restOffset),
+    l1 = length(joints[midId].restOffset),
+    l2 = length(joints[endId].restOffset),
     d = length(v);
   if (!l1 || !l2 || !d)
-    throw Error("Foot lock requires a nondegenerate hip/knee/ankle chain");
+    throw Error("Limb pose requires a nondegenerate two-segment chain");
   if (d > l1 + l2 + 0.01 || d < Math.abs(l1 - l2) - 0.01)
     throw Error(
-      `Foot target unreachable: ${ankleId} distance ${d.toFixed(2)} lengths ${l1},${l2}`,
+      `Limb target unreachable: ${endId} distance ${d.toFixed(2)} lengths ${l1},${l2}`,
     );
-  const bend = foot.bend === -1 ? -1 : 1;
-  const hipAngle =
+  const bend = chain.bend === -1 ? -1 : 1;
+  const startAngle =
     angle(v) +
     bend *
       Math.acos(
         Math.max(-1, Math.min(1, (l1 * l1 + d * d - l2 * l2) / (2 * l1 * d))),
       );
   const knee = add(hip.point, [
-    l1 * Math.cos(hipAngle),
-    l1 * Math.sin(hipAngle),
+    l1 * Math.cos(startAngle),
+    l1 * Math.sin(startAngle),
   ]);
-  const kneeAngle = angle(sub(destination, knee));
-  const parent = joints[hipId].parent;
-  pose[hipId] = {
-    ...pose[hipId],
+  const midAngle = angle(sub(destination, knee));
+  const parent = joints[startId].parent;
+  pose[startId] = {
+    ...pose[startId],
     rotation: degrees(
-      hipAngle -
-        angle(joints[kneeId].restOffset) -
+      startAngle -
+        angle(joints[midId].restOffset) -
         (parent ? state[parent].angle : 0),
     ),
   };
   state = skeleton(joints, pose, origin);
-  pose[kneeId] = {
-    ...pose[kneeId],
+  pose[midId] = {
+    ...pose[midId],
     rotation: degrees(
-      kneeAngle - angle(joints[ankleId].restOffset) - state[hipId].angle,
+      midAngle - angle(joints[endId].restOffset) - state[startId].angle,
     ),
   };
   state = skeleton(joints, pose, origin);
-  pose[ankleId] = {
-    ...pose[ankleId],
-    rotation: degrees(ankleAngle - state[kneeId].angle),
+  pose[endId] = {
+    ...pose[endId],
+    rotation: degrees(endAngle - state[midId].angle),
   };
   return skeleton(joints, pose, origin);
 }

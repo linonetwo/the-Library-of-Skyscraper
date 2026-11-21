@@ -82,6 +82,8 @@ Outputs use existing `frameName(action, layer, direction, index)` names and 192p
 
 `pose-example.json` is an interface example with deliberately missing source images, not a runnable art substitute.
 
+`wristTargets` optionally supplies `{ "leftWrist": { "point": [x,y], "bend": 1 } }` (or the registered direction-specific wrist IDs). It uses the same fixed-length two-segment math to solve explicit art-approved shoulder/elbow/wrist poses. Wrist targets are atlas-space points; the output report records target, actual position and residual. This is offline pose authoring, not a runtime skeleton.
+
 `footTargets` optionally supplies explicit atlas-space sole positions by foot ID for a pose. The exporter solves each requested leg before applying the ongoing support-foot world lock. These targets must come from reviewed contact/passing poses; an unreachable target fails without stretching source segments.
 
 `contact-loop.gif` plays the selected directions together at the declared frame durations.

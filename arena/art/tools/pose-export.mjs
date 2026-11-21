@@ -20,7 +20,7 @@ export const layers = [
   "weapon-staff-front",
   "hand-grip",
 ];
-import { skeleton, lockFoot } from "./pose-kinematics.mjs";
+import { skeleton, solveLimb } from "./pose-kinematics.mjs";
 import { stamp } from "./pose-raster.mjs";
 const rotate = ([x, y], a) => [
   x * Math.cos(a) - y * Math.sin(a),
@@ -70,12 +70,21 @@ export async function exportPoses(configPath, output) {
       }
       let state = skeleton(direction.joints, pose, config.groundPivot);
       for (const [side, target] of Object.entries(input.footTargets || {})) {
-        state = lockFoot(
+        state = solveLimb(
           direction,
           pose,
           config.groundPivot,
           direction.feet[side],
           target,
+        );
+      }
+      for (const [joint, target] of Object.entries(input.wristTargets || {})) {
+        state = solveLimb(
+          direction,
+          pose,
+          config.groundPivot,
+          { joint, bend: target.bend, soleOffset: [0, 0] },
+          target.point,
         );
       }
       const foot = direction.feet?.[input.contactFoot];
@@ -88,7 +97,7 @@ export async function exportPoses(configPath, output) {
             ),
             root,
           );
-        state = lockFoot(
+        state = solveLimb(
           direction,
           pose,
           config.groundPivot,
@@ -161,6 +170,16 @@ export async function exportPoses(configPath, output) {
         screenErrorPx: foot
           ? length(sub(actual, planted)) * config.renderScale
           : null,
+        wristTargets: Object.fromEntries(
+          Object.entries(input.wristTargets || {}).map(([id, target]) => [
+            id,
+            {
+              target: target.point,
+              actual: state[id].point,
+              errorPx: length(sub(state[id].point, target.point)),
+            },
+          ]),
+        ),
         joints: state,
       });
     }
@@ -260,6 +279,34 @@ export async function exportPoses(configPath, output) {
   const activeLayers = [
     ...new Set(dirs.flatMap(([, d]) => d.attachments.map((a) => a.layer))),
   ];
+  const skeletonMarks = report
+    .map((frame, index) => {
+      const x = (index % count) * width,
+        y = Math.floor(index / count) * height;
+      let lines = `<rect x="${x}" y="${y}" width="${width}" height="${height}" fill="#f4f1eb"/><text x="${x + 4}" y="${y + 14}" font-size="11">${frame.direction} ${frame.frame}</text>`;
+      const definitions = config.directions[frame.direction].joints;
+      for (const [id, joint] of Object.entries(frame.joints)) {
+        const parent = definitions[id].parent;
+        if (!parent) continue;
+        const start = frame.joints[parent].point,
+          end = joint.point;
+        const color = id.startsWith("left")
+          ? "#1767b1"
+          : id.startsWith("right")
+            ? "#cd3a27"
+            : "#777";
+        lines += `<line x1="${start[0] + x}" y1="${start[1] + y}" x2="${end[0] + x}" y2="${end[1] + y}" stroke="${color}" stroke-width="1.3"/><circle cx="${end[0] + x}" cy="${end[1] + y}" r="1.8" fill="${color}"/>`;
+      }
+      return lines;
+    })
+    .join("");
+  await sharp(
+    Buffer.from(
+      `<svg width="${count * width}" height="${dirs.length * height}">${skeletonMarks}</svg>`,
+    ),
+  )
+    .png()
+    .toFile(path.join(output, "skeleton-debug.png"));
   const loopFrames = [];
   for (let frame = 0; frame < count; frame++)
     loopFrames.push(
