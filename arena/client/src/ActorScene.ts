@@ -81,6 +81,8 @@ export class ActorScene {
       view.samplePose = props.samplePose;
       view.sampleOutfit = props.sampleOutfit ?? false;
       view.sampleHair = props.sampleHair ?? false;
+      view.sampleWalk = props.sampleWalk ?? false;
+      view.sampleFrameMs = props.sampleFrameMs ?? 125;
       view.update(
         actor,
         actor.id === props.selected,
