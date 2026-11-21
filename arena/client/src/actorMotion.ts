@@ -10,6 +10,8 @@ export class ActorMotion {
   private started = 0;
   private actionStarted = 0;
   private path: Point[] = [];
+  private fromDistance = 0;
+  private toDistance = 0;
   direction: Direction = "S";
   constructor(
     position: Point,
@@ -47,6 +49,8 @@ export class ActorMotion {
       x: a.x + (b.x - a.x) * t,
       y: a.y + (b.y - a.y) * t,
       moving,
+      motionDistanceMilli:
+        this.fromDistance + (this.toDistance - this.fromDistance) * progress,
       direction: this.direction,
       frame: animationFrame(
         moving ? "walk" : "idle",
@@ -55,9 +59,16 @@ export class ActorMotion {
     };
   }
 
-  move(to: Point, now: number, snap = false, path: Point[] = []) {
+  move(
+    to: Point,
+    now: number,
+    snap = false,
+    path: Point[] = [],
+    distanceMilli = 0,
+  ) {
     if (snap) {
       this.from = this.to = to;
+      this.fromDistance = this.toDistance = distanceMilli;
       this.path = [];
       return;
     }
@@ -65,6 +76,8 @@ export class ActorMotion {
     const previous = this.sample(now);
     if (!previous.moving) this.actionStarted = now;
     this.from = previous;
+    this.fromDistance = previous.motionDistanceMilli;
+    this.toDistance = distanceMilli;
     this.direction = facing(this.to, to);
     this.to = to;
     this.path = path;

@@ -1,3 +1,4 @@
+import { SimulationClock } from "./SimulationClock";
 import { project } from "./isoGeometry";
 import { Container } from "pixi.js";
 import { ActorView, type DollTextures } from "./ActorView";
@@ -10,7 +11,7 @@ export class ActorScene {
   private snapshotActors = new Map<string, import("./types").Actor>();
   private session = "";
   private tick = -1;
-  private previousRenderTick = -1;
+  private clock = new SimulationClock();
   private rooms = new Map<string, string>();
   constructor(
     private textures: DollTextures,
@@ -23,6 +24,7 @@ export class ActorScene {
   update(props: MapProps, now: number) {
     const snapshot = props.snapshot;
     if (!snapshot) return;
+    this.clock.update(snapshot, now);
     const isV3 = (snapshot.simulationVersion ?? 0) >= 3;
     const snap =
       snapshot.sessionId !== this.session ||
@@ -77,11 +79,8 @@ export class ActorScene {
               : [...link.points].reverse()
             ).map((p) => project(p.x, p.y))
           : [];
-      if (snapshot.tick !== this.previousRenderTick) {
-        view.simulationReceived = now;
-      }
-      view.simulationTime = snapshot.tick * (snapshot.tickDurationMs || 500);
-      view.simulationPaused = snapshot.paused;
+      view.simulationTime = this.clock.sample(now);
+      view.authoritativeAnimation = (snapshot.simulationVersion ?? 0) >= 4;
       view.tickDuration = snapshot.tickDurationMs || 500;
       view.gatherInterval =
         (snapshot.scenarioConfig?.gatherIntervalTicks ?? 4) * view.tickDuration;
@@ -102,11 +101,16 @@ export class ActorScene {
       );
       this.rooms.set(actor.id, actor.roomId);
     }
-    this.previousRenderTick = snapshot.tick;
+  }
+
+  simulationTime(now: number) {
+    return this.clock.sample(now);
   }
 
   render(now: number) {
-    const poses = [...this.views.values()].map((view) => view.render(now));
+    const poses = [...this.views.values()].map((view) =>
+      view.render(now, this.clock.sample(now)),
+    );
     return poses.map((pose) => ({
       ...pose,
       task: this.snapshotActors.get(pose.id)?.task,
