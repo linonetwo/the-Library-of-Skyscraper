@@ -19,7 +19,7 @@ const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('move'), actorId: identifier, roomId: identifier }).strict(),
   ...['gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type), actorId: identifier }).strict()),
   z.object({ type: z.literal('build'), roomId: identifier, kind: z.enum(['tower', 'catalog']) }).strict(),
-  z.object({ type: z.literal('rule'), preset: z.enum(['gather', 'defend', 'explore']), retreatHp: z.number().int().min(0).max(100) }).strict(),
+  z.object({ type: z.literal('rule'), preset: z.enum(['gather', 'defend', 'explore']), retreatHp: z.number().int().min(0).max(100), assignTasks: z.boolean().optional() }).strict(),
 ]);
 async function request(path, body, token) {
   const response = await fetch(new URL(path, base), {

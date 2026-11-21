@@ -207,12 +207,16 @@ export function registerBrowserTools(server) {
         break;
       }
       case 'setRule': {
-        const threshold = active.getByRole('combobox', { name: '撤退阈值', exact: true });
-        if (await threshold.isVisible()) await threshold.selectOption(String(action.retreatHp));
         await menu('行动规则');
         await active.locator('.presets button').nth(['gather', 'defend', 'explore'].indexOf(action.preset)).click();
         const range = active.getByRole('slider', { name: /生命值撤退阈值/ });
         if (await range.isVisible()) await range.fill(String(action.retreatHp));
+        else {
+          const threshold = active.getByRole('combobox', { name: '撤退阈值', exact: true });
+          const values = await threshold.locator('option').evaluateAll(options => options.map(option => option.value));
+          if (!values.includes(String(action.retreatHp))) throw new Error('Retreat threshold is not available in this UI');
+          await threshold.selectOption(String(action.retreatHp));
+        }
         await active.getByRole('button', { name: /确认并发布规则/ }).click();
         break;
       }

@@ -33,7 +33,8 @@ export async function performExpeditionAction(page, action) {
       if (!await page.getByRole('button', { name: '单步', exact: true }).isVisible()) {
         await click('菜单'); await click('训练控制');
       }
-      await click('单步');
+      const step = page.getByRole('button', { name: '单步', exact: true }).and(page.locator('button:not(:disabled)'));
+      await Promise.all([page.waitForResponse(response => response.url().endsWith('/commands') && response.request().method() === 'POST'), step.click()]);
       break;
     }
     default: return false;
