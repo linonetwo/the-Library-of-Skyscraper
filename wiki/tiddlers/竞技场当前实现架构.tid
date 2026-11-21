@@ -2,9 +2,9 @@ title: 竞技场当前实现架构
 tags: 竞技场开发计划 竞技场目录：架构
 type: text/vnd.tiddlywiki
 created: 20261104212551000
-modified: 20261121074415000
+modified: 20261121134507000
 
-更新于2026-11-21。已发布入口为v0.2.1；v0.3.0「首场书库远征」正在[[PR45|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/45]]合批。以下区分已运行的公共骨架和本版新实现，进度见[[竞技场v0.3.0版本计划]]及[[竞技场开发日志2026-11-21]]。
+更新于2026-11-21。已发布入口为v0.2.1；v0.3.0「首场书库远征」玩法代码已由[[PR45|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/45]]合入，完整美术与整版发布继续推进。以下区分已运行的公共骨架和本版新实现，进度见[[竞技场v0.3.0版本计划]]及[[竞技场开发日志2026-11-21]]。
 
 !! 数据流与职责
 
@@ -43,7 +43,7 @@ TS 发布绑定 sourceHash，草稿按赛局与玩家保存；草稿编辑、生
 
 !! 世界、动作与纸娃娃的时间轴
 
-Actor.appearance保存衣装、发型和武器，equip进入权威快照与回放。worldMap／mapVersion指定地图，simulationVersion区分旧即时切房与v0.3实际旅行。1格为1米，500毫秒tick每次前进750毫格；到达后更新roomId并进行现场交互。玩家手动、自动运输、撤退与TS意图复用同一旅行路径。建筑与角色统一使用worldPosition；施工、塔射程、敌人攻击和画面已接同一锚点，入库现场位置继续依本日评审收敛。
+Actor.appearance保存衣装、发型和武器，equip进入权威快照与回放。worldMap／mapVersion指定地图，simulationVersion区分旧即时切房与v0.3实际旅行。1格为1米，500毫秒tick每次前进750毫格；到达后更新roomId并进行现场交互。玩家手动、自动运输、撤退与TS意图复用同一旅行路径。建筑与角色统一使用worldPosition；施工、塔射程、敌人攻击和画面已接同一锚点，入库意图在权威tick内接近实际仓库后交货，室内与路上移动共享每tick预算。
 
 客户端ActorMotion在相邻权威位置间插值，暂停或回放seek切到对应模拟状态；动作时钟依据tick／ActionCue，目标位置决定朝向。ActorView复用Sprite池按动作合成身体、前后衣发、前后武器与手部。animationCatalog提供动作帧数／时长，animationLayers提供图层顺序，PaperDoll／AnimatedDollPreview读取同一图集。
 

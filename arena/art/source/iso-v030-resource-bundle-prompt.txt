@@ -1,0 +1,12 @@
+Use case: stylized-concept
+Asset type: two independent transparent isometric library resource sprites, intended as separate ground prop and carried attachment.
+
+Create one 1280x1024 clean transparent sheet, TWO isolated objects side by side with large empty margins. No floor tile, base diamond, room, UI, labels, numbers, text, characters, hands, cast shadow or background scene.
+
+Same fixed orthographic camera for BOTH: yaw45 degrees, 30 degrees ABOVE horizontal looking down; horizontal world edges project with screen slopes +0.5 and -0.5, matching 128x64 2:1 diamond ground. No perspective convergence. Warm upper-left light; warm dark outlines, restrained painted/cel game shading, ivory parchment, mahogany wood, dark forest green and antique-gold accents. Match a library exploration game, not modern warehouse stock photography or flat icon.
+
+LEFT object: a low salvage supply pile, footprint roughly 0.9x0.75 world meter, overall height0.45m. Two small open dark wooden archive crates with bundled ivory pages, two closed forest-green old folios, a short neat stack of wooden binder boards and one tied roll of paper. A compact asymmetrical silhouette, large readable pieces only, unified warm palette. The bottom touches the imaginary ground plane; no separate platform. All pages are blank, no readable text or logos. This is the gatherable building-resource cache.
+
+RIGHT object: ONE small portable supply bundle, footprint0.3x0.2m, height0.2m, about one third the visual width of the left pile at the same scale. Three thin ivory page/binder-board parcels with one green folio, tightly secured with a simple brown leather cross strap and small gold buckle. No bag handles, loose ribbons or hands. This is carried in both hands near the waist, so keep the contour compact and attachment-friendly. Same materials as the pile, genuinely separate sprite.
+
+Render both at the SAME orthographic physical scale; do not enlarge the carried bundle to fill the right half. Crisp transparent silhouettes, no baked shadow extending beyond the objects, no complete character holding the bundle. Exactly these two independent source objects.

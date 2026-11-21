@@ -1,0 +1,452 @@
+{
+  "schemaVersion": 1,
+  "status": "prototype",
+  "releaseApproved": false,
+  "camera": {
+    "yaw": 45,
+    "elevation": 30,
+    "tileSize": [
+      128,
+      64
+    ],
+    "zScale": 78.3837,
+    "worldUnitMeters": 1
+  },
+  "sources": {
+    "iso-v030-resource-bundle.png": {
+      "sha256": "ea2eeccf5f686f20999a7fdd9c6f2c2eac24ed4e3623e9288a8046c96d8fff3b",
+      "size": [
+        1402,
+        1122
+      ]
+    },
+    "iso-v030-inkguard-neutral.png": {
+      "sha256": "662dbb5156d5eca04ec6a42355186f08bc3cd96de41616a7ce311bf4c498061d",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    "iso-v030-construction-site.png": {
+      "sha256": "45b22af016033878d58532d6242fe3b08daca0739e0747274c89c7ad284225b7",
+      "size": [
+        1536,
+        1024
+      ]
+    }
+  },
+  "assets": {
+    "resource-cache": {
+      "image": "resource-cache.png",
+      "canvas": [
+        192,
+        224
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": [
+        0.5,
+        0.7857142857142857
+      ],
+      "sourceCrop": [
+        70,
+        302,
+        805,
+        683
+      ],
+      "sourcePivot": [
+        470,
+        800
+      ],
+      "sourceScale": 0.18,
+      "placement": [
+        24,
+        86
+      ],
+      "status": "prototype",
+      "releaseApproved": false,
+      "kind": "prop",
+      "footprint": [
+        1.3,
+        1
+      ],
+      "heightMeters": 0.8,
+      "source": "iso-v030-resource-bundle.png"
+    },
+    "cargo-bundle": {
+      "image": "cargo-bundle.png",
+      "canvas": [
+        40,
+        40
+      ],
+      "pivot": [
+        20,
+        25
+      ],
+      "anchor": [
+        0.5,
+        0.625
+      ],
+      "sourceCrop": [
+        1042,
+        628,
+        301,
+        258
+      ],
+      "sourcePivot": [
+        1190,
+        840
+      ],
+      "sourceScale": 0.09,
+      "placement": [
+        7,
+        6
+      ],
+      "status": "prototype",
+      "releaseApproved": false,
+      "kind": "attachment",
+      "heightMeters": 0.2,
+      "source": "iso-v030-resource-bundle.png",
+      "attachJoint": "pelvis",
+      "jointOffset": [
+        0,
+        4
+      ],
+      "leftHandContact": [
+        6,
+        18
+      ],
+      "rightHandContact": [
+        34,
+        18
+      ],
+      "directionLayer": {
+        "NE": "behind-body",
+        "SW": "in-front-of-outfit-behind-hands"
+      },
+      "handPosePending": true
+    },
+    "construction-site": {
+      "image": "construction-site.png",
+      "canvas": [
+        192,
+        224
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": [
+        0.5,
+        0.7857142857142857
+      ],
+      "sourceCrop": [
+        275,
+        117,
+        1032,
+        785
+      ],
+      "sourcePivot": [
+        765,
+        650
+      ],
+      "sourceScale": 0.14,
+      "placement": [
+        27,
+        101
+      ],
+      "status": "prototype",
+      "releaseApproved": false,
+      "kind": "construction-overlay",
+      "footprint": [
+        1,
+        1
+      ],
+      "heightMeters": 0.55,
+      "source": "iso-v030-construction-site.png",
+      "emptyInterior": true
+    },
+    "construction-site-back": {
+      "image": "construction-site-back.png",
+      "canvas": [
+        192,
+        224
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": [
+        0.5,
+        0.7857142857142857
+      ],
+      "sourceCrop": [
+        275,
+        117,
+        1032,
+        785
+      ],
+      "sourcePivot": [
+        765,
+        650
+      ],
+      "sourceScale": 0.14,
+      "placement": [
+        27,
+        101
+      ],
+      "status": "prototype",
+      "releaseApproved": false,
+      "kind": "construction-overlay",
+      "footprint": [
+        1,
+        1
+      ],
+      "heightMeters": 0.55,
+      "source": "iso-v030-construction-site.png",
+      "emptyInterior": true,
+      "depthOffset": -0.1,
+      "sourceFrontMasks": [
+        [
+          [
+            270,
+            540
+          ],
+          [
+            385,
+            540
+          ],
+          [
+            815,
+            775
+          ],
+          [
+            815,
+            915
+          ],
+          [
+            690,
+            915
+          ],
+          [
+            690,
+            825
+          ],
+          [
+            270,
+            700
+          ]
+        ],
+        [
+          [
+            690,
+            640
+          ],
+          [
+            1240,
+            390
+          ],
+          [
+            1330,
+            750
+          ],
+          [
+            1020,
+            900
+          ],
+          [
+            690,
+            915
+          ]
+        ]
+      ]
+    },
+    "construction-site-front": {
+      "image": "construction-site-front.png",
+      "canvas": [
+        192,
+        224
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": [
+        0.5,
+        0.7857142857142857
+      ],
+      "sourceCrop": [
+        275,
+        117,
+        1032,
+        785
+      ],
+      "sourcePivot": [
+        765,
+        650
+      ],
+      "sourceScale": 0.14,
+      "placement": [
+        27,
+        101
+      ],
+      "status": "prototype",
+      "releaseApproved": false,
+      "kind": "construction-overlay",
+      "footprint": [
+        1,
+        1
+      ],
+      "heightMeters": 0.55,
+      "source": "iso-v030-construction-site.png",
+      "emptyInterior": true,
+      "depthOffset": 0.1,
+      "sourceFrontMasks": [
+        [
+          [
+            270,
+            540
+          ],
+          [
+            385,
+            540
+          ],
+          [
+            815,
+            775
+          ],
+          [
+            815,
+            915
+          ],
+          [
+            690,
+            915
+          ],
+          [
+            690,
+            825
+          ],
+          [
+            270,
+            700
+          ]
+        ],
+        [
+          [
+            690,
+            640
+          ],
+          [
+            1240,
+            390
+          ],
+          [
+            1330,
+            750
+          ],
+          [
+            1020,
+            900
+          ],
+          [
+            690,
+            915
+          ]
+        ]
+      ]
+    },
+    "inkguard-NE": {
+      "image": "inkguard-NE.png",
+      "canvas": [
+        128,
+        160
+      ],
+      "pivot": [
+        64,
+        144
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        768,
+        1024
+      ],
+      "sourcePivot": [
+        385,
+        950
+      ],
+      "sourceScale": 0.11328125,
+      "placement": [
+        20,
+        36
+      ],
+      "status": "prototype",
+      "releaseApproved": false,
+      "kind": "enemy-neutral",
+      "footprint": [
+        0.65,
+        0.65
+      ],
+      "heightMeters": 1.35,
+      "source": "iso-v030-inkguard-neutral.png",
+      "direction": "NE",
+      "actionsApproved": [],
+      "rigPending": true
+    },
+    "inkguard-SW": {
+      "image": "inkguard-SW.png",
+      "canvas": [
+        128,
+        160
+      ],
+      "pivot": [
+        64,
+        144
+      ],
+      "anchor": [
+        0.5,
+        0.9
+      ],
+      "sourceCrop": [
+        768,
+        0,
+        768,
+        1024
+      ],
+      "sourcePivot": [
+        1153,
+        950
+      ],
+      "sourceScale": 0.11328125,
+      "placement": [
+        20,
+        36
+      ],
+      "status": "prototype",
+      "releaseApproved": false,
+      "kind": "enemy-neutral",
+      "footprint": [
+        0.65,
+        0.65
+      ],
+      "heightMeters": 1.35,
+      "source": "iso-v030-inkguard-neutral.png",
+      "direction": "SW",
+      "actionsApproved": [],
+      "rigPending": true
+    }
+  },
+  "pending": [
+    "Resource depleted components",
+    "Cargo actual hand/pelvis pose attachment",
+    "Inkguard 8-view rig and actions",
+    "Construction product occlusion review"
+  ]
+}

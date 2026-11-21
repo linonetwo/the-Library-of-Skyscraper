@@ -11,6 +11,7 @@ export interface Room {
 export type WorldPoint = { x: number; y: number };
 export type TaskKind = "gather" | "build" | "guard" | "return";
 export type BuildingKind = "warehouse" | "tower" | "catalog";
+export type BuildingType = BuildingKind | "core";
 export type ActionCue = {
   kind: "gather" | "deliver" | "attack" | "hit" | "down";
   startedTick: number;
@@ -96,6 +97,7 @@ export interface Snapshot {
     report: Record<string, unknown> | null;
   };
   enemies?: {
+    actionCue?: ActionCue | null;
     id: string;
     roomId: string;
     hp: number;
@@ -116,7 +118,7 @@ export interface Snapshot {
     id: string;
     owner: string;
     roomId: string;
-    kind: BuildingKind;
+    kind: BuildingType;
     worldPosition?: WorldPoint;
     hp?: number;
     maxHp?: number;

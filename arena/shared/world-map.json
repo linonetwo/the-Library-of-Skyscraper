@@ -1,5 +1,5 @@
 {
-  "version": "library-v3.2",
+  "version": "library-v3.3",
   "units": "tile",
   "rooms": [
     {
@@ -159,8 +159,8 @@
       "roomId": "room-0",
       "asset": "bookcase-u",
       "position": {
-        "x": -2.5,
-        "y": -2.5
+        "x": -3,
+        "y": -3
       },
       "footprint": {
         "width": 1,
@@ -170,10 +170,23 @@
     {
       "id": "room-0-shelf-2",
       "roomId": "room-0",
+      "asset": "bookcase-u",
+      "position": {
+        "x": -3,
+        "y": -2
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-0-shelf-3",
+      "roomId": "room-0",
       "asset": "bookcase-v",
       "position": {
-        "x": 2.5,
-        "y": -2.5
+        "x": -2,
+        "y": -3
       },
       "footprint": {
         "width": 1,
@@ -185,8 +198,8 @@
       "roomId": "room-1",
       "asset": "bookcase-u",
       "position": {
-        "x": 5.5,
-        "y": 2.5
+        "x": 5,
+        "y": -3
       },
       "footprint": {
         "width": 1,
@@ -196,10 +209,49 @@
     {
       "id": "room-1-shelf-2",
       "roomId": "room-1",
+      "asset": "bookcase-u",
+      "position": {
+        "x": 5,
+        "y": -2
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-1-shelf-3",
+      "roomId": "room-1",
       "asset": "bookcase-v",
       "position": {
-        "x": 10.5,
-        "y": 2.5
+        "x": 6,
+        "y": -3
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-2-shelf-1",
+      "roomId": "room-2",
+      "asset": "bookcase-u",
+      "position": {
+        "x": -2,
+        "y": 6
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-2-shelf-2",
+      "roomId": "room-2",
+      "asset": "bookcase-v",
+      "position": {
+        "x": 2,
+        "y": 6
       },
       "footprint": {
         "width": 1,
@@ -211,8 +263,8 @@
       "roomId": "room-3",
       "asset": "bookcase-u",
       "position": {
-        "x": -10.5,
-        "y": 10.5
+        "x": -11,
+        "y": 5
       },
       "footprint": {
         "width": 1,
@@ -222,10 +274,10 @@
     {
       "id": "room-3-shelf-2",
       "roomId": "room-3",
-      "asset": "bookcase-v",
+      "asset": "bookcase-u",
       "position": {
-        "x": -5.5,
-        "y": 10.5
+        "x": -11,
+        "y": 6
       },
       "footprint": {
         "width": 1,
@@ -237,8 +289,8 @@
       "roomId": "room-3",
       "asset": "bookcase-u",
       "position": {
-        "x": -5.5,
-        "y": 8
+        "x": -11,
+        "y": 7
       },
       "footprint": {
         "width": 1,
@@ -250,8 +302,203 @@
       "roomId": "room-3",
       "asset": "bookcase-v",
       "position": {
-        "x": -5.5,
-        "y": 5.5
+        "x": -10,
+        "y": 5
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-4-shelf-1",
+      "roomId": "room-4",
+      "asset": "bookcase-u",
+      "position": {
+        "x": -10,
+        "y": -2
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-4-shelf-2",
+      "roomId": "room-4",
+      "asset": "bookcase-v",
+      "position": {
+        "x": -9,
+        "y": -2
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-4-shelf-3",
+      "roomId": "room-4",
+      "asset": "bookcase-v",
+      "position": {
+        "x": -8,
+        "y": -2
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-4-shelf-4",
+      "roomId": "room-4",
+      "asset": "bookcase-v",
+      "position": {
+        "x": -7,
+        "y": -2
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-4-shelf-5",
+      "roomId": "room-4",
+      "asset": "bookcase-v",
+      "position": {
+        "x": -6,
+        "y": -2
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-5-shelf-1",
+      "roomId": "room-5",
+      "asset": "bookcase-u",
+      "position": {
+        "x": -2,
+        "y": -10
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-5-shelf-2",
+      "roomId": "room-5",
+      "asset": "bookcase-v",
+      "position": {
+        "x": -1,
+        "y": -10
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-5-shelf-3",
+      "roomId": "room-5",
+      "asset": "bookcase-v",
+      "position": {
+        "x": 0,
+        "y": -10
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-5-shelf-4",
+      "roomId": "room-5",
+      "asset": "bookcase-v",
+      "position": {
+        "x": 1,
+        "y": -10
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-5-shelf-5",
+      "roomId": "room-5",
+      "asset": "bookcase-v",
+      "position": {
+        "x": 2,
+        "y": -10
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-6-shelf-1",
+      "roomId": "room-6",
+      "asset": "bookcase-u",
+      "position": {
+        "x": 6,
+        "y": -10
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-6-shelf-2",
+      "roomId": "room-6",
+      "asset": "bookcase-v",
+      "position": {
+        "x": 7,
+        "y": -10
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-6-shelf-3",
+      "roomId": "room-6",
+      "asset": "bookcase-v",
+      "position": {
+        "x": 8,
+        "y": -10
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-6-shelf-4",
+      "roomId": "room-6",
+      "asset": "bookcase-v",
+      "position": {
+        "x": 9,
+        "y": -10
+      },
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "room-6-shelf-5",
+      "roomId": "room-6",
+      "asset": "bookcase-v",
+      "position": {
+        "x": 10,
+        "y": -10
       },
       "footprint": {
         "width": 1,

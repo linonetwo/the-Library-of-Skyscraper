@@ -1,0 +1,17 @@
+Use case: stylized-concept
+Asset type: independent direction-specific enemy source sprites for a modular isometric game rig; NOT a full game scene and NOT an animation sheet.
+
+Create a clean 1536x1024 transparent sheet with exactly TWO isolated full-body views of the SAME ink-shadow library guard, side by side. No floor, cast shadow, frame, text, labels, grid, UI or background architecture. Each enemy fully visible and large enough to cut into head/torso/arms/lower-cloak attachments.
+
+Fixed orthographic camera yaw45 degrees, elevation30 degrees ABOVE horizontal looking downward, same 2:1 ground-diamond camera with tile128x64. Entity about 1.35 meters high, ground footprint about 0.65x0.65 meters. Clearly visible TOP of the hood and shoulder planes; body vertical remains vertical, not a top-down flat emblem and not an eye-level portrait.
+
+LEFT sprite: NE heading, facing screen UPPER RIGHT away from viewer, rear three-quarter. Show rear hood and back folds; do not put two front-facing eyes on the back.
+RIGHT sprite: SW heading, facing screen LOWER LEFT toward viewer, front three-quarter. Two small warm amber eye slits float inside a deep dark hood; no human face, mouth, skin, bones or gore.
+
+Design: a compact eerie but readable magical library guardian made of dark indigo-black ink, folded charcoal parchment cloak and restrained dusty terracotta/red edge seams. Large simple hood, broad readable shoulder silhouette, short layered cloak down to calf height, two separate articulated arms ending in small dark claw-like ink gloves with rounded non-gory fingertips. Two dark simple boots visible under the cloak and feet planted, so it can share a biped walking/attack rig. A small antique-gold broken-page seal on the front chest only. Back has a vertical folded parchment seam, not a front chest duplicate. Keep the shape simple at 100px runtime height; no dozens of tiny floating scraps, no ornate armor, no long hair, no staff, no weapon or shield.
+
+NEUTRAL RIGGING POSE: both full legs extended and feet on the same imaginary ground, about shoulder width; legs not crossing or lifted. Arms lowered 15 degrees away from torso so elbow/wrist/hand regions are visible and can be separated. No gesture, lunge, attack or walking frame. Both directions use identical anatomy/proportions and the same cloak/boots/eye design.
+
+Style: painted anime-adjacent 2.5D game sprite, warm dark clean contour, controlled low-frequency cel shading, slightly textured ink edges, compatible with warm ivory library stone and mahogany bookcases. Not pixel art, photorealistic, chibi sticker or flat vector icon. Enemy must remain readable against both a pale stone floor and dark teal void: use restrained terracotta edge highlights, no heavy glow or baked ground shadow.
+
+Transparent output with clean contours. Exactly the two requested enemy sprites only. This is a neutral modular source; do not draw damage numbers, selection rings or complete action sequences.
