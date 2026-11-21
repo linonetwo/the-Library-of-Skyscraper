@@ -1,0 +1,41 @@
+title: 竞技场目录
+caption: 竞技场目录
+tags: $:/tags/SideBar
+list-before: $:/core/ui/SideBar/Recent
+type: text/vnd.tiddlywiki
+created: 20261120182426389
+modified: 20261120182426389
+
+<div class="tc-table-of-contents">
+<details open><summary>需求</summary>
+
+<div>[[竞技场总入口|通天书苑：竞技场]]</div>
+<div>[[竞技场系统设计与拆解]]</div>
+<div>[[竞技场纸娃娃动画需求]]</div>
+</details>
+<details open><summary>版本计划</summary>
+
+<$list filter="[prefix[竞技场v]suffix[版本计划]] [prefix[竞技场v]suffix[修复计划]] [prefix[竞技场v]suffix[设计合同]] [[竞技场版本发布规则]] +[sort[title]]"><div><$link/></div></$list>
+</details>
+<details><summary>实施分工</summary>
+
+<<toc-selective-expandable "竞技场开发计划" sort:"sort[title]">>
+</details>
+<details open><summary>日报</summary>
+
+<$list filter="[prefix[竞技场开发日志]sort[title]reverse[]]"><div><$link/></div></$list>
+</details>
+<details><summary>架构</summary>
+
+<div>[[竞技场当前实现架构]]</div>
+<<toc-selective-expandable "竞技场系统设计与拆解" sort:"sort[title]">>
+</details>
+<details><summary>实机图片</summary>
+
+<$list filter="[prefix[竞技场]is[image]sort[title]reverse[]]"><div><$link/></div></$list>
+</details>
+<details><summary>全部竞技场文件</summary>
+
+<$list filter="[prefix[竞技场]!is[system]sort[title]]"><div><$link/></div></$list>
+</details>
+</div>

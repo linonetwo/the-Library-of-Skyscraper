@@ -85,7 +85,8 @@ jobs:
             if curl --fail --silent http://127.0.0.1:5173/ > /dev/null && curl --fail --silent http://127.0.0.1:8787/health > /dev/null; then break; fi
             sleep 1
           done
-          npm run test:browser
+          mkdir -p ../e2e/test-results
+          npm run test:browser 2>&1 | tee ../e2e/test-results/mcp-browser.log
           npm --prefix ../e2e ci
           npm --prefix ../e2e test
       - name: Art pipeline checks
