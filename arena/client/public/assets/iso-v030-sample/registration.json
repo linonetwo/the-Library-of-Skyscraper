@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "status": "camera-prototype",
+  "releaseApproved": false,
+  "sourcePoseOnly": true,
+  "walkApproved": false,
+  "source": "arena/art/source/iso-v030-body-sample.png",
+  "sourceSha256": "4f86bbf78618495121a6701f63b4ac645496c891e3db3b2a8128fe854c13bf49",
+  "promptSha256": "fa272538154d6f9eeda88ad8386e31d0a9f6b41a631f06e500e9d89a06f3c8f4",
+  "generator": "GPT Image 2 via proxy-imagegen, text-only; one success after one SSE retry",
+  "alphaNote": "Original has real transparent alpha; hidden RGB is brown but not visible when composited correctly.",
+  "alphaCleanup": "Alpha <= 8/255 background haze cleared in derived assets only; original source preserved.",
+  "camera": {
+    "projection": "orthographic",
+    "yawDegrees": 45,
+    "elevationDegrees": 30,
+    "tileSize": [
+      128,
+      64
+    ],
+    "worldUnitMeters": 1,
+    "zScale": 78.3837
+  },
+  "anatomy": {
+    "heads": 4,
+    "entityHeightMeters": 1.7
+  },
+  "cell": [
+    192,
+    192
+  ],
+  "anchor": [
+    0.5,
+    0.9
+  ],
+  "frames": [
+    {
+      "direction": "NE",
+      "sourceCell": [
+        0,
+        0,
+        384,
+        512
+      ],
+      "sourceGroundPivot": [
+        186.5,
+        428
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "uniformScale": 0.328125,
+      "placement": [
+        35,
+        32,
+        126,
+        168
+      ],
+      "crown": [
+        98.65625,
+        41.515625
+      ],
+      "chin": [
+        100.953125,
+        75.640625
+      ],
+      "neck": [
+        95.703125,
+        79.25
+      ],
+      "pelvis": [
+        96.359375,
+        120.265625
+      ],
+      "joints": {
+        "leftShoulder": [
+          83.890625,
+          81.21875
+        ],
+        "leftElbow": [
+          76.015625,
+          102.875
+        ],
+        "leftWrist": [
+          70.765625,
+          120.921875
+        ],
+        "rightShoulder": [
+          107.84375,
+          86.796875
+        ],
+        "rightElbow": [
+          115.390625,
+          101.5625
+        ],
+        "rightWrist": [
+          125.5625,
+          106.484375
+        ],
+        "leftHip": [
+          91.4375,
+          125.515625
+        ],
+        "leftKnee": [
+          85.859375,
+          151.765625
+        ],
+        "leftAnkle": [
+          81.265625,
+          175.71875
+        ],
+        "leftFoot": [
+          80.9375,
+          186.21875
+        ],
+        "rightHip": [
+          103.90625,
+          125.515625
+        ],
+        "rightKnee": [
+          106.859375,
+          141.921875
+        ],
+        "rightAnkle": [
+          111.453125,
+          152.75
+        ],
+        "rightFoot": [
+          110.796875,
+          158.328125
+        ]
+      },
+      "sourceNearArmMask": [
+        [
+          209,
+          148
+        ],
+        [
+          227,
+          151
+        ],
+        [
+          245,
+          179
+        ],
+        [
+          253,
+          198
+        ],
+        [
+          275,
+          207
+        ],
+        [
+          291,
+          218
+        ],
+        [
+          294,
+          236
+        ],
+        [
+          278,
+          248
+        ],
+        [
+          256,
+          238
+        ],
+        [
+          233,
+          230
+        ],
+        [
+          219,
+          209
+        ],
+        [
+          208,
+          180
+        ]
+      ],
+      "depth": [
+        "right-leg",
+        "torso",
+        "left-leg",
+        "left-arm",
+        "right-arm"
+      ],
+      "contacts": {
+        "leftFoot": "source-contact-unverified",
+        "rightFoot": "source-contact-unverified"
+      },
+      "sourcePoseOnly": true,
+      "actionApproved": false
+    },
+    {
+      "direction": "SW",
+      "sourceCell": [
+        0,
+        512,
+        384,
+        512
+      ],
+      "sourceGroundPivot": [
+        188,
+        428
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "uniformScale": 0.328125,
+      "placement": [
+        34,
+        32,
+        126,
+        168
+      ],
+      "crown": [
+        95.6875,
+        42.828125
+      ],
+      "chin": [
+        89.125,
+        80.234375
+      ],
+      "neck": [
+        93.390625,
+        84.171875
+      ],
+      "pelvis": [
+        96.34375,
+        120.59375
+      ],
+      "joints": {
+        "leftShoulder": [
+          110.125,
+          89.09375
+        ],
+        "leftElbow": [
+          119.640625,
+          104.1875
+        ],
+        "leftWrist": [
+          124.890625,
+          117.96875
+        ],
+        "rightShoulder": [
+          80.921875,
+          85.8125
+        ],
+        "rightElbow": [
+          74.6875,
+          102.546875
+        ],
+        "rightWrist": [
+          67.796875,
+          116
+        ],
+        "leftHip": [
+          103.5625,
+          125.84375
+        ],
+        "leftKnee": [
+          105.53125,
+          145.203125
+        ],
+        "leftAnkle": [
+          111.765625,
+          154.71875
+        ],
+        "leftFoot": [
+          111.4375,
+          158.65625
+        ],
+        "rightHip": [
+          92.734375,
+          125.515625
+        ],
+        "rightKnee": [
+          88.46875,
+          151.4375
+        ],
+        "rightAnkle": [
+          82.890625,
+          176.046875
+        ],
+        "rightFoot": [
+          79.9375,
+          185.890625
+        ]
+      },
+      "sourceNearArmMask": [
+        [
+          221,
+          153
+        ],
+        [
+          240,
+          158
+        ],
+        [
+          253,
+          178
+        ],
+        [
+          262,
+          197
+        ],
+        [
+          281,
+          228
+        ],
+        [
+          291,
+          251
+        ],
+        [
+          288,
+          271
+        ],
+        [
+          278,
+          281
+        ],
+        [
+          265,
+          275
+        ],
+        [
+          262,
+          257
+        ],
+        [
+          248,
+          234
+        ],
+        [
+          233,
+          219
+        ],
+        [
+          221,
+          188
+        ]
+      ],
+      "depth": [
+        "left-leg",
+        "right-arm",
+        "torso",
+        "right-leg",
+        "left-arm"
+      ],
+      "contacts": {
+        "leftFoot": "source-contact-unverified",
+        "rightFoot": "source-contact-unverified"
+      },
+      "sourcePoseOnly": true,
+      "actionApproved": false
+    }
+  ],
+  "pending": [
+    "Product renderer ground/contact review",
+    "Independent silhouette/foreground-mask review",
+    "True opposite-foot walk phases",
+    "1 outfit + 1 hairstyle independent attachments"
+  ]
+}
