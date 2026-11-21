@@ -1,7 +1,7 @@
-import { animationFrame } from "./animationCatalog";
+import { animationFrame } from "./animationCatalog.ts";
 export type Point = { x: number; y: number };
-import { facing, type Direction } from "./directions";
-export { facing, type Direction } from "./directions";
+import { facing, type Direction } from "./directions.ts";
+export { facing, type Direction } from "./directions.ts";
 
 /** Presentation motion follows authoritative destinations; it never changes simulation. */
 export class ActorMotion {
@@ -13,10 +13,9 @@ export class ActorMotion {
   private fromDistance = 0;
   private toDistance = 0;
   direction: Direction = "S";
-  constructor(
-    position: Point,
-    public duration = 450,
-  ) {
+  duration: number;
+  constructor(position: Point, duration = 450) {
+    this.duration = duration;
     this.from = this.to = position;
   }
   sample(now: number) {

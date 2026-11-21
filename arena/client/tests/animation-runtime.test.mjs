@@ -57,3 +57,15 @@ test('one scene clock caps extrapolation, preserves rerenders, freezes pause and
  clock.update({...s,paused:true,tick:3},2200);assert.equal(clock.sample(9999),1500);
  clock.update({...s,sessionId:'b',tick:0},2300);assert.equal(clock.sample(2350),50);
 });
+
+test('display distance follows the same interpolation as position and snaps on seek',async()=>{
+ const {ActorMotion}=await import('../src/actorMotion.ts');
+ const motion=new ActorMotion({x:0,y:0},500);
+ motion.move({x:0,y:0},0,true,[],1000);
+ motion.move({x:64,y:32},100,false,[],2000);
+ assert.equal(motion.sample(350).x,32);assert.equal(motion.sample(350).motionDistanceMilli,1500);
+ motion.move({x:64,y:32},350,false,[],2000);
+ assert.equal(motion.sample(350).motionDistanceMilli,1500);
+ motion.move({x:0,y:0},400,true,[],1000);
+ assert.equal(motion.sample(450).motionDistanceMilli,1000);
+});
