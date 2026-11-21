@@ -2,18 +2,18 @@ title: 竞技场当前实现架构
 tags: 竞技场开发计划 竞技场目录：架构
 type: text/vnd.tiddlywiki
 created: 20261104212551000
-modified: 20261117204044000
+modified: 20261121074415000
 
-当前运行结构更新至2026-11-17的v0.2.0集成候选（[[PR22|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/22]]）；地块／HUD／四头身纸娃娃已进入客户端，视觉批准和整版集中验收按版本计划继续推进。
+更新于2026-11-21。已发布入口为v0.2.1；v0.3.0「首场书库远征」正在[[PR45|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/45]]合批。以下区分已运行的公共骨架和本版新实现，进度见[[竞技场v0.3.0版本计划]]及[[竞技场开发日志2026-11-21]]。
 
 !! 数据流与职责
 
 React 界面经 HTTP 提交命令，Rust / Axum 服务执行 Session 权威模拟，通过 WebSocket 推送 Snapshot。Pixi 将快照与本地展示选择组合成战场。MCP 复用命令接口，并提供浏览器页面、操作和截图能力。
 
-* 客户端：App装配全视口游戏舞台；ArenaWorkspace管理角色／房间选择与显式镜头意图；useArenaSession管理网络会话；arenaApi封装传输。GameHUD提供资源、小队与常用操作，角色详情、规则、回放与工坊按需打开。MapCanvas持有Pixi生命周期；mapLayout提供独立地块与走廊，isoGeometry负责2:1投影／逆变换，CameraController处理镜头，mapScene与ActorScene分别管理环境和角色。
-* 服务端：store 使用赛局目录锁与每局串行锁管理状态；session 管理单局状态；commands 分派玩家命令；actions 与 economy 实现动作和经济；simulation 推进 tick；replay 重演操作；checkpoint／persistence 保存完整私有赛局，lifecycle 管理定时归档和退出。
+* 客户端：App装配全视口游戏舞台；ArenaWorkspace管理角色／房间选择与显式镜头意图；useArenaSession管理网络会话；arenaApi封装传输。GameHUD提供资源、小队与常用操作，角色详情、规则、回放与工坊按需打开。MapCanvas持有Pixi生命周期；mapLayout提供独立地块与走廊，isoGeometry负责2:1投影／逆变换，CameraController处理镜头，mapScene缓存静态地板与道具，WorldEntities按快照更新资源、敌人和建筑，ActorScene复用角色节点。ExpeditionTasks提供任务与目标指令，ExpeditionResult展示结算与重试。
+* 服务端：store 使用赛局目录锁与每局串行锁管理状态；session 管理单局状态；commands 分派玩家命令；v0.3的travel逐tick推进世界旅行，tasks统一手动任务与运输／撤退，construction处理扣材与现场施工，combat处理位置射程与伤害，scenario处理编目、反扑和胜败；legacy模块保留旧模拟语义；simulation按固定顺序推进tick；replay 重演操作；checkpoint／persistence 保存完整私有赛局，lifecycle 管理定时归档和退出。
 * 脚本：Monaco／useScriptWorkbench 编辑多文件项目与发布；script-toolchain 编译带版本的 JS；script_worker 复用两个常驻 V8 进程；script_driver 从同 tick 快照取得决策；scripting 按角色选择意图并复用动作结算。实时推进与 HTTP 单步共用异步 driver。script_versions管理每玩家的不可变源码包目录，script_version_routes提供历史读取与恢复。
-* 技术美术：源图 → 注册与裁切 → 纹理图集 → 纸娃娃分层渲染。动作、方向、帧号与装备层是共同索引。
+* 技术美术：proxy-imagegen独立方向源 → 分肢／衣发／武器attachment与关节注册 → 统一pose离线烘焙 → 原14层纹理图集 → 纸娃娃Sprite合成。运行时沿用图集。NE／SW新相机样板已实际渲染，完整步态、八向与外观组继续制作；动作、方向、帧号、装备层和world stride为共同索引。
 * 工具：MCP 的 Session、Simulation、Script、Replay、Page、Input 分组复用运行中的游戏；浏览器用例覆盖单机与双客户端。
 
 !! 已采用的设计模式
@@ -25,7 +25,8 @@ React 界面经 HTTP 提交命令，Rust / Axum 服务执行 Session 权威模�
 |策略选择|内置 gather／defend／explore 与用户 TS decide(ctx) 提供行动决策|
 |意图与结算分离|脚本输出带优先级的动作描述；角色手动动作优先，每角色选一条脚本动作|
 |组合式纸娃娃|四头身身体、衣装、前后发片、前后法杖和手指共享帧坐标与挂点；地图与角色预览共用动作目录及图层选择|
-|模型与投影分离|权威房间／角色保持逻辑坐标，地块布局、2:1等距投影、镜头变换依次组合；输入沿相反次序还原|
+|单一世界几何与投影|shared/world-map.json的中心、折线路网、地板、道具占地和建筑锚点通过Snapshot共享；worldPosition用于交互与射程，2:1投影和镜头只负责呈现；输入沿相反次序还原|
+|任务阶段与同一动作来源|ActorTask记录目标／stage／原因；所有来源复用travel／经济／战斗，TS激活后接管小队；真实动作以ActionCue起始tick、时长及目标位置驱动画面|
 |显式镜头状态|总览、角色跟随、房间聚焦与手动镜头共用CameraController；选择以FocusIntent传递|
 |不可变版本与激活指针|源码／编译包按owner与sourceHash首写保存，恢复切换生效包，历史原文保持稳定|
 |领域状态与原子提交|script_state管理版本记忆与状态副本，script_tasks描述任务，合法批次随权威tick提交|
@@ -40,7 +41,15 @@ TS 发布绑定 sourceHash，草稿按赛局与玩家保存；草稿编辑、生
 
 规则运行状态按[[竞技场规则运行状态实施方案]]实现：memory按玩家／sourceHash保存，tasks按玩家共享，显式补丁由同一tick提交。preview读取编译hash对应记忆并保留权威现场。私有checkpoint保留所有版本状态，v2回放仅导出本人私有补丁与最终状态；v1历史操作保持原结算事实。ScriptRuntime在工作台展示记忆和当前任务，MCP Script.getState使用同一owner接口。任务时间轴按[[竞技场任务回放时间轴实施方案]]输出重演后的成功增量，以operationIndex定位Reset、版本记忆与任务来源，客户端按选择位置投影；完整任务编辑继续扩展。
 
-Actor.appearance 存放衣装、发型和武器展示状态，equip 命令进入权威模拟、联机快照和回放；界面与地图共用动作／纸娃娃层索引。ActorScene 复用角色节点，ActorMotion 独立处理展示插值、八向朝向与idle／walk切换，ActorView复用Sprite池按动作合成前后发片、身体、衣装和前后武器。当前v0.2.0组合候选使用128×64独立地面和独立建筑素材，实体按投影足底排序；ActorMotion沿地块走廊插值，CameraController读取实际渲染脚点。animationCatalog统一动作帧数／时长，animationLayers统一换装层序；PaperDoll通过AnimatedDollPreview读取相同图集与帧合同。当前idle／walk四头身资产继续按[[竞技场v0.2.0版本计划]]完成视觉批准与整版集中验收。完整动作纸娃娃、长记录分段归档、桌面离线打包、Steam 接入与产品化要求继续依据[[竞技场 Steam 上线与产品化]]推进。
+!! 世界、动作与纸娃娃的时间轴
+
+Actor.appearance保存衣装、发型和武器，equip进入权威快照与回放。worldMap／mapVersion指定地图，simulationVersion区分旧即时切房与v0.3实际旅行。1格为1米，500毫秒tick每次前进750毫格；到达后更新roomId并进行现场交互。玩家手动、自动运输、撤退与TS意图复用同一旅行路径。建筑与角色统一使用worldPosition；施工、塔射程、敌人攻击和画面已接同一锚点，入库现场位置继续依本日评审收敛。
+
+客户端ActorMotion在相邻权威位置间插值，暂停或回放seek切到对应模拟状态；动作时钟依据tick／ActionCue，目标位置决定朝向。ActorView复用Sprite池按动作合成身体、前后衣发、前后武器与手部。animationCatalog提供动作帧数／时长，animationLayers提供图层顺序，PaperDoll／AnimatedDollPreview读取同一图集。
+
+同相机投影为screenX=64(x-y)、screenY=32(x+y)-78.3837z，正交水平45度／俯角30度。独立地块128×64；新角色192透明格中可见人高约132像素，renderScale1，ground pivot=(96,172.8)。源图附件以固定关节点组合，离线姿态输出每方向的接触脚与root displacement，服装、头发与武器跟随同一pose。当前新源为两向校准，完整八向和动作矩阵按纸娃娃需求推进。
+
+完整技能／咏唱、五资源、长短赛、完整存储API、长记录分段、桌面离线包和Steam接入继续依据原系统设计与[[竞技场 Steam 上线与产品化]]推进。
 
 !! 组织原则
 
