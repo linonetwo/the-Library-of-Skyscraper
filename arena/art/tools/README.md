@@ -14,23 +14,56 @@ The input is versioned JSON:
   "action": "walk",
   "renderScale": 1,
   "cycleWorldStride": [0.75, 0],
-  "previewLayers": ["hair-ivory-back", "body", "outfit-scholar", "body-front", "hair-ivory-front"],
+  "previewLayers": [
+    "hair-ivory-back",
+    "body",
+    "outfit-scholar",
+    "body-front",
+    "hair-ivory-front"
+  ],
   "directions": {
     "NE": {
       "joints": {
-        "root": {"parent": null, "restOffset": [0, 0]},
-        "hipL": {"parent": "root", "restOffset": [-5, -47]},
-        "kneeL": {"parent": "hipL", "restOffset": [0, 22]},
-        "ankleL": {"parent": "kneeL", "restOffset": [0, 23]}
+        "root": { "parent": null, "restOffset": [0, 0] },
+        "hipL": { "parent": "root", "restOffset": [-5, -47] },
+        "kneeL": { "parent": "hipL", "restOffset": [0, 22] },
+        "ankleL": { "parent": "kneeL", "restOffset": [0, 23] }
       },
       "attachments": [
-        {"id": "near-thigh", "layer": "body", "image": "NE/thigh.png", "joint": "hipL", "pivot": [8, 3], "zOrder": 2},
-        {"id": "near-shin", "layer": "body", "image": "NE/shin.png", "joint": "kneeL", "pivot": [7, 2], "zOrder": 3}
+        {
+          "id": "near-thigh",
+          "layer": "body",
+          "image": "NE/thigh.png",
+          "joint": "hipL",
+          "pivot": [8, 3],
+          "zOrder": 2
+        },
+        {
+          "id": "near-shin",
+          "layer": "body",
+          "image": "NE/shin.png",
+          "joint": "kneeL",
+          "pivot": [7, 2],
+          "zOrder": 3
+        }
       ],
-      "feet": {"L": {"joint": "ankleL", "soleOffset": [0, 2], "bend": 1}},
+      "feet": { "L": { "joint": "ankleL", "soleOffset": [0, 2], "bend": 1 } },
       "poses": [
-        {"durationMs": 125, "joints": {"hipL": {"rotation": -12}, "kneeL": {"rotation": 25}}, "contactFoot": "L", "rootScreenDelta": [0, 0]},
-        {"durationMs": 125, "joints": {}, "contactFoot": "L", "rootScreenDelta": [2, -1]}
+        {
+          "durationMs": 125,
+          "joints": {
+            "hipL": { "rotation": -12 },
+            "kneeL": { "rotation": 25 }
+          },
+          "contactFoot": "L",
+          "rootScreenDelta": [0, 0]
+        },
+        {
+          "durationMs": 125,
+          "joints": {},
+          "contactFoot": "L",
+          "rootScreenDelta": [2, -1]
+        }
       ]
     }
   }
@@ -48,5 +81,9 @@ Coordinates are pixels, positive x right and y down; rotations are clockwise deg
 Outputs use existing `frameName(action, layer, direction, index)` names and 192px cells/normalized ground anchor. Four 125ms poses match the existing walk runtime. Different modules or frame counts can be exported for study, but their runtime catalog must be integrated separately; per-frame durations are recorded in the report, not encoded as runtime playback changes. All fourteen layer PNG/JSON pairs are emitted; inactive layers are transparent. Only explicitly supplied directions are listed. This tool does not claim an eight-direction runtime replacement.
 
 `pose-example.json` is an interface example with deliberately missing source images, not a runnable art substitute.
+
+`footTargets` optionally supplies explicit atlas-space sole positions by foot ID for a pose. The exporter solves each requested leg before applying the ongoing support-foot world lock. These targets must come from reviewed contact/passing poses; an unreachable target fails without stretching source segments.
+
+`contact-loop.gif` plays the selected directions together at the declared frame durations.
 
 `contact-debug.png` adds phase/direction/support labels and a red sole marker. `contact-sheet.png` shows the selected appearance at actor-local origin. `contact-report.json` records root displacement, actual/planted world sole points, post-IK joints and numeric foot-lock error. Inspect both: zero foot-lock error does not establish believable anatomy, occlusion, contact timing, opposite limb action, seam continuity or a good loop. Loop closure also requires the final pose to transition into phase zero after the configured full-cycle world stride.
