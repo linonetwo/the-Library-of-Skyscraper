@@ -1,5 +1,42 @@
 use crate::{Actor, Session};
 impl Session {
+    /// Commit work phases after travel, combat and scenario resolution. A tick's
+    /// intermediate task branches cannot restart a continuous work animation.
+    pub(crate) fn commit_task_stages(
+        &mut self,
+        previous: Vec<(bevy_ecs::prelude::Entity, Option<crate::ActorTask>)>,
+    ) {
+        for (entity, old) in previous {
+            let mut a = self.world.get_mut::<Actor>(entity).unwrap();
+            let working = crate::scenario::catalog_working(&a, &self.buildings, &self.enemies);
+            let catalog_complete = self.buildings.iter().any(|b| {
+                b.owner == a.owner
+                    && b.room_id == a.room_id
+                    && b.kind == "catalog"
+                    && b.hp > 0
+                    && b.construction_ticks >= b.required_ticks
+            });
+            if let Some(task) = &mut a.task {
+                if self.simulation_version >= 4 {
+                    let completed_catalog = catalog_complete
+                        && task.kind == "build"
+                        && task.building_kind.as_deref() == Some("catalog");
+                    if task.kind == "guard"
+                        && ["guarding", "cataloging"].contains(&task.stage.as_str())
+                    {
+                        task.stage = if working { "cataloging" } else { "guarding" }.into();
+                    } else if completed_catalog
+                        && ["construction", "completed", "cataloging"]
+                            .contains(&task.stage.as_str())
+                    {
+                        task.stage = if working { "cataloging" } else { "completed" }.into();
+                    }
+                }
+                crate::action_runtime::commit_stage(&old, task, self.tick, self.simulation_version);
+            }
+        }
+    }
+
     pub(crate) fn apply_preset(&mut self, owner: &str) {
         if self.simulation_version < 3 || self.players[owner].script.is_some() {
             return;
@@ -133,7 +170,7 @@ impl Session {
             a.travel = None;
             a.state = "downed".into();
             if let Some(t) = &mut a.task {
-                crate::action_runtime::set_stage(t, "failed", self.tick, self.simulation_version);
+                t.stage = "failed".into();
                 t.blocked_reason = Some("队员已倒地".into());
             }
             return;
@@ -145,12 +182,7 @@ impl Session {
         if a.retreating {
             a.state = "retreating".into();
             if let Some(t) = &mut a.task {
-                crate::action_runtime::set_stage(
-                    t,
-                    "retreating",
-                    self.tick,
-                    self.simulation_version,
-                );
+                t.stage = "retreating".into();
                 t.blocked_reason = Some("生命过低，正返回据点恢复".into());
             }
             if a.travel.is_some() {
@@ -175,12 +207,7 @@ impl Session {
         }
         if a.travel.is_some() {
             if let Some(t) = &mut a.task {
-                crate::action_runtime::set_stage(
-                    t,
-                    "travelling",
-                    self.tick,
-                    self.simulation_version,
-                );
+                t.stage = "travelling".into();
             }
             return;
         }
@@ -223,12 +250,6 @@ impl Session {
             self.delivery_tick(a);
             if a.pending_delivery {
                 task.stage = "depositing".into();
-                crate::action_runtime::commit_stage(
-                    &a.task,
-                    &mut task,
-                    self.tick,
-                    self.simulation_version,
-                );
                 a.task = Some(task);
                 return;
             }
@@ -241,12 +262,6 @@ impl Session {
                 "travelling"
             }
             .into();
-            crate::action_runtime::commit_stage(
-                &a.task,
-                &mut task,
-                self.tick,
-                self.simulation_version,
-            );
             a.task = Some(task);
             return;
         }
@@ -309,7 +324,6 @@ impl Session {
             }
             _ => {}
         }
-        crate::action_runtime::commit_stage(&a.task, &mut task, self.tick, self.simulation_version);
         a.task = Some(task);
     }
 }

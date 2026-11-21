@@ -10,13 +10,6 @@ pub(crate) fn stage_tick(version: u32, tick: u64) -> u64 {
     if version >= 4 { tick } else { 0 }
 }
 
-pub(crate) fn set_stage(task: &mut ActorTask, stage: &str, tick: u64, version: u32) {
-    if task.stage != stage {
-        task.stage = stage.into();
-        task.stage_started_tick = stage_tick(version, tick);
-    }
-}
-
 /// Task evaluation may visit temporary stages; only its committed stage counts.
 pub(crate) fn commit_stage(
     previous: &Option<ActorTask>,
@@ -24,9 +17,10 @@ pub(crate) fn commit_stage(
     tick: u64,
     version: u32,
 ) {
-    if previous.as_ref().is_none_or(|old| old.stage != next.stage) {
-        next.stage_started_tick = stage_tick(version, tick);
-    }
+    next.stage_started_tick = previous
+        .as_ref()
+        .filter(|old| old.stage == next.stage)
+        .map_or_else(|| stage_tick(version, tick), |old| old.stage_started_tick);
 }
 
 pub(crate) fn build_stage(actor: &crate::Actor, kind: &str, version: u32) -> String {

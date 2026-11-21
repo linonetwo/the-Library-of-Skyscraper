@@ -450,3 +450,171 @@ fn frozen_pre_upgrade_v3_recording_replays_with_its_original_single_cue_facts() 
     assert_eq!(guard.last_move_direction, Position { x: 1., y: 1. });
     assert_eq!(replay.timeline().unwrap().frames.last().unwrap().tick, 25);
 }
+
+#[test]
+fn construction_stage_waits_for_world_range_and_keeps_actual_work_start() {
+    let mut s = game(4);
+    s.players.get_mut("p1").unwrap().materials = 100;
+    let (e, mut a) = s.owned_actor("p1", "p1-scout").unwrap();
+    a.world_position = Position { x: -2., y: -2. };
+    s.world.entity_mut(e).insert(a);
+    s.command(
+        "p1",
+        Command::Task {
+            actor_id: "p1-scout".into(),
+            kind: "build".into(),
+            target: "room-0".into(),
+            building_kind: Some("tower".into()),
+        },
+    )
+    .unwrap();
+    s.advance();
+    assert_eq!(actor(&mut s, "scout").task.unwrap().stage, "approaching");
+    assert_eq!(
+        s.buildings
+            .iter()
+            .find(|b| b.kind == "tower")
+            .unwrap()
+            .construction_ticks,
+        0
+    );
+    for _ in 0..3 {
+        s.advance();
+    }
+    let working = actor(&mut s, "scout").task.unwrap();
+    assert_eq!(working.stage, "construction");
+    assert_eq!(working.stage_started_tick, 4);
+    for _ in 0..3 {
+        s.advance();
+    }
+    assert_eq!(actor(&mut s, "scout").task.unwrap().stage_started_tick, 4);
+}
+
+#[test]
+fn tower_lethal_impact_does_not_erase_enemy_attack_and_down_holds() {
+    let mut s = duel();
+    s.set_script_metadata(
+        "p1",
+        Some(ScriptMetadata {
+            source_hash: "wait".into(),
+            entry: "main.ts".into(),
+            published_at_tick: 0,
+        }),
+    );
+    s.enemies[0].hp = 6;
+    let anchor = crate::travel::build_anchor("room-3", "tower");
+    s.buildings.push(Building {
+        id: "test-tower".into(),
+        owner: "p1".into(),
+        room_id: "room-3".into(),
+        kind: "tower".into(),
+        world_position: anchor,
+        hp: 120,
+        max_hp: 120,
+        construction_ticks: 16,
+        required_ticks: 16,
+    });
+    for _ in 0..4 {
+        s.advance_scripted(vec![]);
+    }
+    let enemy = s.enemies[0].clone();
+    assert_eq!(enemy.hp, 0);
+    assert_eq!(enemy.action_cue.unwrap().kind, "attack");
+    let impact = enemy.impact_cue.unwrap();
+    assert_eq!(
+        (
+            impact.kind.as_str(),
+            impact.started_tick,
+            impact.duration_ticks
+        ),
+        ("down", 4, 0)
+    );
+    assert_eq!(impact.target_position, Some(anchor));
+    for _ in 0..8 {
+        s.advance_scripted(vec![]);
+    }
+    assert_eq!(s.enemies[0].impact_cue.as_ref().unwrap().started_tick, 4);
+    assert_eq!(s.enemies[0].world_position, enemy.world_position);
+}
+
+#[test]
+fn replay_decor_upgrade_keeps_gameplay_geometry_and_combat_validation_strict() {
+    let replay =
+        Replay::from_json(include_bytes!("../tests/fixtures/v3-action-replay.json")).unwrap();
+    Session::from_replay(&replay).unwrap(); // Real prior map layout is accepted.
+    let mut tampered = replay.clone();
+    tampered.final_snapshot.world_map["rooms"][0]["center"]["x"] = serde_json::json!(1);
+    assert!(Session::from_replay(&tampered).is_err());
+    let mut tampered = replay;
+    tampered.final_snapshot.actors[0].hp -= 1;
+    assert!(Session::from_replay(&tampered).is_err());
+}
+
+#[test]
+fn cataloging_requires_a_live_completed_owned_station_and_clear_stationary_crew() {
+    let mut s = game(4);
+    s.enemies.clear();
+    s.players.get_mut("p1").unwrap().materials = 100;
+    for role in ["guard", "scout"] {
+        let (e, mut a) = s.owned_actor("p1", &format!("p1-{role}")).unwrap();
+        a.room_id = "room-3".into();
+        a.world_position = crate::travel::build_anchor("room-3", "catalog");
+        s.world.entity_mut(e).insert(a);
+    }
+    task(&mut s, "guard", "guard", "room-3");
+    s.advance();
+    assert_eq!(actor(&mut s, "guard").task.unwrap().stage, "guarding"); // No station.
+    s.command(
+        "p1",
+        Command::Task {
+            actor_id: "p1-scout".into(),
+            kind: "build".into(),
+            target: "room-3".into(),
+            building_kind: Some("catalog".into()),
+        },
+    )
+    .unwrap();
+    for _ in 0..15 {
+        s.advance();
+    }
+    assert_ne!(actor(&mut s, "guard").task.unwrap().stage, "cataloging"); // Incomplete.
+    s.advance();
+    let start = s.tick;
+    for role in ["guard", "scout"] {
+        let t = actor(&mut s, role).task.unwrap();
+        assert_eq!(t.stage, "cataloging");
+        assert_eq!(t.stage_started_tick, start);
+    }
+    for _ in 0..3 {
+        s.advance();
+    }
+    assert_eq!(
+        actor(&mut s, "guard").task.unwrap().stage_started_tick,
+        start
+    );
+    let enemy = Session::new("enemy".into(), Mode::Training, 42)
+        .enemies
+        .remove(0);
+    s.enemies.push(enemy);
+    s.advance();
+    assert_eq!(actor(&mut s, "guard").task.unwrap().stage, "guarding");
+    assert_eq!(actor(&mut s, "scout").task.unwrap().stage, "completed");
+    s.enemies[0].hp = 0;
+    s.advance();
+    assert_eq!(actor(&mut s, "guard").task.unwrap().stage, "cataloging");
+    let resumed = s.tick;
+    s.advance();
+    assert_eq!(
+        actor(&mut s, "guard").task.unwrap().stage_started_tick,
+        resumed
+    );
+    s.buildings
+        .iter_mut()
+        .find(|b| b.kind == "catalog")
+        .unwrap()
+        .hp = 0;
+    s.advance();
+    for role in ["guard", "scout"] {
+        assert_ne!(actor(&mut s, role).task.unwrap().stage, "cataloging");
+    }
+}

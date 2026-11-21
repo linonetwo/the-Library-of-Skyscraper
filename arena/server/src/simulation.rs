@@ -23,6 +23,7 @@ impl Session {
             .map(|(e, a)| (e, a.clone()))
             .collect();
         actors.sort_by(|a, b| a.1.id.cmp(&b.1.id));
+        let previous_tasks = actors.iter().map(|(e, a)| (*e, a.task.clone())).collect();
         for (e, mut a) in actors {
             if a.hp > 0 && crate::travel::advance(&mut a, self.simulation_version) {
                 a.last_moved_tick = self.tick;
@@ -52,5 +53,6 @@ impl Session {
         self.combat_tick();
         self.construction_tick();
         self.scenario_tick();
+        self.commit_task_stages(previous_tasks);
     }
 }
