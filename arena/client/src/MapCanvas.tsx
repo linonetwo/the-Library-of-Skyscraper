@@ -228,6 +228,7 @@ export default function MapCanvas(props: MapProps) {
         performance.now(),
       );
       poses = actors.render(performance.now());
+      host.dataset.actors=JSON.stringify(poses);
       applyCamera();
     };
     redraw.current = paint;

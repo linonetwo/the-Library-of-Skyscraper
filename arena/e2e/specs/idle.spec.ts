@@ -46,7 +46,7 @@ test("two clients see equipped actor follow the same authoritative travel", asyn
  const pose=(p:typeof pages[0])=>p.locator('.pixi-map').getAttribute('data-actors').then(v=>JSON.parse(v||'[]').find((a:any)=>a.id==='p1-gatherer'));
  const response=await post({type:'move',actorId:'p1-gatherer',roomId:'room-1'});expect(response.ok()).toBe(true);
  const result=await response.json();const end=result.actors.find((a:any)=>a.id==='p1-gatherer').travel.path.at(-1);const target=project(end.x,end.y);
- await expect.poll(async()=>(await pose(pages[0]))?.moving).toBe(true);
+ await expect.poll(async()=>(await pose(pages[0]))?.travel?.distanceMilli).toBeGreaterThan(0);
  await expect.poll(async()=>{const values=await Promise.all(pages.map(pose));return values.every(p=>p&&p.travel===null);},{timeout:12000}).toBe(true);
  await expect.poll(async()=>{const values=await Promise.all(pages.map(pose));return values.every(p=>!p.moving&&Math.abs(p.x-target.x)<.001&&Math.abs(p.y-target.y)<.001&&p.textures.some((key:string)=>key.includes('outfit-warden')));}).toBe(true);
  await Promise.all(contexts.map(c=>c.close()));
