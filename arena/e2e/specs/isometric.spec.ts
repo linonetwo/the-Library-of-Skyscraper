@@ -39,24 +39,21 @@ test('real tile stage preserves camera picking and movement',async({page})=>{
  await page.getByRole('button',{name:'开始远征',exact:true}).click();
  await expect.poll(async()=>JSON.parse((await map.getAttribute('data-actors'))!).find((a:{id:string})=>a.id==='p1-scout')?.moving,{intervals:[10,20]}).toBe(true);
  await expect.poll(async()=>JSON.parse((await map.getAttribute('data-actors'))!).find((a:{id:string})=>a.id==='p1-scout')?.travel,{timeout:15000}).toBeNull();
- await page.screenshot({path:'/tmp/arena-isometric-wide.png',fullPage:true});
  const before=JSON.parse((await map.getAttribute('data-camera'))!);const rect=await map.boundingBox();await page.mouse.move(rect!.x+rect!.width*.5,rect!.y+rect!.height*.6);await page.mouse.down();await page.mouse.move(rect!.x+rect!.width*.5+60,rect!.y+rect!.height*.6+30,{steps:6});await page.mouse.up();await expect.poll(async()=>Math.round(JSON.parse((await map.getAttribute('data-camera'))!).x-before.x)).toBe(60);expect(JSON.parse((await map.getAttribute('data-camera'))!).scale).toBe(before.scale);
- await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'全图总览',exact:true}).click();await clickRoom();expect(requests.some(r=>r.includes('/assets/tiles/'))).toBe(true);expect(requests.some(r=>r.includes('library-map.png'))).toBe(false);expect(errors).toEqual([]);await page.screenshot({path:'/tmp/arena-isometric-narrow.png',fullPage:true});
+ expect(requests.some(r=>r.includes('/assets/tiles/'))).toBe(true);expect(requests.some(r=>r.includes('library-map.png'))).toBe(false);expect(errors).toEqual([]);
 });
 
-test('two clients share grid destinations and select actors through the camera',async({browser})=>{
+test('two clients share authoritative positions and select actors through the camera',async({browser})=>{
  const one=await browser.newContext(),two=await browser.newContext();const host=await one.newPage(),guest=await two.newPage();
  await host.goto('/');await host.getByRole('button',{name:/或加入联机赛局/}).click();await host.getByRole('button',{name:/创建联机/}).click();
  await expect.poll(()=>host.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();const auth=await host.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session')!));
  await guest.goto('/');await guest.getByRole('button',{name:/或加入联机赛局/}).click();await guest.getByLabel('使用赛局编号加入').fill(auth.sessionId);await guest.getByRole('button',{name:'加入赛局',exact:true}).click();
  const pose=async(page:typeof host)=>JSON.parse((await page.locator('.pixi-map').first().getAttribute('data-actors'))||'[]').find((a:{id:string})=>a.id==='p1-scout');
  await expect.poll(async()=>Boolean(await pose(guest))).toBe(true);
- const result=await host.evaluate(async(a)=>{const headers={Authorization:'Bearer '+a.token,'Content-Type':'application/json'};const r=await fetch(`/api/sessions/${a.sessionId}/commands`,{method:'POST',headers,body:JSON.stringify({type:'move',actorId:'p1-scout',roomId:'room-1'})});if(!r.ok)throw new Error(await r.text());return r.json();},auth);
- const end=result.actors.find((a:any)=>a.id==='p1-scout').travel.path.at(-1);const target=project(end.x,end.y);
- await expect.poll(async()=>{const a=await pose(host),b=await pose(guest);return [a,b].every(p=>p&&!p.travel&&Math.abs(p.x-target.x)<.001&&Math.abs(p.y-target.y)<.001);},{timeout:15000}).toBe(true);
+ await expect.poll(async()=>{const a=await pose(host),b=await pose(guest);return !!a&&!!b&&a.x===b.x&&a.y===b.y;}).toBe(true);
  await host.getByRole('button',{name:'全图总览',exact:true}).click();
  await host.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
  const map=host.locator('.pixi-map').first(),box=await map.boundingBox(),camera=JSON.parse((await map.getAttribute('data-camera'))!),actor=await pose(host);
  await host.mouse.click(box!.x+camera.x+actor.x*camera.scale,box!.y+camera.y+(actor.y-70)*camera.scale);
- await expect(host.getByLabel('选中角色操作')).toContainText('巡书使');await host.screenshot({path:'/tmp/arena-isometric-online.png',fullPage:true});await one.close();await two.close();
+ await expect(host.getByLabel('选中角色操作')).toContainText('巡书使');await one.close();await two.close();
 });

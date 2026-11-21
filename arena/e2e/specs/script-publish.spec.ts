@@ -6,8 +6,6 @@ test("publish TypeScript to training ticks, hold, then return to manual tasks", 
   test.setTimeout(60000);
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
-  await openMenu(page, '训练控制');
-  await page.getByRole("button", { name: "重置训练局" }).click();
   await openMenu(page, '行动规则');
   await page.getByRole("button", { name: "编写 TypeScript 规则 →" }).click();
   const input = page.getByRole("textbox", { name: "TypeScript规则源码" });
@@ -70,8 +68,6 @@ export function decide(ctx: RuleContext) {
 test("official resource template publishes a gathering strategy", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
-  await openMenu(page, '训练控制');
-  await page.getByRole("button", { name: "重置训练局" }).click();
   await openMenu(page, '行动规则');
   await page.getByRole("button", { name: "编写 TypeScript 规则 →" }).click();
   await expect(page.getByRole("textbox", { name: "TypeScript规则源码" })).toBeVisible({ timeout: 20000 });
