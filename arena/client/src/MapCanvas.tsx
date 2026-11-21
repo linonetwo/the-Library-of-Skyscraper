@@ -160,6 +160,8 @@ export default function MapCanvas(props: MapProps) {
     const paint = () => {
       if (!actors || disposed) return;
       const p = latest.current;
+      if (p.suspended) app.stop();
+      else if (!document.hidden) app.start();
       host.dataset.roomTargets = JSON.stringify(
         (p.snapshot?.rooms ?? []).map((room) => ({
           id: room.id,
@@ -329,7 +331,8 @@ export default function MapCanvas(props: MapProps) {
       }
     })();
     const visibility = () => {
-      if (initialized && !disposed) document.hidden ? app.stop() : app.start();
+      if (initialized && !disposed)
+        document.hidden || latest.current.suspended ? app.stop() : app.start();
     };
     document.addEventListener("visibilitychange", visibility);
     return () => {
@@ -351,6 +354,7 @@ export default function MapCanvas(props: MapProps) {
   useEffect(() => {
     redraw.current();
   }, [
+    props.suspended,
     props.focusIntent,
     props.snapshot,
     props.selected,

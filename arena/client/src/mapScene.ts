@@ -5,6 +5,7 @@ import { mapLayout, mapRoomCenter } from "./mapLayout";
 export type MapProps = {
   focusIntent?: import("./cameraController").FocusIntent;
   snapshot: Snapshot | null;
+  suspended?: boolean;
   samplePose?: "NE" | "SW";
   sampleOutfit?: boolean;
   sampleHair?: boolean;
