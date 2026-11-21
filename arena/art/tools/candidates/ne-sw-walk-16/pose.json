@@ -23,6 +23,7 @@
     "body",
     "outfit-scholar",
     "body-front",
+    "hand-front",
     "hair-ivory-front"
   ],
   "notes": [
@@ -234,20 +235,6 @@
           "sourceSet": "complete-limbs"
         },
         {
-          "id": "right-forearm-hand",
-          "joint": "rightElbow",
-          "layer": "body-front",
-          "zOrder": 10,
-          "image": "attachments/NE/right-forearm-hand.png",
-          "pivot": [3.6000000000000085, 1.2600000000000051],
-          "restTopLeft": [110.00375, 104.436875],
-          "size": [15, 28],
-          "sourceCell": [384, 0, 384, 512],
-          "sourceCrop": [187, 241, 86, 161],
-          "sourceScale": 0.18,
-          "sourceSet": "complete-limbs"
-        },
-        {
           "id": "right-thigh",
           "joint": "rightHip",
           "layer": "body",
@@ -428,6 +415,55 @@
           "size": [192, 192],
           "zOrder": 0,
           "sourceSet": "midnight-independent-silhouette"
+        },
+        {
+          "id": "right-forearm",
+          "layer": "body-front",
+          "joint": "rightElbow",
+          "image": "attachments/equipment-staff/NE/right-forearm.png",
+          "restTopLeft": [110.00375, 104.436875],
+          "pivot": [3.6000000000000085, 1.2600000000000051],
+          "size": [15, 28],
+          "zOrder": 10
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "attachments/equipment-staff/NE/right-natural-hand.png",
+          "restTopLeft": [110.00375, 104.436875],
+          "pivot": [9.719999999999999, 16.559999999999988],
+          "size": [15, 28],
+          "zOrder": 10,
+          "variant": "empty-hand",
+          "angleJoint": "rightElbow",
+          "angleRule": "natural palm inherits forearm absolute angle at wrist point"
+        },
+        {
+          "id": "right-hand-grip",
+          "layer": "hand-grip",
+          "joint": "rightWrist",
+          "image": "attachments/equipment-staff/NE/right-hand-grip.png",
+          "pivot": [2.375, 0.75],
+          "restTopLeft": [117.34875, 120.24687499999999],
+          "size": [8, 10],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [1.625, 5],
+          "angleRule": "independent rightWrist absolute angle,0 during walk, shared palm and shaft gripOffset"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-back",
+          "joint": "rightWrist",
+          "image": "attachments/equipment-staff/NE/staff.png",
+          "pivot": [11.875, 55.5],
+          "restTopLeft": [107.84875, 65.49687499999999],
+          "size": [23, 96],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [1.625, 5],
+          "angleRule": "independent rightWrist absolute angle,0 during walk, shared palm and shaft gripOffset"
         }
       ],
       "feet": {
@@ -1158,20 +1194,6 @@
           "sourceSet": "complete-limbs"
         },
         {
-          "id": "right-forearm-hand",
-          "joint": "rightElbow",
-          "layer": "body",
-          "zOrder": 2,
-          "image": "attachments/SW/right-forearm-hand.png",
-          "pivot": [10.61999999999999, 1.259999999999991],
-          "restTopLeft": [64.541875, 103.0925],
-          "size": [16, 31],
-          "sourceCell": [384, 512, 384, 512],
-          "sourceCrop": [124, 239, 89, 174],
-          "sourceScale": 0.18,
-          "sourceSet": "complete-limbs"
-        },
-        {
           "id": "right-thigh",
           "joint": "rightHip",
           "layer": "body",
@@ -1352,6 +1374,55 @@
           "size": [192, 192],
           "zOrder": 0,
           "sourceSet": "midnight-independent-silhouette"
+        },
+        {
+          "id": "right-forearm",
+          "layer": "body",
+          "joint": "rightElbow",
+          "image": "attachments/equipment-staff/SW/right-forearm.png",
+          "restTopLeft": [64.541875, 103.0925],
+          "pivot": [10.61999999999999, 1.259999999999991],
+          "size": [16, 31],
+          "zOrder": 2
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "attachments/equipment-staff/SW/right-natural-hand.png",
+          "restTopLeft": [64.541875, 103.0925],
+          "pivot": [4.140000000000001, 17.460000000000008],
+          "size": [16, 31],
+          "zOrder": 2,
+          "variant": "empty-hand",
+          "angleJoint": "rightElbow",
+          "angleRule": "natural palm inherits forearm absolute angle at wrist point"
+        },
+        {
+          "id": "right-hand-grip",
+          "layer": "hand-grip",
+          "joint": "rightWrist",
+          "image": "attachments/equipment-staff/SW/right-hand-grip.png",
+          "pivot": [5.5, 0.75],
+          "restTopLeft": [63.181875000000005, 119.80250000000001],
+          "size": [8, 10],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [-1.75, 5],
+          "angleRule": "independent rightWrist absolute angle,0 during walk, shared palm and shaft gripOffset"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-front",
+          "joint": "rightWrist",
+          "image": "attachments/equipment-staff/SW/staff.png",
+          "pivot": [15.75, 50.5],
+          "restTopLeft": [52.931875000000005, 70.05250000000001],
+          "size": [25, 95],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [-1.75, 5],
+          "angleRule": "independent rightWrist absolute angle,0 during walk, shared palm and shaft gripOffset"
         }
       ],
       "feet": {
@@ -1891,7 +1962,11 @@
     "Dynamic focus: SW frames2\u20134 and11\u201313 knee occlusion, NE frames2\u20134 foot outlines; verify bald/hair and outfit toggles with true trim/orig pivot.",
     "Frame-hold residual remains4.83screen px at45ms; natural continuous walking is not yet approved.",
     "Second wardrobe export adds independently registered warden coat/front sleeves and midnight back/front hair; per-layer output, not prebaked appearance combinations.",
-    "Weapon-on state is not part of this second commit; actual staff/grip source is scheduled separately."
+    "Weapon-on state is not part of this second commit; actual staff/grip source is scheduled separately.",
+    "Weapon snapshot replaces right-forearm-hand with one registered forearm plus mutually exclusive hand-front/hand-grip, staff and gripping palm share actual rightWrist/gripOffset.",
+    "Wardrobe and weapons remain independent layer atlases; whole-character appearance sheets are review previews only.",
+    "Art inspected empty/staff detail: distinct hands, palm and shaft aligned, near sleeve does not swallow the hand, no duplicated palm; accepted freezing only for product movement review.",
+    "Dynamic focus: SW staff tail is close to the front foot; inspect ground contact during actual movement."
   ],
   "trimAtlases": true,
   "frameMs": 45,
@@ -1930,38 +2005,111 @@
       "groundPivot": [96, 172.8],
       "renderScale": 1,
       "baseRig": "../attachments-complete/rig.json"
+    },
+    "equipment-staff": {
+      "status": "grip-registration-prototype",
+      "releaseApproved": false,
+      "cell": [192, 192],
+      "groundPivot": [96, 172.8],
+      "renderScale": 1,
+      "handedness": "right",
+      "newGenerationRequests": 0,
+      "sources": {
+        "staff": {
+          "file": "arena/art/source/walk-weapon-staff.png",
+          "sha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8"
+        },
+        "grip": {
+          "file": "arena/art/source/grip-hands.png",
+          "sha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90"
+        }
+      },
+      "layerContract": "right forearm-hand is replaced by forearm plus exactly one of hand-front/hand-grip; staff registered to actual rightWrist"
     }
   },
   "previewLooks": {
-    "scholar-ivory": [
+    "scholar-ivory-empty": [
       "hair-ivory-back",
       "body",
       "outfit-scholar",
       "body-front",
+      "hand-front",
       "hair-ivory-front"
     ],
-    "scholar-midnight": [
+    "scholar-ivory-staff": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "body",
+      "outfit-scholar",
+      "weapon-staff-front",
+      "body-front",
+      "hand-grip",
+      "hair-ivory-front"
+    ],
+    "scholar-midnight-empty": [
       "hair-midnight-back",
       "body",
       "outfit-scholar",
       "body-front",
+      "hand-front",
       "hair-midnight-front"
     ],
-    "warden-ivory": [
+    "scholar-midnight-staff": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "weapon-staff-front",
+      "body-front",
+      "hand-grip",
+      "hair-midnight-front"
+    ],
+    "warden-ivory-empty": [
       "hair-ivory-back",
       "body",
       "outfit-warden",
       "body-front",
       "outfit-warden-front",
+      "hand-front",
       "hair-ivory-front"
     ],
-    "warden-midnight": [
+    "warden-ivory-staff": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "body",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-grip",
+      "hair-ivory-front"
+    ],
+    "warden-midnight-empty": [
       "hair-midnight-back",
       "body",
       "outfit-warden",
       "body-front",
       "outfit-warden-front",
+      "hand-front",
+      "hair-midnight-front"
+    ],
+    "warden-midnight-staff": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-grip",
       "hair-midnight-front"
     ]
+  },
+  "exclusiveLayerGroups": [["hand-front", "hand-grip"]],
+  "appearanceOptions": {
+    "outfits": ["scholar", "warden"],
+    "hair": ["ivory", "midnight"],
+    "weaponOff": ["hand-front"],
+    "weaponOn": ["hand-grip", "weapon-staff-back", "weapon-staff-front"]
   }
 }

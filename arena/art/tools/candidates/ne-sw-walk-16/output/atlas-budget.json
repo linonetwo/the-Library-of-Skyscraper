@@ -1,4 +1,28 @@
 {
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
   "renderScale": 1,
   "groundPivot": [
     96,
@@ -22,7 +46,11 @@
     "outfit-warden",
     "outfit-warden-front",
     "hair-midnight-back",
-    "hair-midnight-front"
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "weapon-staff-back",
+    "weapon-staff-front"
   ],
   "inactiveLayers": [],
   "layers": [
@@ -32,18 +60,18 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 198609,
+      "trimmedPixels": 198048,
       "pages": [
         {
           "image": "walk-body-0.png",
           "json": "walk-body-0.json",
-          "width": 1583,
+          "width": 1579,
           "height": 149,
-          "decodedBytes": 943468,
-          "pngBytes": 167190
+          "decodedBytes": 941084,
+          "pngBytes": 164201
         }
       ],
-      "decodedBytes": 943468
+      "decodedBytes": 941084
     },
     {
       "layer": "body-front",
@@ -51,18 +79,18 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 36130,
+      "trimmedPixels": 32665,
       "pages": [
         {
           "image": "walk-body-front-0.png",
           "json": "walk-body-front-0.json",
-          "width": 789,
+          "width": 770,
           "height": 62,
-          "decodedBytes": 195672,
-          "pngBytes": 38695
+          "decodedBytes": 190960,
+          "pngBytes": 35051
         }
       ],
-      "decodedBytes": 195672
+      "decodedBytes": 190960
     },
     {
       "layer": "outfit-scholar",
@@ -196,8 +224,84 @@
         }
       ],
       "decodedBytes": 369840
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 5202,
+      "pages": [
+        {
+          "image": "walk-hand-front-0.png",
+          "json": "walk-hand-front-0.json",
+          "width": 506,
+          "height": 19,
+          "decodedBytes": 38456,
+          "pngBytes": 9625
+        }
+      ],
+      "decodedBytes": 38456
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 3168,
+      "pages": [
+        {
+          "image": "walk-hand-grip-0.png",
+          "json": "walk-hand-grip-0.json",
+          "width": 421,
+          "height": 15,
+          "decodedBytes": 25260,
+          "pngBytes": 3681
+        }
+      ],
+      "decodedBytes": 25260
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 37152,
+      "pages": [
+        {
+          "image": "walk-weapon-staff-back-0.png",
+          "json": "walk-weapon-staff-back-0.json",
+          "width": 453,
+          "height": 101,
+          "decodedBytes": 183012,
+          "pngBytes": 19862
+        }
+      ],
+      "decodedBytes": 183012
+    },
+    {
+      "layer": "weapon-staff-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 39832,
+      "pages": [
+        {
+          "image": "walk-weapon-staff-front-0.png",
+          "json": "walk-weapon-staff-front-0.json",
+          "width": 485,
+          "height": 100,
+          "decodedBytes": 194000,
+          "pngBytes": 20391
+        }
+      ],
+      "decodedBytes": 194000
     }
   ],
-  "decodedBytes": 2920520,
+  "decodedBytes": 3354152,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

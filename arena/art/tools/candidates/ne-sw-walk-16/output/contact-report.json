@@ -9,7 +9,11 @@
     "Dynamic focus: SW frames2–4 and11–13 knee occlusion, NE frames2–4 foot outlines; verify bald/hair and outfit toggles with true trim/orig pivot.",
     "Frame-hold residual remains4.83screen px at45ms; natural continuous walking is not yet approved.",
     "Second wardrobe export adds independently registered warden coat/front sleeves and midnight back/front hair; per-layer output, not prebaked appearance combinations.",
-    "Weapon-on state is not part of this second commit; actual staff/grip source is scheduled separately."
+    "Weapon-on state is not part of this second commit; actual staff/grip source is scheduled separately.",
+    "Weapon snapshot replaces right-forearm-hand with one registered forearm plus mutually exclusive hand-front/hand-grip, staff and gripping palm share actual rightWrist/gripOffset.",
+    "Wardrobe and weapons remain independent layer atlases; whole-character appearance sheets are review previews only.",
+    "Art inspected empty/staff detail: distinct hands, palm and shaft aligned, near sleeve does not swallow the hand, no duplicated palm; accepted freezing only for product movement review.",
+    "Dynamic focus: SW staff tail is close to the front foot; inspect ground contact during actual movement."
   ],
   "activeLayers": [
     "body",
@@ -20,15 +24,16 @@
     "outfit-warden",
     "outfit-warden-front",
     "hair-midnight-back",
-    "hair-midnight-front"
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "weapon-staff-back",
+    "weapon-staff-front"
   ],
   "inactiveLayers": [
     "hair-ivory",
     "hair-midnight",
-    "weapon-staff",
-    "weapon-staff-back",
-    "weapon-staff-front",
-    "hand-grip"
+    "weapon-staff"
   ],
   "renderScale": 1,
   "cycleWorldStride": 1.08,
@@ -85,6 +90,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            114.625,
+            128
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            114.625,
+            128
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -454,6 +476,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            114.31250000000001,
+            128.15625
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            114.31250000000001,
+            128.15625
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -823,6 +862,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            113.625,
+            128.5
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            113.625,
+            128.5
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -1192,6 +1248,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            112.9375,
+            128.84375
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            112.9375,
+            128.84375
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -1561,6 +1634,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            112.625,
+            129
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            112.625,
+            129
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -1930,6 +2020,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            112.3125,
+            129.15625
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            112.3125,
+            129.15625
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -2299,6 +2406,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            111.625,
+            129.5
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            111.625,
+            129.5
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -2668,6 +2792,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            110.93750000000001,
+            129.84375
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            110.93750000000001,
+            129.84375
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -3037,6 +3178,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            110.625,
+            130
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            110.625,
+            130
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -3406,6 +3564,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            110.93750000000001,
+            129.84375
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            110.93750000000001,
+            129.84375
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -3775,6 +3950,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            111.625,
+            129.5
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            111.625,
+            129.5
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -4144,6 +4336,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            112.3125,
+            129.15625
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            112.3125,
+            129.15625
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -4513,6 +4722,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            112.625,
+            129
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            112.625,
+            129
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -4882,6 +5108,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            112.9375,
+            128.84375
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            112.9375,
+            128.84375
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -5251,6 +5494,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            113.625,
+            128.5
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            113.625,
+            128.5
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -5620,6 +5880,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            114.31250000000001,
+            128.15625
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            114.31250000000001,
+            128.15625
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -5989,6 +6266,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            74.25000000000001,
+            131
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            74.25000000000001,
+            131
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -6358,6 +6652,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            74.5625,
+            130.84375
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            74.5625,
+            130.84375
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -6727,6 +7038,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            75.25,
+            130.5
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            75.25,
+            130.5
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -7096,6 +7424,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            75.9375,
+            130.15625
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            75.9375,
+            130.15625
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -7465,6 +7810,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            76.25,
+            130
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            76.25,
+            130
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -7834,6 +8196,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            76.5625,
+            129.84375
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            76.5625,
+            129.84375
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -8203,6 +8582,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            77.25,
+            129.5
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            77.25,
+            129.5
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -8572,6 +8968,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            77.93750000000001,
+            129.15625
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            77.93750000000001,
+            129.15625
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -8941,6 +9354,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            78.25,
+            129
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            78.25,
+            129
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -9310,6 +9740,23 @@
           "errorPx": 1.4210854715202004e-14
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            77.93750000000001,
+            129.15625
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            77.93750000000001,
+            129.15625
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -9679,6 +10126,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            77.25,
+            129.5
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            77.25,
+            129.5
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -10048,6 +10512,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            76.5625,
+            129.84375
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            76.5625,
+            129.84375
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -10417,6 +10898,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            76.25,
+            130
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            76.25,
+            130
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -10786,6 +11284,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            75.9375,
+            130.15625
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            75.9375,
+            130.15625
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -11155,6 +11670,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            75.25,
+            130.5
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            75.25,
+            130.5
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [
@@ -11524,6 +12056,23 @@
           "errorPx": 0
         }
       },
+      "gripContacts": [
+        {
+          "id": "right-hand-grip",
+          "point": [
+            74.5625,
+            130.84375
+          ]
+        },
+        {
+          "id": "staff",
+          "point": [
+            74.5625,
+            130.84375
+          ]
+        }
+      ],
+      "gripErrorPx": 0,
       "worldLegs": {
         "left": {
           "hip": [

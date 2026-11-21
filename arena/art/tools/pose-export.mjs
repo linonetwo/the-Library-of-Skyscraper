@@ -147,7 +147,10 @@ export async function exportPoses(configPath, output) {
           a,
           joint.point,
           a.pivot,
-          joint.angle + ((a.rotation || 0) * Math.PI) / 180,
+          input.attachmentAngles?.[a.id] !== undefined
+            ? (input.attachmentAngles[a.id] * Math.PI) / 180
+            : state[a.angleJoint || a.joint].angle +
+                ((a.rotation || 0) * Math.PI) / 180,
           projected?.mapping[a.id],
         );
       }
@@ -182,6 +185,19 @@ export async function exportPoses(configPath, output) {
             root,
           )
         : null;
+      const gripContacts = attachments
+        .filter((a) => a.gripOffset)
+        .map((a) => {
+          const angle =
+            input.attachmentAngles?.[a.id] !== undefined
+              ? (input.attachmentAngles[a.id] * Math.PI) / 180
+              : state[a.angleJoint || a.joint].angle +
+                ((a.rotation || 0) * Math.PI) / 180;
+          return {
+            id: a.id,
+            point: add(state[a.joint].point, rotate(a.gripOffset, angle)),
+          };
+        });
       report.push({
         direction: name,
         frame,
@@ -205,6 +221,11 @@ export async function exportPoses(configPath, output) {
             },
           ]),
         ),
+        gripContacts,
+        gripErrorPx:
+          gripContacts.length === 2
+            ? length(sub(gripContacts[0].point, gripContacts[1].point))
+            : null,
         worldLegs: projected?.world.legs,
         projectionMappings: projected?.ratios,
         joints: state,
@@ -296,6 +317,8 @@ export async function exportPoses(configPath, output) {
       path.join(output, "atlas-budget.json"),
       JSON.stringify(
         {
+          appearanceOptions: config.appearanceOptions,
+          exclusiveLayerGroups: config.exclusiveLayerGroups,
           renderScale: config.renderScale,
           groundPivot: config.groundPivot,
           sourceSize: config.cell,

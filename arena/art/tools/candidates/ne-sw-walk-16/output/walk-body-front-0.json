@@ -264,81 +264,9 @@
         "y": 0.9
       }
     },
-    "walk/body-front/NE/07": {
-      "frame": {
-        "x": 275,
-        "y": 2,
-        "w": 18,
-        "h": 55
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 98,
-        "y": 82,
-        "w": 18,
-        "h": 55
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "walk/body-front/NE/08": {
-      "frame": {
-        "x": 297,
-        "y": 2,
-        "w": 18,
-        "h": 55
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 98,
-        "y": 82,
-        "w": 18,
-        "h": 55
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "walk/body-front/NE/09": {
-      "frame": {
-        "x": 319,
-        "y": 2,
-        "w": 18,
-        "h": 55
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 98,
-        "y": 82,
-        "w": 18,
-        "h": 55
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
     "walk/body-front/SW/00": {
       "frame": {
-        "x": 341,
+        "x": 275,
         "y": 2,
         "w": 24,
         "h": 55
@@ -362,7 +290,7 @@
     },
     "walk/body-front/SW/01": {
       "frame": {
-        "x": 369,
+        "x": 303,
         "y": 2,
         "w": 24,
         "h": 55
@@ -386,7 +314,7 @@
     },
     "walk/body-front/SW/02": {
       "frame": {
-        "x": 397,
+        "x": 331,
         "y": 2,
         "w": 23,
         "h": 55
@@ -410,7 +338,7 @@
     },
     "walk/body-front/SW/14": {
       "frame": {
-        "x": 424,
+        "x": 358,
         "y": 2,
         "w": 23,
         "h": 55
@@ -434,7 +362,7 @@
     },
     "walk/body-front/SW/15": {
       "frame": {
-        "x": 451,
+        "x": 385,
         "y": 2,
         "w": 24,
         "h": 55
@@ -458,42 +386,18 @@
     },
     "walk/body-front/NE/03": {
       "frame": {
-        "x": 479,
+        "x": 413,
         "y": 2,
-        "w": 20,
-        "h": 54
+        "w": 18,
+        "h": 46
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 98,
         "y": 82,
-        "w": 20,
-        "h": 54
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "walk/body-front/NE/04": {
-      "frame": {
-        "x": 503,
-        "y": 2,
-        "w": 19,
-        "h": 54
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 98,
-        "y": 82,
-        "w": 19,
-        "h": 54
+        "w": 18,
+        "h": 46
       },
       "sourceSize": {
         "w": 192,
@@ -506,18 +410,18 @@
     },
     "walk/body-front/NE/05": {
       "frame": {
-        "x": 526,
+        "x": 435,
         "y": 2,
-        "w": 19,
-        "h": 54
+        "w": 18,
+        "h": 46
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 98,
         "y": 82,
-        "w": 19,
-        "h": 54
+        "w": 18,
+        "h": 46
       },
       "sourceSize": {
         "w": 192,
@@ -530,10 +434,10 @@
     },
     "walk/body-front/NE/06": {
       "frame": {
-        "x": 549,
+        "x": 457,
         "y": 2,
         "w": 18,
-        "h": 54
+        "h": 46
       },
       "rotated": false,
       "trimmed": true,
@@ -541,7 +445,79 @@
         "x": 98,
         "y": 82,
         "w": 18,
-        "h": 54
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/body-front/NE/07": {
+      "frame": {
+        "x": 479,
+        "y": 2,
+        "w": 18,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 82,
+        "w": 18,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/body-front/NE/08": {
+      "frame": {
+        "x": 501,
+        "y": 2,
+        "w": 18,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 82,
+        "w": 18,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/body-front/NE/09": {
+      "frame": {
+        "x": 523,
+        "y": 2,
+        "w": 18,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 82,
+        "w": 18,
+        "h": 46
       },
       "sourceSize": {
         "w": 192,
@@ -554,10 +530,10 @@
     },
     "walk/body-front/NE/10": {
       "frame": {
-        "x": 571,
+        "x": 545,
         "y": 2,
         "w": 18,
-        "h": 54
+        "h": 46
       },
       "rotated": false,
       "trimmed": true,
@@ -565,7 +541,7 @@
         "x": 98,
         "y": 82,
         "w": 18,
-        "h": 54
+        "h": 46
       },
       "sourceSize": {
         "w": 192,
@@ -578,42 +554,18 @@
     },
     "walk/body-front/NE/11": {
       "frame": {
-        "x": 593,
+        "x": 567,
         "y": 2,
-        "w": 19,
-        "h": 54
+        "w": 18,
+        "h": 46
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 98,
         "y": 82,
-        "w": 19,
-        "h": 54
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "walk/body-front/NE/12": {
-      "frame": {
-        "x": 616,
-        "y": 2,
-        "w": 19,
-        "h": 54
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 98,
-        "y": 82,
-        "w": 19,
-        "h": 54
+        "w": 18,
+        "h": 46
       },
       "sourceSize": {
         "w": 192,
@@ -626,18 +578,18 @@
     },
     "walk/body-front/NE/13": {
       "frame": {
-        "x": 639,
+        "x": 589,
         "y": 2,
-        "w": 20,
-        "h": 54
+        "w": 18,
+        "h": 46
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 98,
         "y": 82,
-        "w": 20,
-        "h": 54
+        "w": 18,
+        "h": 46
       },
       "sourceSize": {
         "w": 192,
@@ -650,18 +602,18 @@
     },
     "walk/body-front/NE/00": {
       "frame": {
-        "x": 663,
+        "x": 611,
         "y": 2,
-        "w": 22,
-        "h": 53
+        "w": 19,
+        "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 98,
         "y": 82,
-        "w": 22,
-        "h": 53
+        "w": 19,
+        "h": 45
       },
       "sourceSize": {
         "w": 192,
@@ -674,18 +626,18 @@
     },
     "walk/body-front/NE/01": {
       "frame": {
-        "x": 689,
+        "x": 634,
         "y": 2,
-        "w": 22,
-        "h": 53
+        "w": 20,
+        "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 98,
         "y": 82,
-        "w": 22,
-        "h": 53
+        "w": 20,
+        "h": 45
       },
       "sourceSize": {
         "w": 192,
@@ -698,18 +650,66 @@
     },
     "walk/body-front/NE/02": {
       "frame": {
-        "x": 715,
+        "x": 658,
         "y": 2,
-        "w": 21,
-        "h": 53
+        "w": 19,
+        "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 98,
         "y": 82,
-        "w": 21,
-        "h": 53
+        "w": 19,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/body-front/NE/04": {
+      "frame": {
+        "x": 681,
+        "y": 2,
+        "w": 18,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 82,
+        "w": 18,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/body-front/NE/12": {
+      "frame": {
+        "x": 703,
+        "y": 2,
+        "w": 18,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 82,
+        "w": 18,
+        "h": 45
       },
       "sourceSize": {
         "w": 192,
@@ -722,18 +722,18 @@
     },
     "walk/body-front/NE/14": {
       "frame": {
-        "x": 740,
+        "x": 725,
         "y": 2,
-        "w": 21,
-        "h": 53
+        "w": 19,
+        "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 98,
         "y": 82,
-        "w": 21,
-        "h": 53
+        "w": 19,
+        "h": 45
       },
       "sourceSize": {
         "w": 192,
@@ -746,18 +746,18 @@
     },
     "walk/body-front/NE/15": {
       "frame": {
-        "x": 765,
+        "x": 748,
         "y": 2,
-        "w": 22,
-        "h": 53
+        "w": 20,
+        "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 98,
         "y": 82,
-        "w": 22,
-        "h": 53
+        "w": 20,
+        "h": 45
       },
       "sourceSize": {
         "w": 192,
@@ -813,7 +813,7 @@
     "image": "walk-body-front-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 789,
+      "w": 770,
       "h": 62
     },
     "scale": "1",
