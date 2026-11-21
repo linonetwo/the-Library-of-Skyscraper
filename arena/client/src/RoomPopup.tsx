@@ -22,7 +22,7 @@ export default function RoomPopup({ room }: { room: Room }) {
       </p>
       <div className="room-actions">
         <button
-            disabled={!ready || !isOwner}
+          disabled={!ready || !isOwner}
           onClick={() =>
             void command({
               type: "move",
@@ -34,12 +34,14 @@ export default function RoomPopup({ room }: { room: Room }) {
           派遣选中角色
         </button>
         <button
-          disabled={!ready}
+          disabled={!ready || !isOwner}
           onClick={() =>
             void command({
-              type: "build",
-              roomId: room.id,
-              kind: "tower",
+              type: "task",
+              actorId: actor!.id,
+              target: room.id,
+              kind: "build",
+              buildingKind: "tower",
             })
           }
         >
@@ -47,12 +49,14 @@ export default function RoomPopup({ room }: { room: Room }) {
           建造哨塔
         </button>
         <button
-          disabled={!ready}
+          disabled={!ready || !isOwner}
           onClick={() =>
             void command({
-              type: "build",
-              roomId: room.id,
-              kind: "catalog",
+              type: "task",
+              actorId: actor!.id,
+              target: room.id,
+              kind: "build",
+              buildingKind: "catalog",
             })
           }
         >

@@ -1,3 +1,4 @@
+import ExpeditionResult from "./ExpeditionResult";
 import {
   Compass,
   Plus,
@@ -5,7 +6,6 @@ import {
   ChevronRight,
   ArrowUpRight,
   Layers3,
-  Flag,
 } from "lucide-react";
 import MapCanvas from "./MapCanvas";
 
@@ -15,7 +15,6 @@ import JournalPanel from "./JournalPanel";
 import RuleEditor from "./RuleEditor";
 export default function Battlefield() {
   const {
-    session,
     snapshot,
     busy,
     start,
@@ -32,7 +31,6 @@ export default function Battlefield() {
     view,
     setView,
     setLobby,
-    player,
     room,
     selectActor,
   } = useArena();
@@ -134,28 +132,18 @@ export default function Battlefield() {
             <button className="text-button" onClick={() => setLobby(true)}>
               或加入联机赛局 <ChevronRight size={13} />
             </button>
-            {expeditions[0] && <button className="text-button" disabled={busy}
-              onClick={() => void resume(expeditions[0].session)}>
-              继续上次远征 <ChevronRight size={13} />
-            </button>}
+            {expeditions[0] && (
+              <button
+                className="text-button"
+                disabled={busy}
+                onClick={() => void resume(expeditions[0].session)}
+              >
+                继续上次远征 <ChevronRight size={13} />
+              </button>
+            )}
           </div>
         )}
-        {snapshot?.result && (
-          <div className="result-card">
-            <Flag size={26} />
-            <span className="eyebrow">EXPEDITION COMPLETE</span>
-            <h2>
-              {snapshot.result.winner === session?.playerId
-                ? "书苑铭记你的名字"
-                : "本次远征已结束"}
-            </h2>
-            <p>{snapshot.result.reason}</p>
-            <b>编目得分 {player?.score}</b>
-            <button className="primary" onClick={() => setLobby(true)}>
-              开启下一场远征
-            </button>
-          </div>
-        )}
+        <ExpeditionResult />
         <div className="map-bottomline">
           <span>
             <i className="legend-dot friendly" /> 我方小队
@@ -179,7 +167,15 @@ export default function Battlefield() {
           </div>
         </div>
         {room && view === "map" && <RoomPopup room={room} />}
-        {view !== "map" && <button className="overlay-close" aria-label="关闭面板" onClick={() => setView("map")}>返回地图 ×</button>}
+        {view !== "map" && (
+          <button
+            className="overlay-close"
+            aria-label="关闭面板"
+            onClick={() => setView("map")}
+          >
+            返回地图 ×
+          </button>
+        )}
         {view === "rules" && (
           <div className="workspace-overlay">
             <RuleEditor />
