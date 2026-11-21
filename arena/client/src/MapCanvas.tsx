@@ -118,6 +118,12 @@ export default function MapCanvas(props: MapProps) {
             : undefined;
         },
       );
+      if (p.fixedCamera) {
+        camera.scale = p.fixedCamera.scale;
+        camera.x = host.clientWidth / 2 - p.fixedCamera.center.x * camera.scale;
+        camera.y =
+          host.clientHeight / 2 - p.fixedCamera.center.y * camera.scale;
+      }
       world.position.set(camera.x, camera.y);
       world.scale.set(camera.scale);
       host.dataset.camera = JSON.stringify(camera);
@@ -249,7 +255,7 @@ export default function MapCanvas(props: MapProps) {
           return;
         }
         const actionTextures = await loadDollTextures(
-          !!latest.current.samplePose,
+          latest.current.sampleTextures,
         );
         if (disposed) return;
         const manifest = await (
@@ -293,7 +299,7 @@ export default function MapCanvas(props: MapProps) {
           controller.overview();
           applyCamera();
         };
-        host.appendChild(overviewButton);
+        if (!latest.current.fixedCamera) host.appendChild(overviewButton);
         app.stage.addChild(world);
         resize = new ResizeObserver(() => {
           app.renderer.resize(host.clientWidth, host.clientHeight);

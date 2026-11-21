@@ -6,11 +6,12 @@ export type MapProps = {
   focusIntent?: import("./cameraController").FocusIntent;
   snapshot: Snapshot | null;
   suspended?: boolean;
+  fixedCamera?: { center: { x: number; y: number }; scale: number };
   samplePose?: "NE" | "SW";
-  sampleOutfit?: boolean;
-  sampleHair?: boolean;
+  sampleTextures?: Record<string, Texture>;
+  sampleLayers?: string[];
+  sampleClip?: import("./animationCatalog").RegisteredClip;
   sampleWalk?: boolean;
-  sampleFrameMs?: number;
   sampleRig?: import("./RegisteredCargo").SampleRig;
   selected: string | null;
   selectedRoom: string | null;

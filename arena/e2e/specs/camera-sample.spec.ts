@@ -1,9 +1,13 @@
 import { test, expect } from "@playwright/test";
-test("camera study uses registered atlas layers and freezes its world clock", async ({
+test("registered 16-phase sample switches independent layers and freezes route phase", async ({
   page,
 }) => {
+  const atlasRequests: string[] = [];
+  page.on("request", (r) => {
+    if (r.url().includes("-study/") && r.url().endsWith(".json"))
+      atlasRequests.push(r.url());
+  });
   await page.goto("/camera-sample");
-  await expect(page.locator("canvas")).toBeVisible();
   const pose = () =>
     page
       .locator(".pixi-map")
@@ -11,37 +15,43 @@ test("camera study uses registered atlas layers and freezes its world clock", as
       .then((v) => JSON.parse(v || "[]")[0]);
   await expect
     .poll(async () => (await pose())?.textures)
-    .toEqual(["walk/body/SW/00", "walk/body-front/SW/00"]);
-  await page.getByLabel("学者衣装").check();
-  await page.getByLabel("象牙白短发（关闭为裸头）").check();
-  await page.getByLabel("两向步态候选").check();
+    .toEqual([
+      "walk/body/SW/00",
+      "walk/body-front/SW/00",
+      "walk/hand-front/SW/00",
+    ]);
+  expect(atlasRequests.some((url) => url.includes("hair-"))).toBe(false);
+  await page.getByLabel("样板衣装").selectOption("warden");
+  await page.getByLabel("样板发型").selectOption("midnight");
+  await page.getByLabel("法杖（握持手互斥）").check();
   await expect
     .poll(async () => (await pose())?.textures)
     .toEqual([
-      "walk/hair-ivory-back/SW/00",
+      "walk/weapon-staff-back/SW/00",
+      "walk/hair-midnight-back/SW/00",
       "walk/body/SW/00",
-      "walk/outfit-scholar/SW/00",
+      "walk/outfit-warden/SW/00",
+      "walk/weapon-staff-front/SW/00",
       "walk/body-front/SW/00",
-      "walk/hair-ivory-front/SW/00",
+      "walk/outfit-warden-front/SW/00",
+      "walk/hand-grip/SW/00",
+      "walk/hair-midnight-front/SW/00",
     ]);
-  await page.getByLabel("象牙白短发（关闭为裸头）").uncheck();
+  await page.getByLabel("样板发型").selectOption("none");
   await expect
-    .poll(async () => (await pose())?.textures)
-    .toEqual([
-      "walk/body/SW/00",
-      "walk/outfit-scholar/SW/00",
-      "walk/body-front/SW/00",
-    ]);
-  await page.getByLabel("象牙白短发（关闭为裸头）").check();
+    .poll(async () =>
+      (await pose())?.textures?.some((t: string) => t.includes("hair")),
+    )
+    .toBe(false);
   await page
-    .getByRole("button", { name: "沿8格道移动1.5格/秒", exact: true })
+    .getByRole("button", { name: "沿12格道移动1.5格/秒", exact: true })
     .click();
   await expect
     .poll(async () => (await pose())?.worldPosition.y)
     .toBeGreaterThan(0);
   await page.getByRole("button", { name: "暂停", exact: true }).click();
   const paused = await pose();
-  await page.waitForTimeout(300);
+  await page.waitForTimeout(150);
   const still = await pose();
   expect(still.worldPosition).toEqual(paused.worldPosition);
   expect(still.textures).toEqual(paused.textures);

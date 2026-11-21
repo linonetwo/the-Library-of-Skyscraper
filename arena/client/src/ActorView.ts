@@ -2,6 +2,7 @@ import type { SampleRig } from "./RegisteredCargo";
 import { DollRenderer, type DollTextures } from "./DollRenderer";
 export type { DollTextures } from "./DollRenderer";
 import type { WorldAssets } from "./worldAssets";
+import type { RegisteredClip } from "./animationCatalog";
 import type { AnimationAction } from "./animationCatalog";
 import { cueActive as isCueActive, resolveAnimation } from "./resolveAnimation";
 import { Container, Graphics, Rectangle, Text } from "pixi.js";
@@ -14,11 +15,10 @@ export class ActorView {
   readonly node = new Container();
   readonly motion: ActorMotion;
   samplePose?: "NE" | "SW";
-  sampleOutfit = false;
-  sampleHair = false;
   sampleWalk = false;
-  sampleFrameMs = 125;
   sampleRig?: SampleRig;
+  sampleLayers?: string[];
+  sampleClip?: RegisteredClip;
   private dollRenderer: DollRenderer;
   private doll: Container;
   private shadow = new Graphics()
@@ -129,12 +129,34 @@ export class ActorView {
 
   render(now: number, simNow = this.simulationTime) {
     const pose = this.motion.sample(now);
+    const sampleCatalog = this.sampleClip
+      ? {
+          idle: {
+            ...this.sampleClip,
+            frameCount: 1,
+            frameMs: 1,
+            frameDurationsMs: undefined,
+            cycleWorldStride: undefined,
+          },
+          walk: this.sampleClip,
+        }
+      : undefined;
     const selection = this.authoritativeAnimation
-      ? resolveAnimation(this.actor, simNow, {
-          ...pose,
-          worldPosition: inverse(pose.x, pose.y),
-          tickDurationMs: this.tickDuration,
-        })
+      ? resolveAnimation(
+          this.actor,
+          simNow,
+          {
+            ...pose,
+            moving: this.samplePose
+              ? this.sampleWalk
+              : pose.moving ||
+                !!this.actor.travel ||
+                this.actor.task?.stage === "approaching",
+            worldPosition: inverse(pose.x, pose.y),
+            tickDurationMs: this.tickDuration,
+          },
+          sampleCatalog,
+        )
       : undefined;
     this.node.position.set(pose.x, pose.y);
     this.node.zIndex = pose.y;
@@ -194,9 +216,7 @@ export class ActorView {
       : pose.moving
         ? "walk"
         : "idle";
-    const sampleFrame = this.sampleWalk
-      ? Math.floor(simNow / this.sampleFrameMs) % 4
-      : 0;
+    const sampleFrame = selection?.frame ?? 0;
     const textures = this.dollRenderer.update(
       action,
       selection?.frame ?? pose.frame,
@@ -207,15 +227,17 @@ export class ActorView {
         ? {
             direction: this.samplePose,
             frame: sampleFrame,
-            outfit: this.sampleOutfit,
-            hair: this.sampleHair,
             rig: this.sampleRig,
+            layers: this.sampleLayers,
+            clip: this.sampleClip,
           }
         : undefined,
     );
     return {
       id: this.actor.id,
       ...pose,
+      direction: selection?.direction ?? pose.direction,
+      frame: selection?.frame ?? pose.frame,
       animation: action,
       requestedAnimation: selection?.requestedClip,
       motionDistanceMilli: pose.motionDistanceMilli,

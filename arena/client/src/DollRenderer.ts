@@ -3,15 +3,19 @@ import { RegisteredCargo, type SampleRig } from "./RegisteredCargo";
 import { animationLayers } from "./walkLayers";
 import type { Appearance } from "./types";
 import type { Direction } from "./directions";
-import type { AnimationAction } from "./animationCatalog";
+import {
+  animationCatalog,
+  type RegisteredClip,
+  type AnimationAction,
+} from "./animationCatalog";
 import type { WorldAssets } from "./worldAssets";
 export type DollTextures = Record<AnimationAction, Record<string, Texture>>;
 export type SampleDoll = {
   direction: "NE" | "SW";
   frame: number;
-  outfit: boolean;
-  hair: boolean;
   rig?: SampleRig;
+  layers?: string[];
+  clip?: RegisteredClip;
 };
 
 /** Persistent sprites share cached atlas textures; only frame and active layers change. */
@@ -34,17 +38,9 @@ export class DollRenderer {
     cargo: number,
     sample?: SampleDoll,
   ) {
-    const layers = sample
-      ? [
-          ...(sample.hair ? ["hair-ivory-back"] : []),
-          "body",
-          ...(sample.outfit ? ["outfit-scholar"] : []),
-          "body-front",
-          ...(sample.hair ? ["hair-ivory-front"] : []),
-        ]
-      : animationLayers(action, appearance);
+    const layers = sample?.layers ?? animationLayers(action, appearance);
     const suffix = `${sample?.direction ?? direction}/${String(sample?.frame ?? frame).padStart(2, "0")}`;
-    const prefix = sample ? (sample.rig ? "walk" : "sample") : action;
+    const prefix = sample ? "walk" : action;
     const key = `${prefix}/${suffix}/${layers.join("/")}`;
     if (key !== this.key) {
       this.key = key;
@@ -61,7 +57,16 @@ export class DollRenderer {
           this.textures[sample ? "idle" : action][
             `${prefix}/${layers[index]}/${suffix}`
           ];
-        sprite.scale.set(sample ? 1 : 136 / sprite.texture.height);
+        const registration =
+          sample?.clip ?? (animationCatalog[action] as RegisteredClip);
+        sprite.anchor.set(
+          registration.groundPivot[0] / sprite.texture.orig.width,
+          registration.groundPivot[1] / sprite.texture.orig.height,
+        );
+        sprite.scale.set(
+          registration.renderScale ??
+            (sample ? 1 : 136 / sprite.texture.orig.height),
+        );
       });
     }
     this.cargo?.update(

@@ -1,15 +1,11 @@
-import { Assets } from "pixi.js";
+import { Assets, type Texture } from "pixi.js";
 import { animationActions } from "./animationCatalog";
 import { animationLayerNames } from "./walkLayers";
 import type { DollTextures } from "./DollRenderer";
-const sampleLayers = [
-  "body",
-  "body-front",
-  "outfit-scholar",
-  "hair-ivory-back",
-  "hair-ivory-front",
-];
-export async function loadDollTextures(sample: boolean): Promise<DollTextures> {
+export async function loadDollTextures(
+  sample: Record<string, Texture> | undefined,
+): Promise<DollTextures> {
+  if (sample) return { idle: sample, walk: sample };
   const entries = await Promise.all(
     animationActions.map(async (action) => {
       const sheets = await Promise.all(
@@ -24,14 +20,5 @@ export async function loadDollTextures(sample: boolean): Promise<DollTextures> {
     }),
   );
   const textures = Object.fromEntries(entries) as DollTextures;
-  if (sample) {
-    const sheets = await Promise.all(
-      sampleLayers.flatMap((layer) => [
-        Assets.load(`/assets/iso-v030-sample/${layer}.json`),
-        Assets.load(`/assets/iso-v030-walk-study/walk-${layer}.json`),
-      ]),
-    );
-    Object.assign(textures.idle, ...sheets.map((sheet) => sheet.textures));
-  }
   return textures;
 }

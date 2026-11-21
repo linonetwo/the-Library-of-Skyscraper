@@ -1,0 +1,307 @@
+{
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "NE",
+    "SW"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "weapon-staff-back",
+    "weapon-staff-front"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 198048,
+      "pages": [
+        {
+          "image": "walk-body-0.png",
+          "json": "walk-body-0.json",
+          "width": 1579,
+          "height": 149,
+          "decodedBytes": 941084,
+          "pngBytes": 164201
+        }
+      ],
+      "decodedBytes": 941084
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 32665,
+      "pages": [
+        {
+          "image": "walk-body-front-0.png",
+          "json": "walk-body-front-0.json",
+          "width": 770,
+          "height": 62,
+          "decodedBytes": 190960,
+          "pngBytes": 35051
+        }
+      ],
+      "decodedBytes": 190960
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 88768,
+      "pages": [
+        {
+          "image": "walk-outfit-scholar-0.png",
+          "json": "walk-outfit-scholar-0.json",
+          "width": 1509,
+          "height": 69,
+          "decodedBytes": 416484,
+          "pngBytes": 16725
+        }
+      ],
+      "decodedBytes": 416484
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 12384,
+      "pages": [
+        {
+          "image": "walk-hair-ivory-back-0.png",
+          "json": "walk-hair-ivory-back-0.json",
+          "width": 1429,
+          "height": 15,
+          "decodedBytes": 85740,
+          "pngBytes": 1556
+        }
+      ],
+      "decodedBytes": 85740
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 65488,
+      "pages": [
+        {
+          "image": "walk-hair-ivory-front-0.png",
+          "json": "walk-hair-ivory-front-0.json",
+          "width": 1621,
+          "height": 49,
+          "decodedBytes": 317716,
+          "pngBytes": 11607
+        }
+      ],
+      "decodedBytes": 317716
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 66688,
+      "pages": [
+        {
+          "image": "walk-outfit-warden-0.png",
+          "json": "walk-outfit-warden-0.json",
+          "width": 1275,
+          "height": 63,
+          "decodedBytes": 321300,
+          "pngBytes": 29043
+        }
+      ],
+      "decodedBytes": 321300
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 24134,
+      "pages": [
+        {
+          "image": "walk-outfit-warden-front-0.png",
+          "json": "walk-outfit-warden-front-0.json",
+          "width": 670,
+          "height": 50,
+          "decodedBytes": 134000,
+          "pngBytes": 22837
+        }
+      ],
+      "decodedBytes": 134000
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 28208,
+      "pages": [
+        {
+          "image": "walk-hair-midnight-back-0.png",
+          "json": "walk-hair-midnight-back-0.json",
+          "width": 725,
+          "height": 47,
+          "decodedBytes": 136300,
+          "pngBytes": 4317
+        }
+      ],
+      "decodedBytes": 136300
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 75904,
+      "pages": [
+        {
+          "image": "walk-hair-midnight-front-0.png",
+          "json": "walk-hair-midnight-front-0.json",
+          "width": 1541,
+          "height": 60,
+          "decodedBytes": 369840,
+          "pngBytes": 11791
+        }
+      ],
+      "decodedBytes": 369840
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 5202,
+      "pages": [
+        {
+          "image": "walk-hand-front-0.png",
+          "json": "walk-hand-front-0.json",
+          "width": 506,
+          "height": 19,
+          "decodedBytes": 38456,
+          "pngBytes": 9625
+        }
+      ],
+      "decodedBytes": 38456
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 3168,
+      "pages": [
+        {
+          "image": "walk-hand-grip-0.png",
+          "json": "walk-hand-grip-0.json",
+          "width": 421,
+          "height": 15,
+          "decodedBytes": 25260,
+          "pngBytes": 3681
+        }
+      ],
+      "decodedBytes": 25260
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 37152,
+      "pages": [
+        {
+          "image": "walk-weapon-staff-back-0.png",
+          "json": "walk-weapon-staff-back-0.json",
+          "width": 453,
+          "height": 101,
+          "decodedBytes": 183012,
+          "pngBytes": 19862
+        }
+      ],
+      "decodedBytes": 183012
+    },
+    {
+      "layer": "weapon-staff-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 39832,
+      "pages": [
+        {
+          "image": "walk-weapon-staff-front-0.png",
+          "json": "walk-weapon-staff-front-0.json",
+          "width": 485,
+          "height": 100,
+          "decodedBytes": 194000,
+          "pngBytes": 20391
+        }
+      ],
+      "decodedBytes": 194000
+    }
+  ],
+  "decodedBytes": 3354152,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}
