@@ -2,7 +2,7 @@ title: 竞技场开发日志2026-11-21
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261121012938000
-modified: 20261121012938000
+modified: 20261121050341000
 
 !! 首场远征继续实现
 
@@ -23,3 +23,14 @@ v0.3.0按[[竞技场v0.3.0版本计划]]推进，细节见[[竞技场v0.3.0可�
 Astra对PR39发现两处串联问题：旧checkpoint补世界坐标后导出回放的旧模拟一致性、TS Build意图的actorId保留；Sol按具体流程修复。MCP由完成Wiki任务的Sol复用接续，补新task／warehouse命令、真实Page任务操作和目标／旅行／结算读取，并支持配置候选网页及服务器地址。
 
 稳定入口仍为5173／8787的[[v0.2.1开发预览|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.2.1]]；v0.3.0候选在5175／8790联调，集齐整版需求后集中接受与发布。Wiki3000实时更新，本日页面有created／modified及原文件目录分类，最近栏可直接发现。证据保存于/home/user/arena-v030-playable-evidence/root/2026-11-21、server及相关PR。
+
+
+!! 新相机纸娃娃进入产品渲染器
+
+Astra将首批NE／SW身体源做等比裁切、地面pivot注册，拆为body与body-front，并提供两方向各12片关节attachment。静态源41de18c已冻结；Sol前端通过5175/camera-sample复用产品MapCanvas／ActorView／同投影渲染器加载，192透明格使用renderScale1。主代理首次实看发现取图命名误用旧idle，已交Sol显式按sample/body/SW/00等命名空间修复，再由主代理和Astra亲看实际跨步轮廓与注册接触页一致。
+
+[img[竞技场2026-11-21新相机纸娃娃静态样板.png]]
+
+此图为身体／前臂二层的静态相机样板：四头身、俯视头肩、地面与道具的统一尺寸继续以实际画面接受。完整walk另行制作；原源抬腿投影较短，Sol离线工具已重建静态层和数值锁足，Astra补每方向完整肢体及接触／经过相位变体后再烘焙反相步态。独立衣发首源已成功，逐层注册继续进行。
+
+前端[[PR41|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/41]]、MCP[[PR42|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/42]]已形成可评审候选；离线图集工具27f7cf3／fb84895单独冻结。代码集成在独立arena-v030-game-integration工作树按服务端→前端→MCP→美术工具进行，Wiki3000源保持独立。整版候选5176／8791已启动；静态样板及未完整步态仍为本版美术待办。
