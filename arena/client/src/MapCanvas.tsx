@@ -55,8 +55,18 @@ export default function MapCanvas(props: MapProps) {
             room = p.snapshot?.rooms.find((r) => r.id === unit?.roomId);
           if (!room) return actor;
           const center = project(
-            mapRoomCenter(room, p.snapshot?.worldMap).x,
-            mapRoomCenter(room, p.snapshot?.worldMap).y,
+            mapRoomCenter(
+              room,
+              (p.snapshot?.simulationVersion ?? 0) >= 3
+                ? p.snapshot?.worldMap
+                : undefined,
+            ).x,
+            mapRoomCenter(
+              room,
+              (p.snapshot?.simulationVersion ?? 0) >= 3
+                ? p.snapshot?.worldMap
+                : undefined,
+            ).y,
           );
           const neighbors = (p.snapshot?.rooms ?? [])
             .filter((r) => {
@@ -66,8 +76,18 @@ export default function MapCanvas(props: MapProps) {
             })
             .map((r) =>
               project(
-                mapRoomCenter(r, p.snapshot?.worldMap).x,
-                mapRoomCenter(r, p.snapshot?.worldMap).y,
+                mapRoomCenter(
+                  r,
+                  (p.snapshot?.simulationVersion ?? 0) >= 3
+                    ? p.snapshot?.worldMap
+                    : undefined,
+                ).x,
+                mapRoomCenter(
+                  r,
+                  (p.snapshot?.simulationVersion ?? 0) >= 3
+                    ? p.snapshot?.worldMap
+                    : undefined,
+                ).y,
               ),
             );
           return localRoomFocus(
@@ -82,8 +102,18 @@ export default function MapCanvas(props: MapProps) {
           const r = p.snapshot?.rooms.find((r) => r.id === id);
           return r
             ? project(
-                mapRoomCenter(r, p.snapshot?.worldMap).x,
-                mapRoomCenter(r, p.snapshot?.worldMap).y,
+                mapRoomCenter(
+                  r,
+                  (p.snapshot?.simulationVersion ?? 0) >= 3
+                    ? p.snapshot?.worldMap
+                    : undefined,
+                ).x,
+                mapRoomCenter(
+                  r,
+                  (p.snapshot?.simulationVersion ?? 0) >= 3
+                    ? p.snapshot?.worldMap
+                    : undefined,
+                ).y,
               )
             : undefined;
         },
@@ -134,8 +164,18 @@ export default function MapCanvas(props: MapProps) {
         (p.snapshot?.rooms ?? []).map((room) => ({
           id: room.id,
           ...project(
-            mapRoomCenter(room, p.snapshot?.worldMap).x + 2,
-            mapRoomCenter(room, p.snapshot?.worldMap).y + 2,
+            mapRoomCenter(
+              room,
+              (p.snapshot?.simulationVersion ?? 0) >= 3
+                ? p.snapshot?.worldMap
+                : undefined,
+            ).x + 2,
+            mapRoomCenter(
+              room,
+              (p.snapshot?.simulationVersion ?? 0) >= 3
+                ? p.snapshot?.worldMap
+                : undefined,
+            ).y + 2,
           ),
         })),
       );
@@ -146,7 +186,9 @@ export default function MapCanvas(props: MapProps) {
         layoutKey = key;
         const points = mapLayout(
           p.snapshot?.rooms ?? [],
-          p.snapshot?.worldMap,
+          (p.snapshot?.simulationVersion ?? 0) >= 3
+            ? p.snapshot?.worldMap
+            : undefined,
         ).tiles.map((t) => project(t.x, t.y));
         if (points.length)
           bounds = {
@@ -215,6 +257,15 @@ export default function MapCanvas(props: MapProps) {
             ] as const;
           }),
         );
+        if (latest.current.samplePose) {
+          const samples = await Promise.all(
+            ["body", "body-front"].map((layer) =>
+              Assets.load(`/assets/iso-v030-sample/${layer}.json`),
+            ),
+          );
+          const idle = actionTextures.find(([action]) => action === "idle")!;
+          Object.assign(idle[1], ...samples.map((sheet) => sheet.textures));
+        }
         if (disposed) return;
         const manifest = await (
           await fetch("/assets/tiles/manifest.json")

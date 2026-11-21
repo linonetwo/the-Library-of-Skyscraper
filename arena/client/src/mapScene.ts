@@ -5,6 +5,7 @@ import { mapLayout, mapRoomCenter } from "./mapLayout";
 export type MapProps = {
   focusIntent?: import("./cameraController").FocusIntent;
   snapshot: Snapshot | null;
+  samplePose?: "NE" | "SW";
   selected: string | null;
   selectedRoom: string | null;
   zoom: number;
@@ -21,7 +22,9 @@ export function paintMap(
 ) {
   const snapshot = p.snapshot;
   if (!snapshot) return;
-  const layout = mapLayout(snapshot.rooms, snapshot.worldMap);
+  const worldMap =
+    (snapshot.simulationVersion ?? 0) >= 3 ? snapshot.worldMap : undefined;
+  const layout = mapLayout(snapshot.rooms, worldMap);
   const occupied = new Set(layout.tiles.map((t) => `${t.x},${t.y}`));
   const foundations = new Graphics();
   for (const tile of layout.tiles) {
@@ -80,6 +83,19 @@ export function paintMap(
       routes.stroke({ color: 0xf2d493, width: 2, alpha: 0.3 });
     }
     ground.addChild(routes);
+  }
+  if (snapshot.worldMap?.props) {
+    for (const entry of snapshot.worldMap.props) {
+      const foot = project(entry.position.x, entry.position.y);
+      const prop = new Sprite(textures[entry.asset]);
+      prop.anchor.set(0.5, 160 / 192);
+      prop.position.copyFrom(foot);
+      prop.zIndex = foot.y;
+      prop.eventMode = "none";
+      prop.label = "shelf:" + entry.id;
+      entities.addChild(prop);
+    }
+    return;
   }
   for (const room of snapshot.rooms) {
     const c = mapRoomCenter(room, snapshot.worldMap);

@@ -34,8 +34,10 @@ export function mapLayout(rooms: Room[], worldMap?: Snapshot["worldMap"]) {
   const links: { from: string; to: string; points: GridPoint[] }[] = [];
   for (const room of rooms) {
     const center = mapRoomCenter(room, worldMap);
-    for (let x = -2; x <= 2; x++)
-      for (let y = -2; y <= 2; y++) {
+    const half =
+      worldMap?.rooms.find((r) => r.id === room.id)?.floorHalfSize ?? 2;
+    for (let x = -half; x <= half; x++)
+      for (let y = -half; y <= half; y++) {
         const tile = { x: center.x + x, y: center.y + y, roomId: room.id };
         tiles.set(`${tile.x},${tile.y}`, tile);
       }
@@ -61,18 +63,35 @@ export function mapLayout(rooms: Room[], worldMap?: Snapshot["worldMap"]) {
       i === 0 ? [p] : corridor(edge.points[i - 1], p).slice(1),
     );
     links.push({ ...edge, points });
-    points.forEach((p, index) => {
-      for (const dy of [-1, 0, 1]) {
-        const tile = { x: p.x, y: p.y + dy };
-        const key = `${tile.x},${tile.y}`;
-        if (!tiles.has(key))
-          tiles.set(key, {
-            ...tile,
-            roomId: index < points.length / 2 ? edge.from : edge.to,
-            corridor: true,
-          });
-      }
-    });
+    for (let segment = 1; segment < edge.points.length; segment++) {
+      const a = edge.points[segment - 1],
+        b = edge.points[segment];
+      const horizontal = a.y === b.y;
+      const segmentPoints = corridor(a, b);
+      segmentPoints.forEach((point, index) => {
+        for (const offset of [-1, 0, 1]) {
+          const tile = {
+            x: point.x + (horizontal ? 0 : offset),
+            y: point.y + (horizontal ? offset : 0),
+          };
+          const key = `${tile.x},${tile.y}`;
+          if (!tiles.has(key))
+            tiles.set(key, {
+              ...tile,
+              roomId: index < segmentPoints.length / 2 ? edge.from : edge.to,
+              corridor: true,
+            });
+        }
+      });
+      if (segment < edge.points.length - 1)
+        for (let dx = -1; dx <= 1; dx++)
+          for (let dy = -1; dy <= 1; dy++) {
+            const tile = { x: b.x + dx, y: b.y + dy };
+            const key = `${tile.x},${tile.y}`;
+            if (!tiles.has(key))
+              tiles.set(key, { ...tile, roomId: edge.to, corridor: true });
+          }
+    }
   }
   return { tiles: [...tiles.values()], links };
 }

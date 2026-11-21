@@ -60,6 +60,7 @@ export default function ExpeditionTasks() {
         {rooms.map((room) => (
           <button
             key={room.id}
+            data-room-id={room.id}
             disabled={!ready || !isOwner || actor.hp <= 0}
             onClick={() =>
               void command({

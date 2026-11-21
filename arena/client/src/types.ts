@@ -60,7 +60,14 @@ export interface Snapshot {
   simulationVersion?: number;
   worldMap?: {
     version: string;
-    rooms: { id: string; center: WorldPoint }[];
+    rooms: { id: string; center: WorldPoint; floorHalfSize?: number }[];
+    props?: {
+      id: string;
+      roomId: string;
+      asset: string;
+      position: WorldPoint;
+      footprint: { width: number; depth: number };
+    }[];
     links: { from: string; to: string; points: WorldPoint[] }[];
   };
   scenarioConfig?: {

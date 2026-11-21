@@ -7,6 +7,7 @@ import { actorSlot, mapLayout } from "./mapLayout";
 export class ActorScene {
   readonly node: Container;
   private views = new Map<string, ActorView>();
+  private snapshotActors = new Map<string, import("./types").Actor>();
   private session = "";
   private tick = -1;
   private rooms = new Map<string, string>();
@@ -20,11 +21,13 @@ export class ActorScene {
   update(props: MapProps, now: number) {
     const snapshot = props.snapshot;
     if (!snapshot) return;
+    const isV3 = (snapshot.simulationVersion ?? 0) >= 3;
     const snap =
       snapshot.sessionId !== this.session ||
       snapshot.tick < this.tick ||
       snapshot.tick > this.tick + 1 ||
       snapshot.paused;
+    this.snapshotActors = new Map(snapshot.actors.map((a) => [a.id, a]));
     this.session = snapshot.sessionId;
     this.tick = snapshot.tick;
     const ids = new Set(snapshot.actors.map((actor) => actor.id));
@@ -39,12 +42,13 @@ export class ActorScene {
       const group = snapshot.actors
         .filter((unit) => unit.roomId === actor.roomId)
         .sort((a, b) => a.id.localeCompare(b.id));
-      const position = actor.worldPosition
-        ? project(actor.worldPosition.x, actor.worldPosition.y)
-        : actorSlot(
-            room,
-            group.findIndex((unit) => unit.id === actor.id),
-          );
+      const position =
+        isV3 && actor.worldPosition
+          ? project(actor.worldPosition.x, actor.worldPosition.y)
+          : actorSlot(
+              room,
+              group.findIndex((unit) => unit.id === actor.id),
+            );
       let view = this.views.get(actor.id);
       if (!view) {
         view = new ActorView(actor, position, this.textures, props.onSelect);
@@ -65,14 +69,15 @@ export class ActorScene {
               : [...link.points].reverse()
             ).map((p) => project(p.x, p.y))
           : [];
+      view.samplePose = props.samplePose;
       view.update(
         actor,
         actor.id === props.selected,
         position,
         now,
         snap,
-        actor.worldPosition ? [] : path,
-        actor.worldPosition ? (snapshot.tickDurationMs ?? 500) : 450,
+        isV3 ? [] : path,
+        isV3 ? snapshot.tickDurationMs || 500 : 450,
       );
       this.rooms.set(actor.id, actor.roomId);
     }
@@ -80,6 +85,11 @@ export class ActorScene {
 
   render(now: number) {
     const poses = [...this.views.values()].map((view) => view.render(now));
-    return poses;
+    return poses.map((pose) => ({
+      ...pose,
+      task: this.snapshotActors.get(pose.id)?.task,
+      travel: this.snapshotActors.get(pose.id)?.travel,
+      worldPosition: this.snapshotActors.get(pose.id)?.worldPosition,
+    }));
   }
 }
