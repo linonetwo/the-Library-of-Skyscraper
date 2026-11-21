@@ -122,5 +122,7 @@ export async function exportPoses(configPath,output){
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const [config,output]=process.argv.slice(2);if(!config||!output)throw Error('Usage: node pose-export.mjs CONFIG.json OUTPUT_DIRECTORY');
- const report=await exportPoses(path.resolve(config),path.resolve(output));console.log(`Exported ${report.length} poses; max plant error ${Math.max(...report.map(f=>f.errorPx||0)).toFixed(6)}px; art approval pending`);
+ const report=await exportPoses(path.resolve(config),path.resolve(output));
+ const contacts=report.filter(f=>f.contactFoot);
+ console.log(`Exported ${report.length} poses; ${contacts.length} contact frames; ${contacts.length?`max plant error ${Math.max(...contacts.map(f=>f.errorPx)).toFixed(6)} atlas px`:'foot lock not exercised'}; art approval pending`);
 }
