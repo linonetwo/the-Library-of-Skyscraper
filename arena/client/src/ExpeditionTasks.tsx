@@ -15,6 +15,7 @@ export const buildingNames: Record<BuildingKind, string> = {
 export default function ExpeditionTasks() {
   const { actor, snapshot, command, ready, isOwner, player } = useArena();
   const [kind, setKind] = useState<TaskKind>("gather");
+  const [expanded, setExpanded] = useState(true);
   const [building, setBuilding] = useState<BuildingKind>("catalog");
   if (!actor || !snapshot) return null;
   const target =
@@ -33,13 +34,16 @@ export default function ExpeditionTasks() {
           <button
             key={key}
             className={kind === key ? "selected" : ""}
-            onClick={() => setKind(key)}
+            onClick={() => {
+              setKind(key);
+              setExpanded(true);
+            }}
           >
             {taskNames[key]}
           </button>
         ))}
       </div>
-      {kind === "build" && (
+      {expanded && kind === "build" && (
         <div className="build-kinds">
           {(Object.keys(buildingNames) as BuildingKind[]).map((key) => (
             <button
@@ -55,29 +59,32 @@ export default function ExpeditionTasks() {
           ))}
         </div>
       )}
-      <div className="task-targets">
-        <small>选择目的地即下令</small>
-        {rooms.map((room) => (
-          <button
-            key={room.id}
-            data-room-id={room.id}
-            disabled={!ready || !isOwner || actor.hp <= 0}
-            onClick={() =>
-              void command({
-                type: "task",
-                actorId: actor.id,
-                kind,
-                target: room.id,
-                ...(kind === "build" ? { buildingKind: building } : {}),
-              })
-            }
-          >
-            {room.name}
-            {room.id === target ? " ★" : ""}
-            {kind === "gather" ? ` · ${room.resources}材` : ""}
-          </button>
-        ))}
-      </div>
+      {expanded && (
+        <div className="task-targets">
+          <small>选择目的地即下令</small>
+          {rooms.map((room) => (
+            <button
+              key={room.id}
+              data-room-id={room.id}
+              disabled={!ready || !isOwner || actor.hp <= 0}
+              onClick={() => {
+                setExpanded(false);
+                void command({
+                  type: "task",
+                  actorId: actor.id,
+                  kind,
+                  target: room.id,
+                  ...(kind === "build" ? { buildingKind: building } : {}),
+                });
+              }}
+            >
+              {room.name}
+              {room.id === target ? " ★" : ""}
+              {kind === "gather" ? ` · ${room.resources}材` : ""}
+            </button>
+          ))}
+        </div>
+      )}
       {player?.script && (
         <small className="risk-text">
           此角色由脚本驱动；手动任务冲突会显示服务器原因。

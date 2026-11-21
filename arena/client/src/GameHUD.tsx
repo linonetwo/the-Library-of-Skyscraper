@@ -11,6 +11,7 @@ export default function GameHUD() {
     [tasks, setTasks] = useState(true);
   const {
     snapshot,
+    view,
     actor,
     ownActors,
     selectActor,
@@ -39,6 +40,7 @@ export default function GameHUD() {
   const target =
     snapshot?.scenarioConfig?.targetRoomId ??
     snapshot?.rooms.find((r) => r.kind === "ruins")?.id;
+  const downed = ownActors.filter((a) => a.hp <= 0);
   const cargo = ownActors.reduce((sum, a) => sum + a.cargo, 0);
   const eta = actor?.travel
     ? Math.ceil(
@@ -67,6 +69,17 @@ export default function GameHUD() {
         <span>
           建材 <b>{player?.materials ?? 0}</b> · 携带 {cargo}
         </span>
+        {downed.length > 0 && (
+          <button
+            className="risk-text"
+            onClick={() => {
+              selectActor(downed[0].id);
+              setSelectedRoom(downed[0].roomId);
+            }}
+          >
+            己方倒地 {downed.length} · {roleNames[downed[0].role]}
+          </button>
+        )}
         <span className="hud-risk">
           {snapshot?.scenario?.counterattackSpawned
             ? "反扑已至"
@@ -92,7 +105,10 @@ export default function GameHUD() {
           </button>
         )}
         <button
+          className="menu-trigger"
           onClick={() => {
+            setInspecting(false);
+            setSelectedRoom(null);
             setMenu(!menu);
             setTraining(false);
           }}
@@ -148,13 +164,16 @@ export default function GameHUD() {
           <SimulationBar />
         </div>
       )}
-      {actor && (
+      {actor && view === "map" && (
         <section className="game-dock" aria-label="选中角色操作">
           <div className="dock-squad">
             {ownActors.map((unit) => (
               <button
                 key={unit.id}
-                className={actor.id === unit.id ? "selected" : ""}
+                className={
+                  (actor.id === unit.id ? "selected" : "") +
+                  (unit.hp <= 0 ? " downed" : "")
+                }
                 aria-label={`选择${roleNames[unit.role]}`}
                 onClick={() => selectActor(unit.id)}
               >

@@ -259,7 +259,13 @@ export default function MapCanvas(props: MapProps) {
         );
         if (latest.current.samplePose) {
           const samples = await Promise.all(
-            ["body", "body-front"].map((layer) =>
+            [
+              "body",
+              "body-front",
+              "outfit-scholar",
+              "hair-ivory-back",
+              "hair-ivory-front",
+            ].map((layer) =>
               Assets.load(`/assets/iso-v030-sample/${layer}.json`),
             ),
           );

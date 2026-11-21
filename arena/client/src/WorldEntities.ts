@@ -5,7 +5,7 @@ import { roomCenter } from "./mapLayout";
 const names = { warehouse: "前线仓库", tower: "防御塔", catalog: "编目台" };
 /** Battlefield feedback independent of the cached floor. */
 export class WorldEntities {
-  private roomLabels=new Map<string,Text>();
+  private roomLabels = new Map<string, Text>();
   private nodes = new Map<string, Container>();
   constructor(
     private parent: Container,
@@ -58,12 +58,41 @@ export class WorldEntities {
           .fill(color),
       );
     };
-    for(const room of snapshot.rooms){
-      let title=this.roomLabels.get(room.id);
-      if(!title){title=new Text({text:'',style:{fontSize:16,fill:0xf1dec0,stroke:{color:0x19343a,width:4}}});title.anchor.set(.5);title.eventMode='none';this.roomLabels.set(room.id,title);this.parent.addChild(title);}
-      const c=snapshot.worldMap?.rooms.find(r=>r.id===room.id)?.center??roomCenter(room.q,room.r);
-      const p=project(c.x,c.y);title.position.set(p.x,p.y+115);title.zIndex=p.y+115;
-      title.text=room.name+' · '+(room.enemyHp>0?'守卫 '+room.enemyHp:room.kind==='resource'?'建材 '+room.resources:room.id===snapshot.scenarioConfig?.targetRoomId?'编目 '+snapshot.scenario?.catalogProgress+'/'+snapshot.scenarioConfig.catalogGoal:'安全');
+    for (const room of snapshot.rooms) {
+      let title = this.roomLabels.get(room.id);
+      if (!title) {
+        title = new Text({
+          text: "",
+          style: {
+            fontSize: 16,
+            fill: 0xf1dec0,
+            stroke: { color: 0x19343a, width: 4 },
+          },
+        });
+        title.anchor.set(0.5);
+        title.eventMode = "none";
+        this.roomLabels.set(room.id, title);
+        this.parent.addChild(title);
+      }
+      const c =
+        snapshot.worldMap?.rooms.find((r) => r.id === room.id)?.center ??
+        roomCenter(room.q, room.r);
+      const p = project(c.x, c.y);
+      title.position.set(p.x, p.y + 115);
+      title.zIndex = p.y + 115;
+      title.text =
+        room.name +
+        " · " +
+        (room.enemyHp > 0
+          ? "守卫 " + room.enemyHp
+          : room.kind === "resource"
+            ? "建材 " + room.resources
+            : room.id === snapshot.scenarioConfig?.targetRoomId
+              ? "编目 " +
+                snapshot.scenario?.catalogProgress +
+                "/" +
+                snapshot.scenarioConfig.catalogGoal
+              : "安全");
     }
     for (const enemy of snapshot.enemies ?? []) {
       const node = nodeFor(enemy.id),
@@ -72,7 +101,7 @@ export class WorldEntities {
       node.zIndex = p.y;
       node.addChild(
         new Graphics()
-          .ellipse(0, 0, 24, 9)
+          .ellipse(0, 0, 24, 12)
           .fill({ color: 0xe28675, alpha: 0.25 })
           .poly([0, -83, 24, -57, 18, -14, 0, 0, -18, -14, -24, -57])
           .fill(0x663d43)
@@ -103,12 +132,21 @@ export class WorldEntities {
       const center =
         snapshot.worldMap?.rooms.find((r) => r.id === room.id)?.center ??
         roomCenter(room.q, room.r);
-      const p = project(center.x + 1.5, center.y + 1),
+      const position = building.worldPosition ?? {
+        x: center.x + 1.5,
+        y: center.y + 1,
+      };
+      const p = project(position.x, position.y),
         node = nodeFor(building.id);
       node.position.copyFrom(p);
       node.zIndex = p.y;
       const complete =
         (building.constructionTicks ?? 0) >= (building.requiredTicks ?? 0);
+      node.addChild(
+        new Graphics()
+          .ellipse(0, 2, 24, 12)
+          .fill({ color: 0x102827, alpha: 0.22 }),
+      );
       const sprite = new Sprite(
         this.textures[building.kind === "catalog" ? "lectern" : "plinth"],
       );

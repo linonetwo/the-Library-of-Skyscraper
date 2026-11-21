@@ -1,9 +1,10 @@
 import type { AnimationAction } from "./animationCatalog";
 import { Container, Graphics, Sprite, Texture, Rectangle, Text } from "pixi.js";
 import { roleNames } from "./types";
+import { project } from "./isoGeometry";
 import type { Actor } from "./types";
 import { animationLayers } from "./walkLayers";
-import { ActorMotion, type Point } from "./actorMotion";
+import { ActorMotion, facing, type Point } from "./actorMotion";
 
 export type DollTextures = Record<AnimationAction, Record<string, Texture>>;
 
@@ -11,10 +12,22 @@ export class ActorView {
   readonly node = new Container();
   readonly motion: ActorMotion;
   samplePose?: "NE" | "SW";
+  sampleOutfit = false;
+  sampleHair = false;
   private doll = new Container();
+  private shadow = new Graphics()
+    .ellipse(0, 1, 18, 9)
+    .fill({ color: 0x102225, alpha: 0.23 });
   private halo = new Graphics();
   private health = new Graphics();
   private activity = new Graphics();
+  simulationTime = 0;
+  simulationPaused = true;
+  simulationReceived = 0;
+  tickDuration = 500;
+  gatherInterval = 2000;
+  private attackAt = -10000;
+  private actionTick = -1;
   private hitAt = -1000;
   private previousHp = 0;
   private status = new Text({
@@ -43,6 +56,7 @@ export class ActorView {
       .stroke({ color: 0xf5d18a, width: 2 })
       .fill({ color: 0xf5d18a, alpha: 0.15 });
     this.node.addChild(
+      this.shadow,
       this.halo,
       this.doll,
       this.health,
@@ -74,6 +88,10 @@ export class ActorView {
   ) {
     if (actor.hp < this.previousHp) this.hitAt = now;
     this.previousHp = actor.hp;
+    if (actor.actionTick !== this.actionTick) {
+      if (actor.state === "fighting") this.attackAt = this.simulationTime;
+      this.actionTick = actor.actionTick ?? -1;
+    }
     this.actor = actor;
     this.motion.duration = duration;
     this.motion.move(destination, now, snap, path);
@@ -110,10 +128,27 @@ export class ActorView {
 
   render(now: number) {
     const pose = this.motion.sample(now);
+    const simNow =
+      this.simulationTime +
+      (this.simulationPaused
+        ? 0
+        : Math.min(this.tickDuration, now - this.simulationReceived));
     this.node.position.set(pose.x, pose.y);
     this.node.zIndex = pose.y;
     this.activity.clear();
-    const hit = now - this.hitAt < 350;
+    const cue = this.actor.actionCue;
+    const cueActive =
+      cue &&
+      (cue.durationTicks === 0 ||
+        simNow < (cue.startedTick + cue.durationTicks) * this.tickDuration);
+    const hit = cue?.kind === "hit" ? !!cueActive : now - this.hitAt < 350;
+    if (cueActive && cue.targetPosition && !this.actor.travel) {
+      pose.direction = facing(
+        pose,
+        project(cue.targetPosition.x, cue.targetPosition.y),
+      );
+      this.motion.direction = pose.direction;
+    }
     this.doll.tint = hit ? 0xff937f : 0xffffff;
     if (hit)
       this.activity
@@ -131,10 +166,18 @@ export class ActorView {
           0,
           23,
           -Math.PI / 2,
-          -Math.PI / 2 + Math.PI * 2 * ((now % 2000) / 2000),
+          -Math.PI / 2 +
+            Math.PI *
+              2 *
+              (((simNow - (this.actor.actionTick ?? 0) * this.tickDuration) %
+                this.gatherInterval) /
+                this.gatherInterval),
         )
         .stroke({ color: 0xdac489, width: 3 });
-    if (this.actor.state === "fighting")
+    if (
+      (cue?.kind === "attack" && cueActive) ||
+      (!cue && this.actor.state === "fighting" && simNow - this.attackAt < 300)
+    )
       this.activity
         .moveTo(20, -55)
         .lineTo(40, -85)
@@ -143,10 +186,19 @@ export class ActorView {
     const key = this.samplePose
       ? `${this.samplePose}/00`
       : `${pose.direction}/${String(pose.frame).padStart(2, "0")}`;
-    if (`${action}/${key}` !== this.frameKey) {
-      this.frameKey = `${action}/${key}`;
+    if (
+      `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}` !==
+      this.frameKey
+    ) {
+      this.frameKey = `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}`;
       const layers = this.samplePose
-        ? ["body", "body-front"]
+        ? [
+            ...(this.sampleHair ? ["hair-ivory-back"] : []),
+            "body",
+            ...(this.sampleOutfit ? ["outfit-scholar"] : []),
+            "body-front",
+            ...(this.sampleHair ? ["hair-ivory-front"] : []),
+          ]
         : animationLayers(action, this.actor.appearance);
       while (this.sprites.length < layers.length) {
         const sprite = new Sprite();

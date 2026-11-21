@@ -10,6 +10,7 @@ export class ActorScene {
   private snapshotActors = new Map<string, import("./types").Actor>();
   private session = "";
   private tick = -1;
+  private previousRenderTick = -1;
   private rooms = new Map<string, string>();
   constructor(
     private textures: DollTextures,
@@ -69,7 +70,17 @@ export class ActorScene {
               : [...link.points].reverse()
             ).map((p) => project(p.x, p.y))
           : [];
+      if (snapshot.tick !== this.previousRenderTick) {
+        view.simulationReceived = now;
+      }
+      view.simulationTime = snapshot.tick * (snapshot.tickDurationMs || 500);
+      view.simulationPaused = snapshot.paused;
+      view.tickDuration = snapshot.tickDurationMs || 500;
+      view.gatherInterval =
+        (snapshot.scenarioConfig?.gatherIntervalTicks ?? 4) * view.tickDuration;
       view.samplePose = props.samplePose;
+      view.sampleOutfit = props.sampleOutfit ?? false;
+      view.sampleHair = props.sampleHair ?? false;
       view.update(
         actor,
         actor.id === props.selected,
@@ -81,6 +92,7 @@ export class ActorScene {
       );
       this.rooms.set(actor.id, actor.roomId);
     }
+    this.previousRenderTick = snapshot.tick;
   }
 
   render(now: number) {

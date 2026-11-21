@@ -556,3 +556,27 @@
 .game-top .objective-button {
   color: #eddfbd;
 }
+
+.dock-squad button {
+  height: 80px;
+  width: 80px;
+}
+.dock-squad button .layered-preview {
+  height: 40px;
+}
+.game-dock {
+  gap: 10px;
+  padding: 8px;
+}
+.dock-summary {
+  line-height: 1.6;
+}
+
+.dock-squad button.downed {
+  border-color: #c07368;
+  background: #603d3d;
+  color: #ffd1b5;
+}
+.dock-squad button.downed progress {
+  accent-color: #e69a83;
+}

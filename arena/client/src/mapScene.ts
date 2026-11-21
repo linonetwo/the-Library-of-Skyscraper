@@ -6,6 +6,8 @@ export type MapProps = {
   focusIntent?: import("./cameraController").FocusIntent;
   snapshot: Snapshot | null;
   samplePose?: "NE" | "SW";
+  sampleOutfit?: boolean;
+  sampleHair?: boolean;
   selected: string | null;
   selectedRoom: string | null;
   zoom: number;
@@ -87,6 +89,13 @@ export function paintMap(
   if (snapshot.worldMap?.props) {
     for (const entry of snapshot.worldMap.props) {
       const foot = project(entry.position.x, entry.position.y);
+      const shadow = new Graphics()
+        .ellipse(foot.x, foot.y + 2, 30, 15)
+        .fill({ color: 0x122827, alpha: 0.2 });
+      shadow.zIndex = foot.y - 0.1;
+      shadow.label = "shelf:shadow:" + entry.id;
+      shadow.eventMode = "none";
+      entities.addChild(shadow);
       const prop = new Sprite(textures[entry.asset]);
       prop.anchor.set(0.5, 160 / 192);
       prop.position.copyFrom(foot);
