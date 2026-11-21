@@ -204,3 +204,14 @@ pub fn approach(position: &mut Position, target: Position, stop: u64) {
         position.y = (position.y * 1000.).round() / 1000.;
     }
 }
+
+/// One authority tick has one actor movement budget across road and room work.
+pub fn approach_actor(a: &mut Actor, target: Position, stop: u64, tick: u64) {
+    if a.last_moved_tick == tick || a.hp == 0 || a.travel.is_some() {
+        return;
+    }
+    if distance(a.world_position, target) > stop {
+        approach(&mut a.world_position, target, stop);
+        a.last_moved_tick = tick;
+    }
+}

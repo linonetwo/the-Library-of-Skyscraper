@@ -79,6 +79,7 @@ impl Session {
                 progress: 0.,
             };
             self.enemies.push(Enemy {
+                last_moved_tick: 0,
                 action_cue: None,
                 id: "guardian-counterattack".into(),
                 room_id: "room-4".into(),

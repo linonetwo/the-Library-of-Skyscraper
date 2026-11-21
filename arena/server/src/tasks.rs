@@ -25,7 +25,7 @@ impl Session {
             });
         }
     }
-    fn deposit_anchor(&self, owner: &str, room: &str) -> Option<crate::Position> {
+    pub(crate) fn deposit_anchor(&self, owner: &str, room: &str) -> Option<crate::Position> {
         self.buildings
             .iter()
             .find(|b| {
@@ -60,6 +60,16 @@ impl Session {
             Some(&a.owner),
         );
         Ok(())
+    }
+    fn delivery_tick(&mut self, a: &mut Actor) -> bool {
+        let Some(anchor) = self.deposit_anchor(&a.owner, &a.room_id) else {
+            return false;
+        };
+        crate::travel::approach_actor(a, anchor, 750, self.tick);
+        if self.deposit(a).is_ok() {
+            a.pending_delivery = false;
+        }
+        true
     }
     fn deposit_room(&self, owner: &str, room: &str) -> bool {
         room == "room-0"
@@ -149,6 +159,9 @@ impl Session {
             }
             return;
         }
+        if a.pending_delivery && a.cargo > 0 && self.delivery_tick(a) {
+            return;
+        }
         let Some(mut task) = a.task.clone() else {
             a.state = "idle".into();
             return;
@@ -180,11 +193,10 @@ impl Session {
                 .unwrap();
             task.stage = "transporting".into();
         }
-        if a.cargo > 0
-            && let Some(anchor) = self.deposit_anchor(&a.owner, &a.room_id)
-        {
-            crate::travel::approach(&mut a.world_position, anchor, 750);
-            if self.deposit(a).is_err() {
+        if a.cargo > 0 && self.deposit_anchor(&a.owner, &a.room_id).is_some() {
+            a.pending_delivery = true;
+            self.delivery_tick(a);
+            if a.pending_delivery {
                 task.stage = "depositing".into();
                 a.task = Some(task);
                 return;
@@ -213,10 +225,11 @@ impl Session {
             }
             "build" => {
                 let kind = task.building_kind.as_deref().unwrap_or("catalog");
-                crate::travel::approach(
-                    &mut a.world_position,
+                crate::travel::approach_actor(
+                    a,
                     crate::travel::build_anchor(&a.room_id, kind),
                     750,
+                    self.tick,
                 );
                 if self.buildings.iter().any(|b| {
                     b.owner == a.owner

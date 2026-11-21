@@ -59,7 +59,7 @@ impl Session {
                     .iter()
                     .find(|enemy| enemy.hp > 0 && enemy.room_id == a.room_id)
             {
-                crate::travel::approach(&mut a.world_position, enemy.world_position, 1800);
+                crate::travel::approach_actor(&mut a, enemy.world_position, 1800, self.tick);
             }
             if self.players[&a.owner].script.is_none() {
                 let _ = self.actor_attack(&mut a);
@@ -97,6 +97,7 @@ impl Session {
                     a.world_position,
                     crate::travel::center(&self.enemies[i].room_id),
                 ) <= 4000
+                    && self.enemies[i].last_moved_tick != self.tick
                 {
                     crate::travel::approach(
                         &mut self.enemies[i].world_position,
@@ -154,7 +155,10 @@ impl Session {
                 bs.sort_by(|a, b| a.1.cmp(&b.1).then_with(|| a.2.cmp(&b.2)));
                 if let Some((j, _, _)) = bs.first() {
                     let p = self.buildings[*j].world_position;
-                    crate::travel::approach(&mut self.enemies[i].world_position, p, 1800);
+                    if self.enemies[i].last_moved_tick != self.tick {
+                        crate::travel::approach(&mut self.enemies[i].world_position, p, 1800);
+                        self.enemies[i].last_moved_tick = self.tick;
+                    }
                     if self.tick
                         >= self.enemies[i].action_tick
                             + crate::scenario::number("combatIntervalTicks")
