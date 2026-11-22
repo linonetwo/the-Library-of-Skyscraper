@@ -28,6 +28,7 @@ for (const [lookIndex, [name, layers]] of Object.entries(looks).entries()) {
     for (const [row, direction] of directions.entries()) {
       const parts = [];
       for (const layer of layers) {
+        if (!atlases[layer]) continue; // Inactive transparent layers have no atlas page.
         const key = `${config.action}/${layer}/${direction}/${String(frame).padStart(2, "0")}`,
           f = atlases[layer][key];
         parts.push({
