@@ -4,23 +4,33 @@ const rotate = ([x, y], a) => [
 ];
 const add = (a, b) => a.map((v, i) => v + b[i]);
 const sub = (a, b) => a.map((v, i) => v - b[i]);
-export function stamp(canvas, width, height, image, point, pivot, a) {
+export function stamp(canvas, width, height, image, point, pivot, a, mapping) {
+  const alongBone = (vector, inverse = false) => {
+    if (!mapping) return vector;
+    const axis = mapping.axis,
+      length = Math.hypot(...axis),
+      unit = axis.map((v) => v / length);
+    const projected = vector[0] * unit[0] + vector[1] * unit[1];
+    const factor = inverse ? 1 / mapping.scale - 1 : mapping.scale - 1;
+    return vector.map((v, i) => v + unit[i] * projected * factor);
+  };
   // Inverse sampling preserves the declared pivot even when rotation changes the image bounds.
   const corners = [
     [0, 0],
     [image.width, 0],
     [0, image.height],
     [image.width, image.height],
-  ].map((p) => add(point, rotate(sub(p, pivot), a)));
+  ].map((p) => add(point, rotate(alongBone(sub(p, pivot)), a)));
   const x0 = Math.max(0, Math.floor(Math.min(...corners.map((p) => p[0])))),
     x1 = Math.min(width, Math.ceil(Math.max(...corners.map((p) => p[0]))));
   const y0 = Math.max(0, Math.floor(Math.min(...corners.map((p) => p[1])))),
     y1 = Math.min(height, Math.ceil(Math.max(...corners.map((p) => p[1]))));
   for (let y = y0; y < y1; y++)
     for (let x = x0; x < x1; x++) {
-      const source = add(rotate(sub([x + 0.5, y + 0.5], point), -a), pivot).map(
-          (v) => v - 0.5,
-        ),
+      const source = add(
+          alongBone(rotate(sub([x + 0.5, y + 0.5], point), -a), true),
+          pivot,
+        ).map((v) => v - 0.5),
         sx = Math.floor(source[0]),
         sy = Math.floor(source[1]);
       const color = [0, 0, 0, 0];

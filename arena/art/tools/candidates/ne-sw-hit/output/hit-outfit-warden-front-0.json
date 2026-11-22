@@ -1,0 +1,122 @@
+{
+  "frames": {
+    "hit/outfit-warden-front/NE/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 17,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 82,
+        "w": 17,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-warden-front/SW/01": {
+      "frame": {
+        "x": 28,
+        "y": 2,
+        "w": 17,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 86,
+        "w": 17,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-warden-front/NE/00": {
+      "frame": {
+        "x": 49,
+        "y": 2,
+        "w": 22,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 97,
+        "y": 81,
+        "w": 22,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-warden-front/SW/00": {
+      "frame": {
+        "x": 75,
+        "y": 2,
+        "w": 22,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 87,
+        "w": 22,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/outfit-warden-front/NE": [
+      "hit/outfit-warden-front/NE/00",
+      "hit/outfit-warden-front/NE/01"
+    ],
+    "hit/outfit-warden-front/SW": [
+      "hit/outfit-warden-front/SW/00",
+      "hit/outfit-warden-front/SW/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-outfit-warden-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 99,
+      "h": 49
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

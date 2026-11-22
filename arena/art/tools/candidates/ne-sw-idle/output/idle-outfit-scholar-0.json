@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "idle/outfit-scholar/SW/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 78,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-scholar/SW/03": {
+      "frame": {
+        "x": 55,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 79,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-scholar/NE/01": {
+      "frame": {
+        "x": 103,
+        "y": 2,
+        "w": 42,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 76,
+        "w": 42,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-scholar/NE/03": {
+      "frame": {
+        "x": 149,
+        "y": 2,
+        "w": 42,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 77,
+        "w": 42,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-scholar/SW/00": {
+      "frame": {
+        "x": 195,
+        "y": 2,
+        "w": 44,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 79,
+        "w": 44,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-scholar/SW/02": {
+      "frame": {
+        "x": 243,
+        "y": 2,
+        "w": 44,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 79,
+        "w": 44,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-scholar/NE/00": {
+      "frame": {
+        "x": 291,
+        "y": 2,
+        "w": 42,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 77,
+        "w": 42,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-scholar/NE/02": {
+      "frame": {
+        "x": 337,
+        "y": 2,
+        "w": 42,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 77,
+        "w": 42,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "idle/outfit-scholar/NE": [
+      "idle/outfit-scholar/NE/00",
+      "idle/outfit-scholar/NE/01",
+      "idle/outfit-scholar/NE/02",
+      "idle/outfit-scholar/NE/03"
+    ],
+    "idle/outfit-scholar/SW": [
+      "idle/outfit-scholar/SW/00",
+      "idle/outfit-scholar/SW/01",
+      "idle/outfit-scholar/SW/02",
+      "idle/outfit-scholar/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "idle-outfit-scholar-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 381,
+      "h": 70
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
