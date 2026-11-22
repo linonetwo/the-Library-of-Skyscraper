@@ -1,0 +1,27 @@
+title: 竞技场开发日志2026-11-22
+tags: 竞技场开发日志 竞技场目录：日报
+type: text/vnd.tiddlywiki
+created: 20261122010004000
+modified: 20261122010004000
+
+!! 近景与任务操作
+
+继续[[竞技场v0.3.0版本计划]]的完整首场远征，前日记录见[[竞技场开发日志2026-11-21]]。主代理今天从5175开启训练、推荐分工、开始并选择护卫实玩：新局直接聚焦本人小队，推荐分工后目标区收起，三职业任务和生命／负重仍清楚可见。连续书架、独立资源堆与墨影沿实际权威地图library-v3.3显示。
+
+[img[竞技场2026-11-22近景分工实机.png]]
+
+随后tick42采集者带24建材返程、护卫生命60交战、巡书使等待25建材入库；浏览器pageerror为0。主战场角色仍使用此前正式图集，新的全方向动作逐模块制作。实机录屏与状态保存在root/2026-11-22/gameplay。
+
+!! 16相位纸娃娃进入真实播放器
+
+主代理再次在5175/camera-sample选择warden长袖、midnight束发与法杖，按SW／NE分别走完12world、约8秒，到达停止；裸头、发型、衣装和握持手独立切换，pageerror为0。样板复用产品DollRenderer、resolveAnimation、同一投影与位置／累计路程插值。
+
+[img[竞技场2026-11-22长袖束发持杖行走实机.png]]
+
+图为动作样板实机，供独立连续步态接受。13个实际内容层复用2衣×2发型×空手／法杖，解码页约3.20MiB；工具4f15677／251d888／8a105dd保留orig／trim／pivot，全部416张有效裁片可还原。主代理亲看长袖、掌杖和束发层次；自然步态的帧间滑动、近侧袖手与杖尾由Astra继续实播审阅。到达后的真正idle4、完整8向、attack／hit／down／collect／build-catalog／unload与手持运输按同版继续制作。
+
+!! 合并与分工
+
+[[PR51|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/51]]已以e0b4f15通过Astra源审及整批CI后合入0689219：主动actionCue与impactCue独立保留，累计路程／末次朝向／阶段起点供确定性播放，cataloging为真实工作阶段，旧v3回放保留实际事实。运行入口提升与新动作前端分别安排，完整P3及生产包接受后统一发布v0.3。
+
+Astra继续八向源、衣发、武器和真实倒地变体设计；Sol工具导出各独立动作与trim图集；Sol前端接统一目录、时钟和纸娃娃层。[[PR52|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/52]]按变更域运行现有CI，最终整版保留集中全套；当前按最新head收客户端时序问题，原预算与功能覆盖保持。详细数据保留在各PR及本地evidence。

@@ -33,6 +33,12 @@ pub struct Actor {
     pub pending_delivery: bool,
     #[serde(default)]
     pub action_cue: Option<ActionCue>,
+    #[serde(default)]
+    pub impact_cue: Option<ActionCue>,
+    #[serde(default)]
+    pub motion_distance_milli: u64,
+    #[serde(default = "crate::action_runtime::default_direction")]
+    pub last_move_direction: Position,
     pub id: String,
     pub owner: String,
     pub role: String,
@@ -211,6 +217,8 @@ pub struct ActorTask {
     pub kind: String,
     pub target: String,
     pub stage: String,
+    #[serde(default)]
+    pub stage_started_tick: u64,
     pub blocked_reason: Option<String>,
     pub building_kind: Option<String>,
 }
@@ -240,6 +248,12 @@ pub struct Enemy {
     pub last_moved_tick: u64,
     #[serde(default)]
     pub action_cue: Option<ActionCue>,
+    #[serde(default)]
+    pub impact_cue: Option<ActionCue>,
+    #[serde(default)]
+    pub motion_distance_milli: u64,
+    #[serde(default = "crate::action_runtime::default_direction")]
+    pub last_move_direction: Position,
     pub id: String,
     pub room_id: String,
     pub hp: u32,

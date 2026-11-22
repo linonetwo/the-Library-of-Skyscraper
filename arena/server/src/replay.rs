@@ -271,7 +271,24 @@ impl Session {
                 b.world_position = crate::travel::center(&b.room_id);
             }
         }
-        if serde_json::to_value(session.snapshot()).map_err(|_| "snapshot serialization failed")?
+        let actual = session.snapshot();
+        // Decorative props are not collision or simulation inputs. Permit a new
+        // presentation layout only when every gameplay map field is unchanged.
+        if replay.simulation_version >= 3 {
+            let mut previous_map = expected.world_map.clone();
+            let mut current_map = actual.world_map.clone();
+            for map in [&mut previous_map, &mut current_map] {
+                if let Some(object) = map.as_object_mut() {
+                    object.remove("props");
+                    object.remove("version");
+                }
+            }
+            if previous_map == current_map {
+                expected.world_map = actual.world_map.clone();
+                expected.map_version = actual.map_version.clone();
+            }
+        }
+        if serde_json::to_value(&actual).map_err(|_| "snapshot serialization failed")?
             != serde_json::to_value(&expected).map_err(|_| "snapshot serialization failed")?
         {
             return Err("replay final snapshot mismatch".into());
