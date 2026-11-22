@@ -122,6 +122,13 @@ export default function MapCanvas(props: MapProps) {
       world.position.set(camera.x, camera.y);
       world.scale.set(camera.scale);
       host.dataset.camera = JSON.stringify(camera);
+      if (
+        initialized &&
+        !app.ticker.started &&
+        !p.suspended &&
+        !document.hidden
+      )
+        app.render();
     };
     const pointerDown = (event: PointerEvent) => {
       drag = {
@@ -161,7 +168,7 @@ export default function MapCanvas(props: MapProps) {
     const paint = () => {
       if (!actors || disposed) return;
       const p = latest.current;
-      if (p.suspended) app.stop();
+      if (p.suspended || p.snapshot?.paused) app.stop();
       else if (!document.hidden) app.start();
       host.dataset.roomTargets = JSON.stringify(
         (p.snapshot?.rooms ?? []).map((room) => ({
@@ -349,7 +356,19 @@ export default function MapCanvas(props: MapProps) {
     })();
     const visibility = () => {
       if (initialized && !disposed)
-        document.hidden || latest.current.suspended ? app.stop() : app.start();
+        document.hidden ||
+        latest.current.suspended ||
+        latest.current.snapshot?.paused
+          ? app.stop()
+          : app.start();
+      if (
+        initialized &&
+        !disposed &&
+        !document.hidden &&
+        !latest.current.suspended &&
+        latest.current.snapshot?.paused
+      )
+        applyCamera();
     };
     document.addEventListener("visibilitychange", visibility);
     return () => {
