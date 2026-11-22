@@ -22,3 +22,17 @@ inspect rooms 0/1/3 at default camera for the two joined rear shelf runs, then
 room 2's open north doorway and room 4's east/south through route. Compare with
 all 12 squad slots occupied and buildings present; verify the visible sprite
 bases and silhouettes as well as their data footprints before visual acceptance.
+
+## P3 low perimeter and floor accents (library-v3.4)
+
+The 27 tall shelves remain unchanged. Twenty non-collision, 0.30 m low-wall
+segments occupy the two visible front edges; their full footprints avoid the
+three-tile-wide link corridors, including links passing through intermediate
+rooms. Twelve two-tile floor thresholds mark the actual room/link crossings,
+without narrowing those corridors. A 2×2 floor inlay sits under room-3's catalog
+anchor (-9.5, 9). Rooms, links, standing slots and building anchors are unchanged.
+
+The five `p3-environment` prototype assets retain their exported pixel anchors
+and pre-baked scale 1. Floor markings render after tiles and before all depth
+entities; low walls use the same footpoint depth ordering as other static props.
+They add no collision. Existing decor-only replay migration applies.

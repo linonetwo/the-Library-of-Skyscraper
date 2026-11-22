@@ -1,3 +1,4 @@
+import { loadLibraryTextures } from './libraryLayout';
 import { loadWorldAssets } from "./worldAssets";
 import { WorldEntities } from "./WorldEntities";
 import { animationActions } from "./animationCatalog";
@@ -310,6 +311,7 @@ export default function MapCanvas(props: MapProps) {
           ),
         );
         if (disposed) return;
+        Object.assign(tiles, await loadLibraryTextures());
         const worldAssets = await loadWorldAssets();
         if (disposed) return;
         dynamics = new WorldEntities(entities, tiles, worldAssets);

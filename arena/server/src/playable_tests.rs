@@ -414,6 +414,10 @@ fn four_owners_have_twelve_distinct_legal_birth_slots() {
 #[test]
 fn explicit_props_clear_roads_slots_and_central_interaction_space() {
     let map = crate::travel::world_map();
+    let registry: serde_json::Value = serde_json::from_str(include_str!(
+        "../../art/p3-environment/assets/manifest.json"
+    ))
+    .unwrap();
     for prop in map["props"].as_array().unwrap() {
         let p: Position = serde_json::from_value(prop["position"].clone()).unwrap();
         let half_x = prop["footprint"]["width"].as_f64().unwrap() / 2.;
@@ -433,6 +437,16 @@ fn explicit_props_clear_roads_slots_and_central_interaction_space() {
         assert!(
             (p.x - c.x).abs() + half_x <= floor_edge && (p.y - c.y).abs() + half_y <= floor_edge
         );
+        // Walkable overlays intentionally mark entrances and the target building.
+        // Their registry forbids collision/height; perimeter pieces still obey all clearances.
+        let spec = &registry["assets"][prop["asset"].as_str().unwrap()];
+        if spec["layer"] == "floor-before-props" {
+            assert_eq!(spec["heightMeters"], 0);
+            assert_eq!(spec["decorationOccupation"]["collision"], false);
+            assert_eq!(half_x * 2., spec["footprint"][0].as_f64().unwrap());
+            assert_eq!(half_y * 2., spec["footprint"][1].as_f64().unwrap());
+            continue;
+        }
         assert!(
             (p.x - c.x).abs() - half_x >= 1.5 || (p.y - c.y).abs() - half_y >= 1.5,
             "central interaction overlap {prop}"

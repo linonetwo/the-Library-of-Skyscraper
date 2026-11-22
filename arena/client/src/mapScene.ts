@@ -1,3 +1,4 @@
+import { libraryRegistration } from './libraryLayout';
 import { Container, Graphics, Sprite, Polygon, Texture } from "pixi.js";
 import type { Snapshot } from "./types";
 import { project, diamond } from "./isoGeometry";
@@ -93,20 +94,23 @@ export function paintMap(
   if (snapshot.worldMap?.props) {
     for (const entry of snapshot.worldMap.props) {
       const foot = project(entry.position.x, entry.position.y);
-      const shadow = new Graphics()
-        .ellipse(foot.x, foot.y + 2, 30, 15)
-        .fill({ color: 0x122827, alpha: 0.2 });
-      shadow.zIndex = foot.y - 0.1;
-      shadow.label = "shelf:shadow:" + entry.id;
-      shadow.eventMode = "none";
-      entities.addChild(shadow);
+      const registration = libraryRegistration(entry.asset);
+      if (registration.shadow) {
+        const shadow = new Graphics()
+          .ellipse(foot.x, foot.y + 2, 30, 15)
+          .fill({ color: 0x122827, alpha: 0.2 });
+        shadow.zIndex = foot.y - 0.1;
+        shadow.label = "shelf:shadow:" + entry.id;
+        shadow.eventMode = "none";
+        entities.addChild(shadow);
+      }
       const prop = new Sprite(textures[entry.asset]);
-      prop.anchor.set(0.5, 160 / 192);
+      prop.anchor.set(registration.anchor[0], registration.anchor[1]);
       prop.position.copyFrom(foot);
       prop.zIndex = foot.y;
       prop.eventMode = "none";
-      prop.label = "shelf:" + entry.id;
-      entities.addChild(prop);
+      prop.label = "decor:" + entry.id;
+      (registration.ground ? ground : entities).addChild(prop);
     }
     return;
   }
