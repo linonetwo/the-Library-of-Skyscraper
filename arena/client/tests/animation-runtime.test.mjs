@@ -69,3 +69,8 @@ test('display distance follows the same interpolation as position and snaps on s
  motion.move({x:0,y:0},400,true,[],1000);
  assert.equal(motion.sample(450).motionDistanceMilli,1000);
 });
+
+test('continuous work does not face an expired old attack target',()=>{
+ const a=resolve({task:{stage:'cataloging',stageStartedTick:20},actionCue:cue('attack',10,1),lastMoveDirection:{x:0,y:1}},10500);
+ assert.equal(a.direction,'SW');assert.equal(a.clip,'build-catalog');
+});

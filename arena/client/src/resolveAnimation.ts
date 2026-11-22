@@ -114,7 +114,6 @@ function selectAnimation(
   const working =
     actor.task?.stage === "construction" || actor.task?.stage === "cataloging";
   if (working) {
-    aim();
     return result(
       "build-catalog",
       (actor.task?.stageStartedTick ?? action?.startedTick ?? 0) * tickMs,
