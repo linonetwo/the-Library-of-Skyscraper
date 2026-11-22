@@ -1,5 +1,6 @@
 import { Assets, type Texture } from 'pixi.js';
-import environment from '../public/assets/p3-environment/manifest.json';
+type Registration = { anchor: [number, number]; layer: string };
+let registrations: Record<string, Registration> = {};
 import { project } from './isoGeometry';
 import { roomCenter } from './mapLayout';
 
@@ -10,13 +11,17 @@ export function floorPoint(q: number, r: number) {
 }
 
 export async function loadLibraryTextures(): Promise<Record<string, Texture>> {
-  const sheet = await Assets.load('/assets/p3-environment/environment-atlas.json');
+  const [manifest, sheet] = await Promise.all([
+    fetch('/assets/p3-environment/manifest.json').then(r => r.json()),
+    Assets.load('/assets/p3-environment/environment-atlas.json'),
+  ]);
+  registrations = manifest.assets;
   return sheet.textures;
 }
 
 /** Static pieces share their exported ground pivot and layer; scale is pre-baked. */
 export function libraryRegistration(key: string) {
-  const spec = environment.assets[key as keyof typeof environment.assets];
+  const spec = registrations[key];
   return spec
     ? { anchor: spec.anchor, ground: spec.layer === 'floor-before-props', shadow: false }
     : { anchor: [0.5, 160 / 192], ground: false, shadow: true };
