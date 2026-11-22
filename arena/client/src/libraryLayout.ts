@@ -10,11 +10,8 @@ export function floorPoint(q: number, r: number) {
 }
 
 export async function loadLibraryTextures(): Promise<Record<string, Texture>> {
-  return Object.fromEntries(await Promise.all(
-    Object.entries(environment.assets).map(async ([key, asset]) => [
-      key, await Assets.load('/assets/p3-environment/' + asset.image),
-    ]),
-  ));
+  const sheet = await Assets.load('/assets/p3-environment/environment-atlas.json');
+  return sheet.textures;
 }
 
 /** Static pieces share their exported ground pivot and layer; scale is pre-baked. */

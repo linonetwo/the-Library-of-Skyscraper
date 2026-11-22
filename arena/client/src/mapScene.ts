@@ -107,7 +107,7 @@ export function paintMap(
       const prop = new Sprite(textures[entry.asset]);
       prop.anchor.set(registration.anchor[0], registration.anchor[1]);
       prop.position.copyFrom(foot);
-      prop.zIndex = foot.y;
+      prop.zIndex = registration.ground ? 1 : foot.y;
       prop.eventMode = "none";
       prop.label = "decor:" + entry.id;
       (registration.ground ? ground : entities).addChild(prop);
