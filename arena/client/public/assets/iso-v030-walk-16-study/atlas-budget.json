@@ -1,4 +1,28 @@
 {
+  "clip": {
+    "action": "walk",
+    "frameCount": 16,
+    "frameDurationsMs": [
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45
+    ],
+    "playback": "loop",
+    "cycleWorldStride": 1.08
+  },
   "appearanceOptions": {
     "outfits": [
       "scholar",

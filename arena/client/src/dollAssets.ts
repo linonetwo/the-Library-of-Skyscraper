@@ -1,11 +1,9 @@
-import { Assets, type Texture } from "pixi.js";
+import { Assets } from "pixi.js";
 import { animationActions } from "./animationCatalog";
 import { animationLayerNames } from "./walkLayers";
 import type { DollTextures } from "./DollRenderer";
-export async function loadDollTextures(
-  sample: Record<string, Texture> | undefined,
-): Promise<DollTextures> {
-  if (sample) return { idle: sample, walk: sample };
+export async function loadDollTextures(sample: boolean): Promise<DollTextures> {
+  if (sample) return { idle: {}, walk: {} };
   const entries = await Promise.all(
     animationActions.map(async (action) => {
       const sheets = await Promise.all(

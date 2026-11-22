@@ -3,13 +3,18 @@ import MapCanvas from "./MapCanvas";
 import { project } from "./isoGeometry";
 import { cameraSampleWorld } from "./cameraSampleWorld";
 import { animationLayers, type DollAppearance } from "./walkLayers";
-import {
-  loadSampleDefinition,
-  loadSampleLayers,
-  type SampleDefinition,
-} from "./sampleAssets";
-import type { Texture } from "pixi.js";
-const tickMs = 50;
+import { loadSampleDefinition, loadSampleLayers } from "./sampleAssets";
+import type { Clip } from "./animationCatalog";
+import { clipDuration } from "./animationTiming";
+import type { SampleStudy } from "./sampleAssets";
+const tickMs = 1;
+const labels: Partial<Record<Clip, string>> = {
+  idle: "站姿（呼吸待制）",
+  walk: "行走",
+  attack: "普通攻击（空手手势候选）",
+  hit: "受击",
+  down: "倒地",
+};
 const speed = 1.5;
 /** Independent art prototype, sharing the real scene, doll sprites and motion resolver. */
 export default function CameraSample() {
@@ -20,26 +25,23 @@ export default function CameraSample() {
   const [weapon, setWeapon] = useState(false),
     [cargo, setCargo] = useState(false),
     [walk, setWalk] = useState(true);
+  const [action, setAction] = useState<Clip>("walk");
   const [tick, setTick] = useState(0),
     [moving, setMoving] = useState(false);
   const [loaded, setLoaded] = useState<{
     variant: string;
-    definition: SampleDefinition;
-    layers: string[];
-    textures: Record<string, Texture>;
+    study: SampleStudy;
+    action: Clip;
+    appearance: DollAppearance;
   }>();
   const [error, setError] = useState("");
   useEffect(() => {
     let disposed = false;
     void loadSampleDefinition(variant)
-      .then(async (definition) => {
-        const layers = animationLayers(
-          "walk",
-          { outfit, hair, weapon },
-          definition.activeLayers,
-        );
-        const textures = await loadSampleLayers(definition, layers);
-        if (!disposed) setLoaded({ variant, definition, layers, textures });
+      .then(async (study) => {
+        const appearance = { outfit, hair, weapon };
+        await loadSampleLayers(study, appearance, cargo, action);
+        if (!disposed) setLoaded({ variant, study, action, appearance });
       })
       .catch((cause) => {
         if (!disposed) setError(String(cause));
@@ -47,9 +49,16 @@ export default function CameraSample() {
     return () => {
       disposed = true;
     };
-  }, [variant, outfit, hair, weapon]);
-  const length = loaded?.definition.routeLength ?? 12;
-  const totalTicks = Math.ceil(((length / speed) * 1000) / tickMs);
+  }, [variant, outfit, hair, weapon, cargo, action]);
+  const length = loaded?.study.routeLength ?? 12;
+  const active = loaded?.study.set.clips[loaded.action];
+  const nativeDuration = active ? clipDuration(active.timing) : 8000;
+  const totalTicks =
+    loaded?.action === "walk"
+      ? (length / speed) * 1000
+      : active?.timing.playback === "loop"
+        ? Infinity
+        : nativeDuration;
   useEffect(() => {
     if (!moving) return;
     const start = performance.now() - tick * tickMs;
@@ -60,24 +69,30 @@ export default function CameraSample() {
       );
       setTick(next);
       if (next >= totalTicks) setMoving(false);
-    }, tickMs);
+    }, 16);
     return () => clearInterval(timer);
   }, [moving, totalTicks]);
   if (error) return <p>{error}</p>;
   if (!loaded || loaded.variant !== variant) return <p>加载独立动作候选…</p>;
-  const definition = loaded.definition;
-  const distance = Math.min(length, ((tick * tickMs) / 1000) * speed);
+  const study = loaded.study;
+  const actualAction = loaded.action;
+  const registration = study.set.clips[actualAction]!;
+  const distance =
+    actualAction === "walk"
+      ? Math.min(length, ((tick * tickMs) / 1000) * speed)
+      : 0;
   const snapshot = cameraSampleWorld({
     variant,
+    action: actualAction,
+    durationMs: nativeDuration,
+    tickMs,
     direction,
     tick,
     moving,
     distance,
     length,
     cargo,
-    outfit,
-    hair,
-    weapon,
+    ...loaded.appearance,
   });
 
   return (
@@ -87,11 +102,9 @@ export default function CameraSample() {
         snapshot={snapshot}
         fixedCamera={{ center: project(0, length / 2), scale: 1 }}
         samplePose={direction}
-        sampleTextures={loaded.textures}
-        sampleLayers={loaded.layers}
-        sampleClip={definition.clip}
-        sampleRig={definition.rig}
-        sampleWalk={walk && tick < totalTicks}
+        assetSet={study.set}
+        dollAppearance={loaded.appearance}
+        sampleWalk={actualAction === "walk" && walk && tick < totalTicks}
         selected="camera-pose"
         selectedRoom={null}
         zoom={1}
@@ -115,11 +128,30 @@ export default function CameraSample() {
               setOutfit("none");
               setHair("none");
               setWeapon(false);
+              setAction("walk");
               setVariant(e.target.value as typeof variant);
             }}
           >
             <option value="sixteen">16相 · 45ms</option>
             <option value="four">历史4相 · 125ms</option>
+          </select>
+        </label>
+        <label>
+          动作{" "}
+          <select
+            aria-label="样板动作"
+            value={action}
+            onChange={(e) => {
+              setMoving(false);
+              setTick(0);
+              setAction(e.target.value as Clip);
+            }}
+          >
+            {Object.keys(study.set.clips).map((key) => (
+              <option key={key} value={key}>
+                {labels[key as Clip] ?? key}
+              </option>
+            ))}
           </select>
         </label>
         <label>
@@ -189,7 +221,11 @@ export default function CameraSample() {
             setMoving(!moving);
           }}
         >
-          {moving ? "暂停" : `沿${length}格道移动1.5格/秒`}
+          {moving
+            ? "暂停"
+            : actualAction === "walk"
+              ? `沿${length}格道移动1.5格/秒`
+              : "播放动作"}
         </button>
         <button
           onClick={() => {
@@ -200,11 +236,31 @@ export default function CameraSample() {
           复位
         </button>
         <span>
-          45° / 30° · scale 1 · {length / speed}秒 ·{" "}
-          {definition.clip.frameCount}相 ·{" "}
-          {Math.round(definition.decodedBytes / 1024)}KiB全层decoded ·
-          动态未接受
+          45° / 30° · scale 1 ·{" "}
+          {actualAction === "walk"
+            ? `${length / speed}秒`
+            : `${nativeDuration}ms`}{" "}
+          · {registration.timing.frameCount}相 ·{" "}
+          {Math.round(study.decodedBytes / 1024)}KiB全层decoded · 动态未接受
         </span>
+        <label>
+          模拟时间{" "}
+          <input
+            aria-label="样板模拟时间"
+            type="range"
+            min={0}
+            max={
+              actualAction === "walk" ? (length / speed) * 1000 : nativeDuration
+            }
+            step={1}
+            value={tick}
+            onChange={(e) => {
+              setMoving(false);
+              setTick(Number(e.target.value));
+            }}
+          />
+          {tick}ms
+        </label>
         <a href="/">返回游戏</a>
       </div>
     </div>

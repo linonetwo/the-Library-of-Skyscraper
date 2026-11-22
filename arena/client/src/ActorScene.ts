@@ -85,10 +85,9 @@ export class ActorScene {
       view.gatherInterval =
         (snapshot.scenarioConfig?.gatherIntervalTicks ?? 4) * view.tickDuration;
       view.samplePose = props.samplePose;
-      view.sampleLayers = props.sampleLayers;
-      view.sampleClip = props.sampleClip;
-      view.sampleRig = props.sampleRig;
       view.sampleWalk = props.sampleWalk ?? false;
+      view.assetSet = props.assetSet;
+      view.dollAppearance = props.dollAppearance;
       view.update(
         actor,
         actor.id === props.selected,

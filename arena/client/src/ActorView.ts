@@ -1,9 +1,9 @@
-import type { SampleRig } from "./RegisteredCargo";
 import { DollRenderer, type DollTextures } from "./DollRenderer";
 export type { DollTextures } from "./DollRenderer";
 import type { WorldAssets } from "./worldAssets";
-import type { RegisteredClip } from "./animationCatalog";
-import type { AnimationAction } from "./animationCatalog";
+import type { Clip } from "./animationCatalog";
+import type { LoadedAssetSet } from "./assetSetLoader";
+import type { DollAppearance } from "./walkLayers";
 import { cueActive as isCueActive, resolveAnimation } from "./resolveAnimation";
 import { Container, Graphics, Rectangle, Text } from "pixi.js";
 import { roleNames } from "./types";
@@ -16,9 +16,8 @@ export class ActorView {
   readonly motion: ActorMotion;
   samplePose?: "NE" | "SW";
   sampleWalk = false;
-  sampleRig?: SampleRig;
-  sampleLayers?: string[];
-  sampleClip?: RegisteredClip;
+  assetSet?: LoadedAssetSet;
+  dollAppearance?: DollAppearance;
   private dollRenderer: DollRenderer;
   private doll: Container;
   private shadow = new Graphics()
@@ -116,8 +115,9 @@ export class ActorView {
                   : "";
     this.status.text = `${actor.owner.toUpperCase()} · ${roleNames[actor.role]}${this.status.text ? " · " + this.status.text : ""}`;
     this.status.style.fill = actor.owner === "p1" ? 0xc7e7c0 : 0xb1d7f3;
-    this.doll.alpha = actor.hp <= 0 ? 0.45 : 1;
-    this.doll.rotation = actor.hp <= 0 ? -Math.PI / 2 : 0;
+    this.doll.alpha = actor.hp <= 0 && !this.assetSet?.clips.down ? 0.45 : 1;
+    this.doll.rotation =
+      actor.hp <= 0 && !this.assetSet?.clips.down ? -Math.PI / 2 : 0;
     this.halo.visible = selected;
     this.health
       .clear()
@@ -129,18 +129,6 @@ export class ActorView {
 
   render(now: number, simNow = this.simulationTime) {
     const pose = this.motion.sample(now);
-    const sampleCatalog = this.sampleClip
-      ? {
-          idle: {
-            ...this.sampleClip,
-            frameCount: 1,
-            frameMs: 1,
-            frameDurationsMs: undefined,
-            cycleWorldStride: undefined,
-          },
-          walk: this.sampleClip,
-        }
-      : undefined;
     const selection = this.authoritativeAnimation
       ? resolveAnimation(
           this.actor,
@@ -155,7 +143,7 @@ export class ActorView {
             worldPosition: inverse(pose.x, pose.y),
             tickDurationMs: this.tickDuration,
           },
-          sampleCatalog,
+          this.assetSet?.catalog,
         )
       : undefined;
     this.node.position.set(pose.x, pose.y);
@@ -176,11 +164,11 @@ export class ActorView {
       this.motion.direction = pose.direction;
     }
     this.doll.tint = hit ? 0xff937f : 0xffffff;
-    if (hit)
+    if (hit && !this.assetSet)
       this.activity
         .circle(0, -55, 40)
         .stroke({ color: 0xf49a80, width: 3, alpha: 0.7 });
-    if (this.actor.cargo > 0 && !this.sampleRig)
+    if (this.actor.cargo > 0 && !this.assetSet)
       this.activity
         .roundRect(14, -40, 13, 18, 3)
         .fill(0xc9a56d)
@@ -204,34 +192,34 @@ export class ActorView {
         )
         .stroke({ color: 0xdac489, width: 3 });
     if (
-      (cue?.kind === "attack" && cueActive) ||
-      (!cue && this.actor.state === "fighting" && simNow - this.attackAt < 300)
+      !this.assetSet?.clips.attack &&
+      ((cue?.kind === "attack" && cueActive) ||
+        (!cue &&
+          this.actor.state === "fighting" &&
+          simNow - this.attackAt < 300))
     )
       this.activity
         .moveTo(20, -55)
         .lineTo(40, -85)
         .stroke({ color: 0xf3d28a, width: 3 });
-    const action: AnimationAction = selection
-      ? (selection.clip as AnimationAction)
-      : pose.moving
-        ? "walk"
-        : "idle";
-    const sampleFrame = selection?.frame ?? 0;
+    const action: Clip = selection?.clip ?? (pose.moving ? "walk" : "idle");
+    const frame = selection?.frame ?? pose.frame;
+    const registration = this.assetSet?.clips[action];
+    const released = registration?.timing.releaseFrame;
+    const cargo =
+      this.actor.cargo ||
+      (selection?.requestedClip === "unload" &&
+      released !== undefined &&
+      frame < released
+        ? 1
+        : 0);
     const textures = this.dollRenderer.update(
       action,
-      selection?.frame ?? pose.frame,
+      frame,
       selection?.direction ?? pose.direction,
-      this.actor.appearance,
-      this.actor.cargo,
-      this.samplePose
-        ? {
-            direction: this.samplePose,
-            frame: sampleFrame,
-            rig: this.sampleRig,
-            layers: this.sampleLayers,
-            clip: this.sampleClip,
-          }
-        : undefined,
+      this.dollAppearance ?? this.actor.appearance,
+      cargo,
+      registration,
     );
     return {
       id: this.actor.id,

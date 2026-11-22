@@ -255,7 +255,7 @@ export default function MapCanvas(props: MapProps) {
           return;
         }
         const actionTextures = await loadDollTextures(
-          latest.current.sampleTextures,
+          !!latest.current.assetSet,
         );
         if (disposed) return;
         const manifest = await (

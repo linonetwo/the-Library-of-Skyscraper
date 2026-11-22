@@ -56,3 +56,53 @@ test("registered 16-phase sample switches independent layers and freezes route p
   expect(still.worldPosition).toEqual(paused.worldPosition);
   expect(still.textures).toEqual(paused.textures);
 });
+
+test("semantic candidates use their own banks and deterministic cue seeks", async ({
+  page,
+}) => {
+  await page.goto("/camera-sample");
+  const pose = () =>
+    page
+      .locator(".pixi-map")
+      .getAttribute("data-actors")
+      .then((v) => JSON.parse(v || "[]")[0]);
+  await page.getByLabel("样板动作").selectOption("attack");
+  await expect
+    .poll(async () =>
+      (await pose())?.textures?.every((key: string) =>
+        key.startsWith("attack/"),
+      ),
+    )
+    .toBe(true);
+  const time = page.getByLabel("样板模拟时间");
+  await time.focus();
+  await time.press("End");
+  await expect.poll(async () => (await pose())?.animation).toBe("idle");
+  await time.press("ArrowLeft");
+  await expect.poll(async () => (await pose())?.frame).toBe(3);
+  const last = await pose();
+  expect(last.animation).toBe("attack");
+  await time.press("Home");
+  await expect.poll(async () => (await pose())?.frame).toBe(0);
+  await time.press("End");
+  await time.press("ArrowLeft");
+  await expect
+    .poll(async () => (await pose())?.textures)
+    .toEqual(last.textures);
+  await page.getByLabel("样板动作").selectOption("hit");
+  await expect
+    .poll(async () =>
+      (await pose())?.textures?.every((key: string) => key.startsWith("hit/")),
+    )
+    .toBe(true);
+  await time.focus();
+  await time.press("End");
+  await time.press("ArrowLeft");
+  await expect.poll(async () => (await pose())?.frame).toBe(1);
+  await page.getByLabel("样板动作").selectOption("idle");
+  await expect
+    .poll(async () =>
+      (await pose())?.textures?.every((key: string) => key.startsWith("idle/")),
+    )
+    .toBe(true);
+});

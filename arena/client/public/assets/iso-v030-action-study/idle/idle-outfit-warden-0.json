@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "idle/outfit-warden/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 35,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 76,
+        "w": 35,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-warden/NE/01": {
+      "frame": {
+        "x": 46,
+        "y": 2,
+        "w": 35,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 76,
+        "w": 35,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-warden/NE/02": {
+      "frame": {
+        "x": 85,
+        "y": 2,
+        "w": 35,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 76,
+        "w": 35,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-warden/NE/03": {
+      "frame": {
+        "x": 124,
+        "y": 2,
+        "w": 35,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 76,
+        "w": 35,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-warden/SW/00": {
+      "frame": {
+        "x": 163,
+        "y": 2,
+        "w": 36,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 82,
+        "w": 36,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-warden/SW/01": {
+      "frame": {
+        "x": 203,
+        "y": 2,
+        "w": 36,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 82,
+        "w": 36,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-warden/SW/02": {
+      "frame": {
+        "x": 243,
+        "y": 2,
+        "w": 36,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 82,
+        "w": 36,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/outfit-warden/SW/03": {
+      "frame": {
+        "x": 283,
+        "y": 2,
+        "w": 36,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 82,
+        "w": 36,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "idle/outfit-warden/NE": [
+      "idle/outfit-warden/NE/00",
+      "idle/outfit-warden/NE/01",
+      "idle/outfit-warden/NE/02",
+      "idle/outfit-warden/NE/03"
+    ],
+    "idle/outfit-warden/SW": [
+      "idle/outfit-warden/SW/00",
+      "idle/outfit-warden/SW/01",
+      "idle/outfit-warden/SW/02",
+      "idle/outfit-warden/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "idle-outfit-warden-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 321,
+      "h": 63
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

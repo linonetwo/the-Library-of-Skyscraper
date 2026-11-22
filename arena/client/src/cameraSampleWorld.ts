@@ -1,7 +1,11 @@
+import type { Clip } from "./animationCatalog";
 import type { Snapshot } from "./types";
 import type { DollAppearance } from "./walkLayers";
 export function cameraSampleWorld({
   variant,
+  action,
+  durationMs,
+  tickMs,
   direction,
   tick,
   moving,
@@ -12,6 +16,9 @@ export function cameraSampleWorld({
   hair,
   weapon,
 }: {
+  action: Clip;
+  durationMs: number;
+  tickMs: number;
   variant: string;
   direction: "NE" | "SW";
   tick: number;
@@ -20,8 +27,17 @@ export function cameraSampleWorld({
   length: number;
   cargo: boolean;
 } & DollAppearance): Snapshot {
-  const y = direction === "NE" ? length - distance : distance;
-  const tickMs = 50;
+  const y =
+    action === "walk"
+      ? direction === "NE"
+        ? length - distance
+        : distance
+      : length / 2;
+  const cue = {
+    startedTick: 0,
+    durationTicks: durationMs / tickMs,
+    targetPosition: { x: 0, y: y + (direction === "NE" ? -2 : 2) },
+  };
   return {
     sessionId: "camera-sample",
     mode: "training",
@@ -95,9 +111,16 @@ export function cameraSampleWorld({
         role: "scout",
         roomId: "sample-a",
         worldPosition: { x: 0, y },
+        actionCue: action === "attack" ? { ...cue, kind: "attack" } : null,
+        impactCue:
+          action === "hit"
+            ? { ...cue, kind: "hit" }
+            : action === "down"
+              ? { ...cue, kind: "down", durationTicks: 0 }
+              : null,
         motionDistanceMilli: distance * 1000,
         lastMoveDirection: { x: 0, y: direction === "NE" ? -1 : 1 },
-        hp: 100,
+        hp: action === "down" ? 0 : 100,
         maxHp: 100,
         cargo: cargo ? 4 : 0,
         cargoCapacity: 12,

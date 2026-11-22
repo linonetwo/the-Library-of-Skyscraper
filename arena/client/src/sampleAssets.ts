@@ -1,84 +1,69 @@
-import { Assets, type Texture } from "pixi.js";
-import type { RegisteredClip } from "./animationCatalog";
+import {
+  loadAssetSet,
+  loadClipLayers,
+  type AssetSetIndex,
+  type LoadedAssetSet,
+} from "./assetSetLoader";
+import { animationLayers, type DollAppearance } from "./walkLayers";
+import type { Clip } from "./animationCatalog";
 import type { SampleRig } from "./RegisteredCargo";
-export type SampleDefinition = {
-  root: string;
-  clip: RegisteredClip;
-  rig: SampleRig;
-  activeLayers: string[];
-  pages: Record<string, string[]>;
-  decodedBytes: number;
+export type SampleStudy = {
+  set: LoadedAssetSet;
   routeLength: number;
+  decodedBytes: number;
 };
-const definitions = new Map<string, Promise<SampleDefinition>>();
-const textureBanks = new Map<string, Record<string, Texture>>();
+const studies = new Map<string, Promise<SampleStudy>>();
 export function loadSampleDefinition(variant: "four" | "sixteen") {
-  let pending = definitions.get(variant);
+  let pending = studies.get(variant);
   if (!pending) {
     pending = (async () => {
-      const root =
-        variant === "sixteen"
-          ? "/assets/iso-v030-walk-16-study"
-          : "/assets/iso-v030-walk-study";
-      const pose = await fetch(root + "/pose.json").then((r) => r.json());
-      const budget =
-        variant === "sixteen"
-          ? await fetch(root + "/atlas-budget.json").then((r) => r.json())
-          : null;
-      const layers = budget
-        ? budget.layers.filter((layer: { active: boolean }) => layer.active)
-        : pose.previewLayers.map((layer: string) => ({
-            layer,
-            pages: [{ json: `walk-${layer}.json` }],
-          }));
+      const index: AssetSetIndex = await fetch(
+        "/assets/iso-v030-action-study/index.json",
+      ).then((r) => r.json());
+      if (variant === "four") {
+        index.assetSetId += "-legacy-four";
+        index.clips = index.clips.filter(
+          (entry) => entry.action === "idle" || entry.action === "walk",
+        );
+        index.clips.find((entry) => entry.action === "walk")!.root =
+          "/assets/iso-v030-walk-study";
+      }
+      const set = await loadAssetSet(index);
       return {
-        root,
-        rig: pose,
-        activeLayers: layers.map((l: { layer: string }) => l.layer),
-        pages: Object.fromEntries(
-          layers.map((l: { layer: string; pages: { json: string }[] }) => [
-            l.layer,
-            l.pages.map((p) => p.json),
-          ]),
+        set,
+        routeLength: variant === "four" ? 8 : 12,
+        decodedBytes: Object.values(set.clips).reduce(
+          (sum, clip) => sum + clip!.descriptor.decodedBytes,
+          0,
         ),
-        decodedBytes: budget?.decodedBytes ?? 0,
-        routeLength: variant === "sixteen" ? 12 : 8,
-        clip: {
-          frameCount: pose.frameCount ?? pose.directions.NE.poses.length,
-          frameDurationsMs: pose.directions.NE.poses.map(
-            (p: { durationMs: number }) => p.durationMs,
-          ),
-          playback: "loop" as const,
-          cycleWorldStride:
-            typeof pose.cycleWorldStride === "number"
-              ? pose.cycleWorldStride
-              : Math.hypot(...pose.cycleWorldStride),
-          groundPivot: pose.groundPivot,
-          renderScale: pose.renderScale,
-        },
       };
     })();
-    definitions.set(variant, pending);
+    studies.set(variant, pending);
   }
   return pending;
 }
-/** Only selected, nonempty atlas layers are fetched; Pixi owns the shared texture cache. */
 export async function loadSampleLayers(
-  definition: SampleDefinition,
-  layers: string[],
+  study: SampleStudy,
+  appearance: DollAppearance,
+  cargo: boolean,
+  action: Clip,
 ) {
-  let bank = textureBanks.get(definition.root);
-  if (!bank) {
-    bank = {};
-    textureBanks.set(definition.root, bank);
-  }
-  const sheets = await Promise.all(
-    layers.flatMap((layer) =>
-      definition.pages[layer].map((page) =>
-        Assets.load(definition.root + "/" + page),
-      ),
-    ),
+  await Promise.all(
+    [action, "idle"]
+      .filter((key, index, all) => all.indexOf(key) === index)
+      .map(async (key) => {
+        const clip = study.set.clips[key as Clip]!;
+        const layers = animationLayers(
+          "walk",
+          appearance,
+          clip.descriptor.activeLayers,
+        );
+        await loadClipLayers(clip, layers);
+        if (cargo && !clip.rig)
+          clip.rig = (await fetch(clip.root + "/pose.json").then((r) =>
+            r.json(),
+          )) as SampleRig;
+      }),
   );
-  Object.assign(bank, ...sheets.map((sheet) => sheet.textures));
-  return bank;
+  return study;
 }

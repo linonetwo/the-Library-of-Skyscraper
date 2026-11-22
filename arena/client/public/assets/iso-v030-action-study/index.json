@@ -1,0 +1,25 @@
+{
+  "assetSetId": "iso-v030-ne-sw-semantic-prototype-1",
+  "clips": [
+    {
+      "action": "idle",
+      "root": "/assets/iso-v030-action-study/idle",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "attack",
+      "root": "/assets/iso-v030-action-study/attack",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "hit",
+      "root": "/assets/iso-v030-action-study/hit",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "walk",
+      "root": "/assets/iso-v030-walk-16-study",
+      "descriptor": "atlas-budget.json"
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "clip": {
+    "action": "walk",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      125,
+      125,
+      125,
+      125
+    ],
+    "playback": "loop",
+    "cycleWorldStride": [
+      0.75,
+      0
+    ]
+  },
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "NE",
+    "SW"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front"
+  ],
+  "inactiveLayers": [
+    "outfit-warden",
+    "hair-ivory",
+    "hair-midnight",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "weapon-staff",
+    "weapon-staff-back",
+    "weapon-staff-front",
+    "hand-grip"
+  ],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "pages": [
+        {
+          "image": "walk-body.png",
+          "json": "walk-body.json",
+          "width": 768,
+          "height": 384,
+          "decodedBytes": 1179648
+        }
+      ],
+      "decodedBytes": 1179648
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "pages": [
+        {
+          "image": "walk-body-front.png",
+          "json": "walk-body-front.json",
+          "width": 768,
+          "height": 384,
+          "decodedBytes": 1179648
+        }
+      ],
+      "decodedBytes": 1179648
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "pages": [
+        {
+          "image": "walk-outfit-scholar.png",
+          "json": "walk-outfit-scholar.json",
+          "width": 768,
+          "height": 384,
+          "decodedBytes": 1179648
+        }
+      ],
+      "decodedBytes": 1179648
+    },
+    {
+      "layer": "outfit-warden",
+      "active": false,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-ivory",
+      "active": false,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "pages": [
+        {
+          "image": "walk-hair-ivory-back.png",
+          "json": "walk-hair-ivory-back.json",
+          "width": 768,
+          "height": 384,
+          "decodedBytes": 1179648
+        }
+      ],
+      "decodedBytes": 1179648
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "pages": [
+        {
+          "image": "walk-hair-ivory-front.png",
+          "json": "walk-hair-ivory-front.json",
+          "width": 768,
+          "height": 384,
+          "decodedBytes": 1179648
+        }
+      ],
+      "decodedBytes": 1179648
+    },
+    {
+      "layer": "hair-midnight",
+      "active": false,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": false,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": false,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "weapon-staff",
+      "active": false,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": false,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "weapon-staff-front",
+      "active": false,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hand-grip",
+      "active": false,
+      "pages": [],
+      "decodedBytes": 0
+    }
+  ],
+  "decodedBytes": 5898240,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}
