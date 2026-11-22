@@ -86,11 +86,12 @@ test('two independent browsers join a live room and reconnect with same player',
   expect(timeline.frames.at(-1).snapshot.actors.find(
     (actor: { id: string }) => actor.id === equippedId).appearance).toEqual(appearance);
   await expect(guest.getByRole('button', { name: '暂停', exact: true })).toHaveCount(0);
+  // The host reconnect has been verified; release its renderer before the guest reconnects.
+  await first.close();
   const tick = (await state(guest)).tick;
-  await guest.reload();
+  await guest.reload({waitUntil:"domcontentloaded"});
   await expect.poll(async () => (await state(guest)).tick).toBeGreaterThan(tick);
   expect(await guest.evaluate(() => JSON.parse(sessionStorage.getItem('arena-session')!).playerId)).toBe(identities[1]);
-  await first.close();
   await second.close();
 });
 
