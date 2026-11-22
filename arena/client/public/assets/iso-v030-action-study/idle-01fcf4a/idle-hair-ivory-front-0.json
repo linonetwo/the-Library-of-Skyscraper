@@ -1,19 +1,19 @@
 {
   "frames": {
-    "idle/outfit-scholar/SW/00": {
+    "idle/hair-ivory-front/SW/01": {
       "frame": {
         "x": 7,
         "y": 2,
-        "w": 44,
-        "h": 65
+        "w": 47,
+        "h": 46
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 75,
-        "y": 79,
-        "w": 44,
-        "h": 65
+        "x": 73,
+        "y": 41,
+        "w": 47,
+        "h": 46
       },
       "sourceSize": {
         "w": 192,
@@ -24,20 +24,20 @@
         "y": 0.9
       }
     },
-    "idle/outfit-scholar/SW/01": {
+    "idle/hair-ivory-front/SW/03": {
       "frame": {
-        "x": 55,
+        "x": 58,
         "y": 2,
-        "w": 44,
-        "h": 65
+        "w": 47,
+        "h": 46
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 75,
-        "y": 79,
-        "w": 44,
-        "h": 65
+        "x": 73,
+        "y": 42,
+        "w": 47,
+        "h": 46
       },
       "sourceSize": {
         "w": 192,
@@ -48,20 +48,20 @@
         "y": 0.9
       }
     },
-    "idle/outfit-scholar/SW/02": {
+    "idle/hair-ivory-front/SW/00": {
       "frame": {
-        "x": 103,
+        "x": 109,
         "y": 2,
-        "w": 44,
-        "h": 65
+        "w": 47,
+        "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 75,
-        "y": 79,
-        "w": 44,
-        "h": 65
+        "x": 73,
+        "y": 42,
+        "w": 47,
+        "h": 45
       },
       "sourceSize": {
         "w": 192,
@@ -72,20 +72,20 @@
         "y": 0.9
       }
     },
-    "idle/outfit-scholar/SW/03": {
+    "idle/hair-ivory-front/SW/02": {
       "frame": {
-        "x": 151,
+        "x": 160,
         "y": 2,
-        "w": 44,
-        "h": 65
+        "w": 47,
+        "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 75,
-        "y": 79,
-        "w": 44,
-        "h": 65
+        "x": 73,
+        "y": 42,
+        "w": 47,
+        "h": 45
       },
       "sourceSize": {
         "w": 192,
@@ -96,20 +96,20 @@
         "y": 0.9
       }
     },
-    "idle/outfit-scholar/NE/00": {
+    "idle/hair-ivory-front/NE/01": {
       "frame": {
-        "x": 199,
+        "x": 211,
         "y": 2,
-        "w": 42,
-        "h": 64
+        "w": 46,
+        "h": 44
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 76,
-        "y": 77,
-        "w": 42,
-        "h": 64
+        "x": 74,
+        "y": 40,
+        "w": 46,
+        "h": 44
       },
       "sourceSize": {
         "w": 192,
@@ -120,20 +120,20 @@
         "y": 0.9
       }
     },
-    "idle/outfit-scholar/NE/01": {
+    "idle/hair-ivory-front/NE/03": {
       "frame": {
-        "x": 245,
+        "x": 261,
         "y": 2,
-        "w": 42,
-        "h": 64
+        "w": 46,
+        "h": 44
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 76,
-        "y": 77,
-        "w": 42,
-        "h": 64
+        "x": 74,
+        "y": 41,
+        "w": 46,
+        "h": 44
       },
       "sourceSize": {
         "w": 192,
@@ -144,20 +144,20 @@
         "y": 0.9
       }
     },
-    "idle/outfit-scholar/NE/02": {
+    "idle/hair-ivory-front/NE/00": {
       "frame": {
-        "x": 291,
+        "x": 311,
         "y": 2,
-        "w": 42,
-        "h": 64
+        "w": 46,
+        "h": 43
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 76,
-        "y": 77,
-        "w": 42,
-        "h": 64
+        "x": 74,
+        "y": 41,
+        "w": 46,
+        "h": 43
       },
       "sourceSize": {
         "w": 192,
@@ -168,20 +168,20 @@
         "y": 0.9
       }
     },
-    "idle/outfit-scholar/NE/03": {
+    "idle/hair-ivory-front/NE/02": {
       "frame": {
-        "x": 337,
+        "x": 361,
         "y": 2,
-        "w": 42,
-        "h": 64
+        "w": 46,
+        "h": 43
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 76,
-        "y": 77,
-        "w": 42,
-        "h": 64
+        "x": 74,
+        "y": 41,
+        "w": 46,
+        "h": 43
       },
       "sourceSize": {
         "w": 192,
@@ -194,27 +194,27 @@
     }
   },
   "animations": {
-    "idle/outfit-scholar/NE": [
-      "idle/outfit-scholar/NE/00",
-      "idle/outfit-scholar/NE/01",
-      "idle/outfit-scholar/NE/02",
-      "idle/outfit-scholar/NE/03"
+    "idle/hair-ivory-front/NE": [
+      "idle/hair-ivory-front/NE/00",
+      "idle/hair-ivory-front/NE/01",
+      "idle/hair-ivory-front/NE/02",
+      "idle/hair-ivory-front/NE/03"
     ],
-    "idle/outfit-scholar/SW": [
-      "idle/outfit-scholar/SW/00",
-      "idle/outfit-scholar/SW/01",
-      "idle/outfit-scholar/SW/02",
-      "idle/outfit-scholar/SW/03"
+    "idle/hair-ivory-front/SW": [
+      "idle/hair-ivory-front/SW/00",
+      "idle/hair-ivory-front/SW/01",
+      "idle/hair-ivory-front/SW/02",
+      "idle/hair-ivory-front/SW/03"
     ]
   },
   "meta": {
     "app": "arena-trimmed-pose-atlas",
     "version": "1",
-    "image": "idle-outfit-scholar-0.png",
+    "image": "idle-hair-ivory-front-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 381,
-      "h": 69
+      "w": 409,
+      "h": 50
     },
     "scale": "1",
     "related_multi_packs": []

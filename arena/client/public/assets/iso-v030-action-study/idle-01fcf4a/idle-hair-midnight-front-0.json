@@ -1,19 +1,19 @@
 {
   "frames": {
-    "idle/hair-ivory-back/SW/00": {
+    "idle/hair-midnight-front/NE/01": {
       "frame": {
         "x": 7,
         "y": 2,
         "w": 42,
-        "h": 11
+        "h": 57
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 75,
-        "y": 74,
+        "y": 39,
         "w": 42,
-        "h": 11
+        "h": 57
       },
       "sourceSize": {
         "w": 192,
@@ -24,20 +24,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-ivory-back/SW/01": {
+    "idle/hair-midnight-front/NE/03": {
       "frame": {
         "x": 53,
         "y": 2,
         "w": 42,
-        "h": 11
+        "h": 57
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 75,
-        "y": 74,
+        "y": 40,
         "w": 42,
-        "h": 11
+        "h": 57
       },
       "sourceSize": {
         "w": 192,
@@ -48,20 +48,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-ivory-back/SW/02": {
+    "idle/hair-midnight-front/NE/00": {
       "frame": {
         "x": 99,
         "y": 2,
         "w": 42,
-        "h": 11
+        "h": 56
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 75,
-        "y": 74,
+        "y": 40,
         "w": 42,
-        "h": 11
+        "h": 56
       },
       "sourceSize": {
         "w": 192,
@@ -72,20 +72,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-ivory-back/SW/03": {
+    "idle/hair-midnight-front/NE/02": {
       "frame": {
         "x": 145,
         "y": 2,
         "w": 42,
-        "h": 11
+        "h": 56
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 75,
-        "y": 74,
+        "y": 40,
         "w": 42,
-        "h": 11
+        "h": 56
       },
       "sourceSize": {
         "w": 192,
@@ -96,20 +96,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-ivory-back/NE/00": {
+    "idle/hair-midnight-front/SW/01": {
       "frame": {
         "x": 191,
         "y": 2,
-        "w": 39,
-        "h": 8
+        "w": 46,
+        "h": 53
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 76,
-        "y": 73,
-        "w": 39,
-        "h": 8
+        "x": 73,
+        "y": 42,
+        "w": 46,
+        "h": 53
       },
       "sourceSize": {
         "w": 192,
@@ -120,20 +120,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-ivory-back/NE/01": {
+    "idle/hair-midnight-front/SW/03": {
       "frame": {
-        "x": 234,
+        "x": 241,
         "y": 2,
-        "w": 39,
-        "h": 8
+        "w": 46,
+        "h": 53
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 76,
-        "y": 73,
-        "w": 39,
-        "h": 8
+        "x": 73,
+        "y": 43,
+        "w": 46,
+        "h": 53
       },
       "sourceSize": {
         "w": 192,
@@ -144,20 +144,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-ivory-back/NE/02": {
+    "idle/hair-midnight-front/SW/00": {
       "frame": {
-        "x": 277,
+        "x": 291,
         "y": 2,
-        "w": 39,
-        "h": 8
+        "w": 46,
+        "h": 52
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 76,
-        "y": 73,
-        "w": 39,
-        "h": 8
+        "x": 73,
+        "y": 43,
+        "w": 46,
+        "h": 52
       },
       "sourceSize": {
         "w": 192,
@@ -168,20 +168,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-ivory-back/NE/03": {
+    "idle/hair-midnight-front/SW/02": {
       "frame": {
-        "x": 320,
+        "x": 341,
         "y": 2,
-        "w": 39,
-        "h": 8
+        "w": 46,
+        "h": 52
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 76,
-        "y": 73,
-        "w": 39,
-        "h": 8
+        "x": 73,
+        "y": 43,
+        "w": 46,
+        "h": 52
       },
       "sourceSize": {
         "w": 192,
@@ -194,27 +194,27 @@
     }
   },
   "animations": {
-    "idle/hair-ivory-back/NE": [
-      "idle/hair-ivory-back/NE/00",
-      "idle/hair-ivory-back/NE/01",
-      "idle/hair-ivory-back/NE/02",
-      "idle/hair-ivory-back/NE/03"
+    "idle/hair-midnight-front/NE": [
+      "idle/hair-midnight-front/NE/00",
+      "idle/hair-midnight-front/NE/01",
+      "idle/hair-midnight-front/NE/02",
+      "idle/hair-midnight-front/NE/03"
     ],
-    "idle/hair-ivory-back/SW": [
-      "idle/hair-ivory-back/SW/00",
-      "idle/hair-ivory-back/SW/01",
-      "idle/hair-ivory-back/SW/02",
-      "idle/hair-ivory-back/SW/03"
+    "idle/hair-midnight-front/SW": [
+      "idle/hair-midnight-front/SW/00",
+      "idle/hair-midnight-front/SW/01",
+      "idle/hair-midnight-front/SW/02",
+      "idle/hair-midnight-front/SW/03"
     ]
   },
   "meta": {
     "app": "arena-trimmed-pose-atlas",
     "version": "1",
-    "image": "idle-hair-ivory-back-0.png",
+    "image": "idle-hair-midnight-front-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 361,
-      "h": 15
+      "w": 389,
+      "h": 61
     },
     "scale": "1",
     "related_multi_packs": []

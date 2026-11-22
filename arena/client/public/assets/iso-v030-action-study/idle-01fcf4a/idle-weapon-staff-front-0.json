@@ -1,19 +1,19 @@
 {
   "frames": {
-    "idle/hair-midnight-front/NE/00": {
+    "idle/weapon-staff-front/SW/00": {
       "frame": {
         "x": 7,
         "y": 2,
-        "w": 42,
-        "h": 56
+        "w": 26,
+        "h": 96
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 75,
-        "y": 40,
-        "w": 42,
-        "h": 56
+        "x": 62,
+        "y": 74,
+        "w": 26,
+        "h": 96
       },
       "sourceSize": {
         "w": 192,
@@ -24,20 +24,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-midnight-front/NE/01": {
+    "idle/weapon-staff-front/SW/01": {
       "frame": {
-        "x": 53,
+        "x": 37,
         "y": 2,
-        "w": 42,
-        "h": 56
+        "w": 26,
+        "h": 96
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 75,
-        "y": 40,
-        "w": 42,
-        "h": 56
+        "x": 62,
+        "y": 73,
+        "w": 26,
+        "h": 96
       },
       "sourceSize": {
         "w": 192,
@@ -48,20 +48,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-midnight-front/NE/02": {
+    "idle/weapon-staff-front/SW/02": {
       "frame": {
-        "x": 99,
+        "x": 67,
         "y": 2,
-        "w": 42,
-        "h": 56
+        "w": 26,
+        "h": 96
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 75,
-        "y": 40,
-        "w": 42,
-        "h": 56
+        "x": 62,
+        "y": 74,
+        "w": 26,
+        "h": 96
       },
       "sourceSize": {
         "w": 192,
@@ -72,20 +72,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-midnight-front/NE/03": {
+    "idle/weapon-staff-front/SW/03": {
       "frame": {
-        "x": 145,
+        "x": 97,
         "y": 2,
-        "w": 42,
-        "h": 56
+        "w": 26,
+        "h": 96
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 75,
-        "y": 40,
-        "w": 42,
-        "h": 56
+        "x": 62,
+        "y": 75,
+        "w": 26,
+        "h": 96
       },
       "sourceSize": {
         "w": 192,
@@ -96,20 +96,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-midnight-front/SW/00": {
+    "idle/weapon-staff-front/NE/00": {
       "frame": {
-        "x": 191,
+        "x": 2,
         "y": 2,
-        "w": 46,
-        "h": 52
+        "w": 1,
+        "h": 1
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 73,
-        "y": 43,
-        "w": 46,
-        "h": 52
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
       },
       "sourceSize": {
         "w": 192,
@@ -120,20 +120,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-midnight-front/SW/01": {
+    "idle/weapon-staff-front/NE/01": {
       "frame": {
-        "x": 241,
+        "x": 2,
         "y": 2,
-        "w": 46,
-        "h": 52
+        "w": 1,
+        "h": 1
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 73,
-        "y": 43,
-        "w": 46,
-        "h": 52
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
       },
       "sourceSize": {
         "w": 192,
@@ -144,20 +144,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-midnight-front/SW/02": {
+    "idle/weapon-staff-front/NE/02": {
       "frame": {
-        "x": 291,
+        "x": 2,
         "y": 2,
-        "w": 46,
-        "h": 52
+        "w": 1,
+        "h": 1
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 73,
-        "y": 43,
-        "w": 46,
-        "h": 52
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
       },
       "sourceSize": {
         "w": 192,
@@ -168,20 +168,20 @@
         "y": 0.9
       }
     },
-    "idle/hair-midnight-front/SW/03": {
+    "idle/weapon-staff-front/NE/03": {
       "frame": {
-        "x": 341,
+        "x": 2,
         "y": 2,
-        "w": 46,
-        "h": 52
+        "w": 1,
+        "h": 1
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 73,
-        "y": 43,
-        "w": 46,
-        "h": 52
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
       },
       "sourceSize": {
         "w": 192,
@@ -194,27 +194,27 @@
     }
   },
   "animations": {
-    "idle/hair-midnight-front/NE": [
-      "idle/hair-midnight-front/NE/00",
-      "idle/hair-midnight-front/NE/01",
-      "idle/hair-midnight-front/NE/02",
-      "idle/hair-midnight-front/NE/03"
+    "idle/weapon-staff-front/NE": [
+      "idle/weapon-staff-front/NE/00",
+      "idle/weapon-staff-front/NE/01",
+      "idle/weapon-staff-front/NE/02",
+      "idle/weapon-staff-front/NE/03"
     ],
-    "idle/hair-midnight-front/SW": [
-      "idle/hair-midnight-front/SW/00",
-      "idle/hair-midnight-front/SW/01",
-      "idle/hair-midnight-front/SW/02",
-      "idle/hair-midnight-front/SW/03"
+    "idle/weapon-staff-front/SW": [
+      "idle/weapon-staff-front/SW/00",
+      "idle/weapon-staff-front/SW/01",
+      "idle/weapon-staff-front/SW/02",
+      "idle/weapon-staff-front/SW/03"
     ]
   },
   "meta": {
     "app": "arena-trimmed-pose-atlas",
     "version": "1",
-    "image": "idle-hair-midnight-front-0.png",
+    "image": "idle-weapon-staff-front-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 389,
-      "h": 60
+      "w": 125,
+      "h": 100
     },
     "scale": "1",
     "related_multi_packs": []

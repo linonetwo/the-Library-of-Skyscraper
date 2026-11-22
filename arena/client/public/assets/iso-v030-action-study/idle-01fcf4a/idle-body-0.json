@@ -1,19 +1,19 @@
 {
   "frames": {
-    "idle/body-front/SW/00": {
+    "idle/body/NE/01": {
       "frame": {
         "x": 7,
         "y": 2,
-        "w": 21,
-        "h": 56
+        "w": 42,
+        "h": 138
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 102,
-        "y": 86,
-        "w": 21,
-        "h": 56
+        "x": 76,
+        "y": 41,
+        "w": 42,
+        "h": 138
       },
       "sourceSize": {
         "w": 192,
@@ -24,20 +24,20 @@
         "y": 0.9
       }
     },
-    "idle/body-front/SW/01": {
+    "idle/body/SW/01": {
       "frame": {
-        "x": 32,
+        "x": 53,
         "y": 2,
-        "w": 21,
-        "h": 56
+        "w": 43,
+        "h": 138
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 102,
-        "y": 86,
-        "w": 21,
-        "h": 56
+        "x": 73,
+        "y": 43,
+        "w": 43,
+        "h": 138
       },
       "sourceSize": {
         "w": 192,
@@ -48,20 +48,20 @@
         "y": 0.9
       }
     },
-    "idle/body-front/SW/02": {
+    "idle/body/NE/00": {
       "frame": {
-        "x": 57,
+        "x": 100,
         "y": 2,
-        "w": 21,
-        "h": 56
+        "w": 42,
+        "h": 137
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 102,
-        "y": 86,
-        "w": 21,
-        "h": 56
+        "x": 76,
+        "y": 42,
+        "w": 42,
+        "h": 137
       },
       "sourceSize": {
         "w": 192,
@@ -72,20 +72,20 @@
         "y": 0.9
       }
     },
-    "idle/body-front/SW/03": {
+    "idle/body/NE/02": {
       "frame": {
-        "x": 82,
+        "x": 146,
         "y": 2,
-        "w": 21,
-        "h": 56
+        "w": 42,
+        "h": 137
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 102,
-        "y": 86,
-        "w": 21,
-        "h": 56
+        "x": 76,
+        "y": 42,
+        "w": 42,
+        "h": 137
       },
       "sourceSize": {
         "w": 192,
@@ -96,20 +96,20 @@
         "y": 0.9
       }
     },
-    "idle/body-front/NE/00": {
+    "idle/body/NE/03": {
       "frame": {
-        "x": 107,
+        "x": 192,
         "y": 2,
-        "w": 18,
-        "h": 45
+        "w": 42,
+        "h": 137
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 98,
-        "y": 82,
-        "w": 18,
-        "h": 45
+        "x": 76,
+        "y": 42,
+        "w": 42,
+        "h": 137
       },
       "sourceSize": {
         "w": 192,
@@ -120,20 +120,20 @@
         "y": 0.9
       }
     },
-    "idle/body-front/NE/01": {
+    "idle/body/SW/00": {
       "frame": {
-        "x": 129,
+        "x": 238,
         "y": 2,
-        "w": 18,
-        "h": 45
+        "w": 43,
+        "h": 137
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 98,
-        "y": 82,
-        "w": 18,
-        "h": 45
+        "x": 73,
+        "y": 44,
+        "w": 43,
+        "h": 137
       },
       "sourceSize": {
         "w": 192,
@@ -144,20 +144,20 @@
         "y": 0.9
       }
     },
-    "idle/body-front/NE/02": {
+    "idle/body/SW/02": {
       "frame": {
-        "x": 151,
+        "x": 285,
         "y": 2,
-        "w": 18,
-        "h": 45
+        "w": 43,
+        "h": 137
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 98,
-        "y": 82,
-        "w": 18,
-        "h": 45
+        "x": 73,
+        "y": 44,
+        "w": 43,
+        "h": 137
       },
       "sourceSize": {
         "w": 192,
@@ -168,20 +168,20 @@
         "y": 0.9
       }
     },
-    "idle/body-front/NE/03": {
+    "idle/body/SW/03": {
       "frame": {
-        "x": 173,
+        "x": 332,
         "y": 2,
-        "w": 18,
-        "h": 45
+        "w": 43,
+        "h": 137
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 98,
-        "y": 82,
-        "w": 18,
-        "h": 45
+        "x": 73,
+        "y": 44,
+        "w": 43,
+        "h": 137
       },
       "sourceSize": {
         "w": 192,
@@ -194,27 +194,27 @@
     }
   },
   "animations": {
-    "idle/body-front/NE": [
-      "idle/body-front/NE/00",
-      "idle/body-front/NE/01",
-      "idle/body-front/NE/02",
-      "idle/body-front/NE/03"
+    "idle/body/NE": [
+      "idle/body/NE/00",
+      "idle/body/NE/01",
+      "idle/body/NE/02",
+      "idle/body/NE/03"
     ],
-    "idle/body-front/SW": [
-      "idle/body-front/SW/00",
-      "idle/body-front/SW/01",
-      "idle/body-front/SW/02",
-      "idle/body-front/SW/03"
+    "idle/body/SW": [
+      "idle/body/SW/00",
+      "idle/body/SW/01",
+      "idle/body/SW/02",
+      "idle/body/SW/03"
     ]
   },
   "meta": {
     "app": "arena-trimmed-pose-atlas",
     "version": "1",
-    "image": "idle-body-front-0.png",
+    "image": "idle-body-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 193,
-      "h": 60
+      "w": 377,
+      "h": 142
     },
     "scale": "1",
     "related_multi_packs": []

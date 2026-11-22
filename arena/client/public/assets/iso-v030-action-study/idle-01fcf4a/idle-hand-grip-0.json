@@ -1,19 +1,19 @@
 {
   "frames": {
-    "idle/weapon-staff-front/SW/00": {
+    "idle/hand-grip/NE/00": {
       "frame": {
         "x": 7,
         "y": 2,
-        "w": 26,
-        "h": 96
+        "w": 9,
+        "h": 11
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 62,
-        "y": 74,
-        "w": 26,
-        "h": 96
+        "x": 108,
+        "y": 123,
+        "w": 9,
+        "h": 11
       },
       "sourceSize": {
         "w": 192,
@@ -24,20 +24,20 @@
         "y": 0.9
       }
     },
-    "idle/weapon-staff-front/SW/01": {
+    "idle/hand-grip/NE/01": {
       "frame": {
-        "x": 37,
+        "x": 20,
         "y": 2,
-        "w": 26,
-        "h": 96
+        "w": 9,
+        "h": 11
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 62,
-        "y": 74,
-        "w": 26,
-        "h": 96
+        "x": 108,
+        "y": 122,
+        "w": 9,
+        "h": 11
       },
       "sourceSize": {
         "w": 192,
@@ -48,20 +48,20 @@
         "y": 0.9
       }
     },
-    "idle/weapon-staff-front/SW/02": {
+    "idle/hand-grip/NE/02": {
       "frame": {
-        "x": 67,
+        "x": 33,
         "y": 2,
-        "w": 26,
-        "h": 96
+        "w": 9,
+        "h": 11
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 62,
-        "y": 74,
-        "w": 26,
-        "h": 96
+        "x": 108,
+        "y": 123,
+        "w": 9,
+        "h": 11
       },
       "sourceSize": {
         "w": 192,
@@ -72,20 +72,20 @@
         "y": 0.9
       }
     },
-    "idle/weapon-staff-front/SW/03": {
+    "idle/hand-grip/NE/03": {
       "frame": {
-        "x": 97,
+        "x": 46,
         "y": 2,
-        "w": 26,
-        "h": 96
+        "w": 9,
+        "h": 11
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 62,
-        "y": 74,
-        "w": 26,
-        "h": 96
+        "x": 108,
+        "y": 123,
+        "w": 9,
+        "h": 11
       },
       "sourceSize": {
         "w": 192,
@@ -96,20 +96,20 @@
         "y": 0.9
       }
     },
-    "idle/weapon-staff-front/NE/00": {
+    "idle/hand-grip/SW/00": {
       "frame": {
-        "x": 2,
+        "x": 59,
         "y": 2,
-        "w": 1,
-        "h": 1
+        "w": 9,
+        "h": 11
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1,
-        "h": 1
+        "x": 72,
+        "y": 124,
+        "w": 9,
+        "h": 11
       },
       "sourceSize": {
         "w": 192,
@@ -120,20 +120,20 @@
         "y": 0.9
       }
     },
-    "idle/weapon-staff-front/NE/01": {
+    "idle/hand-grip/SW/01": {
       "frame": {
-        "x": 2,
+        "x": 72,
         "y": 2,
-        "w": 1,
-        "h": 1
+        "w": 9,
+        "h": 11
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1,
-        "h": 1
+        "x": 72,
+        "y": 123,
+        "w": 9,
+        "h": 11
       },
       "sourceSize": {
         "w": 192,
@@ -144,20 +144,20 @@
         "y": 0.9
       }
     },
-    "idle/weapon-staff-front/NE/02": {
+    "idle/hand-grip/SW/02": {
       "frame": {
-        "x": 2,
+        "x": 85,
         "y": 2,
-        "w": 1,
-        "h": 1
+        "w": 9,
+        "h": 11
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1,
-        "h": 1
+        "x": 72,
+        "y": 124,
+        "w": 9,
+        "h": 11
       },
       "sourceSize": {
         "w": 192,
@@ -168,20 +168,20 @@
         "y": 0.9
       }
     },
-    "idle/weapon-staff-front/NE/03": {
+    "idle/hand-grip/SW/03": {
       "frame": {
-        "x": 2,
+        "x": 98,
         "y": 2,
-        "w": 1,
-        "h": 1
+        "w": 9,
+        "h": 11
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1,
-        "h": 1
+        "x": 72,
+        "y": 124,
+        "w": 9,
+        "h": 11
       },
       "sourceSize": {
         "w": 192,
@@ -194,27 +194,27 @@
     }
   },
   "animations": {
-    "idle/weapon-staff-front/NE": [
-      "idle/weapon-staff-front/NE/00",
-      "idle/weapon-staff-front/NE/01",
-      "idle/weapon-staff-front/NE/02",
-      "idle/weapon-staff-front/NE/03"
+    "idle/hand-grip/NE": [
+      "idle/hand-grip/NE/00",
+      "idle/hand-grip/NE/01",
+      "idle/hand-grip/NE/02",
+      "idle/hand-grip/NE/03"
     ],
-    "idle/weapon-staff-front/SW": [
-      "idle/weapon-staff-front/SW/00",
-      "idle/weapon-staff-front/SW/01",
-      "idle/weapon-staff-front/SW/02",
-      "idle/weapon-staff-front/SW/03"
+    "idle/hand-grip/SW": [
+      "idle/hand-grip/SW/00",
+      "idle/hand-grip/SW/01",
+      "idle/hand-grip/SW/02",
+      "idle/hand-grip/SW/03"
     ]
   },
   "meta": {
     "app": "arena-trimmed-pose-atlas",
     "version": "1",
-    "image": "idle-weapon-staff-front-0.png",
+    "image": "idle-hand-grip-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 125,
-      "h": 100
+      "w": 109,
+      "h": 15
     },
     "scale": "1",
     "related_multi_packs": []

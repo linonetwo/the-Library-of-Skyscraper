@@ -9,7 +9,7 @@ import { clipDuration } from "./animationTiming";
 import type { SampleStudy } from "./sampleAssets";
 const tickMs = 1;
 const labels: Partial<Record<Clip, string>> = {
-  idle: "站姿（呼吸待制）",
+  idle: "呼吸待机",
   walk: "行走",
   attack: "普通攻击（空手手势候选）",
   hit: "受击",

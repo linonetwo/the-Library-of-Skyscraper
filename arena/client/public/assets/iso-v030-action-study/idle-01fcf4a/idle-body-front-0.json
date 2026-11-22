@@ -1,114 +1,114 @@
 {
   "frames": {
-    "idle/outfit-warden-front/NE/00": {
+    "idle/body-front/SW/03": {
       "frame": {
         "x": 7,
         "y": 2,
-        "w": 17,
-        "h": 45
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 100,
-        "y": 82,
-        "w": 17,
-        "h": 45
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "idle/outfit-warden-front/NE/01": {
-      "frame": {
-        "x": 28,
-        "y": 2,
-        "w": 17,
-        "h": 45
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 100,
-        "y": 82,
-        "w": 17,
-        "h": 45
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "idle/outfit-warden-front/NE/02": {
-      "frame": {
-        "x": 49,
-        "y": 2,
-        "w": 17,
-        "h": 45
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 100,
-        "y": 82,
-        "w": 17,
-        "h": 45
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "idle/outfit-warden-front/NE/03": {
-      "frame": {
-        "x": 70,
-        "y": 2,
-        "w": 17,
-        "h": 45
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 100,
-        "y": 82,
-        "w": 17,
-        "h": 45
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "idle/outfit-warden-front/SW/00": {
-      "frame": {
-        "x": 91,
-        "y": 2,
-        "w": 17,
-        "h": 45
+        "w": 21,
+        "h": 57
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 102,
         "y": 86,
-        "w": 17,
+        "w": 21,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/SW/00": {
+      "frame": {
+        "x": 32,
+        "y": 2,
+        "w": 21,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 86,
+        "w": 21,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/SW/01": {
+      "frame": {
+        "x": 57,
+        "y": 2,
+        "w": 21,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 85,
+        "w": 21,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/SW/02": {
+      "frame": {
+        "x": 82,
+        "y": 2,
+        "w": 21,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 86,
+        "w": 21,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/NE/00": {
+      "frame": {
+        "x": 107,
+        "y": 2,
+        "w": 18,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 82,
+        "w": 18,
         "h": 45
       },
       "sourceSize": {
@@ -120,19 +120,19 @@
         "y": 0.9
       }
     },
-    "idle/outfit-warden-front/SW/01": {
+    "idle/body-front/NE/01": {
       "frame": {
-        "x": 112,
+        "x": 129,
         "y": 2,
-        "w": 17,
+        "w": 18,
         "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 102,
-        "y": 86,
-        "w": 17,
+        "x": 98,
+        "y": 82,
+        "w": 18,
         "h": 45
       },
       "sourceSize": {
@@ -144,19 +144,19 @@
         "y": 0.9
       }
     },
-    "idle/outfit-warden-front/SW/02": {
+    "idle/body-front/NE/02": {
       "frame": {
-        "x": 133,
+        "x": 151,
         "y": 2,
-        "w": 17,
+        "w": 18,
         "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 102,
-        "y": 86,
-        "w": 17,
+        "x": 98,
+        "y": 82,
+        "w": 18,
         "h": 45
       },
       "sourceSize": {
@@ -168,19 +168,19 @@
         "y": 0.9
       }
     },
-    "idle/outfit-warden-front/SW/03": {
+    "idle/body-front/NE/03": {
       "frame": {
-        "x": 154,
+        "x": 173,
         "y": 2,
-        "w": 17,
+        "w": 18,
         "h": 45
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 102,
-        "y": 86,
-        "w": 17,
+        "x": 98,
+        "y": 83,
+        "w": 18,
         "h": 45
       },
       "sourceSize": {
@@ -194,27 +194,27 @@
     }
   },
   "animations": {
-    "idle/outfit-warden-front/NE": [
-      "idle/outfit-warden-front/NE/00",
-      "idle/outfit-warden-front/NE/01",
-      "idle/outfit-warden-front/NE/02",
-      "idle/outfit-warden-front/NE/03"
+    "idle/body-front/NE": [
+      "idle/body-front/NE/00",
+      "idle/body-front/NE/01",
+      "idle/body-front/NE/02",
+      "idle/body-front/NE/03"
     ],
-    "idle/outfit-warden-front/SW": [
-      "idle/outfit-warden-front/SW/00",
-      "idle/outfit-warden-front/SW/01",
-      "idle/outfit-warden-front/SW/02",
-      "idle/outfit-warden-front/SW/03"
+    "idle/body-front/SW": [
+      "idle/body-front/SW/00",
+      "idle/body-front/SW/01",
+      "idle/body-front/SW/02",
+      "idle/body-front/SW/03"
     ]
   },
   "meta": {
     "app": "arena-trimmed-pose-atlas",
     "version": "1",
-    "image": "idle-outfit-warden-front-0.png",
+    "image": "idle-body-front-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 173,
-      "h": 49
+      "w": 193,
+      "h": 61
     },
     "scale": "1",
     "related_multi_packs": []
