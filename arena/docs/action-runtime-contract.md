@@ -107,3 +107,40 @@ walk/carry 相位以实体累计 `motionDistanceMilli / 1000 / cycleWorldStride`
 - 既有 raster 模块：按投影骨端点对独立肢体裁片作显式沿骨轴映射，横向厚度先沿用方向源；映射保持固定world骨长，按真实相机改变屏幕骨段投影。报告映射比例，遇到轮廓压扁/拉糊由艺术给该方向或相位独立附件变体；保持头/躯干比例和既定袖口注册。渲染仍输出sprite atlas。
 
 本批先两向骨架线页与一套裸模/衣发静态相位，艺术核对髋高、膝前后与近远肢遮挡后，再出16相位8秒产品候选。保留旧125ms样板对照；固定世界速度、世界骨长和≤6px髋降，不以大蹲姿补偿旧screen目标。
+
+## 逐动作目录接入（2026-11-22，待实施）
+
+工具与客户端已确认复用工具现有 **`atlas-budget.json` 作为唯一 clip descriptor**，预算信息与播放信息同源。旧四帧样板保留一次适配；新 idle/attack/hit/down/carry 等使用同一入口。
+
+1. **索引只定位，descriptor 定义素材。** 索引形如 `{"assetSetId":"candidate-a","clips":[{"action":"idle","root":"/assets/candidate-a/idle","descriptor":"atlas-budget.json"}]}`。`assetSetId` 标识不可变资源批次；root 相对资源路径，descriptor 内 pages 文件名相对 root。运行时直接读 `clip`、注册与图层字段，`pose.json` 仅用于有需要的关节挂接，不再从 NE poses 推测播放时长。
+2. **装载与纹理命名统一。** 按当前外观选中的 active layers 加载 `layers[].pages[].json`，复用 Pixi 缓存；内存可建立索引，磁盘不再维护第二份 pagesByLayer 文件。纹理键固定 `${clip.action}/${layer}/${direction}/${frame:02}`，一个动作可含多页。descriptor.directions 是实际覆盖，候选两向与完整八向分别登记。
+3. **注册与纸娃娃同源。** `sourceSize` 是原透明画布，`groundPivot` 是该画布内像素，`renderScale` 是输出像素到产品屏幕的比例。沿 atlas orig/trim 使用 pivot，保持裁切前后位置一致；例如 down 可为256画布，不假设所有动作192。`appearanceOptions`、`exclusiveLayerGroups` 复用现有导出字段；默认层序沿本文衣装合同，必要时增加 `layerOrderByDirection` 固定列表。自然手/握持手互斥、近袖独立，不使用 previewLooks 合成人物图替代纸娃娃。
+4. **语义选择不随新增素材分叉。** `resolveAnimation` 继续唯一选择主 clip，`frameAt` 统一读取累计逐帧时长；新目录只提供 loop/once/holdLast、可选 world 单位 `cycleWorldStride` 与卸货 `releaseFrame`。attack/hit/down 的权威时间、cargo 清零后的 unload 与真正 idle 均沿前文语义，新增素材不再借样板 idle texture bank 或固定 walk 前缀。
+5. **同一资源对象交选片与绘制。** loader 返回 descriptor 和对应纹理库；resolver 与 DollRenderer 使用同一注册信息。绘制缓存包含 assetSetId、action、方向、帧和实际层组合，避免新批次/注册已更换而纹理未换。工具验收页尺寸/非空层/方向覆盖，客户端验收新 clip 实播、暂停/回放和遮挡；自然步态与完整动作发布批准仍单独记录。
+
+以下为字段结构示例，省略完整装备层与预算统计，属于两向裸模候选，不代表已批准发布：
+
+```json
+{
+  "clip": {
+    "action": "idle",
+    "frameCount": 4,
+    "frameDurationsMs": [250, 250, 250, 250],
+    "playback": "loop"
+  },
+  "sourceSize": [192, 192],
+  "groundPivot": [96, 172.8],
+  "renderScale": 1,
+  "directions": ["NE", "SW"],
+  "activeLayers": ["body"],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "pages": [{"json": "idle-body-0.json", "image": "idle-body-0.png"}]
+    }
+  ]
+}
+```
+
+工具继续输出实际 `pages.width/height/decodedBytes` 与总 `decodedBytes`；加载器保留这些统计而不重新猜测。等时 frameMs 仅作为既有目录简写，工具当前逐帧数组可直接消费。工具 Sol 负责 descriptor/atlas 一致导出，客户端 Sol 负责唯一 loader 和历史适配；本节是接入合同，不修改现有运行源。

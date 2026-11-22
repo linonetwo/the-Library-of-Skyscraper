@@ -2,7 +2,7 @@ title: 竞技场开发日志2026-11-22
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261122010004000
-modified: 20261122010004000
+modified: 20261122032627000
 
 !! 近景与任务操作
 
@@ -25,3 +25,13 @@ modified: 20261122010004000
 [[PR51|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/51]]已以e0b4f15通过Astra源审及整批CI后合入0689219：主动actionCue与impactCue独立保留，累计路程／末次朝向／阶段起点供确定性播放，cataloging为真实工作阶段，旧v3回放保留实际事实。运行入口提升与新动作前端分别安排，完整P3及生产包接受后统一发布v0.3。
 
 Astra继续八向源、衣发、武器和真实倒地变体设计；Sol工具导出各独立动作与trim图集；Sol前端接统一目录、时钟和纸娃娃层。[[PR52|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/52]]按变更域运行现有CI，最终整版保留集中全套；当前按最新head收客户端时序问题，原预算与功能覆盖保持。详细数据保留在各PR及本地evidence。
+
+!! 新动作服务完整远征
+
+8790已接入PR51动作事实源e0b4f15（合入0689219），147个原checkpoint及凭据映射保留。旧v3实局接续原旅行，新局simulationVersion4，沿library-v3.3的27件独立场景物件运行。
+
+主代理当天再次用真实浏览器点击推荐分工，在正常500ms tick下完整玩到胜利：tick46施工、62进入真实cataloging、122拍到反扑预告、143拍到反扑行进，205达到60编目；入库96、消费25、3人存活、无携货损失，pageerror为0。反扑使编目暂时停顿，守卫清除后恢复产出。录屏、各阶段截图与完整状态保存在root/2026-11-22/sim4-full-play；图中主战场仍沿用旧动作图集，新身体完整动作继续按P3替换。
+
+[img[竞技场2026-11-22新动作服务远征胜利实机.png]]
+
+动作接入统一沿arena/docs/action-runtime-contract.md：离线导出的atlas-budget.json为唯一完整clip描述，前端保留薄目录索引；各动作复用时钟、语义选择与纸娃娃绘制，衣发/手部/武器独立分层。Astra专注角色动作，另一位Astra并行制作低墙、门槛与目标地面镶嵌等可拼独立件。功能版本仍按P1–P5整批完成后集中发布。
