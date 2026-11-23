@@ -216,9 +216,33 @@
         "y": 0.9
       }
     },
-    "build/hand-grip/N/01": {
+    "build/hand-grip/N/00": {
       "frame": {
         "x": 141,
+        "y": 2,
+        "w": 10,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 115,
+        "y": 89,
+        "w": 10,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-grip/N/01": {
+      "frame": {
+        "x": 155,
         "y": 2,
         "w": 12,
         "h": 11
@@ -226,8 +250,8 @@
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 107,
-        "y": 106,
+        "x": 120,
+        "y": 105,
         "w": 12,
         "h": 11
       },
@@ -242,7 +266,7 @@
     },
     "build/hand-grip/N/02": {
       "frame": {
-        "x": 157,
+        "x": 171,
         "y": 2,
         "w": 9,
         "h": 11
@@ -250,8 +274,8 @@
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 106,
-        "y": 96,
+        "x": 116,
+        "y": 94,
         "w": 9,
         "h": 11
       },
@@ -266,7 +290,7 @@
     },
     "build/hand-grip/S/00": {
       "frame": {
-        "x": 170,
+        "x": 184,
         "y": 2,
         "w": 10,
         "h": 11
@@ -290,7 +314,7 @@
     },
     "build/hand-grip/S/02": {
       "frame": {
-        "x": 184,
+        "x": 198,
         "y": 2,
         "w": 9,
         "h": 11
@@ -314,7 +338,7 @@
     },
     "build/hand-grip/SE/03": {
       "frame": {
-        "x": 197,
+        "x": 211,
         "y": 2,
         "w": 9,
         "h": 11
@@ -338,7 +362,7 @@
     },
     "build/hand-grip/E/03": {
       "frame": {
-        "x": 210,
+        "x": 224,
         "y": 2,
         "w": 8,
         "h": 10
@@ -362,7 +386,7 @@
     },
     "build/hand-grip/W/01": {
       "frame": {
-        "x": 222,
+        "x": 236,
         "y": 2,
         "w": 10,
         "h": 10
@@ -386,7 +410,7 @@
     },
     "build/hand-grip/W/03": {
       "frame": {
-        "x": 236,
+        "x": 250,
         "y": 2,
         "w": 9,
         "h": 10
@@ -397,30 +421,6 @@
         "x": 88,
         "y": 111,
         "w": 9,
-        "h": 10
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "build/hand-grip/N/00": {
-      "frame": {
-        "x": 249,
-        "y": 2,
-        "w": 10,
-        "h": 10
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 107,
-        "y": 92,
-        "w": 10,
         "h": 10
       },
       "sourceSize": {

@@ -27,7 +27,7 @@ for (const [lookIndex, [name, layers]] of Object.entries(looks).entries()) {
     const strips = [];
     for (const [row, direction] of directions.entries()) {
       const parts = [];
-      for (const layer of layers) {
+      for (const layer of (budget.layerOrderByDirection?.[direction] || layers).filter(layer => layers.includes(layer))) {
         if (!atlases[layer]) continue; // Inactive transparent layers have no atlas page.
         const key = `${config.action}/${layer}/${direction}/${String(frame).padStart(2, "0")}`,
           f = atlases[layer][key];

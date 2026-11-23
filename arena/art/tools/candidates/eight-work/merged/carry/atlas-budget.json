@@ -249,7 +249,7 @@
           "width": 2016,
           "height": 419,
           "decodedBytes": 3378816,
-          "pngBytes": 561918
+          "pngBytes": 562612
         }
       ],
       "decodedBytes": 4307072
@@ -260,7 +260,7 @@
       "sourceFrames": 128,
       "nonemptyFrames": 112,
       "untrimmedPixels": 4718592,
-      "trimmedPixels": 122688,
+      "trimmedPixels": 121216,
       "pages": [
         {
           "image": "ne-sw/carry-body-front-0.png",
@@ -276,7 +276,7 @@
           "width": 2033,
           "height": 93,
           "decodedBytes": 756276,
-          "pngBytes": 18846
+          "pngBytes": 18842
         }
       ],
       "decodedBytes": 919504
@@ -360,7 +360,7 @@
       "sourceFrames": 128,
       "nonemptyFrames": 128,
       "untrimmedPixels": 4718592,
-      "trimmedPixels": 256048,
+      "trimmedPixels": 258272,
       "pages": [
         {
           "image": "ne-sw/carry-outfit-warden-0.png",
@@ -376,7 +376,7 @@
           "width": 2047,
           "height": 123,
           "decodedBytes": 1007124,
-          "pngBytes": 38911
+          "pngBytes": 39043
         }
       ],
       "decodedBytes": 1318848
@@ -387,7 +387,7 @@
       "sourceFrames": 128,
       "nonemptyFrames": 112,
       "untrimmedPixels": 4718592,
-      "trimmedPixels": 121232,
+      "trimmedPixels": 117648,
       "pages": [
         {
           "image": "ne-sw/carry-outfit-warden-front-0.png",
@@ -401,12 +401,12 @@
           "image": "six/carry-outfit-warden-front-0.png",
           "json": "six/carry-outfit-warden-front-0.json",
           "width": 2037,
-          "height": 88,
-          "decodedBytes": 717024,
-          "pngBytes": 15096
+          "height": 81,
+          "decodedBytes": 659988,
+          "pngBytes": 14880
         }
       ],
-      "decodedBytes": 880252
+      "decodedBytes": 823216
     },
     {
       "layer": "hair-midnight-back",
@@ -481,13 +481,13 @@
         {
           "image": "six/carry-hand-front-0.png",
           "json": "six/carry-hand-front-0.json",
-          "width": 1333,
+          "width": 1349,
           "height": 18,
-          "decodedBytes": 95976,
-          "pngBytes": 2459
+          "decodedBytes": 97128,
+          "pngBytes": 2448
         }
       ],
-      "decodedBytes": 206456
+      "decodedBytes": 207608
     },
     {
       "layer": "weapon-staff-back",
@@ -538,7 +538,7 @@
           "width": 1109,
           "height": 32,
           "decodedBytes": 141952,
-          "pngBytes": 6937
+          "pngBytes": 6932
         }
       ],
       "decodedBytes": 199856
@@ -584,7 +584,7 @@
           "width": 1205,
           "height": 15,
           "decodedBytes": 72300,
-          "pngBytes": 2906
+          "pngBytes": 2905
         }
       ],
       "decodedBytes": 72300
@@ -595,20 +595,20 @@
       "sourceFrames": 96,
       "nonemptyFrames": 96,
       "untrimmedPixels": 3538944,
-      "trimmedPixels": 8880,
+      "trimmedPixels": 8752,
       "pages": [
         {
           "image": "six/carry-hand-left-front-0.png",
           "json": "six/carry-hand-left-front-0.json",
-          "width": 1381,
+          "width": 1365,
           "height": 15,
-          "decodedBytes": 82860,
-          "pngBytes": 2333
+          "decodedBytes": 81900,
+          "pngBytes": 2342
         }
       ],
-      "decodedBytes": 82860
+      "decodedBytes": 81900
     }
   ],
-  "decodedBytes": 16252788,
+  "decodedBytes": 16195944,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

@@ -87,6 +87,10 @@
       "weapon-staff-back",
       "hair-ivory-back",
       "hair-midnight-back",
+      "work-prop-mallet",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
       "cargo-bundle-back",
       "body",
       "outfit-scholar",
@@ -95,10 +99,6 @@
       "outfit-scholar-front",
       "outfit-warden-front",
       "cargo-bundle-front",
-      "work-prop-mallet",
-      "hand-left-front",
-      "hand-front",
-      "hand-grip",
       "hair-ivory-front",
       "hair-midnight-front"
     ],
@@ -236,7 +236,7 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 184458,
+      "trimmedPixels": 185538,
       "pages": [
         {
           "image": "ne-sw/build-body-0.png",
@@ -249,13 +249,13 @@
         {
           "image": "six/build-body-0.png",
           "json": "six/build-body-0.json",
-          "width": 1076,
+          "width": 1084,
           "height": 142,
-          "decodedBytes": 611168,
-          "pngBytes": 88996
+          "decodedBytes": 615712,
+          "pngBytes": 89322
         }
       ],
-      "decodedBytes": 846832
+      "decodedBytes": 851376
     },
     {
       "layer": "body-front",
@@ -363,7 +363,7 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 68086,
+      "trimmedPixels": 68773,
       "pages": [
         {
           "image": "ne-sw/build-outfit-warden-0.png",
@@ -376,13 +376,13 @@
         {
           "image": "six/build-outfit-warden-0.png",
           "json": "six/build-outfit-warden-0.json",
-          "width": 968,
-          "height": 67,
-          "decodedBytes": 259424,
-          "pngBytes": 39420
+          "width": 971,
+          "height": 68,
+          "decodedBytes": 264112,
+          "pngBytes": 39903
         }
       ],
-      "decodedBytes": 349136
+      "decodedBytes": 353824
     },
     {
       "layer": "outfit-warden-front",
@@ -471,7 +471,7 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 3768,
+      "trimmedPixels": 3777,
       "pages": [
         {
           "image": "ne-sw/build-hand-front-0.png",
@@ -487,7 +487,7 @@
           "width": 321,
           "height": 19,
           "decodedBytes": 24396,
-          "pngBytes": 6339
+          "pngBytes": 6316
         }
       ],
       "decodedBytes": 36236
@@ -498,7 +498,7 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 3649,
+      "trimmedPixels": 3659,
       "pages": [
         {
           "image": "ne-sw/build-hand-grip-0.png",
@@ -514,7 +514,7 @@
           "width": 341,
           "height": 17,
           "decodedBytes": 23188,
-          "pngBytes": 8305
+          "pngBytes": 8308
         }
       ],
       "decodedBytes": 31972
@@ -579,7 +579,7 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 31594,
+      "trimmedPixels": 31566,
       "pages": [
         {
           "image": "ne-sw/build-work-prop-mallet-0.png",
@@ -595,12 +595,12 @@
           "width": 810,
           "height": 44,
           "decodedBytes": 142560,
-          "pngBytes": 48437
+          "pngBytes": 48395
         }
       ],
       "decodedBytes": 183520
     }
   ],
-  "decodedBytes": 3449832,
+  "decodedBytes": 3459064,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

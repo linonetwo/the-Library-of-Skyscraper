@@ -316,16 +316,16 @@
       "frame": {
         "x": 404,
         "y": 2,
-        "w": 28,
-        "h": 35
+        "w": 31,
+        "h": 31
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 67,
+        "x": 64,
         "y": 83,
-        "w": 28,
-        "h": 35
+        "w": 31,
+        "h": 31
       },
       "sourceSize": {
         "w": 192,
@@ -338,18 +338,18 @@
     },
     "unload/body-front/NW/01": {
       "frame": {
-        "x": 436,
+        "x": 439,
         "y": 2,
-        "w": 30,
-        "h": 32
+        "w": 31,
+        "h": 28
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 65,
+        "x": 63,
         "y": 83,
-        "w": 30,
-        "h": 32
+        "w": 31,
+        "h": 28
       },
       "sourceSize": {
         "w": 192,
@@ -471,7 +471,7 @@
     "image": "unload-body-front-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 468,
+      "w": 472,
       "h": 49
     },
     "scale": "1",

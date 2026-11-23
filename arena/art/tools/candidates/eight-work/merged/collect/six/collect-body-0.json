@@ -484,7 +484,7 @@
       "frame": {
         "x": 874,
         "y": 2,
-        "w": 42,
+        "w": 54,
         "h": 132
       },
       "rotated": false,
@@ -492,7 +492,7 @@
       "spriteSourceSize": {
         "x": 78,
         "y": 45,
-        "w": 42,
+        "w": 54,
         "h": 132
       },
       "sourceSize": {
@@ -506,9 +506,9 @@
     },
     "collect/body/N/01": {
       "frame": {
-        "x": 920,
+        "x": 932,
         "y": 2,
-        "w": 41,
+        "w": 53,
         "h": 131
       },
       "rotated": false,
@@ -516,7 +516,7 @@
       "spriteSourceSize": {
         "x": 78,
         "y": 46,
-        "w": 41,
+        "w": 53,
         "h": 131
       },
       "sourceSize": {
@@ -530,7 +530,7 @@
     },
     "collect/body/S/02": {
       "frame": {
-        "x": 965,
+        "x": 989,
         "y": 2,
         "w": 41,
         "h": 130
@@ -554,7 +554,7 @@
     },
     "collect/body/S/01": {
       "frame": {
-        "x": 1010,
+        "x": 1034,
         "y": 2,
         "w": 41,
         "h": 129
@@ -621,7 +621,7 @@
     "image": "collect-body-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 1053,
+      "w": 1077,
       "h": 142
     },
     "scale": "1",

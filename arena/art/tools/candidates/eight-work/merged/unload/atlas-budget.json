@@ -236,7 +236,7 @@
           "width": 788,
           "height": 142,
           "decodedBytes": 447584,
-          "pngBytes": 91183
+          "pngBytes": 91791
         }
       ],
       "decodedBytes": 608316
@@ -247,7 +247,7 @@
       "sourceFrames": 24,
       "nonemptyFrames": 21,
       "untrimmedPixels": 884736,
-      "trimmedPixels": 22465,
+      "trimmedPixels": 22354,
       "pages": [
         {
           "image": "ne-sw/unload-body-front-0.png",
@@ -260,13 +260,13 @@
         {
           "image": "six/unload-body-front-0.png",
           "json": "six/unload-body-front-0.json",
-          "width": 468,
+          "width": 472,
           "height": 49,
-          "decodedBytes": 91728,
-          "pngBytes": 31562
+          "decodedBytes": 92512,
+          "pngBytes": 31608
         }
       ],
-      "decodedBytes": 126408
+      "decodedBytes": 127192
     },
     {
       "layer": "outfit-scholar",
@@ -347,7 +347,7 @@
       "sourceFrames": 24,
       "nonemptyFrames": 24,
       "untrimmedPixels": 884736,
-      "trimmedPixels": 47265,
+      "trimmedPixels": 47350,
       "pages": [
         {
           "image": "ne-sw/unload-outfit-warden-0.png",
@@ -360,13 +360,13 @@
         {
           "image": "six/unload-outfit-warden-0.png",
           "json": "six/unload-outfit-warden-0.json",
-          "width": 695,
+          "width": 696,
           "height": 63,
-          "decodedBytes": 175140,
-          "pngBytes": 42805
+          "decodedBytes": 175392,
+          "pngBytes": 43259
         }
       ],
-      "decodedBytes": 234864
+      "decodedBytes": 235116
     },
     {
       "layer": "outfit-warden-front",
@@ -374,7 +374,7 @@
       "sourceFrames": 24,
       "nonemptyFrames": 21,
       "untrimmedPixels": 884736,
-      "trimmedPixels": 23139,
+      "trimmedPixels": 22918,
       "pages": [
         {
           "image": "ne-sw/unload-outfit-warden-front-0.png",
@@ -387,13 +387,13 @@
         {
           "image": "six/unload-outfit-warden-front-0.png",
           "json": "six/unload-outfit-warden-front-0.json",
-          "width": 490,
+          "width": 494,
           "height": 51,
-          "decodedBytes": 99960,
-          "pngBytes": 28753
+          "decodedBytes": 100776,
+          "pngBytes": 28712
         }
       ],
-      "decodedBytes": 133360
+      "decodedBytes": 134176
     },
     {
       "layer": "hair-midnight-back",
@@ -455,7 +455,7 @@
       "sourceFrames": 24,
       "nonemptyFrames": 24,
       "untrimmedPixels": 884736,
-      "trimmedPixels": 5575,
+      "trimmedPixels": 5562,
       "pages": [
         {
           "image": "ne-sw/unload-hand-front-0.png",
@@ -471,7 +471,7 @@
           "width": 249,
           "height": 17,
           "decodedBytes": 16932,
-          "pngBytes": 4735
+          "pngBytes": 4746
         }
       ],
       "decodedBytes": 40116
@@ -525,7 +525,7 @@
           "width": 143,
           "height": 32,
           "decodedBytes": 18304,
-          "pngBytes": 10954
+          "pngBytes": 10892
         }
       ],
       "decodedBytes": 26032
@@ -571,7 +571,7 @@
           "width": 230,
           "height": 15,
           "decodedBytes": 13800,
-          "pngBytes": 6077
+          "pngBytes": 6089
         }
       ],
       "decodedBytes": 13800
@@ -582,20 +582,20 @@
       "sourceFrames": 18,
       "nonemptyFrames": 18,
       "untrimmedPixels": 663552,
-      "trimmedPixels": 1583,
+      "trimmedPixels": 1567,
       "pages": [
         {
           "image": "six/unload-hand-left-front-0.png",
           "json": "six/unload-hand-left-front-0.json",
-          "width": 257,
+          "width": 255,
           "height": 15,
-          "decodedBytes": 15420,
-          "pngBytes": 4622
+          "decodedBytes": 15300,
+          "pngBytes": 4639
         }
       ],
-      "decodedBytes": 15420
+      "decodedBytes": 15300
     }
   ],
-  "decodedBytes": 2479928,
+  "decodedBytes": 2481660,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

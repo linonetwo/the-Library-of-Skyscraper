@@ -96,7 +96,7 @@
         "y": 0.9
       }
     },
-    "build/work-prop-mallet/N/00": {
+    "build/work-prop-mallet/N/02": {
       "frame": {
         "x": 146,
         "y": 2,
@@ -106,33 +106,9 @@
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 95,
-        "y": 71,
+        "x": 110,
+        "y": 73,
         "w": 27,
-        "h": 38
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "build/work-prop-mallet/N/02": {
-      "frame": {
-        "x": 177,
-        "y": 2,
-        "w": 28,
-        "h": 38
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 100,
-        "y": 75,
-        "w": 28,
         "h": 38
       },
       "sourceSize": {
@@ -146,7 +122,7 @@
     },
     "build/work-prop-mallet/S/00": {
       "frame": {
-        "x": 209,
+        "x": 177,
         "y": 2,
         "w": 29,
         "h": 38
@@ -170,7 +146,7 @@
     },
     "build/work-prop-mallet/S/02": {
       "frame": {
-        "x": 242,
+        "x": 210,
         "y": 2,
         "w": 23,
         "h": 38
@@ -194,7 +170,7 @@
     },
     "build/work-prop-mallet/E/00": {
       "frame": {
-        "x": 269,
+        "x": 237,
         "y": 2,
         "w": 27,
         "h": 37
@@ -205,6 +181,30 @@
         "x": 88,
         "y": 76,
         "w": 27,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/work-prop-mallet/N/00": {
+      "frame": {
+        "x": 268,
+        "y": 2,
+        "w": 28,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 69,
+        "w": 28,
         "h": 37
       },
       "sourceSize": {
@@ -298,8 +298,8 @@
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 87,
-        "y": 86,
+        "x": 101,
+        "y": 85,
         "w": 36,
         "h": 36
       },

@@ -85,6 +85,10 @@
       "weapon-staff-back",
       "hair-ivory-back",
       "hair-midnight-back",
+      "work-prop-paper",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
       "cargo-bundle-back",
       "body",
       "outfit-scholar",
@@ -93,10 +97,6 @@
       "outfit-scholar-front",
       "outfit-warden-front",
       "cargo-bundle-front",
-      "work-prop-paper",
-      "hand-left-front",
-      "hand-front",
-      "hand-grip",
       "hair-ivory-front",
       "hair-midnight-front"
     ],
@@ -234,7 +234,7 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 175694,
+      "trimmedPixels": 178850,
       "pages": [
         {
           "image": "ne-sw/collect-body-0.png",
@@ -247,13 +247,13 @@
         {
           "image": "six/collect-body-0.png",
           "json": "six/collect-body-0.json",
-          "width": 1053,
+          "width": 1077,
           "height": 142,
-          "decodedBytes": 598104,
-          "pngBytes": 182256
+          "decodedBytes": 611736,
+          "pngBytes": 183237
         }
       ],
-      "decodedBytes": 820040
+      "decodedBytes": 833672
     },
     {
       "layer": "body-front",
@@ -361,7 +361,7 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 63868,
+      "trimmedPixels": 64837,
       "pages": [
         {
           "image": "ne-sw/collect-outfit-warden-0.png",
@@ -374,13 +374,13 @@
         {
           "image": "six/collect-outfit-warden-0.png",
           "json": "six/collect-outfit-warden-0.json",
-          "width": 919,
+          "width": 936,
           "height": 62,
-          "decodedBytes": 227912,
-          "pngBytes": 65478
+          "decodedBytes": 232128,
+          "pngBytes": 66472
         }
       ],
-      "decodedBytes": 313340
+      "decodedBytes": 317556
     },
     {
       "layer": "outfit-warden-front",
@@ -469,7 +469,7 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 3488,
+      "trimmedPixels": 3557,
       "pages": [
         {
           "image": "ne-sw/collect-hand-front-0.png",
@@ -482,13 +482,13 @@
         {
           "image": "six/collect-hand-front-0.png",
           "json": "six/collect-hand-front-0.json",
-          "width": 329,
+          "width": 333,
           "height": 17,
-          "decodedBytes": 22372,
-          "pngBytes": 4835
+          "decodedBytes": 22644,
+          "pngBytes": 4868
         }
       ],
-      "decodedBytes": 33332
+      "decodedBytes": 33604
     },
     {
       "layer": "hand-grip",
@@ -512,7 +512,7 @@
           "width": 305,
           "height": 15,
           "decodedBytes": 18300,
-          "pngBytes": 6245
+          "pngBytes": 6232
         }
       ],
       "decodedBytes": 27156
@@ -599,6 +599,6 @@
       "decodedBytes": 45184
     }
   ],
-  "decodedBytes": 3244472,
+  "decodedBytes": 3262592,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

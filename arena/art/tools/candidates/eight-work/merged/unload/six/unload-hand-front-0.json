@@ -288,33 +288,9 @@
         "y": 0.9
       }
     },
-    "unload/hand-front/NW/00": {
-      "frame": {
-        "x": 179,
-        "y": 2,
-        "w": 6,
-        "h": 7
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 100,
-        "y": 113,
-        "w": 6,
-        "h": 7
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
     "unload/hand-front/SE/01": {
       "frame": {
-        "x": 189,
+        "x": 179,
         "y": 2,
         "w": 9,
         "h": 7
@@ -338,7 +314,7 @@
     },
     "unload/hand-front/W/02": {
       "frame": {
-        "x": 202,
+        "x": 192,
         "y": 2,
         "w": 10,
         "h": 6
@@ -360,19 +336,19 @@
         "y": 0.9
       }
     },
-    "unload/hand-front/NW/01": {
+    "unload/hand-front/NW/00": {
       "frame": {
-        "x": 216,
+        "x": 206,
         "y": 2,
-        "w": 7,
+        "w": 6,
         "h": 6
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 94,
-        "y": 111,
-        "w": 7,
+        "x": 92,
+        "y": 110,
+        "w": 6,
         "h": 6
       },
       "sourceSize": {
@@ -386,7 +362,7 @@
     },
     "unload/hand-front/NW/02": {
       "frame": {
-        "x": 227,
+        "x": 216,
         "y": 2,
         "w": 7,
         "h": 6
@@ -410,7 +386,7 @@
     },
     "unload/hand-front/SE/00": {
       "frame": {
-        "x": 238,
+        "x": 227,
         "y": 2,
         "w": 9,
         "h": 6
@@ -422,6 +398,30 @@
         "y": 119,
         "w": 9,
         "h": 6
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hand-front/NW/01": {
+      "frame": {
+        "x": 240,
+        "y": 2,
+        "w": 7,
+        "h": 5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 86,
+        "y": 108,
+        "w": 7,
+        "h": 5
       },
       "sourceSize": {
         "w": 192,

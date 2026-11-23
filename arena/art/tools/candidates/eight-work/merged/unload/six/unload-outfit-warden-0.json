@@ -288,7 +288,7 @@
         "y": 0.9
       }
     },
-    "unload/outfit-warden/NW/01": {
+    "unload/outfit-warden/NW/00": {
       "frame": {
         "x": 474,
         "y": 2,
@@ -312,20 +312,20 @@
         "y": 0.9
       }
     },
-    "unload/outfit-warden/NW/00": {
+    "unload/outfit-warden/NW/01": {
       "frame": {
         "x": 507,
         "y": 2,
-        "w": 30,
-        "h": 54
+        "w": 31,
+        "h": 55
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 83,
-        "y": 77,
-        "w": 30,
-        "h": 54
+        "x": 81,
+        "y": 76,
+        "w": 31,
+        "h": 55
       },
       "sourceSize": {
         "w": 192,
@@ -338,7 +338,7 @@
     },
     "unload/outfit-warden/NW/02": {
       "frame": {
-        "x": 541,
+        "x": 542,
         "y": 2,
         "w": 31,
         "h": 54
@@ -362,7 +362,7 @@
     },
     "unload/outfit-warden/SE/00": {
       "frame": {
-        "x": 576,
+        "x": 577,
         "y": 2,
         "w": 33,
         "h": 54
@@ -386,7 +386,7 @@
     },
     "unload/outfit-warden/SE/01": {
       "frame": {
-        "x": 613,
+        "x": 614,
         "y": 2,
         "w": 36,
         "h": 54
@@ -410,7 +410,7 @@
     },
     "unload/outfit-warden/SE/02": {
       "frame": {
-        "x": 653,
+        "x": 654,
         "y": 2,
         "w": 40,
         "h": 54
@@ -471,7 +471,7 @@
     "image": "unload-outfit-warden-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 695,
+      "w": 696,
       "h": 63
     },
     "scale": "1",
