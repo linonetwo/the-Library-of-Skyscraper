@@ -1,0 +1,822 @@
+{
+  "frames": {
+    "walk/hand-grip/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/01": {
+      "frame": {
+        "x": 19,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/02": {
+      "frame": {
+        "x": 31,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/03": {
+      "frame": {
+        "x": 43,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/04": {
+      "frame": {
+        "x": 55,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/05": {
+      "frame": {
+        "x": 67,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/06": {
+      "frame": {
+        "x": 79,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/07": {
+      "frame": {
+        "x": 91,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/08": {
+      "frame": {
+        "x": 103,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/09": {
+      "frame": {
+        "x": 115,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/10": {
+      "frame": {
+        "x": 127,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/11": {
+      "frame": {
+        "x": 139,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/12": {
+      "frame": {
+        "x": 151,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/13": {
+      "frame": {
+        "x": 163,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/14": {
+      "frame": {
+        "x": 175,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/E/15": {
+      "frame": {
+        "x": 187,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 128,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/00": {
+      "frame": {
+        "x": 199,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/01": {
+      "frame": {
+        "x": 212,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/02": {
+      "frame": {
+        "x": 225,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/03": {
+      "frame": {
+        "x": 238,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/04": {
+      "frame": {
+        "x": 251,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/05": {
+      "frame": {
+        "x": 264,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/06": {
+      "frame": {
+        "x": 277,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/07": {
+      "frame": {
+        "x": 290,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/08": {
+      "frame": {
+        "x": 303,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/09": {
+      "frame": {
+        "x": 316,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 89,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/10": {
+      "frame": {
+        "x": 329,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 89,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/11": {
+      "frame": {
+        "x": 342,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 89,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/12": {
+      "frame": {
+        "x": 355,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/13": {
+      "frame": {
+        "x": 368,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 89,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/14": {
+      "frame": {
+        "x": 381,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 89,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/hand-grip/W/15": {
+      "frame": {
+        "x": 394,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 89,
+        "y": 122,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "walk/hand-grip/E": [
+      "walk/hand-grip/E/00",
+      "walk/hand-grip/E/01",
+      "walk/hand-grip/E/02",
+      "walk/hand-grip/E/03",
+      "walk/hand-grip/E/04",
+      "walk/hand-grip/E/05",
+      "walk/hand-grip/E/06",
+      "walk/hand-grip/E/07",
+      "walk/hand-grip/E/08",
+      "walk/hand-grip/E/09",
+      "walk/hand-grip/E/10",
+      "walk/hand-grip/E/11",
+      "walk/hand-grip/E/12",
+      "walk/hand-grip/E/13",
+      "walk/hand-grip/E/14",
+      "walk/hand-grip/E/15"
+    ],
+    "walk/hand-grip/W": [
+      "walk/hand-grip/W/00",
+      "walk/hand-grip/W/01",
+      "walk/hand-grip/W/02",
+      "walk/hand-grip/W/03",
+      "walk/hand-grip/W/04",
+      "walk/hand-grip/W/05",
+      "walk/hand-grip/W/06",
+      "walk/hand-grip/W/07",
+      "walk/hand-grip/W/08",
+      "walk/hand-grip/W/09",
+      "walk/hand-grip/W/10",
+      "walk/hand-grip/W/11",
+      "walk/hand-grip/W/12",
+      "walk/hand-grip/W/13",
+      "walk/hand-grip/W/14",
+      "walk/hand-grip/W/15"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "walk-hand-grip-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 405,
+      "h": 14
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
