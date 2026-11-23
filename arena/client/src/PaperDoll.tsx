@@ -11,6 +11,6 @@ export default function PaperDoll({outfit="scholar",hair="ivory",weapon=true,sma
  return <div className={`paper-doll layered-preview ${small?"small":""} ${outfit}`}
   aria-label={`${outfit==="scholar"?"学者长袍":"守卫制服"}纸娃娃角色`}>
   {!image && <span role="status" aria-label="角色预览加载中" style={{position:"absolute",left:"35%",top:"70%",width:"30%",height:8,borderRadius:"50%",background:"#0b1c2680"}} />}
-  {image && <div style={{width:192,height:192}}><img src={image} width={192} height={192} alt="同相机角色预览" /></div>}
+  {image && <div style={{width:192,height:192}}><img role="img" src={image} width={192} height={192} alt="同相机角色预览" /></div>}
  </div>;
 }
