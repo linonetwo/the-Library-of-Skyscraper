@@ -1,9 +1,23 @@
-# Eight-direction work extension in progress
+# Eight-direction semantic work candidates
 
-This independent candidate extends PR66's NE/SW semantic actions using the frozen eight-base rig and equipment snapshots in inputs/art. Existing NE/SW delivery is retained unchanged. No runtime files are owned here.
+Each action has one runtime entry point: `merged/{carry,unload,collect,build,catalog}/atlas-budget.json`. These preserve the independently reviewed NE/SW pages and merge six newly registered directions E/W/N/S/NW/SE. No runtime code changes are included; product playback and release acceptance remain separate.
 
-Additional directions are E, W, N, S, NW, SE. Each requires its actual paper, mallet, folio and cargo perspective (24 views total); art proposes two 3×4 source sheets, rows S/SE/E and N/NW/W, columns paper/mallet/folio/cargo. No unapproved mirror or geometric squeeze substitutes a new perspective.
+All clips use 192-square cells, pivot (96,172.8), renderScale 1, fixed world bone lengths and direction-specific source joints/heading. Carry uses 16×45 ms, 720 ms/1.08 world stride. Unload uses [180,160,260] ms, releaseFrame 1, cargo transparent in phase 2. Collect uses [180,120,180,220] ms and paper only in phases 1/2. Build/catalog use separate wrist trajectories on the shared [160,140,160,240] ms clock. Catalog keeps the folio visible through recovery and presses the actual page edge/center; it does not claim animated page turning.
 
-Registration: paper right natural palm; mallet right grip and hammer-face strike; folio left palm plus right-hand page edge/center; cargo actual left/right supporting palms. Working staff is stowed. Tool variants remain separate independent layers, build/catalog separate clips with shared clock.
+The successful new six-direction work material source, prompts and actual pixel registrations are self-contained in inputs/work-props. No mirrored or squeezed prop substitutes for a view. inputs/art contains frozen directional rigs, clothes, hair and staff. Natural palms were split from actual arm sources; Astra approved the contact positions, including corrected S offsets. hands/contact-proposals.png rows E/W/N/S/NW/SE, red=wrist and green=approved palm.
 
-`node arena/art/tools/candidates/eight-work/register-hands.mjs` splits natural left forearm/hand from the actual registered directional source and proposes palm points for both sides. hands/contact-proposals.png rows E/W/N/S/NW/SE, columns left/right, red=wrist, green=proposal alpha centroid; green is not art-approved until confirmed. hands/registration.json is explicit review data, not a runtime descriptor. Source registration remains in inputs/art. The eventual per-action atlas-budget.json is the only runtime descriptor.
+Rebuild from repository root:
+
+```
+node arena/art/tools/candidates/eight-work/register-hands.mjs
+node arena/art/tools/candidates/eight-work/build-work-clips.mjs
+node arena/art/tools/candidates/eight-work/audit-contacts.mjs
+node arena/art/tools/candidates/eight-work/merge-work-clips.mjs
+node arena/art/tools/candidates/eight-work/validate-atlases.mjs
+```
+
+The same shared pose-export/world-leg/IK modules generate every action. Six-direction intermediate pose/pages and large reports go to ignored six/. Appearance composites are review-only: run preview-looks.mjs with six/{action}/pose.json and six/{action}. Review composites must follow descriptor ordering; the shared exporter's generic contact-sheet follows attachment insertion order and is not the accepted semantic occlusion reference. Correctly ordered review-contact.png and eight look GIFs are retained in /home/user/arena-v030-eight-work-evidence/{action}.
+
+The descriptor's appearanceOptions chooses outfit/hair and weapon; work uses a stowed weapon-staff-back and a hand-left-front layer. Select one right hand, hand-front for natural or hand-grip for build. Add cargoLayers/workLayers from appearanceOptions and respect layerOrderByDirection; no prop is baked into body/outfit. NE/SW carry/unload retain their existing combined natural hands, so a missing hand-left-front frame is valid for those two directions. NE/SW frozen page bytes and frame keys are preserved.
+
+validation.json records readback of 135 PNG pages, unique keys/bounds, eight directions, timing/registration consistency and transparent unload recovery cargo. Contact auditing checks 288 actual palm/grip/prop points against exported joints at subpixel precision. These numerical checks do not imply visual or release approval. New six-direction action visual review is pending.

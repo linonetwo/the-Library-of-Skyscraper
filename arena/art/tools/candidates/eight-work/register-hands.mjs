@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';import path from 'node:path';import {fileURLToPath} from 'node:url';import sharp from 'sharp';
-const dir=path.dirname(fileURLToPath(import.meta.url)),src=path.join(dir,'inputs/art');const rig=JSON.parse(await fs.readFile(path.join(src,'attachments-six-directions/rig.json'))),staff=JSON.parse(await fs.readFile(path.join(src,'equipment-staff-additional/attachments.json')));const rows=[],registration={status:'palm-offset-review-pending',directions:{}};
+const dir=path.dirname(fileURLToPath(import.meta.url)),src=path.join(dir,'inputs/art');const rig=JSON.parse(await fs.readFile(path.join(src,'attachments-six-directions/rig.json'))),staff=JSON.parse(await fs.readFile(path.join(src,'equipment-staff-additional/attachments.json')));const rows=[],registration={status:'art-palm-approved-2026-11-23',directions:{}};
 for(const[d,dv]of Object.entries(rig.directions)){
  const out=path.join(dir,'hands',d);await fs.mkdir(out,{recursive:true});registration.directions[d]={};
  for(const side of ['left','right']){
@@ -14,7 +14,7 @@ for(const[d,dv]of Object.entries(rig.directions)){
    }
    await sharp(pixels,{raw:info}).png().toFile(path.join(out,side+'-'+mode+'.png'));
   }
-  const palmOffset=center.map(x=>x/weight);registration.directions[d][side]={palmOffset,status:'alpha-centroid-proposal-needs-art-review',wrist,sourceImage:image,restTopLeft:a.restTopLeft};
+  const palmOffset=d==='S'?(side==='left'?[-.57,3.14]:[1.54,3.74]):center.map(x=>x/weight);registration.directions[d][side]={palmOffset,status:'art-palm-approved-2026-11-23',wrist,sourceImage:path.relative(dir,image),restTopLeft:a.restTopLeft};
   const scale=8,w=info.width*scale,h=info.height*scale,px=(wrist[0]-a.restTopLeft[0])*scale,py=(wrist[1]-a.restTopLeft[1])*scale,cx=px+palmOffset[0]*scale,cy=py+palmOffset[1]*scale;
   const marks=Buffer.from(`<svg width="${w}" height="${h}"><circle cx="${px}" cy="${py}" r="4" fill="red"/><circle cx="${cx}" cy="${cy}" r="4" fill="#00aa44"/></svg>`);
   const png=await sharp(image).resize(w,h,{kernel:'nearest'}).flatten({background:'#eee'}).composite([{input:marks}]).png().toBuffer();rows.push({input:png,left:(side==='left'?0:192),top:Object.keys(registration.directions).indexOf(d)*260});

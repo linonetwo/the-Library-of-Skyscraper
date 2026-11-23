@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "build/work-prop-mallet/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 23,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 68,
+        "w": 23,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/work-prop-mallet/NE/02": {
+      "frame": {
+        "x": 34,
+        "y": 2,
+        "w": 25,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 73,
+        "w": 25,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/work-prop-mallet/SW/00": {
+      "frame": {
+        "x": 63,
+        "y": 2,
+        "w": 26,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 69,
+        "w": 26,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/work-prop-mallet/SW/03": {
+      "frame": {
+        "x": 93,
+        "y": 2,
+        "w": 22,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 65,
+        "y": 102,
+        "w": 22,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/work-prop-mallet/NE/03": {
+      "frame": {
+        "x": 119,
+        "y": 2,
+        "w": 23,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 103,
+        "w": 23,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/work-prop-mallet/SW/02": {
+      "frame": {
+        "x": 146,
+        "y": 2,
+        "w": 30,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 75,
+        "w": 30,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/work-prop-mallet/NE/01": {
+      "frame": {
+        "x": 180,
+        "y": 2,
+        "w": 34,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 116,
+        "y": 93,
+        "w": 34,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/work-prop-mallet/SW/01": {
+      "frame": {
+        "x": 218,
+        "y": 2,
+        "w": 36,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 104,
+        "w": 36,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "build/work-prop-mallet/NE": [
+      "build/work-prop-mallet/NE/00",
+      "build/work-prop-mallet/NE/01",
+      "build/work-prop-mallet/NE/02",
+      "build/work-prop-mallet/NE/03"
+    ],
+    "build/work-prop-mallet/SW": [
+      "build/work-prop-mallet/SW/00",
+      "build/work-prop-mallet/SW/01",
+      "build/work-prop-mallet/SW/02",
+      "build/work-prop-mallet/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "build-work-prop-mallet-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 256,
+      "h": 40
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

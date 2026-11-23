@@ -1,0 +1,1295 @@
+{
+  "status": "actual-source-registration; product motion review separate",
+  "releaseApproved": false,
+  "renderScale": 1,
+  "directions": {
+    "S": {
+      "paper": {
+        "image": "S/paper.png",
+        "size": [
+          16,
+          21
+        ],
+        "pivot": [
+          2.038,
+          16.992
+        ],
+        "contacts": {
+          "rightPalm": [
+            2.038,
+            16.992
+          ]
+        },
+        "contactType": "palm",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 102,
+          "top": 55,
+          "width": 198,
+          "height": 258
+        },
+        "sourceContactPoints": {
+          "rightPalm": [
+            127,
+            264
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      },
+      "mallet": {
+        "image": "S/mallet.png",
+        "size": [
+          21,
+          35
+        ],
+        "pivot": [
+          9.769,
+          25.601
+        ],
+        "contacts": {
+          "rightGrip": [
+            9.769,
+            25.601
+          ],
+          "strikeFace": [
+            0.832,
+            6.26
+          ]
+        },
+        "contactType": "grip",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          15,
+          38,
+          -10,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 488,
+          "top": 30,
+          "width": 175,
+          "height": 292
+        },
+        "sourceContactPoints": {
+          "rightGrip": [
+            569,
+            244
+          ],
+          "strikeFace": [
+            495,
+            82
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      },
+      "folio": {
+        "image": "S/folio.png",
+        "size": [
+          30,
+          18
+        ],
+        "pivot": [
+          15.362,
+          1.607
+        ],
+        "contacts": {
+          "leftPalmSpine": [
+            15.362,
+            1.607
+          ],
+          "rightPageEdge": [
+            2.846,
+            8.162
+          ],
+          "gutterCenter": [
+            15.221,
+            8.732
+          ]
+        },
+        "contactType": "palm",
+        "joint": "leftWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 794,
+          "top": 88,
+          "width": 331,
+          "height": 196
+        },
+        "sourceContactPoints": {
+          "leftPalmSpine": [
+            963,
+            106
+          ],
+          "rightPageEdge": [
+            825,
+            177
+          ],
+          "gutterCenter": [
+            962,
+            183
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      },
+      "cargo": {
+        "image": "S/cargo.png",
+        "size": [
+          29,
+          27
+        ],
+        "pivot": [
+          26.697,
+          23.42
+        ],
+        "contacts": {
+          "actorLeftPalm": [
+            26.697,
+            23.42
+          ],
+          "actorRightPalm": [
+            2.339,
+            23.42
+          ]
+        },
+        "contactType": "dualPalm",
+        "joint": "leftWrist",
+        "layer": "cargo-bundle",
+        "visibleFrames": {
+          "carry": "all",
+          "unload": "until release"
+        },
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 1212,
+          "top": 59,
+          "width": 266,
+          "height": 245
+        },
+        "sourceContactPoints": {
+          "actorLeftPalm": [
+            1457,
+            272
+          ],
+          "actorRightPalm": [
+            1233,
+            272
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      }
+    },
+    "SE": {
+      "paper": {
+        "image": "SE/paper.png",
+        "size": [
+          24,
+          21
+        ],
+        "pivot": [
+          7.767,
+          13.612
+        ],
+        "contacts": {
+          "rightPalm": [
+            7.767,
+            13.612
+          ]
+        },
+        "contactType": "palm",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 56,
+          "top": 389,
+          "width": 292,
+          "height": 252
+        },
+        "sourceContactPoints": {
+          "rightPalm": [
+            150,
+            552
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      },
+      "mallet": {
+        "image": "SE/mallet.png",
+        "size": [
+          21,
+          35
+        ],
+        "pivot": [
+          9.613,
+          26.155
+        ],
+        "contacts": {
+          "rightGrip": [
+            9.613,
+            26.155
+          ],
+          "strikeFace": [
+            18.073,
+            12.09
+          ]
+        },
+        "contactType": "grip",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          16,
+          80,
+          30,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 485,
+          "top": 357,
+          "width": 181,
+          "height": 305
+        },
+        "sourceContactPoints": {
+          "rightGrip": [
+            568,
+            585
+          ],
+          "strikeFace": [
+            641,
+            462
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      },
+      "folio": {
+        "image": "SE/folio.png",
+        "size": [
+          30,
+          19
+        ],
+        "pivot": [
+          11.791,
+          3.841
+        ],
+        "contacts": {
+          "leftPalmSpine": [
+            11.791,
+            3.841
+          ],
+          "rightPageEdge": [
+            5.585,
+            10.377
+          ],
+          "gutterCenter": [
+            15.929,
+            8.711
+          ]
+        },
+        "contactType": "palm",
+        "joint": "leftWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 777,
+          "top": 405,
+          "width": 360,
+          "height": 230
+        },
+        "sourceContactPoints": {
+          "leftPalmSpine": [
+            918,
+            451
+          ],
+          "rightPageEdge": [
+            844,
+            531
+          ],
+          "gutterCenter": [
+            968,
+            510
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      },
+      "cargo": {
+        "image": "SE/cargo.png",
+        "size": [
+          31,
+          26
+        ],
+        "pivot": [
+          27.604,
+          14.106
+        ],
+        "contacts": {
+          "actorLeftPalm": [
+            27.604,
+            14.106
+          ],
+          "actorRightPalm": [
+            12.273,
+            22.869
+          ]
+        },
+        "contactType": "dualPalm",
+        "joint": "leftWrist",
+        "layer": "cargo-bundle",
+        "visibleFrames": {
+          "carry": "all",
+          "unload": "until release"
+        },
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 1189,
+          "top": 378,
+          "width": 320,
+          "height": 267
+        },
+        "sourceContactPoints": {
+          "actorLeftPalm": [
+            1474,
+            523
+          ],
+          "actorRightPalm": [
+            1316,
+            613
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      }
+    },
+    "E": {
+      "paper": {
+        "image": "E/paper.png",
+        "size": [
+          24,
+          14
+        ],
+        "pivot": [
+          5.043,
+          10.373
+        ],
+        "contacts": {
+          "rightPalm": [
+            5.043,
+            10.373
+          ]
+        },
+        "contactType": "palm",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 42,
+          "top": 751,
+          "width": 317,
+          "height": 180
+        },
+        "sourceContactPoints": {
+          "rightPalm": [
+            109,
+            884
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      },
+      "mallet": {
+        "image": "E/mallet.png",
+        "size": [
+          20,
+          35
+        ],
+        "pivot": [
+          9.646,
+          26.77
+        ],
+        "contacts": {
+          "rightGrip": [
+            9.646,
+            26.77
+          ],
+          "strikeFace": [
+            17.584,
+            8.126
+          ]
+        },
+        "contactType": "grip",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          15,
+          95,
+          35,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 488,
+          "top": 703,
+          "width": 172,
+          "height": 300
+        },
+        "sourceContactPoints": {
+          "rightGrip": [
+            571,
+            932
+          ],
+          "strikeFace": [
+            639,
+            773
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      },
+      "folio": {
+        "image": "E/folio.png",
+        "size": [
+          24,
+          22
+        ],
+        "pivot": [
+          3.108,
+          9.677
+        ],
+        "contacts": {
+          "leftPalmSpine": [
+            3.108,
+            9.677
+          ],
+          "rightPageEdge": [
+            14.719,
+            18.378
+          ],
+          "gutterCenter": [
+            12.317,
+            9.677
+          ]
+        },
+        "contactType": "palm",
+        "joint": "leftWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 811,
+          "top": 721,
+          "width": 279,
+          "height": 255
+        },
+        "sourceContactPoints": {
+          "leftPalmSpine": [
+            847,
+            833
+          ],
+          "rightPageEdge": [
+            982,
+            934
+          ],
+          "gutterCenter": [
+            954,
+            833
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      },
+      "cargo": {
+        "image": "E/cargo.png",
+        "size": [
+          31,
+          26
+        ],
+        "pivot": [
+          11.773,
+          5.702
+        ],
+        "contacts": {
+          "actorLeftPalm": [
+            11.773,
+            5.702
+          ],
+          "actorRightPalm": [
+            12.775,
+            23.255
+          ]
+        },
+        "contactType": "dualPalm",
+        "joint": "leftWrist",
+        "layer": "cargo-bundle",
+        "visibleFrames": {
+          "carry": "all",
+          "unload": "until release"
+        },
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-front.png",
+        "sourceRect": {
+          "left": 1197,
+          "top": 728,
+          "width": 288,
+          "height": 239
+        },
+        "sourceContactPoints": {
+          "actorLeftPalm": [
+            1306,
+            780
+          ],
+          "actorRightPalm": [
+            1316,
+            942
+          ]
+        },
+        "sourceSha256": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb"
+      }
+    },
+    "N": {
+      "paper": {
+        "image": "N/paper.png",
+        "size": [
+          16,
+          21
+        ],
+        "pivot": [
+          13.13,
+          16.38
+        ],
+        "contacts": {
+          "rightPalm": [
+            13.13,
+            16.38
+          ]
+        },
+        "contactType": "palm",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 126,
+          "top": 68,
+          "width": 183,
+          "height": 247
+        },
+        "sourceContactPoints": {
+          "rightPalm": [
+            276,
+            261
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      },
+      "mallet": {
+        "image": "N/mallet.png",
+        "size": [
+          25,
+          35
+        ],
+        "pivot": [
+          13.058,
+          25.295
+        ],
+        "contacts": {
+          "rightGrip": [
+            13.058,
+            25.295
+          ],
+          "strikeFace": [
+            23.729,
+            6.857
+          ]
+        },
+        "contactType": "grip",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          -12,
+          -44,
+          13,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 480,
+          "top": 53,
+          "width": 189,
+          "height": 268
+        },
+        "sourceContactPoints": {
+          "rightGrip": [
+            579,
+            247
+          ],
+          "strikeFace": [
+            659,
+            106
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      },
+      "folio": {
+        "image": "N/folio.png",
+        "size": [
+          30,
+          19
+        ],
+        "pivot": [
+          14.998,
+          16.438
+        ],
+        "contacts": {
+          "leftPalmSpine": [
+            14.998,
+            16.438
+          ],
+          "rightPageEdge": [
+            26.929,
+            9.725
+          ],
+          "gutterCenter": [
+            14.998,
+            9.141
+          ]
+        },
+        "contactType": "palm",
+        "joint": "leftWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 790,
+          "top": 89,
+          "width": 316,
+          "height": 202
+        },
+        "sourceContactPoints": {
+          "leftPalmSpine": [
+            948,
+            264
+          ],
+          "rightPageEdge": [
+            1074,
+            192
+          ],
+          "gutterCenter": [
+            948,
+            186
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      },
+      "cargo": {
+        "image": "N/cargo.png",
+        "size": [
+          29,
+          27
+        ],
+        "pivot": [
+          2.061,
+          22.396
+        ],
+        "contacts": {
+          "actorLeftPalm": [
+            2.061,
+            22.396
+          ],
+          "actorRightPalm": [
+            26.619,
+            22.396
+          ]
+        },
+        "contactType": "dualPalm",
+        "joint": "leftWrist",
+        "layer": "cargo-bundle",
+        "visibleFrames": {
+          "carry": "all",
+          "unload": "until release"
+        },
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 1197,
+          "top": 68,
+          "width": 251,
+          "height": 236
+        },
+        "sourceContactPoints": {
+          "actorLeftPalm": [
+            1215,
+            264
+          ],
+          "actorRightPalm": [
+            1427,
+            264
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      }
+    },
+    "NW": {
+      "paper": {
+        "image": "NW/paper.png",
+        "size": [
+          24,
+          21
+        ],
+        "pivot": [
+          20.85,
+          13.493
+        ],
+        "contacts": {
+          "rightPalm": [
+            20.85,
+            13.493
+          ]
+        },
+        "contactType": "palm",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 83,
+          "top": 406,
+          "width": 267,
+          "height": 235
+        },
+        "sourceContactPoints": {
+          "rightPalm": [
+            315,
+            557
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      },
+      "mallet": {
+        "image": "NW/mallet.png",
+        "size": [
+          23,
+          35
+        ],
+        "pivot": [
+          10.343,
+          25.787
+        ],
+        "contacts": {
+          "rightGrip": [
+            10.343,
+            25.787
+          ],
+          "strikeFace": [
+            19.312,
+            12.306
+          ]
+        },
+        "contactType": "grip",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          -17,
+          -83,
+          -30,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 476,
+          "top": 368,
+          "width": 187,
+          "height": 286
+        },
+        "sourceContactPoints": {
+          "rightGrip": [
+            560,
+            579
+          ],
+          "strikeFace": [
+            633,
+            469
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      },
+      "folio": {
+        "image": "NW/folio.png",
+        "size": [
+          29,
+          22
+        ],
+        "pivot": [
+          9.785,
+          14.056
+        ],
+        "contacts": {
+          "leftPalmSpine": [
+            9.785,
+            14.056
+          ],
+          "rightPageEdge": [
+            23.027,
+            9.408
+          ],
+          "gutterCenter": [
+            14.515,
+            9.939
+          ]
+        },
+        "contactType": "palm",
+        "joint": "leftWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 772,
+          "top": 399,
+          "width": 333,
+          "height": 257
+        },
+        "sourceContactPoints": {
+          "leftPalmSpine": [
+            884,
+            563
+          ],
+          "rightPageEdge": [
+            1036,
+            509
+          ],
+          "gutterCenter": [
+            939,
+            515
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      },
+      "cargo": {
+        "image": "NW/cargo.png",
+        "size": [
+          30,
+          27
+        ],
+        "pivot": [
+          3.628,
+          16.329
+        ],
+        "contacts": {
+          "actorLeftPalm": [
+            3.628,
+            16.329
+          ],
+          "actorRightPalm": [
+            25.505,
+            13.819
+          ]
+        },
+        "contactType": "dualPalm",
+        "joint": "leftWrist",
+        "layer": "cargo-bundle",
+        "visibleFrames": {
+          "carry": "all",
+          "unload": "until release"
+        },
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 1177,
+          "top": 380,
+          "width": 300,
+          "height": 267
+        },
+        "sourceContactPoints": {
+          "actorLeftPalm": [
+            1213,
+            541
+          ],
+          "actorRightPalm": [
+            1432,
+            517
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      }
+    },
+    "W": {
+      "paper": {
+        "image": "W/paper.png",
+        "size": [
+          24,
+          15
+        ],
+        "pivot": [
+          17.32,
+          1.622
+        ],
+        "contacts": {
+          "rightPalm": [
+            17.32,
+            1.622
+          ]
+        },
+        "contactType": "palm",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 78,
+          "top": 763,
+          "width": 266,
+          "height": 161
+        },
+        "sourceContactPoints": {
+          "rightPalm": [
+            270,
+            780
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      },
+      "mallet": {
+        "image": "W/mallet.png",
+        "size": [
+          25,
+          35
+        ],
+        "pivot": [
+          12.623,
+          26.045
+        ],
+        "contacts": {
+          "rightGrip": [
+            12.623,
+            26.045
+          ],
+          "strikeFace": [
+            3.226,
+            8.273
+          ]
+        },
+        "contactType": "grip",
+        "joint": "rightWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          -19,
+          -95,
+          -30,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 473,
+          "top": 703,
+          "width": 194,
+          "height": 275
+        },
+        "sourceContactPoints": {
+          "rightGrip": [
+            571,
+            908
+          ],
+          "strikeFace": [
+            498,
+            768
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      },
+      "folio": {
+        "image": "W/folio.png",
+        "size": [
+          25,
+          22
+        ],
+        "pivot": [
+          22.521,
+          9.7
+        ],
+        "contacts": {
+          "leftPalmSpine": [
+            22.521,
+            9.7
+          ],
+          "rightPageEdge": [
+            13.164,
+            1.686
+          ],
+          "gutterCenter": [
+            12.409,
+            9.7
+          ]
+        },
+        "contactType": "palm",
+        "joint": "leftWrist",
+        "layer": "work-prop",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 808,
+          "top": 724,
+          "width": 257,
+          "height": 230
+        },
+        "sourceContactPoints": {
+          "leftPalmSpine": [
+            1040,
+            825
+          ],
+          "rightPageEdge": [
+            943,
+            742
+          ],
+          "gutterCenter": [
+            936,
+            825
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      },
+      "cargo": {
+        "image": "W/cargo.png",
+        "size": [
+          31,
+          26
+        ],
+        "pivot": [
+          15.135,
+          22.215
+        ],
+        "contacts": {
+          "actorLeftPalm": [
+            15.135,
+            22.215
+          ],
+          "actorRightPalm": [
+            9.871,
+            5.467
+          ]
+        },
+        "contactType": "dualPalm",
+        "joint": "leftWrist",
+        "layer": "cargo-bundle",
+        "visibleFrames": {
+          "carry": "all",
+          "unload": "until release"
+        },
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "source": "source/work-props-back.png",
+        "sourceRect": {
+          "left": 1177,
+          "top": 724,
+          "width": 265,
+          "height": 224
+        },
+        "sourceContactPoints": {
+          "actorLeftPalm": [
+            1306,
+            915
+          ],
+          "actorRightPalm": [
+            1261,
+            771
+          ]
+        },
+        "sourceSha256": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+      }
+    }
+  },
+  "sources": {
+    "source/work-props-front.png": "f4d71906e7e11f773b07ac506bc1b058d095b3b4cd55e2750c4d7e00995d22bb",
+    "source/work-props-back.png": "f45f89376f481a2aa2dfeeb89c55ef2bff0555885fcd31c04140380ae3704c4e"
+  }
+}

@@ -1,0 +1,630 @@
+{
+  "frames": {
+    "collect/hand-grip/SE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 104,
+        "y": 123,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/SE/01": {
+      "frame": {
+        "x": 20,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 124,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/SE/02": {
+      "frame": {
+        "x": 33,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 118,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/SE/03": {
+      "frame": {
+        "x": 46,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 104,
+        "y": 123,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/E/00": {
+      "frame": {
+        "x": 59,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 123,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/E/01": {
+      "frame": {
+        "x": 71,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 118,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/E/02": {
+      "frame": {
+        "x": 83,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 112,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/E/03": {
+      "frame": {
+        "x": 95,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 123,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/W/00": {
+      "frame": {
+        "x": 107,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 117,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/W/01": {
+      "frame": {
+        "x": 120,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 119,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/W/02": {
+      "frame": {
+        "x": 133,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 111,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/W/03": {
+      "frame": {
+        "x": 146,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 117,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/N/00": {
+      "frame": {
+        "x": 159,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 119,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/N/01": {
+      "frame": {
+        "x": 171,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 97,
+        "y": 111,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/N/02": {
+      "frame": {
+        "x": 183,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 97,
+        "y": 105,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/N/03": {
+      "frame": {
+        "x": 195,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 119,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/S/00": {
+      "frame": {
+        "x": 207,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 122,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/S/01": {
+      "frame": {
+        "x": 219,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 126,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/S/02": {
+      "frame": {
+        "x": 231,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 118,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/S/03": {
+      "frame": {
+        "x": 243,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 122,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/NW/00": {
+      "frame": {
+        "x": 255,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 117,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/NW/01": {
+      "frame": {
+        "x": 268,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 112,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/NW/02": {
+      "frame": {
+        "x": 281,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 105,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-grip/NW/03": {
+      "frame": {
+        "x": 294,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 117,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "collect/hand-grip/E": [
+      "collect/hand-grip/E/00",
+      "collect/hand-grip/E/01",
+      "collect/hand-grip/E/02",
+      "collect/hand-grip/E/03"
+    ],
+    "collect/hand-grip/W": [
+      "collect/hand-grip/W/00",
+      "collect/hand-grip/W/01",
+      "collect/hand-grip/W/02",
+      "collect/hand-grip/W/03"
+    ],
+    "collect/hand-grip/N": [
+      "collect/hand-grip/N/00",
+      "collect/hand-grip/N/01",
+      "collect/hand-grip/N/02",
+      "collect/hand-grip/N/03"
+    ],
+    "collect/hand-grip/S": [
+      "collect/hand-grip/S/00",
+      "collect/hand-grip/S/01",
+      "collect/hand-grip/S/02",
+      "collect/hand-grip/S/03"
+    ],
+    "collect/hand-grip/NW": [
+      "collect/hand-grip/NW/00",
+      "collect/hand-grip/NW/01",
+      "collect/hand-grip/NW/02",
+      "collect/hand-grip/NW/03"
+    ],
+    "collect/hand-grip/SE": [
+      "collect/hand-grip/SE/00",
+      "collect/hand-grip/SE/01",
+      "collect/hand-grip/SE/02",
+      "collect/hand-grip/SE/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "collect-hand-grip-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 305,
+      "h": 15
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
