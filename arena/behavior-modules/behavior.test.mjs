@@ -17,6 +17,8 @@ async function executable(plan) {
 test('canonical generated project roundtrip refuses edited or additional source',()=>{
  const plan=api.createDefaultBehaviorPlan();const project=api.toRuleSourceProject(plan);
  assert.deepEqual(api.recoverBehaviorPlan(project),plan);
+ for (const module of plan.modules) {const ref=api.getModuleSourceRef(project,module.moduleId);assert.ok(project.files[ref.file].split('\n')[ref.line-1].includes('"moduleId":"'+module.moduleId+'"'));}
+ const hold=api.getModuleSourceRef(project,'hold');assert.ok(project.files[hold.file].split('\n')[hold.line-1].includes("moduleId:'hold'"));
  assert.equal(api.recoverBehaviorPlan({...project,files:{...project.files,'main.ts':project.files['main.ts']+'// manual'}}),null);
  assert.equal(api.recoverBehaviorPlan({...project,files:{...project.files,'extra.ts':''}}),null);
 });
@@ -37,7 +39,7 @@ test('build starts construction once and leaves running authority task intact',a
  const plan=api.createDefaultBehaviorPlan();const module=plan.modules.find(m=>m.kind==='build');module.enabled=true;module.config.roomId='site';
  const run=await executable(plan);
  assert.equal(run.decide(context({roomId:'site'})).intents[0].type,'build');
- const ongoing=context({roomId:'site',task:{kind:'build',target:'site',stage:'construct'}});ongoing.world.buildings=[{owner:'p',roomId:'site',kind:'catalog',hp:100,constructionTicks:1,requiredTicks:8}];ongoing.memory={aiTrace:{actors:[{actorId:'a',moduleId:'build'}]}};
+ const ongoing=context({roomId:'site',task:{kind:'build',target:'site',stage:'construct',buildingKind:'catalog'}});ongoing.world.buildings=[{owner:'p',roomId:'site',kind:'catalog',hp:100,constructionTicks:1,requiredTicks:8}];ongoing.memory={aiTrace:{actors:[{actorId:'a',moduleId:'build'}]}};
  const running=run.decide(ongoing);
  assert.deepEqual(running.intents,[]);assert.equal(running.memoryPatch.set.aiTrace.actors[0].moduleId,'build');
  const ctx=context({roomId:'site'});ctx.world.buildings=[{owner:'p',roomId:'site',kind:'catalog',hp:100,constructionTicks:8,requiredTicks:8}];
@@ -62,7 +64,9 @@ test('generated project uses authority compiler and independent V8 worker', {ski
  assert.equal(preview.execution.decision.memoryPatch.set.aiTrace.v,1);
  assert.ok(preview.execution.decision.intents.length>0);
  await request(path+'/scripts/publish',project,session.token);
- await request(path+'/commands',{type:'step',ticks:8},session.token);
+ const snapshot=await request(path+'/commands',{type:'step',ticks:20},session.token);
+ assert.ok(snapshot.actors.some(a=>a.travel || a.cargo>0 || a.state!=='idle'));
+ console.log('authority behavior observation', JSON.stringify({tick:snapshot.tick,actors:snapshot.actors.map(a=>({id:a.id,state:a.state,cargo:a.cargo,travel:!!a.travel}))}));
  const state=await request(path+'/scripts/state',undefined,session.token);
  assert.equal(state.memory.aiTrace.v,1);
  assert.ok(state.memory.aiTrace.tick>0);

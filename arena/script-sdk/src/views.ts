@@ -29,7 +29,7 @@ export interface ActorScriptView {
   /** Authoritative ground tiles; arrival commits roomId only after travel finishes. */
   readonly worldPosition?: { readonly x: number; readonly y: number };
   readonly travel?: { readonly travelId: string; readonly targetRoomId: string; readonly path: readonly { readonly x: number; readonly y: number }[]; readonly distanceMilli: number; readonly totalDistanceMilli: number; readonly speedMilliPerTick: number; readonly progress: number } | null;
-  readonly task?: { readonly kind: 'gather' | 'build' | 'guard' | 'return'; readonly target: string; readonly stage: string; readonly blockedReason: string | null } | null;
+  readonly task?: { readonly buildingKind?: 'tower' | 'catalog' | 'warehouse' | null; readonly kind: 'gather' | 'build' | 'guard' | 'return'; readonly target: string; readonly stage: string; readonly blockedReason: string | null } | null;
   readonly retreating?: boolean;
   readonly actionTick?: number;
   readonly actionCue?: {readonly kind:string;readonly startedTick:number;readonly durationTicks:number;readonly targetPosition:{readonly x:number;readonly y:number}|null}|null;

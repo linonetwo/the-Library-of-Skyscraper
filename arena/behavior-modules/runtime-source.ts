@@ -63,7 +63,7 @@ export function decide(ctx: RuleContext): RuleDecisionResult {
           if (building && (building.constructionTicks??0)>=(building.requiredTicks??0)) break;
           if (!building && ctx.player.materials<m.config.minMaterials) break;
           selected=true; reason='construction requested';
-          if (building && actor.task?.kind==='build' && actor.task.target===target.id && (ctx.memory.aiTrace as {actors?:{actorId:string;moduleId:string}[]}|undefined)?.actors?.some(a=>a.actorId===actor.id && a.moduleId===m.moduleId)) reason='construction in progress';
+          if (building && actor.task?.kind==='build' && actor.task.target===target.id && 'buildingKind' in actor.task && actor.task.buildingKind===m.config.buildingKind) reason='construction in progress';
           else intent=actor.roomId!==target.id ? move(ctx,actor,target,m.priority) : {type:'build',actorId:actor.id,roomId:target.id,kind:m.config.buildingKind,priority:m.priority};
           break;
         }
