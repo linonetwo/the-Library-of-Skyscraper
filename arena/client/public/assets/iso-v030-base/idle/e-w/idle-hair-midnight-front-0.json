@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "idle/hair-midnight-front/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 43,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 43,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hair-midnight-front/E/02": {
+      "frame": {
+        "x": 54,
+        "y": 2,
+        "w": 43,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 43,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hair-midnight-front/E/03": {
+      "frame": {
+        "x": 101,
+        "y": 2,
+        "w": 43,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 39,
+        "w": 43,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hair-midnight-front/W/00": {
+      "frame": {
+        "x": 148,
+        "y": 2,
+        "w": 44,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 44,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hair-midnight-front/W/02": {
+      "frame": {
+        "x": 196,
+        "y": 2,
+        "w": 44,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 44,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hair-midnight-front/E/01": {
+      "frame": {
+        "x": 244,
+        "y": 2,
+        "w": 43,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 43,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hair-midnight-front/W/01": {
+      "frame": {
+        "x": 291,
+        "y": 2,
+        "w": 44,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 44,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hair-midnight-front/W/03": {
+      "frame": {
+        "x": 339,
+        "y": 2,
+        "w": 44,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 39,
+        "w": 44,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "idle/hair-midnight-front/E": [
+      "idle/hair-midnight-front/E/00",
+      "idle/hair-midnight-front/E/01",
+      "idle/hair-midnight-front/E/02",
+      "idle/hair-midnight-front/E/03"
+    ],
+    "idle/hair-midnight-front/W": [
+      "idle/hair-midnight-front/W/00",
+      "idle/hair-midnight-front/W/01",
+      "idle/hair-midnight-front/W/02",
+      "idle/hair-midnight-front/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "idle-hair-midnight-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 385,
+      "h": 49
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

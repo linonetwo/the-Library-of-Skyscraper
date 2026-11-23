@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "idle/hand-grip/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 125,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hand-grip/E/01": {
+      "frame": {
+        "x": 19,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 124,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hand-grip/E/02": {
+      "frame": {
+        "x": 31,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 125,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hand-grip/E/03": {
+      "frame": {
+        "x": 43,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 125,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hand-grip/W/00": {
+      "frame": {
+        "x": 55,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 119,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hand-grip/W/01": {
+      "frame": {
+        "x": 68,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 118,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hand-grip/W/02": {
+      "frame": {
+        "x": 81,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 119,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/hand-grip/W/03": {
+      "frame": {
+        "x": 94,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 119,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "idle/hand-grip/E": [
+      "idle/hand-grip/E/00",
+      "idle/hand-grip/E/01",
+      "idle/hand-grip/E/02",
+      "idle/hand-grip/E/03"
+    ],
+    "idle/hand-grip/W": [
+      "idle/hand-grip/W/00",
+      "idle/hand-grip/W/01",
+      "idle/hand-grip/W/02",
+      "idle/hand-grip/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "idle-hand-grip-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 105,
+      "h": 14
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

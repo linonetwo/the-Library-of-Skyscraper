@@ -1,0 +1,15 @@
+{
+  "assetSetId": "iso-v030-eight-base",
+  "clips": [
+    {
+      "action": "idle",
+      "root": "/assets/iso-v030-base/idle",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "walk",
+      "root": "/assets/iso-v030-base/walk",
+      "descriptor": "atlas-budget.json"
+    }
+  ]
+}
