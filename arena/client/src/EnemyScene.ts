@@ -66,6 +66,7 @@ export class EnemyScene {
         worldPosition:view.enemy.worldPosition,motionDistanceMilli:motion.motionDistanceMilli,
       },this.assets.catalog);
       view.shadow.alpha = resolved.clip === "down" ? .15 : 1;
+      view.doll.node.tint = resolved.impact ? 0xff937f : 0xffffff;
       view.node.position.set(motion.x,motion.y);
       view.node.zIndex = motion.y;
       const textures = view.doll.update(resolved.clip,resolved.frame,resolved.direction,appearance,0,this.assets.clips[resolved.clip]);
