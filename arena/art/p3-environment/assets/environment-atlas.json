@@ -1,0 +1,133 @@
+{
+  "frames": {
+    "low-wall-u": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 148,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 148,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 148,
+        "h": 100
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.62
+      }
+    },
+    "low-wall-v": {
+      "frame": {
+        "x": 154,
+        "y": 2,
+        "w": 148,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 148,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 148,
+        "h": 100
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.62
+      }
+    },
+    "threshold-u": {
+      "frame": {
+        "x": 306,
+        "y": 2,
+        "w": 156,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 156,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 156,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "threshold-v": {
+      "frame": {
+        "x": 466,
+        "y": 2,
+        "w": 156,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 156,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 156,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "target-inlay": {
+      "frame": {
+        "x": 626,
+        "y": 2,
+        "w": 260,
+        "h": 132
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 260,
+        "h": 132
+      },
+      "sourceSize": {
+        "w": 260,
+        "h": 132
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "image": "environment-atlas.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 890,
+      "h": 136
+    },
+    "scale": "1"
+  }
+}

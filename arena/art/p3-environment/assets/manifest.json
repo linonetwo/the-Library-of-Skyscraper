@@ -1,0 +1,611 @@
+{
+  "schemaVersion": 1,
+  "status": "prototype",
+  "releaseApproved": false,
+  "camera": {
+    "yaw": 45,
+    "elevation": 30,
+    "tileSize": [
+      128,
+      64
+    ],
+    "zScale": 78.3837,
+    "worldUnitMeters": 1
+  },
+  "sources": {
+    "source/p3-environment.png": {
+      "sha256": "121df101f7a07cd520aad52aaa06d6a60829cf470c26c619a1b8f1e5de857d03",
+      "size": [
+        1536,
+        1024
+      ],
+      "successfulGenerationRetained": true
+    }
+  },
+  "assets": {
+    "low-wall-u": {
+      "image": "low-wall-u.png",
+      "canvas": [
+        148,
+        100
+      ],
+      "pivot": [
+        74,
+        62
+      ],
+      "groundPivot": [
+        74,
+        62
+      ],
+      "anchor": [
+        0.5,
+        0.62
+      ],
+      "footprint": [
+        2,
+        0.22
+      ],
+      "decorationOccupation": {
+        "centered": true,
+        "width": 2,
+        "depth": 0.22,
+        "collision": false
+      },
+      "heightMeters": 0.3,
+      "renderScale": 1,
+      "kind": "perimeter-prop",
+      "layer": "world-depth",
+      "status": "prototype",
+      "releaseApproved": false,
+      "source": "source/p3-environment.png",
+      "sourceTransform": "piecewise-affine faces to exact world vertices; 4x coverage downsample",
+      "sourceFaces": [
+        {
+          "source": [
+            [
+              112,
+              100
+            ],
+            [
+              615,
+              274
+            ],
+            [
+              615,
+              346
+            ],
+            [
+              113,
+              174
+            ]
+          ],
+          "world": [
+            [
+              -1,
+              0.11,
+              0.3
+            ],
+            [
+              1,
+              0.11,
+              0.3
+            ],
+            [
+              1,
+              0.11,
+              0
+            ],
+            [
+              -1,
+              0.11,
+              0
+            ]
+          ]
+        },
+        {
+          "source": [
+            [
+              615,
+              274
+            ],
+            [
+              646,
+              256
+            ],
+            [
+              646,
+              329
+            ],
+            [
+              615,
+              346
+            ]
+          ],
+          "world": [
+            [
+              1,
+              0.11,
+              0.3
+            ],
+            [
+              1,
+              -0.11,
+              0.3
+            ],
+            [
+              1,
+              -0.11,
+              0
+            ],
+            [
+              1,
+              0.11,
+              0
+            ]
+          ]
+        },
+        {
+          "source": [
+            [
+              146,
+              82
+            ],
+            [
+              646,
+              256
+            ],
+            [
+              615,
+              274
+            ],
+            [
+              112,
+              100
+            ]
+          ],
+          "world": [
+            [
+              -1,
+              -0.11,
+              0.3
+            ],
+            [
+              1,
+              -0.11,
+              0.3
+            ],
+            [
+              1,
+              0.11,
+              0.3
+            ],
+            [
+              -1,
+              0.11,
+              0.3
+            ]
+          ]
+        }
+      ]
+    },
+    "low-wall-v": {
+      "image": "low-wall-v.png",
+      "canvas": [
+        148,
+        100
+      ],
+      "pivot": [
+        74,
+        62
+      ],
+      "groundPivot": [
+        74,
+        62
+      ],
+      "anchor": [
+        0.5,
+        0.62
+      ],
+      "footprint": [
+        0.22,
+        2
+      ],
+      "decorationOccupation": {
+        "centered": true,
+        "width": 0.22,
+        "depth": 2,
+        "collision": false
+      },
+      "heightMeters": 0.3,
+      "renderScale": 1,
+      "kind": "perimeter-prop",
+      "layer": "world-depth",
+      "status": "prototype",
+      "releaseApproved": false,
+      "source": "source/p3-environment.png",
+      "sourceTransform": "piecewise-affine faces to exact world vertices; 4x coverage downsample",
+      "sourceFaces": [
+        {
+          "source": [
+            [
+              921,
+              274
+            ],
+            [
+              1423,
+              100
+            ],
+            [
+              1423,
+              174
+            ],
+            [
+              921,
+              346
+            ]
+          ],
+          "world": [
+            [
+              0.11,
+              1,
+              0.3
+            ],
+            [
+              0.11,
+              -1,
+              0.3
+            ],
+            [
+              0.11,
+              -1,
+              0
+            ],
+            [
+              0.11,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "source": [
+            [
+              890,
+              256
+            ],
+            [
+              921,
+              274
+            ],
+            [
+              921,
+              346
+            ],
+            [
+              891,
+              331
+            ]
+          ],
+          "world": [
+            [
+              -0.11,
+              1,
+              0.3
+            ],
+            [
+              0.11,
+              1,
+              0.3
+            ],
+            [
+              0.11,
+              1,
+              0
+            ],
+            [
+              -0.11,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "source": [
+            [
+              1390,
+              82
+            ],
+            [
+              1423,
+              100
+            ],
+            [
+              921,
+              274
+            ],
+            [
+              890,
+              256
+            ]
+          ],
+          "world": [
+            [
+              -0.11,
+              -1,
+              0.3
+            ],
+            [
+              0.11,
+              -1,
+              0.3
+            ],
+            [
+              0.11,
+              1,
+              0.3
+            ],
+            [
+              -0.11,
+              1,
+              0.3
+            ]
+          ]
+        }
+      ]
+    },
+    "threshold-u": {
+      "image": "threshold-u.png",
+      "canvas": [
+        156,
+        80
+      ],
+      "pivot": [
+        78,
+        40
+      ],
+      "groundPivot": [
+        78,
+        40
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "footprint": [
+        2,
+        0.35
+      ],
+      "decorationOccupation": {
+        "centered": true,
+        "width": 2,
+        "depth": 0.35,
+        "collision": false
+      },
+      "heightMeters": 0,
+      "renderScale": 1,
+      "kind": "floor-decal",
+      "layer": "floor-before-props",
+      "status": "prototype",
+      "releaseApproved": false,
+      "source": "source/p3-environment.png",
+      "sourceTransform": "piecewise-affine faces to exact world vertices; 4x coverage downsample",
+      "sourceFaces": [
+        {
+          "source": [
+            [
+              95,
+              434
+            ],
+            [
+              165,
+              402
+            ],
+            [
+              645,
+              570
+            ],
+            [
+              574,
+              602
+            ]
+          ],
+          "world": [
+            [
+              -1,
+              0.175,
+              0
+            ],
+            [
+              -1,
+              -0.175,
+              0
+            ],
+            [
+              1,
+              -0.175,
+              0
+            ],
+            [
+              1,
+              0.175,
+              0
+            ]
+          ]
+        }
+      ],
+      "clearWidthMeters": 2,
+      "walkable": true
+    },
+    "threshold-v": {
+      "image": "threshold-v.png",
+      "canvas": [
+        156,
+        80
+      ],
+      "pivot": [
+        78,
+        40
+      ],
+      "groundPivot": [
+        78,
+        40
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "footprint": [
+        0.35,
+        2
+      ],
+      "decorationOccupation": {
+        "centered": true,
+        "width": 0.35,
+        "depth": 2,
+        "collision": false
+      },
+      "heightMeters": 0,
+      "renderScale": 1,
+      "kind": "floor-decal",
+      "layer": "floor-before-props",
+      "status": "prototype",
+      "releaseApproved": false,
+      "source": "source/p3-environment.png",
+      "sourceTransform": "piecewise-affine faces to exact world vertices; 4x coverage downsample",
+      "sourceFaces": [
+        {
+          "source": [
+            [
+              890,
+              570
+            ],
+            [
+              1367,
+              402
+            ],
+            [
+              1440,
+              434
+            ],
+            [
+              963,
+              602
+            ]
+          ],
+          "world": [
+            [
+              -0.175,
+              1,
+              0
+            ],
+            [
+              -0.175,
+              -1,
+              0
+            ],
+            [
+              0.175,
+              -1,
+              0
+            ],
+            [
+              0.175,
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "clearWidthMeters": 2,
+      "walkable": true
+    },
+    "target-inlay": {
+      "image": "target-inlay.png",
+      "canvas": [
+        260,
+        132
+      ],
+      "pivot": [
+        130,
+        66
+      ],
+      "groundPivot": [
+        130,
+        66
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "decorationOccupation": {
+        "centered": true,
+        "width": 2,
+        "depth": 2,
+        "collision": false
+      },
+      "heightMeters": 0,
+      "renderScale": 1,
+      "kind": "floor-decal",
+      "layer": "floor-before-props",
+      "status": "prototype",
+      "releaseApproved": false,
+      "source": "source/p3-environment.png",
+      "sourceTransform": "piecewise-affine faces to exact world vertices; 4x coverage downsample",
+      "sourceFaces": [
+        {
+          "source": [
+            [
+              390,
+              821
+            ],
+            [
+              768,
+              663
+            ],
+            [
+              1146,
+              821
+            ],
+            [
+              768,
+              989
+            ]
+          ],
+          "world": [
+            [
+              -1,
+              1,
+              0
+            ],
+            [
+              -1,
+              -1,
+              0
+            ],
+            [
+              1,
+              -1,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "walkable": true
+    }
+  },
+  "review": {
+    "sourceInspected": true,
+    "alphaAndProjectionInspected": true,
+    "clientIntegrated": false,
+    "independentlyApproved": false
+  }
+}
