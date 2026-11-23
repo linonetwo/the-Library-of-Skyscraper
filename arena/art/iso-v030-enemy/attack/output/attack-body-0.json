@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "attack/body/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 50,
+        "h": 110
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 66,
+        "w": 50,
+        "h": 110
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/body/NE/03": {
+      "frame": {
+        "x": 61,
+        "y": 2,
+        "w": 50,
+        "h": 110
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 66,
+        "w": 50,
+        "h": 110
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/body/NE/02": {
+      "frame": {
+        "x": 115,
+        "y": 2,
+        "w": 47,
+        "h": 109
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 67,
+        "w": 47,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/body/NE/01": {
+      "frame": {
+        "x": 166,
+        "y": 2,
+        "w": 56,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 68,
+        "w": 56,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/body/SW/00": {
+      "frame": {
+        "x": 226,
+        "y": 2,
+        "w": 53,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 68,
+        "w": 53,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/body/SW/02": {
+      "frame": {
+        "x": 283,
+        "y": 2,
+        "w": 67,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 68,
+        "w": 67,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/body/SW/03": {
+      "frame": {
+        "x": 354,
+        "y": 2,
+        "w": 53,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 68,
+        "w": 53,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/body/SW/01": {
+      "frame": {
+        "x": 411,
+        "y": 2,
+        "w": 55,
+        "h": 107
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 69,
+        "w": 55,
+        "h": 107
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/body/NE": [
+      "attack/body/NE/00",
+      "attack/body/NE/01",
+      "attack/body/NE/02",
+      "attack/body/NE/03"
+    ],
+    "attack/body/SW": [
+      "attack/body/SW/00",
+      "attack/body/SW/01",
+      "attack/body/SW/02",
+      "attack/body/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-body-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 468,
+      "h": 114
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "frames": {
+    "hit/body/NE/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 52,
+        "h": 109
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 67,
+        "w": 52,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/body/NE/00": {
+      "frame": {
+        "x": 63,
+        "y": 2,
+        "w": 52,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 68,
+        "w": 52,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/body/SW/01": {
+      "frame": {
+        "x": 119,
+        "y": 2,
+        "w": 54,
+        "h": 107
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 69,
+        "w": 54,
+        "h": 107
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/body/SW/00": {
+      "frame": {
+        "x": 177,
+        "y": 2,
+        "w": 57,
+        "h": 106
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 70,
+        "w": 57,
+        "h": 106
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/body/NE": [
+      "hit/body/NE/00",
+      "hit/body/NE/01"
+    ],
+    "hit/body/SW": [
+      "hit/body/SW/00",
+      "hit/body/SW/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-body-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 236,
+      "h": 113
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

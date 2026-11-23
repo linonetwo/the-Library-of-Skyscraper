@@ -1,0 +1,538 @@
+{
+  "status": "prototype",
+  "releaseApproved": false,
+  "action": "down",
+  "playback": "holdLast",
+  "source": "source/inkguard-collapse-poses.png",
+  "sourceSha256": "6470d9dde296a46966ed33ebdbae475233d21d2ffd575499f4e349c7c7ca2ba3",
+  "cell": [
+    256,
+    256
+  ],
+  "groundPivot": [
+    128,
+    204.8
+  ],
+  "renderScale": 1,
+  "trimAtlases": true,
+  "previewLayers": [
+    "body"
+  ],
+  "frameCount": 4,
+  "notes": [
+    "Four genuinely painted collapse poses, no standing rotation.",
+    "Hood, brace arm and body independently registered from painted floor poses; plum cloth grade preserves bright eyes and metallic edging. Contact-based placement."
+  ],
+  "directions": {
+    "NE": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "restOffset": [
+            0,
+            0
+          ],
+          "cell": [
+            128,
+            204.8
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "collapse-0-body",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-0-body.png",
+          "pivot": [
+            32.75647668393782,
+            91.55590062111801
+          ],
+          "zOrder": 0
+        },
+        {
+          "id": "collapse-0-hood",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-0-hood.png",
+          "pivot": [
+            32.75647668393782,
+            91.55590062111801
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "collapse-0-brace",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-0-brace.png",
+          "pivot": [
+            32.75647668393782,
+            91.55590062111801
+          ],
+          "zOrder": 2
+        },
+        {
+          "id": "collapse-1-body",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-1-body.png",
+          "pivot": [
+            32.35483870967742,
+            78.91103202846975
+          ],
+          "zOrder": 0
+        },
+        {
+          "id": "collapse-1-hood",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-1-hood.png",
+          "pivot": [
+            32.35483870967742,
+            78.91103202846975
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "collapse-1-brace",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-1-brace.png",
+          "pivot": [
+            32.35483870967742,
+            78.91103202846975
+          ],
+          "zOrder": 2
+        },
+        {
+          "id": "collapse-2-body",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-2-body.png",
+          "pivot": [
+            51.946127946127945,
+            61.7344398340249
+          ],
+          "zOrder": 0
+        },
+        {
+          "id": "collapse-2-hood",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-2-hood.png",
+          "pivot": [
+            51.946127946127945,
+            61.7344398340249
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "collapse-2-brace",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-2-brace.png",
+          "pivot": [
+            51.946127946127945,
+            61.7344398340249
+          ],
+          "zOrder": 2
+        },
+        {
+          "id": "collapse-3-body",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-3-body.png",
+          "pivot": [
+            55.17159763313609,
+            47.641176470588235
+          ],
+          "zOrder": 0
+        },
+        {
+          "id": "collapse-3-hood",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-3-hood.png",
+          "pivot": [
+            55.17159763313609,
+            47.641176470588235
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "collapse-3-brace",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/NE/collapse-3-brace.png",
+          "pivot": [
+            55.17159763313609,
+            47.641176470588235
+          ],
+          "zOrder": 2
+        }
+      ],
+      "poses": [
+        {
+          "durationMs": 120,
+          "joints": {},
+          "groundSupport": {
+            "surface": "boot",
+            "source": [
+              212,
+              388
+            ],
+            "screenOffset": [
+              -2,
+              0
+            ]
+          },
+          "hiddenAttachments": [
+            "collapse-1-body",
+            "collapse-1-hood",
+            "collapse-1-brace",
+            "collapse-2-body",
+            "collapse-2-hood",
+            "collapse-2-brace",
+            "collapse-3-body",
+            "collapse-3-hood",
+            "collapse-3-brace"
+          ]
+        },
+        {
+          "durationMs": 160,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "source": [
+              733,
+              365
+            ],
+            "screenOffset": [
+              26,
+              -8
+            ]
+          },
+          "hiddenAttachments": [
+            "collapse-0-body",
+            "collapse-0-hood",
+            "collapse-0-brace",
+            "collapse-2-body",
+            "collapse-2-hood",
+            "collapse-2-brace",
+            "collapse-3-body",
+            "collapse-3-hood",
+            "collapse-3-brace"
+          ]
+        },
+        {
+          "durationMs": 180,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "source": [
+              1214,
+              329
+            ],
+            "screenOffset": [
+              30,
+              -8
+            ]
+          },
+          "hiddenAttachments": [
+            "collapse-0-body",
+            "collapse-0-hood",
+            "collapse-0-brace",
+            "collapse-1-body",
+            "collapse-1-hood",
+            "collapse-1-brace",
+            "collapse-3-body",
+            "collapse-3-hood",
+            "collapse-3-brace"
+          ]
+        },
+        {
+          "durationMs": 240,
+          "joints": {},
+          "groundSupport": {
+            "surface": "forearm",
+            "source": [
+              1693,
+              337
+            ],
+            "screenOffset": [
+              35,
+              -7
+            ]
+          },
+          "hiddenAttachments": [
+            "collapse-0-body",
+            "collapse-0-hood",
+            "collapse-0-brace",
+            "collapse-1-body",
+            "collapse-1-hood",
+            "collapse-1-brace",
+            "collapse-2-body",
+            "collapse-2-hood",
+            "collapse-2-brace"
+          ]
+        }
+      ]
+    },
+    "SW": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "restOffset": [
+            0,
+            0
+          ],
+          "cell": [
+            128,
+            204.8
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "collapse-0-body",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-0-body.png",
+          "pivot": [
+            36.72277227722772,
+            90.97538461538461
+          ],
+          "zOrder": 0
+        },
+        {
+          "id": "collapse-0-hood",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-0-hood.png",
+          "pivot": [
+            36.72277227722772,
+            90.97538461538461
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "collapse-0-brace",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-0-brace.png",
+          "pivot": [
+            36.72277227722772,
+            90.97538461538461
+          ],
+          "zOrder": 2
+        },
+        {
+          "id": "collapse-1-body",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-1-body.png",
+          "pivot": [
+            30.008,
+            73.57720588235294
+          ],
+          "zOrder": 0
+        },
+        {
+          "id": "collapse-1-hood",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-1-hood.png",
+          "pivot": [
+            30.008,
+            73.57720588235294
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "collapse-1-brace",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-1-brace.png",
+          "pivot": [
+            30.008,
+            73.57720588235294
+          ],
+          "zOrder": 2
+        },
+        {
+          "id": "collapse-2-body",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-2-body.png",
+          "pivot": [
+            37.68690095846645,
+            57.64039408866995
+          ],
+          "zOrder": 0
+        },
+        {
+          "id": "collapse-2-hood",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-2-hood.png",
+          "pivot": [
+            37.68690095846645,
+            57.64039408866995
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "collapse-2-brace",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-2-brace.png",
+          "pivot": [
+            37.68690095846645,
+            57.64039408866995
+          ],
+          "zOrder": 2
+        },
+        {
+          "id": "collapse-3-body",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-3-body.png",
+          "pivot": [
+            42.83620689655172,
+            42.691275167785236
+          ],
+          "zOrder": 0
+        },
+        {
+          "id": "collapse-3-hood",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-3-hood.png",
+          "pivot": [
+            42.83620689655172,
+            42.691275167785236
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "collapse-3-brace",
+          "layer": "body",
+          "joint": "root",
+          "image": "attachments/SW/collapse-3-brace.png",
+          "pivot": [
+            42.83620689655172,
+            42.691275167785236
+          ],
+          "zOrder": 2
+        }
+      ],
+      "poses": [
+        {
+          "durationMs": 120,
+          "joints": {},
+          "groundSupport": {
+            "surface": "boot",
+            "source": [
+              253,
+              838
+            ],
+            "screenOffset": [
+              3,
+              1
+            ]
+          },
+          "hiddenAttachments": [
+            "collapse-1-body",
+            "collapse-1-hood",
+            "collapse-1-brace",
+            "collapse-2-body",
+            "collapse-2-hood",
+            "collapse-2-brace",
+            "collapse-3-body",
+            "collapse-3-hood",
+            "collapse-3-brace"
+          ]
+        },
+        {
+          "durationMs": 160,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "source": [
+              541,
+              816
+            ],
+            "screenOffset": [
+              -23,
+              -3
+            ]
+          },
+          "hiddenAttachments": [
+            "collapse-0-body",
+            "collapse-0-hood",
+            "collapse-0-brace",
+            "collapse-2-body",
+            "collapse-2-hood",
+            "collapse-2-brace",
+            "collapse-3-body",
+            "collapse-3-hood",
+            "collapse-3-brace"
+          ]
+        },
+        {
+          "durationMs": 180,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "source": [
+              952,
+              799
+            ],
+            "screenOffset": [
+              -31,
+              -3
+            ]
+          },
+          "hiddenAttachments": [
+            "collapse-0-body",
+            "collapse-0-hood",
+            "collapse-0-brace",
+            "collapse-1-body",
+            "collapse-1-hood",
+            "collapse-1-brace",
+            "collapse-3-body",
+            "collapse-3-hood",
+            "collapse-3-brace"
+          ]
+        },
+        {
+          "durationMs": 240,
+          "joints": {},
+          "groundSupport": {
+            "surface": "forearm",
+            "source": [
+              1398,
+              804
+            ],
+            "screenOffset": [
+              -35,
+              -2
+            ]
+          },
+          "hiddenAttachments": [
+            "collapse-0-body",
+            "collapse-0-hood",
+            "collapse-0-brace",
+            "collapse-1-body",
+            "collapse-1-hood",
+            "collapse-1-brace",
+            "collapse-2-body",
+            "collapse-2-hood",
+            "collapse-2-brace"
+          ]
+        }
+      ]
+    }
+  }
+}
