@@ -7,7 +7,7 @@ import { resolveAnimation } from "./resolveAnimation";
 import type { Snapshot } from "./types";
 
 type Enemy = NonNullable<Snapshot["enemies"]>[number];
-type View = { node: Container; doll: DollRenderer; motion: ActorMotion; enemy: Enemy; title: Text; bar: Graphics };
+type View = { node: Container; doll: DollRenderer; motion: ActorMotion; enemy: Enemy; title: Text; bar: Graphics; shadow: Graphics };
 const appearance = { outfit: "none", hair: "none", weapon: false } as const;
 export async function loadEnemyAssets(): Promise<LoadedAssetSet> {
   const index: AssetSetIndex = await fetch("/assets/iso-v030-enemy-eight-final-1f8e013/index.json").then(r => r.json());
@@ -44,9 +44,10 @@ export class EnemyScene {
         title.anchor.set(.5);
         title.y = -107;
         const bar = new Graphics();
-        node.addChild(new Graphics().ellipse(0,1,19,9.5).fill({color:0x081b22,alpha:.3}),doll.node,title,bar);
+        const shadow = new Graphics().ellipse(0,1,19,9.5).fill({color:0x081b22,alpha:.3});
+        node.addChild(shadow,doll.node,title,bar);
         this.parent.addChild(node);
-        view = {node,doll,motion:new ActorMotion(position,this.tickMs),enemy,title,bar};
+        view = {node,doll,motion:new ActorMotion(position,this.tickMs),enemy,title,bar,shadow};
         this.views.set(enemy.id,view);
         view.motion.move(position,simulationTime,true,[],enemy.motionDistanceMilli ?? 0);
       }
@@ -64,6 +65,7 @@ export class EnemyScene {
         moving:motion.moving,direction:motion.direction,tickDurationMs:this.tickMs,
         worldPosition:view.enemy.worldPosition,motionDistanceMilli:motion.motionDistanceMilli,
       },this.assets.catalog);
+      view.shadow.alpha = resolved.clip === "down" ? .15 : 1;
       view.node.position.set(motion.x,motion.y);
       view.node.zIndex = motion.y;
       const textures = view.doll.update(resolved.clip,resolved.frame,resolved.direction,appearance,0,this.assets.clips[resolved.clip]);
