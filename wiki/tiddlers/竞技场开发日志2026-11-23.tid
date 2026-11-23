@@ -1,0 +1,31 @@
+title: 竞技场开发日志2026-11-23
+tags: 竞技场开发日志 竞技场目录：日报
+type: text/vnd.tiddlywiki
+created: 20261123124836000
+modified: 20261123130842000
+
+!! 实际播放器与分层动作
+
+继续[[竞技场v0.3.0版本计划]]P3，前日见[[竞技场开发日志2026-11-22]]。Wiki3000自动重载入口已恢复，前端5175恢复后主代理当天亲自操作样板：长袖、束发、法杖独立选择，查看两方向attack／hit和呼吸idle，模拟时间逐段拖动及连续播放，最后切裸模／裸头／空手；14个状态采样，pageerror为0。实际源7b41b983，录屏及截图在root/2026-11-23/semantic-player。
+
+[img[竞技场2026-11-23独立衣发法杖攻击实机.png]]
+
+图为真实camera-sample播放器。NE／SW候选沿产品同一SimulationClock、resolveAnimation与DollRenderer；主战场完整新八向基础资源正在接入制作，全部采集／建造编目／卸货／负重／倒地动作仍按本版P3继续完成。
+
+!! 源与场景收合
+
+[[PR58|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/58]]固定130100c5已由Astra独立评审、CI通过后合入：world16、普通攻击、受击、呼吸idle四个模块的自包含裁片、pose、打包工具和统一atlas-budget描述可复建。Sol与主代理已完成收合[[PR57|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/57]]运行时和[[PR59|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/59]]低墙／门槛／目标地面镶嵌，，正在同步实际服务；各PR固定源CI与Astra意见分别保留。
+
+!! 八向基础制作
+
+八向两衣／两发型／空手法杖的独立源和注册由Sol从Astra固定38829f2整理归库。工具Sol用同一world腿链与各向自然腕注册导出剩余方向；E／W16相步态已获Astra候选接受，N／S／NW／SE行走与待机接触页及装备组合正由Astra亲看。统一动作描述将合并各批pages，运行时按真实方向与独立图层使用；正式战场替换后继续实际运动与暂停回放接受。
+
+本轮仍属v0.3完整P1–P5开发；八向基础素材与当前小PR完成后，工作／运输／战斗终态和整版集中发布继续依版本计划推进。
+
+!! 新场景实际采运与守卫
+
+主代理今天在5177／8792独立运行的场景候选929eb25再次进入训练并推荐分工、开始远征、选择守卷人。实际快照library-v3.4，共60个装饰；tick40采撷师满载24建材返程、护卫60HP、巡书使等待清场施工，pageerror为0。低墙与门槛来自独立透明组件和打包图集，角色与原世界交互点保持同一地图坐标。图为开局真实准备画面。
+
+[img[竞技场2026-11-23独立低墙门槛远征实机.png]]
+
+PR57／58／59均已合入，当前master0c06adf包含本批；完整P3的主场新八向身体与各动作继续制作。今日日志图是当天实际播放器／场景候选的截图，详细状态和录屏在root/2026-11-23/environment-gameplay。主试玩5175与8790正由Sol更新到该整合源，原局和凭据继续保留。
