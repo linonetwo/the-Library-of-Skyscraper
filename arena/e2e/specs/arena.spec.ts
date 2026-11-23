@@ -72,7 +72,8 @@ test('two independent browsers join a live room and reconnect with same player',
   await expect.poll(async () =>
     (await state(guest)).actors.find((actor: { id: string }) => actor.id === equippedId).appearance,
   ).toEqual(appearance);
-  await host.reload();
+  await host.reload({waitUntil: 'domcontentloaded'});
+  await expect.poll(async () => (await state(host))?.sessionId).toBe(hostState.sessionId);
   await host.getByRole('button',{name:'角色详情',exact:true}).click();
   await expect(host.locator('.portrait-frame .paper-doll')).toHaveClass(/warden/);
   await expect(host.getByRole('button', { name: '墨蓝发色' })).toHaveClass(/selected/);
