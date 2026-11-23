@@ -1,3 +1,4 @@
+import expeditionConfig from "../../shared/first-expedition.json";
 import { DollRenderer, type DollTextures } from "./DollRenderer";
 export type { DollTextures } from "./DollRenderer";
 import type { WorldAssets } from "./worldAssets";
@@ -100,7 +101,7 @@ export class ActorView {
     this.motion.move(
       destination, now, snap, path, actor.motionDistanceMilli,
       this.authoritativeAnimation
-        ? (actor.travel?.speedMilliPerTick ?? 750) / this.tickDuration
+        ? (actor.travel?.speedMilliPerTick ?? expeditionConfig.speedMilliPerTick) / this.tickDuration
         : undefined,
       duration,
     );

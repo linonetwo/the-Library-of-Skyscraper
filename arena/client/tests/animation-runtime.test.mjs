@@ -103,7 +103,9 @@ test('terminal movement uses remaining authoritative distance and arrives withou
  motion.move({x:1500,y:0},420,false,[],1500,1.5,500);
  assert.equal(motion.duration,580);
  const actor={motionDistanceMilli:1650,travel:null};
- const speed=(actor.travel?.speedMilliPerTick ?? 750)/500;
+ const {readFile}=await import("node:fs/promises");
+ const config=JSON.parse(await readFile(new URL("../../shared/first-expedition.json",import.meta.url),"utf8"));
+ const speed=(actor.travel?.speedMilliPerTick ?? config.speedMilliPerTick)/500;
  motion.move({x:1650,y:0},1000,false,[],actor.motionDistanceMilli,speed,500);
  assert.equal(motion.duration,100);
  assert.equal(motion.sample(1099).moving,true);
