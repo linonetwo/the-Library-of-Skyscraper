@@ -26,7 +26,7 @@ try {
   await page.getByRole('button', { name: '开启训练远征' }).click();
   await page.getByRole('button', { name: '重置训练局' }).click();
   await page.getByRole('button', { name: '行动规则', exact: true }).click();
-  await page.getByRole('button', { name: '编写 TypeScript 规则 →' }).click();
+  await page.getByRole('tab', { name: 'TypeScript', exact: true }).click();
   const editor = page.getByRole('textbox', { name: 'TypeScript规则源码' });
   await editor.waitFor();
   await page.evaluate(text => navigator.clipboard.writeText(text), source);
