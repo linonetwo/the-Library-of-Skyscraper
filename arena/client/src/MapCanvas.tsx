@@ -399,7 +399,7 @@ export default function MapCanvas(props: MapProps) {
   ]);
 
   return (
-    <div ref={mount} className="pixi-map" aria-label="等距书苑地图" aria-busy={!!props.snapshot && actorsLoading}>
+    <div ref={mount} className="pixi-map" aria-label="等距书苑地图" aria-busy={actorsLoading}>
       {props.snapshot && actorsLoading && <span role="status" style={{position:"absolute",left:"50%",top:"45%",zIndex:1,pointerEvents:"none"}}>角色加载中…</span>}
       {error && (
         <div className="map-error" role="alert">

@@ -1,4 +1,4 @@
-import { Rectangle, type Renderer } from "pixi.js";
+import { Container, Rectangle, type Renderer } from "pixi.js";
 import { DollRenderer } from "./DollRenderer";
 import { loadMainDefinition, prepareMainLayers } from "./dollAssets";
 import type { DollAppearance } from "./walkLayers";
@@ -24,13 +24,15 @@ export function dollThumbnail(appearance: DollAppearance) {
       const render = queue.then(async () => {
         const shared = renderers.values().next().value ?? await new Promise<Renderer>((ready) => waiters.push(ready));
         const doll = new DollRenderer({});
+        const target = new Container();
+        target.addChild(doll.node);
         doll.node.position.set(96, 172.8);
         doll.update("idle", 0, "S", appearance, 0, set.clips.idle);
         try {
-          const canvas = shared.extract.canvas({ target: doll.node, frame: new Rectangle(0, 0, 192, 192) });
+          const canvas = shared.extract.canvas({ target, frame: new Rectangle(0, 0, 192, 192) });
           result = (canvas as HTMLCanvasElement).toDataURL();
         } finally {
-          doll.node.destroy({ children: true });
+          target.destroy({ children: true });
         }
       });
       queue = render.catch(() => {});

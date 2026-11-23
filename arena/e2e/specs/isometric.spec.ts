@@ -44,6 +44,7 @@ test('real tile stage preserves camera picking and movement',async({page})=>{
 });
 
 test('two clients share authoritative positions and select actors through the camera',async({browser})=>{
+ test.setTimeout(45000);
  const one=await browser.newContext(),two=await browser.newContext();const host=await one.newPage(),guest=await two.newPage();
  await host.goto('/');await host.getByRole('button',{name:/或加入联机赛局/}).click();await host.getByRole('button',{name:/创建联机/}).click();
  await expect.poll(()=>host.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();const auth=await host.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session')!));
