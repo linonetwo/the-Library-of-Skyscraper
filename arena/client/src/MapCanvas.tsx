@@ -9,6 +9,7 @@ import { mapLayout, mapRoomCenter } from "./mapLayout";
 import { project } from "./isoGeometry";
 import { CameraController } from "./cameraController";
 import { localRoomFocus, type Bounds } from "./mapCamera";
+import { useThumbnailRenderer } from "./dollThumbnail";
 import { ActorScene } from "./ActorScene";
 
 /** The application lives for the entire mounted canvas; snapshots only update its render bridge. */
@@ -18,12 +19,14 @@ export default function MapCanvas(props: MapProps) {
   latest.current = props;
   const redraw = useRef<() => void>(() => {});
   const [error, setError] = useState("");
+  const [actorsLoading, setActorsLoading] = useState(true);
 
   useEffect(() => {
     const host = mount.current!;
     const app = new Application();
     let disposed = false;
     let initialized = false;
+    let releaseThumbnailRenderer: (() => void) | undefined;
     let resize: ResizeObserver | undefined;
     let actors: ActorScene;
     let dynamics: WorldEntities;
@@ -241,6 +244,7 @@ export default function MapCanvas(props: MapProps) {
           ? "main:" + JSON.stringify(p.snapshot.actors.map((actor) => actor.appearance))
           : "legacy";
       if (appearanceKey && readyAppearance !== appearanceKey) {
+        setActorsLoading(true);
         if (pendingAppearance !== appearanceKey) {
           pendingAppearance = appearanceKey;
           const prepare = p.assetSet ? Promise.resolve() : appearanceKey === "legacy"
@@ -269,6 +273,7 @@ export default function MapCanvas(props: MapProps) {
         performance.now(),
       );
       poses = actors.render(performance.now());
+      setActorsLoading(false);
       dynamics.render(actors.simulationTime(performance.now()));
       host.dataset.actors = JSON.stringify(poses);
       applyCamera();
@@ -289,6 +294,7 @@ export default function MapCanvas(props: MapProps) {
           app.destroy({ removeView: true }, { children: true });
           return;
         }
+        releaseThumbnailRenderer = useThumbnailRenderer(app.renderer);
         const manifest = await (
           await fetch("/assets/tiles/manifest.json")
         ).json();
@@ -362,6 +368,7 @@ export default function MapCanvas(props: MapProps) {
     document.addEventListener("visibilitychange", visibility);
     return () => {
       disposed = true;
+      releaseThumbnailRenderer?.();
       resize?.disconnect();
       if (initialized)
         app.canvas.removeEventListener("pointerdown", pointerDown);
@@ -392,7 +399,8 @@ export default function MapCanvas(props: MapProps) {
   ]);
 
   return (
-    <div ref={mount} className="pixi-map" aria-label="等距书苑地图">
+    <div ref={mount} className="pixi-map" aria-label="等距书苑地图" aria-busy={!!props.snapshot && actorsLoading}>
+      {props.snapshot && actorsLoading && <span role="status" style={{position:"absolute",left:"50%",top:"45%",zIndex:1,pointerEvents:"none"}}>角色加载中…</span>}
       {error && (
         <div className="map-error" role="alert">
           {error}

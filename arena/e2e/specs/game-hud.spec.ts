@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 test('fullscreen HUD keeps actions and optional panels accessible',async({page})=>{
  await page.goto('/');await page.getByRole('button',{name:'开启训练远征',exact:true}).click();
  await expect(page.getByRole('region',{name:'选中角色操作'})).toBeVisible();
+ await expect(page.locator('.pixi-map').first()).toHaveAttribute('aria-busy','false',{timeout:15000});
  for(const width of [1440,390]){
   await page.setViewportSize({width,height:844});
   const map=await page.locator('.pixi-map').boundingBox();expect(map?.width).toBe(width);expect(map?.height).toBe(844);

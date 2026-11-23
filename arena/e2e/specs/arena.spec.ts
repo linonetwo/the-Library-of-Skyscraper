@@ -99,6 +99,7 @@ test('narrow layout presents the paper-doll squad', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await training(page);
   await expect(page.locator('canvas')).toBeVisible();
+  await expect(page.locator('.pixi-map').first()).toHaveAttribute('aria-busy','false',{timeout:15000});
   await page.getByRole('button',{name:'角色详情',exact:true}).click();
   await expect(page.locator('.portrait-frame [role=img]')).toHaveCount(1);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);

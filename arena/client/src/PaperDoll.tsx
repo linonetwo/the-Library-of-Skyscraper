@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import type { Appearance } from "./types";
 import { dollThumbnail } from "./dollThumbnail";
 export default function PaperDoll({outfit="scholar",hair="ivory",weapon=true,small=false}: Partial<Appearance> & {small?:boolean}) {
- const [image,setImage]=useState("");
+ const key=JSON.stringify({outfit,hair,weapon});
+ const [loaded,setLoaded]=useState<{key:string;url:string}>();
+ const image=loaded?.key===key?loaded.url:"";
  useEffect(()=>{
   let disposed=false;
-  void dollThumbnail({outfit,hair,weapon}).then((url)=>{if(!disposed)setImage(url);}).catch((cause)=>{if(!disposed)console.error("角色预览加载失败",cause);});
+  void dollThumbnail({outfit,hair,weapon}).then((url)=>{if(!disposed)setLoaded({key,url});}).catch((cause)=>{if(!disposed)console.error("角色预览加载失败",cause);});
   return ()=>{disposed=true;};
  },[outfit,hair,weapon]);
  return <div className={`paper-doll layered-preview ${small?"small":""} ${outfit}`}

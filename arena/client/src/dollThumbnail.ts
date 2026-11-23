@@ -1,11 +1,18 @@
-import { Application, Rectangle } from "pixi.js";
+import { Rectangle, type Renderer } from "pixi.js";
 import { DollRenderer } from "./DollRenderer";
 import { loadMainDefinition, prepareMainLayers } from "./dollAssets";
 import type { DollAppearance } from "./walkLayers";
-let renderer: Promise<Application> | undefined;
+let renderer: Renderer | undefined;
+let waiters: ((renderer: Renderer) => void)[] = [];
 let queue = Promise.resolve();
 const thumbnails = new Map<string, Promise<string>>();
-/** One stopped renderer shares the actual doll compositor across all HUD thumbnails. */
+/** The live map's renderer also draws static thumbnails without another graphics context. */
+export function useThumbnailRenderer(value: Renderer) {
+  renderer = value;
+  for (const ready of waiters) ready(value);
+  waiters = [];
+  return () => { if (renderer === value) renderer = undefined; };
+}
 export function dollThumbnail(appearance: DollAppearance) {
   const key = JSON.stringify(appearance);
   let pending = thumbnails.get(key);
@@ -15,28 +22,21 @@ export function dollThumbnail(appearance: DollAppearance) {
       await prepareMainLayers(set, [appearance], true);
       let result = "";
       const render = queue.then(async () => {
-        const app = await (renderer ??= (async () => {
-          const shared = new Application();
-          await shared.init({ width: 192, height: 192, backgroundAlpha: 0, autoStart: false, preference: "webgl" });
-          shared.stop();
-          return shared;
-        })().catch((cause) => { renderer = undefined; throw cause; }));
+        const shared = renderer ?? await new Promise<Renderer>((ready) => waiters.push(ready));
         const doll = new DollRenderer({});
         doll.node.position.set(96, 172.8);
         doll.update("idle", 0, "S", appearance, 0, set.clips.idle);
-        app.stage.addChild(doll.node);
-        app.renderer.render(app.stage);
-        result = await app.renderer.extract.base64({ target: app.stage, frame: new Rectangle(0, 0, 192, 192) });
-        doll.node.destroy({ children: true });
+        try {
+          const canvas = shared.extract.canvas({ target: doll.node, frame: new Rectangle(0, 0, 192, 192) });
+          result = (canvas as HTMLCanvasElement).toDataURL();
+        } finally {
+          doll.node.destroy({ children: true });
+        }
       });
       queue = render.catch(() => {});
       await render;
       return result;
-    })();
-    pending = pending.catch((cause) => {
-      thumbnails.delete(key);
-      throw cause;
-    });
+    })().catch((cause) => { thumbnails.delete(key); throw cause; });
     thumbnails.set(key, pending);
   }
   return pending;
