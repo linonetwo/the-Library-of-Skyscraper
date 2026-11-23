@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "idle/body-front/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 18,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 104,
+        "w": 18,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/NE/01": {
+      "frame": {
+        "x": 29,
+        "y": 2,
+        "w": 18,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 104,
+        "w": 18,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/NE/02": {
+      "frame": {
+        "x": 51,
+        "y": 2,
+        "w": 18,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 104,
+        "w": 18,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/NE/03": {
+      "frame": {
+        "x": 73,
+        "y": 2,
+        "w": 18,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 105,
+        "w": 18,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/SW/00": {
+      "frame": {
+        "x": 95,
+        "y": 2,
+        "w": 16,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 105,
+        "w": 16,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/SW/01": {
+      "frame": {
+        "x": 115,
+        "y": 2,
+        "w": 16,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 105,
+        "w": 16,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/SW/02": {
+      "frame": {
+        "x": 135,
+        "y": 2,
+        "w": 16,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 105,
+        "w": 16,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body-front/SW/03": {
+      "frame": {
+        "x": 155,
+        "y": 2,
+        "w": 16,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 106,
+        "w": 16,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "idle/body-front/NE": [
+      "idle/body-front/NE/00",
+      "idle/body-front/NE/01",
+      "idle/body-front/NE/02",
+      "idle/body-front/NE/03"
+    ],
+    "idle/body-front/SW": [
+      "idle/body-front/SW/00",
+      "idle/body-front/SW/01",
+      "idle/body-front/SW/02",
+      "idle/body-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "idle-body-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 173,
+      "h": 40
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

@@ -1,0 +1,839 @@
+{
+  "approved": false,
+  "reviewNotes": [],
+  "activeLayers": [
+    "body",
+    "body-front"
+  ],
+  "inactiveLayers": [
+    "outfit-scholar",
+    "outfit-warden",
+    "hair-ivory",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "hair-midnight",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "weapon-staff",
+    "weapon-staff-back",
+    "weapon-staff-front",
+    "hand-grip"
+  ],
+  "renderScale": 1,
+  "cycleWorldStride": null,
+  "action": "idle",
+  "directions": [
+    "NE",
+    "SW"
+  ],
+  "frames": [
+    {
+      "direction": "NE",
+      "frame": 0,
+      "durationMs": 250,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            96,
+            172.8
+          ],
+          "angle": 0
+        },
+        "pelvis": {
+          "point": [
+            95.953125,
+            139.565625
+          ],
+          "angle": 0
+        },
+        "neck": {
+          "point": [
+            97.3125,
+            95.38593750000001
+          ],
+          "angle": 0
+        },
+        "leftShoulder": {
+          "point": [
+            81.90625,
+            104.44843750000001
+          ],
+          "angle": 0
+        },
+        "rightShoulder": {
+          "point": [
+            109.3203125,
+            105.24140625000001
+          ],
+          "angle": 0
+        },
+        "leftElbow": {
+          "point": [
+            76.35546875,
+            115.43671875000001
+          ],
+          "angle": 0
+        },
+        "rightElbow": {
+          "point": [
+            114.078125,
+            116.56953125000001
+          ],
+          "angle": 0
+        },
+        "leftWrist": {
+          "point": [
+            71.7109375,
+            130.95625
+          ],
+          "angle": 0
+        },
+        "rightWrist": {
+          "point": [
+            119.96875,
+            131.6359375
+          ],
+          "angle": 0
+        },
+        "leftAnkle": {
+          "point": [
+            84.28515625,
+            169.13203125
+          ],
+          "angle": 0
+        },
+        "rightAnkle": {
+          "point": [
+            105.2421875,
+            171.5109375
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "NE",
+      "frame": 1,
+      "durationMs": 250,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            96,
+            172.8
+          ],
+          "angle": 0
+        },
+        "pelvis": {
+          "point": [
+            95.953125,
+            139.565625
+          ],
+          "angle": 0
+        },
+        "neck": {
+          "point": [
+            97.3125,
+            94.78593750000002
+          ],
+          "angle": 0
+        },
+        "leftShoulder": {
+          "point": [
+            81.90625,
+            103.84843750000002
+          ],
+          "angle": 0
+        },
+        "rightShoulder": {
+          "point": [
+            109.3203125,
+            104.64140625000002
+          ],
+          "angle": 0
+        },
+        "leftElbow": {
+          "point": [
+            76.35546875,
+            114.83671875000002
+          ],
+          "angle": 0
+        },
+        "rightElbow": {
+          "point": [
+            114.078125,
+            115.96953125000002
+          ],
+          "angle": 0
+        },
+        "leftWrist": {
+          "point": [
+            71.7109375,
+            130.35625000000002
+          ],
+          "angle": 0
+        },
+        "rightWrist": {
+          "point": [
+            119.96875,
+            131.03593750000002
+          ],
+          "angle": 0
+        },
+        "leftAnkle": {
+          "point": [
+            84.28515625,
+            169.13203125
+          ],
+          "angle": 0
+        },
+        "rightAnkle": {
+          "point": [
+            105.2421875,
+            171.5109375
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "NE",
+      "frame": 2,
+      "durationMs": 250,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            96,
+            172.8
+          ],
+          "angle": 0
+        },
+        "pelvis": {
+          "point": [
+            95.953125,
+            139.565625
+          ],
+          "angle": 0
+        },
+        "neck": {
+          "point": [
+            97.3125,
+            95.38593750000001
+          ],
+          "angle": 0
+        },
+        "leftShoulder": {
+          "point": [
+            81.90625,
+            104.44843750000001
+          ],
+          "angle": 0
+        },
+        "rightShoulder": {
+          "point": [
+            109.3203125,
+            105.24140625000001
+          ],
+          "angle": 0
+        },
+        "leftElbow": {
+          "point": [
+            76.35546875,
+            115.43671875000001
+          ],
+          "angle": 0
+        },
+        "rightElbow": {
+          "point": [
+            114.078125,
+            116.56953125000001
+          ],
+          "angle": 0
+        },
+        "leftWrist": {
+          "point": [
+            71.7109375,
+            130.95625
+          ],
+          "angle": 0
+        },
+        "rightWrist": {
+          "point": [
+            119.96875,
+            131.6359375
+          ],
+          "angle": 0
+        },
+        "leftAnkle": {
+          "point": [
+            84.28515625,
+            169.13203125
+          ],
+          "angle": 0
+        },
+        "rightAnkle": {
+          "point": [
+            105.2421875,
+            171.5109375
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "NE",
+      "frame": 3,
+      "durationMs": 250,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            96,
+            172.8
+          ],
+          "angle": 0
+        },
+        "pelvis": {
+          "point": [
+            95.953125,
+            139.565625
+          ],
+          "angle": 0
+        },
+        "neck": {
+          "point": [
+            97.3125,
+            95.78593750000002
+          ],
+          "angle": 0
+        },
+        "leftShoulder": {
+          "point": [
+            81.90625,
+            104.84843750000002
+          ],
+          "angle": 0
+        },
+        "rightShoulder": {
+          "point": [
+            109.3203125,
+            105.64140625000002
+          ],
+          "angle": 0
+        },
+        "leftElbow": {
+          "point": [
+            76.35546875,
+            115.83671875000002
+          ],
+          "angle": 0
+        },
+        "rightElbow": {
+          "point": [
+            114.078125,
+            116.96953125000002
+          ],
+          "angle": 0
+        },
+        "leftWrist": {
+          "point": [
+            71.7109375,
+            131.35625000000002
+          ],
+          "angle": 0
+        },
+        "rightWrist": {
+          "point": [
+            119.96875,
+            132.03593750000002
+          ],
+          "angle": 0
+        },
+        "leftAnkle": {
+          "point": [
+            84.28515625,
+            169.13203125
+          ],
+          "angle": 0
+        },
+        "rightAnkle": {
+          "point": [
+            105.2421875,
+            171.5109375
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "SW",
+      "frame": 0,
+      "durationMs": 250,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            96,
+            172.8
+          ],
+          "angle": 0
+        },
+        "pelvis": {
+          "point": [
+            90.2890625,
+            139.565625
+          ],
+          "angle": 0
+        },
+        "neck": {
+          "point": [
+            90.96875,
+            97.99140625000001
+          ],
+          "angle": 0
+        },
+        "leftShoulder": {
+          "point": [
+            107.84765625,
+            106.14765625000001
+          ],
+          "angle": 0
+        },
+        "rightShoulder": {
+          "point": [
+            74.08984375,
+            106.14765625000001
+          ],
+          "angle": 0
+        },
+        "leftElbow": {
+          "point": [
+            113.3984375,
+            116.22968750000001
+          ],
+          "angle": 0
+        },
+        "rightElbow": {
+          "point": [
+            69.671875,
+            116.22968750000001
+          ],
+          "angle": 0
+        },
+        "leftWrist": {
+          "point": [
+            116.5703125,
+            131.06953125
+          ],
+          "angle": 0
+        },
+        "rightWrist": {
+          "point": [
+            66.38671875,
+            130.95625
+          ],
+          "angle": 0
+        },
+        "leftAnkle": {
+          "point": [
+            103.65625,
+            171.284375
+          ],
+          "angle": 0
+        },
+        "rightAnkle": {
+          "point": [
+            79.75390625,
+            170.6046875
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "SW",
+      "frame": 1,
+      "durationMs": 250,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            96,
+            172.8
+          ],
+          "angle": 0
+        },
+        "pelvis": {
+          "point": [
+            90.2890625,
+            139.565625
+          ],
+          "angle": 0
+        },
+        "neck": {
+          "point": [
+            90.96875,
+            97.39140625000002
+          ],
+          "angle": 0
+        },
+        "leftShoulder": {
+          "point": [
+            107.84765625,
+            105.54765625000002
+          ],
+          "angle": 0
+        },
+        "rightShoulder": {
+          "point": [
+            74.08984375,
+            105.54765625000002
+          ],
+          "angle": 0
+        },
+        "leftElbow": {
+          "point": [
+            113.3984375,
+            115.62968750000002
+          ],
+          "angle": 0
+        },
+        "rightElbow": {
+          "point": [
+            69.671875,
+            115.62968750000002
+          ],
+          "angle": 0
+        },
+        "leftWrist": {
+          "point": [
+            116.5703125,
+            130.46953125000002
+          ],
+          "angle": 0
+        },
+        "rightWrist": {
+          "point": [
+            66.38671875,
+            130.35625000000002
+          ],
+          "angle": 0
+        },
+        "leftAnkle": {
+          "point": [
+            103.65625,
+            171.284375
+          ],
+          "angle": 0
+        },
+        "rightAnkle": {
+          "point": [
+            79.75390625,
+            170.6046875
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "SW",
+      "frame": 2,
+      "durationMs": 250,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            96,
+            172.8
+          ],
+          "angle": 0
+        },
+        "pelvis": {
+          "point": [
+            90.2890625,
+            139.565625
+          ],
+          "angle": 0
+        },
+        "neck": {
+          "point": [
+            90.96875,
+            97.99140625000001
+          ],
+          "angle": 0
+        },
+        "leftShoulder": {
+          "point": [
+            107.84765625,
+            106.14765625000001
+          ],
+          "angle": 0
+        },
+        "rightShoulder": {
+          "point": [
+            74.08984375,
+            106.14765625000001
+          ],
+          "angle": 0
+        },
+        "leftElbow": {
+          "point": [
+            113.3984375,
+            116.22968750000001
+          ],
+          "angle": 0
+        },
+        "rightElbow": {
+          "point": [
+            69.671875,
+            116.22968750000001
+          ],
+          "angle": 0
+        },
+        "leftWrist": {
+          "point": [
+            116.5703125,
+            131.06953125
+          ],
+          "angle": 0
+        },
+        "rightWrist": {
+          "point": [
+            66.38671875,
+            130.95625
+          ],
+          "angle": 0
+        },
+        "leftAnkle": {
+          "point": [
+            103.65625,
+            171.284375
+          ],
+          "angle": 0
+        },
+        "rightAnkle": {
+          "point": [
+            79.75390625,
+            170.6046875
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "SW",
+      "frame": 3,
+      "durationMs": 250,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            96,
+            172.8
+          ],
+          "angle": 0
+        },
+        "pelvis": {
+          "point": [
+            90.2890625,
+            139.565625
+          ],
+          "angle": 0
+        },
+        "neck": {
+          "point": [
+            90.96875,
+            98.39140625000002
+          ],
+          "angle": 0
+        },
+        "leftShoulder": {
+          "point": [
+            107.84765625,
+            106.54765625000002
+          ],
+          "angle": 0
+        },
+        "rightShoulder": {
+          "point": [
+            74.08984375,
+            106.54765625000002
+          ],
+          "angle": 0
+        },
+        "leftElbow": {
+          "point": [
+            113.3984375,
+            116.62968750000002
+          ],
+          "angle": 0
+        },
+        "rightElbow": {
+          "point": [
+            69.671875,
+            116.62968750000002
+          ],
+          "angle": 0
+        },
+        "leftWrist": {
+          "point": [
+            116.5703125,
+            131.46953125000002
+          ],
+          "angle": 0
+        },
+        "rightWrist": {
+          "point": [
+            66.38671875,
+            131.35625000000002
+          ],
+          "angle": 0
+        },
+        "leftAnkle": {
+          "point": [
+            103.65625,
+            171.284375
+          ],
+          "angle": 0
+        },
+        "rightAnkle": {
+          "point": [
+            79.75390625,
+            170.6046875
+          ],
+          "angle": 0
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "clip": {
+    "action": "hit",
+    "frameCount": 2,
+    "frameDurationsMs": [
+      100,
+      150
+    ],
+    "playback": "once"
+  },
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "NE",
+    "SW"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 27183,
+      "pages": [
+        {
+          "image": "hit-body-0.png",
+          "json": "hit-body-0.json",
+          "width": 271,
+          "height": 114,
+          "decodedBytes": 123576,
+          "pngBytes": 46109
+        }
+      ],
+      "decodedBytes": 123576
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 2680,
+      "pages": [
+        {
+          "image": "hit-body-front-0.png",
+          "json": "hit-body-front-0.json",
+          "width": 97,
+          "height": 40,
+          "decodedBytes": 15520,
+          "pngBytes": 4938
+        }
+      ],
+      "decodedBytes": 15520
+    }
+  ],
+  "decodedBytes": 139096,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}
