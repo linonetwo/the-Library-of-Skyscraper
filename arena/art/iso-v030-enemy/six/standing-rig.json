@@ -1,0 +1,2272 @@
+{
+  "directions": {
+    "N": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            96,
+            172.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "cell": [
+            96,
+            135
+          ],
+          "restOffset": [
+            0,
+            -37.80000000000001
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "cell": [
+            96,
+            98.5
+          ],
+          "restOffset": [
+            0,
+            -36.5
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "cell": [
+            81,
+            103
+          ],
+          "restOffset": [
+            -15,
+            4.5
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "cell": [
+            80.78536054656811,
+            117.32
+          ],
+          "restOffset": [
+            -0.21463945343188584,
+            14.319999999999993
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "cell": [
+            78.94006647664554,
+            129.56
+          ],
+          "restOffset": [
+            -1.8452940699225735,
+            12.240000000000009
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "cell": [
+            111,
+            103
+          ],
+          "restOffset": [
+            15,
+            4.5
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "cell": [
+            111.0546775883632,
+            117.32
+          ],
+          "restOffset": [
+            0.05467758836320513,
+            14.319999999999993
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "cell": [
+            112.02557771300712,
+            129.56
+          ],
+          "restOffset": [
+            0.9709001246439186,
+            12.240000000000009
+          ]
+        },
+        "leftHip": {
+          "parent": "pelvis",
+          "cell": [
+            88.75922656064975,
+            130.4728172442
+          ],
+          "restOffset": [
+            -7.240773439350249,
+            -4.527182755799998
+          ]
+        },
+        "leftKnee": {
+          "parent": "leftHip",
+          "cell": [
+            88.17922467794126,
+            151.2444977442
+          ],
+          "restOffset": [
+            -0.580001882708487,
+            20.771680500000002
+          ]
+        },
+        "leftAnkle": {
+          "parent": "leftKnee",
+          "cell": [
+            88.3343039962327,
+            171.2323412442
+          ],
+          "restOffset": [
+            0.15507931829144184,
+            19.987843499999997
+          ]
+        },
+        "rightHip": {
+          "parent": "pelvis",
+          "cell": [
+            103.24077343935025,
+            130.4728172442
+          ],
+          "restOffset": [
+            7.240773439350249,
+            -4.527182755799998
+          ]
+        },
+        "rightKnee": {
+          "parent": "rightHip",
+          "cell": [
+            103.17535764907373,
+            151.2444977442
+          ],
+          "restOffset": [
+            -0.06541579027651778,
+            20.771680500000002
+          ]
+        },
+        "rightAnkle": {
+          "parent": "rightKnee",
+          "cell": [
+            103.16744389698493,
+            171.2323412442
+          ],
+          "restOffset": [
+            -0.007913752088796855,
+            19.987843499999997
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "image": "attachments/N/head.png",
+          "pivot": [
+            16,
+            31.400000000000006
+          ],
+          "zOrder": 7,
+          "layer": "body"
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "image": "attachments/N/torso.png",
+          "pivot": [
+            20.5,
+            39
+          ],
+          "zOrder": 4,
+          "layer": "body"
+        },
+        {
+          "id": "lower-cloak",
+          "joint": "pelvis",
+          "image": "attachments/N/lower-cloak.png",
+          "pivot": [
+            20,
+            8.299999999999997
+          ],
+          "zOrder": 3,
+          "layer": "body"
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "image": "attachments/N/left-upper-arm.png",
+          "pivot": [
+            5.883753501400561,
+            2
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "left-forearm-hand",
+          "joint": "leftElbow",
+          "image": "attachments/N/left-forearm-hand.png",
+          "pivot": [
+            5.669114047968674,
+            16.32
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "image": "attachments/N/right-upper-arm.png",
+          "pivot": [
+            5.98679706601467,
+            2
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "right-forearm-hand",
+          "joint": "rightElbow",
+          "image": "attachments/N/right-forearm-hand.png",
+          "pivot": [
+            6.04147465437788,
+            16.32
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "left-thigh",
+          "joint": "leftHip",
+          "image": "attachments/N/left-thigh.png",
+          "pivot": [
+            7.773326819736199,
+            1
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "left-shin",
+          "joint": "leftKnee",
+          "image": "attachments/N/left-shin.png",
+          "pivot": [
+            7.1933249370277075,
+            21.771680500000002
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "image": "attachments/N/left-boot.png",
+          "pivot": [
+            7.348404255319149,
+            41.759524
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-thigh",
+          "joint": "rightHip",
+          "image": "attachments/N/right-thigh.png",
+          "pivot": [
+            7.064430244941427,
+            1
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-shin",
+          "joint": "rightKnee",
+          "image": "attachments/N/right-shin.png",
+          "pivot": [
+            6.9990144546649145,
+            21.771680500000002
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "image": "attachments/N/right-boot.png",
+          "pivot": [
+            6.991100702576112,
+            41.759524
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        }
+      ],
+      "poses": [],
+      "worldForward": [
+        -0.7071067811865476,
+        -0.7071067811865476
+      ],
+      "feet": {
+        "left": {
+          "joint": "leftAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        },
+        "right": {
+          "joint": "rightAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        }
+      },
+      "attackSide": "right",
+      "actionTargets": {
+        "attack": [
+          {
+            "rightWrist": {
+              "point": [
+                112.02557771300712,
+                129.56
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                115,
+                115
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                119,
+                99
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                112.02557771300712,
+                129.56
+              ],
+              "bend": -1
+            }
+          }
+        ]
+      }
+    },
+    "NW": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            96,
+            172.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "cell": [
+            96,
+            135
+          ],
+          "restOffset": [
+            0,
+            -37.80000000000001
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "cell": [
+            94.8,
+            98.5
+          ],
+          "restOffset": [
+            -1.2000000000000028,
+            -36.5
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "cell": [
+            84,
+            108
+          ],
+          "restOffset": [
+            -10.799999999999997,
+            9.5
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "cell": [
+            84.9252134297316,
+            122.32
+          ],
+          "restOffset": [
+            0.925213429731599,
+            14.319999999999993
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "cell": [
+            81.23249722075849,
+            134.56
+          ],
+          "restOffset": [
+            -3.69271620897311,
+            12.240000000000009
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "cell": [
+            110,
+            102
+          ],
+          "restOffset": [
+            15.200000000000003,
+            3.5
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "cell": [
+            110.85460115357921,
+            116.32
+          ],
+          "restOffset": [
+            0.8546011535792104,
+            14.319999999999993
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "cell": [
+            109.98879391529547,
+            128.56
+          ],
+          "restOffset": [
+            -0.8658072382837361,
+            12.240000000000009
+          ]
+        },
+        "leftHip": {
+          "parent": "pelvis",
+          "cell": [
+            90.88,
+            133.0328172442
+          ],
+          "restOffset": [
+            -5.1200000000000045,
+            -1.9671827557999961
+          ]
+        },
+        "leftKnee": {
+          "parent": "leftHip",
+          "cell": [
+            90.86187267278176,
+            153.8044977442
+          ],
+          "restOffset": [
+            -0.018127327218238065,
+            20.771680500000002
+          ]
+        },
+        "leftAnkle": {
+          "parent": "leftKnee",
+          "cell": [
+            88.8126431275593,
+            173.7923412442
+          ],
+          "restOffset": [
+            -2.0492295452224596,
+            19.987843499999997
+          ]
+        },
+        "rightHip": {
+          "parent": "pelvis",
+          "cell": [
+            101.12,
+            127.9128172442
+          ],
+          "restOffset": [
+            5.1200000000000045,
+            -7.087182755800001
+          ]
+        },
+        "rightKnee": {
+          "parent": "rightHip",
+          "cell": [
+            101.22422938982116,
+            148.6844977442
+          ],
+          "restOffset": [
+            0.10422938982115681,
+            20.771680500000002
+          ]
+        },
+        "rightAnkle": {
+          "parent": "rightKnee",
+          "cell": [
+            99.6468934645756,
+            168.6723412442
+          ],
+          "restOffset": [
+            -1.5773359252455634,
+            19.987843499999997
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "image": "attachments/NW/head.png",
+          "pivot": [
+            15.5,
+            31.400000000000006
+          ],
+          "zOrder": 7,
+          "layer": "body"
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "image": "attachments/NW/torso.png",
+          "pivot": [
+            18.5,
+            39
+          ],
+          "zOrder": 4,
+          "layer": "body"
+        },
+        {
+          "id": "lower-cloak",
+          "joint": "pelvis",
+          "image": "attachments/NW/lower-cloak.png",
+          "pivot": [
+            19.5,
+            8.299999999999997
+          ],
+          "zOrder": 3,
+          "layer": "body"
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "image": "attachments/NW/left-upper-arm.png",
+          "pivot": [
+            6.019134396355353,
+            2
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "left-forearm-hand",
+          "joint": "leftElbow",
+          "image": "attachments/NW/left-forearm-hand.png",
+          "pivot": [
+            6.944347826086957,
+            16.32
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "image": "attachments/NW/right-upper-arm.png",
+          "pivot": [
+            5.374578177727784,
+            2
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "right-forearm-hand",
+          "joint": "rightElbow",
+          "image": "attachments/NW/right-forearm-hand.png",
+          "pivot": [
+            6.229179331306991,
+            16.32
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "left-thigh",
+          "joint": "leftHip",
+          "image": "attachments/NW/left-thigh.png",
+          "pivot": [
+            10.242857142857142,
+            1
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "left-shin",
+          "joint": "leftKnee",
+          "image": "attachments/NW/left-shin.png",
+          "pivot": [
+            10.224729815638906,
+            21.771680500000002
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "image": "attachments/NW/left-boot.png",
+          "pivot": [
+            8.17550027041644,
+            41.759524
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-thigh",
+          "joint": "rightHip",
+          "image": "attachments/NW/right-thigh.png",
+          "pivot": [
+            9.04802744425386,
+            1
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "right-shin",
+          "joint": "rightKnee",
+          "image": "attachments/NW/right-shin.png",
+          "pivot": [
+            9.152256834075017,
+            21.771680500000002
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "image": "attachments/NW/right-boot.png",
+          "pivot": [
+            7.5749209088294505,
+            41.759524
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        }
+      ],
+      "poses": [],
+      "worldForward": [
+        -1,
+        0
+      ],
+      "feet": {
+        "left": {
+          "joint": "leftAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        },
+        "right": {
+          "joint": "rightAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        }
+      },
+      "attackSide": "left",
+      "actionTargets": {
+        "attack": [
+          {
+            "leftWrist": {
+              "point": [
+                81.23249722075849,
+                134.56
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                77,
+                121
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                65,
+                106
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                81.23249722075849,
+                134.56
+              ],
+              "bend": 1
+            }
+          }
+        ]
+      }
+    },
+    "W": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            96,
+            172.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "cell": [
+            96,
+            135
+          ],
+          "restOffset": [
+            0,
+            -37.80000000000001
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "cell": [
+            94.2,
+            98.5
+          ],
+          "restOffset": [
+            -1.7999999999999972,
+            -36.5
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "cell": [
+            100,
+            108
+          ],
+          "restOffset": [
+            5.799999999999997,
+            9.5
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "cell": [
+            100.04970364957316,
+            122.32
+          ],
+          "restOffset": [
+            0.049703649573160646,
+            14.319999999999993
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "cell": [
+            96.34332636497786,
+            134.56
+          ],
+          "restOffset": [
+            -3.7063772845953054,
+            12.240000000000009
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "cell": [
+            92,
+            102
+          ],
+          "restOffset": [
+            -2.200000000000003,
+            3.5
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "cell": [
+            89.98782352079593,
+            116.32
+          ],
+          "restOffset": [
+            -2.012176479204072,
+            14.319999999999993
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "cell": [
+            88.49743712166004,
+            128.56
+          ],
+          "restOffset": [
+            -1.490386399135886,
+            12.240000000000009
+          ]
+        },
+        "leftHip": {
+          "parent": "pelvis",
+          "cell": [
+            96,
+            134.0932039638751
+          ],
+          "restOffset": [
+            0,
+            -0.9067960361248879
+          ]
+        },
+        "leftKnee": {
+          "parent": "leftHip",
+          "cell": [
+            95.52240778001341,
+            154.86488446387511
+          ],
+          "restOffset": [
+            -0.4775922199865903,
+            20.771680500000002
+          ]
+        },
+        "leftAnkle": {
+          "parent": "leftKnee",
+          "cell": [
+            93.31564315233199,
+            174.8527279638751
+          ],
+          "restOffset": [
+            -2.206764627681423,
+            19.987843499999997
+          ]
+        },
+        "rightHip": {
+          "parent": "pelvis",
+          "cell": [
+            96,
+            126.85243052452489
+          ],
+          "restOffset": [
+            0,
+            -8.147569475475109
+          ]
+        },
+        "rightKnee": {
+          "parent": "rightHip",
+          "cell": [
+            96.11380578424162,
+            147.6241110245249
+          ],
+          "restOffset": [
+            0.11380578424162024,
+            20.771680500000002
+          ]
+        },
+        "rightAnkle": {
+          "parent": "rightKnee",
+          "cell": [
+            94.49602554490907,
+            167.6119545245249
+          ],
+          "restOffset": [
+            -1.6177802393325464,
+            19.987843499999997
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "image": "attachments/W/head.png",
+          "pivot": [
+            15.5,
+            31.400000000000006
+          ],
+          "zOrder": 7,
+          "layer": "body"
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "image": "attachments/W/torso.png",
+          "pivot": [
+            16.5,
+            39
+          ],
+          "zOrder": 4,
+          "layer": "body"
+        },
+        {
+          "id": "lower-cloak",
+          "joint": "pelvis",
+          "image": "attachments/W/lower-cloak.png",
+          "pivot": [
+            17,
+            8.299999999999997
+          ],
+          "zOrder": 3,
+          "layer": "body"
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "image": "attachments/W/left-upper-arm.png",
+          "pivot": [
+            6.959173635022135,
+            2
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "left-forearm-hand",
+          "joint": "leftElbow",
+          "image": "attachments/W/left-forearm-hand.png",
+          "pivot": [
+            7.0088772845953,
+            16.32
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "image": "attachments/W/right-upper-arm.png",
+          "pivot": [
+            6.989031078610603,
+            2
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "right-forearm-hand",
+          "joint": "rightElbow",
+          "image": "attachments/W/right-forearm-hand.png",
+          "pivot": [
+            4.976854599406528,
+            16.32
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "left-thigh",
+          "joint": "leftHip",
+          "image": "attachments/W/left-thigh.png",
+          "pivot": [
+            12.513809523809524,
+            1
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "left-shin",
+          "joint": "leftKnee",
+          "image": "attachments/W/left-shin.png",
+          "pivot": [
+            12.036217303822937,
+            21.771680500000002
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "image": "attachments/W/left-boot.png",
+          "pivot": [
+            9.829452676141518,
+            41.759524
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-thigh",
+          "joint": "rightHip",
+          "image": "attachments/W/right-thigh.png",
+          "pivot": [
+            11.304424778761062,
+            1
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "right-shin",
+          "joint": "rightKnee",
+          "image": "attachments/W/right-shin.png",
+          "pivot": [
+            11.41823056300268,
+            21.771680500000002
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "image": "attachments/W/right-boot.png",
+          "pivot": [
+            9.800450323670137,
+            41.759524
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        }
+      ],
+      "poses": [],
+      "worldForward": [
+        -0.7071067811865476,
+        0.7071067811865476
+      ],
+      "feet": {
+        "left": {
+          "joint": "leftAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        },
+        "right": {
+          "joint": "rightAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        }
+      },
+      "attackSide": "left",
+      "actionTargets": {
+        "attack": [
+          {
+            "leftWrist": {
+              "point": [
+                96.34332636497786,
+                134.56
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                94,
+                121
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                78,
+                112
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                96.34332636497786,
+                134.56
+              ],
+              "bend": -1
+            }
+          }
+        ]
+      }
+    },
+    "S": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            96,
+            172.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "cell": [
+            96,
+            135
+          ],
+          "restOffset": [
+            0,
+            -37.80000000000001
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "cell": [
+            96,
+            98.5
+          ],
+          "restOffset": [
+            0,
+            -36.5
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "cell": [
+            114,
+            104
+          ],
+          "restOffset": [
+            18,
+            5.5
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "cell": [
+            113.03637598712459,
+            118.32
+          ],
+          "restOffset": [
+            -0.9636240128754139,
+            14.319999999999993
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "cell": [
+            112.29066404058659,
+            130.56
+          ],
+          "restOffset": [
+            -0.7457119465379947,
+            12.240000000000009
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "cell": [
+            78,
+            104
+          ],
+          "restOffset": [
+            -18,
+            5.5
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "cell": [
+            78.52261428126772,
+            118.32
+          ],
+          "restOffset": [
+            0.522614281267721,
+            14.319999999999993
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "cell": [
+            78.74863886228755,
+            130.56
+          ],
+          "restOffset": [
+            0.22602458101982847,
+            12.240000000000009
+          ]
+        },
+        "leftHip": {
+          "parent": "pelvis",
+          "cell": [
+            103.24077343935025,
+            130.4728172442
+          ],
+          "restOffset": [
+            7.240773439350249,
+            -4.527182755799998
+          ]
+        },
+        "leftKnee": {
+          "parent": "leftHip",
+          "cell": [
+            103.19205343148965,
+            151.2444977442
+          ],
+          "restOffset": [
+            -0.04872000786059516,
+            20.771680500000002
+          ]
+        },
+        "leftAnkle": {
+          "parent": "leftKnee",
+          "cell": [
+            103.33792311621848,
+            171.2323412442
+          ],
+          "restOffset": [
+            0.14586968472882234,
+            19.987843499999997
+          ]
+        },
+        "rightHip": {
+          "parent": "pelvis",
+          "cell": [
+            88.75922656064975,
+            130.4728172442
+          ],
+          "restOffset": [
+            -7.240773439350249,
+            -4.527182755799998
+          ]
+        },
+        "rightKnee": {
+          "parent": "rightHip",
+          "cell": [
+            88.24959233040938,
+            151.2444977442
+          ],
+          "restOffset": [
+            -0.5096342302403656,
+            20.771680500000002
+          ]
+        },
+        "rightAnkle": {
+          "parent": "rightKnee",
+          "cell": [
+            88.39444697766388,
+            171.2323412442
+          ],
+          "restOffset": [
+            0.1448546472544905,
+            19.987843499999997
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "image": "attachments/S/head.png",
+          "pivot": [
+            16,
+            31.400000000000006
+          ],
+          "zOrder": 7,
+          "layer": "body"
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "image": "attachments/S/torso.png",
+          "pivot": [
+            20.5,
+            39
+          ],
+          "zOrder": 4,
+          "layer": "body"
+        },
+        {
+          "id": "lower-cloak",
+          "joint": "pelvis",
+          "image": "attachments/S/lower-cloak.png",
+          "pivot": [
+            20,
+            8.299999999999997
+          ],
+          "zOrder": 3,
+          "layer": "body"
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "image": "attachments/S/left-upper-arm.png",
+          "pivot": [
+            5.800559179869524,
+            2
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "left-forearm-hand",
+          "joint": "leftElbow",
+          "image": "attachments/S/left-forearm-hand.png",
+          "pivot": [
+            4.836935166994106,
+            16.32
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "image": "attachments/S/right-upper-arm.png",
+          "pivot": [
+            6.4312692138779095,
+            2
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "right-forearm-hand",
+          "joint": "rightElbow",
+          "image": "attachments/S/right-forearm-hand.png",
+          "pivot": [
+            6.953883495145631,
+            16.32
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "left-thigh",
+          "joint": "leftHip",
+          "image": "attachments/S/left-thigh.png",
+          "pivot": [
+            7.287505054589567,
+            1
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "left-shin",
+          "joint": "leftKnee",
+          "image": "attachments/S/left-shin.png",
+          "pivot": [
+            7.238785046728972,
+            21.771680500000002
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "image": "attachments/S/left-boot.png",
+          "pivot": [
+            7.3846547314578,
+            41.759524
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-thigh",
+          "joint": "rightHip",
+          "image": "attachments/S/right-thigh.png",
+          "pivot": [
+            7.199258954302182,
+            1
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-shin",
+          "joint": "rightKnee",
+          "image": "attachments/S/right-shin.png",
+          "pivot": [
+            6.68962472406181,
+            21.771680500000002
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "image": "attachments/S/right-boot.png",
+          "pivot": [
+            6.834479371316307,
+            41.759524
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        }
+      ],
+      "poses": [],
+      "worldForward": [
+        0.7071067811865476,
+        0.7071067811865476
+      ],
+      "feet": {
+        "left": {
+          "joint": "leftAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        },
+        "right": {
+          "joint": "rightAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        }
+      },
+      "attackSide": "right",
+      "actionTargets": {
+        "attack": [
+          {
+            "rightWrist": {
+              "point": [
+                78.74863886228755,
+                130.56
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                73,
+                117
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                70,
+                124
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                78.74863886228755,
+                130.56
+              ],
+              "bend": 1
+            }
+          }
+        ]
+      }
+    },
+    "SE": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            96,
+            172.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "cell": [
+            96,
+            135
+          ],
+          "restOffset": [
+            0,
+            -37.80000000000001
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "cell": [
+            97.2,
+            98.5
+          ],
+          "restOffset": [
+            1.2000000000000028,
+            -36.5
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "cell": [
+            111,
+            106
+          ],
+          "restOffset": [
+            13.799999999999997,
+            7.5
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "cell": [
+            111.03663568315856,
+            120.32
+          ],
+          "restOffset": [
+            0.0366356831585648,
+            14.319999999999993
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "cell": [
+            112.73384628140208,
+            132.56
+          ],
+          "restOffset": [
+            1.6972105982435153,
+            12.240000000000009
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "cell": [
+            82,
+            103
+          ],
+          "restOffset": [
+            -15.200000000000003,
+            4.5
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "cell": [
+            83.34902658847086,
+            117.32
+          ],
+          "restOffset": [
+            1.3490265884708634,
+            14.319999999999993
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "cell": [
+            84.60121501218423,
+            129.56
+          ],
+          "restOffset": [
+            1.2521884237133634,
+            12.240000000000009
+          ]
+        },
+        "leftHip": {
+          "parent": "pelvis",
+          "cell": [
+            101.12,
+            127.9128172442
+          ],
+          "restOffset": [
+            5.1200000000000045,
+            -7.087182755800001
+          ]
+        },
+        "leftKnee": {
+          "parent": "leftHip",
+          "cell": [
+            101.1881765731576,
+            148.6844977442
+          ],
+          "restOffset": [
+            0.06817657315760073,
+            20.771680500000002
+          ]
+        },
+        "leftAnkle": {
+          "parent": "leftKnee",
+          "cell": [
+            100.2122640488057,
+            168.6723412442
+          ],
+          "restOffset": [
+            -0.9759125243519122,
+            19.987843499999997
+          ]
+        },
+        "rightHip": {
+          "parent": "pelvis",
+          "cell": [
+            90.88,
+            133.0328172442
+          ],
+          "restOffset": [
+            -5.1200000000000045,
+            -1.9671827557999961
+          ]
+        },
+        "rightKnee": {
+          "parent": "rightHip",
+          "cell": [
+            89.88712133167806,
+            153.8044977442
+          ],
+          "restOffset": [
+            -0.9928786683219357,
+            20.771680500000002
+          ]
+        },
+        "rightAnkle": {
+          "parent": "rightKnee",
+          "cell": [
+            89.20416184466572,
+            173.7923412442
+          ],
+          "restOffset": [
+            -0.6829594870123401,
+            19.987843499999997
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "image": "attachments/SE/head.png",
+          "pivot": [
+            15.5,
+            31.400000000000006
+          ],
+          "zOrder": 7,
+          "layer": "body"
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "image": "attachments/SE/torso.png",
+          "pivot": [
+            18.5,
+            39
+          ],
+          "zOrder": 4,
+          "layer": "body"
+        },
+        {
+          "id": "lower-cloak",
+          "joint": "pelvis",
+          "image": "attachments/SE/lower-cloak.png",
+          "pivot": [
+            19.5,
+            8.299999999999997
+          ],
+          "zOrder": 3,
+          "layer": "body"
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "image": "attachments/SE/left-upper-arm.png",
+          "pivot": [
+            5.702986958350863,
+            2
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "left-forearm-hand",
+          "joint": "leftElbow",
+          "image": "attachments/SE/left-forearm-hand.png",
+          "pivot": [
+            5.739622641509434,
+            16.32
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "image": "attachments/SE/right-upper-arm.png",
+          "pivot": [
+            6.728213977566868,
+            2
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "right-forearm-hand",
+          "joint": "rightElbow",
+          "image": "attachments/SE/right-forearm-hand.png",
+          "pivot": [
+            8.077240566037736,
+            16.32
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "left-thigh",
+          "joint": "leftHip",
+          "image": "attachments/SE/left-thigh.png",
+          "pivot": [
+            6.863275039745628,
+            1
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "left-shin",
+          "joint": "leftKnee",
+          "image": "attachments/SE/left-shin.png",
+          "pivot": [
+            6.931451612903226,
+            21.771680500000002
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "image": "attachments/SE/left-boot.png",
+          "pivot": [
+            5.9555390885513155,
+            41.759524
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "right-thigh",
+          "joint": "rightHip",
+          "image": "attachments/SE/right-thigh.png",
+          "pivot": [
+            8.046233559186927,
+            1
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-shin",
+          "joint": "rightKnee",
+          "image": "attachments/SE/right-shin.png",
+          "pivot": [
+            7.053354890864996,
+            21.771680500000002
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "image": "attachments/SE/right-boot.png",
+          "pivot": [
+            6.370395403852653,
+            41.759524
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        }
+      ],
+      "poses": [],
+      "worldForward": [
+        1,
+        0
+      ],
+      "feet": {
+        "left": {
+          "joint": "leftAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        },
+        "right": {
+          "joint": "rightAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        }
+      },
+      "attackSide": "left",
+      "actionTargets": {
+        "attack": [
+          {
+            "leftWrist": {
+              "point": [
+                112.73384628140208,
+                132.56
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                117,
+                119
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                131,
+                117
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                112.73384628140208,
+                132.56
+              ],
+              "bend": -1
+            }
+          }
+        ]
+      }
+    },
+    "E": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            96,
+            172.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "cell": [
+            96,
+            135
+          ],
+          "restOffset": [
+            0,
+            -37.80000000000001
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "cell": [
+            97.8,
+            98.5
+          ],
+          "restOffset": [
+            1.7999999999999972,
+            -36.5
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "cell": [
+            92,
+            108
+          ],
+          "restOffset": [
+            -5.799999999999997,
+            9.5
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "cell": [
+            91.78586390684723,
+            122.32
+          ],
+          "restOffset": [
+            -0.21413609315277427,
+            14.319999999999993
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "cell": [
+            94.26577611773403,
+            134.56
+          ],
+          "restOffset": [
+            2.479912210886809,
+            12.240000000000009
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "cell": [
+            100,
+            102
+          ],
+          "restOffset": [
+            2.200000000000003,
+            3.5
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "cell": [
+            101.58082505729564,
+            116.32
+          ],
+          "restOffset": [
+            1.580825057295641,
+            14.319999999999993
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "cell": [
+            103.84003589623147,
+            128.56
+          ],
+          "restOffset": [
+            2.2592108389358287,
+            12.240000000000009
+          ]
+        },
+        "leftHip": {
+          "parent": "pelvis",
+          "cell": [
+            96,
+            126.85243052452489
+          ],
+          "restOffset": [
+            0,
+            -8.147569475475109
+          ]
+        },
+        "leftKnee": {
+          "parent": "leftHip",
+          "cell": [
+            97.33488899780106,
+            147.6241110245249
+          ],
+          "restOffset": [
+            1.334888997801059,
+            20.771680500000002
+          ]
+        },
+        "leftAnkle": {
+          "parent": "leftKnee",
+          "cell": [
+            96.57088911380478,
+            167.6119545245249
+          ],
+          "restOffset": [
+            -0.7639998839962772,
+            19.987843499999997
+          ]
+        },
+        "rightHip": {
+          "parent": "pelvis",
+          "cell": [
+            96,
+            134.0932039638751
+          ],
+          "restOffset": [
+            0,
+            -0.9067960361248879
+          ]
+        },
+        "rightKnee": {
+          "parent": "rightHip",
+          "cell": [
+            96.87856417131191,
+            154.86488446387511
+          ],
+          "restOffset": [
+            0.8785641713119077,
+            20.771680500000002
+          ]
+        },
+        "rightAnkle": {
+          "parent": "rightKnee",
+          "cell": [
+            96.40666787680766,
+            174.8527279638751
+          ],
+          "restOffset": [
+            -0.47189629450424775,
+            19.987843499999997
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "image": "attachments/E/head.png",
+          "pivot": [
+            15.5,
+            31.400000000000006
+          ],
+          "zOrder": 7,
+          "layer": "body"
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "image": "attachments/E/torso.png",
+          "pivot": [
+            16.5,
+            39
+          ],
+          "zOrder": 4,
+          "layer": "body"
+        },
+        {
+          "id": "lower-cloak",
+          "joint": "pelvis",
+          "image": "attachments/E/lower-cloak.png",
+          "pivot": [
+            17,
+            8.299999999999997
+          ],
+          "zOrder": 3,
+          "layer": "body"
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "image": "attachments/E/left-upper-arm.png",
+          "pivot": [
+            6.981456354590683,
+            2
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "left-forearm-hand",
+          "joint": "leftElbow",
+          "image": "attachments/E/left-forearm-hand.png",
+          "pivot": [
+            6.767320261437908,
+            16.32
+          ],
+          "zOrder": 5,
+          "layer": "body"
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "image": "attachments/E/right-upper-arm.png",
+          "pivot": [
+            6.308658008658009,
+            2
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "right-forearm-hand",
+          "joint": "rightElbow",
+          "image": "attachments/E/right-forearm-hand.png",
+          "pivot": [
+            7.889483065953654,
+            16.32
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "left-thigh",
+          "joint": "leftHip",
+          "image": "attachments/E/left-thigh.png",
+          "pivot": [
+            5.706845863082738,
+            1
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "left-shin",
+          "joint": "leftKnee",
+          "image": "attachments/E/left-shin.png",
+          "pivot": [
+            7.041734860883797,
+            21.771680500000002
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "image": "attachments/E/left-boot.png",
+          "pivot": [
+            6.277734976887519,
+            41.759524
+          ],
+          "zOrder": -2,
+          "layer": "body"
+        },
+        {
+          "id": "right-thigh",
+          "joint": "rightHip",
+          "image": "attachments/E/right-thigh.png",
+          "pivot": [
+            5.83142736128759,
+            1
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-shin",
+          "joint": "rightKnee",
+          "image": "attachments/E/right-shin.png",
+          "pivot": [
+            6.709991532599492,
+            21.771680500000002
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "image": "attachments/E/right-boot.png",
+          "pivot": [
+            6.238095238095238,
+            41.759524
+          ],
+          "zOrder": -1,
+          "layer": "body"
+        }
+      ],
+      "poses": [],
+      "worldForward": [
+        0.7071067811865476,
+        -0.7071067811865476
+      ],
+      "feet": {
+        "left": {
+          "joint": "leftAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        },
+        "right": {
+          "joint": "rightAnkle",
+          "soleOffset": [
+            0,
+            7.838367177000001
+          ],
+          "bend": 1
+        }
+      },
+      "attackSide": "left",
+      "actionTargets": {
+        "attack": [
+          {
+            "leftWrist": {
+              "point": [
+                94.26577611773403,
+                134.56
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                98,
+                121
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                114,
+                112
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                94.26577611773403,
+                134.56
+              ],
+              "bend": 1
+            }
+          }
+        ]
+      }
+    }
+  }
+}

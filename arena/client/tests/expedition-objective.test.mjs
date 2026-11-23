@@ -21,3 +21,9 @@ test('preparation, counterattack countdown, threat room and settled outcome deri
  s.scenario.counterattackSpawned=true;s.enemies=[{id:'guardian-counterattack',roomId:'resource',hp:20}];assert.equal(expeditionObjective(s,player).roomId,'resource');
  assert.match(expeditionObjective({...base,result:{winner:'p1',reason:'完成编目'}},player).title,/远征胜利/);
 });
+
+
+test('result names rooms and buildings; material balance is inventory rather than cumulative deposits',()=>{
+ const o=expeditionObjective({...base,actors:[{...actor,cargo:0}],events:[{playerId:'p1',message:'target catalog 扣除25建材，开始8秒施工'}]}, {...player,materials:9});
+ assert.match(o.detail,/库存9材/);assert.match(o.detail,/书库 编目台 扣除25建材/);assert.doesNotMatch(o.detail,/catalog|target/);
+});

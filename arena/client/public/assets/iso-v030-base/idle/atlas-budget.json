@@ -1,0 +1,630 @@
+{
+  "clip": {
+    "action": "idle",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      400,
+      400,
+      400,
+      400
+    ],
+    "playback": "loop"
+  },
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "NE",
+    "SW",
+    "E",
+    "W",
+    "N",
+    "S",
+    "NW",
+    "SE"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "weapon-staff-back",
+    "weapon-staff-front"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 170133,
+      "pages": [
+        {
+          "image": "ne-sw/idle-body-0.png",
+          "json": "ne-sw/idle-body-0.json",
+          "width": 377,
+          "height": 142,
+          "decodedBytes": 214136,
+          "pngBytes": 63047
+        },
+        {
+          "image": "e-w/idle-body-0.png",
+          "json": "e-w/idle-body-0.json",
+          "width": 321,
+          "height": 142,
+          "decodedBytes": 182328,
+          "pngBytes": 53502
+        },
+        {
+          "image": "n-s-nw-se/idle-body-0.png",
+          "json": "n-s-nw-se/idle-body-0.json",
+          "width": 695,
+          "height": 141,
+          "decodedBytes": 391980,
+          "pngBytes": 132597
+        }
+      ],
+      "decodedBytes": 788444
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 28,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 27720,
+      "pages": [
+        {
+          "image": "ne-sw/idle-body-front-0.png",
+          "json": "ne-sw/idle-body-front-0.json",
+          "width": 193,
+          "height": 61,
+          "decodedBytes": 47092,
+          "pngBytes": 13979
+        },
+        {
+          "image": "e-w/idle-body-front-0.png",
+          "json": "e-w/idle-body-front-0.json",
+          "width": 145,
+          "height": 52,
+          "decodedBytes": 30160,
+          "pngBytes": 10798
+        },
+        {
+          "image": "n-s-nw-se/idle-body-front-0.png",
+          "json": "n-s-nw-se/idle-body-front-0.json",
+          "width": 353,
+          "height": 55,
+          "decodedBytes": 77660,
+          "pngBytes": 22692
+        }
+      ],
+      "decodedBytes": 154912
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 74851,
+      "pages": [
+        {
+          "image": "ne-sw/idle-outfit-scholar-0.png",
+          "json": "ne-sw/idle-outfit-scholar-0.json",
+          "width": 381,
+          "height": 70,
+          "decodedBytes": 106680,
+          "pngBytes": 37925
+        },
+        {
+          "image": "e-w/idle-outfit-scholar-0.png",
+          "json": "e-w/idle-outfit-scholar-0.json",
+          "width": 285,
+          "height": 64,
+          "decodedBytes": 72960,
+          "pngBytes": 25820
+        },
+        {
+          "image": "n-s-nw-se/idle-outfit-scholar-0.png",
+          "json": "n-s-nw-se/idle-outfit-scholar-0.json",
+          "width": 689,
+          "height": 66,
+          "decodedBytes": 181896,
+          "pngBytes": 62431
+        }
+      ],
+      "decodedBytes": 361536
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 3216,
+      "pages": [
+        {
+          "image": "ne-sw/idle-hair-ivory-back-0.png",
+          "json": "ne-sw/idle-hair-ivory-back-0.json",
+          "width": 361,
+          "height": 16,
+          "decodedBytes": 23104,
+          "pngBytes": 2742
+        }
+      ],
+      "decodedBytes": 23104
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 60271,
+      "pages": [
+        {
+          "image": "ne-sw/idle-hair-ivory-front-0.png",
+          "json": "ne-sw/idle-hair-ivory-front-0.json",
+          "width": 409,
+          "height": 50,
+          "decodedBytes": 81800,
+          "pngBytes": 24321
+        },
+        {
+          "image": "e-w/idle-hair-ivory-front-0.png",
+          "json": "e-w/idle-hair-ivory-front-0.json",
+          "width": 393,
+          "height": 48,
+          "decodedBytes": 75456,
+          "pngBytes": 24343
+        },
+        {
+          "image": "n-s-nw-se/idle-hair-ivory-front-0.png",
+          "json": "n-s-nw-se/idle-hair-ivory-front-0.json",
+          "width": 745,
+          "height": 47,
+          "decodedBytes": 140060,
+          "pngBytes": 48350
+        }
+      ],
+      "decodedBytes": 297316
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 60052,
+      "pages": [
+        {
+          "image": "ne-sw/idle-outfit-warden-0.png",
+          "json": "ne-sw/idle-outfit-warden-0.json",
+          "width": 321,
+          "height": 63,
+          "decodedBytes": 80892,
+          "pngBytes": 23916
+        },
+        {
+          "image": "e-w/idle-outfit-warden-0.png",
+          "json": "e-w/idle-outfit-warden-0.json",
+          "width": 237,
+          "height": 62,
+          "decodedBytes": 58776,
+          "pngBytes": 19399
+        },
+        {
+          "image": "n-s-nw-se/idle-outfit-warden-0.png",
+          "json": "n-s-nw-se/idle-outfit-warden-0.json",
+          "width": 639,
+          "height": 62,
+          "decodedBytes": 158472,
+          "pngBytes": 48362
+        }
+      ],
+      "decodedBytes": 298140
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 28,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 28731,
+      "pages": [
+        {
+          "image": "ne-sw/idle-outfit-warden-front-0.png",
+          "json": "ne-sw/idle-outfit-warden-front-0.json",
+          "width": 174,
+          "height": 50,
+          "decodedBytes": 34800,
+          "pngBytes": 9520
+        },
+        {
+          "image": "e-w/idle-outfit-warden-front-0.png",
+          "json": "e-w/idle-outfit-warden-front-0.json",
+          "width": 181,
+          "height": 49,
+          "decodedBytes": 35476,
+          "pngBytes": 10484
+        },
+        {
+          "image": "n-s-nw-se/idle-outfit-warden-front-0.png",
+          "json": "n-s-nw-se/idle-outfit-warden-front-0.json",
+          "width": 427,
+          "height": 50,
+          "decodedBytes": 85400,
+          "pngBytes": 18574
+        }
+      ],
+      "decodedBytes": 155676
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 12,
+      "untrimmedPixels": 884736,
+      "trimmedPixels": 9415,
+      "pages": [
+        {
+          "image": "ne-sw/idle-hair-midnight-back-0.png",
+          "json": "ne-sw/idle-hair-midnight-back-0.json",
+          "width": 185,
+          "height": 48,
+          "decodedBytes": 35520,
+          "pngBytes": 8580
+        },
+        {
+          "image": "n-s-nw-se/idle-hair-midnight-back-0.png",
+          "json": "n-s-nw-se/idle-hair-midnight-back-0.json",
+          "width": 157,
+          "height": 25,
+          "decodedBytes": 15700,
+          "pngBytes": 3756
+        }
+      ],
+      "decodedBytes": 51220
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 66263,
+      "pages": [
+        {
+          "image": "ne-sw/idle-hair-midnight-front-0.png",
+          "json": "ne-sw/idle-hair-midnight-front-0.json",
+          "width": 389,
+          "height": 61,
+          "decodedBytes": 94916,
+          "pngBytes": 24019
+        },
+        {
+          "image": "e-w/idle-hair-midnight-front-0.png",
+          "json": "e-w/idle-hair-midnight-front-0.json",
+          "width": 385,
+          "height": 49,
+          "decodedBytes": 75460,
+          "pngBytes": 21717
+        },
+        {
+          "image": "n-s-nw-se/idle-hair-midnight-front-0.png",
+          "json": "n-s-nw-se/idle-hair-midnight-front-0.json",
+          "width": 725,
+          "height": 55,
+          "decodedBytes": 159500,
+          "pngBytes": 40821
+        }
+      ],
+      "decodedBytes": 329876
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 3104,
+      "pages": [
+        {
+          "image": "ne-sw/idle-hand-front-0.png",
+          "json": "ne-sw/idle-hand-front-0.json",
+          "width": 129,
+          "height": 19,
+          "decodedBytes": 9804,
+          "pngBytes": 3259
+        },
+        {
+          "image": "e-w/idle-hand-front-0.png",
+          "json": "e-w/idle-hand-front-0.json",
+          "width": 121,
+          "height": 14,
+          "decodedBytes": 6776,
+          "pngBytes": 1754
+        },
+        {
+          "image": "n-s-nw-se/idle-hand-front-0.png",
+          "json": "n-s-nw-se/idle-hand-front-0.json",
+          "width": 211,
+          "height": 15,
+          "decodedBytes": 12660,
+          "pngBytes": 3190
+        }
+      ],
+      "decodedBytes": 29240
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 2868,
+      "pages": [
+        {
+          "image": "ne-sw/idle-hand-grip-0.png",
+          "json": "ne-sw/idle-hand-grip-0.json",
+          "width": 109,
+          "height": 15,
+          "decodedBytes": 6540,
+          "pngBytes": 2475
+        },
+        {
+          "image": "e-w/idle-hand-grip-0.png",
+          "json": "e-w/idle-hand-grip-0.json",
+          "width": 105,
+          "height": 14,
+          "decodedBytes": 5880,
+          "pngBytes": 2139
+        },
+        {
+          "image": "n-s-nw-se/idle-hand-grip-0.png",
+          "json": "n-s-nw-se/idle-hand-grip-0.json",
+          "width": 205,
+          "height": 15,
+          "decodedBytes": 12300,
+          "pngBytes": 4226
+        }
+      ],
+      "decodedBytes": 24720
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 34028,
+      "pages": [
+        {
+          "image": "ne-sw/idle-weapon-staff-back-0.png",
+          "json": "ne-sw/idle-weapon-staff-back-0.json",
+          "width": 117,
+          "height": 101,
+          "decodedBytes": 47268,
+          "pngBytes": 12648
+        },
+        {
+          "image": "e-w/idle-weapon-staff-back-0.png",
+          "json": "e-w/idle-weapon-staff-back-0.json",
+          "width": 105,
+          "height": 98,
+          "decodedBytes": 41160,
+          "pngBytes": 11429
+        },
+        {
+          "image": "n-s-nw-se/idle-weapon-staff-back-0.png",
+          "json": "n-s-nw-se/idle-weapon-staff-back-0.json",
+          "width": 213,
+          "height": 101,
+          "decodedBytes": 86052,
+          "pngBytes": 24725
+        }
+      ],
+      "decodedBytes": 174480
+    },
+    {
+      "layer": "weapon-staff-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 35428,
+      "pages": [
+        {
+          "image": "ne-sw/idle-weapon-staff-front-0.png",
+          "json": "ne-sw/idle-weapon-staff-front-0.json",
+          "width": 125,
+          "height": 100,
+          "decodedBytes": 50000,
+          "pngBytes": 13534
+        },
+        {
+          "image": "e-w/idle-weapon-staff-front-0.png",
+          "json": "e-w/idle-weapon-staff-front-0.json",
+          "width": 105,
+          "height": 101,
+          "decodedBytes": 42420,
+          "pngBytes": 11102
+        },
+        {
+          "image": "n-s-nw-se/idle-weapon-staff-front-0.png",
+          "json": "n-s-nw-se/idle-weapon-staff-front-0.json",
+          "width": 221,
+          "height": 98,
+          "decodedBytes": 86632,
+          "pngBytes": 24545
+        }
+      ],
+      "decodedBytes": 179052
+    }
+  ],
+  "decodedBytes": 2867716,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333,
+  "layerOrderByDirection": {
+    "NE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "E": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "W": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "N": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "S": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "NW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  }
+}

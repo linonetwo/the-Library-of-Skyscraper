@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "collect/hand-left-front/NE/02": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 11,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 109,
+        "w": 11,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-left-front/SW/00": {
+      "frame": {
+        "x": 22,
+        "y": 2,
+        "w": 15,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 127,
+        "w": 15,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-left-front/NE/01": {
+      "frame": {
+        "x": 41,
+        "y": 2,
+        "w": 11,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 82,
+        "y": 115,
+        "w": 11,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-left-front/SW/01": {
+      "frame": {
+        "x": 56,
+        "y": 2,
+        "w": 16,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 125,
+        "w": 16,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-left-front/SW/03": {
+      "frame": {
+        "x": 76,
+        "y": 2,
+        "w": 15,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 127,
+        "w": 15,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-left-front/NE/00": {
+      "frame": {
+        "x": 95,
+        "y": 2,
+        "w": 11,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 80,
+        "y": 117,
+        "w": 11,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-left-front/NE/03": {
+      "frame": {
+        "x": 110,
+        "y": 2,
+        "w": 12,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 119,
+        "w": 12,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/hand-left-front/SW/02": {
+      "frame": {
+        "x": 126,
+        "y": 2,
+        "w": 15,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 119,
+        "w": 15,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "collect/hand-left-front/NE": [
+      "collect/hand-left-front/NE/00",
+      "collect/hand-left-front/NE/01",
+      "collect/hand-left-front/NE/02",
+      "collect/hand-left-front/NE/03"
+    ],
+    "collect/hand-left-front/SW": [
+      "collect/hand-left-front/SW/00",
+      "collect/hand-left-front/SW/01",
+      "collect/hand-left-front/SW/02",
+      "collect/hand-left-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "collect-hand-left-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 143,
+      "h": 19
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

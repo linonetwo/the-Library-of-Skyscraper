@@ -21,12 +21,14 @@ export function expeditionObjective(snapshot: Snapshot, player?: Player): Expedi
   let result = latest ? latest.message : "尚无行动结果";
   const names = [
     ...snapshot.actors.map((a) => [a.id, roleNames[a.role]] as const),
+    ...snapshot.rooms.map((room) => [room.id, room.name] as const),
     ...(snapshot.enemies ?? []).map((e) => [e.id, "书库守卫"] as const),
   ].sort((a, b) => b[0].length - a[0].length);
   for (const [id, name] of names) result = result.split(id).join(name);
+  for (const [kind, name] of [["catalog", "编目台"], ["warehouse", "前线仓库"], ["tower", "防御塔"]]) result = result.split(kind).join(name);
   const finish = (title: string, executing: Actor[], focus = roomId): ExpeditionObjective => ({
     title,
-    detail: `${executing.length ? executing.map(label).join("、") : "尚无存活执行者"} · ${cargo || `已入库${player.materials}材`} · ${result}`,
+    detail: `${executing.length ? executing.map(label).join("、") : "尚无存活执行者"} · ${cargo || `库存${player.materials}材`} · ${result}`,
     roomId: focus,
   });
   if (snapshot.phase === "settled" || snapshot.result) return finish(
@@ -56,7 +58,7 @@ export function expeditionObjective(snapshot: Snapshot, player?: Player): Expedi
       const focus = gatherers.find((a) => a.travel)?.travel?.targetRoomId ?? gatherers[0]?.task?.target ?? snapshot.rooms.find((r) => r.resources > 0)?.id;
       return finish(`采集并入库建材 · ${player.materials}/${cost}`, gatherers, focus);
     }
-    return finish(`建设${target?.name ?? "目标书库"}编目台 · 已入库${player.materials}/${cost}材`, builders);
+    return finish(`建设${target?.name ?? "目标书库"}编目台 · 库存${player.materials}/${cost}材`, builders);
   }
   if ((catalog.constructionTicks ?? 0) < (catalog.requiredTicks ?? 0)) return finish(`编目台施工${Math.floor((catalog.constructionTicks ?? 0) / catalog.requiredTicks! * 100)}% · 还需${Math.ceil((catalog.requiredTicks! - (catalog.constructionTicks ?? 0)) * (snapshot.tickDurationMs ?? 500) / 1000)}秒`, builders);
   const progress = snapshot.scenario?.catalogProgress ?? 0;

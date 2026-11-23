@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "idle/body/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 61,
+        "h": 115
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 65,
+        "w": 61,
+        "h": 115
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body/NE/01": {
+      "frame": {
+        "x": 72,
+        "y": 2,
+        "w": 61,
+        "h": 115
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 65,
+        "w": 61,
+        "h": 115
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body/NE/02": {
+      "frame": {
+        "x": 137,
+        "y": 2,
+        "w": 61,
+        "h": 115
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 65,
+        "w": 61,
+        "h": 115
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body/NE/03": {
+      "frame": {
+        "x": 202,
+        "y": 2,
+        "w": 61,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 66,
+        "w": 61,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body/SW/00": {
+      "frame": {
+        "x": 267,
+        "y": 2,
+        "w": 63,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 66,
+        "w": 63,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body/SW/01": {
+      "frame": {
+        "x": 334,
+        "y": 2,
+        "w": 63,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 66,
+        "w": 63,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body/SW/02": {
+      "frame": {
+        "x": 401,
+        "y": 2,
+        "w": 63,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 66,
+        "w": 63,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body/SW/03": {
+      "frame": {
+        "x": 468,
+        "y": 2,
+        "w": 63,
+        "h": 113
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 67,
+        "w": 63,
+        "h": 113
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "idle/body/NE": [
+      "idle/body/NE/00",
+      "idle/body/NE/01",
+      "idle/body/NE/02",
+      "idle/body/NE/03"
+    ],
+    "idle/body/SW": [
+      "idle/body/SW/00",
+      "idle/body/SW/01",
+      "idle/body/SW/02",
+      "idle/body/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "idle-body-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 533,
+      "h": 119
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

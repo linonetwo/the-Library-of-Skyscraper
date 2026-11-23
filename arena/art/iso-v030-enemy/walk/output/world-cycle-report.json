@@ -1,0 +1,1172 @@
+{
+  "approved": false,
+  "space": "ground world xy, sole z=0 from registered boot footprint",
+  "directions": [
+    {
+      "direction": "NE",
+      "worldBones": {
+        "upper": 0.265,
+        "lower": 0.255,
+        "hipZ": 0.54,
+        "ankleZ": 0.1,
+        "trackWidth": 0.16,
+        "worldSpeed": 1.5,
+        "cycleMs": 720,
+        "cycleStride": 1.08
+      },
+      "frames": [
+        {
+          "frame": 0,
+          "cycle": 0,
+          "phase": 0,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 1,
+          "cycle": 0,
+          "phase": 0.0625,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 2,
+          "cycle": 0,
+          "phase": 0.125,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 3,
+          "cycle": 0,
+          "phase": 0.1875,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 4,
+          "cycle": 0,
+          "phase": 0.25,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 5,
+          "cycle": 0,
+          "phase": 0.3125,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146668,
+            -0.2700000000014666,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 6,
+          "cycle": 0,
+          "phase": 0.375,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146668,
+            -0.2700000000014666,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 7,
+          "cycle": 0,
+          "phase": 0.4375,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146668,
+            -0.2700000000014666,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -0.2700000000014662,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 8,
+          "cycle": 0,
+          "phase": 0.5,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 9,
+          "cycle": 0,
+          "phase": 0.5625,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853391,
+            -0.8100000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 10,
+          "cycle": 0,
+          "phase": 0.625,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853391,
+            -0.8100000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 11,
+          "cycle": 0,
+          "phase": 0.6875,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853391,
+            -0.8100000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 12,
+          "cycle": 0,
+          "phase": 0.75,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 13,
+          "cycle": 0,
+          "phase": 0.8125,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 14,
+          "cycle": 0,
+          "phase": 0.875,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 15,
+          "cycle": 0,
+          "phase": 0.9375,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -0.8100000000014667,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 16,
+          "cycle": 1,
+          "phase": 0,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 17,
+          "cycle": 1,
+          "phase": 0.0625,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 18,
+          "cycle": 1,
+          "phase": 0.125,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 19,
+          "cycle": 1,
+          "phase": 0.1875,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014667,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "errorWorld": 4.440892098500626e-16
+        },
+        {
+          "frame": 20,
+          "cycle": 1,
+          "phase": 0.25,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146645,
+            -1.3500000000014665,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "errorWorld": 3.1401849173675503e-16
+        },
+        {
+          "frame": 21,
+          "cycle": 1,
+          "phase": 0.3125,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146645,
+            -1.3500000000014665,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "errorWorld": 3.1401849173675503e-16
+        },
+        {
+          "frame": 22,
+          "cycle": 1,
+          "phase": 0.375,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146668,
+            -1.3500000000014667,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 23,
+          "cycle": 1,
+          "phase": 0.4375,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146645,
+            -1.350000000001467,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -1.3500000000014662,
+            0
+          ],
+          "errorWorld": 7.021666937153402e-16
+        },
+        {
+          "frame": 24,
+          "cycle": 1,
+          "phase": 0.5,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 25,
+          "cycle": 1,
+          "phase": 0.5625,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853369,
+            -1.890000000001466,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "errorWorld": 7.021666937153402e-16
+        },
+        {
+          "frame": 26,
+          "cycle": 1,
+          "phase": 0.625,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853391,
+            -1.8900000000014663,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 27,
+          "cycle": 1,
+          "phase": 0.6875,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853369,
+            -1.8900000000014665,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "errorWorld": 3.1401849173675503e-16
+        },
+        {
+          "frame": 28,
+          "cycle": 1,
+          "phase": 0.75,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853369,
+            -1.8900000000014665,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "errorWorld": 3.1401849173675503e-16
+        },
+        {
+          "frame": 29,
+          "cycle": 1,
+          "phase": 0.8125,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014663,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "errorWorld": 4.440892098500626e-16
+        },
+        {
+          "frame": 30,
+          "cycle": 1,
+          "phase": 0.875,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853369,
+            -1.890000000001467,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "errorWorld": 3.1401849173675503e-16
+        },
+        {
+          "frame": 31,
+          "cycle": 1,
+          "phase": 0.9375,
+          "support": "right",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            -1.8900000000014667,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 32,
+          "cycle": 2,
+          "phase": 0,
+          "support": "left",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            -2.430000000001466,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            -2.430000000001466,
+            0
+          ],
+          "errorWorld": 0
+        }
+      ],
+      "maxSoleWorldError": 7.021666937153402e-16,
+      "seamScreenError": 0,
+      "cycleScreenDelta": [
+        69.12,
+        -34.56
+      ],
+      "frameHoldScreenResidual": 4.829906831399546
+    },
+    {
+      "direction": "SW",
+      "worldBones": {
+        "upper": 0.265,
+        "lower": 0.255,
+        "hipZ": 0.54,
+        "ankleZ": 0.1,
+        "trackWidth": 0.16,
+        "worldSpeed": 1.5,
+        "cycleMs": 720,
+        "cycleStride": 1.08
+      },
+      "frames": [
+        {
+          "frame": 0,
+          "cycle": 0,
+          "phase": 0,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 1,
+          "cycle": 0,
+          "phase": 0.0625,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 2,
+          "cycle": 0,
+          "phase": 0.125,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 3,
+          "cycle": 0,
+          "phase": 0.1875,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 4,
+          "cycle": 0,
+          "phase": 0.25,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 5,
+          "cycle": 0,
+          "phase": 0.3125,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853391,
+            0.26999999999853386,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 6,
+          "cycle": 0,
+          "phase": 0.375,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853391,
+            0.26999999999853386,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 7,
+          "cycle": 0,
+          "phase": 0.4375,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853391,
+            0.26999999999853386,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            0.2699999999985334,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 8,
+          "cycle": 0,
+          "phase": 0.5,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 9,
+          "cycle": 0,
+          "phase": 0.5625,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146662,
+            0.8099999999985334,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "errorWorld": 5.900916318210353e-16
+        },
+        {
+          "frame": 10,
+          "cycle": 0,
+          "phase": 0.625,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146668,
+            0.8099999999985334,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 11,
+          "cycle": 0,
+          "phase": 0.6875,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146662,
+            0.8099999999985334,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "errorWorld": 5.900916318210353e-16
+        },
+        {
+          "frame": 12,
+          "cycle": 0,
+          "phase": 0.75,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 13,
+          "cycle": 0,
+          "phase": 0.8125,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146618,
+            0.8099999999985339,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "errorWorld": 5.551115123125783e-17
+        },
+        {
+          "frame": 14,
+          "cycle": 0,
+          "phase": 0.875,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 15,
+          "cycle": 0,
+          "phase": 0.9375,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            0.8099999999985339,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 16,
+          "cycle": 1,
+          "phase": 0,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 17,
+          "cycle": 1,
+          "phase": 0.0625,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 18,
+          "cycle": 1,
+          "phase": 0.125,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 19,
+          "cycle": 1,
+          "phase": 0.1875,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853336,
+            1.3499999999985337,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "errorWorld": 2.482534153247273e-16
+        },
+        {
+          "frame": 20,
+          "cycle": 1,
+          "phase": 0.25,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 21,
+          "cycle": 1,
+          "phase": 0.3125,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 22,
+          "cycle": 1,
+          "phase": 0.375,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853391,
+            1.349999999998534,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 23,
+          "cycle": 1,
+          "phase": 0.4375,
+          "support": "left",
+          "soleGroundWorld": [
+            0.0799999999985338,
+            1.3499999999985342,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            1.3499999999985335,
+            0
+          ],
+          "errorWorld": 7.447602459741819e-16
+        },
+        {
+          "frame": 24,
+          "cycle": 1,
+          "phase": 0.5,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 25,
+          "cycle": 1,
+          "phase": 0.5625,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146656,
+            1.8899999999985333,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "errorWorld": 7.447602459741819e-16
+        },
+        {
+          "frame": 26,
+          "cycle": 1,
+          "phase": 0.625,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146668,
+            1.8899999999985335,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "errorWorld": 6.280369834735101e-16
+        },
+        {
+          "frame": 27,
+          "cycle": 1,
+          "phase": 0.6875,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 28,
+          "cycle": 1,
+          "phase": 0.75,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 29,
+          "cycle": 1,
+          "phase": 0.8125,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146612,
+            1.8899999999985337,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "errorWorld": 2.482534153247273e-16
+        },
+        {
+          "frame": 30,
+          "cycle": 1,
+          "phase": 0.875,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146634,
+            1.8899999999985342,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "errorWorld": 2.482534153247273e-16
+        },
+        {
+          "frame": 31,
+          "cycle": 1,
+          "phase": 0.9375,
+          "support": "right",
+          "soleGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "plantGroundWorld": [
+            -0.08000000000146623,
+            1.889999999998534,
+            0
+          ],
+          "errorWorld": 0
+        },
+        {
+          "frame": 32,
+          "cycle": 2,
+          "phase": 0,
+          "support": "left",
+          "soleGroundWorld": [
+            0.07999999999853347,
+            2.4299999999985333,
+            0
+          ],
+          "plantGroundWorld": [
+            0.07999999999853347,
+            2.4299999999985333,
+            0
+          ],
+          "errorWorld": 0
+        }
+      ],
+      "maxSoleWorldError": 7.447602459741819e-16,
+      "seamScreenError": 0,
+      "cycleScreenDelta": [
+        -69.12,
+        34.56
+      ],
+      "frameHoldScreenResidual": 4.829906831399546
+    }
+  ]
+}

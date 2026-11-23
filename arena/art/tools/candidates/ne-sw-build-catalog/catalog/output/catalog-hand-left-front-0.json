@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "catalog/hand-left-front/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 12,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 70,
+        "y": 107,
+        "w": 12,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-left-front/NE/01": {
+      "frame": {
+        "x": 23,
+        "y": 2,
+        "w": 12,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 70,
+        "y": 107,
+        "w": 12,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-left-front/NE/02": {
+      "frame": {
+        "x": 39,
+        "y": 2,
+        "w": 12,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 70,
+        "y": 107,
+        "w": 12,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-left-front/NE/03": {
+      "frame": {
+        "x": 55,
+        "y": 2,
+        "w": 12,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 70,
+        "y": 107,
+        "w": 12,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-left-front/SW/00": {
+      "frame": {
+        "x": 71,
+        "y": 2,
+        "w": 15,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 103,
+        "w": 15,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-left-front/SW/01": {
+      "frame": {
+        "x": 90,
+        "y": 2,
+        "w": 15,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 103,
+        "w": 15,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-left-front/SW/02": {
+      "frame": {
+        "x": 109,
+        "y": 2,
+        "w": 15,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 103,
+        "w": 15,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-left-front/SW/03": {
+      "frame": {
+        "x": 128,
+        "y": 2,
+        "w": 15,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 103,
+        "w": 15,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "catalog/hand-left-front/NE": [
+      "catalog/hand-left-front/NE/00",
+      "catalog/hand-left-front/NE/01",
+      "catalog/hand-left-front/NE/02",
+      "catalog/hand-left-front/NE/03"
+    ],
+    "catalog/hand-left-front/SW": [
+      "catalog/hand-left-front/SW/00",
+      "catalog/hand-left-front/SW/01",
+      "catalog/hand-left-front/SW/02",
+      "catalog/hand-left-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "catalog-hand-left-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 145,
+      "h": 20
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

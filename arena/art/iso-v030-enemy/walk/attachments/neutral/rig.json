@@ -1,0 +1,635 @@
+{
+  "schemaVersion": 1,
+  "status": "prototype",
+  "releaseApproved": false,
+  "actionsApproved": [],
+  "cell": [
+    128,
+    160
+  ],
+  "groundPivot": [
+    64,
+    144
+  ],
+  "renderScale": 1,
+  "entityHeightMeters": 1.35,
+  "source": "arena/art/source/iso-v030-inkguard-neutral.png",
+  "sourceSha256": "662dbb5156d5eca04ec6a42355186f08bc3cd96de41616a7ce311bf4c498061d",
+  "rigScope": "head, torso, cloak, arms, boots; complete hidden leg segments and action poses remain to be authored",
+  "directions": {
+    "NE": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "restOffset": [
+            0,
+            0
+          ],
+          "cell": [
+            64,
+            144
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "cell": [
+            63.953125,
+            110.765625
+          ],
+          "restOffset": [
+            -0.046875,
+            -33.234375
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "cell": [
+            65.3125,
+            66.5859375
+          ],
+          "restOffset": [
+            1.359375,
+            -44.1796875
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "cell": [
+            49.90625,
+            75.6484375
+          ],
+          "restOffset": [
+            -15.40625,
+            9.0625
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "cell": [
+            77.3203125,
+            76.44140625
+          ],
+          "restOffset": [
+            12.0078125,
+            9.85546875
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "cell": [
+            44.35546875,
+            86.63671875
+          ],
+          "restOffset": [
+            -5.55078125,
+            10.98828125
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "cell": [
+            82.078125,
+            87.76953125
+          ],
+          "restOffset": [
+            4.7578125,
+            11.328125
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "cell": [
+            39.7109375,
+            102.15625
+          ],
+          "restOffset": [
+            -4.64453125,
+            15.51953125
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "cell": [
+            87.96875,
+            102.8359375
+          ],
+          "restOffset": [
+            5.890625,
+            15.06640625
+          ]
+        },
+        "leftAnkle": {
+          "parent": "pelvis",
+          "cell": [
+            52.28515625,
+            140.33203125
+          ],
+          "restOffset": [
+            -11.66796875,
+            29.56640625
+          ]
+        },
+        "rightAnkle": {
+          "parent": "pelvis",
+          "cell": [
+            73.2421875,
+            142.7109375
+          ],
+          "restOffset": [
+            9.2890625,
+            31.9453125
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "layer": "body",
+          "zOrder": 6,
+          "image": "NE/head.png",
+          "pivot": [
+            65.3125,
+            66.5859375
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "layer": "body",
+          "zOrder": 3,
+          "image": "NE/torso.png",
+          "pivot": [
+            63.953125,
+            110.765625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "lower-cloak",
+          "joint": "pelvis",
+          "layer": "body",
+          "zOrder": 4,
+          "image": "NE/lower-cloak.png",
+          "pivot": [
+            63.953125,
+            110.765625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "layer": "body",
+          "zOrder": 2,
+          "image": "NE/left-upper-arm.png",
+          "pivot": [
+            49.90625,
+            75.6484375
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "left-forearm-hand",
+          "joint": "leftElbow",
+          "layer": "body",
+          "zOrder": 5,
+          "image": "NE/left-forearm-hand.png",
+          "pivot": [
+            44.35546875,
+            86.63671875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "layer": "body-front",
+          "zOrder": 2,
+          "image": "NE/right-upper-arm.png",
+          "pivot": [
+            77.3203125,
+            76.44140625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "right-forearm-hand",
+          "joint": "rightElbow",
+          "layer": "body-front",
+          "zOrder": 5,
+          "image": "NE/right-forearm-hand.png",
+          "pivot": [
+            82.078125,
+            87.76953125
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "layer": "body",
+          "zOrder": 0,
+          "image": "NE/left-boot.png",
+          "pivot": [
+            52.28515625,
+            140.33203125
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "layer": "body",
+          "zOrder": 1,
+          "image": "NE/right-boot.png",
+          "pivot": [
+            73.2421875,
+            142.7109375
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        }
+      ],
+      "projectedWorldForward": [
+        64,
+        -32
+      ],
+      "pending": [
+        "Complete independent leg segments hidden by neutral cloak",
+        "Four-frame move/attack and two-frame hit",
+        "Four-frame collapse and settled-down pose"
+      ]
+    },
+    "SW": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "restOffset": [
+            0,
+            0
+          ],
+          "cell": [
+            64,
+            144
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "cell": [
+            58.2890625,
+            110.765625
+          ],
+          "restOffset": [
+            -5.7109375,
+            -33.234375
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "cell": [
+            58.96875,
+            69.19140625
+          ],
+          "restOffset": [
+            0.6796875,
+            -41.57421875
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "cell": [
+            75.84765625,
+            77.34765625
+          ],
+          "restOffset": [
+            16.87890625,
+            8.15625
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "cell": [
+            42.08984375,
+            77.34765625
+          ],
+          "restOffset": [
+            -16.87890625,
+            8.15625
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "cell": [
+            81.3984375,
+            87.4296875
+          ],
+          "restOffset": [
+            5.55078125,
+            10.08203125
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "cell": [
+            37.671875,
+            87.4296875
+          ],
+          "restOffset": [
+            -4.41796875,
+            10.08203125
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "cell": [
+            84.5703125,
+            102.26953125
+          ],
+          "restOffset": [
+            3.171875,
+            14.83984375
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "cell": [
+            34.38671875,
+            102.15625
+          ],
+          "restOffset": [
+            -3.28515625,
+            14.7265625
+          ]
+        },
+        "leftAnkle": {
+          "parent": "pelvis",
+          "cell": [
+            71.65625,
+            142.484375
+          ],
+          "restOffset": [
+            13.3671875,
+            31.71875
+          ]
+        },
+        "rightAnkle": {
+          "parent": "pelvis",
+          "cell": [
+            47.75390625,
+            141.8046875
+          ],
+          "restOffset": [
+            -10.53515625,
+            31.0390625
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "layer": "body",
+          "zOrder": 6,
+          "image": "SW/head.png",
+          "pivot": [
+            58.96875,
+            69.19140625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "layer": "body",
+          "zOrder": 3,
+          "image": "SW/torso.png",
+          "pivot": [
+            58.2890625,
+            110.765625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "lower-cloak",
+          "joint": "pelvis",
+          "layer": "body",
+          "zOrder": 4,
+          "image": "SW/lower-cloak.png",
+          "pivot": [
+            58.2890625,
+            110.765625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "layer": "body-front",
+          "zOrder": 2,
+          "image": "SW/left-upper-arm.png",
+          "pivot": [
+            75.84765625,
+            77.34765625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "left-forearm-hand",
+          "joint": "leftElbow",
+          "layer": "body-front",
+          "zOrder": 5,
+          "image": "SW/left-forearm-hand.png",
+          "pivot": [
+            81.3984375,
+            87.4296875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "layer": "body",
+          "zOrder": 2,
+          "image": "SW/right-upper-arm.png",
+          "pivot": [
+            42.08984375,
+            77.34765625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "right-forearm-hand",
+          "joint": "rightElbow",
+          "layer": "body",
+          "zOrder": 5,
+          "image": "SW/right-forearm-hand.png",
+          "pivot": [
+            37.671875,
+            87.4296875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "layer": "body",
+          "zOrder": 0,
+          "image": "SW/left-boot.png",
+          "pivot": [
+            71.65625,
+            142.484375
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "layer": "body",
+          "zOrder": 1,
+          "image": "SW/right-boot.png",
+          "pivot": [
+            47.75390625,
+            141.8046875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            128,
+            160
+          ]
+        }
+      ],
+      "projectedWorldForward": [
+        -64,
+        32
+      ],
+      "pending": [
+        "Complete independent leg segments hidden by neutral cloak",
+        "Four-frame move/attack and two-frame hit",
+        "Four-frame collapse and settled-down pose"
+      ]
+    }
+  }
+}

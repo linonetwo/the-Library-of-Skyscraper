@@ -164,11 +164,12 @@ export class ActorView {
       this.motion.direction = pose.direction;
     }
     this.doll.tint = hit ? 0xff937f : 0xffffff;
-    if (hit && !this.assetSet)
+    if (hit && !this.assetSet?.clips.hit)
       this.activity
         .circle(0, -55, 40)
         .stroke({ color: 0xf49a80, width: 3, alpha: 0.7 });
-    if (this.actor.cargo > 0 && !this.assetSet)
+    if (this.actor.cargo > 0 && !this.assetSet?.clips.carry &&
+        !this.assetSet?.clips[selection?.clip ?? (pose.moving ? "walk" : "idle")]?.rig)
       this.activity
         .roundRect(14, -40, 13, 18, 3)
         .fill(0xc9a56d)

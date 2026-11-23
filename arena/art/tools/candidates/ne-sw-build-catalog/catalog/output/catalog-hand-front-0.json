@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "catalog/hand-front/NE/03": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 12,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 97,
+        "y": 107,
+        "w": 12,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-front/SW/00": {
+      "frame": {
+        "x": 23,
+        "y": 2,
+        "w": 16,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 99,
+        "w": 16,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-front/SW/01": {
+      "frame": {
+        "x": 43,
+        "y": 2,
+        "w": 16,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 97,
+        "w": 16,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-front/SW/02": {
+      "frame": {
+        "x": 63,
+        "y": 2,
+        "w": 16,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 90,
+        "w": 16,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-front/SW/03": {
+      "frame": {
+        "x": 83,
+        "y": 2,
+        "w": 15,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 95,
+        "y": 110,
+        "w": 15,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-front/NE/00": {
+      "frame": {
+        "x": 102,
+        "y": 2,
+        "w": 12,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 105,
+        "w": 12,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-front/NE/01": {
+      "frame": {
+        "x": 118,
+        "y": 2,
+        "w": 14,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 104,
+        "w": 14,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-front/NE/02": {
+      "frame": {
+        "x": 136,
+        "y": 2,
+        "w": 13,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 80,
+        "y": 97,
+        "w": 13,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "catalog/hand-front/NE": [
+      "catalog/hand-front/NE/00",
+      "catalog/hand-front/NE/01",
+      "catalog/hand-front/NE/02",
+      "catalog/hand-front/NE/03"
+    ],
+    "catalog/hand-front/SW": [
+      "catalog/hand-front/SW/00",
+      "catalog/hand-front/SW/01",
+      "catalog/hand-front/SW/02",
+      "catalog/hand-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "catalog-hand-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 151,
+      "h": 19
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

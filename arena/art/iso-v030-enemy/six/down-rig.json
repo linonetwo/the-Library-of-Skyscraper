@@ -1,0 +1,1438 @@
+{
+  "directions": {
+    "N": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            128,
+            204.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "down-0-body",
+          "joint": "root",
+          "image": "attachments/N/down-0-body.png",
+          "pivot": [
+            44,
+            91
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-hood",
+          "joint": "root",
+          "image": "attachments/N/down-0-hood.png",
+          "pivot": [
+            44,
+            91
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-brace",
+          "joint": "root",
+          "image": "attachments/N/down-0-brace.png",
+          "pivot": [
+            44,
+            91
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-body",
+          "joint": "root",
+          "image": "attachments/N/down-1-body.png",
+          "pivot": [
+            45,
+            82
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-hood",
+          "joint": "root",
+          "image": "attachments/N/down-1-hood.png",
+          "pivot": [
+            45,
+            82
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-brace",
+          "joint": "root",
+          "image": "attachments/N/down-1-brace.png",
+          "pivot": [
+            45,
+            82
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-body",
+          "joint": "root",
+          "image": "attachments/N/down-2-body.png",
+          "pivot": [
+            54,
+            70
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-hood",
+          "joint": "root",
+          "image": "attachments/N/down-2-hood.png",
+          "pivot": [
+            54,
+            70
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-brace",
+          "joint": "root",
+          "image": "attachments/N/down-2-brace.png",
+          "pivot": [
+            54,
+            70
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-body",
+          "joint": "root",
+          "image": "attachments/N/down-3-body.png",
+          "pivot": [
+            50,
+            52
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-hood",
+          "joint": "root",
+          "image": "attachments/N/down-3-hood.png",
+          "pivot": [
+            50,
+            52
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-brace",
+          "joint": "root",
+          "image": "attachments/N/down-3-brace.png",
+          "pivot": [
+            50,
+            52
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        }
+      ],
+      "poses": [
+        {
+          "durationMs": 120,
+          "joints": {},
+          "groundSupport": {
+            "surface": "boot",
+            "screenOffset": [
+              3,
+              0
+            ]
+          },
+          "hiddenAttachments": [
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 160,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "screenOffset": [
+              16,
+              -2
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 180,
+          "joints": {},
+          "groundSupport": {
+            "surface": "hip/forearm",
+            "screenOffset": [
+              25,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 240,
+          "joints": {},
+          "groundSupport": {
+            "surface": "side/forearm",
+            "screenOffset": [
+              33,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace"
+          ]
+        }
+      ]
+    },
+    "NW": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            128,
+            204.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "down-0-body",
+          "joint": "root",
+          "image": "attachments/NW/down-0-body.png",
+          "pivot": [
+            19,
+            91
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-hood",
+          "joint": "root",
+          "image": "attachments/NW/down-0-hood.png",
+          "pivot": [
+            19,
+            91
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-brace",
+          "joint": "root",
+          "image": "attachments/NW/down-0-brace.png",
+          "pivot": [
+            19,
+            91
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-body",
+          "joint": "root",
+          "image": "attachments/NW/down-1-body.png",
+          "pivot": [
+            24,
+            81
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-hood",
+          "joint": "root",
+          "image": "attachments/NW/down-1-hood.png",
+          "pivot": [
+            24,
+            81
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-brace",
+          "joint": "root",
+          "image": "attachments/NW/down-1-brace.png",
+          "pivot": [
+            24,
+            81
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-body",
+          "joint": "root",
+          "image": "attachments/NW/down-2-body.png",
+          "pivot": [
+            34,
+            68
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-hood",
+          "joint": "root",
+          "image": "attachments/NW/down-2-hood.png",
+          "pivot": [
+            34,
+            68
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-brace",
+          "joint": "root",
+          "image": "attachments/NW/down-2-brace.png",
+          "pivot": [
+            34,
+            68
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-body",
+          "joint": "root",
+          "image": "attachments/NW/down-3-body.png",
+          "pivot": [
+            45,
+            55
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-hood",
+          "joint": "root",
+          "image": "attachments/NW/down-3-hood.png",
+          "pivot": [
+            45,
+            55
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-brace",
+          "joint": "root",
+          "image": "attachments/NW/down-3-brace.png",
+          "pivot": [
+            45,
+            55
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        }
+      ],
+      "poses": [
+        {
+          "durationMs": 120,
+          "joints": {},
+          "groundSupport": {
+            "surface": "boot",
+            "screenOffset": [
+              -3,
+              0
+            ]
+          },
+          "hiddenAttachments": [
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 160,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "screenOffset": [
+              -16,
+              -2
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 180,
+          "joints": {},
+          "groundSupport": {
+            "surface": "hip/forearm",
+            "screenOffset": [
+              -25,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 240,
+          "joints": {},
+          "groundSupport": {
+            "surface": "side/forearm",
+            "screenOffset": [
+              -33,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace"
+          ]
+        }
+      ]
+    },
+    "W": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            128,
+            204.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "down-0-body",
+          "joint": "root",
+          "image": "attachments/W/down-0-body.png",
+          "pivot": [
+            29,
+            91
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-hood",
+          "joint": "root",
+          "image": "attachments/W/down-0-hood.png",
+          "pivot": [
+            29,
+            91
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-brace",
+          "joint": "root",
+          "image": "attachments/W/down-0-brace.png",
+          "pivot": [
+            29,
+            91
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-body",
+          "joint": "root",
+          "image": "attachments/W/down-1-body.png",
+          "pivot": [
+            25,
+            79
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-hood",
+          "joint": "root",
+          "image": "attachments/W/down-1-hood.png",
+          "pivot": [
+            25,
+            79
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-brace",
+          "joint": "root",
+          "image": "attachments/W/down-1-brace.png",
+          "pivot": [
+            25,
+            79
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-body",
+          "joint": "root",
+          "image": "attachments/W/down-2-body.png",
+          "pivot": [
+            39,
+            63
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-hood",
+          "joint": "root",
+          "image": "attachments/W/down-2-hood.png",
+          "pivot": [
+            39,
+            63
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-brace",
+          "joint": "root",
+          "image": "attachments/W/down-2-brace.png",
+          "pivot": [
+            39,
+            63
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-body",
+          "joint": "root",
+          "image": "attachments/W/down-3-body.png",
+          "pivot": [
+            49,
+            53
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-hood",
+          "joint": "root",
+          "image": "attachments/W/down-3-hood.png",
+          "pivot": [
+            49,
+            53
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-brace",
+          "joint": "root",
+          "image": "attachments/W/down-3-brace.png",
+          "pivot": [
+            49,
+            53
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        }
+      ],
+      "poses": [
+        {
+          "durationMs": 120,
+          "joints": {},
+          "groundSupport": {
+            "surface": "boot",
+            "screenOffset": [
+              -3,
+              0
+            ]
+          },
+          "hiddenAttachments": [
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 160,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "screenOffset": [
+              -16,
+              -2
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 180,
+          "joints": {},
+          "groundSupport": {
+            "surface": "hip/forearm",
+            "screenOffset": [
+              -25,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 240,
+          "joints": {},
+          "groundSupport": {
+            "surface": "side/forearm",
+            "screenOffset": [
+              -33,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace"
+          ]
+        }
+      ]
+    },
+    "S": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            128,
+            204.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "down-0-body",
+          "joint": "root",
+          "image": "attachments/S/down-0-body.png",
+          "pivot": [
+            45,
+            91
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-hood",
+          "joint": "root",
+          "image": "attachments/S/down-0-hood.png",
+          "pivot": [
+            45,
+            91
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-brace",
+          "joint": "root",
+          "image": "attachments/S/down-0-brace.png",
+          "pivot": [
+            45,
+            91
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-body",
+          "joint": "root",
+          "image": "attachments/S/down-1-body.png",
+          "pivot": [
+            41,
+            85
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-hood",
+          "joint": "root",
+          "image": "attachments/S/down-1-hood.png",
+          "pivot": [
+            41,
+            85
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-brace",
+          "joint": "root",
+          "image": "attachments/S/down-1-brace.png",
+          "pivot": [
+            41,
+            85
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-body",
+          "joint": "root",
+          "image": "attachments/S/down-2-body.png",
+          "pivot": [
+            46,
+            74
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-hood",
+          "joint": "root",
+          "image": "attachments/S/down-2-hood.png",
+          "pivot": [
+            46,
+            74
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-brace",
+          "joint": "root",
+          "image": "attachments/S/down-2-brace.png",
+          "pivot": [
+            46,
+            74
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-body",
+          "joint": "root",
+          "image": "attachments/S/down-3-body.png",
+          "pivot": [
+            52,
+            52
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-hood",
+          "joint": "root",
+          "image": "attachments/S/down-3-hood.png",
+          "pivot": [
+            52,
+            52
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-brace",
+          "joint": "root",
+          "image": "attachments/S/down-3-brace.png",
+          "pivot": [
+            52,
+            52
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        }
+      ],
+      "poses": [
+        {
+          "durationMs": 120,
+          "joints": {},
+          "groundSupport": {
+            "surface": "boot",
+            "screenOffset": [
+              3,
+              0
+            ]
+          },
+          "hiddenAttachments": [
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 160,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "screenOffset": [
+              16,
+              -2
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 180,
+          "joints": {},
+          "groundSupport": {
+            "surface": "hip/forearm",
+            "screenOffset": [
+              25,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 240,
+          "joints": {},
+          "groundSupport": {
+            "surface": "side/forearm",
+            "screenOffset": [
+              33,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace"
+          ]
+        }
+      ]
+    },
+    "SE": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            128,
+            204.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "down-0-body",
+          "joint": "root",
+          "image": "attachments/SE/down-0-body.png",
+          "pivot": [
+            28,
+            90
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-hood",
+          "joint": "root",
+          "image": "attachments/SE/down-0-hood.png",
+          "pivot": [
+            28,
+            90
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-brace",
+          "joint": "root",
+          "image": "attachments/SE/down-0-brace.png",
+          "pivot": [
+            28,
+            90
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-body",
+          "joint": "root",
+          "image": "attachments/SE/down-1-body.png",
+          "pivot": [
+            59,
+            82
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-hood",
+          "joint": "root",
+          "image": "attachments/SE/down-1-hood.png",
+          "pivot": [
+            59,
+            82
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-brace",
+          "joint": "root",
+          "image": "attachments/SE/down-1-brace.png",
+          "pivot": [
+            59,
+            82
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-body",
+          "joint": "root",
+          "image": "attachments/SE/down-2-body.png",
+          "pivot": [
+            51,
+            71
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-hood",
+          "joint": "root",
+          "image": "attachments/SE/down-2-hood.png",
+          "pivot": [
+            51,
+            71
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-brace",
+          "joint": "root",
+          "image": "attachments/SE/down-2-brace.png",
+          "pivot": [
+            51,
+            71
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-body",
+          "joint": "root",
+          "image": "attachments/SE/down-3-body.png",
+          "pivot": [
+            58,
+            51
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-hood",
+          "joint": "root",
+          "image": "attachments/SE/down-3-hood.png",
+          "pivot": [
+            58,
+            51
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-brace",
+          "joint": "root",
+          "image": "attachments/SE/down-3-brace.png",
+          "pivot": [
+            58,
+            51
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        }
+      ],
+      "poses": [
+        {
+          "durationMs": 120,
+          "joints": {},
+          "groundSupport": {
+            "surface": "boot",
+            "screenOffset": [
+              3,
+              0
+            ]
+          },
+          "hiddenAttachments": [
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 160,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "screenOffset": [
+              16,
+              -2
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 180,
+          "joints": {},
+          "groundSupport": {
+            "surface": "hip/forearm",
+            "screenOffset": [
+              25,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 240,
+          "joints": {},
+          "groundSupport": {
+            "surface": "side/forearm",
+            "screenOffset": [
+              33,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace"
+          ]
+        }
+      ]
+    },
+    "E": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "cell": [
+            128,
+            204.8
+          ],
+          "restOffset": [
+            0,
+            0
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "down-0-body",
+          "joint": "root",
+          "image": "attachments/E/down-0-body.png",
+          "pivot": [
+            37,
+            90
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-hood",
+          "joint": "root",
+          "image": "attachments/E/down-0-hood.png",
+          "pivot": [
+            37,
+            90
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-0-brace",
+          "joint": "root",
+          "image": "attachments/E/down-0-brace.png",
+          "pivot": [
+            37,
+            90
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-body",
+          "joint": "root",
+          "image": "attachments/E/down-1-body.png",
+          "pivot": [
+            59,
+            81
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-hood",
+          "joint": "root",
+          "image": "attachments/E/down-1-hood.png",
+          "pivot": [
+            59,
+            81
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-1-brace",
+          "joint": "root",
+          "image": "attachments/E/down-1-brace.png",
+          "pivot": [
+            59,
+            81
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-body",
+          "joint": "root",
+          "image": "attachments/E/down-2-body.png",
+          "pivot": [
+            52,
+            69
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-hood",
+          "joint": "root",
+          "image": "attachments/E/down-2-hood.png",
+          "pivot": [
+            52,
+            69
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-2-brace",
+          "joint": "root",
+          "image": "attachments/E/down-2-brace.png",
+          "pivot": [
+            52,
+            69
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-body",
+          "joint": "root",
+          "image": "attachments/E/down-3-body.png",
+          "pivot": [
+            59,
+            51
+          ],
+          "zOrder": 0,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-hood",
+          "joint": "root",
+          "image": "attachments/E/down-3-hood.png",
+          "pivot": [
+            59,
+            51
+          ],
+          "zOrder": 1,
+          "layer": "body"
+        },
+        {
+          "id": "down-3-brace",
+          "joint": "root",
+          "image": "attachments/E/down-3-brace.png",
+          "pivot": [
+            59,
+            51
+          ],
+          "zOrder": 2,
+          "layer": "body"
+        }
+      ],
+      "poses": [
+        {
+          "durationMs": 120,
+          "joints": {},
+          "groundSupport": {
+            "surface": "boot",
+            "screenOffset": [
+              3,
+              0
+            ]
+          },
+          "hiddenAttachments": [
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 160,
+          "joints": {},
+          "groundSupport": {
+            "surface": "palm",
+            "screenOffset": [
+              16,
+              -2
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 180,
+          "joints": {},
+          "groundSupport": {
+            "surface": "hip/forearm",
+            "screenOffset": [
+              25,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-3-body",
+            "down-3-hood",
+            "down-3-brace"
+          ]
+        },
+        {
+          "durationMs": 240,
+          "joints": {},
+          "groundSupport": {
+            "surface": "side/forearm",
+            "screenOffset": [
+              33,
+              -4
+            ]
+          },
+          "hiddenAttachments": [
+            "down-0-body",
+            "down-0-hood",
+            "down-0-brace",
+            "down-1-body",
+            "down-1-hood",
+            "down-1-brace",
+            "down-2-body",
+            "down-2-hood",
+            "down-2-brace"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "approved": false,
+  "reviewNotes": [],
+  "activeLayers": [
+    "body"
+  ],
+  "inactiveLayers": [
+    "body-front",
+    "outfit-scholar",
+    "outfit-warden",
+    "hair-ivory",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "hair-midnight",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "weapon-staff",
+    "weapon-staff-back",
+    "weapon-staff-front",
+    "hand-grip"
+  ],
+  "renderScale": 1,
+  "cycleWorldStride": null,
+  "action": "down",
+  "directions": [
+    "NE",
+    "SW"
+  ],
+  "frames": [
+    {
+      "direction": "NE",
+      "frame": 0,
+      "durationMs": 120,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            128,
+            204.8
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "NE",
+      "frame": 1,
+      "durationMs": 160,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            128,
+            204.8
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "NE",
+      "frame": 2,
+      "durationMs": 180,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            128,
+            204.8
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "NE",
+      "frame": 3,
+      "durationMs": 240,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            128,
+            204.8
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "SW",
+      "frame": 0,
+      "durationMs": 120,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            128,
+            204.8
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "SW",
+      "frame": 1,
+      "durationMs": 160,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            128,
+            204.8
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "SW",
+      "frame": 2,
+      "durationMs": 180,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            128,
+            204.8
+          ],
+          "angle": 0
+        }
+      }
+    },
+    {
+      "direction": "SW",
+      "frame": 3,
+      "durationMs": 240,
+      "contactFoot": null,
+      "rootScreenDelta": [
+        0,
+        0
+      ],
+      "rootAtlasDelta": [
+        0,
+        0
+      ],
+      "plantAtlasWorld": null,
+      "actualAtlasWorld": null,
+      "errorPx": null,
+      "screenErrorPx": null,
+      "wristTargets": {},
+      "gripContacts": [],
+      "gripErrorPx": null,
+      "soleGroundWorld": null,
+      "joints": {
+        "root": {
+          "point": [
+            128,
+            204.8
+          ],
+          "angle": 0
+        }
+      }
+    }
+  ]
+}

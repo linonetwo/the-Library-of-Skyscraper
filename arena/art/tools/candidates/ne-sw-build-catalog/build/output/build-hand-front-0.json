@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "build/hand-front/SW/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 15,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 109,
+        "w": 15,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-front/SW/00": {
+      "frame": {
+        "x": 26,
+        "y": 2,
+        "w": 16,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 78,
+        "w": 16,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-front/SW/03": {
+      "frame": {
+        "x": 46,
+        "y": 2,
+        "w": 12,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 124,
+        "w": 12,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-front/NE/00": {
+      "frame": {
+        "x": 62,
+        "y": 2,
+        "w": 14,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 115,
+        "y": 76,
+        "w": 14,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-front/NE/01": {
+      "frame": {
+        "x": 80,
+        "y": 2,
+        "w": 12,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 103,
+        "w": 12,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-front/NE/03": {
+      "frame": {
+        "x": 96,
+        "y": 2,
+        "w": 11,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 123,
+        "w": 11,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-front/SW/02": {
+      "frame": {
+        "x": 111,
+        "y": 2,
+        "w": 16,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 88,
+        "w": 16,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-front/NE/02": {
+      "frame": {
+        "x": 131,
+        "y": 2,
+        "w": 15,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 83,
+        "w": 15,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "build/hand-front/NE": [
+      "build/hand-front/NE/00",
+      "build/hand-front/NE/01",
+      "build/hand-front/NE/02",
+      "build/hand-front/NE/03"
+    ],
+    "build/hand-front/SW": [
+      "build/hand-front/SW/00",
+      "build/hand-front/SW/01",
+      "build/hand-front/SW/02",
+      "build/hand-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "build-hand-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 148,
+      "h": 20
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

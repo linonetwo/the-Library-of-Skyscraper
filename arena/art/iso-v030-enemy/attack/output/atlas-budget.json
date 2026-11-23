@@ -1,0 +1,74 @@
+{
+  "clip": {
+    "action": "attack",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      120,
+      180,
+      120,
+      200
+    ],
+    "playback": "once"
+  },
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "NE",
+    "SW"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 46740,
+      "pages": [
+        {
+          "image": "attack-body-0.png",
+          "json": "attack-body-0.json",
+          "width": 468,
+          "height": 114,
+          "decodedBytes": 213408,
+          "pngBytes": 63291
+        }
+      ],
+      "decodedBytes": 213408
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 4593,
+      "pages": [
+        {
+          "image": "attack-body-front-0.png",
+          "json": "attack-body-front-0.json",
+          "width": 187,
+          "height": 40,
+          "decodedBytes": 29920,
+          "pngBytes": 6861
+        }
+      ],
+      "decodedBytes": 29920
+    }
+  ],
+  "decodedBytes": 243328,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}
