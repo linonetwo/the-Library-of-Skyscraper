@@ -24,7 +24,8 @@ export class WorldEntities {
     slash: Graphics;
     tickMs: number;
   }[] = [];
-  private buildingHp = new Map<string, number>();
+  private buildingHp = new Map<string, { hp: number; lastHitTick?: number }>();
+  private buildingSnapshot?: { sessionId: string; tick: number };
   private buildingFeedback: { shot: Graphics; hit: Graphics; shotTick?: number; hitTick?: number; tickMs: number }[] = [];
   constructor(
     private parent: Container,
@@ -36,6 +37,9 @@ export class WorldEntities {
     this.parent.addChild(this.annotations, this.roomAnnotations);
   }
   update(snapshot: Snapshot) {
+    if (this.buildingSnapshot?.sessionId !== snapshot.sessionId ||
+        snapshot.tick < this.buildingSnapshot.tick) this.buildingHp.clear();
+    this.buildingSnapshot = { sessionId: snapshot.sessionId, tick: snapshot.tick };
     const worldMap =
       (snapshot.simulationVersion ?? 0) >= 3 ? snapshot.worldMap : undefined;
     for (const child of this.annotations.removeChildren()) child.destroy();
@@ -248,14 +252,17 @@ export class WorldEntities {
             .stroke({ color: 0xffdf91, width: 3, alpha: 0.8 });
         }
         const hit = new Graphics().circle(hx, hy, 14).stroke({ color: 0xff937f, width: 3 });
-        const previousHp = this.buildingHp.get(building.id);
+        const previous = this.buildingHp.get(building.id);
+        const lastHitTick = previous && (building.hp ?? 100) < previous.hp
+          ? snapshot.tick : previous?.lastHitTick;
+        this.buildingHp.set(building.id, { hp: building.hp ?? 100, lastHitTick });
         shot.visible = hit.visible = false;
         node.addChild(shot, hit);
         this.buildingFeedback.push({ shot, hit, shotTick: event?.tick,
-          hitTick: previousHp !== undefined && (building.hp ?? 100) < previousHp ? snapshot.tick : undefined,
+          hitTick: lastHitTick,
           tickMs: snapshot.tickDurationMs || 500 });
       }
-      this.buildingHp.set(building.id, building.hp ?? 100);
+
       if (!complete)
         node.addChild(
           new Graphics()
