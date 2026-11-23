@@ -4,16 +4,16 @@
       "frame": {
         "x": 7,
         "y": 2,
-        "w": 61,
-        "h": 110
+        "w": 52,
+        "h": 109
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 65,
-        "y": 66,
-        "w": 61,
-        "h": 110
+        "x": 66,
+        "y": 67,
+        "w": 52,
+        "h": 109
       },
       "sourceSize": {
         "w": 192,
@@ -26,18 +26,18 @@
     },
     "hit/body/NE/00": {
       "frame": {
-        "x": 72,
+        "x": 63,
         "y": 2,
-        "w": 62,
-        "h": 109
+        "w": 52,
+        "h": 108
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 62,
-        "y": 67,
-        "w": 62,
-        "h": 109
+        "x": 64,
+        "y": 68,
+        "w": 52,
+        "h": 108
       },
       "sourceSize": {
         "w": 192,
@@ -50,18 +50,18 @@
     },
     "hit/body/SW/01": {
       "frame": {
-        "x": 138,
+        "x": 119,
         "y": 2,
-        "w": 63,
-        "h": 109
+        "w": 54,
+        "h": 107
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 61,
-        "y": 67,
-        "w": 63,
-        "h": 109
+        "x": 64,
+        "y": 69,
+        "w": 54,
+        "h": 107
       },
       "sourceSize": {
         "w": 192,
@@ -74,18 +74,18 @@
     },
     "hit/body/SW/00": {
       "frame": {
-        "x": 205,
+        "x": 177,
         "y": 2,
-        "w": 64,
-        "h": 107
+        "w": 57,
+        "h": 106
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 63,
-        "y": 69,
-        "w": 64,
-        "h": 107
+        "x": 66,
+        "y": 70,
+        "w": 57,
+        "h": 106
       },
       "sourceSize": {
         "w": 192,
@@ -113,8 +113,8 @@
     "image": "hit-body-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 271,
-      "h": 114
+      "w": 236,
+      "h": 113
     },
     "scale": "1",
     "related_multi_packs": []

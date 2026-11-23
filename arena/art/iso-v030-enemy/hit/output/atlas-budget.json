@@ -34,18 +34,18 @@
       "sourceFrames": 4,
       "nonemptyFrames": 4,
       "untrimmedPixels": 147456,
-      "trimmedPixels": 27183,
+      "trimmedPixels": 23104,
       "pages": [
         {
           "image": "hit-body-0.png",
           "json": "hit-body-0.json",
-          "width": 271,
-          "height": 114,
-          "decodedBytes": 123576,
-          "pngBytes": 46109
+          "width": 236,
+          "height": 113,
+          "decodedBytes": 106672,
+          "pngBytes": 42956
         }
       ],
-      "decodedBytes": 123576
+      "decodedBytes": 106672
     },
     {
       "layer": "body-front",
@@ -67,6 +67,6 @@
       "decodedBytes": 15520
     }
   ],
-  "decodedBytes": 139096,
+  "decodedBytes": 122192,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

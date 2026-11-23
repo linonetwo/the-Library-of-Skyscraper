@@ -36,18 +36,18 @@
       "sourceFrames": 8,
       "nonemptyFrames": 8,
       "untrimmedPixels": 294912,
-      "trimmedPixels": 54680,
+      "trimmedPixels": 44899,
       "pages": [
         {
           "image": "idle-body-0.png",
           "json": "idle-body-0.json",
-          "width": 533,
-          "height": 115,
-          "decodedBytes": 245180,
-          "pngBytes": 33261
+          "width": 449,
+          "height": 114,
+          "decodedBytes": 204744,
+          "pngBytes": 31061
         }
       ],
-      "decodedBytes": 245180
+      "decodedBytes": 204744
     },
     {
       "layer": "body-front",
@@ -69,6 +69,6 @@
       "decodedBytes": 27680
     }
   ],
-  "decodedBytes": 272860,
+  "decodedBytes": 232424,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

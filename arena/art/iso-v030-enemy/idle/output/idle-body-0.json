@@ -4,16 +4,16 @@
       "frame": {
         "x": 7,
         "y": 2,
-        "w": 61,
-        "h": 111
+        "w": 50,
+        "h": 110
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 66,
-        "y": 65,
-        "w": 61,
-        "h": 111
+        "x": 68,
+        "y": 66,
+        "w": 50,
+        "h": 110
       },
       "sourceSize": {
         "w": 192,
@@ -26,18 +26,18 @@
     },
     "idle/body/NE/01": {
       "frame": {
-        "x": 72,
+        "x": 61,
         "y": 2,
-        "w": 61,
-        "h": 111
+        "w": 50,
+        "h": 110
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 66,
-        "y": 65,
-        "w": 61,
-        "h": 111
+        "x": 68,
+        "y": 66,
+        "w": 50,
+        "h": 110
       },
       "sourceSize": {
         "w": 192,
@@ -50,18 +50,18 @@
     },
     "idle/body/NE/02": {
       "frame": {
-        "x": 137,
+        "x": 115,
         "y": 2,
-        "w": 61,
-        "h": 111
+        "w": 50,
+        "h": 110
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 66,
-        "y": 65,
-        "w": 61,
-        "h": 111
+        "x": 68,
+        "y": 66,
+        "w": 50,
+        "h": 110
       },
       "sourceSize": {
         "w": 192,
@@ -74,42 +74,18 @@
     },
     "idle/body/NE/03": {
       "frame": {
-        "x": 202,
+        "x": 169,
         "y": 2,
-        "w": 61,
-        "h": 110
+        "w": 50,
+        "h": 109
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 66,
-        "y": 66,
-        "w": 61,
-        "h": 110
-      },
-      "sourceSize": {
-        "w": 192,
-        "h": 192
-      },
-      "anchor": {
-        "x": 0.5,
-        "y": 0.9
-      }
-    },
-    "idle/body/SW/00": {
-      "frame": {
-        "x": 267,
-        "y": 2,
-        "w": 63,
-        "h": 110
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 60,
-        "y": 66,
-        "w": 63,
-        "h": 110
+        "x": 68,
+        "y": 67,
+        "w": 50,
+        "h": 109
       },
       "sourceSize": {
         "w": 192,
@@ -122,18 +98,42 @@
     },
     "idle/body/SW/01": {
       "frame": {
-        "x": 334,
+        "x": 223,
         "y": 2,
-        "w": 63,
-        "h": 110
+        "w": 53,
+        "h": 109
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 60,
-        "y": 66,
-        "w": 63,
-        "h": 110
+        "x": 63,
+        "y": 67,
+        "w": 53,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "idle/body/SW/00": {
+      "frame": {
+        "x": 280,
+        "y": 2,
+        "w": 53,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 68,
+        "w": 53,
+        "h": 108
       },
       "sourceSize": {
         "w": 192,
@@ -146,18 +146,18 @@
     },
     "idle/body/SW/02": {
       "frame": {
-        "x": 401,
+        "x": 337,
         "y": 2,
-        "w": 63,
-        "h": 110
+        "w": 53,
+        "h": 108
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 60,
-        "y": 66,
-        "w": 63,
-        "h": 110
+        "x": 63,
+        "y": 68,
+        "w": 53,
+        "h": 108
       },
       "sourceSize": {
         "w": 192,
@@ -170,18 +170,18 @@
     },
     "idle/body/SW/03": {
       "frame": {
-        "x": 468,
+        "x": 394,
         "y": 2,
-        "w": 63,
-        "h": 109
+        "w": 53,
+        "h": 108
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 60,
-        "y": 67,
-        "w": 63,
-        "h": 109
+        "x": 63,
+        "y": 68,
+        "w": 53,
+        "h": 108
       },
       "sourceSize": {
         "w": 192,
@@ -213,8 +213,8 @@
     "image": "idle-body-0.png",
     "format": "RGBA8888",
     "size": {
-      "w": 533,
-      "h": 115
+      "w": 449,
+      "h": 114
     },
     "scale": "1",
     "related_multi_packs": []

@@ -30,8 +30,8 @@ for (const [row, heading] of ["NE", "SW"].entries()) {
   direction.attachments = direction.attachments
     .filter(a => !a.id.endsWith("-boot"))
     .map(a => ({ ...a, image: a.image.replace("attachments/", "attachments/neutral/") }));
-  for (const a of direction.attachments) if (/arm/.test(a.id))
-    await cleanAttachment(new URL("walk/" + a.image, root).pathname);
+  for (const a of direction.attachments)
+    await cleanAttachment(new URL("walk/" + a.image, root).pathname,a.id,heading);
   direction.feet = {};
   for (const [col, side] of ["left", "right"].entries()) {
     const cellWidth = Math.floor(source.info.width / 2);

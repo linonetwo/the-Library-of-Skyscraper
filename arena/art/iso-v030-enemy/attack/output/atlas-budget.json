@@ -36,18 +36,18 @@
       "sourceFrames": 8,
       "nonemptyFrames": 8,
       "untrimmedPixels": 294912,
-      "trimmedPixels": 56304,
+      "trimmedPixels": 46740,
       "pages": [
         {
           "image": "attack-body-0.png",
           "json": "attack-body-0.json",
-          "width": 549,
-          "height": 115,
-          "decodedBytes": 252540,
-          "pngBytes": 68155
+          "width": 468,
+          "height": 114,
+          "decodedBytes": 213408,
+          "pngBytes": 63291
         }
       ],
-      "decodedBytes": 252540
+      "decodedBytes": 213408
     },
     {
       "layer": "body-front",
@@ -69,6 +69,6 @@
       "decodedBytes": 29920
     }
   ],
-  "decodedBytes": 282460,
+  "decodedBytes": 243328,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

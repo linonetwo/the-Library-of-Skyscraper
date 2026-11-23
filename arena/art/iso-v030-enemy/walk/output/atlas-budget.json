@@ -49,18 +49,18 @@
       "sourceFrames": 32,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
-      "trimmedPixels": 221783,
+      "trimmedPixels": 188566,
       "pages": [
         {
           "image": "walk-body-0.png",
           "json": "walk-body-0.json",
-          "width": 1996,
-          "height": 233,
-          "decodedBytes": 1860272,
-          "pngBytes": 258092
+          "width": 1849,
+          "height": 122,
+          "decodedBytes": 902312,
+          "pngBytes": 219256
         }
       ],
-      "decodedBytes": 1860272
+      "decodedBytes": 902312
     },
     {
       "layer": "body-front",
@@ -82,6 +82,6 @@
       "decodedBytes": 118080
     }
   ],
-  "decodedBytes": 1978352,
+  "decodedBytes": 1020392,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }
