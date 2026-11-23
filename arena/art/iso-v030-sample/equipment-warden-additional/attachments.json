@@ -1,0 +1,1183 @@
+{
+  "status": "static-six-direction-warden-candidate",
+  "releaseApproved": false,
+  "cell": [
+    192,
+    192
+  ],
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "renderScale": 1,
+  "sources": {
+    "iso-v030-warden-ewns.png": {
+      "sha256": "2d8898ab7f833d672e93fa7c616aa2b716c680e1a82c036194b9b4ee3acee8ce",
+      "successCount": 1
+    },
+    "iso-v030-warden-nwse.png": {
+      "sha256": "db47855cbe07f0e593dace34c491515f1c309e97072924c4d62142adef7e545d",
+      "successCount": 1
+    }
+  },
+  "directions": {
+    "E": [
+      {
+        "id": "coat",
+        "layer": "outfit-warden",
+        "joint": "pelvis",
+        "image": "E/coat.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 5,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceAnchor": [
+          163,
+          55
+        ],
+        "sourceScale": 0.145,
+        "neckHole": [
+          160,
+          47,
+          43,
+          13
+        ]
+      },
+      {
+        "id": "left-upper-sleeve",
+        "layer": "outfit-warden",
+        "joint": "leftShoulder",
+        "image": "E/left-upper-sleeve.png",
+        "pivot": [
+          99,
+          81
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          460,
+          77
+        ],
+        "sourceEnd": [
+          433,
+          230
+        ],
+        "targetJoint": [
+          99,
+          81
+        ],
+        "targetEnd": [
+          97.73166912344008,
+          100.65912858667863
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.12679892881512003,
+          "transverseScale": 0.16
+        }
+      },
+      {
+        "id": "left-fore-sleeve",
+        "layer": "outfit-warden",
+        "joint": "leftElbow",
+        "image": "E/left-fore-sleeve.png",
+        "pivot": [
+          97.73166912344008,
+          100.65912858667863
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          433,
+          230
+        ],
+        "sourceEnd": [
+          455,
+          386
+        ],
+        "targetJoint": [
+          97.73166912344008,
+          100.65912858667863
+        ],
+        "targetEnd": [
+          98.14903871581548,
+          117.35391228169428
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10600237176736282,
+          "transverseScale": 0.16
+        }
+      },
+      {
+        "id": "right-upper-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "rightShoulder",
+        "image": "E/right-upper-sleeve.png",
+        "pivot": [
+          94,
+          87
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          746,
+          77
+        ],
+        "sourceEnd": [
+          744,
+          230
+        ],
+        "targetJoint": [
+          94,
+          87
+        ],
+        "targetEnd": [
+          94.42355798149592,
+          106.69544613956006
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.12874717060351382,
+          "transverseScale": 0.16
+        }
+      },
+      {
+        "id": "right-fore-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "rightElbow",
+        "image": "E/right-fore-sleeve.png",
+        "pivot": [
+          94.42355798149592,
+          106.69544613956006
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          744,
+          230
+        ],
+        "sourceEnd": [
+          724,
+          385
+        ],
+        "targetJoint": [
+          94.42355798149592,
+          106.69544613956006
+        ],
+        "targetEnd": [
+          95.0493681133338,
+          123.38371632190338
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10685606692121433,
+          "transverseScale": 0.16
+        }
+      }
+    ],
+    "W": [
+      {
+        "id": "coat",
+        "layer": "outfit-warden",
+        "joint": "pelvis",
+        "image": "W/coat.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 5,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceAnchor": [
+          173,
+          500
+        ],
+        "sourceScale": 0.145,
+        "neckHole": [
+          170,
+          493,
+          43,
+          13
+        ]
+      },
+      {
+        "id": "left-upper-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "leftShoulder",
+        "image": "W/left-upper-sleeve.png",
+        "pivot": [
+          99,
+          87
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          447,
+          527
+        ],
+        "sourceEnd": [
+          443,
+          678
+        ],
+        "targetJoint": [
+          99,
+          87
+        ],
+        "targetEnd": [
+          98.59804288114837,
+          106.69589882372989
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.1304178255500172,
+          "transverseScale": 0.16
+        }
+      },
+      {
+        "id": "left-fore-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "leftElbow",
+        "image": "W/left-fore-sleeve.png",
+        "pivot": [
+          98.59804288114837,
+          106.69589882372989
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          443,
+          678
+        ],
+        "sourceEnd": [
+          430,
+          830
+        ],
+        "targetJoint": [
+          98.59804288114837,
+          106.69589882372989
+        ],
+        "targetEnd": [
+          98.02905523921784,
+          123.38620298702573
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10946878211099353,
+          "transverseScale": 0.16
+        }
+      },
+      {
+        "id": "right-upper-sleeve",
+        "layer": "outfit-warden",
+        "joint": "rightShoulder",
+        "image": "W/right-upper-sleeve.png",
+        "pivot": [
+          94,
+          81
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          727,
+          527
+        ],
+        "sourceEnd": [
+          722,
+          680
+        ],
+        "targetJoint": [
+          94,
+          81
+        ],
+        "targetEnd": [
+          94.39392122363212,
+          100.69606118160614
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.12868947032674988,
+          "transverseScale": 0.16
+        }
+      },
+      {
+        "id": "right-fore-sleeve",
+        "layer": "outfit-warden",
+        "joint": "rightElbow",
+        "image": "W/right-fore-sleeve.png",
+        "pivot": [
+          94.39392122363212,
+          100.69606118160614
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          722,
+          680
+        ],
+        "sourceEnd": [
+          739,
+          830
+        ],
+        "targetJoint": [
+          94.39392122363212,
+          100.69606118160614
+        ],
+        "targetEnd": [
+          94.98996978318941,
+          117.38542084921022
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.11062514092365855,
+          "transverseScale": 0.16
+        }
+      }
+    ],
+    "N": [
+      {
+        "id": "coat",
+        "layer": "outfit-warden",
+        "joint": "pelvis",
+        "image": "N/coat.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 5,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceAnchor": [
+          164,
+          941
+        ],
+        "sourceScale": 0.145,
+        "neckHole": [
+          164,
+          932,
+          43,
+          10
+        ]
+      },
+      {
+        "id": "left-upper-sleeve",
+        "layer": "outfit-warden",
+        "joint": "leftShoulder",
+        "image": "N/left-upper-sleeve.png",
+        "pivot": [
+          86,
+          83
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          449,
+          972
+        ],
+        "sourceEnd": [
+          433,
+          1121
+        ],
+        "targetJoint": [
+          86,
+          83
+        ],
+        "targetEnd": [
+          83.76313215413359,
+          102.57259365133116
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.1314590097946066,
+          "transverseScale": 0.1
+        }
+      },
+      {
+        "id": "left-fore-sleeve",
+        "layer": "outfit-warden",
+        "joint": "leftElbow",
+        "image": "N/left-fore-sleeve.png",
+        "pivot": [
+          83.76313215413359,
+          102.57259365133116
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          433,
+          1121
+        ],
+        "sourceEnd": [
+          439,
+          1280
+        ],
+        "targetJoint": [
+          83.76313215413359,
+          102.57259365133116
+        ],
+        "targetEnd": [
+          79.87220244294053,
+          118.81299592413694
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10495674422236816,
+          "transverseScale": 0.1
+        }
+      },
+      {
+        "id": "right-upper-sleeve",
+        "layer": "outfit-warden",
+        "joint": "rightShoulder",
+        "image": "N/right-upper-sleeve.png",
+        "pivot": [
+          106,
+          83
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          731,
+          972
+        ],
+        "sourceEnd": [
+          724,
+          1123
+        ],
+        "targetJoint": [
+          106,
+          83
+        ],
+        "targetEnd": [
+          109.14852437862116,
+          102.44676822089542
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.1303236167261576,
+          "transverseScale": 0.1
+        }
+      },
+      {
+        "id": "right-fore-sleeve",
+        "layer": "outfit-warden",
+        "joint": "rightElbow",
+        "image": "N/right-fore-sleeve.png",
+        "pivot": [
+          109.14852437862116,
+          102.44676822089542
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          724,
+          1123
+        ],
+        "sourceEnd": [
+          722,
+          1280
+        ],
+        "targetJoint": [
+          109.14852437862116,
+          102.44676822089542
+        ],
+        "targetEnd": [
+          111.38952865345634,
+          118.99572286583208
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10636079707230255,
+          "transverseScale": 0.1
+        }
+      }
+    ],
+    "S": [
+      {
+        "id": "coat",
+        "layer": "outfit-warden",
+        "joint": "pelvis",
+        "image": "S/coat.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 5,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceAnchor": [
+          167,
+          1395
+        ],
+        "sourceScale": 0.145,
+        "neckHole": [
+          164,
+          1387,
+          47,
+          23
+        ]
+      },
+      {
+        "id": "left-upper-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "leftShoulder",
+        "image": "S/left-upper-sleeve.png",
+        "pivot": [
+          108,
+          86
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          446,
+          1411
+        ],
+        "sourceEnd": [
+          447,
+          1567
+        ],
+        "targetJoint": [
+          108,
+          86
+        ],
+        "targetEnd": [
+          111.23866004991554,
+          105.43196029949323
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.12627945680967315,
+          "transverseScale": 0.1
+        }
+      },
+      {
+        "id": "left-fore-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "leftElbow",
+        "image": "S/left-fore-sleeve.png",
+        "pivot": [
+          111.23866004991554,
+          105.43196029949323
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          447,
+          1567
+        ],
+        "sourceEnd": [
+          444,
+          1720
+        ],
+        "targetJoint": [
+          111.23866004991554,
+          105.43196029949323
+        ],
+        "targetEnd": [
+          113.7993934581032,
+          121.93446448559152
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10912935046841371,
+          "transverseScale": 0.1
+        }
+      },
+      {
+        "id": "right-upper-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "rightShoulder",
+        "image": "S/right-upper-sleeve.png",
+        "pivot": [
+          84,
+          86
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          725,
+          1411
+        ],
+        "sourceEnd": [
+          727,
+          1567
+        ],
+        "targetJoint": [
+          84,
+          86
+        ],
+        "targetEnd": [
+          80.94181467035497,
+          105.46117937046837
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.1262716743518984,
+          "transverseScale": 0.1
+        }
+      },
+      {
+        "id": "right-fore-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "rightElbow",
+        "image": "S/right-fore-sleeve.png",
+        "pivot": [
+          80.94181467035497,
+          105.46117937046837
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-ewns.png",
+        "sourceJoint": [
+          727,
+          1567
+        ],
+        "sourceEnd": [
+          732,
+          1720
+        ],
+        "targetJoint": [
+          80.94181467035497,
+          105.46117937046837
+        ],
+        "targetEnd": [
+          77.83004269595519,
+          121.86870432639454
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10909208905871687,
+          "transverseScale": 0.1
+        }
+      }
+    ],
+    "NW": [
+      {
+        "id": "coat",
+        "layer": "outfit-warden",
+        "joint": "pelvis",
+        "image": "NW/coat.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 5,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceAnchor": [
+          292,
+          48
+        ],
+        "sourceScale": 0.11,
+        "neckHole": [
+          293,
+          33,
+          45,
+          12
+        ]
+      },
+      {
+        "id": "left-upper-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "leftShoulder",
+        "image": "NW/left-upper-sleeve.png",
+        "pivot": [
+          87,
+          87
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceJoint": [
+          789,
+          91
+        ],
+        "sourceEnd": [
+          747,
+          271
+        ],
+        "targetJoint": [
+          87,
+          87
+        ],
+        "targetEnd": [
+          82.09389151573082,
+          106.07931077215794
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10658151017729625,
+          "transverseScale": 0.13
+        }
+      },
+      {
+        "id": "left-fore-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "leftElbow",
+        "image": "NW/left-fore-sleeve.png",
+        "pivot": [
+          82.09389151573082,
+          106.07931077215794
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceJoint": [
+          747,
+          271
+        ],
+        "sourceEnd": [
+          706,
+          448
+        ],
+        "targetJoint": [
+          82.09389151573082,
+          106.07931077215794
+        ],
+        "targetEnd": [
+          77.93888312232063,
+          122.25416487507617
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.09191654869314608,
+          "transverseScale": 0.13
+        }
+      },
+      {
+        "id": "right-upper-sleeve",
+        "layer": "outfit-warden",
+        "joint": "rightShoulder",
+        "image": "NW/right-upper-sleeve.png",
+        "pivot": [
+          104,
+          81
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceJoint": [
+          1268,
+          91
+        ],
+        "sourceEnd": [
+          1237,
+          271
+        ],
+        "targetJoint": [
+          104,
+          81
+        ],
+        "targetEnd": [
+          104.9110611994793,
+          100.67892190875311
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10785659262652607,
+          "transverseScale": 0.13
+        }
+      },
+      {
+        "id": "right-fore-sleeve",
+        "layer": "outfit-warden",
+        "joint": "rightElbow",
+        "image": "NW/right-fore-sleeve.png",
+        "pivot": [
+          104.9110611994793,
+          100.67892190875311
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceJoint": [
+          1237,
+          271
+        ],
+        "sourceEnd": [
+          1210,
+          448
+        ],
+        "targetJoint": [
+          104.9110611994793,
+          100.67892190875311
+        ],
+        "targetEnd": [
+          106.14471834758501,
+          117.33329340818015
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.09327134916713165,
+          "transverseScale": 0.13
+        }
+      }
+    ],
+    "SE": [
+      {
+        "id": "coat",
+        "layer": "outfit-warden",
+        "joint": "pelvis",
+        "image": "SE/coat.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 5,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceAnchor": [
+          286,
+          559
+        ],
+        "sourceScale": 0.11,
+        "neckHole": [
+          285,
+          551,
+          43,
+          17
+        ]
+      },
+      {
+        "id": "left-upper-sleeve",
+        "layer": "outfit-warden",
+        "joint": "leftShoulder",
+        "image": "SE/left-upper-sleeve.png",
+        "pivot": [
+          87,
+          81
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceJoint": [
+          764,
+          604
+        ],
+        "sourceEnd": [
+          778,
+          797
+        ],
+        "targetJoint": [
+          87,
+          81
+        ],
+        "targetEnd": [
+          82.22204818678424,
+          100.11180725286303
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10180504698917901,
+          "transverseScale": 0.13
+        }
+      },
+      {
+        "id": "left-fore-sleeve",
+        "layer": "outfit-warden",
+        "joint": "leftElbow",
+        "image": "SE/left-fore-sleeve.png",
+        "pivot": [
+          82.22204818678424,
+          100.11180725286303
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceJoint": [
+          778,
+          797
+        ],
+        "sourceEnd": [
+          816,
+          955
+        ],
+        "targetJoint": [
+          82.22204818678424,
+          100.11180725286303
+        ],
+        "targetEnd": [
+          77.95701643540579,
+          116.2579988830814
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10276582556752205,
+          "transverseScale": 0.13
+        }
+      },
+      {
+        "id": "right-upper-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "rightShoulder",
+        "image": "SE/right-upper-sleeve.png",
+        "pivot": [
+          104,
+          87
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 1,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceJoint": [
+          1255,
+          604
+        ],
+        "sourceEnd": [
+          1240,
+          783
+        ],
+        "targetJoint": [
+          104,
+          87
+        ],
+        "targetEnd": [
+          104.9110611994793,
+          106.67892190875311
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.10967146918654927,
+          "transverseScale": 0.13
+        }
+      },
+      {
+        "id": "right-fore-sleeve",
+        "layer": "outfit-warden-front",
+        "joint": "rightElbow",
+        "image": "SE/right-fore-sleeve.png",
+        "pivot": [
+          104.9110611994793,
+          106.67892190875311
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 2,
+        "source": "iso-v030-warden-nwse.png",
+        "sourceJoint": [
+          1240,
+          783
+        ],
+        "sourceEnd": [
+          1283,
+          950
+        ],
+        "targetJoint": [
+          104.9110611994793,
+          106.67892190875311
+        ],
+        "targetEnd": [
+          106.16786427963979,
+          123.33156272087955
+        ],
+        "explicitClothingFit": {
+          "axisScale": 0.09684129594153944,
+          "transverseScale": 0.13
+        }
+      }
+    ]
+  }
+}

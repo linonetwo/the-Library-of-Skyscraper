@@ -36,3 +36,35 @@
 资源堆约1.3×1.0格、0.8m高；手持包40格透明画布中约27px宽，以pelvis/手部contact注册，跟角色pose。施工顺序为back→实际建筑→front，三者共用建筑worldPosition；前后mask仅决定遮挡。敌人中立图共用128×160画布、ground `(64,144)`，高约1.35m。
 
 验证：`node --test iso-v030-sample/world-assets.test.mjs`；实际产品布局与方向显示由前端接入后独立验看。完整八向动作及装备目标见`P3-PRODUCTION-MATRIX.md`。
+
+## 其余六向方向源与比例注册
+
+`iso-v030-body-{ew,ns,nwse}-neutral.png`分别提供两方向中立body及完整左右臂腿。E/W首次请求成功，N/S与NW/SE各一次503后技能自动重试成功；三张源保持原像素。它们的原始比例约5–6头，尚未获四头源批准。
+
+`build-direction-prototypes.mjs`将无发head与body独立等比缩放到192格、可见crown-ground132px的初步注册候选；各源crop、缩放、neck/ground锚和SHA记录于`direction-prototypes/registration.json`。这不是整个人像纵向压缩，也不是正式动作图集。完整臂腿的关节注册、前后拆层、装备适配与产品相机仍待逐项接受。现预览仅用于核对六方向及比例，成功源不重复请求。
+
+## 第二衣装与不同发型轮廓
+
+`build-midnight.mjs`使用一次成功的深蓝黑短束发源，输出独立前后发片；`hair-three-states-preview.png`以同一裸身体对照裸头、ivory短碎发、midnight束发。NE背向的后脑与可见尾束在身体前，SW尾束在身体后，按方向显式分层。源前片与后片之间的选择已记录，未把头皮或脸烘入发片。
+
+`build-warden.mjs`把新深蓝长袖短外套注册为躯干衣、左右上袖/前袖5件，近袖使用`outfit-warden-front`覆盖裸近臂。袖片对齐既有肩/肘/腕，衣装适配的轴向与横向映射比例明确记录；自然手仍来自身体，手腕以下保留可见。第一次请求进程以143退出且无图，后续请求成功一次即停止。两套装备的`equipment-*/attachments.json`供离线工具沿同pose导出；当前静态接缝制作门不等于完整动作与实机接受。
+
+## 六方向完整附件初注册
+
+`build-six-direction-rigs.mjs`输出`attachments-six-directions/rig.json`，每方向12件真实无发头、躯干、左右两段臂、两段腿及靴。统一近竖直腿段24.98637/23.98948px、世界骨长0.318770/0.306052m，站姿髋高0.734822m，运动候选髋高0.66m。方向、左右横轨、足底偏移和可复建source裁片均保留。
+
+新生成完整肢体较原同相机身体偏壮，N/S/NW/SE另有显式`widthFit`厚度注册候选，标记`thicknessFitReviewPending`，未声称全为等比。S方向独立腿的黑色髋帽与躯干轮廓不合，改用同张源左列中立人体中完全可见的左右臂腿裁片；独立肢体原图仍保留。S头片同时清理颈侧误带的服装像素。当前为零变换重组页，近远遮挡、实际动作/装备与接地审阅继续。
+
+## 法杖握持初注册
+
+`build-staff-grip.mjs`复用历史法杖和八向握手源中的NE/SW独立裁片，按新rig真实`rightWrist`重新注册，不沿用旧body挂点。原`right-forearm-hand`被互补切为前臂与自然手；空手显示`hand-front`，握杖显示`hand-grip`，两者互斥。杖轴握点与握手内的掌心接触点对齐，源hash、crop、scale、wrist/grip/pivot均记录，未新增生图请求。`staff-grip-rest-preview.png`只检查静态注册；动作仍需独立持杖腕姿和接触/收招pose。
+
+自然手使用rightWrist位置，并继承rightElbow绝对角以保持与原前臂的连续接缝；握持手和法杖使用明确wrist绝对角。二者的不同角度继承规则写入附件元数据。
+
+`build-hair-directions.mjs`完成其余E/W/N/S/NW/SE两种发型的独立前后片，与NE/SW合计八向源。E/W/N/S两张源首次成功；NW/SE同类四件源第一次进程143无产物，重试成功后保留。源内SE透明面孔开口误带棕色下颌描边，注册脚本仅在指定区域去除该非头发像素，完整源不改。`hair-six-directions-preview.png`显示同一无发身体上切换两种独立轮廓；动作适配和实机仍单独验收。
+
+## 语义动作与落地视角变体
+
+`SEMANTIC-POSE-CONTRACT.md`记录attack/负重/卸货/采集/建设编目/受击/倒地的接触语义与当前制作状态。`build-down-variants.mjs`使用一次成功的独立落地头/躯干源，保留真正卧姿的胸腹透视和无发闭眼头部，不旋转整张站姿人像。
+
+`variants-down/registration.json`显式提案down专用256透明原画布、groundPivot128/204.8、renderScale1；相对192画布只加32px边距，世界尺寸不变，最终运行时接入等待主代理确认。当前只有head/torso两件，世界腿/撑地手、过渡四相和全部衣发还待制作。源、初注册与proposal分开记录，未标倒地动作完成。
