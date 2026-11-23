@@ -1,6 +1,6 @@
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 import "monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution";
-import "monaco-editor/esm/vs/language/typescript/monaco.contribution";
+import * as ts from "monaco-editor/esm/vs/language/typescript/monaco.contribution";
 import EditorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
 import TsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker";
 import views from "../../script-sdk/src/views.ts?raw";
@@ -10,7 +10,6 @@ self.MonacoEnvironment = {
   getWorker: (_, label) => label === "typescript" || label === "javascript"
     ? new TsWorker() : new EditorWorker(),
 };
-const ts = (monaco.languages as typeof import("monaco-editor").languages).typescript;
 ts.typescriptDefaults.setCompilerOptions({
   target: ts.ScriptTarget.ESNext, module: ts.ModuleKind.ESNext,
   moduleResolution: ts.ModuleResolutionKind.NodeJs,

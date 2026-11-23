@@ -14,8 +14,11 @@ test('fullscreen HUD keeps actions and optional panels accessible',async({page})
   await expect(page.getByRole('navigation',{name:'游戏菜单'})).toBeVisible();
   await page.getByRole('button',{name:'菜单',exact:true}).click();
   await expect(page.getByRole('button',{name:'采集运输',exact:true})).toBeEnabled();
-  await page.getByRole('button',{name:'菜单',exact:true}).click();
-  await page.getByRole('button',{name:'行动规则',exact:true}).click();
+  await page.getByRole('button',{name:'AI 模块',exact:true}).click();
+  await expect(page.getByRole('tab',{name:'TypeScript',exact:true})).toHaveAttribute('aria-selected','true');
+  await expect(page.getByRole('textbox',{name:'TypeScript规则源码'})).toBeVisible();
+  await page.getByRole('tab',{name:'行动预设',exact:true}).click();
+  await expect(page.getByRole('button',{name:'确认并发布规则',exact:true})).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.locator('.workspace-overlay')).toHaveCount(0);
   await expect(page.getByRole('button',{name:'菜单',exact:true})).toBeFocused();
