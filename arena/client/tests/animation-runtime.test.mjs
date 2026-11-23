@@ -102,7 +102,9 @@ test('terminal movement uses remaining authoritative distance and arrives withou
  motion.move({x:750,y:0},0,false,[],750,1.5,500);
  motion.move({x:1500,y:0},420,false,[],1500,1.5,500);
  assert.equal(motion.duration,580);
- motion.move({x:1650,y:0},1000,false,[],1650,1.5,500);
+ const actor={motionDistanceMilli:1650,travel:null};
+ const speed=(actor.travel?.speedMilliPerTick ?? 750)/500;
+ motion.move({x:1650,y:0},1000,false,[],actor.motionDistanceMilli,speed,500);
  assert.equal(motion.duration,100);
  assert.equal(motion.sample(1099).moving,true);
  assert.equal(motion.sample(1100).moving,false);

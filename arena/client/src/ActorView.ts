@@ -97,8 +97,13 @@ export class ActorView {
       this.actionTick = actor.actionTick ?? -1;
     }
     this.actor = actor;
-    this.motion.duration = duration;
-    this.motion.move(destination, now, snap, path, actor.motionDistanceMilli);
+    this.motion.move(
+      destination, now, snap, path, actor.motionDistanceMilli,
+      this.authoritativeAnimation
+        ? (actor.travel?.speedMilliPerTick ?? 750) / this.tickDuration
+        : undefined,
+      duration,
+    );
     this.status.text =
       actor.hp <= 0
         ? "倒地"
