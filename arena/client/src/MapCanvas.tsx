@@ -1,7 +1,7 @@
 import { loadLibraryTextures } from './libraryLayout';
 import { loadWorldAssets } from "./worldAssets";
 import { WorldEntities } from "./WorldEntities";
-import { loadDollTextures } from "./dollAssets";
+import { loadDollTextures, loadMainDefinition, prepareMainLayers } from "./dollAssets";
 import { useEffect, useRef, useState } from "react";
 import { Application, Assets, Container, Texture } from "pixi.js";
 import { paintMap, type MapProps } from "./mapScene";
@@ -27,6 +27,10 @@ export default function MapCanvas(props: MapProps) {
     let resize: ResizeObserver | undefined;
     let actors: ActorScene;
     let dynamics: WorldEntities;
+    const actorTextures: import("./DollRenderer").DollTextures = {};
+    let mainSet: import("./assetSetLoader").LoadedAssetSet | undefined;
+    let readyAppearance = "";
+    let pendingAppearance = "";
     const world = new Container();
     let renderLayer = new Container();
     const entities = new Container({ sortableChildren: true });
@@ -217,7 +221,7 @@ export default function MapCanvas(props: MapProps) {
         renderLayer = new Container();
         world.addChildAt(renderLayer, 0);
         for (const child of [...entities.children])
-          if (child.label?.startsWith("shelf:"))
+          if (child.label?.startsWith("shelf:") || child.label?.startsWith("decor:"))
             child.destroy({ children: true });
         paintMap(
           renderLayer,
@@ -232,9 +236,32 @@ export default function MapCanvas(props: MapProps) {
         );
       }
       if (p.snapshot) dynamics.update(p.snapshot);
+      const appearanceKey = p.assetSet ? "sample" : !p.snapshot ? "" :
+        (p.snapshot.simulationVersion ?? 0) >= 4
+          ? "main:" + JSON.stringify(p.snapshot.actors.map((actor) => actor.appearance))
+          : "legacy";
+      if (appearanceKey && readyAppearance !== appearanceKey) {
+        if (pendingAppearance !== appearanceKey) {
+          pendingAppearance = appearanceKey;
+          const prepare = p.assetSet ? Promise.resolve() : appearanceKey === "legacy"
+            ? loadDollTextures(false).then((textures) => { Object.assign(actorTextures, textures); })
+            : loadMainDefinition().then((set) => prepareMainLayers(set, p.snapshot!.actors.map((actor) => actor.appearance)))
+                .then((set) => { mainSet = set; });
+          void prepare.then(() => {
+            if (!disposed && pendingAppearance === appearanceKey) {
+              readyAppearance = appearanceKey;
+              paint();
+            }
+          }).catch((cause) => { if (!disposed) setError(`角色加载：${String(cause)}`); });
+        }
+        applyCamera();
+        return;
+      }
+      if (!appearanceKey) { applyCamera(); return; }
       actors.update(
         {
           ...p,
+          assetSet: p.assetSet ?? (appearanceKey.startsWith("main:") ? mainSet : undefined),
           onSelect: (id) => {
             if (!dragged) latest.current.onSelect(id);
           },
@@ -262,10 +289,6 @@ export default function MapCanvas(props: MapProps) {
           app.destroy({ removeView: true }, { children: true });
           return;
         }
-        const actionTextures = await loadDollTextures(
-          !!latest.current.assetSet,
-        );
-        if (disposed) return;
         const manifest = await (
           await fetch("/assets/tiles/manifest.json")
         ).json();
@@ -284,7 +307,7 @@ export default function MapCanvas(props: MapProps) {
         const worldAssets = await loadWorldAssets();
         if (disposed) return;
         dynamics = new WorldEntities(entities, tiles, worldAssets);
-        actors = new ActorScene(actionTextures, entities, worldAssets);
+        actors = new ActorScene(actorTextures, entities, worldAssets);
         world.addChild(renderLayer, entities);
         app.ticker.add(() => {
           poses = actors.render(performance.now());
@@ -363,6 +386,9 @@ export default function MapCanvas(props: MapProps) {
     props.selectedRoom,
     props.zoom,
     props.showRoutes,
+    props.assetSet,
+    props.dollAppearance,
+    props.sampleWalk,
   ]);
 
   return (
