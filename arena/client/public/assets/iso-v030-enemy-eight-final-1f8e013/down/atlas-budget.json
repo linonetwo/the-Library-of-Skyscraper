@@ -1,0 +1,60 @@
+{
+  "clip": {
+    "action": "down",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      120,
+      160,
+      180,
+      240
+    ],
+    "playback": "holdLast"
+  },
+  "renderScale": 1,
+  "groundPivot": [
+    128,
+    204.8
+  ],
+  "sourceSize": [
+    256,
+    256
+  ],
+  "directions": [
+    "N",
+    "NE",
+    "E",
+    "SE",
+    "S",
+    "SW",
+    "W",
+    "NW"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 200414,
+      "pages": [
+        {
+          "image": "down-body-0.png",
+          "json": "down-body-0.json",
+          "width": 1996,
+          "height": 162,
+          "decodedBytes": 1293408,
+          "pngBytes": 404369
+        }
+      ],
+      "decodedBytes": 1293408
+    }
+  ],
+  "decodedBytes": 1293408,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}

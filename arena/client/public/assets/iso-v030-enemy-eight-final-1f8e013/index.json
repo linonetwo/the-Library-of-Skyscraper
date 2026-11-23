@@ -1,0 +1,30 @@
+{
+  "assetSetId": "iso-v030-enemy-eight-final-1f8e013",
+  "clips": [
+    {
+      "action": "idle",
+      "root": "/assets/iso-v030-enemy-eight-final-1f8e013/idle",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "walk",
+      "root": "/assets/iso-v030-enemy-eight-final-1f8e013/walk",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "attack",
+      "root": "/assets/iso-v030-enemy-eight-final-1f8e013/attack",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "hit",
+      "root": "/assets/iso-v030-enemy-eight-final-1f8e013/hit",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "down",
+      "root": "/assets/iso-v030-enemy-eight-final-1f8e013/down",
+      "descriptor": "atlas-budget.json"
+    }
+  ]
+}
