@@ -1,3 +1,4 @@
+import { expeditionObjective } from "./expeditionObjective";
 import { reasonName } from "./scenarioLabels";
 import { useState } from "react";
 import { useArena, stateName } from "./ArenaWorkspace";
@@ -37,9 +38,7 @@ export default function GameHUD() {
       (snapshot?.tickDurationMs ?? 500)) /
       1000,
   );
-  const target =
-    snapshot?.scenarioConfig?.targetRoomId ??
-    snapshot?.rooms.find((r) => r.kind === "ruins")?.id;
+  const objective = expeditionObjective(snapshot, player ?? undefined);
   const downed = ownActors.filter((a) => a.hp <= 0);
   const cargo = ownActors.reduce((sum, a) => sum + a.cargo, 0);
   const eta = actor?.travel
@@ -55,13 +54,10 @@ export default function GameHUD() {
       <header className="game-top">
         <button
           className="objective-button"
-          onClick={() => target && setSelectedRoom(target)}
+          onClick={() => objective.roomId && setSelectedRoom(objective.roomId)}
         >
-          <strong>首场书库远征</strong>
-          <span>
-            清守卫 → 建编目台 → 驻守 {snapshot?.scenario?.catalogProgress ?? 0}/
-            {snapshot?.scenarioConfig?.catalogGoal ?? 60}
-          </span>
+          <strong style={{maxWidth:"min(42vw, 480px)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",display:"block"}}>{objective.title}</strong>
+          <span title={objective.detail} style={{maxWidth:"min(42vw, 480px)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",display:"block"}}>{objective.detail}</span>
         </button>
         <b className={seconds < 60 ? "risk-text" : ""}>
           {Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, "0")}
