@@ -1,6 +1,6 @@
 import { cueActive, resolveAnimation } from "./resolveAnimation";
 import type { ActionCue } from "./types";
-import { worldSprite, type WorldAssets } from "./worldAssets";
+import { buildingModules, worldSprite, type WorldAssets } from "./worldAssets";
 import { Container, Graphics, Sprite, Text, type Texture } from "pixi.js";
 import type { Snapshot } from "./types";
 import { project } from "./isoGeometry";
@@ -24,6 +24,8 @@ export class WorldEntities {
     slash: Graphics;
     tickMs: number;
   }[] = [];
+  private buildingHp = new Map<string, number>();
+  private buildingFeedback: { shot: Graphics; hit: Graphics; shotTick?: number; hitTick?: number; tickMs: number }[] = [];
   constructor(
     private parent: Container,
     private textures: Record<string, Texture>,
@@ -38,6 +40,7 @@ export class WorldEntities {
       (snapshot.simulationVersion ?? 0) >= 3 ? snapshot.worldMap : undefined;
     for (const child of this.annotations.removeChildren()) child.destroy();
     this.enemyFeedback = [];
+    this.buildingFeedback = [];
     const ids = new Set<string>();
     const nodeFor = (id: string) => {
       ids.add(id);
@@ -215,24 +218,44 @@ export class WorldEntities {
           .ellipse(0, 2, 24, 12)
           .fill({ color: 0x102827, alpha: 0.22 }),
       );
-      const sprite = new Sprite(
-        this.textures[building.kind === "catalog" ? "lectern" : "plinth"],
-      );
+      const modules: { base: string; upper?: string } = buildingModules[building.kind];
+      const sprite = new Sprite(this.textures[modules.base]);
       sprite.anchor.set(0.5, 160 / 192);
       sprite.alpha = complete ? 1 : 0.45;
       if (!complete)
         node.addChild(worldSprite(this.assets, "construction-site-back"));
       node.addChild(sprite);
+      if (modules.upper) {
+        const upper = worldSprite(this.assets, modules.upper);
+        upper.alpha = sprite.alpha;
+        node.addChild(upper);
+      }
       if (!complete)
         node.addChild(worldSprite(this.assets, "construction-site-front"));
-      if (building.kind === "tower")
-        node.addChild(
-          new Graphics()
-            .rect(-9, -90, 18, 48)
-            .fill(0xb5c9ba)
-            .circle(0, -95, 11)
-            .fill(0xf2d18a),
-        );
+      if (building.kind === "tower") {
+        const anchors = this.assets.specs["tower-upper"].attachments!;
+        const [mx, my] = anchors.muzzle.offsetScreen;
+        const [hx, hy] = anchors.hitAnchor.offsetScreen;
+        const event = complete ? [...snapshot.events].reverse().find(e =>
+          e.kind === "tower-attack" && e.message.startsWith(building.id + " ")) : undefined;
+        const shot = new Graphics().circle(mx, my, 9).fill({ color: 0xffe5a0, alpha: 0.9 });
+        const target = event && snapshot.enemies?.find(e =>
+          e.impactCue?.startedTick === event.tick &&
+          e.impactCue.targetPosition?.x === position.x && e.impactCue.targetPosition?.y === position.y);
+        if (target) {
+          const end = project(target.worldPosition.x, target.worldPosition.y);
+          shot.moveTo(mx, my).lineTo(end.x - p.x, end.y - p.y - 45)
+            .stroke({ color: 0xffdf91, width: 3, alpha: 0.8 });
+        }
+        const hit = new Graphics().circle(hx, hy, 14).stroke({ color: 0xff937f, width: 3 });
+        const previousHp = this.buildingHp.get(building.id);
+        shot.visible = hit.visible = false;
+        node.addChild(shot, hit);
+        this.buildingFeedback.push({ shot, hit, shotTick: event?.tick,
+          hitTick: previousHp !== undefined && (building.hp ?? 100) < previousHp ? snapshot.tick : undefined,
+          tickMs: snapshot.tickDurationMs || 500 });
+      }
+      this.buildingHp.set(building.id, building.hp ?? 100);
       if (!complete)
         node.addChild(
           new Graphics()
@@ -260,9 +283,14 @@ export class WorldEntities {
       if (!ids.has(id)) {
         node.destroy({ children: true });
         this.nodes.delete(id);
+        this.buildingHp.delete(id);
       }
   }
   render(simTimeMs: number) {
+    for (const fx of this.buildingFeedback) {
+      fx.shot.visible = fx.shotTick !== undefined && simTimeMs >= fx.shotTick * fx.tickMs && simTimeMs < (fx.shotTick + 1) * fx.tickMs;
+      fx.hit.visible = fx.hitTick !== undefined && simTimeMs >= fx.hitTick * fx.tickMs && simTimeMs < (fx.hitTick + 1) * fx.tickMs;
+    }
     for (const fx of this.enemyFeedback) {
       fx.slash.visible =
         fx.cue?.kind === "attack" && cueActive(fx.cue, simTimeMs, fx.tickMs);
