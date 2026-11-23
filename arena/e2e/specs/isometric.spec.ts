@@ -50,6 +50,9 @@ test('two clients share authoritative positions and select actors through the ca
  const pose=async(page:typeof host)=>JSON.parse((await page.locator('.pixi-map').first().getAttribute('data-actors'))||'[]').find((a:{id:string})=>a.id==='p1-scout');
  await expect.poll(async()=>Boolean(await pose(host))).toBe(true);
  await guest.goto('/');await guest.getByRole('button',{name:/或加入联机赛局/}).click();await guest.getByLabel('使用赛局编号加入').fill(auth.sessionId);await guest.getByRole('button',{name:'加入赛局',exact:true}).click();
+ const guestPortrait=guest.locator('.dock-squad img[alt="同相机角色预览"]').first();
+ await expect(guestPortrait).toBeVisible();
+ await expect.poll(()=>guestPortrait.evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
  await expect.poll(async()=>Boolean(await pose(guest))).toBe(true);
  await expect.poll(async()=>{const a=await pose(host),b=await pose(guest);return !!a&&!!b&&a.x===b.x&&a.y===b.y;}).toBe(true);
  await host.getByRole('button',{name:'全图总览',exact:true}).click();
