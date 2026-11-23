@@ -1,0 +1,896 @@
+{
+  "status": "six-direction-grip-registration-candidate",
+  "releaseApproved": false,
+  "cell": [
+    192,
+    192
+  ],
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "renderScale": 1,
+  "newGenerationRequests": 0,
+  "sources": {
+    "staff": {
+      "path": "arena/art/source/walk-weapon-staff.png",
+      "sha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8"
+    },
+    "hand": {
+      "path": "arena/art/source/grip-hands.png",
+      "sha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90"
+    }
+  },
+  "directions": {
+    "E": {
+      "replaceIds": [
+        "right-forearm-hand"
+      ],
+      "attachments": [
+        {
+          "id": "right-forearm",
+          "layer": "body-front",
+          "joint": "rightElbow",
+          "image": "E/right-forearm.png",
+          "restTopLeft": [
+            88.16545666311717,
+            104.19220561220857
+          ],
+          "pivot": [
+            6.258101318378749,
+            2.503240527351494
+          ],
+          "size": [
+            10,
+            28
+          ],
+          "zOrder": 6
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "E/right-natural-hand.png",
+          "restTopLeft": [
+            88.16545666311717,
+            104.19220561220857
+          ],
+          "pivot": [
+            6.88391145021663,
+            19.19151070969481
+          ],
+          "size": [
+            10,
+            28
+          ],
+          "zOrder": 6,
+          "variant": "empty-hand",
+          "absoluteAngleFrom": "rightElbow"
+        },
+        {
+          "id": "right-hand-grip",
+          "layer": "hand-grip",
+          "joint": "rightWrist",
+          "image": "E/right-hand-grip.png",
+          "pivot": [
+            1.625,
+            0.75
+          ],
+          "restTopLeft": [
+            93.4243681133338,
+            122.63371632190338
+          ],
+          "size": [
+            7,
+            9
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            2,
+            4.75
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-front",
+          "joint": "rightWrist",
+          "image": "E/staff.png",
+          "pivot": [
+            10,
+            51.5
+          ],
+          "restTopLeft": [
+            85.0493681133338,
+            71.88371632190338
+          ],
+          "size": [
+            20,
+            96
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            2,
+            4.75
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        }
+      ],
+      "wristCell": [
+        95.0493681133338,
+        123.38371632190338
+      ],
+      "gripOffset": [
+        2,
+        4.75
+      ],
+      "sourceRegistration": {
+        "staffCrop": {
+          "x": 92,
+          "y": 1352,
+          "w": 39,
+          "h": 188
+        },
+        "shaft": [
+          24,
+          112.5
+        ],
+        "handCrop": {
+          "x": 75,
+          "y": 1370,
+          "w": 291,
+          "h": 371
+        },
+        "wrist": [
+          65,
+          30
+        ],
+        "grip": [
+          145,
+          220
+        ]
+      },
+      "handScale": 0.025,
+      "staffScale": 0.5,
+      "naturalHandExclusiveWithGrip": true,
+      "clippingPlane": {
+        "normal": [
+          0.03747366058909465,
+          0.9992976157091806
+        ],
+        "wrist": [
+          95.0493681133338,
+          123.38371632190338
+        ],
+        "offset": 0.7
+      }
+    },
+    "W": {
+      "replaceIds": [
+        "right-forearm-hand"
+      ],
+      "attachments": [
+        {
+          "id": "right-forearm",
+          "layer": "body",
+          "joint": "rightElbow",
+          "image": "W/right-forearm.png",
+          "restTopLeft": [
+            89.22816704080229,
+            98.31186694337698
+          ],
+          "pivot": [
+            5.165754182829829,
+            2.3841942382291563
+          ],
+          "size": [
+            10,
+            24
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "W/right-natural-hand.png",
+          "restTopLeft": [
+            89.22816704080229,
+            98.31186694337698
+          ],
+          "pivot": [
+            5.761802742387118,
+            19.073553905833236
+          ],
+          "size": [
+            10,
+            24
+          ],
+          "zOrder": 1,
+          "variant": "empty-hand",
+          "absoluteAngleFrom": "rightElbow"
+        },
+        {
+          "id": "right-hand-grip",
+          "layer": "hand-grip",
+          "joint": "rightWrist",
+          "image": "W/right-hand-grip.png",
+          "pivot": [
+            6.25,
+            0.75
+          ],
+          "restTopLeft": [
+            88.73996978318941,
+            116.63542084921022
+          ],
+          "size": [
+            8,
+            9
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            -3,
+            5
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-back",
+          "joint": "rightWrist",
+          "image": "W/staff.png",
+          "pivot": [
+            15,
+            51.25
+          ],
+          "restTopLeft": [
+            79.98996978318941,
+            66.13542084921022
+          ],
+          "size": [
+            20,
+            93
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            -3,
+            5
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        }
+      ],
+      "wristCell": [
+        94.98996978318941,
+        117.38542084921022
+      ],
+      "gripOffset": [
+        -3,
+        5
+      ],
+      "sourceRegistration": {
+        "staffCrop": {
+          "x": 90,
+          "y": 466,
+          "w": 40,
+          "h": 186
+        },
+        "shaft": [
+          24,
+          112.5
+        ],
+        "handCrop": {
+          "x": 61,
+          "y": 483,
+          "w": 306,
+          "h": 362
+        },
+        "wrist": [
+          250,
+          30
+        ],
+        "grip": [
+          130,
+          230
+        ]
+      },
+      "handScale": 0.025,
+      "staffScale": 0.5,
+      "naturalHandExclusiveWithGrip": true,
+      "clippingPlane": {
+        "normal": [
+          0.035691530512412514,
+          0.9993628543475496
+        ],
+        "wrist": [
+          94.98996978318941,
+          117.38542084921022
+        ],
+        "offset": 0.7
+      }
+    },
+    "N": {
+      "replaceIds": [
+        "right-forearm-hand"
+      ],
+      "attachments": [
+        {
+          "id": "right-forearm",
+          "layer": "body",
+          "joint": "rightElbow",
+          "image": "N/right-forearm.png",
+          "restTopLeft": [
+            106.9419970926296,
+            100.37814889027834
+          ],
+          "pivot": [
+            2.2065272859915552,
+            2.068619330617082
+          ],
+          "size": [
+            8,
+            27
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "N/right-natural-hand.png",
+          "restTopLeft": [
+            106.9419970926296,
+            100.37814889027834
+          ],
+          "pivot": [
+            4.447531560826732,
+            18.61757397555374
+          ],
+          "size": [
+            8,
+            27
+          ],
+          "zOrder": 1,
+          "variant": "empty-hand",
+          "absoluteAngleFrom": "rightElbow"
+        },
+        {
+          "id": "right-hand-grip",
+          "layer": "hand-grip",
+          "joint": "rightWrist",
+          "image": "N/right-hand-grip.png",
+          "pivot": [
+            1.75,
+            0.75
+          ],
+          "restTopLeft": [
+            109.63952865345634,
+            118.24572286583208
+          ],
+          "size": [
+            7,
+            9
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            2,
+            5
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-back",
+          "joint": "rightWrist",
+          "image": "N/staff.png",
+          "pivot": [
+            12.5,
+            52
+          ],
+          "restTopLeft": [
+            98.88952865345634,
+            66.99572286583208
+          ],
+          "size": [
+            22,
+            96
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            2,
+            5
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        }
+      ],
+      "wristCell": [
+        111.38952865345634,
+        118.99572286583208
+      ],
+      "gripOffset": [
+        2,
+        5
+      ],
+      "sourceRegistration": {
+        "staffCrop": {
+          "x": 85,
+          "y": 908,
+          "w": 43,
+          "h": 188
+        },
+        "shaft": [
+          29,
+          114
+        ],
+        "handCrop": {
+          "x": 80,
+          "y": 922,
+          "w": 279,
+          "h": 371
+        },
+        "wrist": [
+          70,
+          30
+        ],
+        "grip": [
+          150,
+          230
+        ]
+      },
+      "handScale": 0.025,
+      "staffScale": 0.5,
+      "naturalHandExclusiveWithGrip": true,
+      "clippingPlane": {
+        "normal": [
+          0.13419187274462135,
+          0.9909553679602787
+        ],
+        "wrist": [
+          111.38952865345634,
+          118.99572286583208
+        ],
+        "offset": 0.7
+      }
+    },
+    "S": {
+      "replaceIds": [
+        "right-forearm-hand"
+      ],
+      "attachments": [
+        {
+          "id": "right-forearm",
+          "layer": "body-front",
+          "joint": "rightElbow",
+          "image": "S/right-forearm.png",
+          "restTopLeft": [
+            76.18929020036256,
+            102.06651903475951
+          ],
+          "pivot": [
+            4.752524469992409,
+            3.3946603357088634
+          ],
+          "size": [
+            10,
+            30
+          ],
+          "zOrder": 6
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "S/right-natural-hand.png",
+          "restTopLeft": [
+            76.18929020036256,
+            102.06651903475951
+          ],
+          "pivot": [
+            1.640752495592622,
+            19.802185291635027
+          ],
+          "size": [
+            10,
+            30
+          ],
+          "zOrder": 6,
+          "variant": "empty-hand",
+          "absoluteAngleFrom": "rightElbow"
+        },
+        {
+          "id": "right-hand-grip",
+          "layer": "hand-grip",
+          "joint": "rightWrist",
+          "image": "S/right-hand-grip.png",
+          "pivot": [
+            4.875,
+            0.75
+          ],
+          "restTopLeft": [
+            72.95504269595519,
+            121.11870432639454
+          ],
+          "size": [
+            7,
+            9
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            -1.375,
+            5
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-front",
+          "joint": "rightWrist",
+          "image": "S/staff.png",
+          "pivot": [
+            13.875,
+            50.5
+          ],
+          "restTopLeft": [
+            63.955042695955186,
+            71.36870432639454
+          ],
+          "size": [
+            25,
+            93
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            -1.375,
+            5
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        }
+      ],
+      "wristCell": [
+        77.83004269595519,
+        121.86870432639454
+      ],
+      "gripOffset": [
+        -1.375,
+        5
+      ],
+      "sourceRegistration": {
+        "staffCrop": {
+          "x": 89,
+          "y": 23,
+          "w": 50,
+          "h": 186
+        },
+        "shaft": [
+          25,
+          111
+        ],
+        "handCrop": {
+          "x": 84,
+          "y": 35,
+          "w": 277,
+          "h": 370
+        },
+        "wrist": [
+          195,
+          30
+        ],
+        "grip": [
+          140,
+          230
+        ]
+      },
+      "handScale": 0.025,
+      "staffScale": 0.5,
+      "naturalHandExclusiveWithGrip": true,
+      "clippingPlane": {
+        "normal": [
+          -0.18633365116166392,
+          0.9824865243069562
+        ],
+        "wrist": [
+          77.83004269595519,
+          121.86870432639454
+        ],
+        "offset": 0.7
+      }
+    },
+    "NW": {
+      "replaceIds": [
+        "right-forearm-hand"
+      ],
+      "attachments": [
+        {
+          "id": "right-forearm",
+          "layer": "body",
+          "joint": "rightElbow",
+          "image": "NW/right-forearm.png",
+          "restTopLeft": [
+            103.46922440763076,
+            98.82843618659454
+          ],
+          "pivot": [
+            1.4418367918485444,
+            1.8504857221585667
+          ],
+          "size": [
+            6,
+            24
+          ],
+          "zOrder": 1
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "NW/right-natural-hand.png",
+          "restTopLeft": [
+            103.46922440763076,
+            98.82843618659454
+          ],
+          "pivot": [
+            2.6754939399542508,
+            18.50485722158561
+          ],
+          "size": [
+            6,
+            24
+          ],
+          "zOrder": 1,
+          "variant": "empty-hand",
+          "absoluteAngleFrom": "rightElbow"
+        },
+        {
+          "id": "right-hand-grip",
+          "layer": "hand-grip",
+          "joint": "rightWrist",
+          "image": "NW/right-hand-grip.png",
+          "pivot": [
+            6.125,
+            0.75
+          ],
+          "restTopLeft": [
+            100.01971834758501,
+            116.58329340818015
+          ],
+          "size": [
+            8,
+            9
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            -2.5,
+            5
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-back",
+          "joint": "rightWrist",
+          "image": "NW/staff.png",
+          "pivot": [
+            15,
+            50.625
+          ],
+          "restTopLeft": [
+            91.14471834758501,
+            66.70829340818015
+          ],
+          "size": [
+            20,
+            93
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            -2.5,
+            5
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        }
+      ],
+      "wristCell": [
+        106.14471834758501,
+        117.33329340818015
+      ],
+      "gripOffset": [
+        -2.5,
+        5
+      ],
+      "sourceRegistration": {
+        "staffCrop": {
+          "x": 89,
+          "y": 688,
+          "w": 40,
+          "h": 186
+        },
+        "shaft": [
+          25,
+          111.25
+        ],
+        "handCrop": {
+          "x": 505,
+          "y": 481,
+          "w": 315,
+          "h": 359
+        },
+        "wrist": [
+          245,
+          30
+        ],
+        "grip": [
+          145,
+          230
+        ]
+      },
+      "handScale": 0.025,
+      "staffScale": 0.5,
+      "naturalHandExclusiveWithGrip": true,
+      "clippingPlane": {
+        "normal": [
+          0.07387168551531174,
+          0.997267754456709
+        ],
+        "wrist": [
+          106.14471834758501,
+          117.33329340818015
+        ],
+        "offset": 0.7
+      }
+    },
+    "SE": {
+      "replaceIds": [
+        "right-forearm-hand"
+      ],
+      "attachments": [
+        {
+          "id": "right-forearm",
+          "layer": "body-front",
+          "joint": "rightElbow",
+          "image": "SE/right-forearm.png",
+          "restTopLeft": [
+            103.30863727227468,
+            104.79371728851238
+          ],
+          "pivot": [
+            1.602423927204626,
+            1.885204620240728
+          ],
+          "size": [
+            8,
+            25
+          ],
+          "zOrder": 6
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "SE/right-natural-hand.png",
+          "restTopLeft": [
+            103.30863727227468,
+            104.79371728851238
+          ],
+          "pivot": [
+            2.8592270073651065,
+            18.537845432367163
+          ],
+          "size": [
+            8,
+            25
+          ],
+          "zOrder": 6,
+          "variant": "empty-hand",
+          "absoluteAngleFrom": "rightElbow"
+        },
+        {
+          "id": "right-hand-grip",
+          "layer": "hand-grip",
+          "joint": "rightWrist",
+          "image": "SE/right-hand-grip.png",
+          "pivot": [
+            1.875,
+            0.875
+          ],
+          "restTopLeft": [
+            104.29286427963979,
+            122.45656272087955
+          ],
+          "size": [
+            8,
+            10
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            2.125,
+            4.875
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-front",
+          "joint": "rightWrist",
+          "image": "SE/staff.png",
+          "pivot": [
+            6.875,
+            50.75
+          ],
+          "restTopLeft": [
+            99.29286427963979,
+            72.58156272087955
+          ],
+          "size": [
+            19,
+            93
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            2.125,
+            4.875
+          ],
+          "absoluteAngleFrom": "explicit-right-wrist-pose"
+        }
+      ],
+      "wristCell": [
+        106.16786427963979,
+        123.33156272087955
+      ],
+      "gripOffset": [
+        2.125,
+        4.875
+      ],
+      "sourceRegistration": {
+        "staffCrop": {
+          "x": 98,
+          "y": 1574,
+          "w": 38,
+          "h": 186
+        },
+        "shaft": [
+          18,
+          111.25
+        ],
+        "handCrop": {
+          "x": 511,
+          "y": 1365,
+          "w": 301,
+          "h": 376
+        },
+        "wrist": [
+          75,
+          35
+        ],
+        "grip": [
+          160,
+          230
+        ]
+      },
+      "handScale": 0.025,
+      "staffScale": 0.5,
+      "naturalHandExclusiveWithGrip": true,
+      "clippingPlane": {
+        "normal": [
+          0.07525766947068747,
+          0.9971641204866132
+        ],
+        "wrist": [
+          106.16786427963979,
+          123.33156272087955
+        ],
+        "offset": 0.7
+      }
+    }
+  }
+}

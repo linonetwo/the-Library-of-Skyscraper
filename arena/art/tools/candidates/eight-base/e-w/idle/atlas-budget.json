@@ -1,0 +1,298 @@
+{
+  "clip": {
+    "action": "idle",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      400,
+      400,
+      400,
+      400
+    ],
+    "playback": "loop",
+    "cycleWorldStride": 1.08
+  },
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "E",
+    "W"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-ivory-front",
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "weapon-staff-front",
+    "weapon-staff-back"
+  ],
+  "inactiveLayers": [
+    "hair-ivory-back",
+    "hair-midnight-back"
+  ],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 38832,
+      "pages": [
+        {
+          "image": "idle-body-0.png",
+          "json": "idle-body-0.json",
+          "width": 321,
+          "height": 142,
+          "decodedBytes": 182328,
+          "pngBytes": 53502
+        }
+      ],
+      "decodedBytes": 182328
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 4962,
+      "pages": [
+        {
+          "image": "idle-body-front-0.png",
+          "json": "idle-body-front-0.json",
+          "width": 145,
+          "height": 52,
+          "decodedBytes": 30160,
+          "pngBytes": 10798
+        }
+      ],
+      "decodedBytes": 30160
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 14818,
+      "pages": [
+        {
+          "image": "idle-outfit-scholar-0.png",
+          "json": "idle-outfit-scholar-0.json",
+          "width": 285,
+          "height": 64,
+          "decodedBytes": 72960,
+          "pngBytes": 25820
+        }
+      ],
+      "decodedBytes": 72960
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 11600,
+      "pages": [
+        {
+          "image": "idle-outfit-warden-0.png",
+          "json": "idle-outfit-warden-0.json",
+          "width": 237,
+          "height": 62,
+          "decodedBytes": 58776,
+          "pngBytes": 19399
+        }
+      ],
+      "decodedBytes": 58776
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 6289,
+      "pages": [
+        {
+          "image": "idle-outfit-warden-front-0.png",
+          "json": "idle-outfit-warden-front-0.json",
+          "width": 181,
+          "height": 49,
+          "decodedBytes": 35476,
+          "pngBytes": 10484
+        }
+      ],
+      "decodedBytes": 35476
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": false,
+      "sourceFrames": 8,
+      "nonemptyFrames": 0,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 15354,
+      "pages": [
+        {
+          "image": "idle-hair-ivory-front-0.png",
+          "json": "idle-hair-ivory-front-0.json",
+          "width": 393,
+          "height": 48,
+          "decodedBytes": 75456,
+          "pngBytes": 24343
+        }
+      ],
+      "decodedBytes": 75456
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": false,
+      "sourceFrames": 8,
+      "nonemptyFrames": 0,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 15529,
+      "pages": [
+        {
+          "image": "idle-hair-midnight-front-0.png",
+          "json": "idle-hair-midnight-front-0.json",
+          "width": 385,
+          "height": 49,
+          "decodedBytes": 75460,
+          "pngBytes": 21717
+        }
+      ],
+      "decodedBytes": 75460
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 627,
+      "pages": [
+        {
+          "image": "idle-hand-front-0.png",
+          "json": "idle-hand-front-0.json",
+          "width": 121,
+          "height": 14,
+          "decodedBytes": 6776,
+          "pngBytes": 1754
+        }
+      ],
+      "decodedBytes": 6776
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 680,
+      "pages": [
+        {
+          "image": "idle-hand-grip-0.png",
+          "json": "idle-hand-grip-0.json",
+          "width": 105,
+          "height": 14,
+          "decodedBytes": 5880,
+          "pngBytes": 2139
+        }
+      ],
+      "decodedBytes": 5880
+    },
+    {
+      "layer": "weapon-staff-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 8148,
+      "pages": [
+        {
+          "image": "idle-weapon-staff-front-0.png",
+          "json": "idle-weapon-staff-front-0.json",
+          "width": 105,
+          "height": 101,
+          "decodedBytes": 42420,
+          "pngBytes": 11102
+        }
+      ],
+      "decodedBytes": 42420
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 7896,
+      "pages": [
+        {
+          "image": "idle-weapon-staff-back-0.png",
+          "json": "idle-weapon-staff-back-0.json",
+          "width": 105,
+          "height": 98,
+          "decodedBytes": 41160,
+          "pngBytes": 11429
+        }
+      ],
+      "decodedBytes": 41160
+    }
+  ],
+  "decodedBytes": 626852,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}
