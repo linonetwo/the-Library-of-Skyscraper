@@ -14,7 +14,7 @@ ts.typescriptDefaults.setCompilerOptions({
   target: ts.ScriptTarget.ESNext, module: ts.ModuleKind.ESNext,
   moduleResolution: ts.ModuleResolutionKind.NodeJs,
   allowImportingTsExtensions: true,
-  strict: true, lib: ["es2022"], noEmit: true,
+  strict: true, lib: ["lib.es2022.d.ts"], noEmit: true,
 });
 ts.typescriptDefaults.setEagerModelSync(true);
 ts.typescriptDefaults.addExtraLib(
