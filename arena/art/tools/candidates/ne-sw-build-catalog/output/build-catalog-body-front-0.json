@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "build-catalog/body-front/SW/03": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 20,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 83,
+        "w": 20,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/body-front/NE/03": {
+      "frame": {
+        "x": 31,
+        "y": 2,
+        "w": 18,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 82,
+        "w": 18,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/body-front/SW/00": {
+      "frame": {
+        "x": 53,
+        "y": 2,
+        "w": 26,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 84,
+        "w": 26,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/body-front/SW/01": {
+      "frame": {
+        "x": 83,
+        "y": 2,
+        "w": 26,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 84,
+        "w": 26,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/body-front/SW/02": {
+      "frame": {
+        "x": 113,
+        "y": 2,
+        "w": 27,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 89,
+        "y": 84,
+        "w": 27,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/body-front/NE/00": {
+      "frame": {
+        "x": 144,
+        "y": 2,
+        "w": 29,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 83,
+        "w": 29,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/body-front/NE/01": {
+      "frame": {
+        "x": 177,
+        "y": 2,
+        "w": 29,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 83,
+        "w": 29,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/body-front/NE/02": {
+      "frame": {
+        "x": 210,
+        "y": 2,
+        "w": 29,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 83,
+        "w": 29,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "build-catalog/body-front/NE": [
+      "build-catalog/body-front/NE/00",
+      "build-catalog/body-front/NE/01",
+      "build-catalog/body-front/NE/02",
+      "build-catalog/body-front/NE/03"
+    ],
+    "build-catalog/body-front/SW": [
+      "build-catalog/body-front/SW/00",
+      "build-catalog/body-front/SW/01",
+      "build-catalog/body-front/SW/02",
+      "build-catalog/body-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "build-catalog-body-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 241,
+      "h": 51
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

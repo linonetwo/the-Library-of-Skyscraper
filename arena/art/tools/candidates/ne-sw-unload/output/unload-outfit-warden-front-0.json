@@ -1,0 +1,172 @@
+{
+  "frames": {
+    "unload/outfit-warden-front/NE/02": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 18,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 81,
+        "w": 18,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-warden-front/SW/02": {
+      "frame": {
+        "x": 29,
+        "y": 2,
+        "w": 18,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 101,
+        "y": 84,
+        "w": 18,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-warden-front/NE/00": {
+      "frame": {
+        "x": 51,
+        "y": 2,
+        "w": 23,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 82,
+        "w": 23,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-warden-front/NE/01": {
+      "frame": {
+        "x": 78,
+        "y": 2,
+        "w": 22,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 82,
+        "w": 22,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-warden-front/SW/01": {
+      "frame": {
+        "x": 104,
+        "y": 2,
+        "w": 29,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 85,
+        "w": 29,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-warden-front/SW/00": {
+      "frame": {
+        "x": 137,
+        "y": 2,
+        "w": 28,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 85,
+        "w": 28,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "unload/outfit-warden-front/NE": [
+      "unload/outfit-warden-front/NE/00",
+      "unload/outfit-warden-front/NE/01",
+      "unload/outfit-warden-front/NE/02"
+    ],
+    "unload/outfit-warden-front/SW": [
+      "unload/outfit-warden-front/SW/00",
+      "unload/outfit-warden-front/SW/01",
+      "unload/outfit-warden-front/SW/02"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "unload-outfit-warden-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 167,
+      "h": 50
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

@@ -1,0 +1,404 @@
+{
+  "clip": {
+    "action": "build-catalog",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      160,
+      140,
+      160,
+      240
+    ],
+    "playback": "loop"
+  },
+  "layerOrderByDirection": {
+    "NE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "work-prop-mallet",
+      "work-prop-folio",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "work-prop-mallet",
+      "work-prop-folio",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  },
+  "variants": {
+    "building": {
+      "activeLayers": [
+        "work-prop-mallet"
+      ],
+      "handMode": "grip"
+    },
+    "cataloging": {
+      "activeLayers": [
+        "work-prop-folio"
+      ],
+      "handMode": "natural"
+    }
+  },
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [],
+    "weaponOn": [
+      "weapon-staff-back"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "NE",
+    "SW"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "hand-left-front",
+    "weapon-staff-back",
+    "work-prop-mallet",
+    "work-prop-folio"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 46540,
+      "pages": [
+        {
+          "image": "build-catalog-body-0.png",
+          "json": "build-catalog-body-0.json",
+          "width": 373,
+          "height": 143,
+          "decodedBytes": 213356,
+          "pngBytes": 32487
+        }
+      ],
+      "decodedBytes": 213356
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 7603,
+      "pages": [
+        {
+          "image": "build-catalog-body-front-0.png",
+          "json": "build-catalog-body-front-0.json",
+          "width": 241,
+          "height": 51,
+          "decodedBytes": 49164,
+          "pngBytes": 12132
+        }
+      ],
+      "decodedBytes": 49164
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 22796,
+      "pages": [
+        {
+          "image": "build-catalog-outfit-scholar-0.png",
+          "json": "build-catalog-outfit-scholar-0.json",
+          "width": 385,
+          "height": 70,
+          "decodedBytes": 107800,
+          "pngBytes": 15607
+        }
+      ],
+      "decodedBytes": 107800
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 3288,
+      "pages": [
+        {
+          "image": "build-catalog-hair-ivory-back-0.png",
+          "json": "build-catalog-hair-ivory-back-0.json",
+          "width": 365,
+          "height": 15,
+          "decodedBytes": 21900,
+          "pngBytes": 1416
+        }
+      ],
+      "decodedBytes": 21900
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 17104,
+      "pages": [
+        {
+          "image": "build-catalog-hair-ivory-front-0.png",
+          "json": "build-catalog-hair-ivory-front-0.json",
+          "width": 417,
+          "height": 50,
+          "decodedBytes": 83400,
+          "pngBytes": 10354
+        }
+      ],
+      "decodedBytes": 83400
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 16485,
+      "pages": [
+        {
+          "image": "build-catalog-outfit-warden-0.png",
+          "json": "build-catalog-outfit-warden-0.json",
+          "width": 317,
+          "height": 63,
+          "decodedBytes": 79884,
+          "pngBytes": 15344
+        }
+      ],
+      "decodedBytes": 79884
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 7412,
+      "pages": [
+        {
+          "image": "build-catalog-outfit-warden-front-0.png",
+          "json": "build-catalog-outfit-warden-front-0.json",
+          "width": 240,
+          "height": 50,
+          "decodedBytes": 48000,
+          "pngBytes": 9516
+        }
+      ],
+      "decodedBytes": 48000
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 7224,
+      "pages": [
+        {
+          "image": "build-catalog-hair-midnight-back-0.png",
+          "json": "build-catalog-hair-midnight-back-0.json",
+          "width": 189,
+          "height": 47,
+          "decodedBytes": 35532,
+          "pngBytes": 3697
+        }
+      ],
+      "decodedBytes": 35532
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 19556,
+      "pages": [
+        {
+          "image": "build-catalog-hair-midnight-front-0.png",
+          "json": "build-catalog-hair-midnight-front-0.json",
+          "width": 393,
+          "height": 61,
+          "decodedBytes": 95892,
+          "pngBytes": 10018
+        }
+      ],
+      "decodedBytes": 95892
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 1431,
+      "pages": [
+        {
+          "image": "build-catalog-hand-front-0.png",
+          "json": "build-catalog-hand-front-0.json",
+          "width": 139,
+          "height": 19,
+          "decodedBytes": 10564,
+          "pngBytes": 3322
+        }
+      ],
+      "decodedBytes": 10564
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 1022,
+      "pages": [
+        {
+          "image": "build-catalog-hand-grip-0.png",
+          "json": "build-catalog-hand-grip-0.json",
+          "width": 124,
+          "height": 17,
+          "decodedBytes": 8432,
+          "pngBytes": 3246
+        }
+      ],
+      "decodedBytes": 8432
+    },
+    {
+      "layer": "hand-left-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 1524,
+      "pages": [
+        {
+          "image": "build-catalog-hand-left-front-0.png",
+          "json": "build-catalog-hand-left-front-0.json",
+          "width": 146,
+          "height": 19,
+          "decodedBytes": 11096,
+          "pngBytes": 3393
+        }
+      ],
+      "decodedBytes": 11096
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 29040,
+      "pages": [
+        {
+          "image": "build-catalog-weapon-staff-back-0.png",
+          "json": "build-catalog-weapon-staff-back-0.json",
+          "width": 345,
+          "height": 100,
+          "decodedBytes": 138000,
+          "pngBytes": 10300
+        }
+      ],
+      "decodedBytes": 138000
+    },
+    {
+      "layer": "work-prop-mallet",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 7147,
+      "pages": [
+        {
+          "image": "build-catalog-work-prop-mallet-0.png",
+          "json": "build-catalog-work-prop-mallet-0.json",
+          "width": 255,
+          "height": 41,
+          "decodedBytes": 41820,
+          "pngBytes": 13701
+        }
+      ],
+      "decodedBytes": 41820
+    },
+    {
+      "layer": "work-prop-folio",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 6,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 3592,
+      "pages": [
+        {
+          "image": "build-catalog-work-prop-folio-0.png",
+          "json": "build-catalog-work-prop-folio-0.json",
+          "width": 200,
+          "height": 26,
+          "decodedBytes": 20800,
+          "pngBytes": 6562
+        }
+      ],
+      "decodedBytes": 20800
+    }
+  ],
+  "decodedBytes": 965640,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}

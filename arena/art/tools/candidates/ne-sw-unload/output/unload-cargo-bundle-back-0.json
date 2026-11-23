@@ -1,0 +1,172 @@
+{
+  "frames": {
+    "unload/cargo-bundle-back/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 28,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 107,
+        "w": 28,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/cargo-bundle-back/NE/01": {
+      "frame": {
+        "x": 39,
+        "y": 2,
+        "w": 28,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 105,
+        "w": 28,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/cargo-bundle-back/NE/02": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/cargo-bundle-back/SW/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/cargo-bundle-back/SW/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/cargo-bundle-back/SW/02": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "unload/cargo-bundle-back/NE": [
+      "unload/cargo-bundle-back/NE/00",
+      "unload/cargo-bundle-back/NE/01",
+      "unload/cargo-bundle-back/NE/02"
+    ],
+    "unload/cargo-bundle-back/SW": [
+      "unload/cargo-bundle-back/SW/00",
+      "unload/cargo-bundle-back/SW/01",
+      "unload/cargo-bundle-back/SW/02"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "unload-cargo-bundle-back-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 69,
+      "h": 28
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "build-catalog/outfit-scholar/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 77,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/outfit-scholar/SW/01": {
+      "frame": {
+        "x": 55,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 77,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/outfit-scholar/SW/02": {
+      "frame": {
+        "x": 103,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 77,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/outfit-scholar/SW/03": {
+      "frame": {
+        "x": 151,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 77,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/outfit-scholar/NE/00": {
+      "frame": {
+        "x": 199,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 76,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/outfit-scholar/NE/01": {
+      "frame": {
+        "x": 246,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 76,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/outfit-scholar/NE/02": {
+      "frame": {
+        "x": 293,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 76,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/outfit-scholar/NE/03": {
+      "frame": {
+        "x": 340,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 76,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "build-catalog/outfit-scholar/NE": [
+      "build-catalog/outfit-scholar/NE/00",
+      "build-catalog/outfit-scholar/NE/01",
+      "build-catalog/outfit-scholar/NE/02",
+      "build-catalog/outfit-scholar/NE/03"
+    ],
+    "build-catalog/outfit-scholar/SW": [
+      "build-catalog/outfit-scholar/SW/00",
+      "build-catalog/outfit-scholar/SW/01",
+      "build-catalog/outfit-scholar/SW/02",
+      "build-catalog/outfit-scholar/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "build-catalog-outfit-scholar-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 385,
+      "h": 70
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

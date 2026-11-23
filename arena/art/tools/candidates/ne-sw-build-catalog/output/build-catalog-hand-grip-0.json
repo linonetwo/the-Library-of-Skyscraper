@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "build-catalog/hand-grip/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 11,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 115,
+        "w": 11,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/hand-grip/SW/02": {
+      "frame": {
+        "x": 22,
+        "y": 2,
+        "w": 11,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 89,
+        "y": 113,
+        "w": 11,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/hand-grip/NE/00": {
+      "frame": {
+        "x": 37,
+        "y": 2,
+        "w": 10,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 96,
+        "y": 108,
+        "w": 10,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/hand-grip/NE/01": {
+      "frame": {
+        "x": 51,
+        "y": 2,
+        "w": 13,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 107,
+        "w": 13,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/hand-grip/NE/02": {
+      "frame": {
+        "x": 68,
+        "y": 2,
+        "w": 11,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 95,
+        "y": 106,
+        "w": 11,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/hand-grip/NE/03": {
+      "frame": {
+        "x": 83,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 123,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/hand-grip/SW/03": {
+      "frame": {
+        "x": 96,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 123,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/hand-grip/SW/01": {
+      "frame": {
+        "x": 109,
+        "y": 2,
+        "w": 13,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 112,
+        "w": 13,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "build-catalog/hand-grip/NE": [
+      "build-catalog/hand-grip/NE/00",
+      "build-catalog/hand-grip/NE/01",
+      "build-catalog/hand-grip/NE/02",
+      "build-catalog/hand-grip/NE/03"
+    ],
+    "build-catalog/hand-grip/SW": [
+      "build-catalog/hand-grip/SW/00",
+      "build-catalog/hand-grip/SW/01",
+      "build-catalog/hand-grip/SW/02",
+      "build-catalog/hand-grip/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "build-catalog-hand-grip-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 124,
+      "h": 17
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

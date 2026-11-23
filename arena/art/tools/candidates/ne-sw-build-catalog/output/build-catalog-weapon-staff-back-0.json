@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "build-catalog/weapon-staff-back/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 33,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 50,
+        "w": 33,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/weapon-staff-back/SW/01": {
+      "frame": {
+        "x": 44,
+        "y": 2,
+        "w": 33,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 50,
+        "w": 33,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/weapon-staff-back/SW/02": {
+      "frame": {
+        "x": 81,
+        "y": 2,
+        "w": 33,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 50,
+        "w": 33,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/weapon-staff-back/SW/03": {
+      "frame": {
+        "x": 118,
+        "y": 2,
+        "w": 33,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 50,
+        "w": 33,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/weapon-staff-back/NE/00": {
+      "frame": {
+        "x": 155,
+        "y": 2,
+        "w": 44,
+        "h": 93
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 47,
+        "w": 44,
+        "h": 93
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/weapon-staff-back/NE/01": {
+      "frame": {
+        "x": 203,
+        "y": 2,
+        "w": 44,
+        "h": 93
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 47,
+        "w": 44,
+        "h": 93
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/weapon-staff-back/NE/02": {
+      "frame": {
+        "x": 251,
+        "y": 2,
+        "w": 44,
+        "h": 93
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 47,
+        "w": 44,
+        "h": 93
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build-catalog/weapon-staff-back/NE/03": {
+      "frame": {
+        "x": 299,
+        "y": 2,
+        "w": 44,
+        "h": 93
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 47,
+        "w": 44,
+        "h": 93
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "build-catalog/weapon-staff-back/NE": [
+      "build-catalog/weapon-staff-back/NE/00",
+      "build-catalog/weapon-staff-back/NE/01",
+      "build-catalog/weapon-staff-back/NE/02",
+      "build-catalog/weapon-staff-back/NE/03"
+    ],
+    "build-catalog/weapon-staff-back/SW": [
+      "build-catalog/weapon-staff-back/SW/00",
+      "build-catalog/weapon-staff-back/SW/01",
+      "build-catalog/weapon-staff-back/SW/02",
+      "build-catalog/weapon-staff-back/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "build-catalog-weapon-staff-back-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 345,
+      "h": 100
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
