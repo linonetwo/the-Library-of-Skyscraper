@@ -64,6 +64,8 @@ export class ActorMotion {
     snap = false,
     path: Point[] = [],
     distanceMilli = 0,
+    speedMilliPerMs?: number,
+    fallbackDuration = this.duration,
   ) {
     if (snap) {
       this.from = this.to = to;
@@ -80,6 +82,12 @@ export class ActorMotion {
     this.direction = facing(this.to, to);
     this.to = to;
     this.path = path;
+    // Sample the previous segment before changing its duration. Distance and
+    // position then share one progress at the authoritative world speed.
+    const remainingDistance = distanceMilli - previous.motionDistanceMilli;
+    this.duration = speedMilliPerMs && speedMilliPerMs > 0 && remainingDistance > 0
+      ? remainingDistance / speedMilliPerMs
+      : fallbackDuration;
     this.started = now;
   }
 }

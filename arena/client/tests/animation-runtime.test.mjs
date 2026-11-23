@@ -74,3 +74,39 @@ test('continuous work does not face an expired old attack target',()=>{
  const a=resolve({task:{stage:'cataloging',stageStartedTick:20},actionCue:cue('attack',10,1),lastMoveDirection:{x:0,y:1}},10500);
  assert.equal(a.direction,'SW');assert.equal(a.clip,'build-catalog');
 });
+
+test('jittered 420/580ms deliveries preserve world speed and distance phase',async()=>{
+ const {ActorMotion}=await import('../src/actorMotion.ts');
+ const {project,inverse}=await import('../src/isoGeometry.ts');
+ for(const heading of [{x:1,y:0},{x:Math.SQRT1_2,y:Math.SQRT1_2}]){
+  const motion=new ActorMotion(project(0,0),500);
+  motion.move(project(0,0),0,true,[],0,1.5);
+  const deliveries=[0,420,1000,1420,2000,2420];let next=0,last=motion.sample(0);
+  for(let now=0;now<=3500;now+=10){
+   if(now===deliveries[next]){
+    const d=++next*750;
+    motion.move(project(heading.x*d/1000,heading.y*d/1000),now,false,[],d,1.5,500);
+   }
+   const s=motion.sample(now),a=inverse(last.x,last.y),b=inverse(s.x,s.y);
+   assert.ok(Math.hypot(b.x-a.x,b.y-a.y)<=.015000001,`world speed exceeded at ${now}`);
+   assert.ok(Math.abs(Math.hypot(b.x,b.y)*1000-s.motionDistanceMilli)<1e-7);
+   last=s;
+  }
+ }
+});
+
+test('terminal movement uses remaining authoritative distance and arrives without a full-tick tail',async()=>{
+ const {ActorMotion}=await import('../src/actorMotion.ts');
+ const motion=new ActorMotion({x:0,y:0},500);
+ motion.move({x:0,y:0},0,true,[],0,1.5);
+ motion.move({x:750,y:0},0,false,[],750,1.5,500);
+ motion.move({x:1500,y:0},420,false,[],1500,1.5,500);
+ assert.equal(motion.duration,580);
+ motion.move({x:1650,y:0},1000,false,[],1650,1.5,500);
+ assert.equal(motion.duration,100);
+ assert.equal(motion.sample(1099).moving,true);
+ assert.equal(motion.sample(1100).moving,false);
+ assert.equal(motion.sample(1100).motionDistanceMilli,1650);
+ motion.move({x:0,y:0},1100,true,[],0,1.5);
+ assert.equal(motion.sample(1200).motionDistanceMilli,0);
+});
