@@ -20,8 +20,12 @@ export const layers = [
   "weapon-staff-front",
   "hand-grip",
 ];
-import { skeleton, lockFoot } from "./pose-kinematics.mjs";
+import { skeleton, solveLimb } from "./pose-kinematics.mjs";
 import { stamp } from "./pose-raster.mjs";
+import { packTrimmedLayer } from "./trim-atlas.mjs";
+import { applyWorldLegs } from "./world-pose.mjs";
+import { auditWorldCycle } from "./world-walk.mjs";
+import { writePosePreviews } from "./pose-previews.mjs";
 const rotate = ([x, y], a) => [
   x * Math.cos(a) - y * Math.sin(a),
   x * Math.sin(a) + y * Math.cos(a),
@@ -39,7 +43,15 @@ export async function exportPoses(configPath, output) {
   if (!count || dirs.some(([, d]) => d.poses.length !== count))
     throw Error("Directions need equal nonzero pose counts");
   await mkdir(output, { recursive: true });
-  const cells = Object.fromEntries(layers.map((l) => [l, []])),
+  const layerNames = config.trimAtlases
+    ? [...new Set(dirs.flatMap(([, d]) => d.attachments.map((a) => a.layer)))]
+    : [
+        ...new Set([
+          ...layers,
+          ...dirs.flatMap(([, d]) => d.attachments.map((a) => a.layer)),
+        ]),
+      ];
+  const cells = Object.fromEntries(layerNames.map((l) => [l, []])),
     contact = [],
     report = [];
   for (const [row, [name, direction]] of dirs.entries()) {
@@ -70,13 +82,41 @@ export async function exportPoses(configPath, output) {
       }
       let state = skeleton(direction.joints, pose, config.groundPivot);
       for (const [side, target] of Object.entries(input.footTargets || {})) {
-        state = lockFoot(
+        state = solveLimb(
           direction,
           pose,
           config.groundPivot,
           direction.feet[side],
           target,
         );
+      }
+      for (const [joint, target] of Object.entries(input.wristTargets || {})) {
+        state = solveLimb(
+          direction,
+          pose,
+          config.groundPivot,
+          { joint, bend: target.bend, soleOffset: [0, 0] },
+          target.point,
+        );
+      }
+      let projected = null;
+      if (input.worldLegPhase !== undefined || input.worldStanding) {
+        projected = applyWorldLegs(
+          state,
+          direction,
+          name,
+          input.worldLegPhase,
+          config.groundPivot,
+          {
+            ...config.worldRegistration,
+            ...(direction.worldForward
+              ? { heading: direction.worldForward }
+              : {}),
+            ...input.worldRegistration,
+          },
+          input.worldStanding,
+        );
+        state = projected.state;
       }
       const foot = direction.feet?.[input.contactFoot];
       if (foot) {
@@ -88,19 +128,23 @@ export async function exportPoses(configPath, output) {
             ),
             root,
           );
-        state = lockFoot(
-          direction,
-          pose,
-          config.groundPivot,
-          foot,
-          sub(planted, root),
-        );
+        if (!projected)
+          state = solveLimb(
+            direction,
+            pose,
+            config.groundPivot,
+            foot,
+            sub(planted, root),
+          );
       } else planted = null;
       previous = input.contactFoot;
       const buffers = Object.fromEntries(
-        layers.map((l) => [l, Buffer.alloc(width * height * 4)]),
+        layerNames.map((l) => [l, Buffer.alloc(width * height * 4)]),
       );
-      const sorted = [...attachments].sort(
+      const visibleAttachments = attachments.filter(
+        (attachment) => !input.hiddenAttachments?.includes(attachment.id),
+      );
+      const sorted = [...visibleAttachments].sort(
         (a, b) =>
           (input.depth?.[a.id] ?? a.zOrder ?? 0) -
           (input.depth?.[b.id] ?? b.zOrder ?? 0),
@@ -114,11 +158,15 @@ export async function exportPoses(configPath, output) {
           a,
           joint.point,
           a.pivot,
-          joint.angle + ((a.rotation || 0) * Math.PI) / 180,
+          input.attachmentAngles?.[a.id] !== undefined
+            ? (input.attachmentAngles[a.id] * Math.PI) / 180
+            : state[a.angleJoint || a.joint].angle +
+                ((a.rotation || 0) * Math.PI) / 180,
+          projected?.mapping[a.id],
         );
       }
       const composite = [];
-      for (const layer of layers) {
+      for (const layer of layerNames) {
         const png = await sharp(buffers[layer], {
           raw: { width, height, channels: 4 },
         })
@@ -148,6 +196,41 @@ export async function exportPoses(configPath, output) {
             root,
           )
         : null;
+      const gripContacts = visibleAttachments
+        .filter((a) => a.gripOffset)
+        .map((a) => {
+          const angle =
+            input.attachmentAngles?.[a.id] !== undefined
+              ? (input.attachmentAngles[a.id] * Math.PI) / 180
+              : state[a.angleJoint || a.joint].angle +
+                ((a.rotation || 0) * Math.PI) / 180;
+          return {
+            id: a.id,
+            point: add(state[a.joint].point, rotate(a.gripOffset, angle)),
+          };
+        });
+      const soleGroundWorld = projected
+        ? Object.fromEntries(
+            Object.entries(direction.feet).map(([side, definition]) => {
+              const joint = state[definition.joint],
+                point = add(
+                  add(
+                    joint.point,
+                    rotate(definition.soleOffset || [0, 0], joint.angle),
+                  ),
+                  root,
+                ).map((v, i) => v - config.groundPivot[i]);
+              return [
+                side,
+                [
+                  (point[0] / 64 + point[1] / 32) / 2,
+                  (point[1] / 32 - point[0] / 64) / 2,
+                  0,
+                ],
+              ];
+            }),
+          )
+        : null;
       report.push({
         direction: name,
         frame,
@@ -161,11 +244,36 @@ export async function exportPoses(configPath, output) {
         screenErrorPx: foot
           ? length(sub(actual, planted)) * config.renderScale
           : null,
+        wristTargets: Object.fromEntries(
+          Object.entries(input.wristTargets || {}).map(([id, target]) => [
+            id,
+            {
+              target: target.point,
+              actual: state[id].point,
+              errorPx: length(sub(state[id].point, target.point)),
+            },
+          ]),
+        ),
+        gripContacts,
+        gripErrorPx:
+          gripContacts.length === 2
+            ? length(sub(gripContacts[0].point, gripContacts[1].point))
+            : null,
+        soleGroundWorld,
+        worldLegs: projected?.world.legs,
+        projectionMappings: projected?.ratios,
         joints: state,
       });
     }
   }
-  for (const layer of layers) {
+  const atlasBudget = [];
+  for (const layer of layerNames) {
+    if (config.trimAtlases) {
+      atlasBudget.push(
+        await packTrimmedLayer(layer, cells[layer], config, output),
+      );
+      continue;
+    }
     const image = `${config.action}-${layer}.png`,
       frames = {},
       animations = {};
@@ -217,73 +325,81 @@ export async function exportPoses(configPath, output) {
         2,
       ) + "\n",
     );
+    const active =
+      (await sharp(path.join(output, image)).stats()).channels[3].max > 0;
+    const decodedBytes = count * width * dirs.length * height * 4;
+    atlasBudget.push({
+      layer,
+      active,
+      pages: active
+        ? [
+            {
+              image,
+              json: `${config.action}-${layer}.json`,
+              width: count * width,
+              height: dirs.length * height,
+              decodedBytes,
+            },
+          ]
+        : [],
+      decodedBytes: active ? decodedBytes : 0,
+    });
   }
-  await sharp({
-    create: {
-      width: count * width,
-      height: dirs.length * height,
-      channels: 4,
-      background: "#e6e2dc",
-    },
-  })
-    .composite(contact)
-    .png()
-    .toFile(path.join(output, "contact-sheet.png"));
-  const marks = report
-    .map((f, index) => {
-      const col = index % count,
-        row = Math.floor(index / count),
-        x = col * width,
-        y = row * height;
-      const sole = f.actualAtlasWorld
-        ? sub(f.actualAtlasWorld, f.rootAtlasDelta)
-        : null;
-      const label = `${f.direction} ${f.frame} ${f.contactFoot || "air"} ${f.durationMs}ms`;
-      return (
-        `<text x="${x + 6}" y="${y + 14}" font-size="11" fill="#182835">${label}</text>` +
-        (sole
-          ? `<circle cx="${x + sole[0]}" cy="${y + sole[1]}" r="3" fill="none" stroke="#d32430"/>`
-          : "")
-      );
-    })
-    .join("");
-  await sharp(path.join(output, "contact-sheet.png"))
-    .composite([
+  if (config.worldRegistration && config.action === "walk")
+    await writeFile(
+      path.join(output, "world-cycle-report.json"),
+      JSON.stringify(
+        {
+          approved: false,
+          space: "ground world xy, sole z=0 from registered boot footprint",
+          directions: dirs.map(([name, d]) =>
+            auditWorldCycle(name, d.feet, config.groundPivot, {
+              ...config.worldRegistration,
+              ...(d.worldForward ? { heading: d.worldForward } : {}),
+            }),
+          ),
+        },
+        null,
+        2,
+      ),
+    );
+  await writeFile(
+    path.join(output, "atlas-budget.json"),
+    JSON.stringify(
       {
-        input: Buffer.from(
-          `<svg width="${count * width}" height="${dirs.length * height}">${marks}</svg>`,
-        ),
+        clip: {
+          action: config.action,
+          unarmedPresentation: config.unarmedPresentation,
+          frameCount: count,
+          frameDurationsMs: dirs[0][1].poses.map((p) => p.durationMs),
+          playback: config.playback || "loop",
+          cycleWorldStride: config.cycleWorldStride,
+          releaseFrame: config.releaseFrame,
+        },
+        layerOrderByDirection: config.layerOrderByDirection,
+        appearanceOptions: config.appearanceOptions,
+        exclusiveLayerGroups: config.exclusiveLayerGroups,
+        renderScale: config.renderScale,
+        groundPivot: config.groundPivot,
+        sourceSize: config.cell,
+        directions: dirs.map(([name]) => name),
+        maxPageDimension: 2048,
+        activeLayers: atlasBudget.filter((l) => l.active).map((l) => l.layer),
+        inactiveLayers: atlasBudget
+          .filter((l) => !l.active)
+          .map((l) => l.layer),
+        layers: atlasBudget,
+        decodedBytes: atlasBudget.reduce((sum, l) => sum + l.decodedBytes, 0),
+        mipmapMultiplierIfEnabled: 4 / 3,
       },
-    ])
-    .png()
-    .toFile(path.join(output, "contact-debug.png"));
+      null,
+      2,
+    ),
+  );
+  await writePosePreviews({ config, output, contact, report, count, dirs });
   const activeLayers = [
     ...new Set(dirs.flatMap(([, d]) => d.attachments.map((a) => a.layer))),
   ];
-  const loopFrames = [];
-  for (let frame = 0; frame < count; frame++)
-    loopFrames.push(
-      await sharp(path.join(output, "contact-sheet.png"))
-        .extract({
-          left: frame * width,
-          top: 0,
-          width,
-          height: dirs.length * height,
-        })
-        .ensureAlpha()
-        .raw()
-        .toBuffer(),
-    );
-  await sharp(Buffer.concat(loopFrames), {
-    raw: {
-      width,
-      height: dirs.length * height * count,
-      channels: 4,
-      pageHeight: dirs.length * height,
-    },
-  })
-    .gif({ loop: 0, delay: dirs[0][1].poses.map((f) => f.durationMs) })
-    .toFile(path.join(output, "contact-loop.gif"));
   await writeFile(
     path.join(output, "contact-report.json"),
     JSON.stringify(

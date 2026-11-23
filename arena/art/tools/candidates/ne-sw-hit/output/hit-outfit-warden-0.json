@@ -1,0 +1,122 @@
+{
+  "frames": {
+    "hit/outfit-warden/NE/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 35,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 76,
+        "w": 35,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-warden/SW/00": {
+      "frame": {
+        "x": 46,
+        "y": 2,
+        "w": 40,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 70,
+        "y": 81,
+        "w": 40,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-warden/NE/00": {
+      "frame": {
+        "x": 90,
+        "y": 2,
+        "w": 40,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 77,
+        "w": 40,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-warden/SW/01": {
+      "frame": {
+        "x": 134,
+        "y": 2,
+        "w": 36,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 82,
+        "w": 36,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/outfit-warden/NE": [
+      "hit/outfit-warden/NE/00",
+      "hit/outfit-warden/NE/01"
+    ],
+    "hit/outfit-warden/SW": [
+      "hit/outfit-warden/SW/00",
+      "hit/outfit-warden/SW/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-outfit-warden-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 172,
+      "h": 63
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

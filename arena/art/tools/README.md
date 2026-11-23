@@ -1,89 +1,17 @@
-# Offline attachment pose export (prototype)
+# Offline registered attachment pose tools
 
-`node arena/art/tools/pose-export.mjs CONFIG.json OUTPUT_DIRECTORY`
+The four frozen NE/SW player candidates are `ne-sw-walk-16`, `ne-sw-attack`, `ne-sw-hit` and `ne-sw-idle`. Install the existing art package dependency with `npm ci --prefix arena/art`, then rebuild and verify all four from the repository root:
 
-Requires the existing art package's `sharp` dependency. Writes only the chosen output directory. It never modifies source art, client assets or release approvals. An export is an unapproved NE/SW study until the art reviewer accepts its contact sheet.
-
-The input is versioned JSON:
-
-```json
-{
-  "schemaVersion": 1,
-  "cell": [192, 192],
-  "groundPivot": [96, 172.8],
-  "action": "walk",
-  "renderScale": 1,
-  "cycleWorldStride": [0.75, 0],
-  "previewLayers": [
-    "hair-ivory-back",
-    "body",
-    "outfit-scholar",
-    "body-front",
-    "hair-ivory-front"
-  ],
-  "directions": {
-    "NE": {
-      "joints": {
-        "root": { "parent": null, "restOffset": [0, 0] },
-        "hipL": { "parent": "root", "restOffset": [-5, -47] },
-        "kneeL": { "parent": "hipL", "restOffset": [0, 22] },
-        "ankleL": { "parent": "kneeL", "restOffset": [0, 23] }
-      },
-      "attachments": [
-        {
-          "id": "near-thigh",
-          "layer": "body",
-          "image": "NE/thigh.png",
-          "joint": "hipL",
-          "pivot": [8, 3],
-          "zOrder": 2
-        },
-        {
-          "id": "near-shin",
-          "layer": "body",
-          "image": "NE/shin.png",
-          "joint": "kneeL",
-          "pivot": [7, 2],
-          "zOrder": 3
-        }
-      ],
-      "feet": { "L": { "joint": "ankleL", "soleOffset": [0, 2], "bend": 1 } },
-      "poses": [
-        {
-          "durationMs": 125,
-          "joints": {
-            "hipL": { "rotation": -12 },
-            "kneeL": { "rotation": 25 }
-          },
-          "contactFoot": "L",
-          "rootScreenDelta": [0, 0]
-        },
-        {
-          "durationMs": 125,
-          "joints": {},
-          "contactFoot": "L",
-          "rootScreenDelta": [2, -1]
-        }
-      ]
-    }
-  }
-}
+```sh
+node arena/art/tools/rebuild-frozen-clips.mjs /tmp/arena-frozen-clips
 ```
 
-The new sample’s 192px transparent cell contains a roughly 132px crown-to-ground figure; cell size is not body height. Do not apply a second body-height normalization.
+This command exports each clip, checks every runtime atlas PNG/JSON byte and the semantic descriptor against its frozen output, and writes `rebuild-result.json` with page hashes. It needs only this checkout and `sharp`; no service, API, image generation or external source tree is used. Shared final-pixel attachment inputs are in `sources/ne-sw-registered`; full registration and explicit pose targets are in each candidate's `pose.json`. The original generated large sheets are provenance, not hidden build inputs.
 
-This deliberately incomplete example explains the interface; it is not approved animation artwork. A real NE/SW study supplies both complete independently authored directions and all four opposite support/swing phases. Phase 0/2 alternate the supporting foot and opposing arm. Source PNGs are transparent direction-specific limb, garment, hair and weapon attachments created by the artist; do not mirror one direction or invent missing direction coverage.
+For one candidate, use `node arena/art/tools/pose-export.mjs CONFIG.json OUTPUT_DIRECTORY`. Optional `preview-looks.mjs CONFIG.json OUTPUT_DIRECTORY` composes the eight independent appearance combinations for review. The repository retains the actual runtime pages, unique `atlas-budget.json` descriptor and one contact sheet per clip; other large review GIFs, skeleton pages and contact reports are reproducible rather than committed.
 
-Coordinates are pixels, positive x right and y down; rotations are clockwise degrees, relative to the parent. Each joint's `restOffset` is measured from its parent in the parent's local frame. Attachment `pivot` is measured in the original attachment image; `rotation` optionally adjusts its registration angle. `zOrder` controls order within each output sprite layer; a frame's optional `depth` object overrides individual attachment order. Runtime inter-layer depth remains the established fourteen-layer order, so an attachment needing a different cross-layer depth must be assigned the appropriate front/back layer by the artist.
+Each descriptor records action, exact frame durations, playback, original canvas/pivot/scale, directions, active layers and all atlas pages. Walk carries its world stride; one-shot clips do not invent a stride. Independent scholar/warden, ivory/midnight and natural/gripping hand choices remain composable layer sets. Empty layers have no pages. Trimmed cells retain their original 192px canvas and ground pivot; pages fit 2048px with two-pixel extrusion.
 
-`rootScreenDelta` is the **cumulative projected screen displacement** of the actor root at that frame, not a per-frame delta. The artist derives it from world direction, speed, frame duration and the existing isometric projection. Do not reuse a constant screen stride across directions. The explicit positive `renderScale` converts atlas pixels to product screen pixels (the new registered 192px-canvas sample uses scale 1; the legacy actor scale was 136/192). The exporter divides screen displacement by this scale before atlas-space IK; the report records both spaces and their errors. `cycleWorldStride` documents world-space full-cycle motion for art/client agreement; it does not silently invent a direction projection. Knee/ankle positional offsets are rejected; use root/hip translation and joint rotations. Each support run plants a world-space sole point on its first frame. Subsequent frames subtract the moving root displacement from that plant point and solve the hip/knee/ankle chain; ankle orientation is preserved so the sole pivot does not rotate away. Unreachable targets fail explicitly rather than silently stretching limbs. `contactFoot: null` releases the plant. Each foot requires a two-segment chain and can select the knee bend sign.
+`world-chain.mjs` solves an anatomical two-segment chain in an authoring plane. `world-leg.mjs` supplies the heading/height leg plane and projection; `world-walk.mjs` supplies stance/swing targets and cycle audits. `world-pose.mjs` maps the projected segment endpoints to registered pixel axes; source thickness and boot shape stay unchanged. `pose-kinematics.mjs` handles explicit arm targets, `pose-raster.mjs` handles alpha sampling, `trim-atlas.mjs` packs pages, and `pose-export.mjs` assembles the clip and reports. Real unreachable targets fail instead of stretching anatomical lengths.
 
-Outputs use existing `frameName(action, layer, direction, index)` names and 192px cells/normalized ground anchor. Four 125ms poses match the existing walk runtime. Different modules or frame counts can be exported for study, but their runtime catalog must be integrated separately; per-frame durations are recorded in the report, not encoded as runtime playback changes. All fourteen layer PNG/JSON pairs are emitted; inactive layers are transparent. Only explicitly supplied directions are listed. This tool does not claim an eight-direction runtime replacement.
-
-`pose-example.json` is an interface example with deliberately missing source images, not a runnable art substitute.
-
-`footTargets` optionally supplies explicit atlas-space sole positions by foot ID for a pose. The exporter solves each requested leg before applying the ongoing support-foot world lock. These targets must come from reviewed contact/passing poses; an unreachable target fails without stretching source segments.
-
-`contact-loop.gif` plays the selected directions together at the declared frame durations.
-
-`contact-debug.png` adds phase/direction/support labels and a red sole marker. `contact-sheet.png` shows the selected appearance at actor-local origin. `contact-report.json` records root displacement, actual/planted world sole points, post-IK joints and numeric foot-lock error. Inspect both: zero foot-lock error does not establish believable anatomy, occlusion, contact timing, opposite limb action, seam continuity or a good loop. Loop closure also requires the final pose to transition into phase zero after the configured full-cycle world stride.
+Art accepted these contact-page candidates for product playback review. This does not grant release or natural-motion acceptance. Attack without a staff is an open-hand gesture candidate. Idle is actual fixed-foot breathing; down and the separate work/carry actions are outside this source batch. Numeric foot locks describe keyframes: continuous actor motion during held walk frames still has a 4.83px displacement bound. Development evidence lives at `/home/user/arena-v030-atlas-evidence` and is not required to reproduce the source.

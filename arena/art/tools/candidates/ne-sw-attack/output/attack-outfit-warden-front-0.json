@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "attack/outfit-warden-front/NE/03": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 17,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 82,
+        "w": 17,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden-front/SW/03": {
+      "frame": {
+        "x": 28,
+        "y": 2,
+        "w": 17,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 86,
+        "w": 17,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden-front/SW/00": {
+      "frame": {
+        "x": 49,
+        "y": 2,
+        "w": 22,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 86,
+        "w": 22,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden-front/NE/00": {
+      "frame": {
+        "x": 75,
+        "y": 2,
+        "w": 24,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 96,
+        "y": 82,
+        "w": 24,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden-front/SW/01": {
+      "frame": {
+        "x": 103,
+        "y": 2,
+        "w": 26,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 87,
+        "w": 26,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden-front/SW/02": {
+      "frame": {
+        "x": 133,
+        "y": 2,
+        "w": 26,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 87,
+        "w": 26,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden-front/NE/01": {
+      "frame": {
+        "x": 163,
+        "y": 2,
+        "w": 32,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 101,
+        "y": 82,
+        "w": 32,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden-front/NE/02": {
+      "frame": {
+        "x": 199,
+        "y": 2,
+        "w": 32,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 101,
+        "y": 82,
+        "w": 32,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/outfit-warden-front/NE": [
+      "attack/outfit-warden-front/NE/00",
+      "attack/outfit-warden-front/NE/01",
+      "attack/outfit-warden-front/NE/02",
+      "attack/outfit-warden-front/NE/03"
+    ],
+    "attack/outfit-warden-front/SW": [
+      "attack/outfit-warden-front/SW/00",
+      "attack/outfit-warden-front/SW/01",
+      "attack/outfit-warden-front/SW/02",
+      "attack/outfit-warden-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-outfit-warden-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 233,
+      "h": 49
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
