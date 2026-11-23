@@ -1,0 +1,803 @@
+{
+  "status": "static-hair-registration-prototype",
+  "releaseApproved": false,
+  "renderScale": 1,
+  "cell": [
+    192,
+    192
+  ],
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sources": {
+    "iso-v030-ivory-ewns.png": {
+      "source": "iso-v030-ivory-ewns.png",
+      "sha256": "66e231d83043868c4eb9d2643488a7920eef50aedffa44ce0b50ab867d660dfa",
+      "originalSize": [
+        1254,
+        1254
+      ],
+      "samplingScale": 1.0207336523125996,
+      "sourceSuccessCount": 1
+    },
+    "iso-v030-hair-nwse.png": {
+      "source": "iso-v030-hair-nwse.png",
+      "sha256": "0e6515da204706bb473f307993a1a981c526055e98df1bcf268f8a10c8dbf076",
+      "originalSize": [
+        1254,
+        1254
+      ],
+      "samplingScale": 1.0207336523125996,
+      "sourceSuccessCount": 1
+    },
+    "iso-v030-midnight-ewns.png": {
+      "source": "iso-v030-midnight-ewns.png",
+      "sha256": "71315e0ba53d09d8c4489b8c64d84d5b95a06da9013f228a894b59ec1de6e374",
+      "originalSize": [
+        1254,
+        1254
+      ],
+      "samplingScale": 1.0207336523125996,
+      "sourceSuccessCount": 1
+    }
+  },
+  "directions": {
+    "E": [
+      {
+        "id": "hair-ivory-back",
+        "layer": "hair-ivory-back",
+        "joint": "neck",
+        "image": "E/hair-ivory-back.png",
+        "pivot": [
+          95.23957219251336,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-ivory-ewns.png",
+        "sourceRect": [
+          0,
+          0,
+          640,
+          600
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          35
+        ]
+      },
+      {
+        "id": "hair-ivory-front",
+        "layer": "hair-ivory-front",
+        "joint": "neck",
+        "image": "E/hair-ivory-front.png",
+        "pivot": [
+          95.23957219251336,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-ivory-ewns.png",
+        "sourceRect": [
+          0,
+          0,
+          640,
+          600
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          35
+        ]
+      },
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "E/hair-midnight-back.png",
+        "pivot": [
+          95.23957219251336,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-midnight-ewns.png",
+        "sourceRect": [
+          0,
+          0,
+          640,
+          600
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          69,
+          36
+        ]
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "E/hair-midnight-front.png",
+        "pivot": [
+          95.23957219251336,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-midnight-ewns.png",
+        "sourceRect": [
+          0,
+          0,
+          640,
+          600
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          69,
+          36
+        ]
+      }
+    ],
+    "W": [
+      {
+        "id": "hair-ivory-back",
+        "layer": "hair-ivory-back",
+        "joint": "neck",
+        "image": "W/hair-ivory-back.png",
+        "pivot": [
+          97.02210242587601,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-ivory-ewns.png",
+        "sourceRect": [
+          640,
+          0,
+          640,
+          600
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          35
+        ]
+      },
+      {
+        "id": "hair-ivory-front",
+        "layer": "hair-ivory-front",
+        "joint": "neck",
+        "image": "W/hair-ivory-front.png",
+        "pivot": [
+          97.02210242587601,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-ivory-ewns.png",
+        "sourceRect": [
+          640,
+          0,
+          640,
+          600
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          35
+        ]
+      },
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "W/hair-midnight-back.png",
+        "pivot": [
+          97.02210242587601,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-midnight-ewns.png",
+        "sourceRect": [
+          640,
+          0,
+          640,
+          600
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          71,
+          36
+        ]
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "W/hair-midnight-front.png",
+        "pivot": [
+          97.02210242587601,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-midnight-ewns.png",
+        "sourceRect": [
+          640,
+          0,
+          640,
+          600
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          71,
+          36
+        ]
+      }
+    ],
+    "N": [
+      {
+        "id": "hair-ivory-back",
+        "layer": "hair-ivory-back",
+        "joint": "neck",
+        "image": "N/hair-ivory-back.png",
+        "pivot": [
+          96.25483870967741,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-ivory-ewns.png",
+        "sourceRect": [
+          0,
+          600,
+          640,
+          680
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          31
+        ]
+      },
+      {
+        "id": "hair-ivory-front",
+        "layer": "hair-ivory-front",
+        "joint": "neck",
+        "image": "N/hair-ivory-front.png",
+        "pivot": [
+          96.25483870967741,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-ivory-ewns.png",
+        "sourceRect": [
+          0,
+          600,
+          640,
+          680
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          31
+        ]
+      },
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "N/hair-midnight-back.png",
+        "pivot": [
+          96.25483870967741,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-midnight-ewns.png",
+        "sourceRect": [
+          0,
+          600,
+          640,
+          680
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          34
+        ]
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "N/hair-midnight-front.png",
+        "pivot": [
+          96.25483870967741,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-midnight-ewns.png",
+        "sourceRect": [
+          0,
+          600,
+          640,
+          680
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          34
+        ]
+      }
+    ],
+    "S": [
+      {
+        "id": "hair-ivory-back",
+        "layer": "hair-ivory-back",
+        "joint": "neck",
+        "image": "S/hair-ivory-back.png",
+        "pivot": [
+          96.77073170731707,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-ivory-ewns.png",
+        "sourceRect": [
+          640,
+          600,
+          640,
+          680
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          31
+        ]
+      },
+      {
+        "id": "hair-ivory-front",
+        "layer": "hair-ivory-front",
+        "joint": "neck",
+        "image": "S/hair-ivory-front.png",
+        "pivot": [
+          96.77073170731707,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-ivory-ewns.png",
+        "sourceRect": [
+          640,
+          600,
+          640,
+          680
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          72,
+          31
+        ]
+      },
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "S/hair-midnight-back.png",
+        "pivot": [
+          96.77073170731707,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-midnight-ewns.png",
+        "sourceRect": [
+          640,
+          600,
+          640,
+          680
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          70,
+          34
+        ]
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "S/hair-midnight-front.png",
+        "pivot": [
+          96.77073170731707,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-midnight-ewns.png",
+        "sourceRect": [
+          640,
+          600,
+          640,
+          680
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          70,
+          34
+        ]
+      }
+    ],
+    "NW": [
+      {
+        "id": "hair-ivory-back",
+        "layer": "hair-ivory-back",
+        "joint": "neck",
+        "image": "NW/hair-ivory-back.png",
+        "pivot": [
+          97.45846153846153,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-hair-nwse.png",
+        "sourceRect": [
+          0,
+          0,
+          640,
+          640
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          73,
+          35
+        ]
+      },
+      {
+        "id": "hair-ivory-front",
+        "layer": "hair-ivory-front",
+        "joint": "neck",
+        "image": "NW/hair-ivory-front.png",
+        "pivot": [
+          97.45846153846153,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-hair-nwse.png",
+        "sourceRect": [
+          0,
+          0,
+          640,
+          640
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          73,
+          35
+        ]
+      },
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "NW/hair-midnight-back.png",
+        "pivot": [
+          97.45846153846153,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-hair-nwse.png",
+        "sourceRect": [
+          640,
+          0,
+          640,
+          640
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          71,
+          35
+        ]
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "NW/hair-midnight-front.png",
+        "pivot": [
+          97.45846153846153,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-hair-nwse.png",
+        "sourceRect": [
+          640,
+          0,
+          640,
+          640
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          71,
+          35
+        ]
+      }
+    ],
+    "SE": [
+      {
+        "id": "hair-ivory-back",
+        "layer": "hair-ivory-back",
+        "joint": "neck",
+        "image": "SE/hair-ivory-back.png",
+        "pivot": [
+          95.5175572519084,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-hair-nwse.png",
+        "sourceRect": [
+          0,
+          640,
+          640,
+          640
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          73,
+          35
+        ]
+      },
+      {
+        "id": "hair-ivory-front",
+        "layer": "hair-ivory-front",
+        "joint": "neck",
+        "image": "SE/hair-ivory-front.png",
+        "pivot": [
+          95.5175572519084,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-hair-nwse.png",
+        "sourceRect": [
+          0,
+          640,
+          640,
+          640
+        ],
+        "sourceScale": 0.075,
+        "placement": [
+          73,
+          35
+        ]
+      },
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "SE/hair-midnight-back.png",
+        "pivot": [
+          95.5175572519084,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-hair-nwse.png",
+        "sourceRect": [
+          640,
+          640,
+          640,
+          640
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          71,
+          35
+        ]
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "SE/hair-midnight-front.png",
+        "pivot": [
+          95.5175572519084,
+          78
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-hair-nwse.png",
+        "sourceRect": [
+          640,
+          640,
+          640,
+          640
+        ],
+        "sourceScale": 0.08,
+        "placement": [
+          71,
+          35
+        ]
+      }
+    ]
+  }
+}
