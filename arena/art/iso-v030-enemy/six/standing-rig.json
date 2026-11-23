@@ -49,22 +49,22 @@
         "leftElbow": {
           "parent": "leftShoulder",
           "cell": [
-            80.85968450082736,
+            80.78536054656811,
             117.32
           ],
           "restOffset": [
-            -0.14031549917264385,
+            -0.21463945343188584,
             14.319999999999993
           ]
         },
         "leftWrist": {
           "parent": "leftElbow",
           "cell": [
-            79.4320341918488,
+            78.94006647664554,
             129.56
           ],
           "restOffset": [
-            -1.4276503089785564,
+            -1.8452940699225735,
             12.240000000000009
           ]
         },
@@ -82,22 +82,22 @@
         "rightElbow": {
           "parent": "rightShoulder",
           "cell": [
-            111.0382516635309,
+            111.0546775883632,
             117.32
           ],
           "restOffset": [
-            0.03825166353090026,
+            0.05467758836320513,
             14.319999999999993
           ]
         },
         "rightWrist": {
           "parent": "rightElbow",
           "cell": [
-            111.80202063665077,
+            112.02557771300712,
             129.56
           ],
           "restOffset": [
-            0.7637689731198662,
+            0.9709001246439186,
             12.240000000000009
           ]
         },
@@ -207,7 +207,7 @@
           "joint": "leftShoulder",
           "image": "attachments/N/left-upper-arm.png",
           "pivot": [
-            4.78488692774407,
+            5.883753501400561,
             2
           ],
           "zOrder": 5,
@@ -218,7 +218,7 @@
           "joint": "leftElbow",
           "image": "attachments/N/left-forearm-hand.png",
           "pivot": [
-            4.644571428571428,
+            5.669114047968674,
             16.32
           ],
           "zOrder": 5,
@@ -229,7 +229,7 @@
           "joint": "rightShoulder",
           "image": "attachments/N/right-upper-arm.png",
           "pivot": [
-            5.46426652337453,
+            5.98679706601467,
             2
           ],
           "zOrder": 5,
@@ -240,7 +240,7 @@
           "joint": "rightElbow",
           "image": "attachments/N/right-forearm-hand.png",
           "pivot": [
-            5.502518186905428,
+            6.04147465437788,
             16.32
           ],
           "zOrder": 5,
@@ -336,7 +336,47 @@
           "bend": 1
         }
       },
-      "attackSide": "right"
+      "attackSide": "right",
+      "actionTargets": {
+        "attack": [
+          {
+            "rightWrist": {
+              "point": [
+                112.02557771300712,
+                129.56
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                115,
+                115
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                119,
+                99
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                112.02557771300712,
+                129.56
+              ],
+              "bend": -1
+            }
+          }
+        ]
+      }
     },
     "NW": {
       "joints": {
@@ -376,66 +416,66 @@
         "leftShoulder": {
           "parent": "neck",
           "cell": [
-            83,
-            106
+            84,
+            108
           ],
           "restOffset": [
-            -11.799999999999997,
-            7.5
+            -10.799999999999997,
+            9.5
           ]
         },
         "leftElbow": {
           "parent": "leftShoulder",
           "cell": [
-            83.71558354455739,
-            120.32
+            84.9252134297316,
+            122.32
           ],
           "restOffset": [
-            0.7155835445573899,
+            0.925213429731599,
             14.319999999999993
           ]
         },
         "leftWrist": {
           "parent": "leftElbow",
           "cell": [
-            80.44041107486342,
-            132.56
+            81.23249722075849,
+            134.56
           ],
           "restOffset": [
-            -3.2751724696939704,
+            -3.69271620897311,
             12.240000000000009
           ]
         },
         "rightShoulder": {
           "parent": "neck",
           "cell": [
-            108,
+            110,
             102
           ],
           "restOffset": [
-            13.200000000000003,
+            15.200000000000003,
             3.5
           ]
         },
         "rightElbow": {
           "parent": "rightShoulder",
           "cell": [
-            108.90859809649206,
+            110.85460115357921,
             116.32
           ],
           "restOffset": [
-            0.9085980964920566,
+            0.8546011535792104,
             14.319999999999993
           ]
         },
         "rightWrist": {
           "parent": "rightElbow",
           "cell": [
-            108.01022718210275,
+            109.98879391529547,
             128.56
           ],
           "restOffset": [
-            -0.8983709143893037,
+            -0.8658072382837361,
             12.240000000000009
           ]
         },
@@ -545,7 +585,7 @@
           "joint": "leftShoulder",
           "image": "attachments/NW/left-upper-arm.png",
           "pivot": [
-            5.515090543259557,
+            6.019134396355353,
             2
           ],
           "zOrder": 5,
@@ -556,7 +596,7 @@
           "joint": "leftElbow",
           "image": "attachments/NW/left-forearm-hand.png",
           "pivot": [
-            6.230674087816945,
+            6.944347826086957,
             16.32
           ],
           "zOrder": 5,
@@ -567,7 +607,7 @@
           "joint": "rightShoulder",
           "image": "attachments/NW/right-upper-arm.png",
           "pivot": [
-            4.9063856168629885,
+            5.374578177727784,
             2
           ],
           "zOrder": 1,
@@ -578,7 +618,7 @@
           "joint": "rightElbow",
           "image": "attachments/NW/right-forearm-hand.png",
           "pivot": [
-            5.814983713355049,
+            6.229179331306991,
             16.32
           ],
           "zOrder": 1,
@@ -674,7 +714,47 @@
           "bend": 1
         }
       },
-      "attackSide": "left"
+      "attackSide": "left",
+      "actionTargets": {
+        "attack": [
+          {
+            "leftWrist": {
+              "point": [
+                81.23249722075849,
+                134.56
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                77,
+                121
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                65,
+                106
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                81.23249722075849,
+                134.56
+              ],
+              "bend": 1
+            }
+          }
+        ]
+      }
     },
     "W": {
       "joints": {
@@ -714,66 +794,66 @@
         "leftShoulder": {
           "parent": "neck",
           "cell": [
-            92,
+            100,
             108
           ],
           "restOffset": [
-            -2.200000000000003,
+            5.799999999999997,
             9.5
           ]
         },
         "leftElbow": {
           "parent": "leftShoulder",
           "cell": [
-            92.00173633053474,
+            100.04970364957316,
             122.32
           ],
           "restOffset": [
-            0.0017363305347402047,
+            0.049703649573160646,
             14.319999999999993
           ]
         },
         "leftWrist": {
           "parent": "leftElbow",
           "cell": [
-            88.83449757249981,
+            96.34332636497786,
             134.56
           ],
           "restOffset": [
-            -3.1672387580349266,
+            -3.7063772845953054,
             12.240000000000009
           ]
         },
         "rightShoulder": {
           "parent": "neck",
           "cell": [
-            100,
+            92,
             102
           ],
           "restOffset": [
-            5.799999999999997,
+            -2.200000000000003,
             3.5
           ]
         },
         "rightElbow": {
           "parent": "rightShoulder",
           "cell": [
-            98.20133095228283,
+            89.98782352079593,
             116.32
           ],
           "restOffset": [
-            -1.7986690477171692,
+            -2.012176479204072,
             14.319999999999993
           ]
         },
         "rightWrist": {
           "parent": "rightElbow",
           "cell": [
-            96.96076163485809,
+            88.49743712166004,
             128.56
           ],
           "restOffset": [
-            -1.2405693174247432,
+            -1.490386399135886,
             12.240000000000009
           ]
         },
@@ -883,7 +963,7 @@
           "joint": "leftShoulder",
           "image": "attachments/W/left-upper-arm.png",
           "pivot": [
-            5.899521531100478,
+            6.959173635022135,
             2
           ],
           "zOrder": 5,
@@ -894,7 +974,7 @@
           "joint": "leftElbow",
           "image": "attachments/W/left-forearm-hand.png",
           "pivot": [
-            5.90125786163522,
+            7.0088772845953,
             16.32
           ],
           "zOrder": 5,
@@ -905,7 +985,7 @@
           "joint": "rightShoulder",
           "image": "attachments/W/right-upper-arm.png",
           "pivot": [
-            6.30832927423283,
+            6.989031078610603,
             2
           ],
           "zOrder": 1,
@@ -916,7 +996,7 @@
           "joint": "rightElbow",
           "image": "attachments/W/right-forearm-hand.png",
           "pivot": [
-            4.509660226515656,
+            4.976854599406528,
             16.32
           ],
           "zOrder": 1,
@@ -1012,7 +1092,47 @@
           "bend": 1
         }
       },
-      "attackSide": "left"
+      "attackSide": "left",
+      "actionTargets": {
+        "attack": [
+          {
+            "leftWrist": {
+              "point": [
+                96.34332636497786,
+                134.56
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                94,
+                121
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                78,
+                112
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                96.34332636497786,
+                134.56
+              ],
+              "bend": -1
+            }
+          }
+        ]
+      }
     },
     "S": {
       "joints": {
@@ -1052,66 +1172,66 @@
         "leftShoulder": {
           "parent": "neck",
           "cell": [
-            111,
-            103
+            114,
+            104
           ],
           "restOffset": [
-            15,
-            4.5
+            18,
+            5.5
           ]
         },
         "leftElbow": {
           "parent": "leftShoulder",
           "cell": [
-            110.27737715181735,
-            117.32
+            113.03637598712459,
+            118.32
           ],
           "restOffset": [
-            -0.7226228481826524,
+            -0.9636240128754139,
             14.319999999999993
           ]
         },
         "leftWrist": {
           "parent": "leftElbow",
           "cell": [
-            109.69406884319592,
-            129.56
+            112.29066404058659,
+            130.56
           ],
           "restOffset": [
-            -0.5833083086214259,
+            -0.7457119465379947,
             12.240000000000009
           ]
         },
         "rightShoulder": {
           "parent": "neck",
           "cell": [
-            81,
-            103
+            78,
+            104
           ],
           "restOffset": [
-            -15,
-            4.5
+            -18,
+            5.5
           ]
         },
         "rightElbow": {
           "parent": "rightShoulder",
           "cell": [
-            81.52676851887756,
-            117.32
+            78.52261428126772,
+            118.32
           ],
           "restOffset": [
-            0.5267685188775602,
+            0.522614281267721,
             14.319999999999993
           ]
         },
         "rightWrist": {
           "parent": "rightElbow",
           "cell": [
-            81.6870172631971,
-            129.56
+            78.74863886228755,
+            130.56
           ],
           "restOffset": [
-            0.16024874431954572,
+            0.22602458101982847,
             12.240000000000009
           ]
         },
@@ -1221,7 +1341,7 @@
           "joint": "leftShoulder",
           "image": "attachments/S/left-upper-arm.png",
           "pivot": [
-            5.156003937007874,
+            5.800559179869524,
             2
           ],
           "zOrder": 5,
@@ -1232,7 +1352,7 @@
           "joint": "leftElbow",
           "image": "attachments/S/left-forearm-hand.png",
           "pivot": [
-            4.4333810888252145,
+            4.836935166994106,
             16.32
           ],
           "zOrder": 5,
@@ -1243,7 +1363,7 @@
           "joint": "rightShoulder",
           "image": "attachments/S/right-upper-arm.png",
           "pivot": [
-            5.919177427068388,
+            6.4312692138779095,
             2
           ],
           "zOrder": 5,
@@ -1254,7 +1374,7 @@
           "joint": "rightElbow",
           "image": "attachments/S/right-forearm-hand.png",
           "pivot": [
-            6.445945945945946,
+            6.953883495145631,
             16.32
           ],
           "zOrder": 5,
@@ -1350,7 +1470,47 @@
           "bend": 1
         }
       },
-      "attackSide": "right"
+      "attackSide": "right",
+      "actionTargets": {
+        "attack": [
+          {
+            "rightWrist": {
+              "point": [
+                78.74863886228755,
+                130.56
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                73,
+                117
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                70,
+                124
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "rightWrist": {
+              "point": [
+                78.74863886228755,
+                130.56
+              ],
+              "bend": 1
+            }
+          }
+        ]
+      }
     },
     "SE": {
       "joints": {
@@ -1390,66 +1550,66 @@
         "leftShoulder": {
           "parent": "neck",
           "cell": [
-            109,
+            111,
             106
           ],
           "restOffset": [
-            11.799999999999997,
+            13.799999999999997,
             7.5
           ]
         },
         "leftElbow": {
           "parent": "leftShoulder",
           "cell": [
-            108.96494536197021,
+            111.03663568315856,
             120.32
           ],
           "restOffset": [
-            -0.03505463802979136,
+            0.0366356831585648,
             14.319999999999993
           ]
         },
         "leftWrist": {
           "parent": "leftElbow",
           "cell": [
-            110.49888746500193,
+            112.73384628140208,
             132.56
           ],
           "restOffset": [
-            1.5339421030317197,
+            1.6972105982435153,
             12.240000000000009
           ]
         },
         "rightShoulder": {
           "parent": "neck",
           "cell": [
-            84,
-            102
+            82,
+            103
           ],
           "restOffset": [
-            -13.200000000000003,
-            3.5
+            -15.200000000000003,
+            4.5
           ]
         },
         "rightElbow": {
           "parent": "rightShoulder",
           "cell": [
-            85.31135036374843,
-            116.32
+            83.34902658847086,
+            117.32
           ],
           "restOffset": [
-            1.3113503637484314,
+            1.3490265884708634,
             14.319999999999993
           ]
         },
         "rightWrist": {
           "parent": "rightElbow",
           "cell": [
-            86.42260737912747,
-            128.56
+            84.60121501218423,
+            129.56
           ],
           "restOffset": [
-            1.1112570153790386,
+            1.2521884237133634,
             12.240000000000009
           ]
         },
@@ -1559,7 +1719,7 @@
           "joint": "leftShoulder",
           "image": "attachments/SE/left-upper-arm.png",
           "pivot": [
-            5.39672711189739,
+            5.702986958350863,
             2
           ],
           "zOrder": 5,
@@ -1570,7 +1730,7 @@
           "joint": "leftElbow",
           "image": "attachments/SE/left-forearm-hand.png",
           "pivot": [
-            5.361672473867595,
+            5.739622641509434,
             16.32
           ],
           "zOrder": 5,
@@ -1581,7 +1741,7 @@
           "joint": "rightShoulder",
           "image": "attachments/SE/right-upper-arm.png",
           "pivot": [
-            6.192289609779031,
+            6.728213977566868,
             2
           ],
           "zOrder": 1,
@@ -1592,7 +1752,7 @@
           "joint": "rightElbow",
           "image": "attachments/SE/right-forearm-hand.png",
           "pivot": [
-            7.5036399735274655,
+            8.077240566037736,
             16.32
           ],
           "zOrder": 1,
@@ -1688,7 +1848,47 @@
           "bend": 1
         }
       },
-      "attackSide": "left"
+      "attackSide": "left",
+      "actionTargets": {
+        "attack": [
+          {
+            "leftWrist": {
+              "point": [
+                112.73384628140208,
+                132.56
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                117,
+                119
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                131,
+                117
+              ],
+              "bend": -1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                112.73384628140208,
+                132.56
+              ],
+              "bend": -1
+            }
+          }
+        ]
+      }
     },
     "E": {
       "joints": {
@@ -1728,66 +1928,66 @@
         "leftShoulder": {
           "parent": "neck",
           "cell": [
-            100,
+            92,
             108
           ],
           "restOffset": [
-            2.200000000000003,
+            -5.799999999999997,
             9.5
           ]
         },
         "leftElbow": {
           "parent": "leftShoulder",
           "cell": [
-            100.02523826788261,
+            91.78586390684723,
             122.32
           ],
           "restOffset": [
-            0.02523826788261374,
+            -0.21413609315277427,
             14.319999999999993
           ]
         },
         "leftWrist": {
           "parent": "leftElbow",
           "cell": [
-            102.27942014357515,
+            94.26577611773403,
             134.56
           ],
           "restOffset": [
-            2.254181875692538,
+            2.479912210886809,
             12.240000000000009
           ]
         },
         "rightShoulder": {
           "parent": "neck",
           "cell": [
-            92,
+            100,
             102
           ],
           "restOffset": [
-            -5.799999999999997,
+            2.200000000000003,
             3.5
           ]
         },
         "rightElbow": {
           "parent": "rightShoulder",
           "cell": [
-            93.18783099688474,
+            101.58082505729564,
             116.32
           ],
           "restOffset": [
-            1.1878309968847418,
+            1.580825057295641,
             14.319999999999993
           ]
         },
         "rightWrist": {
           "parent": "rightElbow",
           "cell": [
-            95.25195607289899,
+            103.84003589623147,
             128.56
           ],
           "restOffset": [
-            2.0641250760142498,
+            2.2592108389358287,
             12.240000000000009
           ]
         },
@@ -1897,7 +2097,7 @@
           "joint": "leftShoulder",
           "image": "attachments/E/left-upper-arm.png",
           "pivot": [
-            6.277857484457198,
+            6.981456354590683,
             2
           ],
           "zOrder": 5,
@@ -1908,7 +2108,7 @@
           "joint": "leftElbow",
           "image": "attachments/E/left-forearm-hand.png",
           "pivot": [
-            6.303095752339813,
+            6.767320261437908,
             16.32
           ],
           "zOrder": 5,
@@ -1919,7 +2119,7 @@
           "joint": "rightShoulder",
           "image": "attachments/E/right-upper-arm.png",
           "pivot": [
-            5.383696780893042,
+            6.308658008658009,
             2
           ],
           "zOrder": 1,
@@ -1930,7 +2130,7 @@
           "joint": "rightElbow",
           "image": "attachments/E/right-forearm-hand.png",
           "pivot": [
-            6.571527777777778,
+            7.889483065953654,
             16.32
           ],
           "zOrder": 1,
@@ -2026,7 +2226,47 @@
           "bend": 1
         }
       },
-      "attackSide": "left"
+      "attackSide": "left",
+      "actionTargets": {
+        "attack": [
+          {
+            "leftWrist": {
+              "point": [
+                94.26577611773403,
+                134.56
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                98,
+                121
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                114,
+                112
+              ],
+              "bend": 1
+            }
+          },
+          {
+            "leftWrist": {
+              "point": [
+                94.26577611773403,
+                134.56
+              ],
+              "bend": 1
+            }
+          }
+        ]
+      }
     }
   }
 }

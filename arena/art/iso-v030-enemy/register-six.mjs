@@ -14,11 +14,11 @@ const standing={directions:{}}, down={directions:{}}, inventory=[];
 // ground height are invariant. F is horizontal view width (px at scale 1).
 const calibration={
  N:{head:32,torso:41,skirt:40,arms:[[-15,103],[15,103]],dx:0},
- NW:{head:31,torso:37,skirt:39,arms:[[-13,106],[12,102]],dx:-1.2},
- W:{head:31,torso:33,skirt:34,arms:[[-4,108],[4,102]],dx:-1.8},
- S:{head:32,torso:41,skirt:40,arms:[[15,103],[-15,103]],dx:0},
- SE:{head:31,torso:37,skirt:39,arms:[[13,106],[-12,102]],dx:1.2},
- E:{head:31,torso:33,skirt:34,arms:[[4,108],[-4,102]],dx:1.8},
+ NW:{head:31,torso:37,skirt:39,arms:[[-12,108],[14,102]],dx:-1.2},
+ W:{head:31,torso:33,skirt:34,arms:[[4,108],[-4,102]],dx:-1.8},
+ S:{head:32,torso:41,skirt:40,arms:[[18,104],[-18,104]],dx:0},
+ SE:{head:31,torso:37,skirt:39,arms:[[15,106],[-14,103]],dx:1.2},
+ E:{head:31,torso:33,skirt:34,arms:[[-4,108],[4,102]],dx:1.8},
 };
 function components(data,w,h,threshold){
  const seen=new Uint8Array(w*h),q=new Int32Array(w*h), result=[];
@@ -71,7 +71,7 @@ for(const [group,hs] of [["back",["N","NW","W"]],["front",["S","SE","E"]]]){
     const original=sharp(buf).extract(crop);
     if(kind==="parts"){
      const w0=crop.width,h0=crop.height;
-     const height=[34,41,34,34,34,49,49][col],width=Math.round(col<3?[conf.head,conf.torso,conf.skirt][col]:w0/h0*height);
+     const height=[34,41,34,34,34,49,49][col],width=Math.round(col<3?[conf.head,conf.torso,conf.skirt][col]:w0/h0*height*(col<5?1.12:1));
      const {data:pix}=await original.resize(width,height,{fit:"fill"}).ensureAlpha().raw().toBuffer({resolveWithObject:true});
      // The new inventory is a little more red than the old violet ink.
      for(let i=0;i<pix.length;i+=4){const r=pix[i],g=pix[i+1],b=pix[i+2];if(r-g<37&&r-b<40){pix[i]=Math.round(r*.91);pix[i+1]=Math.round(g*.93);pix[i+2]=Math.min(255,Math.round(b*1.015));}}
@@ -102,6 +102,15 @@ for(const [group,hs] of [["back",["N","NW","W"]],["front",["S","SE","E"]]]){
     }else{
      await registerFloor({col,h,crop,original,d,put,manifest});
     }
+   }
+   if(kind==="parts"){
+    const side=d.attackSide,j=d.joints,sh=j[side+"Shoulder"].cell,rest=j[side+"Wrist"].cell;
+    // Camera-depth blows are foreshortened relative to side views. In
+    // particular, north must strike past the shoulder, not salute the hood.
+    const wind={N:[4,12],S:[-5,13],W:[-6,13],E:[6,13],NW:[-7,13],SE:[6,13]}[h],
+     strike={N:[8,-4],S:[-8,20],W:[-22,4],E:[22,4],NW:[-19,-2],SE:[20,11]}[h],
+     bend=sh[0]<96?1:-1;
+    d.actionTargets={attack:[rest,add(sh,wind),add(sh,strike),rest].map(point=>({[side+"Wrist"]:{point,bend}}))};
    }
    (kind==="parts"?standing:down).directions[h]=d;
   }
