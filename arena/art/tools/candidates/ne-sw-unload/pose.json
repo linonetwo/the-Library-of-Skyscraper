@@ -1,0 +1,2696 @@
+{
+  "schemaVersion": 1,
+  "status": "prototype",
+  "releaseApproved": false,
+  "walkApproved": false,
+  "sourcePoseOnly": false,
+  "source": "arena/art/source/iso-v030-complete-limbs.png",
+  "sourceSha256": "cac3906aa12b5ac8c7686bbb64ad591c54c884d52c4ead091e27bbdf2c61018d",
+  "sourceGeneration": "GPT Image 2 proxy-imagegen; first attempt success; text-only; no reference upload",
+  "cell": [
+    192,
+    192
+  ],
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "ground": [
+    96,
+    172.8
+  ],
+  "renderScale": 1,
+  "tile": [
+    128,
+    64
+  ],
+  "camera": {
+    "yaw": 45,
+    "elevation": 30,
+    "zScale": 78.3837
+  },
+  "action": "unload",
+  "previewLayers": [
+    "weapon-staff-back",
+    "hair-ivory-back",
+    "cargo-bundle-back",
+    "body",
+    "outfit-scholar",
+    "body-front",
+    "cargo-bundle-front",
+    "hand-front",
+    "hair-ivory-front"
+  ],
+  "notes": [
+    "Complete limbs are new independent source attachments, not elongated old foreshortened sprites.",
+    "Hip articular center is 10px above old crotch landmark, beneath torso overlap; torso/head unchanged.",
+    "Left/right limb sources are independent cells with equal registered length; no whole-body mirroring.",
+    "Near/far shading, knee seams, support contacts and pose loop still require visual approval."
+  ],
+  "directions": {
+    "NE": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "restOffset": [
+            0,
+            0
+          ],
+          "cell": [
+            96,
+            172.8
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "restOffset": [
+            0.359375,
+            -52.53437500000001
+          ],
+          "cell": [
+            96.359375,
+            120.265625
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "restOffset": [
+            -0.65625,
+            -41.015625
+          ],
+          "cell": [
+            95.703125,
+            79.25
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "restOffset": [
+            -11.8125,
+            1.96875
+          ],
+          "cell": [
+            83.890625,
+            81.21875
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "restOffset": [
+            -5.579999999999998,
+            18.900000000000006
+          ],
+          "cell": [
+            78.310625,
+            100.11875
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "restOffset": [
+            -6.480000000000004,
+            15.299999999999983
+          ],
+          "cell": [
+            71.830625,
+            115.41874999999999
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "restOffset": [
+            12.140625,
+            7.546875
+          ],
+          "cell": [
+            107.84375,
+            86.796875
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "restOffset": [
+            5.760000000000005,
+            18.900000000000006
+          ],
+          "cell": [
+            113.60375,
+            105.696875
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "restOffset": [
+            6.11999999999999,
+            15.299999999999983
+          ],
+          "cell": [
+            119.72375,
+            120.99687499999999
+          ]
+        },
+        "leftHip": {
+          "parent": "pelvis",
+          "restOffset": [
+            -4.921875,
+            -4.75
+          ],
+          "cell": [
+            91.4375,
+            115.515625
+          ]
+        },
+        "leftKnee": {
+          "parent": "leftHip",
+          "restOffset": [
+            -1.8199999999999932,
+            24.920000000000016
+          ],
+          "cell": [
+            89.6175,
+            140.43562500000002
+          ]
+        },
+        "leftAnkle": {
+          "parent": "leftKnee",
+          "restOffset": [
+            -1.5400000000000063,
+            23.939999999999998
+          ],
+          "cell": [
+            88.0775,
+            164.375625
+          ]
+        },
+        "leftFoot": {
+          "parent": "leftAnkle",
+          "restOffset": [
+            1.5400000000000063,
+            8.819999999999993
+          ],
+          "cell": [
+            89.6175,
+            173.195625
+          ]
+        },
+        "rightHip": {
+          "parent": "pelvis",
+          "restOffset": [
+            7.546875,
+            -4.75
+          ],
+          "cell": [
+            103.90625,
+            115.515625
+          ]
+        },
+        "rightKnee": {
+          "parent": "rightHip",
+          "restOffset": [
+            -1.8199999999999932,
+            24.920000000000016
+          ],
+          "cell": [
+            102.08625,
+            140.43562500000002
+          ]
+        },
+        "rightAnkle": {
+          "parent": "rightKnee",
+          "restOffset": [
+            -1.5400000000000063,
+            23.939999999999998
+          ],
+          "cell": [
+            100.54625,
+            164.375625
+          ]
+        },
+        "rightFoot": {
+          "parent": "rightAnkle",
+          "restOffset": [
+            1.5400000000000063,
+            8.819999999999993
+          ],
+          "cell": [
+            102.08625,
+            173.195625
+          ]
+        },
+        "cargoAnchor": {
+          "parent": "pelvis",
+          "restOffset": [
+            4,
+            4
+          ],
+          "cell": [
+            100.359375,
+            124.265625
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "layer": "body",
+          "zOrder": 6,
+          "image": "attachments/NE/head.png",
+          "pivot": [
+            16.703125,
+            40.25
+          ],
+          "restTopLeft": [
+            79,
+            39
+          ],
+          "size": [
+            39,
+            41
+          ],
+          "sourceCell": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "sourceJoint": [
+            185,
+            144
+          ],
+          "sourceScale": 0.328125,
+          "sourceSet": "camera-body"
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "layer": "body",
+          "zOrder": 3,
+          "image": "attachments/NE/torso.png",
+          "pivot": [
+            16.359375,
+            45.265625
+          ],
+          "restTopLeft": [
+            80,
+            75
+          ],
+          "size": [
+            33,
+            58
+          ],
+          "sourceCell": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "sourceJoint": [
+            187,
+            269
+          ],
+          "sourceScale": 0.328125,
+          "sourceSet": "camera-body"
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "layer": "body",
+          "zOrder": 1,
+          "image": "attachments/NE/left-upper-arm.png",
+          "pivot": [
+            9.719999999999999,
+            5.939999999999998
+          ],
+          "restTopLeft": [
+            74.170625,
+            75.27875
+          ],
+          "size": [
+            16,
+            27
+          ],
+          "sourceCell": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            151,
+            110,
+            87,
+            146
+          ],
+          "sourceScale": 0.18,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "left-thigh",
+          "joint": "leftHip",
+          "layer": "body",
+          "zOrder": 0,
+          "image": "attachments/NE/left-thigh.png",
+          "pivot": [
+            5.8799999999999955,
+            3.3599999999999994
+          ],
+          "restTopLeft": [
+            85.5575,
+            112.155625
+          ],
+          "size": [
+            12,
+            28
+          ],
+          "sourceCell": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            152,
+            27,
+            89,
+            211
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "left-shin",
+          "joint": "leftKnee",
+          "layer": "body",
+          "zOrder": 0.1,
+          "image": "attachments/NE/left-shin.png",
+          "pivot": [
+            5.460000000000008,
+            1.1200000000000045
+          ],
+          "restTopLeft": [
+            84.1575,
+            139.315625
+          ],
+          "size": [
+            10,
+            27
+          ],
+          "sourceCell": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            142,
+            221,
+            70,
+            187
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "layer": "body",
+          "zOrder": 0.2,
+          "image": "attachments/NE/left-boot.png",
+          "pivot": [
+            3.5,
+            0.9800000000000182
+          ],
+          "restTopLeft": [
+            84.5775,
+            163.395625
+          ],
+          "size": [
+            12,
+            12
+          ],
+          "sourceCell": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            145,
+            393,
+            84,
+            85
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "layer": "body-front",
+          "zOrder": 9,
+          "image": "attachments/NE/right-upper-arm.png",
+          "pivot": [
+            5.040000000000006,
+            5.939999999999998
+          ],
+          "restTopLeft": [
+            102.80375,
+            80.856875
+          ],
+          "size": [
+            16,
+            27
+          ],
+          "sourceCell": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            147,
+            110,
+            87,
+            146
+          ],
+          "sourceScale": 0.18,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "right-thigh",
+          "joint": "rightHip",
+          "layer": "body",
+          "zOrder": 2,
+          "image": "attachments/NE/right-thigh.png",
+          "pivot": [
+            6.859999999999999,
+            3.3599999999999994
+          ],
+          "restTopLeft": [
+            97.04625,
+            112.155625
+          ],
+          "size": [
+            12,
+            28
+          ],
+          "sourceCell": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            145,
+            27,
+            89,
+            211
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "right-shin",
+          "joint": "rightKnee",
+          "layer": "body",
+          "zOrder": 5.1,
+          "image": "attachments/NE/right-shin.png",
+          "pivot": [
+            6.02000000000001,
+            1.1200000000000045
+          ],
+          "restTopLeft": [
+            96.06625,
+            139.315625
+          ],
+          "size": [
+            9,
+            25
+          ],
+          "sourceCell": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            138,
+            221,
+            67,
+            187
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "layer": "body",
+          "zOrder": 5.2,
+          "image": "attachments/NE/right-boot.png",
+          "pivot": [
+            3.5,
+            0.9800000000000182
+          ],
+          "restTopLeft": [
+            97.04625,
+            163.395625
+          ],
+          "size": [
+            12,
+            12
+          ],
+          "sourceCell": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            145,
+            393,
+            83,
+            84
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "zOrder": 0,
+          "image": "attachments/NE/outfit-scholar.png",
+          "pivot": [
+            96.359375,
+            120.265625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "sourceSet": "scholar-ivory"
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "zOrder": 0,
+          "image": "attachments/NE/hair-ivory-back.png",
+          "pivot": [
+            95.703125,
+            79.25
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "sourceSet": "scholar-ivory"
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "zOrder": 0,
+          "image": "attachments/NE/hair-ivory-front.png",
+          "pivot": [
+            95.703125,
+            79.25
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "sourceSet": "scholar-ivory"
+        },
+        {
+          "id": "coat",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "attachments/equipment-warden/NE/coat.png",
+          "pivot": [
+            96.359375,
+            120.265625
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 5,
+          "sourceAnchor": [
+            289,
+            52
+          ],
+          "sourceScale": 0.12,
+          "neckHole": [
+            290,
+            45,
+            45,
+            11
+          ]
+        },
+        {
+          "id": "left-upper-sleeve",
+          "layer": "outfit-warden",
+          "joint": "leftShoulder",
+          "image": "attachments/equipment-warden/NE/left-upper-sleeve.png",
+          "pivot": [
+            83.890625,
+            81.21875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 1,
+          "sourceJoint": [
+            781,
+            125
+          ],
+          "sourceEnd": [
+            751,
+            274
+          ],
+          "targetJoint": [
+            83.890625,
+            81.21875
+          ],
+          "targetEnd": [
+            78.310625,
+            100.11875
+          ],
+          "explicitClothingFit": {
+            "axisScale": 0.12965648740833638,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "left-fore-sleeve",
+          "layer": "outfit-warden",
+          "joint": "leftElbow",
+          "image": "attachments/equipment-warden/NE/left-fore-sleeve.png",
+          "pivot": [
+            78.310625,
+            100.11875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 2,
+          "sourceJoint": [
+            751,
+            274
+          ],
+          "sourceEnd": [
+            718,
+            457
+          ],
+          "targetJoint": [
+            78.310625,
+            100.11875
+          ],
+          "targetEnd": [
+            71.830625,
+            115.41874999999999
+          ],
+          "explicitClothingFit": {
+            "axisScale": 0.0893547929399595,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "right-upper-sleeve",
+          "layer": "outfit-warden-front",
+          "joint": "rightShoulder",
+          "image": "attachments/equipment-warden/NE/right-upper-sleeve.png",
+          "pivot": [
+            107.84375,
+            86.796875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 1,
+          "sourceJoint": [
+            1228,
+            125
+          ],
+          "sourceEnd": [
+            1231,
+            273
+          ],
+          "targetJoint": [
+            107.84375,
+            86.796875
+          ],
+          "targetEnd": [
+            113.60375,
+            105.696875
+          ],
+          "explicitClothingFit": {
+            "axisScale": 0.1334741266716472,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "right-fore-sleeve",
+          "layer": "outfit-warden-front",
+          "joint": "rightElbow",
+          "image": "attachments/equipment-warden/NE/right-fore-sleeve.png",
+          "pivot": [
+            113.60375,
+            105.696875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 2,
+          "sourceJoint": [
+            1231,
+            273
+          ],
+          "sourceEnd": [
+            1280,
+            457
+          ],
+          "targetJoint": [
+            113.60375,
+            105.696875
+          ],
+          "targetEnd": [
+            119.72375,
+            120.99687499999999
+          ],
+          "explicitClothingFit": {
+            "axisScale": 0.08654151468812192,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "attachments/equipment-midnight/NE/hair-midnight-back.png",
+          "pivot": [
+            95.703125,
+            79.25
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 0,
+          "sourceSet": "midnight-independent-silhouette"
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "attachments/equipment-midnight/NE/hair-midnight-front.png",
+          "pivot": [
+            95.703125,
+            79.25
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 0,
+          "sourceSet": "midnight-independent-silhouette"
+        },
+        {
+          "id": "right-forearm",
+          "layer": "body-front",
+          "joint": "rightElbow",
+          "image": "attachments/equipment-staff/NE/right-forearm.png",
+          "restTopLeft": [
+            110.00375,
+            104.436875
+          ],
+          "pivot": [
+            3.6000000000000085,
+            1.2600000000000051
+          ],
+          "size": [
+            15,
+            28
+          ],
+          "zOrder": 10
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "attachments/equipment-staff/NE/right-natural-hand.png",
+          "restTopLeft": [
+            110.00375,
+            104.436875
+          ],
+          "pivot": [
+            9.719999999999999,
+            16.559999999999988
+          ],
+          "size": [
+            15,
+            28
+          ],
+          "zOrder": 10,
+          "variant": "empty-hand",
+          "angleJoint": "rightElbow",
+          "angleRule": "natural palm inherits forearm absolute angle at wrist point"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-back",
+          "joint": "pelvis",
+          "image": "attachments/equipment-staff/NE/staff.png",
+          "pivot": [
+            17.757276258577427,
+            79.75813072076708
+          ],
+          "restTopLeft": [
+            107.84875,
+            65.49687499999999
+          ],
+          "size": [
+            23,
+            96
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            -4.257276258577429,
+            -19.25813072076708
+          ],
+          "angleRule": "absolute stowed staff angle; shaft grip registration anchors to pelvis hang point",
+          "sourceWristPivot": [
+            11.875,
+            55.5
+          ],
+          "sourceGripOffset": [
+            1.625,
+            5
+          ]
+        },
+        {
+          "id": "left-forearm",
+          "joint": "leftElbow",
+          "layer": "body",
+          "zOrder": 2,
+          "image": "attachments/NE/left-forearm.png",
+          "pivot": [
+            10.799999999999997,
+            1.2600000000000051
+          ],
+          "restTopLeft": [
+            67.510625,
+            98.85875
+          ],
+          "size": [
+            15,
+            29
+          ],
+          "sourceCell": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            114,
+            241,
+            83,
+            160
+          ],
+          "sourceScale": 0.18,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "left-natural-hand",
+          "joint": "leftWrist",
+          "layer": "hand-front",
+          "zOrder": 2,
+          "image": "attachments/NE/left-natural-hand.png",
+          "pivot": [
+            4.319999999999993,
+            16.559999999999988
+          ],
+          "restTopLeft": [
+            67.510625,
+            98.85875
+          ],
+          "size": [
+            15,
+            29
+          ],
+          "sourceCell": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            114,
+            241,
+            83,
+            160
+          ],
+          "sourceScale": 0.18,
+          "sourceSet": "complete-limbs",
+          "angleJoint": "leftElbow"
+        },
+        {
+          "id": "cargo-bundle",
+          "joint": "cargoAnchor",
+          "layer": "cargo-bundle-back",
+          "image": "attachments/cargo-bundle.png",
+          "pivot": [
+            20,
+            25
+          ],
+          "size": [
+            40,
+            40
+          ],
+          "zOrder": 0,
+          "contactPoints": [
+            [
+              6,
+              18
+            ],
+            [
+              34,
+              18
+            ]
+          ]
+        }
+      ],
+      "feet": {
+        "left": {
+          "joint": "leftAnkle",
+          "soleOffset": [
+            1.5400000000000063,
+            8.819999999999993
+          ],
+          "bend": -1,
+          "contactVerified": false
+        },
+        "right": {
+          "joint": "rightAnkle",
+          "soleOffset": [
+            1.5400000000000063,
+            8.819999999999993
+          ],
+          "bend": -1,
+          "contactVerified": false
+        }
+      },
+      "worldForward": [
+        0,
+        -1
+      ],
+      "projectedWorldForward": [
+        64,
+        -32
+      ],
+      "legLengthReport": {
+        "left": {
+          "thigh": 24.98637228570808,
+          "shin": 23.989481028150646
+        },
+        "right": {
+          "thigh": 24.98637228570808,
+          "shin": 23.989481028150646
+        }
+      },
+      "poses": [
+        {
+          "durationMs": 180,
+          "worldStanding": true,
+          "contactFoot": "left",
+          "rootScreenDelta": [
+            0,
+            0
+          ],
+          "joints": {
+            "pelvis": {
+              "offset": [
+                -1.671875,
+                2.415804761000004
+              ]
+            }
+          },
+          "wristTargets": {
+            "leftWrist": {
+              "point": [
+                86.7077874403105,
+                114.56298872309367
+              ],
+              "bend": -1
+            },
+            "rightWrist": {
+              "point": [
+                108.71566102372545,
+                116.20084142760774
+              ],
+              "bend": 1
+            }
+          },
+          "attachmentAngles": {
+            "staff": -18
+          },
+          "palmContactRegistration": {
+            "offsets": {
+              "left": [
+                -1.8,
+                5.2
+              ],
+              "right": [
+                1.7,
+                5
+              ]
+            },
+            "bagContactMapping": {
+              "left": [
+                6,
+                18
+              ],
+              "right": [
+                34,
+                18
+              ]
+            }
+          }
+        },
+        {
+          "durationMs": 160,
+          "worldStanding": true,
+          "contactFoot": "left",
+          "rootScreenDelta": [
+            0,
+            0
+          ],
+          "joints": {
+            "pelvis": {
+              "offset": [
+                -1.671875,
+                2.415804761000004
+              ]
+            },
+            "cargoAnchor": {
+              "offset": [
+                5.12,
+                -2.56
+              ]
+            }
+          },
+          "wristTargets": {
+            "leftWrist": {
+              "point": [
+                91.40773234001028,
+                111.8565217411021
+              ],
+              "bend": -1
+            },
+            "rightWrist": {
+              "point": [
+                113.18595523341712,
+                114.5657842514525
+              ],
+              "bend": 1
+            }
+          },
+          "attachmentAngles": {
+            "staff": -18
+          },
+          "palmContactRegistration": {
+            "offsets": {
+              "left": [
+                -1.8,
+                5.2
+              ],
+              "right": [
+                1.7,
+                5
+              ]
+            },
+            "bagContactMapping": {
+              "left": [
+                6,
+                18
+              ],
+              "right": [
+                34,
+                18
+              ]
+            }
+          }
+        },
+        {
+          "durationMs": 260,
+          "worldStanding": true,
+          "contactFoot": "left",
+          "rootScreenDelta": [
+            0,
+            0
+          ],
+          "joints": {
+            "pelvis": {
+              "offset": [
+                -1.671875,
+                2.415804761000004
+              ]
+            }
+          },
+          "wristTargets": {
+            "leftWrist": {
+              "point": [
+                81,
+                119
+              ],
+              "bend": -1
+            },
+            "rightWrist": {
+              "point": [
+                111,
+                124
+              ],
+              "bend": 1
+            }
+          },
+          "attachmentAngles": {
+            "staff": -18
+          },
+          "hiddenAttachments": [
+            "cargo-bundle"
+          ],
+          "palmContactRegistration": {
+            "offsets": {
+              "left": [
+                -1.8,
+                5.2
+              ],
+              "right": [
+                1.7,
+                5
+              ]
+            },
+            "bagContactMapping": {
+              "left": [
+                6,
+                18
+              ],
+              "right": [
+                34,
+                18
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "SW": {
+      "joints": {
+        "root": {
+          "parent": null,
+          "restOffset": [
+            0,
+            0
+          ],
+          "cell": [
+            96,
+            172.8
+          ]
+        },
+        "pelvis": {
+          "parent": "root",
+          "restOffset": [
+            0.34375,
+            -52.20625000000001
+          ],
+          "cell": [
+            96.34375,
+            120.59375
+          ]
+        },
+        "neck": {
+          "parent": "pelvis",
+          "restOffset": [
+            -2.953125,
+            -36.421875
+          ],
+          "cell": [
+            93.390625,
+            84.171875
+          ]
+        },
+        "leftShoulder": {
+          "parent": "neck",
+          "restOffset": [
+            16.734375,
+            4.921875
+          ],
+          "cell": [
+            110.125,
+            89.09375
+          ]
+        },
+        "leftElbow": {
+          "parent": "leftShoulder",
+          "restOffset": [
+            -5.939999999999998,
+            18.539999999999992
+          ],
+          "cell": [
+            104.185,
+            107.63374999999999
+          ]
+        },
+        "leftWrist": {
+          "parent": "leftElbow",
+          "restOffset": [
+            -6.480000000000004,
+            16.200000000000017
+          ],
+          "cell": [
+            97.705,
+            123.83375000000001
+          ]
+        },
+        "rightShoulder": {
+          "parent": "neck",
+          "restOffset": [
+            -12.46875,
+            1.640625
+          ],
+          "cell": [
+            80.921875,
+            85.8125
+          ]
+        },
+        "rightElbow": {
+          "parent": "rightShoulder",
+          "restOffset": [
+            -5.760000000000005,
+            18.539999999999992
+          ],
+          "cell": [
+            75.161875,
+            104.35249999999999
+          ]
+        },
+        "rightWrist": {
+          "parent": "rightElbow",
+          "restOffset": [
+            -6.47999999999999,
+            16.200000000000017
+          ],
+          "cell": [
+            68.681875,
+            120.55250000000001
+          ]
+        },
+        "leftHip": {
+          "parent": "pelvis",
+          "restOffset": [
+            7.21875,
+            -4.75
+          ],
+          "cell": [
+            103.5625,
+            115.84375
+          ]
+        },
+        "leftKnee": {
+          "parent": "leftHip",
+          "restOffset": [
+            0.28000000000000114,
+            24.22
+          ],
+          "cell": [
+            103.8425,
+            140.06375
+          ]
+        },
+        "leftAnkle": {
+          "parent": "leftKnee",
+          "restOffset": [
+            -0.4200000000000017,
+            23.099999999999994
+          ],
+          "cell": [
+            103.4225,
+            163.16375
+          ]
+        },
+        "leftFoot": {
+          "parent": "leftAnkle",
+          "restOffset": [
+            -1.9599999999999937,
+            11.76000000000002
+          ],
+          "cell": [
+            101.4625,
+            174.92375
+          ]
+        },
+        "rightHip": {
+          "parent": "pelvis",
+          "restOffset": [
+            -3.609375,
+            -5.078125
+          ],
+          "cell": [
+            92.734375,
+            115.515625
+          ]
+        },
+        "rightKnee": {
+          "parent": "rightHip",
+          "restOffset": [
+            0.28000000000000114,
+            24.22
+          ],
+          "cell": [
+            93.014375,
+            139.735625
+          ]
+        },
+        "rightAnkle": {
+          "parent": "rightKnee",
+          "restOffset": [
+            -0.4200000000000017,
+            23.099999999999994
+          ],
+          "cell": [
+            92.594375,
+            162.835625
+          ]
+        },
+        "rightFoot": {
+          "parent": "rightAnkle",
+          "restOffset": [
+            -1.9599999999999937,
+            11.76000000000002
+          ],
+          "cell": [
+            90.634375,
+            174.595625
+          ]
+        },
+        "cargoAnchor": {
+          "parent": "pelvis",
+          "restOffset": [
+            0,
+            4
+          ],
+          "cell": [
+            96.34375,
+            124.59375
+          ]
+        }
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "joint": "neck",
+          "layer": "body",
+          "zOrder": 6,
+          "image": "attachments/SW/head.png",
+          "pivot": [
+            17.390625,
+            44.171875
+          ],
+          "restTopLeft": [
+            76,
+            40
+          ],
+          "size": [
+            40,
+            45
+          ],
+          "sourceCell": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "sourceJoint": [
+            181,
+            159
+          ],
+          "sourceScale": 0.328125,
+          "sourceSet": "camera-body"
+        },
+        {
+          "id": "torso",
+          "joint": "pelvis",
+          "layer": "body",
+          "zOrder": 3,
+          "image": "attachments/SW/torso.png",
+          "pivot": [
+            17.34375,
+            40.59375
+          ],
+          "restTopLeft": [
+            79,
+            80
+          ],
+          "size": [
+            36,
+            53
+          ],
+          "sourceCell": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "sourceJoint": [
+            190,
+            270
+          ],
+          "sourceScale": 0.328125,
+          "sourceSet": "camera-body"
+        },
+        {
+          "id": "left-upper-arm",
+          "joint": "leftShoulder",
+          "layer": "body-front",
+          "zOrder": 9,
+          "image": "attachments/SW/left-upper-arm.png",
+          "pivot": [
+            10.079999999999998,
+            6.480000000000004
+          ],
+          "restTopLeft": [
+            100.045,
+            82.61375
+          ],
+          "size": [
+            16,
+            26
+          ],
+          "sourceCell": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            160,
+            107,
+            89,
+            147
+          ],
+          "sourceScale": 0.18,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "left-thigh",
+          "joint": "leftHip",
+          "layer": "body",
+          "zOrder": 2,
+          "image": "attachments/SW/left-thigh.png",
+          "pivot": [
+            7,
+            3.219999999999999
+          ],
+          "restTopLeft": [
+            96.5625,
+            112.62375
+          ],
+          "size": [
+            13,
+            28
+          ],
+          "sourceCell": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            145,
+            24,
+            96,
+            205
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "left-shin",
+          "joint": "leftKnee",
+          "layer": "body",
+          "zOrder": 5.1,
+          "image": "attachments/SW/left-shin.png",
+          "pivot": [
+            4.340000000000003,
+            1.1200000000000045
+          ],
+          "restTopLeft": [
+            99.5025,
+            138.94375
+          ],
+          "size": [
+            9,
+            25
+          ],
+          "sourceCell": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            166,
+            212,
+            66,
+            181
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "left-boot",
+          "joint": "leftAnkle",
+          "layer": "body",
+          "zOrder": 5.2,
+          "image": "attachments/SW/left-boot.png",
+          "pivot": [
+            7.840000000000003,
+            0.9799999999999898
+          ],
+          "restTopLeft": [
+            95.5825,
+            162.18375
+          ],
+          "size": [
+            12,
+            14
+          ],
+          "sourceCell": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            138,
+            378,
+            87,
+            103
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "right-upper-arm",
+          "joint": "rightShoulder",
+          "layer": "body",
+          "zOrder": 1,
+          "image": "attachments/SW/right-upper-arm.png",
+          "pivot": [
+            8.819999999999993,
+            6.480000000000004
+          ],
+          "restTopLeft": [
+            72.101875,
+            79.3325
+          ],
+          "size": [
+            15,
+            27
+          ],
+          "sourceCell": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            166,
+            107,
+            82,
+            147
+          ],
+          "sourceScale": 0.18,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "right-thigh",
+          "joint": "rightHip",
+          "layer": "body",
+          "zOrder": 0,
+          "image": "attachments/SW/right-thigh.png",
+          "pivot": [
+            6.859999999999999,
+            3.219999999999999
+          ],
+          "restTopLeft": [
+            85.874375,
+            112.295625
+          ],
+          "size": [
+            13,
+            28
+          ],
+          "sourceCell": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            146,
+            24,
+            96,
+            205
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "right-shin",
+          "joint": "rightKnee",
+          "layer": "body",
+          "zOrder": 0.1,
+          "image": "attachments/SW/right-shin.png",
+          "pivot": [
+            3.9200000000000017,
+            1.1200000000000045
+          ],
+          "restTopLeft": [
+            89.094375,
+            138.615625
+          ],
+          "size": [
+            10,
+            26
+          ],
+          "sourceCell": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            169,
+            212,
+            70,
+            181
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "right-boot",
+          "joint": "rightAnkle",
+          "layer": "body",
+          "zOrder": 0.2,
+          "image": "attachments/SW/right-boot.png",
+          "pivot": [
+            7.280000000000001,
+            0.9799999999999898
+          ],
+          "restTopLeft": [
+            85.314375,
+            161.855625
+          ],
+          "size": [
+            12,
+            14
+          ],
+          "sourceCell": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            142,
+            378,
+            89,
+            103
+          ],
+          "sourceScale": 0.14,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "zOrder": 0,
+          "image": "attachments/SW/outfit-scholar.png",
+          "pivot": [
+            96.34375,
+            120.59375
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "sourceSet": "scholar-ivory"
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "zOrder": 0,
+          "image": "attachments/SW/hair-ivory-back.png",
+          "pivot": [
+            93.390625,
+            84.171875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "sourceSet": "scholar-ivory"
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "zOrder": 0,
+          "image": "attachments/SW/hair-ivory-front.png",
+          "pivot": [
+            93.390625,
+            84.171875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "sourceSet": "scholar-ivory"
+        },
+        {
+          "id": "coat",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "attachments/equipment-warden/SW/coat.png",
+          "pivot": [
+            96.34375,
+            120.59375
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 5,
+          "sourceAnchor": [
+            288,
+            565
+          ],
+          "sourceScale": 0.12,
+          "neckHole": [
+            289,
+            565,
+            45,
+            12
+          ]
+        },
+        {
+          "id": "left-upper-sleeve",
+          "layer": "outfit-warden-front",
+          "joint": "leftShoulder",
+          "image": "attachments/equipment-warden/SW/left-upper-sleeve.png",
+          "pivot": [
+            110.125,
+            89.09375
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 1,
+          "sourceJoint": [
+            754,
+            635
+          ],
+          "sourceEnd": [
+            767,
+            796
+          ],
+          "targetJoint": [
+            110.125,
+            89.09375
+          ],
+          "targetEnd": [
+            104.185,
+            107.63374999999999
+          ],
+          "explicitClothingFit": {
+            "axisScale": 0.1205289224938629,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "left-fore-sleeve",
+          "layer": "outfit-warden-front",
+          "joint": "leftElbow",
+          "image": "attachments/equipment-warden/SW/left-fore-sleeve.png",
+          "pivot": [
+            104.185,
+            107.63374999999999
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 2,
+          "sourceJoint": [
+            767,
+            796
+          ],
+          "sourceEnd": [
+            773,
+            968
+          ],
+          "targetJoint": [
+            104.185,
+            107.63374999999999
+          ],
+          "targetEnd": [
+            97.705,
+            123.83375000000001
+          ],
+          "explicitClothingFit": {
+            "axisScale": 0.10137981212524337,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "right-upper-sleeve",
+          "layer": "outfit-warden",
+          "joint": "rightShoulder",
+          "image": "attachments/equipment-warden/SW/right-upper-sleeve.png",
+          "pivot": [
+            80.921875,
+            85.8125
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 1,
+          "sourceJoint": [
+            1234,
+            635
+          ],
+          "sourceEnd": [
+            1219,
+            793
+          ],
+          "targetJoint": [
+            80.921875,
+            85.8125
+          ],
+          "targetEnd": [
+            75.161875,
+            104.35249999999999
+          ],
+          "explicitClothingFit": {
+            "axisScale": 0.12232434696857633,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "right-fore-sleeve",
+          "layer": "outfit-warden",
+          "joint": "rightElbow",
+          "image": "attachments/equipment-warden/SW/right-fore-sleeve.png",
+          "pivot": [
+            75.161875,
+            104.35249999999999
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 2,
+          "sourceJoint": [
+            1219,
+            793
+          ],
+          "sourceEnd": [
+            1190,
+            968
+          ],
+          "targetJoint": [
+            75.161875,
+            104.35249999999999
+          ],
+          "targetEnd": [
+            68.681875,
+            120.55250000000001
+          ],
+          "explicitClothingFit": {
+            "axisScale": 0.09836106898538101,
+            "transverseScale": 0.12
+          }
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "attachments/equipment-midnight/SW/hair-midnight-back.png",
+          "pivot": [
+            93.390625,
+            84.171875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 0,
+          "sourceSet": "midnight-independent-silhouette"
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "attachments/equipment-midnight/SW/hair-midnight-front.png",
+          "pivot": [
+            93.390625,
+            84.171875
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            192,
+            192
+          ],
+          "zOrder": 0,
+          "sourceSet": "midnight-independent-silhouette"
+        },
+        {
+          "id": "right-forearm",
+          "layer": "body",
+          "joint": "rightElbow",
+          "image": "attachments/equipment-staff/SW/right-forearm.png",
+          "restTopLeft": [
+            64.541875,
+            103.0925
+          ],
+          "pivot": [
+            10.61999999999999,
+            1.259999999999991
+          ],
+          "size": [
+            16,
+            31
+          ],
+          "zOrder": 2
+        },
+        {
+          "id": "right-natural-hand",
+          "layer": "hand-front",
+          "joint": "rightWrist",
+          "image": "attachments/equipment-staff/SW/right-natural-hand.png",
+          "restTopLeft": [
+            64.541875,
+            103.0925
+          ],
+          "pivot": [
+            4.140000000000001,
+            17.460000000000008
+          ],
+          "size": [
+            16,
+            31
+          ],
+          "zOrder": 2,
+          "variant": "empty-hand",
+          "angleJoint": "rightElbow",
+          "angleRule": "natural palm inherits forearm absolute angle at wrist point"
+        },
+        {
+          "id": "staff",
+          "layer": "weapon-staff-back",
+          "joint": "pelvis",
+          "image": "attachments/equipment-staff/SW/staff.png",
+          "pivot": [
+            9.742723741422571,
+            74.75813072076708
+          ],
+          "restTopLeft": [
+            52.931875000000005,
+            70.05250000000001
+          ],
+          "size": [
+            25,
+            95
+          ],
+          "zOrder": 0,
+          "variant": "staff",
+          "gripOffset": [
+            4.257276258577429,
+            -19.25813072076708
+          ],
+          "angleRule": "absolute stowed staff angle; shaft grip registration anchors to pelvis hang point",
+          "sourceWristPivot": [
+            15.75,
+            50.5
+          ],
+          "sourceGripOffset": [
+            -1.75,
+            5
+          ]
+        },
+        {
+          "id": "left-forearm",
+          "joint": "leftElbow",
+          "layer": "body-front",
+          "zOrder": 10,
+          "image": "attachments/SW/left-forearm.png",
+          "pivot": [
+            12.780000000000001,
+            1.259999999999991
+          ],
+          "restTopLeft": [
+            91.405,
+            106.37375
+          ],
+          "size": [
+            17,
+            30
+          ],
+          "sourceCell": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            112,
+            239,
+            96,
+            171
+          ],
+          "sourceScale": 0.18,
+          "sourceSet": "complete-limbs"
+        },
+        {
+          "id": "left-natural-hand",
+          "joint": "leftWrist",
+          "layer": "hand-front",
+          "zOrder": 10,
+          "image": "attachments/SW/left-natural-hand.png",
+          "pivot": [
+            6.299999999999997,
+            17.460000000000008
+          ],
+          "restTopLeft": [
+            91.405,
+            106.37375
+          ],
+          "size": [
+            17,
+            30
+          ],
+          "sourceCell": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "sourceCrop": [
+            112,
+            239,
+            96,
+            171
+          ],
+          "sourceScale": 0.18,
+          "sourceSet": "complete-limbs",
+          "angleJoint": "leftElbow"
+        },
+        {
+          "id": "cargo-bundle",
+          "joint": "cargoAnchor",
+          "layer": "cargo-bundle-front",
+          "image": "attachments/cargo-bundle.png",
+          "pivot": [
+            20,
+            25
+          ],
+          "size": [
+            40,
+            40
+          ],
+          "zOrder": 0,
+          "contactPoints": [
+            [
+              6,
+              18
+            ],
+            [
+              34,
+              18
+            ]
+          ]
+        }
+      ],
+      "feet": {
+        "left": {
+          "joint": "leftAnkle",
+          "soleOffset": [
+            -1.9599999999999937,
+            11.76000000000002
+          ],
+          "bend": 1,
+          "contactVerified": false
+        },
+        "right": {
+          "joint": "rightAnkle",
+          "soleOffset": [
+            -1.9599999999999937,
+            11.76000000000002
+          ],
+          "bend": 1,
+          "contactVerified": false
+        }
+      },
+      "worldForward": [
+        0,
+        1
+      ],
+      "projectedWorldForward": [
+        -64,
+        32
+      ],
+      "legLengthReport": {
+        "left": {
+          "thigh": 24.221618443035553,
+          "shin": 23.103817866318106
+        },
+        "right": {
+          "thigh": 24.221618443035553,
+          "shin": 23.103817866318106
+        }
+      },
+      "poses": [
+        {
+          "durationMs": 180,
+          "worldStanding": true,
+          "contactFoot": "left",
+          "rootScreenDelta": [
+            0,
+            0
+          ],
+          "joints": {
+            "pelvis": {
+              "offset": [
+                -2.1484375,
+                2.251742261000004
+              ]
+            }
+          },
+          "wristTargets": {
+            "leftWrist": {
+              "point": [
+                104.03818711992461,
+                115.81953789286155
+              ],
+              "bend": 1
+            },
+            "rightWrist": {
+              "point": [
+                83.26491827005432,
+                114.93962634187326
+              ],
+              "bend": -1
+            }
+          },
+          "attachmentAngles": {
+            "staff": 18
+          },
+          "palmContactRegistration": {
+            "offsets": {
+              "left": [
+                -1.8,
+                5.5
+              ],
+              "right": [
+                -1.8,
+                5.5
+              ]
+            },
+            "bagContactMapping": {
+              "left": [
+                34,
+                18
+              ],
+              "right": [
+                6,
+                18
+              ]
+            }
+          }
+        },
+        {
+          "durationMs": 160,
+          "worldStanding": true,
+          "contactFoot": "left",
+          "rootScreenDelta": [
+            0,
+            0
+          ],
+          "joints": {
+            "pelvis": {
+              "offset": [
+                -2.1484375,
+                2.251742261000004
+              ]
+            },
+            "cargoAnchor": {
+              "offset": [
+                -5.12,
+                2.56
+              ]
+            }
+          },
+          "wristTargets": {
+            "leftWrist": {
+              "point": [
+                100.01613085356213,
+                117.49311934619624
+              ],
+              "bend": 1
+            },
+            "rightWrist": {
+              "point": [
+                78.45440511411196,
+                117.70743594958206
+              ],
+              "bend": -1
+            }
+          },
+          "attachmentAngles": {
+            "staff": 18
+          },
+          "palmContactRegistration": {
+            "offsets": {
+              "left": [
+                -1.8,
+                5.5
+              ],
+              "right": [
+                -1.8,
+                5.5
+              ]
+            },
+            "bagContactMapping": {
+              "left": [
+                34,
+                18
+              ],
+              "right": [
+                6,
+                18
+              ]
+            }
+          }
+        },
+        {
+          "durationMs": 260,
+          "worldStanding": true,
+          "contactFoot": "left",
+          "rootScreenDelta": [
+            0,
+            0
+          ],
+          "joints": {
+            "pelvis": {
+              "offset": [
+                -2.1484375,
+                2.251742261000004
+              ]
+            }
+          },
+          "wristTargets": {
+            "leftWrist": {
+              "point": [
+                113,
+                127.5
+              ],
+              "bend": 1
+            },
+            "rightWrist": {
+              "point": [
+                78,
+                124
+              ],
+              "bend": -1
+            }
+          },
+          "attachmentAngles": {
+            "staff": 18
+          },
+          "hiddenAttachments": [
+            "cargo-bundle"
+          ],
+          "palmContactRegistration": {
+            "offsets": {
+              "left": [
+                -1.8,
+                5.5
+              ],
+              "right": [
+                -1.8,
+                5.5
+              ]
+            },
+            "bagContactMapping": {
+              "left": [
+                34,
+                18
+              ],
+              "right": [
+                6,
+                18
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "reviewNotes": [
+    "Art semantic pose contract: both natural palms contact registered cargo pixels; staff stowed behind torso, no grip hand.",
+    "Pelvis follows source/world dual-hip mean; fixed world bone lengths.",
+    "NE bag stays behind body with art-approved +4px side offset for a visible corner; SW before both hand-front palms. Release hides bag on unload recovery.",
+    "Candidate only: art contact-page and product playback acceptance pending."
+  ],
+  "trimAtlases": true,
+  "frameCount": 3,
+  "worldRegistration": {
+    "upper": 0.3187701178,
+    "lower": 0.3060520193,
+    "hipZ": 0.7,
+    "ankleZ": 0.11,
+    "trackWidth": 0.18,
+    "soleFootprintOffsets": {
+      "NE": [
+        0.01512,
+        -0.00894
+      ],
+      "SW": [
+        0.03372,
+        0.06434
+      ]
+    }
+  },
+  "equipmentSources": {
+    "equipment-warden": {
+      "status": "static-registration-prototype",
+      "releaseApproved": false,
+      "cell": [
+        192,
+        192
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "renderScale": 1,
+      "source": "arena/art/source/iso-v030-warden-ne-sw.png",
+      "sourceSha256": "23204d496c82908268ad49470efa29a4f470b9cdb43b6ba2a86a1cc07a5314b1",
+      "sourceSuccessCount": 1,
+      "sourceAttempts": "first process exited143 without image; next invocation succeeded",
+      "notes": [
+        "Source sleeves explicitly registered to shared arm joints; coat independent of body.",
+        "Near sleeves use outfit-warden-front above bare arm; hands extend beyond registered cuff.",
+        "Action export and actual sleeve/hand overlap remain product review gates."
+      ]
+    },
+    "equipment-midnight": {
+      "status": "static-prototype",
+      "cell": [
+        192,
+        192
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "renderScale": 1,
+      "baseRig": "../attachments-complete/rig.json"
+    },
+    "equipment-staff": {
+      "status": "grip-registration-prototype",
+      "releaseApproved": false,
+      "cell": [
+        192,
+        192
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "renderScale": 1,
+      "handedness": "right",
+      "newGenerationRequests": 0,
+      "sources": {
+        "staff": {
+          "file": "arena/art/source/walk-weapon-staff.png",
+          "sha256": "7e55418295af59f8dd95880f0355a7cf95e4e0b9d3583cfc928b21ae220b64c8"
+        },
+        "grip": {
+          "file": "arena/art/source/grip-hands.png",
+          "sha256": "bfb958f6037ec63aa9958bb6961e1369d54738431916d1169e9a5b1128bfaf90"
+        }
+      },
+      "layerContract": "right forearm-hand is replaced by forearm plus exactly one of hand-front/hand-grip; staff registered to actual rightWrist"
+    }
+  },
+  "previewLooks": {
+    "scholar-ivory-empty": [
+      "hair-ivory-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "body-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-ivory-front"
+    ],
+    "scholar-ivory-staff": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "body-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-ivory-front"
+    ],
+    "scholar-midnight-empty": [
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "body-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-midnight-front"
+    ],
+    "scholar-midnight-staff": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "body-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-midnight-front"
+    ],
+    "warden-ivory-empty": [
+      "hair-ivory-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-ivory-front"
+    ],
+    "warden-ivory-staff": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-ivory-front"
+    ],
+    "warden-midnight-empty": [
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-midnight-front"
+    ],
+    "warden-midnight-staff": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-midnight-front"
+    ]
+  },
+  "exclusiveLayerGroups": [],
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-front",
+      "weapon-staff-back"
+    ],
+    "cargoLayers": [
+      "cargo-bundle-back",
+      "cargo-bundle-front"
+    ]
+  },
+  "playback": "once",
+  "releaseFrame": 1,
+  "layerOrderByDirection": {
+    "NE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  }
+}

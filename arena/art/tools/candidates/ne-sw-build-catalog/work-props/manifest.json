@@ -1,0 +1,235 @@
+{
+  "status": "work-hand-prop-registration-candidate",
+  "releaseApproved": false,
+  "source": "arena/art/source/iso-v030-work-hand-tools.png",
+  "sourceSha256": "eb8d078d2b3fda4546aefc39fe7d86047ca01a91a7df75a5fcd4bf2ec159fe24",
+  "sourceSuccessCount": 1,
+  "renderScale": 1,
+  "notes": [
+    "palm/grip pivot is an actual material contact point, not PNG center",
+    "Place contact at solved hand palm; natural and mallet-grip hand variants are exclusive",
+    "Weapon equipped during work is carried behind torso; staff not simultaneously held in working hand"
+  ],
+  "directions": {
+    "NE": {
+      "paper": {
+        "image": "NE/paper.png",
+        "size": [
+          24,
+          19
+        ],
+        "pivot": [
+          15,
+          14.16
+        ],
+        "contactType": "palm",
+        "sourceRect": [
+          70,
+          130,
+          400,
+          320
+        ],
+        "sourceContact": [
+          320,
+          366
+        ],
+        "sourceScale": 0.06,
+        "layer": "work-prop",
+        "joint": "rightWrist",
+        "visibleFrames": [
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mallet": {
+        "image": "NE/mallet.png",
+        "size": [
+          23,
+          35
+        ],
+        "pivot": [
+          10.12,
+          25.68333333333333
+        ],
+        "contactType": "grip",
+        "sourceRect": [
+          620,
+          35,
+          300,
+          450
+        ],
+        "sourceContact": [
+          752,
+          370
+        ],
+        "sourceScale": 0.07666666666666666,
+        "layer": "work-prop",
+        "joint": "rightWrist",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          10,
+          65,
+          20,
+          0
+        ]
+      },
+      "folio": {
+        "image": "NE/folio.png",
+        "size": [
+          28,
+          21
+        ],
+        "pivot": [
+          14.56,
+          15.68
+        ],
+        "contactType": "palm",
+        "sourceRect": [
+          1010,
+          85,
+          500,
+          370
+        ],
+        "sourceContact": [
+          1270,
+          365
+        ],
+        "sourceScale": 0.056,
+        "layer": "work-prop",
+        "joint": "leftWrist",
+        "visibleFrames": [
+          0,
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "SW": {
+      "paper": {
+        "image": "SW/paper.png",
+        "size": [
+          24,
+          20
+        ],
+        "pivot": [
+          14.399999999999999,
+          15
+        ],
+        "contactType": "palm",
+        "sourceRect": [
+          70,
+          610,
+          400,
+          325
+        ],
+        "sourceContact": [
+          310,
+          860
+        ],
+        "sourceScale": 0.06,
+        "layer": "work-prop",
+        "joint": "rightWrist",
+        "visibleFrames": [
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "mallet": {
+        "image": "SW/mallet.png",
+        "size": [
+          23,
+          35
+        ],
+        "pivot": [
+          11.116666666666665,
+          26.45
+        ],
+        "contactType": "grip",
+        "sourceRect": [
+          610,
+          530,
+          300,
+          455
+        ],
+        "sourceContact": [
+          755,
+          875
+        ],
+        "sourceScale": 0.07666666666666666,
+        "layer": "work-prop",
+        "joint": "rightWrist",
+        "visibleFrames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "defaultAbsoluteAngles": [
+          -20,
+          -115,
+          -35,
+          0
+        ]
+      },
+      "folio": {
+        "image": "SW/folio.png",
+        "size": [
+          28,
+          19
+        ],
+        "pivot": [
+          13.176470588235293,
+          15.098039215686274
+        ],
+        "contactType": "palm",
+        "sourceRect": [
+          1000,
+          610,
+          510,
+          350
+        ],
+        "sourceContact": [
+          1240,
+          885
+        ],
+        "sourceScale": 0.054901960784313725,
+        "layer": "work-prop",
+        "joint": "leftWrist",
+        "visibleFrames": [
+          0,
+          1,
+          2
+        ],
+        "defaultAbsoluteAngles": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  }
+}

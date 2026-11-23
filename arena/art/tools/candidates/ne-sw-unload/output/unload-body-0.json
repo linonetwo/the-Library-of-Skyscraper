@@ -1,0 +1,172 @@
+{
+  "frames": {
+    "unload/body/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 43,
+        "h": 139
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 71,
+        "y": 42,
+        "w": 43,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/body/SW/01": {
+      "frame": {
+        "x": 54,
+        "y": 2,
+        "w": 43,
+        "h": 139
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 71,
+        "y": 42,
+        "w": 43,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/body/SW/02": {
+      "frame": {
+        "x": 101,
+        "y": 2,
+        "w": 43,
+        "h": 139
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 71,
+        "y": 42,
+        "w": 43,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/body/NE/00": {
+      "frame": {
+        "x": 148,
+        "y": 2,
+        "w": 41,
+        "h": 138
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 41,
+        "w": 41,
+        "h": 138
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/body/NE/01": {
+      "frame": {
+        "x": 193,
+        "y": 2,
+        "w": 41,
+        "h": 138
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 41,
+        "w": 41,
+        "h": 138
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/body/NE/02": {
+      "frame": {
+        "x": 238,
+        "y": 2,
+        "w": 41,
+        "h": 138
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 41,
+        "w": 41,
+        "h": 138
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "unload/body/NE": [
+      "unload/body/NE/00",
+      "unload/body/NE/01",
+      "unload/body/NE/02"
+    ],
+    "unload/body/SW": [
+      "unload/body/SW/00",
+      "unload/body/SW/01",
+      "unload/body/SW/02"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "unload-body-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 281,
+      "h": 143
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
