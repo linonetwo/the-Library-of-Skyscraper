@@ -1,0 +1,99 @@
+{
+  "status": "static-prototype",
+  "cell": [
+    192,
+    192
+  ],
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "renderScale": 1,
+  "baseRig": "../attachments-complete/rig.json",
+  "directions": {
+    "NE": [
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "NE/hair-midnight-back.png",
+        "pivot": [
+          95.703125,
+          79.25
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "sourceSet": "midnight-independent-silhouette"
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "NE/hair-midnight-front.png",
+        "pivot": [
+          95.703125,
+          79.25
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "sourceSet": "midnight-independent-silhouette"
+      }
+    ],
+    "SW": [
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "SW/hair-midnight-back.png",
+        "pivot": [
+          93.390625,
+          84.171875
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "sourceSet": "midnight-independent-silhouette"
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "SW/hair-midnight-front.png",
+        "pivot": [
+          93.390625,
+          84.171875
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "sourceSet": "midnight-independent-silhouette"
+      }
+    ]
+  }
+}

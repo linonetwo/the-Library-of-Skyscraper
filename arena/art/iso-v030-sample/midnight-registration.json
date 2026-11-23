@@ -1,0 +1,100 @@
+{
+  "source": "arena/art/source/iso-v030-midnight-ne-sw.png",
+  "sha256": "dcb1d664d259a9dbab7c88065c87db7d7d51fd17618fed975d8ded1f73160cdb",
+  "status": "static-prototype",
+  "releaseApproved": false,
+  "referenceUpload": false,
+  "sourceSuccessCount": 1,
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "samplingCanvas": [
+    1280,
+    1280
+  ],
+  "samplingScale": 1.0207336523125996,
+  "entries": [
+    {
+      "direction": "NE",
+      "layer": "back",
+      "sourceCrop": [
+        640,
+        0,
+        640,
+        640
+      ],
+      "scale": 0.105,
+      "placement": [
+        69,
+        31
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "sourcePartition": "rear view: cap and visible nape tail both in front of body; back layer transparent"
+    },
+    {
+      "direction": "NE",
+      "layer": "front",
+      "sourceCrop": [
+        640,
+        0,
+        640,
+        640
+      ],
+      "scale": 0.105,
+      "placement": [
+        69,
+        31
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "sourcePartition": "rear view: cap and visible nape tail both in front of body; back layer transparent"
+    },
+    {
+      "direction": "SW",
+      "layer": "back",
+      "sourceCrop": [
+        640,
+        640,
+        640,
+        640
+      ],
+      "scale": 0.09,
+      "placement": [
+        69,
+        38
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "sourcePartition": "separate source front/back pieces"
+    },
+    {
+      "direction": "SW",
+      "layer": "front",
+      "sourceCrop": [
+        0,
+        640,
+        640,
+        640
+      ],
+      "scale": 0.105,
+      "placement": [
+        60,
+        35
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "sourcePartition": "separate source front/back pieces"
+    }
+  ],
+  "style": "blue-black swept fringe and short low tied tail; independent silhouette, not ivory recolor"
+}

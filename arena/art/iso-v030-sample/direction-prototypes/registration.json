@@ -1,0 +1,439 @@
+{
+  "status": "component-normalization-prototype",
+  "renderScale": 1,
+  "originalSourcesPreserved": true,
+  "directions": {
+    "E": {
+      "source": "iso-v030-body-ew-neutral.png",
+      "sourceSha256": "42b4938642660148abe7afa8809ef89c3559abee97a644b0404a4b17a72650fa",
+      "sourceAnatomy": "generated 5–6 heads; component registration prototype",
+      "cameraApproved": false,
+      "releaseApproved": false,
+      "canvas": [
+        192,
+        192
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "targetVisibleCrownToGround": 132,
+      "parts": [
+        {
+          "id": "body",
+          "image": "E-body.png",
+          "sourceRect": [
+            227,
+            111,
+            89,
+            380
+          ],
+          "scale": 0.253475935828877,
+          "sourceAnchor": [
+            267,
+            488
+          ],
+          "targetAnchor": [
+            96,
+            172.8
+          ],
+          "placement": [
+            86,
+            77
+          ],
+          "scaleMode": "isotropic"
+        },
+        {
+          "id": "head",
+          "image": "E-head.png",
+          "sourceRect": [
+            228,
+            28,
+            80,
+            89
+          ],
+          "scale": 0.4428571428571429,
+          "sourceAnchor": [
+            264,
+            114
+          ],
+          "targetAnchor": [
+            95.23957219251336,
+            78
+          ],
+          "placement": [
+            79,
+            40
+          ],
+          "scaleMode": "isotropic"
+        }
+      ],
+      "pending": [
+        "independent camera/proportion review",
+        "separate full limb joint registration",
+        "body/body-front partition",
+        "outfit/hair attachment alignment"
+      ]
+    },
+    "W": {
+      "source": "iso-v030-body-ew-neutral.png",
+      "sourceSha256": "42b4938642660148abe7afa8809ef89c3559abee97a644b0404a4b17a72650fa",
+      "sourceAnatomy": "generated 5–6 heads; component registration prototype",
+      "cameraApproved": false,
+      "releaseApproved": false,
+      "canvas": [
+        192,
+        192
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "targetVisibleCrownToGround": 132,
+      "parts": [
+        {
+          "id": "body",
+          "image": "W-body.png",
+          "sourceRect": [
+            214,
+            625,
+            89,
+            378
+          ],
+          "scale": 0.25552560646900274,
+          "sourceAnchor": [
+            260,
+            999
+          ],
+          "targetAnchor": [
+            96,
+            172.8
+          ],
+          "placement": [
+            84,
+            77
+          ],
+          "scaleMode": "isotropic"
+        },
+        {
+          "id": "head",
+          "image": "W-head.png",
+          "sourceRect": [
+            224,
+            540,
+            81,
+            91
+          ],
+          "scale": 0.42758620689655175,
+          "sourceAnchor": [
+            264,
+            628
+          ],
+          "targetAnchor": [
+            97.02210242587601,
+            78
+          ],
+          "placement": [
+            80,
+            40
+          ],
+          "scaleMode": "isotropic"
+        }
+      ],
+      "pending": [
+        "independent camera/proportion review",
+        "separate full limb joint registration",
+        "body/body-front partition",
+        "outfit/hair attachment alignment"
+      ]
+    },
+    "N": {
+      "source": "iso-v030-body-ns-neutral.png",
+      "sourceSha256": "17784cc81cc27c07fe8254dea79af6c1054de941a5199e54d3788dc410b1f4ca",
+      "sourceAnatomy": "generated 5–6 heads; component registration prototype",
+      "cameraApproved": false,
+      "releaseApproved": false,
+      "canvas": [
+        192,
+        192
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "targetVisibleCrownToGround": 132,
+      "parts": [
+        {
+          "id": "body",
+          "image": "N-body.png",
+          "sourceRect": [
+            180,
+            107,
+            155,
+            376
+          ],
+          "scale": 0.2548387096774194,
+          "sourceAnchor": [
+            257,
+            482
+          ],
+          "targetAnchor": [
+            96,
+            172.8
+          ],
+          "placement": [
+            76,
+            77
+          ],
+          "scaleMode": "isotropic"
+        },
+        {
+          "id": "head",
+          "image": "N-head.png",
+          "sourceRect": [
+            222,
+            25,
+            72,
+            88
+          ],
+          "scale": 0.44819277108433736,
+          "sourceAnchor": [
+            258,
+            110
+          ],
+          "targetAnchor": [
+            96.25483870967741,
+            78
+          ],
+          "placement": [
+            80,
+            40
+          ],
+          "scaleMode": "isotropic"
+        }
+      ],
+      "pending": [
+        "independent camera/proportion review",
+        "separate full limb joint registration",
+        "body/body-front partition",
+        "outfit/hair attachment alignment"
+      ]
+    },
+    "S": {
+      "source": "iso-v030-body-ns-neutral.png",
+      "sourceSha256": "17784cc81cc27c07fe8254dea79af6c1054de941a5199e54d3788dc410b1f4ca",
+      "sourceAnatomy": "generated 5–6 heads; component registration prototype",
+      "cameraApproved": false,
+      "releaseApproved": false,
+      "canvas": [
+        192,
+        192
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "targetVisibleCrownToGround": 132,
+      "parts": [
+        {
+          "id": "body",
+          "image": "S-body.png",
+          "sourceRect": [
+            177,
+            627,
+            161,
+            374
+          ],
+          "scale": 0.2569105691056911,
+          "sourceAnchor": [
+            257,
+            999
+          ],
+          "targetAnchor": [
+            96,
+            172.8
+          ],
+          "placement": [
+            75,
+            77
+          ],
+          "scaleMode": "isotropic"
+        },
+        {
+          "id": "head",
+          "image": "S-head.png",
+          "sourceRect": [
+            219,
+            537,
+            78,
+            96
+          ],
+          "scale": 0.4043478260869566,
+          "sourceAnchor": [
+            260,
+            630
+          ],
+          "targetAnchor": [
+            96.77073170731707,
+            78
+          ],
+          "placement": [
+            80,
+            40
+          ],
+          "scaleMode": "isotropic"
+        }
+      ],
+      "pending": [
+        "independent camera/proportion review",
+        "separate full limb joint registration",
+        "body/body-front partition",
+        "outfit/hair attachment alignment"
+      ]
+    },
+    "NW": {
+      "source": "iso-v030-body-nwse-neutral.png",
+      "sourceSha256": "5cb106eaca1a876d7c62e0b6210b6f6ed3763d40cc76048e85da62d05d5af8cf",
+      "sourceAnatomy": "generated 5–6 heads; component registration prototype",
+      "cameraApproved": false,
+      "releaseApproved": false,
+      "canvas": [
+        192,
+        192
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "targetVisibleCrownToGround": 132,
+      "parts": [
+        {
+          "id": "body",
+          "image": "NW-body.png",
+          "sourceRect": [
+            205,
+            101,
+            154,
+            396
+          ],
+          "scale": 0.2430769230769231,
+          "sourceAnchor": [
+            277,
+            494
+          ],
+          "targetAnchor": [
+            96,
+            172.8
+          ],
+          "placement": [
+            78,
+            77
+          ],
+          "scaleMode": "isotropic"
+        },
+        {
+          "id": "head",
+          "image": "NW-head.png",
+          "sourceRect": [
+            243,
+            11,
+            86,
+            96
+          ],
+          "scale": 0.40879120879120884,
+          "sourceAnchor": [
+            283,
+            104
+          ],
+          "targetAnchor": [
+            97.45846153846153,
+            78
+          ],
+          "placement": [
+            81,
+            40
+          ],
+          "scaleMode": "isotropic"
+        }
+      ],
+      "pending": [
+        "independent camera/proportion review",
+        "separate full limb joint registration",
+        "body/body-front partition",
+        "outfit/hair attachment alignment"
+      ]
+    },
+    "SE": {
+      "source": "iso-v030-body-nwse-neutral.png",
+      "sourceSha256": "5cb106eaca1a876d7c62e0b6210b6f6ed3763d40cc76048e85da62d05d5af8cf",
+      "sourceAnatomy": "generated 5–6 heads; component registration prototype",
+      "cameraApproved": false,
+      "releaseApproved": false,
+      "canvas": [
+        192,
+        192
+      ],
+      "groundPivot": [
+        96,
+        172.8
+      ],
+      "targetVisibleCrownToGround": 132,
+      "parts": [
+        {
+          "id": "body",
+          "image": "SE-body.png",
+          "sourceRect": [
+            205,
+            620,
+            159,
+            398
+          ],
+          "scale": 0.24122137404580155,
+          "sourceAnchor": [
+            282,
+            1016
+          ],
+          "targetAnchor": [
+            96,
+            172.8
+          ],
+          "placement": [
+            77,
+            77
+          ],
+          "scaleMode": "isotropic"
+        },
+        {
+          "id": "head",
+          "image": "SE-head.png",
+          "sourceRect": [
+            244,
+            524,
+            85,
+            102
+          ],
+          "scale": 0.3875,
+          "sourceAnchor": [
+            280,
+            623
+          ],
+          "targetAnchor": [
+            95.5175572519084,
+            78
+          ],
+          "placement": [
+            82,
+            40
+          ],
+          "scaleMode": "isotropic"
+        }
+      ],
+      "pending": [
+        "independent camera/proportion review",
+        "separate full limb joint registration",
+        "body/body-front partition",
+        "outfit/hair attachment alignment"
+      ]
+    }
+  }
+}
