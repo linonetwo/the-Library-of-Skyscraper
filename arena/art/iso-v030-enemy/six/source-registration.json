@@ -1,0 +1,3170 @@
+[
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "N",
+    "part": "head",
+    "crop": {
+      "left": 14,
+      "top": 45,
+      "width": 229,
+      "height": 279
+    },
+    "scaled": [
+      32,
+      34
+    ],
+    "pivot": [
+      16,
+      31.400000000000006
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "N",
+    "part": "torso",
+    "crop": {
+      "left": 269,
+      "top": 89,
+      "width": 198,
+      "height": 209
+    },
+    "scaled": [
+      41,
+      41
+    ],
+    "pivot": [
+      20.5,
+      39
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "N",
+    "part": "lower-cloak",
+    "crop": {
+      "left": 506,
+      "top": 85,
+      "width": 215,
+      "height": 228
+    },
+    "scaled": [
+      40,
+      34
+    ],
+    "pivot": [
+      20,
+      8.299999999999997
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "N",
+    "part": "left-arm",
+    "crop": {
+      "left": 787,
+      "top": 46,
+      "width": 90,
+      "height": 270
+    },
+    "scaled": [
+      11,
+      34
+    ],
+    "anchors": [
+      [
+        4.78488692774407,
+        2
+      ],
+      [
+        4.644571428571428,
+        16.32
+      ],
+      [
+        3.2169211195928753,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      -0.7071067811865476,
+      -0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "N",
+    "part": "right-arm",
+    "crop": {
+      "left": 1004,
+      "top": 45,
+      "width": 87,
+      "height": 270
+    },
+    "scaled": [
+      11,
+      34
+    ],
+    "anchors": [
+      [
+        5.46426652337453,
+        2
+      ],
+      [
+        5.502518186905428,
+        16.32
+      ],
+      [
+        6.266287160025301,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      -0.7071067811865476,
+      -0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "N",
+    "part": "left-leg",
+    "crop": {
+      "left": 1187,
+      "top": 34,
+      "width": 93,
+      "height": 290
+    },
+    "scaled": [
+      16,
+      49
+    ],
+    "anchors": [
+      [
+        7.773326819736199,
+        1
+      ],
+      [
+        7.1933249370277075,
+        21.771680500000002
+      ],
+      [
+        7.348404255319149,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      -0.7071067811865476,
+      -0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "N",
+    "part": "right-leg",
+    "crop": {
+      "left": 1382,
+      "top": 33,
+      "width": 91,
+      "height": 292
+    },
+    "scaled": [
+      15,
+      49
+    ],
+    "anchors": [
+      [
+        7.064430244941427,
+        1
+      ],
+      [
+        6.9990144546649145,
+        21.771680500000002
+      ],
+      [
+        6.991100702576112,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      -0.7071067811865476,
+      -0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "NW",
+    "part": "head",
+    "crop": {
+      "left": 18,
+      "top": 378,
+      "width": 211,
+      "height": 276
+    },
+    "scaled": [
+      31,
+      34
+    ],
+    "pivot": [
+      15.5,
+      31.400000000000006
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "NW",
+    "part": "torso",
+    "crop": {
+      "left": 275,
+      "top": 416,
+      "width": 178,
+      "height": 208
+    },
+    "scaled": [
+      37,
+      41
+    ],
+    "pivot": [
+      18.5,
+      39
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "NW",
+    "part": "lower-cloak",
+    "crop": {
+      "left": 506,
+      "top": 412,
+      "width": 204,
+      "height": 238
+    },
+    "scaled": [
+      39,
+      34
+    ],
+    "pivot": [
+      19.5,
+      8.299999999999997
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "NW",
+    "part": "left-arm",
+    "crop": {
+      "left": 776,
+      "top": 376,
+      "width": 94,
+      "height": 274
+    },
+    "scaled": [
+      12,
+      34
+    ],
+    "anchors": [
+      [
+        5.515090543259557,
+        2
+      ],
+      [
+        6.230674087816945,
+        16.32
+      ],
+      [
+        2.955501618122977,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      -1,
+      0
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "NW",
+    "part": "right-arm",
+    "crop": {
+      "left": 996,
+      "top": 376,
+      "width": 88,
+      "height": 269
+    },
+    "scaled": [
+      11,
+      34
+    ],
+    "anchors": [
+      [
+        4.9063856168629885,
+        2
+      ],
+      [
+        5.814983713355049,
+        16.32
+      ],
+      [
+        4.91661279896574,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      -1,
+      0
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "NW",
+    "part": "left-leg",
+    "crop": {
+      "left": 1168,
+      "top": 368,
+      "width": 106,
+      "height": 290
+    },
+    "scaled": [
+      18,
+      49
+    ],
+    "anchors": [
+      [
+        10.242857142857142,
+        1
+      ],
+      [
+        10.224729815638906,
+        21.771680500000002
+      ],
+      [
+        8.17550027041644,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      -1,
+      0
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "NW",
+    "part": "right-leg",
+    "crop": {
+      "left": 1377,
+      "top": 368,
+      "width": 99,
+      "height": 291
+    },
+    "scaled": [
+      17,
+      49
+    ],
+    "anchors": [
+      [
+        9.04802744425386,
+        1
+      ],
+      [
+        9.152256834075017,
+        21.771680500000002
+      ],
+      [
+        7.5749209088294505,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      -1,
+      0
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "W",
+    "part": "head",
+    "crop": {
+      "left": 25,
+      "top": 720,
+      "width": 205,
+      "height": 267
+    },
+    "scaled": [
+      31,
+      34
+    ],
+    "pivot": [
+      15.5,
+      31.400000000000006
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "W",
+    "part": "torso",
+    "crop": {
+      "left": 290,
+      "top": 749,
+      "width": 154,
+      "height": 213
+    },
+    "scaled": [
+      33,
+      41
+    ],
+    "pivot": [
+      16.5,
+      39
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "W",
+    "part": "lower-cloak",
+    "crop": {
+      "left": 516,
+      "top": 750,
+      "width": 183,
+      "height": 233
+    },
+    "scaled": [
+      34,
+      34
+    ],
+    "pivot": [
+      17,
+      8.299999999999997
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "W",
+    "part": "left-arm",
+    "crop": {
+      "left": 776,
+      "top": 714,
+      "width": 90,
+      "height": 270
+    },
+    "scaled": [
+      11,
+      34
+    ],
+    "anchors": [
+      [
+        5.899521531100478,
+        2
+      ],
+      [
+        5.90125786163522,
+        16.32
+      ],
+      [
+        2.734019103600294,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      -0.7071067811865476,
+      0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "W",
+    "part": "right-arm",
+    "crop": {
+      "left": 983,
+      "top": 714,
+      "width": 91,
+      "height": 269
+    },
+    "scaled": [
+      12,
+      34
+    ],
+    "anchors": [
+      [
+        6.30832927423283,
+        2
+      ],
+      [
+        4.509660226515656,
+        16.32
+      ],
+      [
+        3.269090909090909,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      -0.7071067811865476,
+      0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "W",
+    "part": "left-leg",
+    "crop": {
+      "left": 1152,
+      "top": 705,
+      "width": 122,
+      "height": 292
+    },
+    "scaled": [
+      20,
+      49
+    ],
+    "anchors": [
+      [
+        12.513809523809524,
+        1
+      ],
+      [
+        12.036217303822937,
+        21.771680500000002
+      ],
+      [
+        9.829452676141518,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      -0.7071067811865476,
+      0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-back.png",
+    "sha256": "045c904c8b438d445ffb801e790e23ca2f9b709749c15649d92f7c15bfad8531",
+    "heading": "W",
+    "part": "right-leg",
+    "crop": {
+      "left": 1358,
+      "top": 706,
+      "width": 111,
+      "height": 291
+    },
+    "scaled": [
+      19,
+      49
+    ],
+    "anchors": [
+      [
+        11.304424778761062,
+        1
+      ],
+      [
+        11.41823056300268,
+        21.771680500000002
+      ],
+      [
+        9.800450323670137,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      -0.7071067811865476,
+      0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "N",
+    "part": "down-0",
+    "crop": {
+      "left": 110,
+      "top": 27,
+      "width": 186,
+      "height": 287
+    },
+    "contactPixel": [
+      47,
+      91
+    ],
+    "size": [
+      61,
+      94
+    ],
+    "groundOffset": [
+      3,
+      0
+    ],
+    "pivot": [
+      44,
+      91
+    ],
+    "hoodPolygon": [
+      [
+        0.13,
+        0
+      ],
+      [
+        0.87,
+        0
+      ],
+      [
+        0.86,
+        0.32
+      ],
+      [
+        0.63,
+        0.43
+      ],
+      [
+        0.33,
+        0.42
+      ],
+      [
+        0.12,
+        0.31
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.65,
+        0.5
+      ],
+      [
+        0.88,
+        0.46
+      ],
+      [
+        0.98,
+        0.7
+      ],
+      [
+        0.86,
+        0.79
+      ],
+      [
+        0.66,
+        0.71
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": true
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "N",
+    "part": "down-1",
+    "crop": {
+      "left": 473,
+      "top": 57,
+      "width": 214,
+      "height": 265
+    },
+    "contactPixel": [
+      61,
+      80
+    ],
+    "size": [
+      70,
+      87
+    ],
+    "groundOffset": [
+      16,
+      -2
+    ],
+    "pivot": [
+      45,
+      82
+    ],
+    "hoodPolygon": [
+      [
+        0.24,
+        0
+      ],
+      [
+        0.9,
+        0
+      ],
+      [
+        0.91,
+        0.38
+      ],
+      [
+        0.65,
+        0.47
+      ],
+      [
+        0.34,
+        0.43
+      ],
+      [
+        0.19,
+        0.29
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.67,
+        0.52
+      ],
+      [
+        0.85,
+        0.5
+      ],
+      [
+        0.91,
+        0.78
+      ],
+      [
+        1,
+        0.92
+      ],
+      [
+        0.98,
+        1
+      ],
+      [
+        0.76,
+        0.97
+      ],
+      [
+        0.68,
+        0.78
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": true
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "N",
+    "part": "down-2",
+    "crop": {
+      "left": 799,
+      "top": 93,
+      "width": 264,
+      "height": 219
+    },
+    "contactPixel": [
+      79,
+      66
+    ],
+    "size": [
+      86,
+      72
+    ],
+    "groundOffset": [
+      25,
+      -4
+    ],
+    "pivot": [
+      54,
+      70
+    ],
+    "hoodPolygon": [
+      [
+        0.4,
+        0
+      ],
+      [
+        0.98,
+        0
+      ],
+      [
+        0.99,
+        0.37
+      ],
+      [
+        0.77,
+        0.55
+      ],
+      [
+        0.48,
+        0.47
+      ],
+      [
+        0.35,
+        0.32
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.68,
+        0.59
+      ],
+      [
+        0.84,
+        0.54
+      ],
+      [
+        0.91,
+        0.8
+      ],
+      [
+        1,
+        0.87
+      ],
+      [
+        1,
+        0.99
+      ],
+      [
+        0.7,
+        0.98
+      ],
+      [
+        0.62,
+        0.79
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": true
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "N",
+    "part": "down-3",
+    "crop": {
+      "left": 1167,
+      "top": 145,
+      "width": 295,
+      "height": 165
+    },
+    "contactPixel": [
+      83,
+      48
+    ],
+    "size": [
+      97,
+      54
+    ],
+    "groundOffset": [
+      33,
+      -4
+    ],
+    "pivot": [
+      50,
+      52
+    ],
+    "hoodPolygon": [
+      [
+        0.55,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0.58
+      ],
+      [
+        0.84,
+        0.71
+      ],
+      [
+        0.61,
+        0.57
+      ],
+      [
+        0.49,
+        0.27
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.7,
+        0.6
+      ],
+      [
+        0.92,
+        0.58
+      ],
+      [
+        1,
+        0.75
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0.69,
+        0.99
+      ],
+      [
+        0.58,
+        0.84
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": true
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "NW",
+    "part": "down-0",
+    "crop": {
+      "left": 111,
+      "top": 368,
+      "width": 190,
+      "height": 277
+    },
+    "contactPixel": [
+      16,
+      91
+    ],
+    "size": [
+      64,
+      94
+    ],
+    "groundOffset": [
+      -3,
+      0
+    ],
+    "pivot": [
+      19,
+      91
+    ],
+    "hoodPolygon": [
+      [
+        0.13,
+        0
+      ],
+      [
+        0.87,
+        0
+      ],
+      [
+        0.86,
+        0.32
+      ],
+      [
+        0.63,
+        0.43
+      ],
+      [
+        0.33,
+        0.42
+      ],
+      [
+        0.12,
+        0.31
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.65,
+        0.5
+      ],
+      [
+        0.88,
+        0.46
+      ],
+      [
+        0.98,
+        0.7
+      ],
+      [
+        0.86,
+        0.79
+      ],
+      [
+        0.66,
+        0.71
+      ]
+    ],
+    "normalizedXReflected": true,
+    "rear": true
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "NW",
+    "part": "down-1",
+    "crop": {
+      "left": 445,
+      "top": 400,
+      "width": 226,
+      "height": 250
+    },
+    "contactPixel": [
+      8,
+      79
+    ],
+    "size": [
+      77,
+      85
+    ],
+    "groundOffset": [
+      -16,
+      -2
+    ],
+    "pivot": [
+      24,
+      81
+    ],
+    "hoodPolygon": [
+      [
+        0.24,
+        0
+      ],
+      [
+        0.9,
+        0
+      ],
+      [
+        0.91,
+        0.38
+      ],
+      [
+        0.65,
+        0.47
+      ],
+      [
+        0.34,
+        0.43
+      ],
+      [
+        0.19,
+        0.29
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.67,
+        0.52
+      ],
+      [
+        0.85,
+        0.5
+      ],
+      [
+        0.91,
+        0.78
+      ],
+      [
+        1,
+        0.92
+      ],
+      [
+        0.98,
+        1
+      ],
+      [
+        0.76,
+        0.97
+      ],
+      [
+        0.68,
+        0.78
+      ]
+    ],
+    "normalizedXReflected": true,
+    "rear": true
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "NW",
+    "part": "down-2",
+    "crop": {
+      "left": 800,
+      "top": 427,
+      "width": 296,
+      "height": 218
+    },
+    "contactPixel": [
+      9,
+      64
+    ],
+    "size": [
+      100,
+      74
+    ],
+    "groundOffset": [
+      -25,
+      -4
+    ],
+    "pivot": [
+      34,
+      68
+    ],
+    "hoodPolygon": [
+      [
+        0.4,
+        0
+      ],
+      [
+        0.98,
+        0
+      ],
+      [
+        0.99,
+        0.37
+      ],
+      [
+        0.77,
+        0.55
+      ],
+      [
+        0.48,
+        0.47
+      ],
+      [
+        0.35,
+        0.32
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.68,
+        0.59
+      ],
+      [
+        0.84,
+        0.54
+      ],
+      [
+        0.91,
+        0.8
+      ],
+      [
+        1,
+        0.87
+      ],
+      [
+        1,
+        0.99
+      ],
+      [
+        0.7,
+        0.98
+      ],
+      [
+        0.62,
+        0.79
+      ]
+    ],
+    "normalizedXReflected": true,
+    "rear": true
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "NW",
+    "part": "down-3",
+    "crop": {
+      "left": 1167,
+      "top": 471,
+      "width": 318,
+      "height": 171
+    },
+    "contactPixel": [
+      12,
+      51
+    ],
+    "size": [
+      108,
+      58
+    ],
+    "groundOffset": [
+      -33,
+      -4
+    ],
+    "pivot": [
+      45,
+      55
+    ],
+    "hoodPolygon": [
+      [
+        0.55,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0.58
+      ],
+      [
+        0.84,
+        0.71
+      ],
+      [
+        0.61,
+        0.57
+      ],
+      [
+        0.49,
+        0.27
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.7,
+        0.6
+      ],
+      [
+        0.92,
+        0.58
+      ],
+      [
+        1,
+        0.75
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0.69,
+        0.99
+      ],
+      [
+        0.58,
+        0.84
+      ]
+    ],
+    "normalizedXReflected": true,
+    "rear": true
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "W",
+    "part": "down-0",
+    "crop": {
+      "left": 91,
+      "top": 694,
+      "width": 207,
+      "height": 297
+    },
+    "contactPixel": [
+      26,
+      91
+    ],
+    "size": [
+      66,
+      94
+    ],
+    "groundOffset": [
+      -3,
+      0
+    ],
+    "pivot": [
+      29,
+      91
+    ],
+    "hoodPolygon": [
+      [
+        0.13,
+        0
+      ],
+      [
+        0.87,
+        0
+      ],
+      [
+        0.86,
+        0.32
+      ],
+      [
+        0.63,
+        0.43
+      ],
+      [
+        0.33,
+        0.42
+      ],
+      [
+        0.12,
+        0.31
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.65,
+        0.5
+      ],
+      [
+        0.88,
+        0.46
+      ],
+      [
+        0.98,
+        0.7
+      ],
+      [
+        0.86,
+        0.79
+      ],
+      [
+        0.66,
+        0.71
+      ]
+    ],
+    "normalizedXReflected": true,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "W",
+    "part": "down-1",
+    "crop": {
+      "left": 423,
+      "top": 735,
+      "width": 248,
+      "height": 256
+    },
+    "contactPixel": [
+      9,
+      77
+    ],
+    "size": [
+      78,
+      81
+    ],
+    "groundOffset": [
+      -16,
+      -2
+    ],
+    "pivot": [
+      25,
+      79
+    ],
+    "hoodPolygon": [
+      [
+        0.24,
+        0
+      ],
+      [
+        0.9,
+        0
+      ],
+      [
+        0.91,
+        0.38
+      ],
+      [
+        0.65,
+        0.47
+      ],
+      [
+        0.34,
+        0.43
+      ],
+      [
+        0.19,
+        0.29
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.67,
+        0.52
+      ],
+      [
+        0.85,
+        0.5
+      ],
+      [
+        0.91,
+        0.78
+      ],
+      [
+        1,
+        0.92
+      ],
+      [
+        0.98,
+        1
+      ],
+      [
+        0.76,
+        0.97
+      ],
+      [
+        0.68,
+        0.78
+      ]
+    ],
+    "normalizedXReflected": true,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "W",
+    "part": "down-2",
+    "crop": {
+      "left": 760,
+      "top": 776,
+      "width": 328,
+      "height": 205
+    },
+    "contactPixel": [
+      14,
+      59
+    ],
+    "size": [
+      104,
+      65
+    ],
+    "groundOffset": [
+      -25,
+      -4
+    ],
+    "pivot": [
+      39,
+      63
+    ],
+    "hoodPolygon": [
+      [
+        0.4,
+        0
+      ],
+      [
+        0.98,
+        0
+      ],
+      [
+        0.99,
+        0.37
+      ],
+      [
+        0.77,
+        0.55
+      ],
+      [
+        0.48,
+        0.47
+      ],
+      [
+        0.35,
+        0.32
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.68,
+        0.59
+      ],
+      [
+        0.84,
+        0.54
+      ],
+      [
+        0.91,
+        0.8
+      ],
+      [
+        1,
+        0.87
+      ],
+      [
+        1,
+        0.99
+      ],
+      [
+        0.7,
+        0.98
+      ],
+      [
+        0.62,
+        0.79
+      ]
+    ],
+    "normalizedXReflected": true,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-back.png",
+    "sha256": "6977c17e0d3450b6d0dbae0e2f49d54a6d8f5d827e87eddeb5306c6fa33c51a7",
+    "heading": "W",
+    "part": "down-3",
+    "crop": {
+      "left": 1126,
+      "top": 815,
+      "width": 359,
+      "height": 164
+    },
+    "contactPixel": [
+      16,
+      49
+    ],
+    "size": [
+      114,
+      52
+    ],
+    "groundOffset": [
+      -33,
+      -4
+    ],
+    "pivot": [
+      49,
+      53
+    ],
+    "hoodPolygon": [
+      [
+        0.55,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0.58
+      ],
+      [
+        0.84,
+        0.71
+      ],
+      [
+        0.61,
+        0.57
+      ],
+      [
+        0.49,
+        0.27
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.7,
+        0.6
+      ],
+      [
+        0.92,
+        0.58
+      ],
+      [
+        1,
+        0.75
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0.69,
+        0.99
+      ],
+      [
+        0.58,
+        0.84
+      ]
+    ],
+    "normalizedXReflected": true,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "S",
+    "part": "head",
+    "crop": {
+      "left": 27,
+      "top": 41,
+      "width": 202,
+      "height": 258
+    },
+    "scaled": [
+      32,
+      34
+    ],
+    "pivot": [
+      16,
+      31.400000000000006
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "S",
+    "part": "torso",
+    "crop": {
+      "left": 259,
+      "top": 86,
+      "width": 216,
+      "height": 200
+    },
+    "scaled": [
+      41,
+      41
+    ],
+    "pivot": [
+      20.5,
+      39
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "S",
+    "part": "lower-cloak",
+    "crop": {
+      "left": 495,
+      "top": 84,
+      "width": 197,
+      "height": 227
+    },
+    "scaled": [
+      40,
+      34
+    ],
+    "pivot": [
+      20,
+      8.299999999999997
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "S",
+    "part": "left-arm",
+    "crop": {
+      "left": 747,
+      "top": 45,
+      "width": 97,
+      "height": 276
+    },
+    "scaled": [
+      12,
+      34
+    ],
+    "anchors": [
+      [
+        5.156003937007874,
+        2
+      ],
+      [
+        4.4333810888252145,
+        16.32
+      ],
+      [
+        3.8500727802037846,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      0.7071067811865476,
+      0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "S",
+    "part": "right-arm",
+    "crop": {
+      "left": 956,
+      "top": 43,
+      "width": 97,
+      "height": 277
+    },
+    "scaled": [
+      12,
+      34
+    ],
+    "anchors": [
+      [
+        5.919177427068388,
+        2
+      ],
+      [
+        6.445945945945946,
+        16.32
+      ],
+      [
+        6.606194690265487,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      0.7071067811865476,
+      0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "S",
+    "part": "left-leg",
+    "crop": {
+      "left": 1164,
+      "top": 42,
+      "width": 87,
+      "height": 279
+    },
+    "scaled": [
+      15,
+      49
+    ],
+    "anchors": [
+      [
+        7.287505054589567,
+        1
+      ],
+      [
+        7.238785046728972,
+        21.771680500000002
+      ],
+      [
+        7.3846547314578,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      0.7071067811865476,
+      0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "S",
+    "part": "right-leg",
+    "crop": {
+      "left": 1389,
+      "top": 42,
+      "width": 85,
+      "height": 279
+    },
+    "scaled": [
+      15,
+      49
+    ],
+    "anchors": [
+      [
+        7.199258954302182,
+        1
+      ],
+      [
+        6.68962472406181,
+        21.771680500000002
+      ],
+      [
+        6.834479371316307,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      0.7071067811865476,
+      0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "SE",
+    "part": "head",
+    "crop": {
+      "left": 22,
+      "top": 374,
+      "width": 214,
+      "height": 262
+    },
+    "scaled": [
+      31,
+      34
+    ],
+    "pivot": [
+      15.5,
+      31.400000000000006
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "SE",
+    "part": "torso",
+    "crop": {
+      "left": 269,
+      "top": 415,
+      "width": 196,
+      "height": 200
+    },
+    "scaled": [
+      37,
+      41
+    ],
+    "pivot": [
+      18.5,
+      39
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "SE",
+    "part": "lower-cloak",
+    "crop": {
+      "left": 491,
+      "top": 411,
+      "width": 194,
+      "height": 234
+    },
+    "scaled": [
+      39,
+      34
+    ],
+    "pivot": [
+      19.5,
+      8.299999999999997
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "SE",
+    "part": "left-arm",
+    "crop": {
+      "left": 746,
+      "top": 379,
+      "width": 100,
+      "height": 271
+    },
+    "scaled": [
+      13,
+      34
+    ],
+    "anchors": [
+      [
+        5.39672711189739,
+        2
+      ],
+      [
+        5.361672473867595,
+        16.32
+      ],
+      [
+        6.8956145768993204,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      1,
+      0
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "SE",
+    "part": "right-arm",
+    "crop": {
+      "left": 958,
+      "top": 377,
+      "width": 101,
+      "height": 274
+    },
+    "scaled": [
+      13,
+      34
+    ],
+    "anchors": [
+      [
+        6.192289609779031,
+        2
+      ],
+      [
+        7.5036399735274655,
+        16.32
+      ],
+      [
+        8.614896988906498,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      1,
+      0
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "SE",
+    "part": "left-leg",
+    "crop": {
+      "left": 1170,
+      "top": 378,
+      "width": 85,
+      "height": 275
+    },
+    "scaled": [
+      15,
+      49
+    ],
+    "anchors": [
+      [
+        6.863275039745628,
+        1
+      ],
+      [
+        6.931451612903226,
+        21.771680500000002
+      ],
+      [
+        5.9555390885513155,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      1,
+      0
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "SE",
+    "part": "right-leg",
+    "crop": {
+      "left": 1391,
+      "top": 377,
+      "width": 88,
+      "height": 275
+    },
+    "scaled": [
+      16,
+      49
+    ],
+    "anchors": [
+      [
+        8.046233559186927,
+        1
+      ],
+      [
+        7.053354890864996,
+        21.771680500000002
+      ],
+      [
+        6.370395403852653,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      1,
+      0
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "E",
+    "part": "head",
+    "crop": {
+      "left": 26,
+      "top": 713,
+      "width": 207,
+      "height": 262
+    },
+    "scaled": [
+      31,
+      34
+    ],
+    "pivot": [
+      15.5,
+      31.400000000000006
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "E",
+    "part": "torso",
+    "crop": {
+      "left": 277,
+      "top": 747,
+      "width": 156,
+      "height": 208
+    },
+    "scaled": [
+      33,
+      41
+    ],
+    "pivot": [
+      16.5,
+      39
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "E",
+    "part": "lower-cloak",
+    "crop": {
+      "left": 500,
+      "top": 743,
+      "width": 170,
+      "height": 239
+    },
+    "scaled": [
+      34,
+      34
+    ],
+    "pivot": [
+      17,
+      8.299999999999997
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "E",
+    "part": "left-arm",
+    "crop": {
+      "left": 734,
+      "top": 713,
+      "width": 102,
+      "height": 275
+    },
+    "scaled": [
+      13,
+      34
+    ],
+    "anchors": [
+      [
+        6.277857484457198,
+        2
+      ],
+      [
+        6.303095752339813,
+        16.32
+      ],
+      [
+        8.557277628032345,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      0.7071067811865476,
+      -0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "E",
+    "part": "right-arm",
+    "crop": {
+      "left": 948,
+      "top": 712,
+      "width": 100,
+      "height": 275
+    },
+    "scaled": [
+      12,
+      34
+    ],
+    "anchors": [
+      [
+        5.383696780893042,
+        2
+      ],
+      [
+        6.571527777777778,
+        16.32
+      ],
+      [
+        8.635652853792026,
+        28.56
+      ]
+    ],
+    "worldForward": [
+      0.7071067811865476,
+      -0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "E",
+    "part": "left-leg",
+    "crop": {
+      "left": 1167,
+      "top": 712,
+      "width": 100,
+      "height": 278
+    },
+    "scaled": [
+      18,
+      49
+    ],
+    "anchors": [
+      [
+        5.706845863082738,
+        1
+      ],
+      [
+        7.041734860883797,
+        21.771680500000002
+      ],
+      [
+        6.277734976887519,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      0.7071067811865476,
+      -0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-parts-front.png",
+    "sha256": "65b13f1b44d717452c0c05bbace6f471e073ffe5337c298136a6669a5f8304ae",
+    "heading": "E",
+    "part": "right-leg",
+    "crop": {
+      "left": 1386,
+      "top": 712,
+      "width": 103,
+      "height": 277
+    },
+    "scaled": [
+      18,
+      49
+    ],
+    "anchors": [
+      [
+        5.83142736128759,
+        1
+      ],
+      [
+        6.709991532599492,
+        21.771680500000002
+      ],
+      [
+        6.238095238095238,
+        41.759524
+      ]
+    ],
+    "worldForward": [
+      0.7071067811865476,
+      -0.7071067811865476
+    ]
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "S",
+    "part": "down-0",
+    "crop": {
+      "left": 117,
+      "top": 45,
+      "width": 181,
+      "height": 261
+    },
+    "contactPixel": [
+      48,
+      91
+    ],
+    "size": [
+      65,
+      94
+    ],
+    "groundOffset": [
+      3,
+      0
+    ],
+    "pivot": [
+      45,
+      91
+    ],
+    "hoodPolygon": [
+      [
+        0.13,
+        0
+      ],
+      [
+        0.87,
+        0
+      ],
+      [
+        0.86,
+        0.32
+      ],
+      [
+        0.63,
+        0.43
+      ],
+      [
+        0.33,
+        0.42
+      ],
+      [
+        0.12,
+        0.31
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.65,
+        0.5
+      ],
+      [
+        0.88,
+        0.46
+      ],
+      [
+        0.98,
+        0.7
+      ],
+      [
+        0.86,
+        0.79
+      ],
+      [
+        0.66,
+        0.71
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "S",
+    "part": "down-1",
+    "crop": {
+      "left": 482,
+      "top": 67,
+      "width": 191,
+      "height": 241
+    },
+    "contactPixel": [
+      57,
+      83
+    ],
+    "size": [
+      69,
+      87
+    ],
+    "groundOffset": [
+      16,
+      -2
+    ],
+    "pivot": [
+      41,
+      85
+    ],
+    "hoodPolygon": [
+      [
+        0.24,
+        0
+      ],
+      [
+        0.9,
+        0
+      ],
+      [
+        0.91,
+        0.38
+      ],
+      [
+        0.65,
+        0.47
+      ],
+      [
+        0.34,
+        0.43
+      ],
+      [
+        0.19,
+        0.29
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.67,
+        0.52
+      ],
+      [
+        0.85,
+        0.5
+      ],
+      [
+        0.91,
+        0.78
+      ],
+      [
+        1,
+        0.92
+      ],
+      [
+        0.98,
+        1
+      ],
+      [
+        0.76,
+        0.97
+      ],
+      [
+        0.68,
+        0.78
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "S",
+    "part": "down-2",
+    "crop": {
+      "left": 801,
+      "top": 98,
+      "width": 263,
+      "height": 206
+    },
+    "contactPixel": [
+      71,
+      70
+    ],
+    "size": [
+      95,
+      74
+    ],
+    "groundOffset": [
+      25,
+      -4
+    ],
+    "pivot": [
+      46,
+      74
+    ],
+    "hoodPolygon": [
+      [
+        0.4,
+        0
+      ],
+      [
+        0.98,
+        0
+      ],
+      [
+        0.99,
+        0.37
+      ],
+      [
+        0.77,
+        0.55
+      ],
+      [
+        0.48,
+        0.47
+      ],
+      [
+        0.35,
+        0.32
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.68,
+        0.59
+      ],
+      [
+        0.84,
+        0.54
+      ],
+      [
+        0.91,
+        0.8
+      ],
+      [
+        1,
+        0.87
+      ],
+      [
+        1,
+        0.99
+      ],
+      [
+        0.7,
+        0.98
+      ],
+      [
+        0.62,
+        0.79
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "S",
+    "part": "down-3",
+    "crop": {
+      "left": 1177,
+      "top": 158,
+      "width": 297,
+      "height": 144
+    },
+    "contactPixel": [
+      85,
+      48
+    ],
+    "size": [
+      107,
+      52
+    ],
+    "groundOffset": [
+      33,
+      -4
+    ],
+    "pivot": [
+      52,
+      52
+    ],
+    "hoodPolygon": [
+      [
+        0.55,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0.58
+      ],
+      [
+        0.84,
+        0.71
+      ],
+      [
+        0.61,
+        0.57
+      ],
+      [
+        0.49,
+        0.27
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.7,
+        0.6
+      ],
+      [
+        0.92,
+        0.58
+      ],
+      [
+        1,
+        0.75
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0.69,
+        0.99
+      ],
+      [
+        0.58,
+        0.84
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "SE",
+    "part": "down-0",
+    "crop": {
+      "left": 81,
+      "top": 378,
+      "width": 212,
+      "height": 268
+    },
+    "contactPixel": [
+      31,
+      90
+    ],
+    "size": [
+      74,
+      94
+    ],
+    "groundOffset": [
+      3,
+      0
+    ],
+    "pivot": [
+      28,
+      90
+    ],
+    "hoodPolygon": [
+      [
+        0.13,
+        0
+      ],
+      [
+        0.87,
+        0
+      ],
+      [
+        0.86,
+        0.32
+      ],
+      [
+        0.63,
+        0.43
+      ],
+      [
+        0.33,
+        0.42
+      ],
+      [
+        0.12,
+        0.31
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.65,
+        0.5
+      ],
+      [
+        0.88,
+        0.46
+      ],
+      [
+        0.98,
+        0.7
+      ],
+      [
+        0.86,
+        0.79
+      ],
+      [
+        0.66,
+        0.71
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "SE",
+    "part": "down-1",
+    "crop": {
+      "left": 444,
+      "top": 400,
+      "width": 240,
+      "height": 246
+    },
+    "contactPixel": [
+      75,
+      80
+    ],
+    "size": [
+      84,
+      86
+    ],
+    "groundOffset": [
+      16,
+      -2
+    ],
+    "pivot": [
+      59,
+      82
+    ],
+    "hoodPolygon": [
+      [
+        0.24,
+        0
+      ],
+      [
+        0.9,
+        0
+      ],
+      [
+        0.91,
+        0.38
+      ],
+      [
+        0.65,
+        0.47
+      ],
+      [
+        0.34,
+        0.43
+      ],
+      [
+        0.19,
+        0.29
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.67,
+        0.52
+      ],
+      [
+        0.85,
+        0.5
+      ],
+      [
+        0.91,
+        0.78
+      ],
+      [
+        1,
+        0.92
+      ],
+      [
+        0.98,
+        1
+      ],
+      [
+        0.76,
+        0.97
+      ],
+      [
+        0.68,
+        0.78
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "SE",
+    "part": "down-2",
+    "crop": {
+      "left": 801,
+      "top": 435,
+      "width": 283,
+      "height": 204
+    },
+    "contactPixel": [
+      76,
+      67
+    ],
+    "size": [
+      99,
+      72
+    ],
+    "groundOffset": [
+      25,
+      -4
+    ],
+    "pivot": [
+      51,
+      71
+    ],
+    "hoodPolygon": [
+      [
+        0.4,
+        0
+      ],
+      [
+        0.98,
+        0
+      ],
+      [
+        0.99,
+        0.37
+      ],
+      [
+        0.77,
+        0.55
+      ],
+      [
+        0.48,
+        0.47
+      ],
+      [
+        0.35,
+        0.32
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.68,
+        0.59
+      ],
+      [
+        0.84,
+        0.54
+      ],
+      [
+        0.91,
+        0.8
+      ],
+      [
+        1,
+        0.87
+      ],
+      [
+        1,
+        0.99
+      ],
+      [
+        0.7,
+        0.98
+      ],
+      [
+        0.62,
+        0.79
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "SE",
+    "part": "down-3",
+    "crop": {
+      "left": 1175,
+      "top": 491,
+      "width": 321,
+      "height": 145
+    },
+    "contactPixel": [
+      91,
+      47
+    ],
+    "size": [
+      113,
+      51
+    ],
+    "groundOffset": [
+      33,
+      -4
+    ],
+    "pivot": [
+      58,
+      51
+    ],
+    "hoodPolygon": [
+      [
+        0.55,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0.58
+      ],
+      [
+        0.84,
+        0.71
+      ],
+      [
+        0.61,
+        0.57
+      ],
+      [
+        0.49,
+        0.27
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.7,
+        0.6
+      ],
+      [
+        0.92,
+        0.58
+      ],
+      [
+        1,
+        0.75
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0.69,
+        0.99
+      ],
+      [
+        0.58,
+        0.84
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "E",
+    "part": "down-0",
+    "crop": {
+      "left": 66,
+      "top": 712,
+      "width": 233,
+      "height": 272
+    },
+    "contactPixel": [
+      40,
+      90
+    ],
+    "size": [
+      81,
+      94
+    ],
+    "groundOffset": [
+      3,
+      0
+    ],
+    "pivot": [
+      37,
+      90
+    ],
+    "hoodPolygon": [
+      [
+        0.13,
+        0
+      ],
+      [
+        0.87,
+        0
+      ],
+      [
+        0.86,
+        0.32
+      ],
+      [
+        0.63,
+        0.43
+      ],
+      [
+        0.33,
+        0.42
+      ],
+      [
+        0.12,
+        0.31
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.65,
+        0.5
+      ],
+      [
+        0.88,
+        0.46
+      ],
+      [
+        0.98,
+        0.7
+      ],
+      [
+        0.86,
+        0.79
+      ],
+      [
+        0.66,
+        0.71
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "E",
+    "part": "down-1",
+    "crop": {
+      "left": 433,
+      "top": 737,
+      "width": 248,
+      "height": 246
+    },
+    "contactPixel": [
+      75,
+      79
+    ],
+    "size": [
+      86,
+      85
+    ],
+    "groundOffset": [
+      16,
+      -2
+    ],
+    "pivot": [
+      59,
+      81
+    ],
+    "hoodPolygon": [
+      [
+        0.24,
+        0
+      ],
+      [
+        0.9,
+        0
+      ],
+      [
+        0.91,
+        0.38
+      ],
+      [
+        0.65,
+        0.47
+      ],
+      [
+        0.34,
+        0.43
+      ],
+      [
+        0.19,
+        0.29
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.67,
+        0.52
+      ],
+      [
+        0.85,
+        0.5
+      ],
+      [
+        0.91,
+        0.78
+      ],
+      [
+        1,
+        0.92
+      ],
+      [
+        0.98,
+        1
+      ],
+      [
+        0.76,
+        0.97
+      ],
+      [
+        0.68,
+        0.78
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "E",
+    "part": "down-2",
+    "crop": {
+      "left": 793,
+      "top": 775,
+      "width": 295,
+      "height": 207
+    },
+    "contactPixel": [
+      77,
+      65
+    ],
+    "size": [
+      102,
+      72
+    ],
+    "groundOffset": [
+      25,
+      -4
+    ],
+    "pivot": [
+      52,
+      69
+    ],
+    "hoodPolygon": [
+      [
+        0.4,
+        0
+      ],
+      [
+        0.98,
+        0
+      ],
+      [
+        0.99,
+        0.37
+      ],
+      [
+        0.77,
+        0.55
+      ],
+      [
+        0.48,
+        0.47
+      ],
+      [
+        0.35,
+        0.32
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.68,
+        0.59
+      ],
+      [
+        0.84,
+        0.54
+      ],
+      [
+        0.91,
+        0.8
+      ],
+      [
+        1,
+        0.87
+      ],
+      [
+        1,
+        0.99
+      ],
+      [
+        0.7,
+        0.98
+      ],
+      [
+        0.62,
+        0.79
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  },
+  {
+    "file": "source/inkguard-six-down-front.png",
+    "sha256": "f88b65d04866777ef686b43d77a76b9bf8655374fa7d540ececec87af66e2b59",
+    "heading": "E",
+    "part": "down-3",
+    "crop": {
+      "left": 1158,
+      "top": 827,
+      "width": 339,
+      "height": 153
+    },
+    "contactPixel": [
+      92,
+      47
+    ],
+    "size": [
+      117,
+      53
+    ],
+    "groundOffset": [
+      33,
+      -4
+    ],
+    "pivot": [
+      59,
+      51
+    ],
+    "hoodPolygon": [
+      [
+        0.55,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0.58
+      ],
+      [
+        0.84,
+        0.71
+      ],
+      [
+        0.61,
+        0.57
+      ],
+      [
+        0.49,
+        0.27
+      ]
+    ],
+    "armPolygon": [
+      [
+        0.7,
+        0.6
+      ],
+      [
+        0.92,
+        0.58
+      ],
+      [
+        1,
+        0.75
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0.69,
+        0.99
+      ],
+      [
+        0.58,
+        0.84
+      ]
+    ],
+    "normalizedXReflected": false,
+    "rear": false
+  }
+]
