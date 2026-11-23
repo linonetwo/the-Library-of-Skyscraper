@@ -1,13 +1,7 @@
-import { animationFrame } from "./animationCatalog";
+import { animationFrame } from "./animationCatalog.ts";
 export type Point = { x: number; y: number };
-export type Direction = "S" | "SW" | "W" | "NW" | "N" | "NE" | "E" | "SE";
-const compass: Direction[] = ["E", "SE", "S", "SW", "W", "NW", "N", "NE"];
-export function facing(from: Point, to: Point): Direction {
-  const sector = Math.round(
-    Math.atan2(to.y - from.y, to.x - from.x) / (Math.PI / 4),
-  );
-  return compass[(sector + 8) % 8];
-}
+import { facing, type Direction } from "./directions.ts";
+export { facing, type Direction } from "./directions.ts";
 
 /** Presentation motion follows authoritative destinations; it never changes simulation. */
 export class ActorMotion {
@@ -16,11 +10,12 @@ export class ActorMotion {
   private started = 0;
   private actionStarted = 0;
   private path: Point[] = [];
+  private fromDistance = 0;
+  private toDistance = 0;
   direction: Direction = "S";
-  constructor(
-    position: Point,
-    public duration = 450,
-  ) {
+  duration: number;
+  constructor(position: Point, duration = 450) {
+    this.duration = duration;
     this.from = this.to = position;
   }
   sample(now: number) {
@@ -53,6 +48,8 @@ export class ActorMotion {
       x: a.x + (b.x - a.x) * t,
       y: a.y + (b.y - a.y) * t,
       moving,
+      motionDistanceMilli:
+        this.fromDistance + (this.toDistance - this.fromDistance) * progress,
       direction: this.direction,
       frame: animationFrame(
         moving ? "walk" : "idle",
@@ -61,9 +58,16 @@ export class ActorMotion {
     };
   }
 
-  move(to: Point, now: number, snap = false, path: Point[] = []) {
+  move(
+    to: Point,
+    now: number,
+    snap = false,
+    path: Point[] = [],
+    distanceMilli = 0,
+  ) {
     if (snap) {
       this.from = this.to = to;
+      this.fromDistance = this.toDistance = distanceMilli;
       this.path = [];
       return;
     }
@@ -71,6 +75,8 @@ export class ActorMotion {
     const previous = this.sample(now);
     if (!previous.moving) this.actionStarted = now;
     this.from = previous;
+    this.fromDistance = previous.motionDistanceMilli;
+    this.toDistance = distanceMilli;
     this.direction = facing(this.to, to);
     this.to = to;
     this.path = path;

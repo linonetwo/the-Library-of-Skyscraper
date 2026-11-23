@@ -1,0 +1,122 @@
+{
+  "frames": {
+    "hit/outfit-scholar/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 45,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 79,
+        "w": 45,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-scholar/NE/00": {
+      "frame": {
+        "x": 56,
+        "y": 2,
+        "w": 42,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 76,
+        "w": 42,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-scholar/SW/01": {
+      "frame": {
+        "x": 102,
+        "y": 2,
+        "w": 44,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 79,
+        "w": 44,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-scholar/NE/01": {
+      "frame": {
+        "x": 150,
+        "y": 2,
+        "w": 42,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 77,
+        "w": 42,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/outfit-scholar/NE": [
+      "hit/outfit-scholar/NE/00",
+      "hit/outfit-scholar/NE/01"
+    ],
+    "hit/outfit-scholar/SW": [
+      "hit/outfit-scholar/SW/00",
+      "hit/outfit-scholar/SW/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-outfit-scholar-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 194,
+      "h": 70
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

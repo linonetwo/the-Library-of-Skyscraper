@@ -1,7 +1,7 @@
 import { loadLibraryTextures } from './libraryLayout';
 import { loadWorldAssets } from "./worldAssets";
 import { WorldEntities } from "./WorldEntities";
-import { animationActions } from "./animationCatalog";
+import { loadDollTextures } from "./dollAssets";
 import { useEffect, useRef, useState } from "react";
 import { Application, Assets, Container, Texture } from "pixi.js";
 import { paintMap, type MapProps } from "./mapScene";
@@ -10,7 +10,6 @@ import { project } from "./isoGeometry";
 import { CameraController } from "./cameraController";
 import { localRoomFocus, type Bounds } from "./mapCamera";
 import { ActorScene } from "./ActorScene";
-import { animationLayerNames } from "./walkLayers";
 
 /** The application lives for the entire mounted canvas; snapshots only update its render bridge. */
 export default function MapCanvas(props: MapProps) {
@@ -120,6 +119,12 @@ export default function MapCanvas(props: MapProps) {
             : undefined;
         },
       );
+      if (p.fixedCamera) {
+        camera.scale = p.fixedCamera.scale;
+        camera.x = host.clientWidth / 2 - p.fixedCamera.center.x * camera.scale;
+        camera.y =
+          host.clientHeight / 2 - p.fixedCamera.center.y * camera.scale;
+      }
       world.position.set(camera.x, camera.y);
       world.scale.set(camera.scale);
       host.dataset.camera = JSON.stringify(camera);
@@ -237,6 +242,7 @@ export default function MapCanvas(props: MapProps) {
         performance.now(),
       );
       poses = actors.render(performance.now());
+      dynamics.render(actors.simulationTime(performance.now()));
       host.dataset.actors = JSON.stringify(poses);
       applyCamera();
     };
@@ -256,46 +262,9 @@ export default function MapCanvas(props: MapProps) {
           app.destroy({ removeView: true }, { children: true });
           return;
         }
-        const actionTextures = await Promise.all(
-          animationActions.map(async (action) => {
-            const sheets = await Promise.all(
-              animationLayerNames[action].map((layer) =>
-                Assets.load(`/assets/animation/${action}-${layer}.json`),
-              ),
-            );
-            return [
-              action,
-              Object.assign({}, ...sheets.map((sheet) => sheet.textures)),
-            ] as const;
-          }),
+        const actionTextures = await loadDollTextures(
+          !!latest.current.assetSet,
         );
-        if (latest.current.samplePose) {
-          const samples = await Promise.all(
-            [
-              "body",
-              "body-front",
-              "outfit-scholar",
-              "hair-ivory-back",
-              "hair-ivory-front",
-            ].map((layer) =>
-              Assets.load(`/assets/iso-v030-sample/${layer}.json`),
-            ),
-          );
-          const idle = actionTextures.find(([action]) => action === "idle")!;
-          Object.assign(idle[1], ...samples.map((sheet) => sheet.textures));
-          const walks = await Promise.all(
-            [
-              "body",
-              "body-front",
-              "outfit-scholar",
-              "hair-ivory-back",
-              "hair-ivory-front",
-            ].map((layer) =>
-              Assets.load(`/assets/iso-v030-walk-study/walk-${layer}.json`),
-            ),
-          );
-          Object.assign(idle[1], ...walks.map((sheet) => sheet.textures));
-        }
         if (disposed) return;
         const manifest = await (
           await fetch("/assets/tiles/manifest.json")
@@ -315,16 +284,11 @@ export default function MapCanvas(props: MapProps) {
         const worldAssets = await loadWorldAssets();
         if (disposed) return;
         dynamics = new WorldEntities(entities, tiles, worldAssets);
-        actors = new ActorScene(
-          Object.fromEntries(
-            actionTextures,
-          ) as import("./ActorView").DollTextures,
-          entities,
-          worldAssets,
-        );
+        actors = new ActorScene(actionTextures, entities, worldAssets);
         world.addChild(renderLayer, entities);
         app.ticker.add(() => {
           poses = actors.render(performance.now());
+          dynamics.render(actors.simulationTime(performance.now()));
           host.dataset.actors = JSON.stringify(poses);
           applyCamera();
         });
@@ -344,7 +308,7 @@ export default function MapCanvas(props: MapProps) {
           controller.overview();
           applyCamera();
         };
-        host.appendChild(overviewButton);
+        if (!latest.current.fixedCamera) host.appendChild(overviewButton);
         app.stage.addChild(world);
         resize = new ResizeObserver(() => {
           app.renderer.resize(host.clientWidth, host.clientHeight);

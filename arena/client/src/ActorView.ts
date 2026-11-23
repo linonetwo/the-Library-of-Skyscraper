@@ -1,26 +1,25 @@
-import { RegisteredCargo, type SampleRig } from "./RegisteredCargo";
+import { DollRenderer, type DollTextures } from "./DollRenderer";
+export type { DollTextures } from "./DollRenderer";
 import type { WorldAssets } from "./worldAssets";
-import type { AnimationAction } from "./animationCatalog";
-import { Container, Graphics, Sprite, Texture, Rectangle, Text } from "pixi.js";
+import type { Clip } from "./animationCatalog";
+import type { LoadedAssetSet } from "./assetSetLoader";
+import type { DollAppearance } from "./walkLayers";
+import { cueActive as isCueActive, resolveAnimation } from "./resolveAnimation";
+import { Container, Graphics, Rectangle, Text } from "pixi.js";
 import { roleNames } from "./types";
-import { project } from "./isoGeometry";
+import { inverse, project } from "./isoGeometry";
 import type { Actor } from "./types";
-import { animationLayers } from "./walkLayers";
 import { ActorMotion, facing, type Point } from "./actorMotion";
-
-export type DollTextures = Record<AnimationAction, Record<string, Texture>>;
 
 export class ActorView {
   readonly node = new Container();
   readonly motion: ActorMotion;
   samplePose?: "NE" | "SW";
-  sampleOutfit = false;
-  sampleHair = false;
   sampleWalk = false;
-  sampleFrameMs = 125;
-  sampleRig?: SampleRig;
-  private cargo?: RegisteredCargo;
-  private doll = new Container();
+  assetSet?: LoadedAssetSet;
+  dollAppearance?: DollAppearance;
+  private dollRenderer: DollRenderer;
+  private doll: Container;
   private shadow = new Graphics()
     .ellipse(0, 1, 18, 9)
     .fill({ color: 0x102225, alpha: 0.23 });
@@ -28,8 +27,7 @@ export class ActorView {
   private health = new Graphics();
   private activity = new Graphics();
   simulationTime = 0;
-  simulationPaused = true;
-  simulationReceived = 0;
+  authoritativeAnimation = false;
   tickDuration = 500;
   gatherInterval = 2000;
   private attackAt = -10000;
@@ -44,21 +42,19 @@ export class ActorView {
       stroke: { color: 0x102228, width: 3 },
     },
   });
-  private sprites: Sprite[] = [];
   private actor: Actor;
-  private appearance = "";
-  private frameKey = "";
 
   constructor(
     actor: Actor,
     position: Point,
-    private textures: DollTextures,
+    textures: DollTextures,
     onSelect: (id: string) => void,
     assets?: WorldAssets,
   ) {
     this.actor = actor;
     this.motion = new ActorMotion(position);
-    if (assets) this.cargo = new RegisteredCargo(this.doll, assets);
+    this.dollRenderer = new DollRenderer(textures, assets);
+    this.doll = this.dollRenderer.node;
     this.halo
       .ellipse(0, 0, 24, 12)
       .stroke({ color: 0xf5d18a, width: 2 })
@@ -102,7 +98,7 @@ export class ActorView {
     }
     this.actor = actor;
     this.motion.duration = duration;
-    this.motion.move(destination, now, snap, path);
+    this.motion.move(destination, now, snap, path, actor.motionDistanceMilli);
     this.status.text =
       actor.hp <= 0
         ? "倒地"
@@ -119,8 +115,9 @@ export class ActorView {
                   : "";
     this.status.text = `${actor.owner.toUpperCase()} · ${roleNames[actor.role]}${this.status.text ? " · " + this.status.text : ""}`;
     this.status.style.fill = actor.owner === "p1" ? 0xc7e7c0 : 0xb1d7f3;
-    this.doll.alpha = actor.hp <= 0 ? 0.45 : 1;
-    this.doll.rotation = actor.hp <= 0 ? -Math.PI / 2 : 0;
+    this.doll.alpha = actor.hp <= 0 && !this.assetSet?.clips.down ? 0.45 : 1;
+    this.doll.rotation =
+      actor.hp <= 0 && !this.assetSet?.clips.down ? -Math.PI / 2 : 0;
     this.halo.visible = selected;
     this.health
       .clear()
@@ -128,29 +125,38 @@ export class ActorView {
       .fill(0x20353a)
       .roundRect(-16, 5, Math.max(0.1, (32 * actor.hp) / actor.maxHp), 3, 1)
       .fill(actor.hp > actor.maxHp * 0.35 ? 0xabcda0 : 0xe18c75);
-    const appearance = JSON.stringify(actor.appearance);
-    if (appearance === this.appearance) return;
-    this.appearance = appearance;
-    this.frameKey = "";
   }
 
-  render(now: number) {
+  render(now: number, simNow = this.simulationTime) {
     const pose = this.motion.sample(now);
-    const simNow =
-      this.simulationTime +
-      (this.simulationPaused
-        ? 0
-        : Math.min(this.tickDuration, now - this.simulationReceived));
+    const selection = this.authoritativeAnimation
+      ? resolveAnimation(
+          this.actor,
+          simNow,
+          {
+            ...pose,
+            moving: this.samplePose
+              ? this.sampleWalk
+              : pose.moving ||
+                !!this.actor.travel ||
+                this.actor.task?.stage === "approaching",
+            worldPosition: inverse(pose.x, pose.y),
+            tickDurationMs: this.tickDuration,
+          },
+          this.assetSet?.catalog,
+        )
+      : undefined;
     this.node.position.set(pose.x, pose.y);
     this.node.zIndex = pose.y;
     this.activity.clear();
     const cue = this.actor.actionCue;
-    const cueActive =
-      cue &&
-      (cue.durationTicks === 0 ||
-        simNow < (cue.startedTick + cue.durationTicks) * this.tickDuration);
-    const hit = cue?.kind === "hit" ? !!cueActive : now - this.hitAt < 350;
-    if (cueActive && cue.targetPosition && !this.actor.travel) {
+    const cueActive = isCueActive(cue, simNow, this.tickDuration);
+    const hit = selection
+      ? selection.impact
+      : cue?.kind === "hit"
+        ? !!cueActive
+        : now - this.hitAt < 350;
+    if (cueActive && cue?.targetPosition && !this.actor.travel) {
       pose.direction = facing(
         pose,
         project(cue.targetPosition.x, cue.targetPosition.y),
@@ -158,16 +164,19 @@ export class ActorView {
       this.motion.direction = pose.direction;
     }
     this.doll.tint = hit ? 0xff937f : 0xffffff;
-    if (hit)
+    if (hit && !this.assetSet)
       this.activity
         .circle(0, -55, 40)
         .stroke({ color: 0xf49a80, width: 3, alpha: 0.7 });
-    if (this.actor.cargo > 0 && !this.sampleRig)
+    if (this.actor.cargo > 0 && !this.assetSet)
       this.activity
         .roundRect(14, -40, 13, 18, 3)
         .fill(0xc9a56d)
         .stroke({ color: 0xf3dfb7, width: 1 });
-    if (this.actor.state === "gathering")
+    if (
+      this.actor.state === "gathering" &&
+      (!selection || selection.requestedClip === "collect")
+    )
       this.activity
         .arc(
           0,
@@ -183,69 +192,44 @@ export class ActorView {
         )
         .stroke({ color: 0xdac489, width: 3 });
     if (
-      (cue?.kind === "attack" && cueActive) ||
-      (!cue && this.actor.state === "fighting" && simNow - this.attackAt < 300)
+      !this.assetSet?.clips.attack &&
+      ((cue?.kind === "attack" && cueActive) ||
+        (!cue &&
+          this.actor.state === "fighting" &&
+          simNow - this.attackAt < 300))
     )
       this.activity
         .moveTo(20, -55)
         .lineTo(40, -85)
         .stroke({ color: 0xf3d28a, width: 3 });
-    const action = pose.moving ? "walk" : "idle";
-    const sampleFrame = this.sampleWalk
-      ? Math.floor(simNow / this.sampleFrameMs) % 4
-      : 0;
-    const key = this.samplePose
-      ? `${this.samplePose}/${String(sampleFrame).padStart(2, "0")}`
-      : `${pose.direction}/${String(pose.frame).padStart(2, "0")}`;
-    if (
-      `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}/${this.sampleWalk}/${!!this.sampleRig}` !==
-      this.frameKey
-    ) {
-      this.frameKey = `${action}/${key}/${this.sampleOutfit}/${this.sampleHair}/${this.sampleWalk}/${!!this.sampleRig}`;
-      const layers = this.samplePose
-        ? [
-            ...(this.sampleHair ? ["hair-ivory-back"] : []),
-            "body",
-            ...(this.sampleOutfit ? ["outfit-scholar"] : []),
-            "body-front",
-            ...(this.sampleHair ? ["hair-ivory-front"] : []),
-          ]
-        : animationLayers(action, this.actor.appearance);
-      while (this.sprites.length < layers.length) {
-        const sprite = new Sprite();
-        sprite.anchor.set(0.5, 0.9);
-        sprite.position.set(0, 0);
-        this.doll.addChild(sprite);
-        this.sprites.push(sprite);
-      }
-      this.sprites.forEach((sprite, index) => {
-        sprite.visible = index < layers.length;
-        if (!sprite.visible) return;
-        sprite.texture = this.samplePose
-          ? this.textures.idle[
-              `${this.sampleRig ? "walk" : "sample"}/${layers[index]}/${key}`
-            ]
-          : this.textures[action][`${action}/${layers[index]}/${key}`];
-        sprite.scale.set(this.samplePose ? 1 : 136 / sprite.texture.height);
-      });
-    }
-    this.cargo?.update(
-      this.sampleRig,
-      this.samplePose,
-      sampleFrame,
-      this.actor.cargo > 0,
-      this.sprites.find(
-        (sprite) =>
-          sprite.visible && sprite.texture.label?.includes("/body-front/"),
-      ),
+    const action: Clip = selection?.clip ?? (pose.moving ? "walk" : "idle");
+    const frame = selection?.frame ?? pose.frame;
+    const registration = this.assetSet?.clips[action];
+    const released = registration?.timing.releaseFrame;
+    const cargo =
+      this.actor.cargo ||
+      (selection?.requestedClip === "unload" &&
+      released !== undefined &&
+      frame < released
+        ? 1
+        : 0);
+    const textures = this.dollRenderer.update(
+      action,
+      frame,
+      selection?.direction ?? pose.direction,
+      this.dollAppearance ?? this.actor.appearance,
+      cargo,
+      registration,
     );
     return {
       id: this.actor.id,
       ...pose,
+      direction: selection?.direction ?? pose.direction,
+      frame: selection?.frame ?? pose.frame,
       animation: action,
-      textures: this.sprites
-        .filter((s) => s.visible)
-        .map((s) => s.texture.label),
+      requestedAnimation: selection?.requestedClip,
+      motionDistanceMilli: pose.motionDistanceMilli,
+      textures,
     };
   }
 }

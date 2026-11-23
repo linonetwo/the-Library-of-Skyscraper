@@ -85,14 +85,15 @@ export default function GameHUD() {
           snapshot.tick === 0 &&
           !player?.script && (
             <button
-              onClick={() =>
-                void command({
+              onClick={async () => {
+                const assigned = await command({
                   type: "rule",
                   preset: "gather",
                   retreatHp: player?.rule.retreatHp ?? 35,
                   assignTasks: true,
-                })
-              }
+                });
+                if (assigned) setTasks(false);
+              }}
             >
               推荐分工
             </button>

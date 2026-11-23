@@ -1,3 +1,5 @@
+import { cueActive, resolveAnimation } from "./resolveAnimation";
+import type { ActionCue } from "./types";
 import { worldSprite, type WorldAssets } from "./worldAssets";
 import { Container, Graphics, Sprite, Text, type Texture } from "pixi.js";
 import type { Snapshot } from "./types";
@@ -15,6 +17,13 @@ export class WorldEntities {
   private annotations = new Container();
   private roomAnnotations = new Container();
   private nodes = new Map<string, Container>();
+  private enemyFeedback: {
+    cue?: ActionCue | null;
+    impact?: ActionCue | null;
+    body: Sprite;
+    slash: Graphics;
+    tickMs: number;
+  }[] = [];
   constructor(
     private parent: Container,
     private textures: Record<string, Texture>,
@@ -28,6 +37,7 @@ export class WorldEntities {
     const worldMap =
       (snapshot.simulationVersion ?? 0) >= 3 ? snapshot.worldMap : undefined;
     for (const child of this.annotations.removeChildren()) child.destroy();
+    this.enemyFeedback = [];
     const ids = new Set<string>();
     const nodeFor = (id: string) => {
       ids.add(id);
@@ -133,6 +143,17 @@ export class WorldEntities {
           .ellipse(0, 1, 19, 9.5)
           .fill({ color: 0x081b22, alpha: 0.3 }),
       );
+      const resolved = resolveAnimation(
+        { ...enemy, state: enemy.state ?? "idle" },
+        snapshot.tick * (snapshot.tickDurationMs || 500),
+        {
+          moving: false,
+          direction: "SW",
+          tickDurationMs: snapshot.tickDurationMs || 500,
+          motionDistanceMilli: enemy.motionDistanceMilli ?? 0,
+          worldPosition: enemy.worldPosition,
+        },
+      );
       const target = enemy.actionCue?.targetPosition;
       const direction =
         target &&
@@ -142,7 +163,16 @@ export class WorldEntities {
         ).y < 0
           ? "NE"
           : "SW";
-      node.addChild(worldSprite(this.assets, "inkguard-" + direction));
+      const body = worldSprite(
+        this.assets,
+        "inkguard-" +
+          ((snapshot.simulationVersion ?? 0) >= 4
+            ? resolved.direction.includes("N")
+              ? "NE"
+              : "SW"
+            : direction),
+      );
+      node.addChild(body);
       node.alpha = enemy.hp > 0 ? 1 : 0.3;
       label(
         node,
@@ -151,13 +181,19 @@ export class WorldEntities {
         0xf4ad98,
       );
       bar(node, enemy.hp, enemy.maxHp, -94, 0xe8907d);
-      if (enemy.state === "fighting")
-        node.addChild(
-          new Graphics()
-            .moveTo(-30, -30)
-            .lineTo(30, -60)
-            .stroke({ color: 0xf9c784, width: 4, alpha: 0.8 }),
-        );
+      const slash = new Graphics()
+        .moveTo(-30, -30)
+        .lineTo(30, -60)
+        .stroke({ color: 0xf9c784, width: 4, alpha: 0.8 });
+      slash.visible = false;
+      node.addChild(slash);
+      this.enemyFeedback.push({
+        cue: enemy.actionCue,
+        impact: enemy.impactCue,
+        body,
+        slash,
+        tickMs: snapshot.tickDurationMs || 500,
+      });
     }
     for (const building of snapshot.buildings) {
       const room = snapshot.rooms.find((r) => r.id === building.roomId)!;
@@ -225,5 +261,16 @@ export class WorldEntities {
         node.destroy({ children: true });
         this.nodes.delete(id);
       }
+  }
+  render(simTimeMs: number) {
+    for (const fx of this.enemyFeedback) {
+      fx.slash.visible =
+        fx.cue?.kind === "attack" && cueActive(fx.cue, simTimeMs, fx.tickMs);
+      const impact = fx.impact ?? (fx.cue?.kind === "hit" ? fx.cue : null);
+      fx.body.tint =
+        impact?.kind === "hit" && cueActive(impact, simTimeMs, fx.tickMs)
+          ? 0xff937f
+          : 0xffffff;
+    }
   }
 }
