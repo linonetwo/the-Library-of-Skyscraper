@@ -41,6 +41,7 @@ test("history loads a multi-file draft, shows differences and restores the battl
   page.on("pageerror", error => errors.push(error.stack ?? error.message));
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
+  await expect.poll(() => page.evaluate(() => sessionStorage.getItem("arena-session"))).not.toBeNull();
   const seeded = await page.evaluate(async () => {
     const session = JSON.parse(sessionStorage.getItem("arena-session")!);
     const post = (suffix: string, body: object) => fetch(`/api/sessions/${session.sessionId}/${suffix}`, {

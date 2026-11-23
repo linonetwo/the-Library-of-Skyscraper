@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 1,
+  "status": "prototype",
+  "releaseApproved": false,
+  "camera": {
+    "yaw": 45,
+    "elevation": 30,
+    "tileSize": [
+      128,
+      64
+    ],
+    "zScale": 78.3837,
+    "worldUnitMeters": 1
+  },
+  "sources": {
+    "source/warehouse-tower.png": {
+      "sha256": "f80d314c442be9c90d3e1ac5763b0e8758f0257e8f62d1ef2276cdbe833e92eb",
+      "size": [
+        1536,
+        1024
+      ]
+    }
+  },
+  "reuse": {
+    "base": {
+      "image": "tiles/plinth.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "pivot": [
+        64,
+        160
+      ],
+      "renderScale": 1,
+      "sha256": "67a2a722ff5c3965841d1763f7e8a4b88031ec7931d8f552b1b2d6f4b91a393b"
+    },
+    "catalog": "tiles/lectern.png",
+    "construction": [
+      "iso-v030-world/construction-site-back.png",
+      "iso-v030-world/construction-site-front.png"
+    ]
+  },
+  "assets": {
+    "warehouse-upper": {
+      "image": "warehouse-upper.png",
+      "canvas": [
+        160,
+        256
+      ],
+      "pivot": [
+        80,
+        224
+      ],
+      "groundPivot": [
+        80,
+        224
+      ],
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "renderScale": 1,
+      "footprint": [
+        1,
+        1
+      ],
+      "upperMountFootprint": [
+        0.85,
+        0.85
+      ],
+      "mountHeightMeters": 0.5,
+      "heightMeters": 1.23,
+      "decorationOccupation": {
+        "width": 1,
+        "depth": 1,
+        "collision": false
+      },
+      "kind": "building-upper",
+      "layer": "after-plinth-before-construction-front",
+      "status": "prototype",
+      "releaseApproved": false,
+      "source": "source/warehouse-tower.png",
+      "sourceTransform": {
+        "type": "ground-triangle-affine-baked",
+        "sourceGround": [
+          [
+            98,
+            782
+          ],
+          [
+            737,
+            782
+          ],
+          [
+            414,
+            934
+          ]
+        ],
+        "scaleX": 0.1702660406885759,
+        "scaleY": 0.17894736842105263,
+        "shearX": 0.003920599621118524,
+        "sourceCentre": [
+          417.5,
+          782
+        ],
+        "outline": [
+          [
+            405,
+            315
+          ],
+          [
+            716,
+            453
+          ],
+          [
+            725,
+            471
+          ],
+          [
+            725,
+            744
+          ],
+          [
+            737,
+            752
+          ],
+          [
+            737,
+            784
+          ],
+          [
+            414,
+            934
+          ],
+          [
+            98,
+            786
+          ],
+          [
+            98,
+            755
+          ],
+          [
+            110,
+            745
+          ],
+          [
+            110,
+            526
+          ],
+          [
+            106,
+            513
+          ],
+          [
+            106,
+            470
+          ],
+          [
+            119,
+            455
+          ],
+          [
+            214,
+            410
+          ],
+          [
+            212,
+            404
+          ],
+          [
+            284,
+            370
+          ],
+          [
+            299,
+            360
+          ],
+          [
+            354,
+            336
+          ]
+        ],
+        "holes": []
+      },
+      "attachments": {
+        "receiving": {
+          "source": [
+            238,
+            662
+          ],
+          "canvas": [
+            48.9667737418664,
+            163.3344657894737
+          ],
+          "offsetScreen": [
+            -31.033226258133602,
+            -60.66553421052629
+          ],
+          "worldOffset": [
+            -0.48489416028333754,
+            0,
+            0.5759988502897858
+          ]
+        },
+        "hitAnchor": {
+          "source": [
+            566,
+            675
+          ],
+          "canvas": [
+            104.86500288279385,
+            165.66078157894736
+          ],
+          "offsetScreen": [
+            24.865002882793846,
+            -58.339218421052635
+          ],
+          "worldOffset": [
+            0.38851567004365384,
+            0,
+            0.9028882262823719
+          ]
+        }
+      },
+      "buildingKind": "warehouse",
+      "localBuildOffset": [
+        1.5,
+        -1
+      ],
+      "visualPurpose": "broad walnut archive receiving cabinet, not teal core"
+    },
+    "tower-upper": {
+      "image": "tower-upper.png",
+      "canvas": [
+        160,
+        256
+      ],
+      "pivot": [
+        80,
+        224
+      ],
+      "groundPivot": [
+        80,
+        224
+      ],
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "renderScale": 1,
+      "footprint": [
+        1,
+        1
+      ],
+      "upperMountFootprint": [
+        0.5,
+        0.5
+      ],
+      "mountHeightMeters": 0.5,
+      "heightMeters": 1.97,
+      "decorationOccupation": {
+        "width": 1,
+        "depth": 1,
+        "collision": false
+      },
+      "kind": "building-upper",
+      "layer": "after-plinth-before-construction-front",
+      "status": "prototype",
+      "releaseApproved": false,
+      "source": "source/warehouse-tower.png",
+      "sourceTransform": {
+        "type": "ground-triangle-affine-baked",
+        "sourceGround": [
+          [
+            940,
+            822
+          ],
+          [
+            1334,
+            822
+          ],
+          [
+            1133,
+            925
+          ]
+        ],
+        "scaleX": 0.16243654822335024,
+        "scaleY": 0.1553398058252427,
+        "shearX": 0.006308215464984475,
+        "sourceCentre": [
+          1137,
+          822
+        ],
+        "outline": [
+          [
+            1201,
+            82
+          ],
+          [
+            1239,
+            83
+          ],
+          [
+            1274,
+            104
+          ],
+          [
+            1295,
+            133
+          ],
+          [
+            1304,
+            173
+          ],
+          [
+            1298,
+            207
+          ],
+          [
+            1285,
+            230
+          ],
+          [
+            1257,
+            248
+          ],
+          [
+            1259,
+            270
+          ],
+          [
+            1248,
+            292
+          ],
+          [
+            1227,
+            312
+          ],
+          [
+            1242,
+            325
+          ],
+          [
+            1245,
+            334
+          ],
+          [
+            1287,
+            347
+          ],
+          [
+            1288,
+            378
+          ],
+          [
+            1271,
+            386
+          ],
+          [
+            1270,
+            443
+          ],
+          [
+            1277,
+            447
+          ],
+          [
+            1275,
+            471
+          ],
+          [
+            1263,
+            480
+          ],
+          [
+            1262,
+            786
+          ],
+          [
+            1283,
+            796
+          ],
+          [
+            1295,
+            805
+          ],
+          [
+            1333,
+            811
+          ],
+          [
+            1334,
+            842
+          ],
+          [
+            1133,
+            925
+          ],
+          [
+            940,
+            839
+          ],
+          [
+            940,
+            811
+          ],
+          [
+            982,
+            793
+          ],
+          [
+            997,
+            781
+          ],
+          [
+            1007,
+            483
+          ],
+          [
+            995,
+            472
+          ],
+          [
+            996,
+            449
+          ],
+          [
+            1003,
+            443
+          ],
+          [
+            1004,
+            386
+          ],
+          [
+            984,
+            379
+          ],
+          [
+            983,
+            348
+          ],
+          [
+            1011,
+            333
+          ],
+          [
+            1021,
+            339
+          ],
+          [
+            1033,
+            325
+          ],
+          [
+            1036,
+            310
+          ],
+          [
+            1052,
+            294
+          ],
+          [
+            1041,
+            272
+          ],
+          [
+            1035,
+            250
+          ],
+          [
+            1036,
+            223
+          ],
+          [
+            1047,
+            191
+          ],
+          [
+            1064,
+            168
+          ],
+          [
+            1078,
+            153
+          ],
+          [
+            1077,
+            149
+          ],
+          [
+            1090,
+            143
+          ],
+          [
+            1107,
+            145
+          ],
+          [
+            1116,
+            141
+          ],
+          [
+            1121,
+            150
+          ],
+          [
+            1159,
+            104
+          ],
+          [
+            1184,
+            87
+          ]
+        ],
+        "holes": [
+          [
+            [
+              1058,
+              230
+            ],
+            [
+              1068,
+              205
+            ],
+            [
+              1086,
+              184
+            ],
+            [
+              1105,
+              165
+            ],
+            [
+              1124,
+              153
+            ],
+            [
+              1111,
+              188
+            ],
+            [
+              1105,
+              219
+            ],
+            [
+              1092,
+              240
+            ],
+            [
+              1077,
+              232
+            ]
+          ],
+          [
+            [
+              1127,
+              278
+            ],
+            [
+              1150,
+              282
+            ],
+            [
+              1194,
+              270
+            ],
+            [
+              1225,
+              257
+            ],
+            [
+              1218,
+              280
+            ],
+            [
+              1196,
+              298
+            ],
+            [
+              1170,
+              301
+            ],
+            [
+              1140,
+              292
+            ]
+          ]
+        ]
+      },
+      "attachments": {
+        "muzzle": {
+          "source": [
+            1236,
+            166
+          ],
+          "canvas": [
+            91.94302892908186,
+            82.90523737864079
+          ],
+          "offsetScreen": [
+            11.943028929081862,
+            -141.09476262135922
+          ],
+          "worldOffset": [
+            0,
+            -0.1866098270169041,
+            1.7238692248110041
+          ]
+        },
+        "hitAnchor": {
+          "source": [
+            1195,
+            614
+          ],
+          "canvas": [
+            88.10921098023755,
+            152.49747038834954
+          ],
+          "offsetScreen": [
+            8.109210980237549,
+            -71.50252961165046
+          ],
+          "worldOffset": [
+            0.1267064215662117,
+            0,
+            0.9639393790005987
+          ]
+        }
+      },
+      "buildingKind": "tower",
+      "localBuildOffset": [
+        1.5,
+        1
+      ],
+      "visualPurpose": "brass lens emitter and shield-faced column",
+      "fixedView": true
+    }
+  },
+  "review": {
+    "sourceInspected": true,
+    "offlineCompositionInspected": false,
+    "clientIntegrated": false,
+    "releaseApproved": false
+  }
+}

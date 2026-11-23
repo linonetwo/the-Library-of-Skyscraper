@@ -1,0 +1,822 @@
+{
+  "frames": {
+    "walk/outfit-scholar/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/01": {
+      "frame": {
+        "x": 42,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/02": {
+      "frame": {
+        "x": 77,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/03": {
+      "frame": {
+        "x": 112,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/04": {
+      "frame": {
+        "x": 147,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/05": {
+      "frame": {
+        "x": 182,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/06": {
+      "frame": {
+        "x": 217,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/07": {
+      "frame": {
+        "x": 252,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/08": {
+      "frame": {
+        "x": 287,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/09": {
+      "frame": {
+        "x": 322,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/10": {
+      "frame": {
+        "x": 357,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/11": {
+      "frame": {
+        "x": 392,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/12": {
+      "frame": {
+        "x": 427,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/13": {
+      "frame": {
+        "x": 462,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/14": {
+      "frame": {
+        "x": 497,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/E/15": {
+      "frame": {
+        "x": 532,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/00": {
+      "frame": {
+        "x": 567,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/01": {
+      "frame": {
+        "x": 602,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/02": {
+      "frame": {
+        "x": 637,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/03": {
+      "frame": {
+        "x": 672,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/04": {
+      "frame": {
+        "x": 707,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/05": {
+      "frame": {
+        "x": 742,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/06": {
+      "frame": {
+        "x": 777,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/07": {
+      "frame": {
+        "x": 812,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/08": {
+      "frame": {
+        "x": 847,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/09": {
+      "frame": {
+        "x": 882,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/10": {
+      "frame": {
+        "x": 917,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/11": {
+      "frame": {
+        "x": 952,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/12": {
+      "frame": {
+        "x": 987,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/13": {
+      "frame": {
+        "x": 1022,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/14": {
+      "frame": {
+        "x": 1057,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "walk/outfit-scholar/W/15": {
+      "frame": {
+        "x": 1092,
+        "y": 2,
+        "w": 31,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 78,
+        "w": 31,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "walk/outfit-scholar/E": [
+      "walk/outfit-scholar/E/00",
+      "walk/outfit-scholar/E/01",
+      "walk/outfit-scholar/E/02",
+      "walk/outfit-scholar/E/03",
+      "walk/outfit-scholar/E/04",
+      "walk/outfit-scholar/E/05",
+      "walk/outfit-scholar/E/06",
+      "walk/outfit-scholar/E/07",
+      "walk/outfit-scholar/E/08",
+      "walk/outfit-scholar/E/09",
+      "walk/outfit-scholar/E/10",
+      "walk/outfit-scholar/E/11",
+      "walk/outfit-scholar/E/12",
+      "walk/outfit-scholar/E/13",
+      "walk/outfit-scholar/E/14",
+      "walk/outfit-scholar/E/15"
+    ],
+    "walk/outfit-scholar/W": [
+      "walk/outfit-scholar/W/00",
+      "walk/outfit-scholar/W/01",
+      "walk/outfit-scholar/W/02",
+      "walk/outfit-scholar/W/03",
+      "walk/outfit-scholar/W/04",
+      "walk/outfit-scholar/W/05",
+      "walk/outfit-scholar/W/06",
+      "walk/outfit-scholar/W/07",
+      "walk/outfit-scholar/W/08",
+      "walk/outfit-scholar/W/09",
+      "walk/outfit-scholar/W/10",
+      "walk/outfit-scholar/W/11",
+      "walk/outfit-scholar/W/12",
+      "walk/outfit-scholar/W/13",
+      "walk/outfit-scholar/W/14",
+      "walk/outfit-scholar/W/15"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "walk-outfit-scholar-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1125,
+      "h": 63
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
