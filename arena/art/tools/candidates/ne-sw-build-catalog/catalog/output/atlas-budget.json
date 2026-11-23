@@ -1,0 +1,375 @@
+{
+  "clip": {
+    "action": "catalog",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      160,
+      140,
+      160,
+      240
+    ],
+    "playback": "loop"
+  },
+  "layerOrderByDirection": {
+    "NE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "work-prop-mallet",
+      "work-prop-folio",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "work-prop-mallet",
+      "work-prop-folio",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  },
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-left-front",
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-left-front",
+      "hand-front",
+      "weapon-staff-back"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "NE",
+    "SW"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "hand-left-front",
+    "weapon-staff-back",
+    "work-prop-folio"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 46540,
+      "pages": [
+        {
+          "image": "catalog-body-0.png",
+          "json": "catalog-body-0.json",
+          "width": 373,
+          "height": 143,
+          "decodedBytes": 213356,
+          "pngBytes": 31644
+        }
+      ],
+      "decodedBytes": 213356
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 6571,
+      "pages": [
+        {
+          "image": "catalog-body-front-0.png",
+          "json": "catalog-body-front-0.json",
+          "width": 268,
+          "height": 36,
+          "decodedBytes": 38592,
+          "pngBytes": 9646
+        }
+      ],
+      "decodedBytes": 38592
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 22796,
+      "pages": [
+        {
+          "image": "catalog-outfit-scholar-0.png",
+          "json": "catalog-outfit-scholar-0.json",
+          "width": 385,
+          "height": 70,
+          "decodedBytes": 107800,
+          "pngBytes": 15607
+        }
+      ],
+      "decodedBytes": 107800
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 3288,
+      "pages": [
+        {
+          "image": "catalog-hair-ivory-back-0.png",
+          "json": "catalog-hair-ivory-back-0.json",
+          "width": 365,
+          "height": 15,
+          "decodedBytes": 21900,
+          "pngBytes": 1416
+        }
+      ],
+      "decodedBytes": 21900
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 17104,
+      "pages": [
+        {
+          "image": "catalog-hair-ivory-front-0.png",
+          "json": "catalog-hair-ivory-front-0.json",
+          "width": 417,
+          "height": 50,
+          "decodedBytes": 83400,
+          "pngBytes": 10354
+        }
+      ],
+      "decodedBytes": 83400
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 17346,
+      "pages": [
+        {
+          "image": "catalog-outfit-warden-0.png",
+          "json": "catalog-outfit-warden-0.json",
+          "width": 324,
+          "height": 71,
+          "decodedBytes": 92016,
+          "pngBytes": 14781
+        }
+      ],
+      "decodedBytes": 92016
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 6481,
+      "pages": [
+        {
+          "image": "catalog-outfit-warden-front-0.png",
+          "json": "catalog-outfit-warden-front-0.json",
+          "width": 273,
+          "height": 35,
+          "decodedBytes": 38220,
+          "pngBytes": 7578
+        }
+      ],
+      "decodedBytes": 38220
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 7224,
+      "pages": [
+        {
+          "image": "catalog-hair-midnight-back-0.png",
+          "json": "catalog-hair-midnight-back-0.json",
+          "width": 189,
+          "height": 47,
+          "decodedBytes": 35532,
+          "pngBytes": 3697
+        }
+      ],
+      "decodedBytes": 35532
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 19556,
+      "pages": [
+        {
+          "image": "catalog-hair-midnight-front-0.png",
+          "json": "catalog-hair-midnight-front-0.json",
+          "width": 393,
+          "height": 61,
+          "decodedBytes": 95892,
+          "pngBytes": 10018
+        }
+      ],
+      "decodedBytes": 95892
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 1578,
+      "pages": [
+        {
+          "image": "catalog-hand-front-0.png",
+          "json": "catalog-hand-front-0.json",
+          "width": 151,
+          "height": 19,
+          "decodedBytes": 11476,
+          "pngBytes": 4232
+        }
+      ],
+      "decodedBytes": 11476
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 792,
+      "pages": [
+        {
+          "image": "catalog-hand-grip-0.png",
+          "json": "catalog-hand-grip-0.json",
+          "width": 109,
+          "height": 15,
+          "decodedBytes": 6540,
+          "pngBytes": 3166
+        }
+      ],
+      "decodedBytes": 6540
+    },
+    {
+      "layer": "hand-left-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 1488,
+      "pages": [
+        {
+          "image": "catalog-hand-left-front-0.png",
+          "json": "catalog-hand-left-front-0.json",
+          "width": 145,
+          "height": 20,
+          "decodedBytes": 11600,
+          "pngBytes": 1336
+        }
+      ],
+      "decodedBytes": 11600
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 29040,
+      "pages": [
+        {
+          "image": "catalog-weapon-staff-back-0.png",
+          "json": "catalog-weapon-staff-back-0.json",
+          "width": 345,
+          "height": 100,
+          "decodedBytes": 138000,
+          "pngBytes": 10300
+        }
+      ],
+      "decodedBytes": 138000
+    },
+    {
+      "layer": "work-prop-folio",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 4756,
+      "pages": [
+        {
+          "image": "catalog-work-prop-folio-0.png",
+          "json": "catalog-work-prop-folio-0.json",
+          "width": 269,
+          "height": 25,
+          "decodedBytes": 26900,
+          "pngBytes": 3576
+        }
+      ],
+      "decodedBytes": 26900
+    }
+  ],
+  "decodedBytes": 921224,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}

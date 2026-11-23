@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "build/hand-left-front/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 15,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 127,
+        "w": 15,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-left-front/SW/01": {
+      "frame": {
+        "x": 26,
+        "y": 2,
+        "w": 15,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 127,
+        "w": 15,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-left-front/SW/02": {
+      "frame": {
+        "x": 45,
+        "y": 2,
+        "w": 15,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 127,
+        "w": 15,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-left-front/SW/03": {
+      "frame": {
+        "x": 64,
+        "y": 2,
+        "w": 15,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 127,
+        "w": 15,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-left-front/NE/00": {
+      "frame": {
+        "x": 83,
+        "y": 2,
+        "w": 12,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 119,
+        "w": 12,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-left-front/NE/01": {
+      "frame": {
+        "x": 99,
+        "y": 2,
+        "w": 12,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 119,
+        "w": 12,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-left-front/NE/02": {
+      "frame": {
+        "x": 115,
+        "y": 2,
+        "w": 12,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 119,
+        "w": 12,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/hand-left-front/NE/03": {
+      "frame": {
+        "x": 131,
+        "y": 2,
+        "w": 12,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 119,
+        "w": 12,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "build/hand-left-front/NE": [
+      "build/hand-left-front/NE/00",
+      "build/hand-left-front/NE/01",
+      "build/hand-left-front/NE/02",
+      "build/hand-left-front/NE/03"
+    ],
+    "build/hand-left-front/SW": [
+      "build/hand-left-front/SW/00",
+      "build/hand-left-front/SW/01",
+      "build/hand-left-front/SW/02",
+      "build/hand-left-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "build-hand-left-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 145,
+      "h": 18
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
