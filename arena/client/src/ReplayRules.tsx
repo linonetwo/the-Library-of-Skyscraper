@@ -1,3 +1,4 @@
+import {BehaviorTraceView,readBehaviorTrace} from "./BehaviorFlow";
 import { useMemo, useState } from "react";
 import { projectRuleHistory } from "./replayRuleState";
 import type { ReplayFrame, ReplayTimeline } from "./useReplay";
@@ -12,12 +13,14 @@ export default function ReplayRules({ timeline, frame, onSeek }: {
   const state = useMemo(() => history && projectRuleHistory(history, frame.operationIndex, hash),
     [history, frame.operationIndex, hash]);
   const [selection, setSelection] = useState("");
+  const trace = readBehaviorTrace(state?.memory.aiTrace);
   const selected = state?.tasks.find(item => item.task.id === selection);
   return <section className="replay-rules" aria-label="回放规则状态">
     <header><div><span className="eyebrow">STRATEGY CHRONICLE</span><h3>小队计划 · 回放</h3></div>
       <small>操作 {frame.operationIndex} · T{frame.tick}</small></header>
     {state ? <>
       <p>版本 {hash?.slice(0, 12) ?? "预设行动"} · 随录制操作展示本人的策略记忆与任务。</p>
+      {trace && hash && <BehaviorTraceView trace={trace} sourceHash={hash} source="回放" />}
       <div className="replay-rules-grid">
         <div><h4>版本记忆</h4><pre aria-label="回放规则记忆">{JSON.stringify(state.memory, null, 2)}</pre></div>
         <div><h4>小队任务 <span>{state.tasks.length}</span></h4>

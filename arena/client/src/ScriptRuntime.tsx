@@ -1,3 +1,4 @@
+import {BehaviorTraceView, readBehaviorTrace} from "./BehaviorFlow";
 import { useEffect, useState } from "react";
 import { BrainCircuit, ListTodo } from "lucide-react";
 import { useArena } from "./ArenaWorkspace";
@@ -24,11 +25,13 @@ export function ScriptRuntime() {
     void refresh();
     return () => { current = false; clearTimeout(timer); };
   }, [session]);
+  const trace = readBehaviorTrace(state?.memory.aiTrace);
   return <section className="script-runtime" aria-label="规则运行状态">
     <header><div><span className="eyebrow">STRATEGY NOTES</span><h3>规则运行状态</h3></div>
       <small>{state?.sourceHash ? state.sourceHash.slice(0, 12) : "预设行动"}</small></header>
     <p>版本记忆随策略积累；小队任务在本赛局内延续。此处展示本人小队的计划。</p>
     {error && <p role="alert">{error}</p>}
+    {trace && state?.sourceHash && <BehaviorTraceView trace={trace} sourceHash={state.sourceHash} source="已发布版本运行" />}
     {state ? <div className="script-runtime-grid">
       <div className="script-memory"><h4><BrainCircuit size={15} />规则记忆</h4>
         <pre aria-label="规则记忆">{JSON.stringify(state.memory, null, 2)}</pre></div>
