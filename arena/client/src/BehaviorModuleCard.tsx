@@ -11,7 +11,7 @@ export function BehaviorModuleCard({module:m,onChange,onSource}: {module:Behavio
     {m.kind==='gather' && <label>目标房间 · 留空自动选择<input value={m.config.targetRoomId??''} onChange={e=>config({targetRoomId:e.target.value||undefined})}/></label>}
     {m.kind==='defend' && <label>防守房间 · 留空自动选择<input value={m.config.roomId??''} onChange={e=>config({roomId:e.target.value||undefined})}/></label>}
     {m.kind==='haul' && <label>最低携带藏材<input type="number" min="0" value={m.config.minCargo} onChange={e=>config({minCargo:Number(e.target.value)})}/></label>}
-    {m.kind==='retreat' && <label>生命值阈值 %<input type="number" min="0" max="100" value={m.config.hpThreshold} onChange={e=>config({hpThreshold:Number(e.target.value)})}/></label>}
+    {m.kind==='retreat' && <label>生命值阈值<input type="number" min="0" max="100" value={m.config.hpThreshold} onChange={e=>config({hpThreshold:Number(e.target.value)})}/></label>}
     {m.kind==='build' && <><label>建造房间<input value={m.config.roomId} onChange={e=>config({roomId:e.target.value})}/></label><label>设施<select value={m.config.buildingKind} onChange={e=>config({buildingKind:e.target.value})}><option value="catalog">目录馆</option><option value="tower">塔楼</option></select></label><label>最低建材<input type="number" min="0" value={m.config.minMaterials} onChange={e=>config({minMaterials:Number(e.target.value)})}/></label></>}
   </article>;
 }
