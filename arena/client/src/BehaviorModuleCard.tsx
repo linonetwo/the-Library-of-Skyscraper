@@ -7,7 +7,7 @@ export function BehaviorModuleCard({module:m,onChange,onSource}: {module:Behavio
   return <article className="behavior-card" data-enabled={m.enabled} id={`module-${m.moduleId}`}>
     <header><label><input type="checkbox" checked={m.enabled} onChange={e=>onChange({...m,enabled:e.target.checked})}/><strong>{moduleNames[m.kind]}</strong></label><button onClick={onSource}>查看源码 ↗</button></header>
     <label>优先级 <input aria-label={`${moduleNames[m.kind]}优先级`} type="number" value={m.priority} onChange={e=>onChange({...m,priority:Number(e.target.value)})}/></label>
-    <fieldset><legend>适用岗位 · 不勾选即全部</legend>{roles.map(role=><label key={role}><input type="checkbox" checked={m.roleFilter?.includes(role) ?? false} onChange={e=>onChange({...m,roleFilter:e.target.checked?[...(m.roleFilter??[]),role]:(m.roleFilter??[]).filter(r=>r!==role)})}/>{roleNames[role]}</label>)}</fieldset>
+    <fieldset><legend>适用岗位 · 不勾选即全部</legend>{roles.map(role=><label key={role}><input type="checkbox" checked={m.roleFilter?.includes(role) ?? false} onChange={e=>onChange({...m,roleFilter:e.target.checked?[...(m.roleFilter??[]),role]:(m.roleFilter??[]).filter(r=>r!==role).length?(m.roleFilter??[]).filter(r=>r!==role):undefined})}/>{roleNames[role]}</label>)}</fieldset>
     {m.kind==='gather' && <label>目标房间 · 留空自动选择<input value={m.config.targetRoomId??''} onChange={e=>config({targetRoomId:e.target.value||undefined})}/></label>}
     {m.kind==='defend' && <label>防守房间 · 留空自动选择<input value={m.config.roomId??''} onChange={e=>config({roomId:e.target.value||undefined})}/></label>}
     {m.kind==='haul' && <label>最低携带藏材<input type="number" min="0" value={m.config.minCargo} onChange={e=>config({minCargo:Number(e.target.value)})}/></label>}
