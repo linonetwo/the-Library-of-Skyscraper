@@ -2,7 +2,7 @@ title: 竞技场开发日志2026-11-23
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261123124836000
-modified: 20261123133630000
+modified: 20261123182626000
 
 !! 实际播放器与分层动作
 
@@ -14,7 +14,7 @@ modified: 20261123133630000
 
 !! 源与场景收合
 
-[[PR58|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/58]]固定130100c5已由Astra独立评审、CI通过后合入：world16、普通攻击、受击、呼吸idle四个模块的自包含裁片、pose、打包工具和统一atlas-budget描述可复建。Sol与主代理已完成收合[[PR57|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/57]]运行时和[[PR59|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/59]]低墙／门槛／目标地面镶嵌，，已同步实际服务；各PR固定源CI与Astra意见分别保留。
+[[PR58|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/58]]固定130100c5已由Astra独立评审、CI通过后合入：world16、普通攻击、受击、呼吸idle四个模块的自包含裁片、pose、打包工具和统一atlas-budget描述可复建。Sol与主代理已完成收合[[PR57|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/57]]运行时和[[PR59|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/59]]低墙／门槛／目标地面镶嵌，已同步实际服务；各PR固定源CI与Astra意见分别保留。
 
 !! 八向基础制作
 
@@ -29,3 +29,15 @@ modified: 20261123133630000
 [img[竞技场2026-11-23独立低墙门槛远征实机.png]]
 
 PR57／58／59均已合入，当前master0c06adf包含本批；完整P3的主场新八向身体与各动作继续制作。今日日志图是当天实际播放器／场景候选的截图，详细状态和录屏在root/2026-11-23/environment-gameplay。主试玩5175与8790现已同步到0c06adf；155个原checkpoint与凭据映射保留，旧sim3局经同源读取后保持tick并呈现新装饰。主代理随后在正式入口再跑同一推荐分工流程，tick40负重24、护卫60HP、pageerror为0；状态与录屏保存在root/2026-11-23/main-gameplay。
+
+!! 用户实玩反馈与对应制作
+
+用户指出最近栏停留10月27日、原文件目录缺竞技场分支，以及角色透视／速度与玩法可见性。日期字段已补齐；主代理今天在3000实际打开最近和原生文件目录，均可找到11月23日日报。原文件目录路径为Index→通天书苑：竞技场→日报／版本计划／需求等分类；证据在root/2026-11-23/wiki。
+
+Astra亲看主入口旧角色：地面、架脚和门槛投影一致，旧身体肩头／足背俯视关系不足；新八向使用同一相机与骨链，四头身、两衣两发和持杖独立分层，八向16相行走与4相呼吸待机已获本批批准。Sol接入独立5179候选，地图与HUD头像共用DollRenderer。主代理实际操作该候选取得下图，连续65次呈现采样，暂停后两次姿态完全相同；权威普通步速1.5世界米／秒，实际呈现短时追帧继续结合录屏审阅。
+
+[img[竞技场2026-11-23八向角色接地实机.png]]
+
+现有微型局已运行采集→满载返程→入库→清敌→建设→驻守编目→反扑→结算。前日真实完整局在tick205胜利，编目60、3人生还、入库96／建设25；今日本轮补做当前目标、实际执行者与材料结果两行提示，让玩家直接发现流程。完整赛季PvPvE、五资源科技和短赛局继续按各版本待办推进。工作动作经Astra实看后拆为collect／build／catalog独立模块，建设使用外侧槌击，编目使用托册按页；当前候选覆盖NE／SW，八向扩展继续制作。
+
+Kimi本次调用返回接口错误；上述视觉结论来自Astra和主代理实际看图，PR评审链接随各分项记录。
