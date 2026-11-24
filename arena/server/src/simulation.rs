@@ -34,7 +34,7 @@ impl Session {
                     .filter(|e| e.hp > 0 && e.travel.is_none() && e.room_id == t.target_room_id)
                     .map(|e| e.world_position)
                     .collect();
-                crate::travel::stop_before_opponent(&mut a.travel, &targets);
+                crate::combat_approach::stop_before_opponent(&mut a.travel, &targets);
             }
             if a.hp > 0 && crate::travel::advance(&mut a, self.simulation_version) {
                 a.last_moved_tick = self.tick;
@@ -59,7 +59,7 @@ impl Session {
                     .filter(|(room, _)| *room == t.target_room_id)
                     .map(|(_, p)| *p)
                     .collect();
-                crate::travel::stop_before_opponent(&mut enemy.travel, &targets);
+                crate::combat_approach::stop_before_opponent(&mut enemy.travel, &targets);
             }
             if enemy.hp > 0 && enemy.travel.is_some() {
                 enemy.last_moved_tick = self.tick;

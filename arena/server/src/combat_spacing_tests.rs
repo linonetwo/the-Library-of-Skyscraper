@@ -69,7 +69,7 @@ fn center_guardian_arrival_clips_before_center_only_for_new_games() {
         let targets = [travel::center("room-3")];
         for _ in 0..ticks {
             if version >= 5 {
-                travel::stop_before_opponent(&mut a.travel, &targets);
+                combat_approach::stop_before_opponent(&mut a.travel, &targets);
             }
             travel::advance(&mut a, version);
         }
@@ -95,7 +95,7 @@ fn counterattack_uses_same_road_budget_and_stops_before_defender() {
     });
     let mut arrived = false;
     while t.is_some() {
-        travel::stop_before_opponent(&mut t, &[defender]);
+        combat_approach::stop_before_opponent(&mut t, &[defender]);
         let from = p;
         let (room, motion) = travel::advance_motion(&mut p, &mut t);
         assert!(travel::distance(from, p) <= 750);
@@ -128,4 +128,61 @@ fn unopposed_arrival_has_identical_path_and_timing_to_v4() {
         );
         assert_eq!(a.room_id, b.room_id);
     }
+}
+
+#[test]
+fn real_counterattack_does_not_cross_the_near_edge_guard() {
+    let mut s = game(5);
+    s.command(
+        "p1",
+        Command::Rule {
+            preset: "defend".into(),
+            retreat_hp: 0,
+            assign_tasks: false,
+        },
+    )
+    .unwrap();
+    for (id, kind, target, building) in [
+        ("gatherer", "gather", "room-1", None),
+        ("scout", "build", "room-3", Some("catalog")),
+    ] {
+        s.command(
+            "p1",
+            Command::Task {
+                actor_id: format!("p1-{id}"),
+                kind: kind.into(),
+                target: target.into(),
+                building_kind: building.map(str::to_owned),
+            },
+        )
+        .unwrap();
+    }
+    let mut met = false;
+    let mut previous = None;
+    for _ in 0..300 {
+        s.advance();
+        let a = guard(&mut s);
+        if let Some(e) = s.enemies.iter().find(|e| e.id == "guardian-counterattack") {
+            if let Some(from) = previous {
+                assert!(travel::distance(from, e.world_position) <= 751);
+            }
+            previous = Some(e.world_position);
+            if e.world_position.y < 5. {
+                assert!((e.world_position.x + 8.).abs() <= 1.5);
+            } else {
+                assert!((e.world_position.x + 8.).abs() <= 3.);
+                assert!((e.world_position.y - 8.).abs() <= 3.);
+            }
+            let d = travel::distance(a.world_position, e.world_position);
+            if a.hp > 0 && e.hp > 0 && d <= 2000 {
+                eprintln!(
+                    "counter tick={} player={:?} enemy={:?} distance={d}",
+                    s.tick, a.world_position, e.world_position
+                );
+                assert!(d >= 1500);
+                met = true;
+            }
+        }
+    }
+    assert!(met);
 }
