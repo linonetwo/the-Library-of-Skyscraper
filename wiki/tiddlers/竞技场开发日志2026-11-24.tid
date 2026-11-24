@@ -1,0 +1,29 @@
+title: 竞技场开发日志2026-11-24
+tags: 竞技场开发日志 竞技场目录：日报
+type: text/vnd.tiddlywiki
+created: 20261124022230000
+modified: 20261124022230000
+
+!! 主试玩与AI工作台
+
+延续[[竞技场开发日志2026-11-23]]。主入口5175已同步83172c6：新八向基础角色、同源头像、仓库／防御塔、两行真实目标、库存中文和恒速插值。Rust8790保持原0c06adf编译服务及既有存档，本轮均为前端／生成TS接入。静态资源新增目录后重新启动Vite，避免旧进程将新atlas请求当SPA页面；主代理随后实际新建训练局，tick40采集者负重24返程、护卫60HP，浏览器错误0。
+
+[[PR76|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/76]]已合，主入口顶部常驻“AI 模块”按钮。实际修复Monaco初始化时读取未注册typescriptDefaults造成整页空白，以及标准库名称不匹配造成的错误诊断。主代理今日在5175亲自打开工作台，载入资源优先模板，编译→真实V8试跑→发布成功，版本5161de1ed58b，pageerror为0。
+
+[img[竞技场2026-11-24AI工作台发布实机.png]]
+
+图为今日主入口的真实源码工作台，地图与角色保持可见。可视行为模块编辑候选继续收合，当前主入口显示的仍是已合源码／预设功能。
+
+!! 行为模块可视编辑与真实执行
+
+Astra冻结AI1合同：采集、搬运、建造、守卫、撤退五模块按priority组合，配置生成唯一TS工程，沿既有编译／V8试跑／发布／历史／回放链；无第二模拟或发布接口。核心[[PR77|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/77]]已按固定f86bcf9经独立Astra审与全CI后合入。真实8790试跑、发布及20tick执行有私有aiTrace，采集者实际负重4回程；任务补丁仅记计划，真实执行来自动作intents。
+
+界面Sol的独立5181候选已实际完成参数修改→预览路径及动作→发布→采集入库4材，库存10到14；运行trace与版本历史可见，手写草稿替换后恢复逐字段一致，浏览器错误0。独立试跑／已发布运行／回放以sourceHash和operationIndex标明来源。界面尚待Astra完整实机评审、CI与主入口接入。
+
+首场远征五卡模板复用现有capture建立guard任务以靠近，脚本再按真实范围和冷却发attack；构建与采运仍走既有权威动作。Sol两轮真实seed42在tick233胜利，观察到守卫与反扑敌人HP归0、建材入库、编目台16／16完成及巡书使驻守编目；该后续模板候选单独收合。
+
+!! 并行美术与动作接入
+
+八向carry／unload／collect／build／catalog离线候选[[PR73|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/73]]经Astra修正N向工具遮挡与NW货包可读性后接受，实机接线待完成。敌人八向五动作[[PR79|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/79]]在独立5180已实际观测待机、行走、攻击、受击和倒地，继续评审。全部仍在v0.3 AI1／P1–P5完整批次，尚待整版集中验收与统一发布。
+
+计划保持精简，见[[竞技场AI模块编辑实施计划]]、[[竞技场v0.3.0版本计划]]。今日主代理状态／录屏在root/2026-11-24/main-eight、ai-workbench；界面候选证据在arena-v030-ai-evidence/ui。
