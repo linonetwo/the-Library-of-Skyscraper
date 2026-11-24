@@ -2,7 +2,7 @@ import type { BehaviorPlan, RuleSourceProject } from './types';
 import { runtimeSource } from './runtime-source';
 import { contractSource } from './contract-source';
 export type * from './types';
-export { createDefaultBehaviorPlan } from './defaults';
+export { createDefaultBehaviorPlan, createFirstExpeditionPlan } from './defaults';
 const marker = '// @arena-ai/v1 ';
 function canonical(value: unknown): string {
   if (Array.isArray(value)) return '[' + value.map(canonical).join(',') + ']';
