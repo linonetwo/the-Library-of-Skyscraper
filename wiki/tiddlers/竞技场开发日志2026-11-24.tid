@@ -2,15 +2,15 @@ title: 竞技场开发日志2026-11-24
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261124022230000
-modified: 20261124070500000
+modified: 20261124131539000
 
 !! 主试玩与AI工作台
 
-延续[[竞技场开发日志2026-11-23]]。主入口5175已同步83172c6：新八向基础角色、同源头像、仓库／防御塔、两行真实目标、库存中文和恒速插值。Rust8790保持原0c06adf编译服务及既有存档，本轮均为前端／生成TS接入。静态资源新增目录后重新启动Vite，避免旧进程将新atlas请求当SPA页面；主代理随后实际新建训练局，tick40采集者负重24返程、护卫60HP，浏览器错误0。
+延续[[竞技场开发日志2026-11-23]]。主入口5175今日先同步83172c6，随后更新fe498340（含PR85工作动作及PR91事件定位）：新八向基础角色、同源头像、仓库／防御塔、两行真实目标、库存中文和恒速插值。Rust8790保持原0c06adf编译服务及既有存档，本轮均为前端／生成TS接入。静态资源新增目录后重新启动Vite，避免旧进程将新atlas请求当SPA页面；主代理随后实际新建训练局，tick40采集者负重24返程、护卫60HP，浏览器错误0。
 
 [[PR76|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/76]]已合，主入口顶部常驻“AI 模块”按钮。实际修复Monaco初始化时读取未注册typescriptDefaults造成整页空白，以及标准库名称不匹配造成的错误诊断。主代理今日在5175亲自打开工作台，载入资源优先模板，编译→真实V8试跑→发布成功，版本5161de1ed58b，pageerror为0。
 
-今日稍早的源码工作台截图保存在“竞技场2026-11-24AI工作台发布实机.png”；下方保留模块编辑与最新胜利结算两张图。
+今日稍早的源码工作台截图保存在“竞技场2026-11-24AI工作台发布实机.png”；下方保留最新模块控件与工作动作两张图；早期参数与胜利图继续保留为图片条目。
 
 !! 行为模块可视编辑与真实执行
 
@@ -18,20 +18,32 @@ Astra冻结AI1合同：采集、搬运、建造、守卫、撤退五模块按pri
 
 [[PR81|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/81]]精确294721e经Astra评审及完整CI通过后合入ea3b7d0；主试玩5175已同步。进入训练远征→顶部“AI 模块”，默认直接展示五张可展开卡片，支持参数、角色、房间、优先级及源码跳转。主代理实际修改撤退阈值30→25，试跑生成a9ebd64d3515并发布；开始远征后采集入库，库存10→18。主页面的历史版本和实际操作回放均展示决策路径，浏览器错误0。试跑／已发布／回放以sourceHash和operationIndex区分来源。手写草稿和模板替换使用单一撤销历史，可依次恢复B、A的完整files／entry／baseVersion。
 
-[img[竞技场2026-11-24AI模块编辑实机.png]]
+[img[竞技场2026-11-24AI模块控件实机.png]]
 
-图为今日主试玩的实际模块参数页，撤退阈值25；背景地图与纸娃娃角色来自运行中的游戏。
+图为主试玩今日后续更新的首场五卡及深色控件。[[PR87|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/87]]统一字体、深色选择器、金色焦点、响应式间距；1600与390宽度实机经Astra接受。[[PR88|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/88]]让已发布AI的准备HUD明确“规则已接管→开始远征”，等待首拍与真实已分配任务分别显示。主代理在5175再次真实发布首场工程，tick0显示10927703及三个岗位等待AI首拍，pageerror为0。
 
 首场远征五卡模板复用现有capture建立guard任务以靠近，脚本再按真实范围和冷却发attack；构建与采运仍走既有权威动作。Sol两轮真实seed42在tick233胜利，观察到守卫与反扑敌人HP归0、建材入库、编目台16／16完成及巡书使驻守编目；完整模板与历史源码定位修复已在[[PR80|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/80]]合入cac1b63，真实8790复跑8项通过；[[PR83|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/83]]经Astra精确c17e352评审与CI通过后合入90267b2，主试玩已同步：新草稿默认首场远征；可显式切换物流组合，使用已有撤销历史；已有手写和模块草稿保持内容。导航统一为行为模块／TypeScript／发布版本／行动预设单排。旧PR77归档仍能定位原始模块源码。
 
 主代理随后在5175独立新建训练局，以默认首场五卡通过真实UI试跑与发布，点击开始远征后连续实时运行，使用正常500ms权威tick。实际tick63施工、78编目、156观察到反扑；tick233编目60完成，p1胜利，3人存活。总入库64、建设消耗25、余材49、携货损失0、倒地0。此轮全程未调用训练step或修改快照；录像为root/2026-11-24/ai-first-main/page@d99a601de85f76fe7c1a92a432083753.webm，pageerror为0。
 
-[img[竞技场2026-11-24AI远征胜利实机.png]]
-
-图为同一主试玩连续远征的实际结算；背景编目台、敌人倒地与三角色均来自权威状态。
+同局结算图见[[竞技场2026-11-24AI远征胜利实机.png]]，背景编目台、敌人倒地与三角色均来自权威状态。
 
 !! 并行美术与动作接入
 
-八向carry／unload／collect／build／catalog离线候选[[PR73|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/73]]经Astra修正N向工具遮挡与NW货包可读性后接受，实机接线待完成。敌人八向五动作[[PR79|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/79]]在独立5180已实际观测待机、行走、攻击、受击和倒地，已由Astra批准，CI通过并合入8ab947b，主试玩同步；玩家五工作动作继续运行时接线。全部仍在v0.3 AI1／P1–P5完整批次，尚待整版集中验收与统一发布。
+八向carry／unload／collect／build／catalog离线[[PR73|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/73]]经Astra修正N向工具遮挡与NW货包后接受。运行时[[PR85|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/85]]经Astra精确888ef30评审及CI通过，合入fe498340并更新主试玩。五动作复用同一atlas-budget描述、加载器、图层选择、渲染器和战场时钟；建造握槌使用grip，其他工作自然手，法杖独立收在背后。资源堆实际世界足点旁移，角色操作点保持，采集时纸、手与鞋底清楚可见。
+
+首次接入的135页工作纹理使所有动作同屏障等待，CI真实出现首帧太迟、短路线已走完。已改成每次外观准备独立ready视图：idle/walk先完整加载呈现，其他动作按模块在后台串行加载，全部选层齐备后原子登记动作；暂停的同tick也重绘。跨外观A→B→A保留当前请求。原失败三组定向11项全过，20项客户端测试及完整CI通过，未延长测试超时。
+
+主代理随后在5175新建正常推荐分工局，真实观察collect24、满载carry40、build51、catalog66、unload96；五动作实际纸娃娃纹理均有readback，浏览器错误0。施工暂停中换守卫衣／墨蓝发并关闭法杖，仍握槌；再携杖时背挂，恢复后继续原任务。状态、截图与录像位于root/2026-11-24/main-work。
+
+[img[竞技场2026-11-24八向工作建造实机.png]]
+
+图为主试玩实际建造阶段；五个动作来自相同场景和权威任务。敌人八向五动作[[PR79|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/79]]已进入主试玩。玩家attack／hit／down的八向独立落地源[[PR92|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/92]]已合，姿态烘焙[[PR93|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/93]]继续收合，产品实战接入由场景Sol并行实施。
+
+!! 结算事件与整版产包
+
+[[PR91|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/91]]已合：结算指向真实settlement事件，日志聚焦，再回放原录制帧。Sol实玩205tick胜后，#72／T205对应operation208，错误0；真实reset录制fixture覆盖事件id／tick复用，5项逻辑及原回放端到端测试通过。主入口代码已同步。
+
+[[PR89|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/89]]对齐合同，[[PR90|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/90]]实现v0.3实际dist资源入口／动作描述哈希及分范围评审出处，保留原打包布局和逐文件清单。元数据已实测，整版固定源产包与解包启动、胜败／双端／规则恢复／回放集中验收随P3齐备推进。全部仍属于v0.3 AI1／P1–P5完整批次，统一发布。
 
 计划保持精简，见[[竞技场AI模块编辑实施计划]]、[[竞技场v0.3.0版本计划]]。今日主代理状态／录屏在root/2026-11-24/main-eight、ai-workbench、ai-modules；首场模板权威证据在ai-first-expedition。完整FSM／决策树图编辑仍保留原需求，本轮可见交付为五模块优先组合。
