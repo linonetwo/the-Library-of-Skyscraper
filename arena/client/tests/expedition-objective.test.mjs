@@ -27,3 +27,22 @@ test('result names rooms and buildings; material balance is inventory rather tha
  const o=expeditionObjective({...base,actors:[{...actor,cargo:0}],events:[{playerId:'p1',message:'target catalog 扣除25建材，开始8秒施工'}]}, {...player,materials:9});
  assert.match(o.detail,/库存9材/);assert.match(o.detail,/书库 编目台 扣除25建材/);assert.doesNotMatch(o.detail,/catalog|target/);
 });
+
+
+test('published AI owns preparation without inventing unexecuted actor tasks',()=>{
+ const s={...base,tick:0,paused:true,actors:[{...actor,task:null,cargo:0,travel:null}]};
+ const published={...player,script:{sourceHash:'abcdef0123456789',entry:'main',publishedAtTick:0}};
+ const o=expeditionObjective(s,published);
+ assert.equal(o.title,'AI规则已接管 → 开始远征');
+ assert.match(o.detail,/已发布 abcdef01 · 采撷师：等待AI首拍/);
+ assert.doesNotMatch(o.detail,/待分工|采集运输|推荐分工/);
+ const actual=expeditionObjective({...s,actors:[actor]},published);
+ assert.match(actual.detail,/采撷师：采集运输/);
+});
+
+test('disabling published AI restores task preparation; preview alone does not publish',()=>{
+ const s={...base,tick:0,paused:true,actors:[{...actor,task:null}]};
+ assert.match(expeditionObjective(s,{...player,script:null}).title,/推荐分工/);
+ assert.match(expeditionObjective(s,player).detail,/待分工/);
+ assert.equal(expeditionObjective({...s,actors:[actor]},{...player,script:null}).title,'分工已就绪 → 开始远征');
+});
