@@ -207,7 +207,6 @@ export default function BehaviorWorkbench({
             ms
           </p>
         )}
-        {w.preview && <PreviewStatePatch preview={w.preview} />}
         {w.preview?.execution?.failure && (
           <p role="alert">{w.preview.execution.failure.message}</p>
         )}
@@ -235,6 +234,7 @@ export default function BehaviorWorkbench({
             onLocate={locate}
           />
         )}
+        {w.preview && <PreviewStatePatch preview={w.preview} />}
       </section>
       <ScriptRuntime key={`${w.session?.sessionId}:${w.session?.playerId}`} />
     </div>

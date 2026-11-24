@@ -54,6 +54,6 @@ export function PreviewStatePatch({ preview }: { preview: ScriptPreview }) {
   return <section className="script-preview-patch" aria-label="试跑状态补丁">
     <h4>试跑计划 · {preview.sourceHash?.slice(0, 12)}</h4>
     <p>以下为当前快照的试算。正式运行时，每步重新计算并提交计划。</p>
-    <pre>{JSON.stringify({ memoryPatch: decision.memoryPatch, taskPatches: decision.taskPatches }, null, 2)}</pre>
+    <details><summary>查看原始状态补丁</summary><pre>{JSON.stringify({ memoryPatch: decision.memoryPatch, taskPatches: decision.taskPatches }, null, 2)}</pre></details>
   </section>;
 }
