@@ -33,11 +33,28 @@ export function recoverBehaviorPlan(project: RuleSourceProject): BehaviorPlan | 
 }
 
 export function getModuleSourceRef(project: RuleSourceProject, moduleId: string): { file: string; line: number; column: number } | null {
-  const plan = recoverBehaviorPlan(project);
-  if (!plan) return null;
+  // Read archived configuration independently of the runtime version. Editing still
+  // requires recoverBehaviorPlan's exact whole-project comparison.
+  const line = project.files['ai-plan.ts']?.split('\n')[0];
+  if (!line?.startsWith(marker)) return null;
+  let plan: BehaviorPlan;
+  try {
+    plan = JSON.parse(line.slice(marker.length)) as BehaviorPlan;
+    if (plan.schemaVersion!==1 || plan.mode!=='priority' || plan.fallbackModuleId!=='hold' || !Array.isArray(plan.modules)) return null;
+    const source = project.files['ai-plan.ts'];
+    const declaration = 'export const plan: BehaviorPlan = ';
+    const start = source.indexOf(declaration);
+    if (start < 0 || (project.entry??'main.ts')!=='main.ts' || project.files['main.ts']!=="export { decide } from './runtime';\n") return null;
+    const executable = JSON.parse(source.slice(start+declaration.length).trim().replace(/;$/, ''));
+    if (canonical(executable)!==canonical(plan)) return null;
+    const lines = source.split('\n');
+    const modulesLine = lines.findIndex(line=>line==='"modules":[');
+    if (modulesLine<0 || plan.modules.some((module,index)=>lines[modulesLine+index+1]!==canonical(module)+(index<plan.modules.length-1?',':''))) return null;
+  } catch { return null; }
   if (moduleId === 'hold') {
-    const lines = project.files['runtime.ts'].split('\n');
-    return { file: 'runtime.ts', line: lines.findIndex(line=>line.includes("moduleId:'hold'"))+1, column: 1 };
+    const lines = project.files['runtime.ts']?.split('\n') ?? [];
+    const index = lines.findIndex(line=>line.includes("moduleId:'hold'"));
+    return index < 0 ? null : { file: 'runtime.ts', line: index+1, column: 1 };
   }
   const index = plan.modules.findIndex(module=>module.moduleId===moduleId);
   if (index<0) return null;

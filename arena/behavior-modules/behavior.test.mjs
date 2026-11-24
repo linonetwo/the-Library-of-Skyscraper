@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import vm from 'node:vm';
+import { readFile } from 'node:fs/promises';
 import { build } from '../script-toolchain/node_modules/esbuild/lib/main.js';
 import { compileRule } from '../script-toolchain/src/compile.mjs';
 const built = await build({entryPoints:[new URL('./index.ts',import.meta.url).pathname],bundle:true,write:false,format:'esm',platform:'node'});
@@ -101,6 +102,21 @@ test('first expedition seed42 damages guardians, deposits materials and complete
   cataloging ||= snapshot.actors.some(a=>a.role==='scout' && a.task?.stage==='cataloging');
   if(snapshot.result)break;
  }
+ assert.equal(snapshot.result?.winner,'p1');assert.match(snapshot.result.reason,/远征胜利/);
  assert.ok(damage,'guardian HP decreased');assert.ok(deposit,'materials deposited');assert.ok(construction,'catalog construction advanced');assert.ok(cataloging,'scout guards completed catalog');
  console.log('first expedition authoritative result',JSON.stringify({tick:snapshot.tick,damage,deposit,construction,cataloging,result:snapshot.result}));
+});
+
+test('archived PR77 runtime stays read-only but resolves its own module source lines',async()=>{
+ const project=JSON.parse(await readFile(new URL('./fixtures/pr77-project.json',import.meta.url),'utf8'));
+ assert.equal(api.recoverBehaviorPlan(project),null);
+ const compiled=await compileRule(project);assert.deepEqual(compiled.diagnostics,[]);
+ for(const id of ['gather','haul','build','defend','retreat','hold']) {
+  const ref=api.getModuleSourceRef(project,id);assert.ok(ref,id);assert.ok(ref.line>0);
+  assert.ok(project.files[ref.file].split('\n')[ref.line-1].includes(id));
+ }
+ const mismatch=structuredClone(project);mismatch.files['ai-plan.ts']=mismatch.files['ai-plan.ts'].replace('"hpThreshold":30}', '"hpThreshold":31}');
+ assert.equal(api.getModuleSourceRef(mismatch,'retreat'),null);
+ const handwritten=structuredClone(project);handwritten.files['main.ts']='export function decide(){return {intents:[]}}';
+ assert.equal(api.getModuleSourceRef(handwritten,'gather'),null);
 });
