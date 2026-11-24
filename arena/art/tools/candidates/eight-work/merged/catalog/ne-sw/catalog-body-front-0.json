@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "catalog/body-front/NE/03": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 29,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 83,
+        "w": 29,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/SW/00": {
+      "frame": {
+        "x": 40,
+        "y": 2,
+        "w": 26,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 84,
+        "w": 26,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/SW/01": {
+      "frame": {
+        "x": 70,
+        "y": 2,
+        "w": 26,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 84,
+        "w": 26,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/SW/02": {
+      "frame": {
+        "x": 100,
+        "y": 2,
+        "w": 26,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 84,
+        "w": 26,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/SW/03": {
+      "frame": {
+        "x": 130,
+        "y": 2,
+        "w": 26,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 84,
+        "w": 26,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/NE/00": {
+      "frame": {
+        "x": 160,
+        "y": 2,
+        "w": 32,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 82,
+        "w": 32,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/NE/01": {
+      "frame": {
+        "x": 196,
+        "y": 2,
+        "w": 35,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 79,
+        "y": 81,
+        "w": 35,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/NE/02": {
+      "frame": {
+        "x": 235,
+        "y": 2,
+        "w": 31,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 83,
+        "y": 75,
+        "w": 31,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "catalog/body-front/NE": [
+      "catalog/body-front/NE/00",
+      "catalog/body-front/NE/01",
+      "catalog/body-front/NE/02",
+      "catalog/body-front/NE/03"
+    ],
+    "catalog/body-front/SW": [
+      "catalog/body-front/SW/00",
+      "catalog/body-front/SW/01",
+      "catalog/body-front/SW/02",
+      "catalog/body-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "catalog-body-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 268,
+      "h": 36
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

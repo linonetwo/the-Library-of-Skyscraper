@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "build/outfit-warden/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 35,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 76,
+        "w": 35,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/outfit-warden/NE/01": {
+      "frame": {
+        "x": 46,
+        "y": 2,
+        "w": 35,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 76,
+        "w": 35,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/outfit-warden/NE/02": {
+      "frame": {
+        "x": 85,
+        "y": 2,
+        "w": 35,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 76,
+        "w": 35,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/outfit-warden/NE/03": {
+      "frame": {
+        "x": 124,
+        "y": 2,
+        "w": 35,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 76,
+        "w": 35,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/outfit-warden/SW/00": {
+      "frame": {
+        "x": 163,
+        "y": 2,
+        "w": 45,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 62,
+        "y": 81,
+        "w": 45,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/outfit-warden/SW/02": {
+      "frame": {
+        "x": 212,
+        "y": 2,
+        "w": 43,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 81,
+        "w": 43,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/outfit-warden/SW/03": {
+      "frame": {
+        "x": 259,
+        "y": 2,
+        "w": 35,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 81,
+        "w": 35,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "build/outfit-warden/SW/01": {
+      "frame": {
+        "x": 298,
+        "y": 2,
+        "w": 56,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 51,
+        "y": 82,
+        "w": 56,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "build/outfit-warden/NE": [
+      "build/outfit-warden/NE/00",
+      "build/outfit-warden/NE/01",
+      "build/outfit-warden/NE/02",
+      "build/outfit-warden/NE/03"
+    ],
+    "build/outfit-warden/SW": [
+      "build/outfit-warden/SW/00",
+      "build/outfit-warden/SW/01",
+      "build/outfit-warden/SW/02",
+      "build/outfit-warden/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "build-outfit-warden-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 356,
+      "h": 63
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

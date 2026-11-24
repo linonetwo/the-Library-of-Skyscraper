@@ -1,0 +1,614 @@
+{
+  "clip": {
+    "action": "carry",
+    "frameCount": 16,
+    "frameDurationsMs": [
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45
+    ],
+    "playback": "loop",
+    "cycleWorldStride": 1.08
+  },
+  "layerOrderByDirection": {
+    "NE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "E": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-scholar-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "W": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-scholar-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "N": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-scholar-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "S": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-scholar-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "NW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-scholar-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "cargo-bundle-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-scholar-front",
+      "outfit-warden-front",
+      "cargo-bundle-front",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  },
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-left-front",
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-left-front",
+      "hand-front",
+      "weapon-staff-back"
+    ],
+    "cargoLayers": [
+      "cargo-bundle-back",
+      "cargo-bundle-front"
+    ],
+    "workLayers": []
+  },
+  "exclusiveLayerGroups": [],
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "NE",
+    "SW",
+    "E",
+    "W",
+    "N",
+    "S",
+    "NW",
+    "SE"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "hand-front",
+    "weapon-staff-back",
+    "cargo-bundle-back",
+    "cargo-bundle-front",
+    "hand-grip",
+    "hand-left-front"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 779022,
+      "pages": [
+        {
+          "image": "ne-sw/carry-body-0.png",
+          "json": "ne-sw/carry-body-0.json",
+          "width": 1568,
+          "height": 148,
+          "decodedBytes": 928256,
+          "pngBytes": 139485
+        },
+        {
+          "image": "six/carry-body-0.png",
+          "json": "six/carry-body-0.json",
+          "width": 2016,
+          "height": 419,
+          "decodedBytes": 3378816,
+          "pngBytes": 562612
+        }
+      ],
+      "decodedBytes": 4307072
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 112,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 121216,
+      "pages": [
+        {
+          "image": "ne-sw/carry-body-front-0.png",
+          "json": "ne-sw/carry-body-front-0.json",
+          "width": 949,
+          "height": 43,
+          "decodedBytes": 163228,
+          "pngBytes": 5611
+        },
+        {
+          "image": "six/carry-body-front-0.png",
+          "json": "six/carry-body-front-0.json",
+          "width": 2033,
+          "height": 93,
+          "decodedBytes": 756276,
+          "pngBytes": 18842
+        }
+      ],
+      "decodedBytes": 919504
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 298528,
+      "pages": [
+        {
+          "image": "ne-sw/carry-outfit-scholar-0.png",
+          "json": "ne-sw/carry-outfit-scholar-0.json",
+          "width": 1525,
+          "height": 70,
+          "decodedBytes": 427000,
+          "pngBytes": 18542
+        },
+        {
+          "image": "six/carry-outfit-scholar-0.png",
+          "json": "six/carry-outfit-scholar-0.json",
+          "width": 2027,
+          "height": 129,
+          "decodedBytes": 1045932,
+          "pngBytes": 46138
+        }
+      ],
+      "decodedBytes": 1472932
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 1179648,
+      "trimmedPixels": 13152,
+      "pages": [
+        {
+          "image": "ne-sw/carry-hair-ivory-back-0.png",
+          "json": "ne-sw/carry-hair-ivory-back-0.json",
+          "width": 1445,
+          "height": 15,
+          "decodedBytes": 86700,
+          "pngBytes": 1925
+        }
+      ],
+      "decodedBytes": 86700
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 240528,
+      "pages": [
+        {
+          "image": "ne-sw/carry-hair-ivory-front-0.png",
+          "json": "ne-sw/carry-hair-ivory-front-0.json",
+          "width": 1653,
+          "height": 50,
+          "decodedBytes": 330600,
+          "pngBytes": 12725
+        },
+        {
+          "image": "six/carry-hair-ivory-front-0.png",
+          "json": "six/carry-hair-ivory-front-0.json",
+          "width": 2017,
+          "height": 137,
+          "decodedBytes": 1105316,
+          "pngBytes": 42860
+        }
+      ],
+      "decodedBytes": 1435916
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 258272,
+      "pages": [
+        {
+          "image": "ne-sw/carry-outfit-warden-0.png",
+          "json": "ne-sw/carry-outfit-warden-0.json",
+          "width": 1237,
+          "height": 63,
+          "decodedBytes": 311724,
+          "pngBytes": 11458
+        },
+        {
+          "image": "six/carry-outfit-warden-0.png",
+          "json": "six/carry-outfit-warden-0.json",
+          "width": 2047,
+          "height": 123,
+          "decodedBytes": 1007124,
+          "pngBytes": 39043
+        }
+      ],
+      "decodedBytes": 1318848
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 112,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 117648,
+      "pages": [
+        {
+          "image": "ne-sw/carry-outfit-warden-front-0.png",
+          "json": "ne-sw/carry-outfit-warden-front-0.json",
+          "width": 949,
+          "height": 43,
+          "decodedBytes": 163228,
+          "pngBytes": 4698
+        },
+        {
+          "image": "six/carry-outfit-warden-front-0.png",
+          "json": "six/carry-outfit-warden-front-0.json",
+          "width": 2037,
+          "height": 81,
+          "decodedBytes": 659988,
+          "pngBytes": 14880
+        }
+      ],
+      "decodedBytes": 823216
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 48,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 37584,
+      "pages": [
+        {
+          "image": "ne-sw/carry-hair-midnight-back-0.png",
+          "json": "ne-sw/carry-hair-midnight-back-0.json",
+          "width": 725,
+          "height": 48,
+          "decodedBytes": 139200,
+          "pngBytes": 4616
+        },
+        {
+          "image": "six/carry-hair-midnight-back-0.png",
+          "json": "six/carry-hair-midnight-back-0.json",
+          "width": 613,
+          "height": 24,
+          "decodedBytes": 58848,
+          "pngBytes": 1932
+        }
+      ],
+      "decodedBytes": 198048
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 264640,
+      "pages": [
+        {
+          "image": "ne-sw/carry-hair-midnight-front-0.png",
+          "json": "ne-sw/carry-hair-midnight-front-0.json",
+          "width": 1557,
+          "height": 61,
+          "decodedBytes": 379908,
+          "pngBytes": 12614
+        },
+        {
+          "image": "six/carry-hair-midnight-front-0.png",
+          "json": "six/carry-hair-midnight-front-0.json",
+          "width": 2014,
+          "height": 153,
+          "decodedBytes": 1232568,
+          "pngBytes": 39346
+        }
+      ],
+      "decodedBytes": 1612476
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 29088,
+      "pages": [
+        {
+          "image": "ne-sw/carry-hand-front-0.png",
+          "json": "ne-sw/carry-hand-front-0.json",
+          "width": 1381,
+          "height": 20,
+          "decodedBytes": 110480,
+          "pngBytes": 3217
+        },
+        {
+          "image": "six/carry-hand-front-0.png",
+          "json": "six/carry-hand-front-0.json",
+          "width": 1349,
+          "height": 18,
+          "decodedBytes": 97128,
+          "pngBytes": 2448
+        }
+      ],
+      "decodedBytes": 207608
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 468624,
+      "pages": [
+        {
+          "image": "ne-sw/carry-weapon-staff-back-0.png",
+          "json": "ne-sw/carry-weapon-staff-back-0.json",
+          "width": 1365,
+          "height": 100,
+          "decodedBytes": 546000,
+          "pngBytes": 13590
+        },
+        {
+          "image": "six/carry-weapon-staff-back-0.png",
+          "json": "six/carry-weapon-staff-back-0.json",
+          "width": 2043,
+          "height": 287,
+          "decodedBytes": 2345364,
+          "pngBytes": 48370
+        }
+      ],
+      "decodedBytes": 2891364
+    },
+    {
+      "layer": "cargo-bundle-back",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 48,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 38080,
+      "pages": [
+        {
+          "image": "ne-sw/carry-cargo-bundle-back-0.png",
+          "json": "ne-sw/carry-cargo-bundle-back-0.json",
+          "width": 517,
+          "height": 28,
+          "decodedBytes": 57904,
+          "pngBytes": 2795
+        },
+        {
+          "image": "six/carry-cargo-bundle-back-0.png",
+          "json": "six/carry-cargo-bundle-back-0.json",
+          "width": 1109,
+          "height": 32,
+          "decodedBytes": 141952,
+          "pngBytes": 6932
+        }
+      ],
+      "decodedBytes": 199856
+    },
+    {
+      "layer": "cargo-bundle-front",
+      "active": true,
+      "sourceFrames": 128,
+      "nonemptyFrames": 80,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 65664,
+      "pages": [
+        {
+          "image": "ne-sw/carry-cargo-bundle-front-0.png",
+          "json": "ne-sw/carry-cargo-bundle-front-0.json",
+          "width": 517,
+          "height": 28,
+          "decodedBytes": 57904,
+          "pngBytes": 2760
+        },
+        {
+          "image": "six/carry-cargo-bundle-front-0.png",
+          "json": "six/carry-cargo-bundle-front-0.json",
+          "width": 2025,
+          "height": 63,
+          "decodedBytes": 510300,
+          "pngBytes": 17661
+        }
+      ],
+      "decodedBytes": 568204
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 96,
+      "nonemptyFrames": 96,
+      "untrimmedPixels": 3538944,
+      "trimmedPixels": 8304,
+      "pages": [
+        {
+          "image": "six/carry-hand-grip-0.png",
+          "json": "six/carry-hand-grip-0.json",
+          "width": 1205,
+          "height": 15,
+          "decodedBytes": 72300,
+          "pngBytes": 2905
+        }
+      ],
+      "decodedBytes": 72300
+    },
+    {
+      "layer": "hand-left-front",
+      "active": true,
+      "sourceFrames": 96,
+      "nonemptyFrames": 96,
+      "untrimmedPixels": 3538944,
+      "trimmedPixels": 8752,
+      "pages": [
+        {
+          "image": "six/carry-hand-left-front-0.png",
+          "json": "six/carry-hand-left-front-0.json",
+          "width": 1365,
+          "height": 15,
+          "decodedBytes": 81900,
+          "pngBytes": 2342
+        }
+      ],
+      "decodedBytes": 81900
+    }
+  ],
+  "decodedBytes": 16195944,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}

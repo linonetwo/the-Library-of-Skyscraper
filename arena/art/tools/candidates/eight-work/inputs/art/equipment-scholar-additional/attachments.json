@@ -1,0 +1,257 @@
+{
+  "status": "static-outfit-prototype",
+  "releaseApproved": false,
+  "cell": [
+    192,
+    192
+  ],
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "renderScale": 1,
+  "sources": {
+    "iso-v030-scholar-ewns.png": {
+      "sha256": "87e86017462cb0dff4d62aeb0d62517aa1644ac3833ef5dc80e16a5fde352a39",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "samplingCanvas": [
+        1280,
+        1280
+      ]
+    },
+    "iso-v030-scholar-nwse.png": {
+      "sha256": "a566ab047acbb61e29a6c65e24989d62bdf22281f4139133d1957eed022a0e84",
+      "sourceSize": [
+        1774,
+        887
+      ],
+      "samplingCanvas": [
+        1792,
+        896
+      ]
+    }
+  },
+  "directions": {
+    "E": [
+      {
+        "id": "outfit-scholar",
+        "layer": "outfit-scholar",
+        "joint": "pelvis",
+        "image": "E/outfit-scholar.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-scholar-ewns.png",
+        "sourceAnchor": [
+          315,
+          80
+        ],
+        "sourceScale": 0.1,
+        "neckHole": [
+          310,
+          66,
+          48,
+          14
+        ],
+        "armHoles": []
+      }
+    ],
+    "W": [
+      {
+        "id": "outfit-scholar",
+        "layer": "outfit-scholar",
+        "joint": "pelvis",
+        "image": "W/outfit-scholar.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-scholar-ewns.png",
+        "sourceAnchor": [
+          935,
+          80
+        ],
+        "sourceScale": 0.1,
+        "neckHole": [
+          940,
+          66,
+          48,
+          14
+        ],
+        "armHoles": []
+      }
+    ],
+    "N": [
+      {
+        "id": "outfit-scholar",
+        "layer": "outfit-scholar",
+        "joint": "pelvis",
+        "image": "N/outfit-scholar.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-scholar-ewns.png",
+        "sourceAnchor": [
+          310,
+          685
+        ],
+        "sourceScale": 0.1,
+        "neckHole": [
+          310,
+          677,
+          48,
+          12
+        ],
+        "armHoles": []
+      }
+    ],
+    "S": [
+      {
+        "id": "outfit-scholar",
+        "layer": "outfit-scholar",
+        "joint": "pelvis",
+        "image": "S/outfit-scholar.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-scholar-ewns.png",
+        "sourceAnchor": [
+          940,
+          695
+        ],
+        "sourceScale": 0.1,
+        "neckHole": [
+          940,
+          695,
+          53,
+          24
+        ],
+        "armHoles": []
+      }
+    ],
+    "NW": [
+      {
+        "id": "outfit-scholar",
+        "layer": "outfit-scholar",
+        "joint": "pelvis",
+        "image": "NW/outfit-scholar.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-scholar-nwse.png",
+        "sourceAnchor": [
+          450,
+          130
+        ],
+        "sourceScale": 0.0735,
+        "neckHole": [
+          450,
+          113,
+          65,
+          24
+        ],
+        "armHoles": [
+          [
+            328,
+            280,
+            43,
+            66
+          ]
+        ]
+      }
+    ],
+    "SE": [
+      {
+        "id": "outfit-scholar",
+        "layer": "outfit-scholar",
+        "joint": "pelvis",
+        "image": "SE/outfit-scholar.png",
+        "pivot": [
+          96,
+          120
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          192,
+          192
+        ],
+        "zOrder": 0,
+        "source": "iso-v030-scholar-nwse.png",
+        "sourceAnchor": [
+          1320,
+          143
+        ],
+        "sourceScale": 0.0735,
+        "neckHole": [
+          1320,
+          130,
+          65,
+          35
+        ],
+        "armHoles": [
+          [
+            1205,
+            290,
+            39,
+            65
+          ]
+        ]
+      }
+    ]
+  }
+}

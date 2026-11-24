@@ -1,0 +1,172 @@
+{
+  "frames": {
+    "unload/outfit-scholar/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 77,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-scholar/SW/01": {
+      "frame": {
+        "x": 55,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 77,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-scholar/SW/02": {
+      "frame": {
+        "x": 103,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 77,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-scholar/NE/00": {
+      "frame": {
+        "x": 151,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 76,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-scholar/NE/01": {
+      "frame": {
+        "x": 198,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 76,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/outfit-scholar/NE/02": {
+      "frame": {
+        "x": 245,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 76,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "unload/outfit-scholar/NE": [
+      "unload/outfit-scholar/NE/00",
+      "unload/outfit-scholar/NE/01",
+      "unload/outfit-scholar/NE/02"
+    ],
+    "unload/outfit-scholar/SW": [
+      "unload/outfit-scholar/SW/00",
+      "unload/outfit-scholar/SW/01",
+      "unload/outfit-scholar/SW/02"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "unload-outfit-scholar-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 290,
+      "h": 70
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

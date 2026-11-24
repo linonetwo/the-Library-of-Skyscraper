@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "catalog/work-prop-folio/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 29,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 98,
+        "w": 29,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/work-prop-folio/NE/01": {
+      "frame": {
+        "x": 40,
+        "y": 2,
+        "w": 29,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 98,
+        "w": 29,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/work-prop-folio/NE/02": {
+      "frame": {
+        "x": 73,
+        "y": 2,
+        "w": 29,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 98,
+        "w": 29,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/work-prop-folio/NE/03": {
+      "frame": {
+        "x": 106,
+        "y": 2,
+        "w": 29,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 98,
+        "w": 29,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/work-prop-folio/SW/00": {
+      "frame": {
+        "x": 139,
+        "y": 2,
+        "w": 29,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 94,
+        "w": 29,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/work-prop-folio/SW/01": {
+      "frame": {
+        "x": 172,
+        "y": 2,
+        "w": 29,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 94,
+        "w": 29,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/work-prop-folio/SW/02": {
+      "frame": {
+        "x": 205,
+        "y": 2,
+        "w": 29,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 94,
+        "w": 29,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/work-prop-folio/SW/03": {
+      "frame": {
+        "x": 238,
+        "y": 2,
+        "w": 29,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 94,
+        "w": 29,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "catalog/work-prop-folio/NE": [
+      "catalog/work-prop-folio/NE/00",
+      "catalog/work-prop-folio/NE/01",
+      "catalog/work-prop-folio/NE/02",
+      "catalog/work-prop-folio/NE/03"
+    ],
+    "catalog/work-prop-folio/SW": [
+      "catalog/work-prop-folio/SW/00",
+      "catalog/work-prop-folio/SW/01",
+      "catalog/work-prop-folio/SW/02",
+      "catalog/work-prop-folio/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "catalog-work-prop-folio-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 269,
+      "h": 25
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

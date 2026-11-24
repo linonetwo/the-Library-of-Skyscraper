@@ -1,0 +1,14 @@
+import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';import path from 'node:path';import {fileURLToPath} from 'node:url';
+const root=path.dirname(fileURLToPath(import.meta.url)),read=async p=>JSON.parse(await readFile(p));
+for(const action of ['carry','unload','collect','build','catalog']){
+ const old=['build','catalog'].includes(action)?`../ne-sw-build-catalog/${action}/output`:`../ne-sw-${action}/output`,sources={'ne-sw':path.join(root,old),six:path.join(root,'six',action)},target=path.join(root,'merged',action);await mkdir(target,{recursive:true});let out;const layers=new Map(),keys=new Set();
+ for(const[batch,source]of Object.entries(sources)){
+  const b=await read(path.join(source,'atlas-budget.json'));if(!out)out={...b,directions:[],layers:[],activeLayers:[],inactiveLayers:[],layerOrderByDirection:{},appearanceOptions:{...b.appearanceOptions,weaponOff:['hand-left-front',action==='build'?'hand-grip':'hand-front'],weaponOn:['hand-left-front',action==='build'?'hand-grip':'hand-front','weapon-staff-back'],cargoLayers:['cargo-bundle-back','cargo-bundle-front'],workLayers:action==='collect'?['work-prop-paper']:action==='build'?['work-prop-mallet']:action==='catalog'?['work-prop-folio']:[]}};
+  delete out.variants;
+  for(const f of ['renderScale','groundPivot','sourceSize'])if(JSON.stringify(out[f])!==JSON.stringify(b[f]))throw Error('registration mismatch '+f);
+  for(const f of ['frameCount','frameDurationsMs','playback'])if(JSON.stringify(out.clip[f])!==JSON.stringify(b.clip[f]))throw Error('timeline mismatch '+f);
+  for(const d of b.directions){if(out.directions.includes(d))throw Error('direction collision');out.directions.push(d);out.layerOrderByDirection[d]=b.layerOrderByDirection[d];}
+  await mkdir(path.join(target,batch),{recursive:true});for(const l of b.layers){if(!layers.has(l.layer))layers.set(l.layer,{...l,pages:[],sourceFrames:0,nonemptyFrames:0,untrimmedPixels:0,trimmedPixels:0,decodedBytes:0,active:false});const merged=layers.get(l.layer);merged.active||=l.active;for(const f of ['sourceFrames','nonemptyFrames','untrimmedPixels','trimmedPixels','decodedBytes'])merged[f]+=l[f]||0;for(const p of l.pages||[]){const atlas=await read(path.join(source,p.json));for(const k of Object.keys(atlas.frames)){if(keys.has(k))throw Error('duplicate '+k);keys.add(k);}if(p.width>2048||p.height>2048)throw Error('page too large');for(const name of [p.image,p.json])await copyFile(path.join(source,name),path.join(target,batch,name));merged.pages.push({...p,image:batch+'/'+p.image,json:batch+'/'+p.json});}}
+ }
+ out.layers=[...layers.values()];out.activeLayers=out.layers.filter(l=>l.active).map(l=>l.layer);out.inactiveLayers=out.layers.filter(l=>!l.active).map(l=>l.layer);out.decodedBytes=out.layers.reduce((v,l)=>v+l.decodedBytes,0);await writeFile(path.join(target,'atlas-budget.json'),JSON.stringify(out,null,2)+'\n');console.log(action,out.directions.length,keys.size,out.decodedBytes);
+}
