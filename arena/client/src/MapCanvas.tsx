@@ -138,7 +138,6 @@ export default function MapCanvas(props: MapProps) {
       if (
         initialized &&
         !app.ticker.started &&
-        !p.suspended &&
         !document.hidden
       )
         app.render();

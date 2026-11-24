@@ -123,3 +123,8 @@
   font-size: 8px;
   color: #73938f;
 }
+
+.ai-mode-tabs { display: flex; gap: 8px; margin: 14px 0 20px; }
+.ai-mode-tabs button { padding: 9px 16px; border: 1px solid #42605b; border-radius: 6px; }
+.ai-mode-tabs button[aria-selected="true"] { color: #f2dfaa; border-color: #b49c62; background: #30403b; }
+.ai-workbench > h2 { margin-top: 0; }
