@@ -109,3 +109,23 @@ fn counterattack_uses_same_road_budget_and_stops_before_defender() {
     }
     assert_eq!(travel::distance(p, defender), 1800);
 }
+
+#[test]
+fn unopposed_arrival_has_identical_path_and_timing_to_v4() {
+    let mut old = game(4);
+    let mut new = game(5);
+    old.enemies.clear();
+    new.enemies.clear();
+    for _ in 0..30 {
+        old.advance();
+        new.advance();
+        let a = guard(&mut old);
+        let b = guard(&mut new);
+        assert_eq!(a.world_position, b.world_position);
+        assert_eq!(
+            serde_json::to_value(a.travel).unwrap(),
+            serde_json::to_value(b.travel).unwrap()
+        );
+        assert_eq!(a.room_id, b.room_id);
+    }
+}
