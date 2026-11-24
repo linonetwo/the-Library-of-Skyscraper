@@ -28,3 +28,13 @@ test('registered combat pages support every appearance and preserve down pivot a
  assert.equal(resolveAnimation(actor,8000,motion,catalog).frame,3);
  assert.deepEqual(catalog.down.frameDurationsMs,[150,180,180,600]);
 });
+
+test('action loading prioritizes current facts before work and nearby threats',async()=>{
+ const {neededMainActions}=await import('../src/mainActionNeeds.ts');
+ const actor={hp:100,state:'idle',cargo:0,roomId:'base'};
+ const snapshot={actors:[actor],enemies:[{hp:80,roomId:'hostile'}],tick:10};
+ assert.deepEqual(neededMainActions(snapshot),[]);
+ assert.deepEqual(neededMainActions({...snapshot,actors:[{...actor,travel:{targetRoomId:'hostile'}}]}),['attack','hit','down']);
+ assert.deepEqual(neededMainActions({...snapshot,actors:[{...actor,task:{kind:'gather'}},{...actor,hp:0}]}),['down','collect','carry','unload']);
+ assert.deepEqual(neededMainActions({...snapshot,actors:[{...actor,actionCue:{kind:'gather',startedTick:10,durationTicks:1}}]}),['collect','carry','unload']);
+});

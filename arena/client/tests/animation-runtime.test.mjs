@@ -134,3 +134,12 @@ test('registered working props and hand modes share one layer selector',()=>{
  assert.ok(grip.includes('hand-grip'));assert.ok(!grip.includes('hand-front'));assert.ok(!grip.includes('weapon-staff-back'));
  assert.ok(animationLayers('walk',appearance,available).includes('hand-grip'));
 });
+
+test('coincident attack target retains deterministic facing through hit and down',()=>{
+ const actionCue={...cue('attack',10,3),targetPosition:{x:0,y:0}};
+ const actor={actionCue,lastMoveDirection:{x:0,y:1}};
+ const attack=resolve(actor,5250),hit=resolve({...actor,impactCue:cue('hit',10,1)},5250),down=resolve({...actor,hp:0},5250);
+ assert.equal(attack.direction,'SW');assert.equal(hit.direction,'SW');assert.equal(down.direction,'SW');
+ assert.equal(resolve({...actor},5250).direction,attack.direction);
+ assert.equal(resolve({...actor,lastMoveDirection:undefined},5250,{direction:'NW'}).direction,'NW');
+});

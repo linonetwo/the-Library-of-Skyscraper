@@ -1,6 +1,7 @@
 import { loadLibraryTextures } from './libraryLayout';
 import { loadWorldAssets } from "./worldAssets";
 import { WorldEntities } from "./WorldEntities";
+import { neededMainActions } from "./mainActionNeeds";
 import { loadDollTextures, loadMainDefinition, prepareMainLayers } from "./dollAssets";
 import { useEffect, useRef, useState } from "react";
 import { Application, Assets, Container, Texture } from "pixi.js";
@@ -31,6 +32,7 @@ export default function MapCanvas(props: MapProps) {
     let actors: ActorScene;
     let dynamics: WorldEntities;
     const actorTextures: import("./DollRenderer").DollTextures = {};
+    let prepareActions: (() => void) | undefined;
     let mainSet: import("./assetSetLoader").LoadedAssetSet | undefined;
     let readyAppearance = "";
     let pendingAppearance = "";
@@ -248,7 +250,8 @@ export default function MapCanvas(props: MapProps) {
           pendingAppearance = appearanceKey;
           const revision = ++preparationRevision;
           const isCurrent = () => !disposed && revision === preparationRevision && pendingAppearance === appearanceKey;
-          let startRemaining: (() => void) | undefined;
+          prepareActions = undefined;
+          let actionSnapshot: typeof p.snapshot;
           let preparedMain: import("./assetSetLoader").LoadedAssetSet | undefined;
           const prepare = p.assetSet ? Promise.resolve() : appearanceKey === "legacy"
             ? loadDollTextures(false).then((textures) => { Object.assign(actorTextures, textures); })
@@ -256,14 +259,19 @@ export default function MapCanvas(props: MapProps) {
                 .then((set) => {
                   if (!isCurrent()) return;
                   preparedMain = set;
-                  startRemaining = () => set.startRemaining(paint, isCurrent);
+                  prepareActions = () => {
+                    const snapshot = latest.current.snapshot;
+                    if (!snapshot || snapshot === actionSnapshot) return;
+                    actionSnapshot = snapshot;
+                    set.startRemaining(paint, isCurrent, neededMainActions(snapshot));
+                  };
                 });
           void Promise.all([prepare, p.snapshot ? dynamics.prepare(p.snapshot) : Promise.resolve()]).then(() => {
             if (isCurrent()) {
               if (preparedMain) mainSet = preparedMain;
               readyAppearance = appearanceKey;
               paint();
-              startRemaining?.();
+              prepareActions?.();
             }
           }).catch((cause) => { if (isCurrent()) setError(`角色加载：${String(cause)}`); });
         }
@@ -271,6 +279,7 @@ export default function MapCanvas(props: MapProps) {
         return;
       }
       if (!appearanceKey) { applyCamera(); return; }
+      prepareActions?.();
       const now = performance.now();
       actors.update(
         {
