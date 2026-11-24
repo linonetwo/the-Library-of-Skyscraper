@@ -1,5 +1,5 @@
 {
-  "version": "library-v3.4",
+  "version": "library-v3.5",
   "units": "tile",
   "rooms": [
     {
@@ -250,8 +250,8 @@
       "roomId": "room-2",
       "asset": "bookcase-v",
       "position": {
-        "x": 2,
-        "y": 6
+        "x": -2,
+        "y": 7
       },
       "footprint": {
         "width": 1,
