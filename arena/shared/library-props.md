@@ -36,3 +36,17 @@ The five `p3-environment` prototype assets retain their exported pixel anchors
 and pre-baked scale 1. Floor markings render after tiles and before all depth
 entities; low walls use the same footpoint depth ordering as other static props.
 They add no collision. Existing decor-only replay migration applies.
+
+## Room 2 shelf containment (library-v3.5)
+
+Move `room-2-shelf-2` (bookcase-v) from world (2, 6) to (-2, 7),
+local (-2, -1). It joins the existing u shelf at local (-2, -2) along the
+rear edge instead of standing against the visible front low wall. The registered
+sprite feet now sit on the room floor without protruding through that wall.
+The north doorway's three-tile clear corridor, central interaction space,
+standing slots and building anchors remain unchanged. No low-wall, floor,
+route or collision changes; the existing decor-only replay upgrade applies.
+
+Visual check uses a newly created seed-42 training session, with the full map
+and room-2 close-up reviewed together. This is a placement correction, not a
+change to bookcase pixel anchors or a client-side per-ID adjustment.
