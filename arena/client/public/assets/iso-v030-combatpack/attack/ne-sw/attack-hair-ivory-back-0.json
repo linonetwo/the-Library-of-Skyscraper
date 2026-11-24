@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "attack/hair-ivory-back/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 42,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 74,
+        "w": 42,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-back/SW/01": {
+      "frame": {
+        "x": 53,
+        "y": 2,
+        "w": 42,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 74,
+        "w": 42,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-back/SW/02": {
+      "frame": {
+        "x": 99,
+        "y": 2,
+        "w": 42,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 74,
+        "w": 42,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-back/SW/03": {
+      "frame": {
+        "x": 145,
+        "y": 2,
+        "w": 42,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 74,
+        "w": 42,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-back/NE/00": {
+      "frame": {
+        "x": 191,
+        "y": 2,
+        "w": 39,
+        "h": 8
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 73,
+        "w": 39,
+        "h": 8
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-back/NE/01": {
+      "frame": {
+        "x": 234,
+        "y": 2,
+        "w": 39,
+        "h": 8
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 73,
+        "w": 39,
+        "h": 8
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-back/NE/02": {
+      "frame": {
+        "x": 277,
+        "y": 2,
+        "w": 39,
+        "h": 8
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 73,
+        "w": 39,
+        "h": 8
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-back/NE/03": {
+      "frame": {
+        "x": 320,
+        "y": 2,
+        "w": 39,
+        "h": 8
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 73,
+        "w": 39,
+        "h": 8
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/hair-ivory-back/NE": [
+      "attack/hair-ivory-back/NE/00",
+      "attack/hair-ivory-back/NE/01",
+      "attack/hair-ivory-back/NE/02",
+      "attack/hair-ivory-back/NE/03"
+    ],
+    "attack/hair-ivory-back/SW": [
+      "attack/hair-ivory-back/SW/00",
+      "attack/hair-ivory-back/SW/01",
+      "attack/hair-ivory-back/SW/02",
+      "attack/hair-ivory-back/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-hair-ivory-back-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 361,
+      "h": 15
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

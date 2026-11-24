@@ -1,0 +1,122 @@
+{
+  "frames": {
+    "hit/outfit-warden/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 28,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 79,
+        "y": 77,
+        "w": 28,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-warden/W/00": {
+      "frame": {
+        "x": 39,
+        "y": 2,
+        "w": 28,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 77,
+        "w": 28,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-warden/E/01": {
+      "frame": {
+        "x": 71,
+        "y": 2,
+        "w": 24,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 83,
+        "y": 76,
+        "w": 24,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/outfit-warden/W/01": {
+      "frame": {
+        "x": 99,
+        "y": 2,
+        "w": 26,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 76,
+        "w": 26,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/outfit-warden/E": [
+      "hit/outfit-warden/E/00",
+      "hit/outfit-warden/E/01"
+    ],
+    "hit/outfit-warden/W": [
+      "hit/outfit-warden/W/00",
+      "hit/outfit-warden/W/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-outfit-warden-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 127,
+      "h": 63
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

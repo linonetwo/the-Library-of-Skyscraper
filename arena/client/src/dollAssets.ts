@@ -44,23 +44,31 @@ export async function prepareMainLayers(set: LoadedAssetSet, appearances: DollAp
     view.catalog[key] = clip.timing;
   };
   await Promise.all(entries.filter(([action]) => action === "idle" || (!idleOnly && action === "walk")).map(prepare));
-  let started = false;
+  let running = false;
+  const queued = new Set<string>();
   return Object.assign(view, {
-    startRemaining(onReady: () => void, isCurrent: () => boolean) {
-      if (started || idleOnly) return;
-      started = true;
+    startRemaining(onReady: () => void, isCurrent: () => boolean, actions: string[]) {
+      if (idleOnly) return;
+      queued.clear();
+      for (const action of actions) if (!view.clips[action as keyof typeof view.clips]) queued.add(action);
+      if (running || !queued.size) return;
+      running = true;
       void (async () => {
-        for (const entry of entries.filter(([action]) => action !== "idle" && action !== "walk")) {
-          if (!isCurrent()) return;
+        while (queued.size && isCurrent()) {
+          const action = queued.values().next().value!;
+          queued.delete(action);
+          const entry = entries.find(([key]) => key === action);
+          if (!entry || view.clips[action as keyof typeof view.clips]) continue;
           try {
             await prepare(entry);
             if (!isCurrent()) return;
             onReady();
           } catch (cause) {
             // This view keeps the resolver's existing fallback for a failed clip.
-            console.error("工作动作加载失败", entry[0], cause);
+            console.error("动作加载失败", entry[0], cause);
           }
         }
+        running = false;
       })();
     },
   });

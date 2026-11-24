@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "attack/outfit-scholar/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 31,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 74,
+        "w": 31,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-scholar/E/01": {
+      "frame": {
+        "x": 42,
+        "y": 2,
+        "w": 31,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 74,
+        "w": 31,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-scholar/E/02": {
+      "frame": {
+        "x": 77,
+        "y": 2,
+        "w": 31,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 74,
+        "w": 31,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-scholar/E/03": {
+      "frame": {
+        "x": 112,
+        "y": 2,
+        "w": 31,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 74,
+        "w": 31,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-scholar/W/00": {
+      "frame": {
+        "x": 147,
+        "y": 2,
+        "w": 31,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 74,
+        "w": 31,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-scholar/W/01": {
+      "frame": {
+        "x": 182,
+        "y": 2,
+        "w": 31,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 74,
+        "w": 31,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-scholar/W/02": {
+      "frame": {
+        "x": 217,
+        "y": 2,
+        "w": 31,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 74,
+        "w": 31,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-scholar/W/03": {
+      "frame": {
+        "x": 252,
+        "y": 2,
+        "w": 31,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 74,
+        "w": 31,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/outfit-scholar/E": [
+      "attack/outfit-scholar/E/00",
+      "attack/outfit-scholar/E/01",
+      "attack/outfit-scholar/E/02",
+      "attack/outfit-scholar/E/03"
+    ],
+    "attack/outfit-scholar/W": [
+      "attack/outfit-scholar/W/00",
+      "attack/outfit-scholar/W/01",
+      "attack/outfit-scholar/W/02",
+      "attack/outfit-scholar/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-outfit-scholar-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 285,
+      "h": 64
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
