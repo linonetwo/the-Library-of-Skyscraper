@@ -73,6 +73,22 @@ export async function performBehaviorAction(page, action) {
     ].includes(action.type)
   )
     return false;
+  if (action.type === "setBehaviorModule") {
+    const keys = {
+      retreat: ["hpThreshold"],
+      haul: ["minCargo"],
+      build: ["roomId", "buildingKind", "minMaterials"],
+      defend: ["roomId"],
+      gather: ["targetRoomId"],
+    }[action.moduleId];
+    const invalid = Object.keys(action.config ?? {}).find(
+      (key) => !keys.includes(key),
+    );
+    if (invalid)
+      throw new Error(
+        `${action.moduleId} does not have config field ${invalid}`,
+      );
+  }
   await open(page);
   if (action.type === "openBehavior") return true;
   if (action.type === "loadBehaviorTemplate") {
@@ -153,21 +169,19 @@ export async function readBehaviorState(page) {
     path: await workbench
       .getByRole("navigation", { name: "优先级组合路径" })
       .allTextContents(),
-    traces: await page
-      .locator(".behavior-trace")
-      .evaluateAll((traces) =>
-        traces.map((trace) => ({
-          source: trace.getAttribute("aria-label"),
-          heading: trace.querySelector("h4").textContent.trim(),
-          sourceHash: trace.querySelector("h4").getAttribute("title"),
-          sourceHashPrefix: trace
-            .querySelector("h4")
-            .textContent.trim()
-            .split(" · ")
-            .at(-1),
-          text: trace.innerText,
-        })),
-      ),
+    traces: await page.locator(".behavior-trace").evaluateAll((traces) =>
+      traces.map((trace) => ({
+        source: trace.getAttribute("aria-label"),
+        heading: trace.querySelector("h4").textContent.trim(),
+        sourceHash: trace.querySelector("h4").getAttribute("title"),
+        sourceHashPrefix: trace
+          .querySelector("h4")
+          .textContent.trim()
+          .split(" · ")
+          .at(-1),
+        text: trace.innerText,
+      })),
+    ),
     publishedVersion: (await workbench.count())
       ? await workbench.locator(".script-version").innerText()
       : null,

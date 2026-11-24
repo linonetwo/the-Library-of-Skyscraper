@@ -66,6 +66,32 @@ test(
       moduleId: "gather",
       config: { targetRoomId: "room-1" },
     });
+    const beforeInvalid = (await call("Page.getState")).behavior.modules.find(
+      (m) => m.moduleId === "haul",
+    ).summary;
+    const invalid = await client.callTool({
+      name: "Input.action",
+      arguments: {
+        action: {
+          type: "setBehaviorModule",
+          moduleId: "haul",
+          priority: 110,
+          config: { hpThreshold: 25 },
+        },
+      },
+    });
+    assert.equal(invalid.isError, true);
+    assert.match(
+      invalid.content[0].text,
+      /haul does not have config field hpThreshold/,
+    );
+    assert.equal(
+      (await call("Page.getState")).behavior.modules.find(
+        (m) => m.moduleId === "haul",
+      ).summary,
+      beforeInvalid,
+      "invalid mixed request leaves priority unchanged",
+    );
     const edited = (await call("Page.getState")).behavior;
     assert.match(
       edited.modules.find((m) => m.moduleId === "retreat").summary,
