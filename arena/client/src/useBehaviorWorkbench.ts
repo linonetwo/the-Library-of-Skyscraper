@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   recoverBehaviorPlan,
   createDefaultBehaviorPlan,
+  createFirstExpeditionPlan,
   toRuleSourceProject,
   type BehaviorPlan,
 } from "../../behavior-modules";
@@ -23,10 +24,10 @@ export function useBehaviorWorkbench() {
     workbench.draft.files["main.ts"] === recallSource;
   const plan =
     recoverBehaviorPlan(workbench.draft) ??
-    (stock ? createDefaultBehaviorPlan() : null);
+    (stock ? createFirstExpeditionPlan() : null);
   useEffect(() => {
     if (stock)
-      workbench.loadProject(toRuleSourceProject(createDefaultBehaviorPlan()));
+      workbench.loadProject(toRuleSourceProject(createFirstExpeditionPlan()));
   }, [stock]);
   const updatePlan = (next: BehaviorPlan) =>
     workbench.loadProject(
@@ -41,8 +42,14 @@ export function useBehaviorWorkbench() {
     saveHistory([...history, workbench.draft]);
     workbench.loadProject(project);
   };
-  const createPlan = () =>
-    replaceProject(toRuleSourceProject(createDefaultBehaviorPlan()));
+  const createPlan = (template: "expedition" | "logistics" = "expedition") =>
+    replaceProject(
+      toRuleSourceProject(
+        template === "expedition"
+          ? createFirstExpeditionPlan()
+          : createDefaultBehaviorPlan(),
+      ),
+    );
   const backup = history.at(-1);
   const restoreBackup = () => {
     if (!backup) return;
