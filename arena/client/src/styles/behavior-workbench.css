@@ -114,3 +114,14 @@
 .behavior-start button {
   margin: 4px;
 }
+.behavior-visited {
+  padding: 6px;
+  border: 1px solid #586574;
+  border-radius: 4px;
+  color: #b8c2cc;
+}
+.behavior-selected {
+  border-color: #d8bc78 !important;
+  background: #403a28 !important;
+  color: #f8dfa4 !important;
+}

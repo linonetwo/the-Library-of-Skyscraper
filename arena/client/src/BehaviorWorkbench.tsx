@@ -14,9 +14,24 @@ import { ScriptVersion } from "./ScriptVersion";
 import "./styles/scripts.css";
 import "./styles/behavior-workbench.css";
 const MonacoRuleEditor = lazy(() => import("./MonacoRuleEditor"));
-export default function BehaviorWorkbench({ onBack }: { onBack?: () => void }) {
+export default function BehaviorWorkbench({
+  onBack,
+  view,
+  onViewChange,
+}: {
+  onBack?: () => void;
+  view?: "modules" | "source" | "versions";
+  onViewChange?: (view: "modules" | "source" | "versions") => void;
+}) {
   const w = useBehaviorWorkbench();
-  const [tab, setTab] = useState<"modules" | "source" | "versions">("modules");
+  const [localTab, setLocalTab] = useState<"modules" | "source" | "versions">(
+    "modules",
+  );
+  const tab = view ?? localTab;
+  const setTab = (next: "modules" | "source" | "versions") => {
+    setLocalTab(next);
+    onViewChange?.(next);
+  };
   const locate = (moduleId: string) => {
     const ref = getModuleSourceRef(
       { files: w.draft.files, entry: w.draft.entry },
@@ -41,6 +56,7 @@ export default function BehaviorWorkbench({ onBack }: { onBack?: () => void }) {
       <p>
         按优先级尝试模块，首个满足条件的模块选择动作。修改草稿后试跑，再发布到战场。
       </p>
+      {w.backup && <button onClick={w.restoreBackup}>恢复替换前草稿</button>}
       <ScriptVersion busy={w.busy} onDisable={() => void w.run("disable")} />
       <div className="behavior-tabs" role="tablist" aria-label="AI 编辑视图">
         {(["modules", "source", "versions"] as const).map((id, i) => (
@@ -122,7 +138,7 @@ export default function BehaviorWorkbench({ onBack }: { onBack?: () => void }) {
           disabled={!w.session || w.busy}
           onClick={() => void w.run("compile")}
         >
-          编译组合
+          编译 TypeScript
         </button>
         <button
           disabled={!w.session || w.busy}

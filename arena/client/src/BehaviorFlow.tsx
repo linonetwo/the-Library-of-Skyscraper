@@ -56,8 +56,15 @@ export function BehaviorTraceView({
       {trace.actors.map((actor) => (
         <div key={actor.actorId}>
           <strong>{actor.actorId}</strong>
-          <span>{actor.visited.join(" → ")} → </span>
+          {actor.visited
+            .filter((id) => id !== actor.moduleId)
+            .map((id, i) => (
+              <span className="behavior-visited" key={`${id}-${i}`}>
+                {id} · 已尝试 →
+              </span>
+            ))}
           <button
+            className="behavior-selected"
             disabled={!onLocate && !session}
             onClick={() => void inspect(actor.moduleId)}
           >
@@ -97,6 +104,8 @@ export function readBehaviorTrace(value: unknown): BehaviorTrace | null {
     Array.isArray(trace.actors) &&
     trace.actors.every(
       (a) =>
+        a !== null &&
+        typeof a === "object" &&
         typeof a.actorId === "string" &&
         typeof a.moduleId === "string" &&
         Array.isArray(a.visited) &&
