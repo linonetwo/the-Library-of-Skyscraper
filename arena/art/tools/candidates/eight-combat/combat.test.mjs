@@ -24,7 +24,16 @@ for(const [action,count,timings,size]of [['attack',4,[150,90,180,180],192],['hit
     }
    }
   }
-  for(const direction of directions)for(let frame=0;frame<count;frame++)assert.ok(keys.has(`${action}/body/${direction}/${String(frame).padStart(2,'0')}`));
+  for(const direction of directions){
+   const order=budget.layerOrderByDirection[direction];
+   const actual=new Set([...keys].filter(key=>key.split('/')[2]===direction).map(key=>key.split('/')[1]));
+   assert.deepEqual(new Set(order),actual,`${action}/${direction} must order exactly its registered layers`);
+   for(let frame=0;frame<count;frame++){
+    assert.ok(keys.has(`${action}/body/${direction}/${String(frame).padStart(2,'0')}`));
+    for(const layer of order)assert.ok(keys.has(`${action}/${layer}/${direction}/${String(frame).padStart(2,'0')}`),`${action}/${layer}/${direction}/${frame} texture missing`);
+   }
+  }
+
  });
 }
 test('six combat directions retain planted feet, reachable wrists and exact staff contact',async()=>{
