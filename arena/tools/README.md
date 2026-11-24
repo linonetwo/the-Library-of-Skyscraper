@@ -119,3 +119,18 @@ Candidate integration check (keeps the existing 180-second browser budget):
 This checks three tasks via UI, start/pause, travel and one UI step, then uses a
 separate private Simulation handle for settlement and same-seed reset. It does
 not claim to verify clicking the browser’s settlement retry button.
+
+### 官方行为模块
+
+沿既有 `Input.action` 点击/填写真实 AI 工作台：
+- `openBehavior`：打开「行为模块」。
+- `loadBehaviorTemplate {template: first-expedition|logistics}`：载入官方组合，保留 UI 的替换撤销历史。
+- `setBehaviorModule {moduleId: retreat|haul|build|defend|gather, enabled?, priority?, roles?, config?}`：展开该卡片并操作参数。`roles` 为 gatherer/guard/scout 数组，空数组在 UI 表示全部岗位；`config` 支持 hpThreshold、minCargo、minMaterials、targetRoomId、roomId、buildingKind（catalog|tower），使用该模块真实存在的字段。采集/防守房间传空字符串选择「自动」。
+- `undoBehaviorReplacement`：点击「撤销上次替换」。
+- `openBehaviorSource {moduleId}`：打开该模块在同一工程的源码位置。
+
+编译、试跑、发布仍用 `compileScript`、`previewScript`、`publishScript`。
+`Page.getState.behavior` 返回当前卡片控件值、组合路径、明确试跑/已发布/回放来源的 trace 与完整 sourceHash（来自界面标题）、发布版本和撤销入口；未打开模块卡片时不会伪造隐藏工程参数。
+工坊 `openWorkshop` 保持当前页面 origin，候选 `ARENA_UI_URL` 不会被切回默认5173。
+
+真实 stdio 验证：`ARENA_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5181 ARENA_BASE_URL=http://127.0.0.1:8790 node --test ../tests/behavior-browser.test.mjs`。
