@@ -34,7 +34,7 @@ export function loadMainDefinition() {
 export async function prepareMainLayers(set: LoadedAssetSet, appearances: DollAppearance[], idleOnly = false) {
   await Promise.all(Object.entries(set.clips).filter(([action]) => !idleOnly || action === "idle").map(async ([, clip]) => {
     const layers = [...new Set(appearances.flatMap((appearance) =>
-      animationLayers("walk", appearance, clip.descriptor.activeLayers)))];
+      animationLayers("walk", appearance, clip.descriptor.activeLayers, clip.descriptor)))];
     await loadClipLayers(clip, layers);
   }));
   return set;

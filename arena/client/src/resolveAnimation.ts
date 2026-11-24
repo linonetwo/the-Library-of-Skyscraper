@@ -115,7 +115,7 @@ function selectAnimation(
     actor.task?.stage === "construction" || actor.task?.stage === "cataloging";
   if (working) {
     return result(
-      "build-catalog",
+      actor.task?.stage === "construction" ? "build" : "catalog",
       (actor.task?.stageStartedTick ?? action?.startedTick ?? 0) * tickMs,
     );
   }

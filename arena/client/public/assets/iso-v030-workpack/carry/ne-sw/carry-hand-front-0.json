@@ -1,0 +1,822 @@
+{
+  "frames": {
+    "carry/hand-front/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/01": {
+      "frame": {
+        "x": 51,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/02": {
+      "frame": {
+        "x": 95,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/03": {
+      "frame": {
+        "x": 139,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/04": {
+      "frame": {
+        "x": 183,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/05": {
+      "frame": {
+        "x": 227,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/06": {
+      "frame": {
+        "x": 271,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/07": {
+      "frame": {
+        "x": 315,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/08": {
+      "frame": {
+        "x": 359,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/09": {
+      "frame": {
+        "x": 403,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/10": {
+      "frame": {
+        "x": 447,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/11": {
+      "frame": {
+        "x": 491,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/12": {
+      "frame": {
+        "x": 535,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/13": {
+      "frame": {
+        "x": 579,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/14": {
+      "frame": {
+        "x": 623,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/SW/15": {
+      "frame": {
+        "x": 667,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 116,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/00": {
+      "frame": {
+        "x": 711,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/01": {
+      "frame": {
+        "x": 753,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/02": {
+      "frame": {
+        "x": 795,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/03": {
+      "frame": {
+        "x": 837,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/04": {
+      "frame": {
+        "x": 879,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/05": {
+      "frame": {
+        "x": 921,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/06": {
+      "frame": {
+        "x": 963,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/07": {
+      "frame": {
+        "x": 1005,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/08": {
+      "frame": {
+        "x": 1047,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/09": {
+      "frame": {
+        "x": 1089,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/10": {
+      "frame": {
+        "x": 1131,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/11": {
+      "frame": {
+        "x": 1173,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/12": {
+      "frame": {
+        "x": 1215,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/13": {
+      "frame": {
+        "x": 1257,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/14": {
+      "frame": {
+        "x": 1299,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "carry/hand-front/NE/15": {
+      "frame": {
+        "x": 1341,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 116,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "carry/hand-front/NE": [
+      "carry/hand-front/NE/00",
+      "carry/hand-front/NE/01",
+      "carry/hand-front/NE/02",
+      "carry/hand-front/NE/03",
+      "carry/hand-front/NE/04",
+      "carry/hand-front/NE/05",
+      "carry/hand-front/NE/06",
+      "carry/hand-front/NE/07",
+      "carry/hand-front/NE/08",
+      "carry/hand-front/NE/09",
+      "carry/hand-front/NE/10",
+      "carry/hand-front/NE/11",
+      "carry/hand-front/NE/12",
+      "carry/hand-front/NE/13",
+      "carry/hand-front/NE/14",
+      "carry/hand-front/NE/15"
+    ],
+    "carry/hand-front/SW": [
+      "carry/hand-front/SW/00",
+      "carry/hand-front/SW/01",
+      "carry/hand-front/SW/02",
+      "carry/hand-front/SW/03",
+      "carry/hand-front/SW/04",
+      "carry/hand-front/SW/05",
+      "carry/hand-front/SW/06",
+      "carry/hand-front/SW/07",
+      "carry/hand-front/SW/08",
+      "carry/hand-front/SW/09",
+      "carry/hand-front/SW/10",
+      "carry/hand-front/SW/11",
+      "carry/hand-front/SW/12",
+      "carry/hand-front/SW/13",
+      "carry/hand-front/SW/14",
+      "carry/hand-front/SW/15"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "carry-hand-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1381,
+      "h": 20
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

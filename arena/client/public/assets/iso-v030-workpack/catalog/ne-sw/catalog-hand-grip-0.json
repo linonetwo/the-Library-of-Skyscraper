@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "catalog/hand-grip/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 103,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-grip/NE/01": {
+      "frame": {
+        "x": 20,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 82,
+        "y": 102,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-grip/NE/02": {
+      "frame": {
+        "x": 33,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 95,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-grip/NE/03": {
+      "frame": {
+        "x": 46,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 97,
+        "y": 109,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-grip/SW/00": {
+      "frame": {
+        "x": 59,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 97,
+        "y": 99,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-grip/SW/01": {
+      "frame": {
+        "x": 72,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 99,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-grip/SW/02": {
+      "frame": {
+        "x": 85,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 96,
+        "y": 92,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/hand-grip/SW/03": {
+      "frame": {
+        "x": 98,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 109,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "catalog/hand-grip/NE": [
+      "catalog/hand-grip/NE/00",
+      "catalog/hand-grip/NE/01",
+      "catalog/hand-grip/NE/02",
+      "catalog/hand-grip/NE/03"
+    ],
+    "catalog/hand-grip/SW": [
+      "catalog/hand-grip/SW/00",
+      "catalog/hand-grip/SW/01",
+      "catalog/hand-grip/SW/02",
+      "catalog/hand-grip/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "catalog-hand-grip-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 109,
+      "h": 15
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

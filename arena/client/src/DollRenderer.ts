@@ -32,13 +32,13 @@ export class DollRenderer {
     cargo: number,
     registered?: RegisteredDollClip,
   ) {
-    let layers = animationLayers(
+    const layers = animationLayers(
       "walk",
       appearance,
       registered?.descriptor.activeLayers,
+      registered?.descriptor,
+      direction,
     );
-    const order = registered?.descriptor.layerOrderByDirection?.[direction];
-    if (order) layers = order.filter((layer) => layers.includes(layer));
     const prefix = registered?.descriptor.clip.action ?? action;
     const suffix = `${direction}/${String(frame).padStart(2, "0")}`;
     const key = `${registered?.assetSetId ?? "legacy"}/${registered?.root ?? ""}/${prefix}/${suffix}/${layers.join("/")}`;
@@ -66,7 +66,7 @@ export class DollRenderer {
       });
     }
     this.cargo?.update(
-      registered?.rig,
+      registered?.descriptor.activeLayers.some(layer => layer.startsWith("cargo-bundle")) ? undefined : registered?.rig,
       direction === "NE" || direction === "SW" ? direction : undefined,
       frame,
       cargo > 0,

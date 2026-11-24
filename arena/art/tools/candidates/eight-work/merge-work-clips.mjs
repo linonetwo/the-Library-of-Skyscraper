@@ -4,7 +4,7 @@ for(const action of ['carry','unload','collect','build','catalog']){
  const old=['build','catalog'].includes(action)?`../ne-sw-build-catalog/${action}/output`:`../ne-sw-${action}/output`,sources={'ne-sw':path.join(root,old),six:path.join(root,'six',action)},target=path.join(root,'merged',action);await mkdir(target,{recursive:true});let out;const layers=new Map(),keys=new Set();
  for(const[batch,source]of Object.entries(sources)){
   const b=await read(path.join(source,'atlas-budget.json'));if(!out)out={...b,directions:[],layers:[],activeLayers:[],inactiveLayers:[],layerOrderByDirection:{},appearanceOptions:{...b.appearanceOptions,weaponOff:['hand-left-front',action==='build'?'hand-grip':'hand-front'],weaponOn:['hand-left-front',action==='build'?'hand-grip':'hand-front','weapon-staff-back'],cargoLayers:['cargo-bundle-back','cargo-bundle-front'],workLayers:action==='collect'?['work-prop-paper']:action==='build'?['work-prop-mallet']:action==='catalog'?['work-prop-folio']:[]}};
-  delete out.variants;
+  delete out.variants;out.handMode=action==='build'?'grip':'natural';
   for(const f of ['renderScale','groundPivot','sourceSize'])if(JSON.stringify(out[f])!==JSON.stringify(b[f]))throw Error('registration mismatch '+f);
   for(const f of ['frameCount','frameDurationsMs','playback'])if(JSON.stringify(out.clip[f])!==JSON.stringify(b.clip[f]))throw Error('timeline mismatch '+f);
   for(const d of b.directions){if(out.directions.includes(d))throw Error('direction collision');out.directions.push(d);out.layerOrderByDirection[d]=b.layerOrderByDirection[d];}

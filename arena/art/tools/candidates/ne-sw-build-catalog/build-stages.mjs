@@ -2,7 +2,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';import path from 'node
 const dir=path.dirname(fileURLToPath(import.meta.url)),base=JSON.parse(await readFile(path.join(dir,'pose.json'))),manifest=JSON.parse(await readFile(path.join(dir,'work-props/manifest.json')));
 const rot=([x,y],a)=>[x*Math.cos(a)-y*Math.sin(a),x*Math.sin(a)+y*Math.cos(a)];
 for(const stage of ['build','catalog']){
- const c=structuredClone(base);c.action=stage;delete c.variants;const type=stage==='build'?'mallet':'folio';
+ const c=structuredClone(base);c.action=stage;c.handMode=stage==='build'?'grip':'natural';delete c.variants;const type=stage==='build'?'mallet':'folio';
  for(const[d,dv]of Object.entries(c.directions)){
   dv.attachments=dv.attachments.filter(a=>!a.id.startsWith('work-prop-')||a.id==='work-prop-'+type).map(a=>({...a,image:'../'+a.image}));
   for(const[i,p]of dv.poses.entries()){

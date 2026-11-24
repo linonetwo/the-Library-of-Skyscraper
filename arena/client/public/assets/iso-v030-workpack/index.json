@@ -1,0 +1,30 @@
+{
+  "assetSetId": "iso-v030-eight-work",
+  "clips": [
+    {
+      "action": "carry",
+      "root": "/assets/iso-v030-workpack/carry",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "unload",
+      "root": "/assets/iso-v030-workpack/unload",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "collect",
+      "root": "/assets/iso-v030-workpack/collect",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "build",
+      "root": "/assets/iso-v030-workpack/build",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "catalog",
+      "root": "/assets/iso-v030-workpack/catalog",
+      "descriptor": "atlas-budget.json"
+    }
+  ]
+}

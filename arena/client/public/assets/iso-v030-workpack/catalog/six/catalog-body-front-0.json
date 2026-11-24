@@ -1,0 +1,630 @@
+{
+  "frames": {
+    "catalog/body-front/S/03": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 55,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 82,
+        "w": 55,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/E/03": {
+      "frame": {
+        "x": 66,
+        "y": 2,
+        "w": 18,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 82,
+        "y": 84,
+        "w": 18,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/SE/03": {
+      "frame": {
+        "x": 88,
+        "y": 2,
+        "w": 17,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 95,
+        "y": 82,
+        "w": 17,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/E/00": {
+      "frame": {
+        "x": 109,
+        "y": 2,
+        "w": 26,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 80,
+        "y": 83,
+        "w": 26,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/S/01": {
+      "frame": {
+        "x": 139,
+        "y": 2,
+        "w": 53,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 82,
+        "w": 53,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/S/00": {
+      "frame": {
+        "x": 196,
+        "y": 2,
+        "w": 53,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 82,
+        "w": 53,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/E/02": {
+      "frame": {
+        "x": 253,
+        "y": 2,
+        "w": 26,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 79,
+        "y": 83,
+        "w": 26,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/W/00": {
+      "frame": {
+        "x": 283,
+        "y": 2,
+        "w": 29,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 83,
+        "w": 29,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/W/01": {
+      "frame": {
+        "x": 316,
+        "y": 2,
+        "w": 29,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 83,
+        "w": 29,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/W/02": {
+      "frame": {
+        "x": 349,
+        "y": 2,
+        "w": 29,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 83,
+        "w": 29,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/W/03": {
+      "frame": {
+        "x": 382,
+        "y": 2,
+        "w": 29,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 83,
+        "w": 29,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/E/01": {
+      "frame": {
+        "x": 415,
+        "y": 2,
+        "w": 26,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 77,
+        "y": 83,
+        "w": 26,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/S/02": {
+      "frame": {
+        "x": 445,
+        "y": 2,
+        "w": 52,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 79,
+        "y": 82,
+        "w": 52,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/NW/00": {
+      "frame": {
+        "x": 501,
+        "y": 2,
+        "w": 30,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 65,
+        "y": 83,
+        "w": 30,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/NW/01": {
+      "frame": {
+        "x": 535,
+        "y": 2,
+        "w": 30,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 65,
+        "y": 83,
+        "w": 30,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/NW/02": {
+      "frame": {
+        "x": 569,
+        "y": 2,
+        "w": 30,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 65,
+        "y": 83,
+        "w": 30,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/NW/03": {
+      "frame": {
+        "x": 603,
+        "y": 2,
+        "w": 30,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 65,
+        "y": 83,
+        "w": 30,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/SE/00": {
+      "frame": {
+        "x": 637,
+        "y": 2,
+        "w": 30,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 83,
+        "w": 30,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/SE/01": {
+      "frame": {
+        "x": 671,
+        "y": 2,
+        "w": 29,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 82,
+        "y": 83,
+        "w": 29,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/SE/02": {
+      "frame": {
+        "x": 704,
+        "y": 2,
+        "w": 30,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 83,
+        "w": 30,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/N/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/N/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/N/02": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "catalog/body-front/N/03": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "catalog/body-front/E": [
+      "catalog/body-front/E/00",
+      "catalog/body-front/E/01",
+      "catalog/body-front/E/02",
+      "catalog/body-front/E/03"
+    ],
+    "catalog/body-front/W": [
+      "catalog/body-front/W/00",
+      "catalog/body-front/W/01",
+      "catalog/body-front/W/02",
+      "catalog/body-front/W/03"
+    ],
+    "catalog/body-front/N": [
+      "catalog/body-front/N/00",
+      "catalog/body-front/N/01",
+      "catalog/body-front/N/02",
+      "catalog/body-front/N/03"
+    ],
+    "catalog/body-front/S": [
+      "catalog/body-front/S/00",
+      "catalog/body-front/S/01",
+      "catalog/body-front/S/02",
+      "catalog/body-front/S/03"
+    ],
+    "catalog/body-front/NW": [
+      "catalog/body-front/NW/00",
+      "catalog/body-front/NW/01",
+      "catalog/body-front/NW/02",
+      "catalog/body-front/NW/03"
+    ],
+    "catalog/body-front/SE": [
+      "catalog/body-front/SE/00",
+      "catalog/body-front/SE/01",
+      "catalog/body-front/SE/02",
+      "catalog/body-front/SE/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "catalog-body-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 736,
+      "h": 50
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

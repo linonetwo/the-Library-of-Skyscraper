@@ -9,6 +9,7 @@ export type AtlasDescriptor = {
   sourceSize: [number, number];
   directions: Direction[];
   activeLayers: string[];
+  handMode?: "natural" | "grip";
   layerOrderByDirection?: Partial<Record<Direction, string[]>>;
   layers: {
     layer: string;
