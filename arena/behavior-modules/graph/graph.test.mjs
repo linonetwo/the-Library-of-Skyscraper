@@ -13,7 +13,7 @@ test('graph diagnostics and immutable serializable patch baseline',()=>{
  const node=graph.nodes.find(n=>n.id==='cargo-check');const changed=api.applyGraphPatch(graph,{graphId:graph.graphId,baseRevision:0,operations:[{type:'putNode',node:{...node,condition:{...node.condition,value:6}}}]});
  assert.equal(graph.revision,0);assert.equal(changed.revision,1);assert.equal(node.condition.value,8);
  assert.throws(()=>api.applyGraphPatch(changed,{graphId:graph.graphId,baseRevision:0,operations:[]}),/stale/);
- changed.nodes.find(n=>n.id==='gather-node').fallback='cargo-check';assert.ok(api.diagnoseGraph(changed).some(d=>d.code==='tree-cycle'));assert.throws(()=>api.toGraphSourceProject(changed));
+ changed.nodes.find(n=>n.id==='gather-node').fallback='cargo-check';assert.ok(api.diagnoseGraph(changed).some(d=>d.code==='tree-cycle'&&d.sourceRef?.file==='graph-plan.ts'));assert.throws(()=>api.toGraphSourceProject(changed));
 });
 test('logistics fixture compiles in existing toolchain and threshold changes actual V8 intent',async()=>{
  const graph=api.createLogisticsGraph();const a=await executable(graph);assert.equal(a.decide(context()).intents[0].type,'gather');
@@ -60,4 +60,26 @@ test('graph ID rename and fragment copy remap internal edges while sharing offic
  assert.equal(renamed.states.find(s=>s.id==='working').treeId,'cargo-threshold');assert.ok(renamed.nodes.some(n=>n.id==='cargo-threshold'));assert.equal(api.diagnoseGraph(renamed).filter(d=>d.severity==='error').length,0);
  const fragment=api.cloneGraphFragment(graph,'cargo-check');const copied=api.applyGraphPatch(graph,fragment.patch);const root=copied.nodes.find(n=>n.id===fragment.rootId);assert.equal(root.yes,fragment.idMap['haul-node']);assert.equal(copied.nodes.find(n=>n.id===root.yes).moduleId,'haul');assert.equal(copied.modules.length,graph.modules.length);
  assert.throws(()=>api.renameGraphObject(graph,'cargo-check','gather'),/duplicate/);
+});
+test('explicit v1 conversion preserves action selection without mutating original plan',async()=>{
+ const v1built=await build({entryPoints:[new URL('../index.ts',import.meta.url).pathname],bundle:true,write:false,format:'esm',platform:'node'});const v1=await import('data:text/javascript;base64,'+Buffer.from(v1built.outputFiles[0].text).toString('base64'));
+ const plan=v1.createFirstExpeditionPlan();const before=JSON.stringify(plan);const graph=api.fromBehaviorPlan(plan);const graphRun=await executable(graph);assert.equal(JSON.stringify(plan),before);
+ const compilation=await compileRule(v1.toRuleSourceProject(plan));assert.deepEqual(compilation.diagnostics,[]);
+ for(const patch of [{},{cargo:8},{hp:10},{role:'guard'},{role:'scout'}]){
+  const sandbox=vm.createContext({});vm.runInContext(compilation.bundle.code,sandbox);const old=JSON.parse(JSON.stringify(sandbox.__arenaRule.decide(context(patch))));assert.deepEqual(graphRun.decide(context(patch)).intents,old.intents);
+ }
+});
+test('priority and score skip explicit pass but explicit hold terminates candidate selection',async()=>{
+ for(const selector of ['priority','score']){
+  const graph=api.createLogisticsGraph();graph.states.find(s=>s.id==='working').treeId='selector';graph.modules.find(m=>m.kind==='gather').enabled=false;
+  graph.nodes.find(n=>n.id==='gather-node').fallback='pass-node';
+  graph.nodes.push(selector==='priority'?{id:'selector',type:'priority',children:['gather-node','defend-node'],fallback:'hold-node'}:{id:'selector',type:'score',candidates:[{id:'first-score',nodeId:'gather-node',weight:10},{id:'second-score',nodeId:'defend-node',weight:5}],fallback:'hold-node'});
+  const defend=graph.modules.find(m=>m.kind==='defend');defend.roleFilter=['gatherer'];defend.config.roomId='room-3';
+  const run=await executable(graph);const selected=run.decide(context());assert.equal(selected.intents[0].type,'move');assert.equal(selected.memoryPatch.set.aiTrace.actors[0].moduleId,'defend');
+  graph.nodes.find(n=>n.id==='gather-node').fallback='hold-node';const held=(await executable(graph)).decide(context());assert.deepEqual(held.intents,[]);assert.equal(held.memoryPatch.set.aiTrace.actors[0].selectedNodeId,'hold-node');
+ }
+});
+test('invalid graph saves as draft while validated generation blocks preview/publication',()=>{
+ const graph=api.createLogisticsGraph();graph.nodes.find(n=>n.id==='gather-node').fallback='cargo-check';
+ const draft=api.serializeGraphDraft(graph);assert.ok(draft.files['graph-plan.ts']);assert.deepEqual(api.recoverRuleGraph(draft),graph);assert.throws(()=>api.toGraphSourceProject(graph),/acyclic/);
 });

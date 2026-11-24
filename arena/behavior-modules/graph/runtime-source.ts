@@ -53,6 +53,7 @@ export function decide(ctx:RuleContext):RuleDecisionResult {
    const node=graph.nodes.find(n=>n.id===id)!;trace.visited.push({nodeId:id});
    switch(node.type){
     case 'check':{const value=test(node.condition);trace.visited[trace.visited.length-1].value=value;return {selected:value,nodeId:id,moduleId:null,reason:value?'check passed':'check failed',logs:[]};}
+    case 'pass':return {selected:false,nodeId:id,moduleId:null,reason:node.reason,logs:[]};
     case 'hold':return {selected:true,nodeId:id,moduleId:null,reason:node.reason,logs:[]};
     case 'condition':{const value=test(node.condition);trace.visited[trace.visited.length-1].value=value;return evaluate(value?node.yes:node.no);}
     case 'log':{const result=evaluate(node.next);return {...result,logs:[node.reason,...result.logs]};}
@@ -62,7 +63,7 @@ export function decide(ctx:RuleContext):RuleDecisionResult {
      const result=decideModule({...ctx,squad:{actors:[actor]},limits:{...ctx.limits,maxIntents:1}});
      const item=(result.memoryPatch?.set?.aiTrace as unknown as {actors:{moduleId:string;reason:string}[]})?.actors[0];
      if(item && item.moduleId===module.moduleId)return {selected:true,nodeId:id,moduleId:module.moduleId,intent:result.intents[0],reason:item.reason,logs:[]};
-     return evaluate(node.fallback);
+     const fallback=evaluate(node.fallback);return !fallback.intent && item?.reason==='travel in progress'?{...fallback,reason:item.reason}:fallback;
     }
     case 'priority':{for(const child of node.children){const result=evaluate(child);if(result.selected)return result;}return evaluate(node.fallback);}
     case 'sequence':{
