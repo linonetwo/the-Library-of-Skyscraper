@@ -1,0 +1,15 @@
+import {cp,mkdir,readFile,writeFile} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const source=path.dirname(fileURLToPath(import.meta.url));
+const assets=path.resolve(source,'../../../../client/public/assets');
+const actions=['carry','unload','collect','build','catalog'];
+const clips=actions.map(action=>({action,root:`/assets/iso-v030-workpack/${action}`,descriptor:'atlas-budget.json'}));
+for(const action of actions)await cp(path.join(source,'merged',action),path.join(assets,'iso-v030-workpack',action),{recursive:true});
+await mkdir(path.join(assets,'iso-v030-workpack'),{recursive:true});
+await writeFile(path.join(assets,'iso-v030-workpack/index.json'),JSON.stringify({assetSetId:'iso-v030-eight-work',clips},null,2)+'\n');
+const bank=path.join(assets,'iso-v030-base/index.json');
+const index=JSON.parse(await readFile(bank));
+index.assetSetId='iso-v030-eight-player-work';
+index.clips=[...index.clips.filter(clip=>!actions.includes(clip.action)),...clips];
+await writeFile(bank,JSON.stringify(index,null,2)+'\n');
