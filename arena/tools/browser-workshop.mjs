@@ -18,7 +18,7 @@ function layerControl(page,layer) {
 }
 export async function performWorkshopAction(page, action) {
  if(!empty.includes(action.type) && !(action.type in fields)) return false;
- if(action.type==='openWorkshop') { await page.goto('http://127.0.0.1:5173/animation-lab'); await loaded(page); return true; }
+ if(action.type==='openWorkshop') { await page.goto(new URL('/animation-lab', page.url()).href); await loaded(page); return true; }
  if(action.type==='returnToArena') { await page.getByRole('link',{name:'← 返回竞技场',exact:true}).click(); return true; }
  const button=name=>page.getByRole('button',{name,exact:true});
  switch(action.type) {

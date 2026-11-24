@@ -181,6 +181,7 @@ export function BehaviorModuleCard({
             <label>
               设施
               <select
+                aria-label="设施"
                 value={m.config.buildingKind}
                 onChange={(e) => config({ buildingKind: e.target.value })}
               >

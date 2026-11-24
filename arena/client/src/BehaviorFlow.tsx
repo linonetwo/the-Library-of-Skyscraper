@@ -49,7 +49,7 @@ export function BehaviorTraceView({
   };
   return (
     <section className="behavior-trace" aria-label={`${source}决策路径`}>
-      <h4>
+      <h4 title={sourceHash}>
         {source} · T{trace.tick} · {sourceHash.slice(0, 12)}
       </h4>
       <p>以下为决策选择；动作是否生效请查看战场事件。</p>
