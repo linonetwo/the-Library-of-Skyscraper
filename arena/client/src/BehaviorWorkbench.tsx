@@ -10,7 +10,7 @@ import {
 } from "./BehaviorFlow";
 import { ScriptFiles } from "./ScriptFiles";
 import { ScriptHistory } from "./ScriptHistory";
-import { ScriptRuntime } from "./ScriptRuntime";
+import { ScriptRuntime, PreviewStatePatch } from "./ScriptRuntime";
 import { ScriptVersion } from "./ScriptVersion";
 import "./styles/scripts.css";
 import "./styles/behavior-workbench.css";
@@ -172,23 +172,31 @@ export default function BehaviorWorkbench({
           发布到战场
         </button>
       </div>
-      <section className="script-results" aria-label="组合编译与试跑结果">
+      <section className="script-results" aria-label="脚本运行结果">
         {w.busy && <p>处理中…</p>}
         {w.error && <p role="alert">{w.error}</p>}
         {w.compilation?.diagnostics.map((d, i) => (
           <button
+            className="script-diagnostic"
             key={i}
             onClick={() => {
               setTab("source");
               w.jump(d);
             }}
           >
-            {d.file}:{d.line} · {d.message}
+            {d.file}:{d.line}:{d.column} · {d.message}
           </button>
         ))}
         {w.compilation?.bundle && (
           <p>编译通过 · {w.compilation.bundle.sourceHash.slice(0, 12)}</p>
         )}
+        {w.preview?.execution && (
+          <p>
+            T{w.preview.tick} · V8 {w.preview.execution.durationMs.toFixed(2)}{" "}
+            ms
+          </p>
+        )}
+        {w.preview && <PreviewStatePatch preview={w.preview} />}
         {w.preview?.execution?.failure && (
           <p role="alert">{w.preview.execution.failure.message}</p>
         )}
