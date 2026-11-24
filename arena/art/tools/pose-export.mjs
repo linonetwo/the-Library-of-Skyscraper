@@ -378,6 +378,7 @@ export async function exportPoses(configPath, output) {
         },
         layerOrderByDirection: config.layerOrderByDirection,
         variants: config.variants,
+        handMode: config.handMode,
         appearanceOptions: config.appearanceOptions,
         exclusiveLayerGroups: config.exclusiveLayerGroups,
         renderScale: config.renderScale,

@@ -4,7 +4,7 @@ import {resolveAnimation} from '../src/resolveAnimation.ts';
 import {frameAt} from '../src/animationTiming.ts';
 import {SimulationClock} from '../src/SimulationClock.ts';
 const clip={frameCount:4,frameDurationsMs:[100,200,100,100],playback:'once',groundPivot:[96,172.8],renderScale:1};
-const catalog=Object.fromEntries(['idle','walk','carry','attack','unload','hit','down','collect','build-catalog'].map(k=>[k,{...clip,playback:['idle','walk','carry','collect','build-catalog'].includes(k)?'loop':'holdLast',...(['walk','carry'].includes(k)?{cycleWorldStride:1}:{} )}]));
+const catalog=Object.fromEntries(['idle','walk','carry','attack','unload','hit','down','collect','build','catalog'].map(k=>[k,{...clip,playback:['idle','walk','carry','collect','build','catalog'].includes(k)?'loop':'holdLast',...(['walk','carry'].includes(k)?{cycleWorldStride:1}:{} )}]));
 const entity={hp:100,cargo:0,state:'idle',worldPosition:{x:0,y:0},lastMoveDirection:{x:0,y:1},motionDistanceMilli:0};
 const motion={moving:false,direction:'NE',tickDurationMs:500,motionDistanceMilli:0};
 const cue=(kind,startedTick=10,durationTicks=2)=>({kind,startedTick,durationTicks,targetPosition:{x:0,y:-1}});
@@ -36,7 +36,7 @@ test('moving work uses route phase; cargo idle and blocked work stay idle',()=>{
  assert.equal(resolve({cargo:4}).clip,'idle');
  assert.equal(resolve({task:{stage:'blocked',stageStartedTick:0}}).clip,'idle');
  assert.equal(resolve({task:{stage:'construction',stageStartedTick:10}},5150).frame,1);
- assert.equal(resolve({task:{stage:'cataloging',stageStartedTick:10}}).clip,'build-catalog');
+ assert.equal(resolve({task:{stage:'cataloging',stageStartedTick:10}}).clip,'catalog');
  const a=resolve({},5250,{moving:true,motionDistanceMilli:500});
  const b=resolve({},9000,{moving:true,motionDistanceMilli:500,direction:'SW'});
  assert.equal(a.frame,b.frame);assert.equal(a.frame,1);
@@ -72,7 +72,7 @@ test('display distance follows the same interpolation as position and snaps on s
 
 test('continuous work does not face an expired old attack target',()=>{
  const a=resolve({task:{stage:'cataloging',stageStartedTick:20},actionCue:cue('attack',10,1),lastMoveDirection:{x:0,y:1}},10500);
- assert.equal(a.direction,'SW');assert.equal(a.clip,'build-catalog');
+ assert.equal(a.direction,'SW');assert.equal(a.clip,'catalog');
 });
 
 test('jittered 420/580ms deliveries preserve world speed and distance phase',async()=>{
@@ -113,4 +113,16 @@ test('terminal movement uses remaining authoritative distance and arrives withou
  assert.equal(motion.sample(1100).motionDistanceMilli,1650);
  motion.move({x:0,y:0},1100,true,[],0,1.5);
  assert.equal(motion.sample(1200).motionDistanceMilli,0);
+});
+
+// Working hand mode is independent of staff appearance; directional order excludes absent hands.
+import {animationLayers} from '../src/walkLayers.ts';
+test('registered working props and hand modes share one layer selector',()=>{
+ const available=['body','hand-front','hand-grip','hand-left-front','work-prop-mallet','weapon-staff-back'];
+ const appearance={outfit:'scholar',hair:'ivory',weapon:true};
+ const descriptor={handMode:'natural',layerOrderByDirection:{N:['work-prop-mallet','hand-front','body','weapon-staff-back']}};
+ assert.deepEqual(animationLayers('walk',appearance,available,descriptor,'N'),['work-prop-mallet','hand-front','body','weapon-staff-back']);
+ const grip=animationLayers('walk',{...appearance,weapon:false},available,{handMode:'grip'});
+ assert.ok(grip.includes('hand-grip'));assert.ok(!grip.includes('hand-front'));assert.ok(!grip.includes('weapon-staff-back'));
+ assert.ok(animationLayers('walk',appearance,available).includes('hand-grip'));
 });

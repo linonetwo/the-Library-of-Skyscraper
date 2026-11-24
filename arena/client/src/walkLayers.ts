@@ -1,3 +1,5 @@
+import type { AtlasDescriptor } from "./assetSetLoader";
+import type { Direction } from "./directions";
 import type { Appearance } from "./types";
 import type { AnimationAction } from "./animationCatalog";
 export type { AnimationAction } from "./animationCatalog";
@@ -32,6 +34,8 @@ export function animationLayers(
   action: AnimationAction,
   appearance: DollAppearance,
   available: readonly string[] = animationLayerNames[action],
+  descriptor?: Pick<AtlasDescriptor, "handMode" | "layerOrderByDirection">,
+  direction?: Direction,
 ) {
   const { outfit, hair, weapon } = appearance;
   const layers = [
@@ -42,10 +46,14 @@ export function animationLayers(
     ...(weapon ? ["weapon-staff-front"] : []),
     "body-front",
     ...(outfit !== "none" ? [`outfit-${outfit}-front`] : []),
-    weapon ? "hand-grip" : "hand-front",
+    "hand-left-front",
+    (descriptor?.handMode ?? (weapon ? "grip" : "natural")) === "grip" ? "hand-grip" : "hand-front",
+    ...available.filter(layer => /^(cargo-bundle|work-prop)(-|$)/.test(layer)),
     ...(hair !== "none" ? [`hair-${hair}-front`] : []),
   ];
-  return layers.filter((layer) => available.includes(layer));
+  const selected = layers.filter((layer) => available.includes(layer));
+  const order = direction && descriptor?.layerOrderByDirection?.[direction];
+  return order ? order.filter(layer => selected.includes(layer)) : selected;
 }
 export const walkLayers = (appearance: Appearance) =>
   animationLayers("walk", appearance);

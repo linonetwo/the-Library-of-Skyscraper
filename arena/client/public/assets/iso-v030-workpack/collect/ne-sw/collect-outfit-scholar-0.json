@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "collect/outfit-scholar/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 77,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/outfit-scholar/SW/01": {
+      "frame": {
+        "x": 55,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 81,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/outfit-scholar/SW/03": {
+      "frame": {
+        "x": 103,
+        "y": 2,
+        "w": 44,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 77,
+        "w": 44,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/outfit-scholar/NE/00": {
+      "frame": {
+        "x": 151,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 76,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/outfit-scholar/NE/01": {
+      "frame": {
+        "x": 198,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 80,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/outfit-scholar/NE/02": {
+      "frame": {
+        "x": 245,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 79,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/outfit-scholar/NE/03": {
+      "frame": {
+        "x": 292,
+        "y": 2,
+        "w": 43,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 76,
+        "w": 43,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "collect/outfit-scholar/SW/02": {
+      "frame": {
+        "x": 339,
+        "y": 2,
+        "w": 44,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 80,
+        "w": 44,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "collect/outfit-scholar/NE": [
+      "collect/outfit-scholar/NE/00",
+      "collect/outfit-scholar/NE/01",
+      "collect/outfit-scholar/NE/02",
+      "collect/outfit-scholar/NE/03"
+    ],
+    "collect/outfit-scholar/SW": [
+      "collect/outfit-scholar/SW/00",
+      "collect/outfit-scholar/SW/01",
+      "collect/outfit-scholar/SW/02",
+      "collect/outfit-scholar/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "collect-outfit-scholar-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 385,
+      "h": 70
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

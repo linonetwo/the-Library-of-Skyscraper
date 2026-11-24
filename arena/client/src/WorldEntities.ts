@@ -6,6 +6,9 @@ import { Container, Graphics, Sprite, Text, type Texture } from "pixi.js";
 import type { Snapshot } from "./types";
 import { project } from "./isoGeometry";
 import { roomCenter } from "./mapLayout";
+// Room center is the authority's interaction point. The sim4 pile stands beside
+// and behind it in world units, preserving a visible approach/working edge.
+const resourcePileOffset = { x: 0.4, y: -0.65 };
 const names = {
   core: "据点核心",
   warehouse: "前线仓库",
@@ -144,7 +147,9 @@ export class WorldEntities {
       const c =
         worldMap?.rooms.find((r) => r.id === room.id)?.center ??
         roomCenter(room.q, room.r);
-      const p = project(c.x, c.y),
+      const offset = (snapshot.simulationVersion ?? 0) >= 4
+        ? resourcePileOffset : { x: 0, y: 0 };
+      const p = project(c.x + offset.x, c.y + offset.y),
         node = nodeFor("resource:" + room.id);
       node.position.copyFrom(p);
       node.zIndex = p.y;

@@ -1,0 +1,172 @@
+{
+  "frames": {
+    "unload/hair-midnight-back/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 42,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 43,
+        "w": 42,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hair-midnight-back/SW/01": {
+      "frame": {
+        "x": 53,
+        "y": 2,
+        "w": 42,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 43,
+        "w": 42,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hair-midnight-back/SW/02": {
+      "frame": {
+        "x": 99,
+        "y": 2,
+        "w": 42,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 43,
+        "w": 42,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hair-midnight-back/NE/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hair-midnight-back/NE/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hair-midnight-back/NE/02": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "unload/hair-midnight-back/NE": [
+      "unload/hair-midnight-back/NE/00",
+      "unload/hair-midnight-back/NE/01",
+      "unload/hair-midnight-back/NE/02"
+    ],
+    "unload/hair-midnight-back/SW": [
+      "unload/hair-midnight-back/SW/00",
+      "unload/hair-midnight-back/SW/01",
+      "unload/hair-midnight-back/SW/02"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "unload-hair-midnight-back-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 143,
+      "h": 47
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

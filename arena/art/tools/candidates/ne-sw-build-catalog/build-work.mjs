@@ -11,7 +11,7 @@ for(const action of ['collect','build-catalog']){
  const dir=path.join(base,'ne-sw-'+action),c=await load(path.join(dir,'pose.json'));
  const carry=await load(path.join(base,'ne-sw-carry/pose.json'));
  const props=action==='collect'?['paper']:['mallet','folio'];
- c.variants=action==='collect'?{collecting:{activeLayers:['work-prop-paper'],handMode:'natural'}}:{building:{activeLayers:['work-prop-mallet'],handMode:'grip'},cataloging:{activeLayers:['work-prop-folio'],handMode:'natural'}};
+ c.handMode='natural';c.variants=action==='collect'?{collecting:{activeLayers:['work-prop-paper'],handMode:'natural'}}:{building:{activeLayers:['work-prop-mallet'],handMode:'grip'},cataloging:{activeLayers:['work-prop-folio'],handMode:'natural'}};
  for(const[d,dv]of Object.entries(c.directions)){
   const cv=carry.directions[d];
   dv.attachments=dv.attachments.filter(a=>!['left-forearm-hand','left-forearm','left-natural-hand','staff'].includes(a.id)&&!a.id.startsWith('work-prop-'));

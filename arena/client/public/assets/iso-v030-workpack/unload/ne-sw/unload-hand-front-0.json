@@ -1,0 +1,172 @@
+{
+  "frames": {
+    "unload/hand-front/NE/02": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 41,
+        "h": 17
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 119,
+        "w": 41,
+        "h": 17
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hand-front/SW/02": {
+      "frame": {
+        "x": 52,
+        "y": 2,
+        "w": 49,
+        "h": 17
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 124,
+        "w": 49,
+        "h": 17
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hand-front/SW/00": {
+      "frame": {
+        "x": 105,
+        "y": 2,
+        "w": 40,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 113,
+        "w": 40,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hand-front/SW/01": {
+      "frame": {
+        "x": 149,
+        "y": 2,
+        "w": 41,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 70,
+        "y": 116,
+        "w": 41,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hand-front/NE/00": {
+      "frame": {
+        "x": 194,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 113,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "unload/hand-front/NE/01": {
+      "frame": {
+        "x": 236,
+        "y": 2,
+        "w": 38,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 110,
+        "w": 38,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "unload/hand-front/NE": [
+      "unload/hand-front/NE/00",
+      "unload/hand-front/NE/01",
+      "unload/hand-front/NE/02"
+    ],
+    "unload/hand-front/SW": [
+      "unload/hand-front/SW/00",
+      "unload/hand-front/SW/01",
+      "unload/hand-front/SW/02"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "unload-hand-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 276,
+      "h": 21
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
