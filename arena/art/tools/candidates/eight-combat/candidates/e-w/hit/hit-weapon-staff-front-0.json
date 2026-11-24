@@ -1,0 +1,122 @@
+{
+  "frames": {
+    "hit/weapon-staff-front/E/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 21,
+        "h": 97
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 74,
+        "w": 21,
+        "h": 97
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/E/00": {
+      "frame": {
+        "x": 32,
+        "y": 2,
+        "w": 32,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 72,
+        "w": 32,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/W/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/W/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/weapon-staff-front/E": [
+      "hit/weapon-staff-front/E/00",
+      "hit/weapon-staff-front/E/01"
+    ],
+    "hit/weapon-staff-front/W": [
+      "hit/weapon-staff-front/W/00",
+      "hit/weapon-staff-front/W/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-weapon-staff-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 66,
+      "h": 101
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

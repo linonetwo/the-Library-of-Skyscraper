@@ -1,0 +1,330 @@
+{
+  "clip": {
+    "action": "attack",
+    "unarmedPresentation": "open-hand gesture candidate; not a completed unarmed punch",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      150,
+      90,
+      180,
+      180
+    ],
+    "playback": "once"
+  },
+  "layerOrderByDirection": {
+    "E": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "W": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  },
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "E",
+    "W"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-ivory-front",
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "weapon-staff-front",
+    "weapon-staff-back"
+  ],
+  "inactiveLayers": [
+    "hair-ivory-back",
+    "hair-midnight-back"
+  ],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 39448,
+      "pages": [
+        {
+          "image": "attack-body-0.png",
+          "json": "attack-body-0.json",
+          "width": 325,
+          "height": 142,
+          "decodedBytes": 184600,
+          "pngBytes": 29367
+        }
+      ],
+      "decodedBytes": 184600
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 7157,
+      "pages": [
+        {
+          "image": "attack-body-front-0.png",
+          "json": "attack-body-front-0.json",
+          "width": 229,
+          "height": 52,
+          "decodedBytes": 47632,
+          "pngBytes": 12601
+        }
+      ],
+      "decodedBytes": 47632
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 14880,
+      "pages": [
+        {
+          "image": "attack-outfit-scholar-0.png",
+          "json": "attack-outfit-scholar-0.json",
+          "width": 285,
+          "height": 64,
+          "decodedBytes": 72960,
+          "pngBytes": 10182
+        }
+      ],
+      "decodedBytes": 72960
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 13224,
+      "pages": [
+        {
+          "image": "attack-outfit-warden-0.png",
+          "json": "attack-outfit-warden-0.json",
+          "width": 265,
+          "height": 62,
+          "decodedBytes": 65720,
+          "pngBytes": 15073
+        }
+      ],
+      "decodedBytes": 65720
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 7453,
+      "pages": [
+        {
+          "image": "attack-outfit-warden-front-0.png",
+          "json": "attack-outfit-warden-front-0.json",
+          "width": 240,
+          "height": 49,
+          "decodedBytes": 47040,
+          "pngBytes": 11863
+        }
+      ],
+      "decodedBytes": 47040
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": false,
+      "sourceFrames": 8,
+      "nonemptyFrames": 0,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 15488,
+      "pages": [
+        {
+          "image": "attack-hair-ivory-front-0.png",
+          "json": "attack-hair-ivory-front-0.json",
+          "width": 393,
+          "height": 48,
+          "decodedBytes": 75456,
+          "pngBytes": 9637
+        }
+      ],
+      "decodedBytes": 75456
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": false,
+      "sourceFrames": 8,
+      "nonemptyFrames": 0,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 15660,
+      "pages": [
+        {
+          "image": "attack-hair-midnight-front-0.png",
+          "json": "attack-hair-midnight-front-0.json",
+          "width": 385,
+          "height": 49,
+          "decodedBytes": 75460,
+          "pngBytes": 8728
+        }
+      ],
+      "decodedBytes": 75460
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 681,
+      "pages": [
+        {
+          "image": "attack-hand-front-0.png",
+          "json": "attack-hand-front-0.json",
+          "width": 108,
+          "height": 15,
+          "decodedBytes": 6480,
+          "pngBytes": 2058
+        }
+      ],
+      "decodedBytes": 6480
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 801,
+      "pages": [
+        {
+          "image": "attack-hand-grip-0.png",
+          "json": "attack-hand-grip-0.json",
+          "width": 117,
+          "height": 16,
+          "decodedBytes": 7488,
+          "pngBytes": 2845
+        }
+      ],
+      "decodedBytes": 7488
+    },
+    {
+      "layer": "weapon-staff-front",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 11364,
+      "pages": [
+        {
+          "image": "attack-weapon-staff-front-0.png",
+          "json": "attack-weapon-staff-front-0.json",
+          "width": 284,
+          "height": 101,
+          "decodedBytes": 114736,
+          "pngBytes": 15819
+        }
+      ],
+      "decodedBytes": 114736
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 8,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 294912,
+      "trimmedPixels": 10468,
+      "pages": [
+        {
+          "image": "attack-weapon-staff-back-0.png",
+          "json": "attack-weapon-staff-back-0.json",
+          "width": 286,
+          "height": 98,
+          "decodedBytes": 112112,
+          "pngBytes": 15783
+        }
+      ],
+      "decodedBytes": 112112
+    }
+  ],
+  "decodedBytes": 809684,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}

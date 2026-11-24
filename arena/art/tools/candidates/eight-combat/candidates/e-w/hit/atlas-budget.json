@@ -1,0 +1,327 @@
+{
+  "clip": {
+    "action": "hit",
+    "frameCount": 2,
+    "frameDurationsMs": [
+      120,
+      240
+    ],
+    "playback": "once"
+  },
+  "layerOrderByDirection": {
+    "E": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "W": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  },
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "E",
+    "W"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-ivory-front",
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "weapon-staff-front",
+    "weapon-staff-back"
+  ],
+  "inactiveLayers": [
+    "hair-ivory-back",
+    "hair-midnight-back"
+  ],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 22054,
+      "pages": [
+        {
+          "image": "hit-body-0.png",
+          "json": "hit-body-0.json",
+          "width": 182,
+          "height": 142,
+          "decodedBytes": 103376,
+          "pngBytes": 32466
+        }
+      ],
+      "decodedBytes": 103376
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 2989,
+      "pages": [
+        {
+          "image": "hit-body-front-0.png",
+          "json": "hit-body-front-0.json",
+          "width": 87,
+          "height": 52,
+          "decodedBytes": 18096,
+          "pngBytes": 7511
+        }
+      ],
+      "decodedBytes": 18096
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 7555,
+      "pages": [
+        {
+          "image": "hit-outfit-scholar-0.png",
+          "json": "hit-outfit-scholar-0.json",
+          "width": 148,
+          "height": 64,
+          "decodedBytes": 37888,
+          "pngBytes": 18465
+        }
+      ],
+      "decodedBytes": 37888
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 6204,
+      "pages": [
+        {
+          "image": "hit-outfit-warden-0.png",
+          "json": "hit-outfit-warden-0.json",
+          "width": 127,
+          "height": 63,
+          "decodedBytes": 32004,
+          "pngBytes": 14217
+        }
+      ],
+      "decodedBytes": 32004
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 3478,
+      "pages": [
+        {
+          "image": "hit-outfit-warden-front-0.png",
+          "json": "hit-outfit-warden-front-0.json",
+          "width": 101,
+          "height": 49,
+          "decodedBytes": 19796,
+          "pngBytes": 7222
+        }
+      ],
+      "decodedBytes": 19796
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": false,
+      "sourceFrames": 4,
+      "nonemptyFrames": 0,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 7570,
+      "pages": [
+        {
+          "image": "hit-hair-ivory-front-0.png",
+          "json": "hit-hair-ivory-front-0.json",
+          "width": 197,
+          "height": 48,
+          "decodedBytes": 37824,
+          "pngBytes": 17041
+        }
+      ],
+      "decodedBytes": 37824
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": false,
+      "sourceFrames": 4,
+      "nonemptyFrames": 0,
+      "pages": [],
+      "decodedBytes": 0
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 7867,
+      "pages": [
+        {
+          "image": "hit-hair-midnight-front-0.png",
+          "json": "hit-hair-midnight-front-0.json",
+          "width": 193,
+          "height": 51,
+          "decodedBytes": 39372,
+          "pngBytes": 15207
+        }
+      ],
+      "decodedBytes": 39372
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 350,
+      "pages": [
+        {
+          "image": "hit-hand-front-0.png",
+          "json": "hit-hand-front-0.json",
+          "width": 63,
+          "height": 15,
+          "decodedBytes": 3780,
+          "pngBytes": 1227
+        }
+      ],
+      "decodedBytes": 3780
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 360,
+      "pages": [
+        {
+          "image": "hit-hand-grip-0.png",
+          "json": "hit-hand-grip-0.json",
+          "width": 57,
+          "height": 14,
+          "decodedBytes": 3192,
+          "pngBytes": 1494
+        }
+      ],
+      "decodedBytes": 3192
+    },
+    {
+      "layer": "weapon-staff-front",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 2,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 5109,
+      "pages": [
+        {
+          "image": "hit-weapon-staff-front-0.png",
+          "json": "hit-weapon-staff-front-0.json",
+          "width": 66,
+          "height": 101,
+          "decodedBytes": 26664,
+          "pngBytes": 7927
+        }
+      ],
+      "decodedBytes": 26664
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 2,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 4159,
+      "pages": [
+        {
+          "image": "hit-weapon-staff-back-0.png",
+          "json": "hit-weapon-staff-back-0.json",
+          "width": 57,
+          "height": 99,
+          "decodedBytes": 22572,
+          "pngBytes": 7922
+        }
+      ],
+      "decodedBytes": 22572
+    }
+  ],
+  "decodedBytes": 344564,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}
