@@ -132,7 +132,8 @@ export function registerBrowserTools(server) {
           active.waitForResponse(response => response.url().endsWith(`/scripts/${operation}`), { timeout: 20000 }),
           click(operation === 'publish' ? '发布到战场' : '恢复行动预设'),
         ]);
-        await active.getByRole('button', { name: '发布到战场', exact: true }).waitFor();
+        await active.getByText(operation === 'publish' ? 'TS 规则已接管小队' : '行动预设运行中', { exact: true }).waitFor();
+        if(operation === 'publish') await active.getByRole('button', { name: '恢复行动预设', exact: true }).waitFor();
         break;
       }
       case 'loadScriptTemplate':

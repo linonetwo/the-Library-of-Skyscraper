@@ -18,6 +18,9 @@ test('fullscreen HUD keeps actions and optional panels accessible',async({page})
   await page.getByRole('button',{name:'菜单',exact:true}).click();
   await expect(page.getByRole('button',{name:'采集运输',exact:true})).toBeEnabled();
   await page.getByRole('button',{name:'AI 模块',exact:true}).click();
+  await expect(page.getByRole('tab',{name:'行为模块',exact:true}).first()).toHaveAttribute('aria-selected','true');
+  await expect(page.locator('.behavior-card')).toHaveCount(5);
+  await page.getByRole('tab',{name:'TypeScript',exact:true}).click();
   await expect(page.getByRole('tab',{name:'TypeScript',exact:true})).toHaveAttribute('aria-selected','true');
   await expect(page.getByRole('textbox',{name:'TypeScript规则源码'})).toBeVisible();
   await page.getByRole('tab',{name:'行动预设',exact:true}).click();

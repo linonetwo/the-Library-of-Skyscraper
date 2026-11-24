@@ -1,3 +1,4 @@
+import {BehaviorTraceView, readBehaviorTrace} from "./BehaviorFlow";
 import { useEffect, useState } from "react";
 import { BrainCircuit, ListTodo } from "lucide-react";
 import { useArena } from "./ArenaWorkspace";
@@ -24,11 +25,13 @@ export function ScriptRuntime() {
     void refresh();
     return () => { current = false; clearTimeout(timer); };
   }, [session]);
+  const trace = readBehaviorTrace(state?.memory.aiTrace);
   return <section className="script-runtime" aria-label="规则运行状态">
     <header><div><span className="eyebrow">STRATEGY NOTES</span><h3>规则运行状态</h3></div>
       <small>{state?.sourceHash ? state.sourceHash.slice(0, 12) : "预设行动"}</small></header>
     <p>版本记忆随策略积累；小队任务在本赛局内延续。此处展示本人小队的计划。</p>
     {error && <p role="alert">{error}</p>}
+    {trace && state?.sourceHash && <BehaviorTraceView trace={trace} sourceHash={state.sourceHash} source="已发布版本运行" />}
     {state ? <div className="script-runtime-grid">
       <div className="script-memory"><h4><BrainCircuit size={15} />规则记忆</h4>
         <pre aria-label="规则记忆">{JSON.stringify(state.memory, null, 2)}</pre></div>
@@ -51,6 +54,6 @@ export function PreviewStatePatch({ preview }: { preview: ScriptPreview }) {
   return <section className="script-preview-patch" aria-label="试跑状态补丁">
     <h4>试跑计划 · {preview.sourceHash?.slice(0, 12)}</h4>
     <p>以下为当前快照的试算。正式运行时，每步重新计算并提交计划。</p>
-    <pre>{JSON.stringify({ memoryPatch: decision.memoryPatch, taskPatches: decision.taskPatches }, null, 2)}</pre>
+    <details><summary>查看原始状态补丁</summary><pre>{JSON.stringify({ memoryPatch: decision.memoryPatch, taskPatches: decision.taskPatches }, null, 2)}</pre></details>
   </section>;
 }
