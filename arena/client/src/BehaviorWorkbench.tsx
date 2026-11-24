@@ -1,3 +1,4 @@
+import { scriptTemplates } from "./scriptTemplates";
 import { lazy, Suspense, useState } from "react";
 import { getModuleSourceRef } from "../../behavior-modules";
 import { useBehaviorWorkbench } from "./useBehaviorWorkbench";
@@ -108,6 +109,23 @@ export default function BehaviorWorkbench({
         ))}
       {tab === "source" && (
         <>
+          <select
+            aria-label="载入规则模板"
+            value=""
+            disabled={w.busy}
+            onChange={(event) =>
+              w.replaceProject(scriptTemplates[event.target.value].project)
+            }
+          >
+            <option value="" disabled>
+              载入模板 · 替换草稿
+            </option>
+            {Object.entries(scriptTemplates).map(([id, template]) => (
+              <option key={id} value={id}>
+                {template.name}
+              </option>
+            ))}
+          </select>
           <ScriptFiles
             draft={w.draft}
             selectFile={w.selectFile}
@@ -125,14 +143,14 @@ export default function BehaviorWorkbench({
           </Suspense>
         </>
       )}
-      {tab === "versions" && (
+      {
         <ScriptHistory
           draft={w.draft}
           busy={w.busy}
           onLoad={w.loadProject}
           onRestore={(hash) => void w.run("rollback", hash)}
         />
-      )}
+      }
       <div className="script-toolbar">
         <button
           disabled={!w.session || w.busy}

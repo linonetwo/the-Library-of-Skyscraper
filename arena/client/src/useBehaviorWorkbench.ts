@@ -7,6 +7,7 @@ import {
 } from "../../behavior-modules";
 import { useScriptWorkbench } from "./useScriptWorkbench";
 import { draftKey, type RuleDraft } from "./ruleDraft";
+import type { RuleSourceProject } from "./scriptTypes";
 import { recallSource } from "./scriptTemplates";
 
 export function useBehaviorWorkbench() {
@@ -33,13 +34,15 @@ export function useBehaviorWorkbench() {
       toRuleSourceProject(next),
       workbench.draft.baseVersion,
     );
-  const createPlan = () => {
+  const replaceProject = (project: RuleSourceProject) => {
     if (!backup) {
       localStorage.setItem(backupKey, JSON.stringify(workbench.draft));
       setBackup(workbench.draft);
     }
-    workbench.loadProject(toRuleSourceProject(createDefaultBehaviorPlan()));
+    workbench.loadProject(project);
   };
+  const createPlan = () =>
+    replaceProject(toRuleSourceProject(createDefaultBehaviorPlan()));
   const restoreBackup = () => {
     if (!backup) return;
     workbench.loadProject(
@@ -49,5 +52,13 @@ export function useBehaviorWorkbench() {
     localStorage.removeItem(backupKey);
     setBackup(null);
   };
-  return { ...workbench, plan, updatePlan, createPlan, backup, restoreBackup };
+  return {
+    ...workbench,
+    plan,
+    updatePlan,
+    createPlan,
+    replaceProject,
+    backup,
+    restoreBackup,
+  };
 }

@@ -70,7 +70,7 @@ export function decide(ctx: RuleContext) {
   const published = JSON.parse((await call('Page.getState')).content[0].text);
   assert.match(published.text, /TS 规则已接管小队/);
   assert.match(published.text, /main\.ts · 发布于 T\d+/);
-  assert(published.buttons.some(button => button.label === '恢复行动预设'));
+  assert(published.buttons.some(button => button.label.trim() === '恢复行动预设'));
   assert.equal(published.scriptVersions.length, 1);
   const hashA = published.scriptVersions[0].sourceHash;
   await action({ type: 'editScript', source: 'export function decide() { return { intents: [] }; }' });
@@ -90,7 +90,7 @@ export function decide(ctx: RuleContext) {
   await action({ type: 'disableScript' });
   const disabled = JSON.parse((await call('Page.getState')).content[0].text);
   assert.match(disabled.text, /行动预设运行中/);
-  assert(!disabled.buttons.some(button => button.label === '恢复行动预设'));
+  assert(!disabled.buttons.some(button => button.label.trim() === '恢复行动预设'));
   const screenshot = await call('Page.captureScreenshot');
   assert.equal(screenshot.content[0].type, 'image');
   assert.equal(screenshot.content[0].mimeType, 'image/png');
