@@ -119,6 +119,18 @@ export default function GameHUD() {
           </button>
         )}
         <button
+          className="ai-entry"
+          onClick={() => {
+            setInspecting(false);
+            setSelectedRoom(null);
+            setView("rules");
+            setMenu(false);
+            setTraining(false);
+          }}
+        >
+          AI 模块
+        </button>
+        <button
           className="menu-trigger"
           onClick={() => {
             setInspecting(false);

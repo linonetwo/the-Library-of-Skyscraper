@@ -42,7 +42,7 @@ export default function Battlefield() {
           <span className="eyebrow">THE FIRST EXPEDITION</span>
           <h2>
             {view === "rules"
-              ? "行动规则工作台"
+              ? "AI 工作台"
               : view === "journal"
                 ? "书苑行记"
                 : "无尽书库 · 初始层"}

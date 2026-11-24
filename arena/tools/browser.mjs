@@ -120,7 +120,7 @@ export function registerBrowserTools(server) {
       case 'locateReplayTaskSource': await click('定位任务来源'); break;
       case 'openScripts':
         await menu('行动规则');
-        await click('编写 TypeScript 规则 →');
+        await active.getByRole('tab', { name: 'TypeScript', exact: true }).click();
         await active.getByRole('textbox', { name: 'TypeScript规则源码' }).waitFor({ timeout: 20000 });
         break;
       case 'compileScript': await click('编译 TypeScript'); break;
@@ -208,6 +208,7 @@ export function registerBrowserTools(server) {
       }
       case 'setRule': {
         await menu('行动规则');
+        await active.getByRole('tab', { name: '行动预设', exact: true }).click();
         await active.locator('.presets button').nth(['gather', 'defend', 'explore'].indexOf(action.preset)).click();
         const range = active.getByRole('slider', { name: /生命值撤退阈值/ });
         if (await range.isVisible()) await range.fill(String(action.retreatHp));
