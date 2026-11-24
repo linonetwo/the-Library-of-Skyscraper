@@ -1,0 +1,302 @@
+{
+  "status": "grounded-head-torso-variants-prototype",
+  "releaseApproved": false,
+  "source": "arena/art/source/iso-v030-down-head-torso-ne-sw.png",
+  "sourceSha256": "38b3908149a9e9883c6ae1a18c032a5a1daaa7684f7234689a88793189bfbfd0",
+  "sourceSuccessCount": 1,
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "samplingCanvas": [
+    1280,
+    1280
+  ],
+  "canvas": [
+    256,
+    256
+  ],
+  "groundPivot": [
+    128,
+    204.8
+  ],
+  "renderScale": 1,
+  "canvasApproval": "root approved 256 canvas and ground [128,204.8]; transparent margin only, world scale unchanged",
+  "pose": {
+    "hipZ": 0.12,
+    "neckZ": 0.15,
+    "crownZ": 0.2,
+    "neckForward": 0.5,
+    "crownForward": 0.82
+  },
+  "directions": {
+    "NE": {
+      "heading": [
+        0,
+        -1
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        160,
+        177.0424492345
+      ],
+      "crown": [
+        180.48,
+        162.883265646
+      ],
+      "parts": [
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "NE/torso.png",
+          "canvas": [
+            256,
+            256
+          ],
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            560,
+            0,
+            720,
+            640
+          ],
+          "sourceStart": [
+            721,
+            492
+          ],
+          "sourceEnd": [
+            1155,
+            157
+          ],
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            160,
+            177.0424492345
+          ],
+          "axisScale": 0.06728416469535847,
+          "widthScale": 0.1,
+          "variant": "down-grounded",
+          "originalUprightSourceReused": false
+        },
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "NE/head.png",
+          "canvas": [
+            256,
+            256
+          ],
+          "pivot": [
+            160,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            560,
+            640
+          ],
+          "sourceStart": [
+            143,
+            465
+          ],
+          "sourceEnd": [
+            400,
+            150
+          ],
+          "targetStart": [
+            160,
+            177.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            162.883265646
+          ],
+          "axisScale": 0.061243931323494136,
+          "widthScale": 0.085,
+          "variant": "down-grounded",
+          "originalUprightSourceReused": false
+        }
+      ],
+      "shoulderWorld": {
+        "left": [
+          -0.19,
+          -0.4,
+          0.16
+        ],
+        "right": [
+          0.19,
+          -0.4,
+          0.16
+        ]
+      },
+      "finalLegIntent": {
+        "hipForward": 0,
+        "hipZ": 0.12,
+        "ankleForward": -0.55,
+        "ankleZ": 0.11,
+        "trackWidth": 0.18,
+        "kneeBranch": "bend upward from ground; actual world IK and source mapping pending"
+      },
+      "pending": [
+        "arms and grounded legs",
+        "all clothing/hair variants",
+        "fall transition phases",
+        "product down cue and holdLast"
+      ]
+    },
+    "SW": {
+      "heading": [
+        0,
+        1
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        96,
+        209.0424492345
+      ],
+      "crown": [
+        75.52000000000001,
+        215.36326564600003
+      ],
+      "parts": [
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "SW/torso.png",
+          "canvas": [
+            256,
+            256
+          ],
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            560,
+            640,
+            720,
+            640
+          ],
+          "sourceStart": [
+            1075,
+            791
+          ],
+          "sourceEnd": [
+            653,
+            1121
+          ],
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            96,
+            209.0424492345
+          ],
+          "axisScale": 0.0649403036242254,
+          "widthScale": 0.1,
+          "variant": "down-grounded",
+          "originalUprightSourceReused": false
+        },
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "SW/head.png",
+          "canvas": [
+            256,
+            256
+          ],
+          "pivot": [
+            96,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            640,
+            560,
+            640
+          ],
+          "sourceStart": [
+            416,
+            843
+          ],
+          "sourceEnd": [
+            168,
+            1065
+          ],
+          "targetStart": [
+            96,
+            209.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            215.36326564600003
+          ],
+          "axisScale": 0.0643933701616105,
+          "widthScale": 0.085,
+          "variant": "down-grounded",
+          "originalUprightSourceReused": false
+        }
+      ],
+      "shoulderWorld": {
+        "left": [
+          0.19,
+          0.4,
+          0.16
+        ],
+        "right": [
+          -0.19,
+          0.4,
+          0.16
+        ]
+      },
+      "finalLegIntent": {
+        "hipForward": 0,
+        "hipZ": 0.12,
+        "ankleForward": -0.55,
+        "ankleZ": 0.11,
+        "trackWidth": 0.18,
+        "kneeBranch": "bend upward from ground; actual world IK and source mapping pending"
+      },
+      "pending": [
+        "arms and grounded legs",
+        "all clothing/hair variants",
+        "fall transition phases",
+        "product down cue and holdLast"
+      ]
+    }
+  }
+}

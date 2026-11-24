@@ -1,0 +1,259 @@
+{
+  "status": "grounded-clothes-registration-candidate",
+  "releaseApproved": false,
+  "cell": [
+    256,
+    256
+  ],
+  "groundPivot": [
+    128,
+    204.8
+  ],
+  "renderScale": 1,
+  "source": "arena/art/source/iso-v030-down-clothes.png",
+  "sourceSha256": "81378d9fb299b3cff49a7c9e304465730a824351298427522bae1e95d1650645",
+  "sourceSuccessCount": 1,
+  "sourceAttempts": "first SSE ended before completion; second attempt succeeded",
+  "directions": {
+    "NE": [
+      {
+        "id": "outfit-scholar",
+        "layer": "outfit-scholar",
+        "joint": "pelvis",
+        "image": "NE/outfit-scholar.png",
+        "pivot": [
+          128,
+          195.3939593876
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 5,
+        "variant": "down-grounded",
+        "sourceRect": [
+          0,
+          0,
+          640,
+          640
+        ],
+        "sourceStart": [
+          235,
+          370
+        ],
+        "sourceEnd": [
+          506,
+          144
+        ],
+        "targetStart": [
+          128,
+          195.3939593876
+        ],
+        "targetEnd": [
+          160,
+          177.0424492345
+        ],
+        "axisScale": 0.10453923155257121,
+        "widthScale": 0.1,
+        "transparentHoles": [
+          [
+            506,
+            132,
+            52,
+            16
+          ],
+          [
+            555,
+            267,
+            25,
+            44
+          ]
+        ],
+        "sleeveMode": "sleeveless"
+      },
+      {
+        "id": "outfit-warden",
+        "layer": "outfit-warden",
+        "joint": "pelvis",
+        "image": "NE/outfit-warden.png",
+        "pivot": [
+          128,
+          195.3939593876
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 5,
+        "variant": "down-grounded",
+        "sourceRect": [
+          640,
+          0,
+          640,
+          640
+        ],
+        "sourceStart": [
+          875,
+          405
+        ],
+        "sourceEnd": [
+          1135,
+          140
+        ],
+        "targetStart": [
+          128,
+          195.3939593876
+        ],
+        "targetEnd": [
+          160,
+          177.0424492345
+        ],
+        "axisScale": 0.0993641283415876,
+        "widthScale": 0.1,
+        "transparentHoles": [
+          [
+            1135,
+            129,
+            54,
+            20
+          ],
+          [
+            1181,
+            279,
+            28,
+            48
+          ]
+        ],
+        "sleeveMode": "shared articulated sleeves mapped to grounded shoulder/elbow/wrist"
+      }
+    ],
+    "SW": [
+      {
+        "id": "outfit-scholar",
+        "layer": "outfit-scholar",
+        "joint": "pelvis",
+        "image": "SW/outfit-scholar.png",
+        "pivot": [
+          128,
+          195.3939593876
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 5,
+        "variant": "down-grounded",
+        "sourceRect": [
+          0,
+          640,
+          640,
+          640
+        ],
+        "sourceStart": [
+          393,
+          867
+        ],
+        "sourceEnd": [
+          117,
+          1105
+        ],
+        "targetStart": [
+          128,
+          195.3939593876
+        ],
+        "targetEnd": [
+          96,
+          209.0424492345
+        ],
+        "axisScale": 0.0954577995793641,
+        "widthScale": 0.1,
+        "transparentHoles": [
+          [
+            119,
+            1103,
+            40,
+            32
+          ],
+          [
+            301,
+            1101,
+            23,
+            37
+          ]
+        ],
+        "sleeveMode": "sleeveless"
+      },
+      {
+        "id": "outfit-warden",
+        "layer": "outfit-warden",
+        "joint": "pelvis",
+        "image": "SW/outfit-warden.png",
+        "pivot": [
+          128,
+          195.3939593876
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 5,
+        "variant": "down-grounded",
+        "sourceRect": [
+          640,
+          640,
+          640,
+          640
+        ],
+        "sourceStart": [
+          1040,
+          845
+        ],
+        "sourceEnd": [
+          755,
+          1120
+        ],
+        "targetStart": [
+          128,
+          195.3939593876
+        ],
+        "targetEnd": [
+          96,
+          209.0424492345
+        ],
+        "axisScale": 0.0878417330634274,
+        "widthScale": 0.1,
+        "transparentHoles": [
+          [
+            755,
+            1111,
+            43,
+            33
+          ],
+          [
+            933,
+            1105,
+            25,
+            38
+          ]
+        ],
+        "sleeveMode": "shared articulated sleeves mapped to grounded shoulder/elbow/wrist"
+      }
+    ]
+  }
+}
