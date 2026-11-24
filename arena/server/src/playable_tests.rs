@@ -27,6 +27,8 @@ fn actor(s: &mut Session, id: &str) -> Actor {
 fn distance_controls_arrival_and_interaction() {
     for (target, ticks) in [("room-1", 11), ("room-3", 22)] {
         let mut s = game();
+        // Unopposed road distance; occupied-room melee arrivals have their own tests.
+        s.enemies.clear();
         s.command(
             "p1",
             Command::Move {

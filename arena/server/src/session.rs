@@ -72,7 +72,7 @@ impl Session {
             })
             .collect();
         Self {
-            simulation_version: 4,
+            simulation_version: 5,
             scenario: Scenario {
                 remaining_ticks: crate::scenario::number("durationTicks"),
                 ..Default::default()
