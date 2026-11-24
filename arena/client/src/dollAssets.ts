@@ -31,11 +31,37 @@ export function loadMainDefinition() {
       return response.json() as Promise<AssetSetIndex>;
     }).then(loadAssetSet).catch((cause) => { mainDefinition = undefined; throw cause; });
 }
+/** Each map gets its own ready-only registration table; descriptors/textures stay cached. */
 export async function prepareMainLayers(set: LoadedAssetSet, appearances: DollAppearance[], idleOnly = false) {
-  await Promise.all(Object.entries(set.clips).filter(([action]) => !idleOnly || action === "idle").map(async ([, clip]) => {
-    const layers = [...new Set(appearances.flatMap((appearance) =>
+  const view: LoadedAssetSet = { assetSetId: set.assetSetId, clips: {}, catalog: {} };
+  const entries = Object.entries(set.clips);
+  const prepare = async ([action, clip]: typeof entries[number]) => {
+    const layers = [...new Set(appearances.flatMap(appearance =>
       animationLayers("walk", appearance, clip.descriptor.activeLayers, clip.descriptor)))];
     await loadClipLayers(clip, layers);
-  }));
-  return set;
+    const key = action as keyof LoadedAssetSet["clips"];
+    view.clips[key] = clip;
+    view.catalog[key] = clip.timing;
+  };
+  await Promise.all(entries.filter(([action]) => action === "idle" || (!idleOnly && action === "walk")).map(prepare));
+  let started = false;
+  return Object.assign(view, {
+    startRemaining(onReady: () => void, isCurrent: () => boolean) {
+      if (started || idleOnly) return;
+      started = true;
+      void (async () => {
+        for (const entry of entries.filter(([action]) => action !== "idle" && action !== "walk")) {
+          if (!isCurrent()) return;
+          try {
+            await prepare(entry);
+            if (!isCurrent()) return;
+            onReady();
+          } catch (cause) {
+            // This view keeps the resolver's existing fallback for a failed clip.
+            console.error("工作动作加载失败", entry[0], cause);
+          }
+        }
+      })();
+    },
+  });
 }

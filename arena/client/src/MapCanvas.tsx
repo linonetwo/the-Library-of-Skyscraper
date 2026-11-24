@@ -34,6 +34,7 @@ export default function MapCanvas(props: MapProps) {
     let mainSet: import("./assetSetLoader").LoadedAssetSet | undefined;
     let readyAppearance = "";
     let pendingAppearance = "";
+    let preparationRevision = 0;
     const world = new Container();
     let renderLayer = new Container();
     const entities = new Container({ sortableChildren: true });
@@ -241,20 +242,30 @@ export default function MapCanvas(props: MapProps) {
         (p.snapshot.simulationVersion ?? 0) >= 4
           ? "main:" + JSON.stringify(p.snapshot.actors.map((actor) => actor.appearance))
           : "legacy";
-      if (appearanceKey && readyAppearance !== appearanceKey) {
+      if (appearanceKey && (readyAppearance !== appearanceKey || pendingAppearance !== appearanceKey)) {
         setActorsLoading(true);
         if (pendingAppearance !== appearanceKey) {
           pendingAppearance = appearanceKey;
+          const revision = ++preparationRevision;
+          const isCurrent = () => !disposed && revision === preparationRevision && pendingAppearance === appearanceKey;
+          let startRemaining: (() => void) | undefined;
+          let preparedMain: import("./assetSetLoader").LoadedAssetSet | undefined;
           const prepare = p.assetSet ? Promise.resolve() : appearanceKey === "legacy"
             ? loadDollTextures(false).then((textures) => { Object.assign(actorTextures, textures); })
             : loadMainDefinition().then((set) => prepareMainLayers(set, p.snapshot!.actors.map((actor) => actor.appearance)))
-                .then((set) => { mainSet = set; });
+                .then((set) => {
+                  if (!isCurrent()) return;
+                  preparedMain = set;
+                  startRemaining = () => set.startRemaining(paint, isCurrent);
+                });
           void Promise.all([prepare, p.snapshot ? dynamics.prepare(p.snapshot) : Promise.resolve()]).then(() => {
-            if (!disposed && pendingAppearance === appearanceKey) {
+            if (isCurrent()) {
+              if (preparedMain) mainSet = preparedMain;
               readyAppearance = appearanceKey;
               paint();
+              startRemaining?.();
             }
-          }).catch((cause) => { if (!disposed) setError(`角色加载：${String(cause)}`); });
+          }).catch((cause) => { if (isCurrent()) setError(`角色加载：${String(cause)}`); });
         }
         applyCamera();
         return;
