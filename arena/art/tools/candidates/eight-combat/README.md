@@ -1,6 +1,6 @@
 # Eight-direction player combat pose candidates
 
-Offline independent body, outfit, hair and hand/staff layers. These outputs do not register actions with the game, and remain unapproved until the independent art review is recorded.
+Offline independent body, outfit, hair and hand/staff layers. Astra independently accepted these offline candidates after reviewing the six new combat directions, four down phases, and outfit/hair/weapon combinations. These outputs do not register actions with the game; `freeze.json` records the source and delivered page hashes. Runtime playback, cues, pause/replay, and actor ownership remain separate acceptance gates.
 
 Attack uses preparation 150ms, contact 90ms, follow-through 180ms and recovery 180ms. Six new headings use their accepted idle anatomy and independent limb IK; the existing NE/SW attack pages are copied unchanged. The contact and follow-through wrists/staff differ, with a 5px retraction and 10° return. Weapon-off remains an open-hand gesture candidate, not a completed punch.
 
