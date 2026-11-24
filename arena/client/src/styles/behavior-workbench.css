@@ -125,3 +125,11 @@
   background: #403a28 !important;
   color: #f8dfa4 !important;
 }
+.workspace-overlay:has(.behavior-workbench) {
+  background: #102228;
+}
+.behavior-workbench .script-results {
+  background: #14232b;
+  padding: 14px;
+  border-radius: 8px;
+}

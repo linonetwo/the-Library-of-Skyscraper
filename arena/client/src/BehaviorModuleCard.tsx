@@ -1,3 +1,5 @@
+import { roleNames } from "./types";
+import { useArena } from "./ArenaWorkspace";
 import type { ActorRole, BehaviorModule } from "../../behavior-modules";
 export const moduleNames = {
   gather: "采集藏材",
@@ -7,7 +9,7 @@ export const moduleNames = {
   retreat: "低血撤退",
 };
 const roles: ActorRole[] = ["gatherer", "guard", "scout"];
-const roleNames = { gatherer: "采集者", guard: "守卫", scout: "侦察者" };
+
 export function BehaviorModuleCard({
   module: m,
   onChange,
@@ -17,6 +19,20 @@ export function BehaviorModuleCard({
   onChange: (m: BehaviorModule) => void;
   onSource: () => void;
 }) {
+  const { snapshot } = useArena();
+  const rooms = snapshot?.rooms ?? [];
+  const roomOptions = (value: string) => (
+    <>
+      {!rooms.some((room) => room.id === value) && value && (
+        <option value={value}>{value} · 当前地图未找到</option>
+      )}
+      {rooms.map((room) => (
+        <option key={room.id} value={room.id}>
+          {room.name}
+        </option>
+      ))}
+    </>
+  );
   const config = (patch: object) =>
     onChange({ ...m, config: { ...m.config, ...patch } } as BehaviorModule);
   return (
@@ -69,22 +85,30 @@ export function BehaviorModuleCard({
       </fieldset>
       {m.kind === "gather" && (
         <label>
-          目标房间 · 留空自动选择
-          <input
+          目标房间
+          <select
+            aria-label="采集目标房间"
             value={m.config.targetRoomId ?? ""}
             onChange={(e) =>
               config({ targetRoomId: e.target.value || undefined })
             }
-          />
+          >
+            <option value="">自动选择</option>
+            {roomOptions(m.config.targetRoomId ?? "")}
+          </select>
         </label>
       )}
       {m.kind === "defend" && (
         <label>
-          防守房间 · 留空自动选择
-          <input
+          防守房间
+          <select
+            aria-label="防守房间"
             value={m.config.roomId ?? ""}
             onChange={(e) => config({ roomId: e.target.value || undefined })}
-          />
+          >
+            <option value="">自动选择</option>
+            {roomOptions(m.config.roomId ?? "")}
+          </select>
         </label>
       )}
       {m.kind === "haul" && (
@@ -114,10 +138,13 @@ export function BehaviorModuleCard({
         <>
           <label>
             建造房间
-            <input
+            <select
+              aria-label="建造房间"
               value={m.config.roomId}
               onChange={(e) => config({ roomId: e.target.value })}
-            />
+            >
+              {roomOptions(m.config.roomId)}
+            </select>
           </label>
           <label>
             设施
