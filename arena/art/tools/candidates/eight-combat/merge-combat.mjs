@@ -29,6 +29,15 @@ for(const action of (process.argv[2]||'attack,hit').split(',')){
   }
  }
  if(out.directions.length!==8)throw Error('Incomplete direction coverage');
+ for(const direction of out.directions){
+  out.layerOrderByDirection[direction]=out.layerOrderByDirection[direction].filter(layer=>{
+   const frames=Array.from({length:out.clip.frameCount},(_,frame)=>keys.has(`${action}/${layer}/${direction}/${String(frame).padStart(2,'0')}`));
+   if(!frames.some(Boolean))return false;
+   if(!frames.every(Boolean))throw Error(`Incomplete frame coverage: ${action}/${layer}/${direction}`);
+   return true;
+  });
+ }
+
  out.layers=[...layers.values()];out.activeLayers=out.layers.filter(l=>l.active).map(l=>l.layer);out.inactiveLayers=out.layers.filter(l=>!l.active).map(l=>l.layer);out.decodedBytes=out.layers.reduce((n,l)=>n+l.decodedBytes,0);
  await writeFile(path.join(target,'atlas-budget.json'),JSON.stringify(out,null,2)+'\n');
  console.log(action,out.directions.length,'directions',keys.size,'unique frame keys',out.decodedBytes,'decoded bytes');
