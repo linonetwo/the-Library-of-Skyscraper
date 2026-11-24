@@ -39,7 +39,7 @@ export function RuleGoalEditor({ graph, onApply, onLocate }: RuleGoalEditorProps
   return <section className="rule-goals" aria-label="中文目标与补丁">
     <h3>中文目标</h3>
     <p>只解析下方明确语法。提案修改所选图的草稿；试跑和发布使用工作台原有按钮。</p>
-    <label>目标语句<textarea aria-label="目标语句" value={text} onChange={event => setText(event.target.value)} rows={3}/></label>
+    <label>目标语句<textarea aria-label="目标语句" maxLength={4000} value={text} onChange={event => setText(event.target.value)} rows={3}/></label>
     <details><summary>支持的语法与实际影响</summary>
       <p>每行或分号一项。岗位句式只寻找该岗位入口状态的一条匹配转移；不唯一时请指定稳定ID。回仓句式同时列出入口载量条件与转移，可分别采纳。生命低于使用严格小于。</p>
       <pre>{'采撷师载量到6就回仓\n守卷人生命低于20撤退\n条件 cargo-check：载量 >= 12\n转移 low-hp-guarding：HP <= 25\n连接 cargo-check：是→haul-node，否→gather-node\n模块 gather：岗位=采撷师，目标=room-2'}</pre>

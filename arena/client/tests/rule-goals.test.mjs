@@ -44,3 +44,9 @@ test('module roles/target and branch wiring produce typed real operations; unsup
 test('conflicting repeated object goals reject that item rather than overwrite a previous proposal',()=>{
  const p=proposeGoals(createLogisticsGraph(),'条件 cargo-check：载量 >= 6\n条件 cargo-check：载量 >= 10');assert.equal(p.changes.length,1);assert.match(p.errors[0],/重复/);
 });
+
+test('natural goal refuses disabled destinations rather than inventing a supported behavior',()=>{
+ const graph=createRetreatGraph();graph.modules.find(m=>m.kind==='retreat').enabled=false;
+ const proposal=proposeGoals(graph,'守卷人生命低于25撤退');assert.equal(proposal.changes.length,0);assert.equal(proposal.errors.length,1);
+ const large=proposeGoals(graph,'条件 cargo-check：载量 >= 999999999999999999999');assert.equal(large.changes.length,0);assert.match(large.errors[0],/安全范围/);
+});

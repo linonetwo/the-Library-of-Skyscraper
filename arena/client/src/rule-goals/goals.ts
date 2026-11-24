@@ -51,6 +51,7 @@ export function proposeGoals(graph: RuleGraph, text: string): GoalProposal {
         const state = graph.states.find(state => state.id === role.initialStateId);
         if (!state) throw new Error(`岗位入口状态 ${role.initialStateId} 不存在`);
         const field = match[2] ? 'cargo' : 'hp', value = Number(match[2] ?? match[3]);
+        if (!Number.isSafeInteger(value)) throw new Error('阈值须为安全范围内的非负整数');
         if (field === 'hp' && value > 100) throw new Error('生命阈值须为0–100');
         const candidates = graph.transitions.filter(transition => transition.from === state.id && reachesModule(graph, transition.to, field === 'cargo' ? 'haul' : 'retreat') && transition.condition.type === 'compare' && transition.condition.field === field && (field === 'cargo' ? ['gte', 'gt'].includes(transition.condition.op) : ['lt', 'lte'].includes(transition.condition.op)));
         if (candidates.length !== 1) throw new Error(`岗位入口 ${state.id} 对应的${field === 'cargo' ? '返程' : '低血'}转移有 ${candidates.length} 条，请使用带稳定ID的语法`);
@@ -61,6 +62,7 @@ export function proposeGoals(graph: RuleGraph, text: string): GoalProposal {
         if (field === 'cargo' && node?.type === 'condition' && node.condition.type === 'compare' && node.condition.field === 'cargo') setCondition(node.id, { ...node.condition, value, op: 'gte' });
       } else if ((match = line.match(/^(?:条件|转移) ([\w-]+)[：:]\s*(载量|HP|生命|建材)\s*(<=|>=|<|>|=)\s*(\d+)$/))) {
         const [, id, field, op, number] = match, value = Number(number);
+        if (!Number.isSafeInteger(value)) throw new Error('阈值须为安全范围内的非负整数');
         if ((field === 'HP' || field === '生命') && value > 100) throw new Error('生命阈值须为0–100');
         const current = graph.nodes.find(node => node.id === id);
         const condition = current?.type === 'condition' ? current.condition : graph.transitions.find(transition => transition.id === id)?.condition;
