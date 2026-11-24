@@ -1,3 +1,4 @@
+import { EnemyScene, loadEnemyAssets } from "./EnemyScene";
 import { cueActive, resolveAnimation } from "./resolveAnimation";
 import type { ActionCue } from "./types";
 import { buildingModules, worldSprite, type WorldAssets } from "./worldAssets";
@@ -13,6 +14,8 @@ const names = {
 };
 /** Battlefield feedback independent of the cached floor. */
 export class WorldEntities {
+  private enemies?: EnemyScene;
+  private enemyReady?: Promise<void>;
   private roomLabels = new Map<string, Text>();
   private annotations = new Container();
   private roomAnnotations = new Container();
@@ -36,7 +39,14 @@ export class WorldEntities {
     this.roomAnnotations.zIndex = Number.MAX_SAFE_INTEGER;
     this.parent.addChild(this.annotations, this.roomAnnotations);
   }
-  update(snapshot: Snapshot) {
+  prepare(snapshot: Snapshot) {
+    if ((snapshot.simulationVersion ?? 0) < 4) return Promise.resolve();
+    return this.enemyReady ??= loadEnemyAssets().then(assets => {
+      this.enemies = new EnemyScene(this.parent, assets);
+    });
+  }
+  update(snapshot: Snapshot, simulationTime = snapshot.tick * (snapshot.tickDurationMs || 500), now = simulationTime) {
+    this.enemies?.update(snapshot, simulationTime, now);
     if (this.buildingSnapshot?.sessionId !== snapshot.sessionId ||
         snapshot.tick < this.buildingSnapshot.tick) this.buildingHp.clear();
     this.buildingSnapshot = { sessionId: snapshot.sessionId, tick: snapshot.tick };
@@ -140,7 +150,7 @@ export class WorldEntities {
       node.zIndex = p.y;
       node.addChild(worldSprite(this.assets, "resource-cache"));
     }
-    for (const enemy of snapshot.enemies ?? []) {
+    for (const enemy of (snapshot.simulationVersion ?? 0) < 4 ? snapshot.enemies ?? [] : []) {
       const node = nodeFor(enemy.id),
         p = project(enemy.worldPosition.x, enemy.worldPosition.y);
       node.position.copyFrom(p);
@@ -293,7 +303,8 @@ export class WorldEntities {
         this.buildingHp.delete(id);
       }
   }
-  render(simTimeMs: number) {
+  render(simTimeMs: number, now = simTimeMs) {
+    const enemies = this.enemies?.render(simTimeMs, now) ?? [];
     for (const fx of this.buildingFeedback) {
       fx.shot.visible = fx.shotTick !== undefined && simTimeMs >= fx.shotTick * fx.tickMs && simTimeMs < (fx.shotTick + 1) * fx.tickMs;
       fx.hit.visible = fx.hitTick !== undefined && simTimeMs >= fx.hitTick * fx.tickMs && simTimeMs < (fx.hitTick + 1) * fx.tickMs;
@@ -307,5 +318,6 @@ export class WorldEntities {
           ? 0xff937f
           : 0xffffff;
     }
+    return enemies;
   }
 }

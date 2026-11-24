@@ -237,7 +237,6 @@ export default function MapCanvas(props: MapProps) {
           tiles,
         );
       }
-      if (p.snapshot) dynamics.update(p.snapshot);
       const appearanceKey = p.assetSet ? "sample" : !p.snapshot ? "" :
         (p.snapshot.simulationVersion ?? 0) >= 4
           ? "main:" + JSON.stringify(p.snapshot.actors.map((actor) => actor.appearance))
@@ -250,7 +249,7 @@ export default function MapCanvas(props: MapProps) {
             ? loadDollTextures(false).then((textures) => { Object.assign(actorTextures, textures); })
             : loadMainDefinition().then((set) => prepareMainLayers(set, p.snapshot!.actors.map((actor) => actor.appearance)))
                 .then((set) => { mainSet = set; });
-          void prepare.then(() => {
+          void Promise.all([prepare, p.snapshot ? dynamics.prepare(p.snapshot) : Promise.resolve()]).then(() => {
             if (!disposed && pendingAppearance === appearanceKey) {
               readyAppearance = appearanceKey;
               paint();
@@ -261,6 +260,7 @@ export default function MapCanvas(props: MapProps) {
         return;
       }
       if (!appearanceKey) { applyCamera(); return; }
+      const now = performance.now();
       actors.update(
         {
           ...p,
@@ -269,11 +269,12 @@ export default function MapCanvas(props: MapProps) {
             if (!dragged) latest.current.onSelect(id);
           },
         },
-        performance.now(),
+        now,
       );
-      poses = actors.render(performance.now());
+      if (p.snapshot) dynamics.update(p.snapshot, actors.simulationTime(now), now);
+      poses = actors.render(now);
       setActorsLoading(false);
-      dynamics.render(actors.simulationTime(performance.now()));
+      host.dataset.enemies = JSON.stringify(dynamics.render(actors.simulationTime(now), now));
       host.dataset.actors = JSON.stringify(poses);
       applyCamera();
     };
@@ -315,8 +316,9 @@ export default function MapCanvas(props: MapProps) {
         actors = new ActorScene(actorTextures, entities, worldAssets);
         world.addChild(renderLayer, entities);
         app.ticker.add(() => {
-          poses = actors.render(performance.now());
-          dynamics.render(actors.simulationTime(performance.now()));
+          const now = performance.now();
+          poses = actors.render(now);
+          host.dataset.enemies = JSON.stringify(dynamics.render(actors.simulationTime(now), now));
           host.dataset.actors = JSON.stringify(poses);
           applyCamera();
         });
