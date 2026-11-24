@@ -3,7 +3,7 @@ import { arenaApi } from '../arenaApi';
 import type { Session } from '../types';
 import type { RuleSourceProject, RuleVersionList } from '../scriptTypes';
 import type { ReplayTimeline } from '../useReplay';
-import { getGraphSourceRef } from '../../../behavior-modules/graph';
+import { getGraphSourceRef, recoverRuleGraph, toGraphSourceProject } from '../../../behavior-modules/graph';
 import type { ComparisonCandidate, RuleComparisonResult } from './types';
 import { TraceView } from './TraceView';
 import './comparison.css';
@@ -53,8 +53,9 @@ export function RuleComparison({session, draftProject}: {
   }
   async function compare() {
     const revision = ++generation.current; setBusy(true); setError(''); setCapture(null); setSource(null);
-    const b = cloneProject(draftProject);
     try {
+      const graph = recoverRuleGraph(draftProject);
+      const b = graph ? toGraphSourceProject(graph) : cloneProject(draftProject);
       const a = baselineHash ? (await arenaApi.scriptVersion(session, baselineHash)).project : cloneProject(initialDraft.current);
       if (revision !== generation.current) return;
       const result = await arenaApi.compareRules(session, {operationIndex, initialState:'empty', a, b});
