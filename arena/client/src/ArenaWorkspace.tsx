@@ -45,6 +45,12 @@ export function useArenaWorkspace() {
   const [zoom, setZoom] = useState(1);
   const [showRoutes, setShowRoutes] = useState(true);
   const [view, setView] = useState<"map" | "rules" | "journal">("map");
+  const [journalFocus, setJournalFocus] = useState<import("./eventReplay").EventFocus | null>(null);
+  const journalAttempt = useRef({ sessionId: snapshot?.sessionId, tick: snapshot?.tick ?? 0 });
+  useEffect(() => {
+    if (snapshot && (snapshot.sessionId !== journalAttempt.current.sessionId || snapshot.tick < journalAttempt.current.tick)) setJournalFocus(null);
+    if (snapshot) journalAttempt.current = { sessionId: snapshot.sessionId, tick: snapshot.tick };
+  }, [snapshot?.sessionId, snapshot?.tick]);
   const [lobby, setLobby] = useState(false);
   const [help, setHelp] = useState(false);
   const [joinId, setJoinId] = useState("");
@@ -150,6 +156,8 @@ export function useArenaWorkspace() {
     setShowRoutes,
     view,
     setView,
+    journalFocus,
+    setJournalFocus,
     lobby,
     setLobby,
     help,

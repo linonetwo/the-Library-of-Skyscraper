@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { eventFrameIndex, type EventFocus } from "./eventReplay";
 import { arenaApi } from "./arenaApi";
 import type { Session, Snapshot } from "./types";
 import type { RuleHistory } from "./replayRuleState";
@@ -14,8 +15,9 @@ export interface ReplayTimeline {
   ruleHistory?: RuleHistory;
 }
 
-export function useReplay(session: Session) {
+export function useReplay(session: Session, target?: EventFocus | null) {
   const [timeline, setTimeline] = useState<ReplayTimeline | null>(null);
+  const [eventLocated, setEventLocated] = useState<boolean | null>(null);
   const [error, setError] = useState("");
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -23,15 +25,23 @@ export function useReplay(session: Session) {
   useEffect(() => {
     let active = true;
     setTimeline(null);
+    setEventLocated(null);
     setIndex(0);
     setPlaying(false);
     setError("");
     void arenaApi.timeline(session).then(
-      (recording) => { if (active) setTimeline(recording); },
+      (recording) => { if (active) {
+        setTimeline(recording);
+        if (target) {
+          const match = target.sessionId === recording.sessionId ? eventFrameIndex(recording.frames, target.event, (recording.ruleHistory?.changes ?? []).filter(change => "reset" in change).map(change => change.operationIndex)) : null;
+          setEventLocated(match !== null);
+          if (match !== null) setIndex(match);
+        }
+      } },
       (cause: Error) => { if (active) setError(cause.message); },
     );
     return () => { active = false; };
-  }, [session.sessionId, session.token]);
+  }, [session.sessionId, session.token, target]);
 
   const lastIndex = (timeline?.frames.length ?? 1) - 1;
   useEffect(() => {
@@ -49,5 +59,5 @@ export function useReplay(session: Session) {
     if (!playing && index === lastIndex) setIndex(0);
     setPlaying(!playing);
   };
-  return { timeline, frame: timeline?.frames[index], error, index, lastIndex, playing, speed, setSpeed, seek, toggle };
+  return { timeline, eventLocated, frame: timeline?.frames[index], error, index, lastIndex, playing, speed, setSpeed, seek, toggle };
 }

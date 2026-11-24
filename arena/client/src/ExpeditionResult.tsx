@@ -1,8 +1,10 @@
+import { resultEvent } from "./eventReplay";
 import { useArena } from "./ArenaWorkspace";
 export default function ExpeditionResult() {
-  const { snapshot, session, command, setView, setLobby, view, lobby } =
+  const { snapshot, session, command, setView, setJournalFocus, setLobby, view, lobby } =
     useArena();
   if (!snapshot?.result || view !== "map" || lobby) return null;
+  const event = resultEvent(snapshot);
   const report = snapshot.scenario?.report;
   const labels: Record<string, string> = {
     downed: "倒地人数",
@@ -58,7 +60,11 @@ export default function ExpeditionResult() {
           ))}
       </div>
       <p>{snapshot.scenario?.blockedReason}</p>
-      <button onClick={() => setView("journal")}>查看关键事件与规则</button>
+      <button onClick={() => {
+        setJournalFocus(event ? { sessionId: snapshot.sessionId, event } : null);
+        setView("journal");
+      }}>查看关键事件与规则</button>
+      {event && <p>{event.kind === "settlement" ? "结算事件" : "最后记录事件"} · T{event.tick} · {event.message}</p>}
       {snapshot.mode === "training" ? (
         <button
           className="primary"
