@@ -14,11 +14,19 @@ test('half-open unequal frame intervals, loops and held last frame',()=>{
  assert.deepEqual([0,99,100,299,300,399,400,500,999].map(t=>frameAt(clip,t)),[0,0,1,1,2,2,3,3,3]);
  assert.equal(frameAt({...clip,playback:'loop'},500),0);
 });
-test('same-tick attack and impact preserve main clip with hit tint',()=>{
- const actor={actionCue:cue('attack'),impactCue:cue('hit')};
- const a=resolve(actor);assert.equal(a.clip,'attack');assert.equal(a.impact,true);assert.equal(a.direction,'NE');assert.equal(a.frame,1);
- assert.deepEqual(resolve({...actor}),a);
- assert.equal(resolve({...actor,actionCue:null}).clip,'hit');
+test('nonlethal hit interrupts attack then resumes its original phase',()=>{
+ const actor={actionCue:cue('attack',10,3),impactCue:cue('hit',11,1)};
+ const before=resolve(actor,5499);assert.equal(before.clip,'attack');
+ const interrupted=resolve(actor,5550);assert.equal(interrupted.clip,'hit');assert.equal(interrupted.impact,true);
+ assert.deepEqual(resolve({...actor},5550),interrupted);
+ const resumed=resolve(actor,6000);assert.equal(resumed.clip,'attack');assert.equal(resumed.elapsedMs,1000);
+ assert.equal(resumed.frame,resolve({actionCue:actor.actionCue},6000).frame);
+});
+test('death overrides simultaneous attack and hit and holds the final down frame',()=>{
+ const actor={hp:0,actionCue:cue('attack',10,3),impactCue:cue('hit',11,1)};
+ const dead=resolve(actor,5550);assert.equal(dead.clip,'down');assert.equal(dead.frame,3);
+ assert.equal(resolve({...actor,impactCue:cue('down',11,0)},5550).frame,0);
+ assert.equal(resolve({...actor,impactCue:cue('down',11,0)},9000).frame,3);
 });
 test('dead actors play down then hold, old data holds final frame directly',()=>{
  assert.equal(resolve({hp:0,impactCue:cue('down',10,0)},5050).frame,0);

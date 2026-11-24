@@ -96,6 +96,8 @@ function selectAnimation(
       );
     }
   };
+  if (impactActive && impact?.kind === "hit")
+    return result("hit", impact.startedTick * tickMs, impact);
   if (actionActive && action?.kind === "attack") {
     aim();
     return result("attack", action.startedTick * tickMs, action);
@@ -104,8 +106,6 @@ function selectAnimation(
     aim();
     return result("unload", action.startedTick * tickMs, action);
   }
-  if (impactActive && impact?.kind === "hit")
-    return result("hit", impact.startedTick * tickMs, impact);
   if (motion.moving) return result(actor.cargo ? "carry" : "walk");
   if (actionActive && action?.kind === "gather") {
     aim();

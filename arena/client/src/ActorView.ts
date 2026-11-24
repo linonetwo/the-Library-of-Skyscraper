@@ -123,7 +123,7 @@ export class ActorView {
     this.status.style.fill = actor.owner === "p1" ? 0xc7e7c0 : 0xb1d7f3;
     this.doll.alpha = actor.hp <= 0 && !this.assetSet?.clips.down ? 0.45 : 1;
     this.doll.rotation =
-      actor.hp <= 0 && !this.assetSet?.clips.down ? -Math.PI / 2 : 0;
+      !this.authoritativeAnimation && actor.hp <= 0 && !this.assetSet?.clips.down ? -Math.PI / 2 : 0;
     this.halo.visible = selected;
     this.health
       .clear()
@@ -212,6 +212,7 @@ export class ActorView {
     const action: Clip = selection?.clip ?? (pose.moving ? "walk" : "idle");
     const frame = selection?.frame ?? pose.frame;
     const registration = this.assetSet?.clips[action];
+    this.shadow.alpha = action === "down" && registration ? 0.15 : 1;
     const released = registration?.timing.releaseFrame;
     const cargo =
       this.actor.cargo ||
