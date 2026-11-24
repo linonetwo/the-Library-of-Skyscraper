@@ -144,7 +144,7 @@ export default function BehaviorWorkbench({
           disabled={!w.session || w.busy}
           onClick={() => void w.run("preview")}
         >
-          试跑当前草稿
+          试跑当前快照
         </button>
         <button
           className="primary"
