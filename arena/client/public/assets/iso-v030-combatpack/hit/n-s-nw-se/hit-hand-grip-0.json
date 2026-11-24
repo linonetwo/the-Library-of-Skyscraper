@@ -1,0 +1,226 @@
+{
+  "frames": {
+    "hit/hand-grip/SE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 10,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 118,
+        "w": 10,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hand-grip/S/00": {
+      "frame": {
+        "x": 21,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 119,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hand-grip/NW/00": {
+      "frame": {
+        "x": 34,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 119,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hand-grip/SE/01": {
+      "frame": {
+        "x": 49,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 104,
+        "y": 125,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hand-grip/N/00": {
+      "frame": {
+        "x": 62,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 118,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hand-grip/N/01": {
+      "frame": {
+        "x": 75,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 120,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hand-grip/S/01": {
+      "frame": {
+        "x": 87,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 123,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hand-grip/NW/01": {
+      "frame": {
+        "x": 99,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 119,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/hand-grip/N": [
+      "hit/hand-grip/N/00",
+      "hit/hand-grip/N/01"
+    ],
+    "hit/hand-grip/S": [
+      "hit/hand-grip/S/00",
+      "hit/hand-grip/S/01"
+    ],
+    "hit/hand-grip/NW": [
+      "hit/hand-grip/NW/00",
+      "hit/hand-grip/NW/01"
+    ],
+    "hit/hand-grip/SE": [
+      "hit/hand-grip/SE/00",
+      "hit/hand-grip/SE/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-hand-grip-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 110,
+      "h": 16
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "frames": {
+    "hit/body-front/W/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 13,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 84,
+        "w": 13,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/body-front/E/01": {
+      "frame": {
+        "x": 24,
+        "y": 2,
+        "w": 14,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 86,
+        "y": 84,
+        "w": 14,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/body-front/W/00": {
+      "frame": {
+        "x": 42,
+        "y": 2,
+        "w": 19,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 97,
+        "y": 85,
+        "w": 19,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/body-front/E/00": {
+      "frame": {
+        "x": 65,
+        "y": 2,
+        "w": 20,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 84,
+        "w": 20,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/body-front/E": [
+      "hit/body-front/E/00",
+      "hit/body-front/E/01"
+    ],
+    "hit/body-front/W": [
+      "hit/body-front/W/00",
+      "hit/body-front/W/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-body-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 87,
+      "h": 52
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

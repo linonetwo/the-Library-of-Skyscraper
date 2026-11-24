@@ -1,0 +1,426 @@
+{
+  "frames": {
+    "attack/outfit-warden/N/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 50,
+        "h": 62
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 72,
+        "w": 50,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/S/00": {
+      "frame": {
+        "x": 61,
+        "y": 2,
+        "w": 32,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 75,
+        "w": 32,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/S/01": {
+      "frame": {
+        "x": 97,
+        "y": 2,
+        "w": 32,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 75,
+        "w": 32,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/S/02": {
+      "frame": {
+        "x": 133,
+        "y": 2,
+        "w": 32,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 75,
+        "w": 32,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/S/03": {
+      "frame": {
+        "x": 169,
+        "y": 2,
+        "w": 32,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 75,
+        "w": 32,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/N/00": {
+      "frame": {
+        "x": 205,
+        "y": 2,
+        "w": 45,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 77,
+        "y": 77,
+        "w": 45,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/N/02": {
+      "frame": {
+        "x": 254,
+        "y": 2,
+        "w": 51,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 77,
+        "w": 51,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/N/03": {
+      "frame": {
+        "x": 309,
+        "y": 2,
+        "w": 39,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 77,
+        "y": 77,
+        "w": 39,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/NW/01": {
+      "frame": {
+        "x": 352,
+        "y": 2,
+        "w": 32,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 80,
+        "y": 74,
+        "w": 32,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/NW/02": {
+      "frame": {
+        "x": 388,
+        "y": 2,
+        "w": 32,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 80,
+        "y": 75,
+        "w": 32,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/NW/00": {
+      "frame": {
+        "x": 424,
+        "y": 2,
+        "w": 35,
+        "h": 54
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 83,
+        "y": 77,
+        "w": 35,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/NW/03": {
+      "frame": {
+        "x": 463,
+        "y": 2,
+        "w": 31,
+        "h": 54
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 83,
+        "y": 77,
+        "w": 31,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/SE/00": {
+      "frame": {
+        "x": 498,
+        "y": 2,
+        "w": 42,
+        "h": 54
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 69,
+        "y": 77,
+        "w": 42,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/SE/01": {
+      "frame": {
+        "x": 544,
+        "y": 2,
+        "w": 35,
+        "h": 54
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 77,
+        "w": 35,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/SE/02": {
+      "frame": {
+        "x": 583,
+        "y": 2,
+        "w": 35,
+        "h": 54
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 77,
+        "w": 35,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/SE/03": {
+      "frame": {
+        "x": 622,
+        "y": 2,
+        "w": 40,
+        "h": 54
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 71,
+        "y": 77,
+        "w": 40,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/outfit-warden/N": [
+      "attack/outfit-warden/N/00",
+      "attack/outfit-warden/N/01",
+      "attack/outfit-warden/N/02",
+      "attack/outfit-warden/N/03"
+    ],
+    "attack/outfit-warden/S": [
+      "attack/outfit-warden/S/00",
+      "attack/outfit-warden/S/01",
+      "attack/outfit-warden/S/02",
+      "attack/outfit-warden/S/03"
+    ],
+    "attack/outfit-warden/NW": [
+      "attack/outfit-warden/NW/00",
+      "attack/outfit-warden/NW/01",
+      "attack/outfit-warden/NW/02",
+      "attack/outfit-warden/NW/03"
+    ],
+    "attack/outfit-warden/SE": [
+      "attack/outfit-warden/SE/00",
+      "attack/outfit-warden/SE/01",
+      "attack/outfit-warden/SE/02",
+      "attack/outfit-warden/SE/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-outfit-warden-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 664,
+      "h": 66
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

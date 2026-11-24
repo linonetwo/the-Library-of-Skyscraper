@@ -1,0 +1,122 @@
+{
+  "frames": {
+    "hit/hair-ivory-front/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 49,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 41,
+        "w": 49,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/SW/01": {
+      "frame": {
+        "x": 60,
+        "y": 2,
+        "w": 47,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 42,
+        "w": 47,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/NE/00": {
+      "frame": {
+        "x": 111,
+        "y": 2,
+        "w": 47,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 69,
+        "y": 40,
+        "w": 47,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/NE/01": {
+      "frame": {
+        "x": 162,
+        "y": 2,
+        "w": 46,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 41,
+        "w": 46,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/hair-ivory-front/NE": [
+      "hit/hair-ivory-front/NE/00",
+      "hit/hair-ivory-front/NE/01"
+    ],
+    "hit/hair-ivory-front/SW": [
+      "hit/hair-ivory-front/SW/00",
+      "hit/hair-ivory-front/SW/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-hair-ivory-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 210,
+      "h": 51
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

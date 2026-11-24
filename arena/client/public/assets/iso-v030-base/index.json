@@ -1,5 +1,5 @@
 {
-  "assetSetId": "iso-v030-eight-player-work",
+  "assetSetId": "iso-v030-eight-player-complete",
   "clips": [
     {
       "action": "idle",
@@ -9,6 +9,21 @@
     {
       "action": "walk",
       "root": "/assets/iso-v030-base/walk",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "attack",
+      "root": "/assets/iso-v030-combatpack/attack",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "hit",
+      "root": "/assets/iso-v030-combatpack/hit",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "down",
+      "root": "/assets/iso-v030-combatpack/down",
       "descriptor": "atlas-budget.json"
     },
     {
