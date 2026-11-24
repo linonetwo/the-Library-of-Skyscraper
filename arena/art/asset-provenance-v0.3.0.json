@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "version": "0.3.0",
+  "status": "local-candidate",
+  "releaseApproved": false,
+  "legacyNote": "animation/coverage.json and approval-v0.2.0.json describe historical resources only; they do not approve v0.3 coverage.",
+  "groups": {
+    "player": {
+      "reader": "dollAssets.ts",
+      "entries": [
+        "iso-v030-base/index.json"
+      ],
+      "index": "iso-v030-base/index.json",
+      "reviews": [
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/63#pullrequestreview-6028372085",
+          "reviewedCommit": "91938141c5e473fa72a2d3cea93ed98eb8d5e876",
+          "scope": "offline idle/walk source only",
+          "status": "approved"
+        },
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/73#pullrequestreview-6032901180",
+          "reviewedCommit": "9b7894c851a5d94cf852c7b06e22903f34e6649b",
+          "scope": "offline five work actions source only",
+          "status": "approved"
+        }
+      ],
+      "pending": [
+        "PR85 runtime work integration review",
+        "player combat clips and runtime review",
+        "whole-version packaged acceptance"
+      ]
+    },
+    "enemy": {
+      "reader": "EnemyScene.ts",
+      "entries": [
+        "iso-v030-enemy-eight-final-1f8e013/index.json"
+      ],
+      "index": "iso-v030-enemy-eight-final-1f8e013/index.json",
+      "reviews": [
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/68#pullrequestreview-6029445921",
+          "reviewedCommit": "5ea721e860ecdddea336e68dc04fe89b3c66295c",
+          "scope": "offline registered five-action enemy source",
+          "status": "approved"
+        },
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/79#pullrequestreview-6033497410",
+          "reviewedCommit": "6aefbd4aa82b6ad419053591631575cca9851d0a",
+          "scope": "sim4 enemy integration only",
+          "status": "approved"
+        }
+      ],
+      "pending": [
+        "whole-version packaged acceptance"
+      ]
+    },
+    "ground": {
+      "reader": "MapCanvas.tsx",
+      "entries": [
+        "tiles/manifest.json"
+      ],
+      "reviews": [],
+      "pending": [
+        "scoped v0.3 ground review provenance verification"
+      ]
+    },
+    "world": {
+      "reader": "worldAssets.ts / libraryLayout.ts",
+      "entries": [
+        "iso-v030-world/manifest.json"
+      ],
+      "reviews": [],
+      "pending": [
+        "scoped v0.3 world object review provenance verification"
+      ]
+    },
+    "buildings": {
+      "reader": "worldAssets.ts",
+      "entries": [
+        "p3-buildings/manifest.json",
+        "p3-buildings/buildings-atlas.json"
+      ],
+      "reviews": [
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/64#pullrequestreview-6029445903",
+          "reviewedCommit": "f5b6b80660ade16b6cb9c07e46700ad5173577ec",
+          "scope": "building modules integration; transient muzzle flash not visually captured",
+          "status": "approved"
+        }
+      ],
+      "pending": [
+        "whole-version packaged acceptance"
+      ]
+    },
+    "environment": {
+      "reader": "libraryLayout.ts",
+      "entries": [
+        "p3-environment/manifest.json",
+        "p3-environment/environment-atlas.json"
+      ],
+      "reviews": [
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/59#pullrequestreview-6021737021",
+          "reviewedCommit": "929eb25de7318dfdbd7616b17021a051953f2512",
+          "scope": "five prototype environment pieces and integration only",
+          "status": "approved"
+        }
+      ],
+      "pending": [
+        "whole-version packaged acceptance"
+      ]
+    }
+  }
+}

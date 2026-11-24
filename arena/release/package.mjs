@@ -9,8 +9,8 @@ export async function collectPackage({ source, destination, version, sourceCommi
  const payload=resolve(destination,'package');
  for(const dir of ['bin','data','logs','arena/client','arena/art']) mkdirSync(resolve(payload,dir),{recursive:true});
  const copy=(from,to)=>cpSync(from,to,{recursive:true});
- const metadata=buildMetadata(source);
- copy(resolve(source,metadata.assets.approval.path),resolve(payload,metadata.assets.approval.path));
+ const metadata=buildMetadata(source,version);
+ copy(resolve(source,(metadata.assets.provenance??metadata.assets.approval).path),resolve(payload,(metadata.assets.provenance??metadata.assets.approval).path));
  for(const name of ['server','script-runner']) {
   const binary=`skyscraper-arena-${name}`;
   const target=process.env.CARGO_TARGET_DIR ? resolve(source,process.env.CARGO_TARGET_DIR) : resolve(source,`arena/${name}/target`);
