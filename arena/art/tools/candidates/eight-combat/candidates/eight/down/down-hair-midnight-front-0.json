@@ -1,0 +1,834 @@
+{
+  "frames": {
+    "down/hair-midnight-front/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 44,
+        "h": 55
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 91,
+        "w": 44,
+        "h": 55
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/SW/00": {
+      "frame": {
+        "x": 55,
+        "y": 2,
+        "w": 47,
+        "h": 53
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 89,
+        "w": 47,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/SW/01": {
+      "frame": {
+        "x": 106,
+        "y": 2,
+        "w": 45,
+        "h": 51
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 122,
+        "w": 45,
+        "h": 51
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/N/00": {
+      "frame": {
+        "x": 155,
+        "y": 2,
+        "w": 38,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 89,
+        "w": 38,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/N/01": {
+      "frame": {
+        "x": 197,
+        "y": 2,
+        "w": 38,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 115,
+        "w": 38,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/NE/01": {
+      "frame": {
+        "x": 239,
+        "y": 2,
+        "w": 52,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 114,
+        "y": 121,
+        "w": 52,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/NW/00": {
+      "frame": {
+        "x": 295,
+        "y": 2,
+        "w": 46,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 101,
+        "y": 90,
+        "w": 46,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/SE/01": {
+      "frame": {
+        "x": 345,
+        "y": 2,
+        "w": 41,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 126,
+        "y": 129,
+        "w": 41,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/S/00": {
+      "frame": {
+        "x": 390,
+        "y": 2,
+        "w": 41,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 93,
+        "w": 41,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/S/01": {
+      "frame": {
+        "x": 435,
+        "y": 2,
+        "w": 41,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 127,
+        "w": 41,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/SE/00": {
+      "frame": {
+        "x": 480,
+        "y": 2,
+        "w": 43,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 93,
+        "w": 43,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/E/00": {
+      "frame": {
+        "x": 527,
+        "y": 2,
+        "w": 45,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 91,
+        "w": 45,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/E/02": {
+      "frame": {
+        "x": 576,
+        "y": 2,
+        "w": 35,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 165,
+        "y": 153,
+        "w": 35,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/W/00": {
+      "frame": {
+        "x": 615,
+        "y": 2,
+        "w": 46,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 91,
+        "w": 46,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/NW/01": {
+      "frame": {
+        "x": 665,
+        "y": 2,
+        "w": 49,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 120,
+        "w": 49,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/E/03": {
+      "frame": {
+        "x": 718,
+        "y": 2,
+        "w": 34,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 173,
+        "y": 168,
+        "w": 34,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/W/01": {
+      "frame": {
+        "x": 756,
+        "y": 2,
+        "w": 48,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 86,
+        "y": 126,
+        "w": 48,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/SW/02": {
+      "frame": {
+        "x": 808,
+        "y": 2,
+        "w": 32,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 77,
+        "y": 179,
+        "w": 32,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/W/02": {
+      "frame": {
+        "x": 844,
+        "y": 2,
+        "w": 34,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 57,
+        "y": 154,
+        "w": 34,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/SE/02": {
+      "frame": {
+        "x": 882,
+        "y": 2,
+        "w": 28,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 158,
+        "y": 176,
+        "w": 28,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/SW/03": {
+      "frame": {
+        "x": 914,
+        "y": 2,
+        "w": 32,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 196,
+        "w": 32,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/W/03": {
+      "frame": {
+        "x": 950,
+        "y": 2,
+        "w": 33,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 168,
+        "w": 33,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/SE/03": {
+      "frame": {
+        "x": 987,
+        "y": 2,
+        "w": 28,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 163,
+        "y": 193,
+        "w": 28,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/E/01": {
+      "frame": {
+        "x": 1019,
+        "y": 2,
+        "w": 49,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 125,
+        "w": 49,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/NW/02": {
+      "frame": {
+        "x": 1072,
+        "y": 2,
+        "w": 36,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 71,
+        "y": 141,
+        "w": 36,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/NW/03": {
+      "frame": {
+        "x": 1112,
+        "y": 2,
+        "w": 34,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 67,
+        "y": 153,
+        "w": 34,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/NE/02": {
+      "frame": {
+        "x": 1150,
+        "y": 2,
+        "w": 38,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 145,
+        "y": 141,
+        "w": 38,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/NE/03": {
+      "frame": {
+        "x": 1192,
+        "y": 2,
+        "w": 36,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 151,
+        "y": 153,
+        "w": 36,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/S/03": {
+      "frame": {
+        "x": 1232,
+        "y": 2,
+        "w": 41,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 216,
+        "w": 41,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/S/02": {
+      "frame": {
+        "x": 1277,
+        "y": 2,
+        "w": 41,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 199,
+        "w": 41,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/N/02": {
+      "frame": {
+        "x": 1322,
+        "y": 2,
+        "w": 41,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 132,
+        "w": 41,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/N/03": {
+      "frame": {
+        "x": 1367,
+        "y": 2,
+        "w": 41,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 143,
+        "w": 41,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    }
+  },
+  "animations": {
+    "down/hair-midnight-front/NE": [
+      "down/hair-midnight-front/NE/00",
+      "down/hair-midnight-front/NE/01",
+      "down/hair-midnight-front/NE/02",
+      "down/hair-midnight-front/NE/03"
+    ],
+    "down/hair-midnight-front/SW": [
+      "down/hair-midnight-front/SW/00",
+      "down/hair-midnight-front/SW/01",
+      "down/hair-midnight-front/SW/02",
+      "down/hair-midnight-front/SW/03"
+    ],
+    "down/hair-midnight-front/E": [
+      "down/hair-midnight-front/E/00",
+      "down/hair-midnight-front/E/01",
+      "down/hair-midnight-front/E/02",
+      "down/hair-midnight-front/E/03"
+    ],
+    "down/hair-midnight-front/W": [
+      "down/hair-midnight-front/W/00",
+      "down/hair-midnight-front/W/01",
+      "down/hair-midnight-front/W/02",
+      "down/hair-midnight-front/W/03"
+    ],
+    "down/hair-midnight-front/N": [
+      "down/hair-midnight-front/N/00",
+      "down/hair-midnight-front/N/01",
+      "down/hair-midnight-front/N/02",
+      "down/hair-midnight-front/N/03"
+    ],
+    "down/hair-midnight-front/S": [
+      "down/hair-midnight-front/S/00",
+      "down/hair-midnight-front/S/01",
+      "down/hair-midnight-front/S/02",
+      "down/hair-midnight-front/S/03"
+    ],
+    "down/hair-midnight-front/NW": [
+      "down/hair-midnight-front/NW/00",
+      "down/hair-midnight-front/NW/01",
+      "down/hair-midnight-front/NW/02",
+      "down/hair-midnight-front/NW/03"
+    ],
+    "down/hair-midnight-front/SE": [
+      "down/hair-midnight-front/SE/00",
+      "down/hair-midnight-front/SE/01",
+      "down/hair-midnight-front/SE/02",
+      "down/hair-midnight-front/SE/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "down-hair-midnight-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1410,
+      "h": 59
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

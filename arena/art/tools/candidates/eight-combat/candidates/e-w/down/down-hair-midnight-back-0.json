@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "down/hair-midnight-back/W/02": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 29,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 154,
+        "w": 29,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-back/W/03": {
+      "frame": {
+        "x": 40,
+        "y": 2,
+        "w": 27,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 69,
+        "y": 168,
+        "w": 27,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-back/E/02": {
+      "frame": {
+        "x": 71,
+        "y": 2,
+        "w": 22,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 159,
+        "y": 160,
+        "w": 22,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-back/E/03": {
+      "frame": {
+        "x": 97,
+        "y": 2,
+        "w": 20,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 167,
+        "y": 174,
+        "w": 20,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-back/E/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-back/E/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-back/W/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-back/W/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    }
+  },
+  "animations": {
+    "down/hair-midnight-back/E": [
+      "down/hair-midnight-back/E/00",
+      "down/hair-midnight-back/E/01",
+      "down/hair-midnight-back/E/02",
+      "down/hair-midnight-back/E/03"
+    ],
+    "down/hair-midnight-back/W": [
+      "down/hair-midnight-back/W/00",
+      "down/hair-midnight-back/W/01",
+      "down/hair-midnight-back/W/02",
+      "down/hair-midnight-back/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "down-hair-midnight-back-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 119,
+      "h": 43
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

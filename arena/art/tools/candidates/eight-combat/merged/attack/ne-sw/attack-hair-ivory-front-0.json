@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "attack/hair-ivory-front/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 47,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 42,
+        "w": 47,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-front/SW/01": {
+      "frame": {
+        "x": 58,
+        "y": 2,
+        "w": 47,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 42,
+        "w": 47,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-front/SW/02": {
+      "frame": {
+        "x": 109,
+        "y": 2,
+        "w": 47,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 42,
+        "w": 47,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-front/SW/03": {
+      "frame": {
+        "x": 160,
+        "y": 2,
+        "w": 47,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 42,
+        "w": 47,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-front/NE/00": {
+      "frame": {
+        "x": 211,
+        "y": 2,
+        "w": 46,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 41,
+        "w": 46,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-front/NE/01": {
+      "frame": {
+        "x": 261,
+        "y": 2,
+        "w": 46,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 41,
+        "w": 46,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-front/NE/02": {
+      "frame": {
+        "x": 311,
+        "y": 2,
+        "w": 46,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 41,
+        "w": 46,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-ivory-front/NE/03": {
+      "frame": {
+        "x": 361,
+        "y": 2,
+        "w": 46,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 41,
+        "w": 46,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/hair-ivory-front/NE": [
+      "attack/hair-ivory-front/NE/00",
+      "attack/hair-ivory-front/NE/01",
+      "attack/hair-ivory-front/NE/02",
+      "attack/hair-ivory-front/NE/03"
+    ],
+    "attack/hair-ivory-front/SW": [
+      "attack/hair-ivory-front/SW/00",
+      "attack/hair-ivory-front/SW/01",
+      "attack/hair-ivory-front/SW/02",
+      "attack/hair-ivory-front/SW/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-hair-ivory-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 409,
+      "h": 49
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "down/outfit-scholar/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 33,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 125,
+        "w": 33,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/outfit-scholar/W/00": {
+      "frame": {
+        "x": 44,
+        "y": 2,
+        "w": 33,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 114,
+        "y": 125,
+        "w": 33,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/outfit-scholar/E/01": {
+      "frame": {
+        "x": 81,
+        "y": 2,
+        "w": 41,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 114,
+        "y": 141,
+        "w": 41,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/outfit-scholar/W/01": {
+      "frame": {
+        "x": 126,
+        "y": 2,
+        "w": 41,
+        "h": 59
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 139,
+        "w": 41,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/outfit-scholar/E/02": {
+      "frame": {
+        "x": 171,
+        "y": 2,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 165,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/outfit-scholar/W/02": {
+      "frame": {
+        "x": 237,
+        "y": 2,
+        "w": 68,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 168,
+        "w": 68,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/outfit-scholar/E/03": {
+      "frame": {
+        "x": 309,
+        "y": 2,
+        "w": 70,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 177,
+        "w": 70,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/outfit-scholar/W/03": {
+      "frame": {
+        "x": 383,
+        "y": 2,
+        "w": 80,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 176,
+        "w": 80,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    }
+  },
+  "animations": {
+    "down/outfit-scholar/E": [
+      "down/outfit-scholar/E/00",
+      "down/outfit-scholar/E/01",
+      "down/outfit-scholar/E/02",
+      "down/outfit-scholar/E/03"
+    ],
+    "down/outfit-scholar/W": [
+      "down/outfit-scholar/W/00",
+      "down/outfit-scholar/W/01",
+      "down/outfit-scholar/W/02",
+      "down/outfit-scholar/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "down-outfit-scholar-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 465,
+      "h": 64
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

@@ -1,0 +1,446 @@
+{
+  "clip": {
+    "action": "down",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      150,
+      180,
+      180,
+      600
+    ],
+    "playback": "once"
+  },
+  "layerOrderByDirection": {
+    "NE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "E": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "W": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "N": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "S": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "NW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  },
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    128,
+    204.8
+  ],
+  "sourceSize": [
+    256,
+    256
+  ],
+  "directions": [
+    "NE",
+    "SW",
+    "E",
+    "W",
+    "N",
+    "S",
+    "NW",
+    "SE"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "weapon-staff-back",
+    "weapon-staff-front"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 194640,
+      "pages": [
+        {
+          "image": "eight/down-body-0.png",
+          "json": "eight/down-body-0.json",
+          "width": 2002,
+          "height": 190,
+          "decodedBytes": 1521520,
+          "pngBytes": 344787
+        }
+      ],
+      "decodedBytes": 1521520
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 28,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 31832,
+      "pages": [
+        {
+          "image": "eight/down-body-front-0.png",
+          "json": "eight/down-body-front-0.json",
+          "width": 1031,
+          "height": 64,
+          "decodedBytes": 263936,
+          "pngBytes": 56898
+        }
+      ],
+      "decodedBytes": 263936
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 79171,
+      "pages": [
+        {
+          "image": "eight/down-outfit-scholar-0.png",
+          "json": "eight/down-outfit-scholar-0.json",
+          "width": 1689,
+          "height": 70,
+          "decodedBytes": 472920,
+          "pngBytes": 180150
+        }
+      ],
+      "decodedBytes": 472920
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 10558,
+      "pages": [
+        {
+          "image": "eight/down-hair-ivory-back-0.png",
+          "json": "eight/down-hair-ivory-back-0.json",
+          "width": 548,
+          "height": 41,
+          "decodedBytes": 89872,
+          "pngBytes": 11854
+        }
+      ],
+      "decodedBytes": 89872
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 48559,
+      "pages": [
+        {
+          "image": "eight/down-hair-ivory-front-0.png",
+          "json": "eight/down-hair-ivory-front-0.json",
+          "width": 1386,
+          "height": 50,
+          "decodedBytes": 277200,
+          "pngBytes": 105888
+        }
+      ],
+      "decodedBytes": 277200
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 92280,
+      "pages": [
+        {
+          "image": "eight/down-outfit-warden-0.png",
+          "json": "eight/down-outfit-warden-0.json",
+          "width": 1931,
+          "height": 69,
+          "decodedBytes": 532956,
+          "pngBytes": 174018
+        }
+      ],
+      "decodedBytes": 532956
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 28,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 30864,
+      "pages": [
+        {
+          "image": "eight/down-outfit-warden-front-0.png",
+          "json": "eight/down-outfit-warden-front-0.json",
+          "width": 1053,
+          "height": 53,
+          "decodedBytes": 223236,
+          "pngBytes": 47046
+        }
+      ],
+      "decodedBytes": 223236
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 22,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 15821,
+      "pages": [
+        {
+          "image": "eight/down-hair-midnight-back-0.png",
+          "json": "eight/down-hair-midnight-back-0.json",
+          "width": 660,
+          "height": 48,
+          "decodedBytes": 126720,
+          "pngBytes": 22340
+        }
+      ],
+      "decodedBytes": 126720
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 53666,
+      "pages": [
+        {
+          "image": "eight/down-hair-midnight-front-0.png",
+          "json": "eight/down-hair-midnight-front-0.json",
+          "width": 1410,
+          "height": 59,
+          "decodedBytes": 332760,
+          "pngBytes": 95352
+        }
+      ],
+      "decodedBytes": 332760
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 3801,
+      "pages": [
+        {
+          "image": "eight/down-hand-front-0.png",
+          "json": "eight/down-hand-front-0.json",
+          "width": 492,
+          "height": 19,
+          "decodedBytes": 37392,
+          "pngBytes": 10369
+        }
+      ],
+      "decodedBytes": 37392
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 3585,
+      "pages": [
+        {
+          "image": "eight/down-hand-grip-0.png",
+          "json": "eight/down-hand-grip-0.json",
+          "width": 471,
+          "height": 18,
+          "decodedBytes": 33912,
+          "pngBytes": 11363
+        }
+      ],
+      "decodedBytes": 33912
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 53362,
+      "pages": [
+        {
+          "image": "eight/down-weapon-staff-back-0.png",
+          "json": "eight/down-weapon-staff-back-0.json",
+          "width": 1128,
+          "height": 101,
+          "decodedBytes": 455712,
+          "pngBytes": 66802
+        }
+      ],
+      "decodedBytes": 455712
+    },
+    {
+      "layer": "weapon-staff-front",
+      "active": true,
+      "sourceFrames": 32,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 2097152,
+      "trimmedPixels": 53471,
+      "pages": [
+        {
+          "image": "eight/down-weapon-staff-front-0.png",
+          "json": "eight/down-weapon-staff-front-0.json",
+          "width": 1148,
+          "height": 101,
+          "decodedBytes": 463792,
+          "pngBytes": 67480
+        }
+      ],
+      "decodedBytes": 463792
+    }
+  ],
+  "decodedBytes": 4831928,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}

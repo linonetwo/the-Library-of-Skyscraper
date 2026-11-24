@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "down/weapon-staff-back/W/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 21,
+        "h": 94
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 95,
+        "w": 21,
+        "h": 94
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/weapon-staff-back/W/01": {
+      "frame": {
+        "x": 32,
+        "y": 2,
+        "w": 53,
+        "h": 85
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 141,
+        "w": 53,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/weapon-staff-back/W/02": {
+      "frame": {
+        "x": 89,
+        "y": 2,
+        "w": 91,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 165,
+        "w": 91,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/weapon-staff-back/W/03": {
+      "frame": {
+        "x": 184,
+        "y": 2,
+        "w": 92,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 58,
+        "y": 163,
+        "w": 92,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/weapon-staff-back/E/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/weapon-staff-back/E/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/weapon-staff-back/E/02": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/weapon-staff-back/E/03": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    }
+  },
+  "animations": {
+    "down/weapon-staff-back/E": [
+      "down/weapon-staff-back/E/00",
+      "down/weapon-staff-back/E/01",
+      "down/weapon-staff-back/E/02",
+      "down/weapon-staff-back/E/03"
+    ],
+    "down/weapon-staff-back/W": [
+      "down/weapon-staff-back/W/00",
+      "down/weapon-staff-back/W/01",
+      "down/weapon-staff-back/W/02",
+      "down/weapon-staff-back/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "down-weapon-staff-back-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 278,
+      "h": 98
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

@@ -1,0 +1,426 @@
+{
+  "frames": {
+    "attack/hand-front/S/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 12,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 69,
+        "y": 110,
+        "w": 12,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/S/02": {
+      "frame": {
+        "x": 23,
+        "y": 2,
+        "w": 12,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 123,
+        "w": 12,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/S/01": {
+      "frame": {
+        "x": 39,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 125,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/S/03": {
+      "frame": {
+        "x": 54,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 125,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/N/01": {
+      "frame": {
+        "x": 69,
+        "y": 2,
+        "w": 10,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 86,
+        "w": 10,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/N/02": {
+      "frame": {
+        "x": 83,
+        "y": 2,
+        "w": 10,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 90,
+        "w": 10,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/SE/01": {
+      "frame": {
+        "x": 97,
+        "y": 2,
+        "w": 8,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 122,
+        "y": 115,
+        "w": 8,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/SE/02": {
+      "frame": {
+        "x": 109,
+        "y": 2,
+        "w": 7,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 118,
+        "y": 112,
+        "w": 7,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/N/00": {
+      "frame": {
+        "x": 120,
+        "y": 2,
+        "w": 10,
+        "h": 9
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 119,
+        "w": 10,
+        "h": 9
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/SE/00": {
+      "frame": {
+        "x": 134,
+        "y": 2,
+        "w": 8,
+        "h": 9
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 101,
+        "y": 113,
+        "w": 8,
+        "h": 9
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/N/03": {
+      "frame": {
+        "x": 146,
+        "y": 2,
+        "w": 9,
+        "h": 8
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 122,
+        "w": 9,
+        "h": 8
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/SE/03": {
+      "frame": {
+        "x": 159,
+        "y": 2,
+        "w": 9,
+        "h": 8
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 125,
+        "w": 9,
+        "h": 8
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/NW/00": {
+      "frame": {
+        "x": 172,
+        "y": 2,
+        "w": 7,
+        "h": 7
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 113,
+        "w": 7,
+        "h": 7
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/NW/02": {
+      "frame": {
+        "x": 183,
+        "y": 2,
+        "w": 7,
+        "h": 7
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 98,
+        "w": 7,
+        "h": 7
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/NW/01": {
+      "frame": {
+        "x": 194,
+        "y": 2,
+        "w": 7,
+        "h": 6
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 97,
+        "w": 7,
+        "h": 6
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hand-front/NW/03": {
+      "frame": {
+        "x": 205,
+        "y": 2,
+        "w": 6,
+        "h": 5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 104,
+        "y": 121,
+        "w": 6,
+        "h": 5
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/hand-front/N": [
+      "attack/hand-front/N/00",
+      "attack/hand-front/N/01",
+      "attack/hand-front/N/02",
+      "attack/hand-front/N/03"
+    ],
+    "attack/hand-front/S": [
+      "attack/hand-front/S/00",
+      "attack/hand-front/S/01",
+      "attack/hand-front/S/02",
+      "attack/hand-front/S/03"
+    ],
+    "attack/hand-front/NW": [
+      "attack/hand-front/NW/00",
+      "attack/hand-front/NW/01",
+      "attack/hand-front/NW/02",
+      "attack/hand-front/NW/03"
+    ],
+    "attack/hand-front/SE": [
+      "attack/hand-front/SE/00",
+      "attack/hand-front/SE/01",
+      "attack/hand-front/SE/02",
+      "attack/hand-front/SE/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-hand-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 213,
+      "h": 18
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

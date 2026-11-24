@@ -1,0 +1,226 @@
+{
+  "frames": {
+    "hit/hair-ivory-front/N/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 42,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 37,
+        "w": 42,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/S/00": {
+      "frame": {
+        "x": 53,
+        "y": 2,
+        "w": 44,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 38,
+        "w": 44,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/S/01": {
+      "frame": {
+        "x": 101,
+        "y": 2,
+        "w": 44,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 37,
+        "w": 44,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/N/00": {
+      "frame": {
+        "x": 149,
+        "y": 2,
+        "w": 44,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 38,
+        "w": 44,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/SE/00": {
+      "frame": {
+        "x": 197,
+        "y": 2,
+        "w": 43,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 40,
+        "w": 43,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/SE/01": {
+      "frame": {
+        "x": 244,
+        "y": 2,
+        "w": 42,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 77,
+        "y": 39,
+        "w": 42,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/NW/00": {
+      "frame": {
+        "x": 290,
+        "y": 2,
+        "w": 42,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 39,
+        "w": 42,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-ivory-front/NW/01": {
+      "frame": {
+        "x": 336,
+        "y": 2,
+        "w": 41,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 38,
+        "w": 41,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/hair-ivory-front/N": [
+      "hit/hair-ivory-front/N/00",
+      "hit/hair-ivory-front/N/01"
+    ],
+    "hit/hair-ivory-front/S": [
+      "hit/hair-ivory-front/S/00",
+      "hit/hair-ivory-front/S/01"
+    ],
+    "hit/hair-ivory-front/NW": [
+      "hit/hair-ivory-front/NW/00",
+      "hit/hair-ivory-front/NW/01"
+    ],
+    "hit/hair-ivory-front/SE": [
+      "hit/hair-ivory-front/SE/00",
+      "hit/hair-ivory-front/SE/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-hair-ivory-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 379,
+      "h": 47
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

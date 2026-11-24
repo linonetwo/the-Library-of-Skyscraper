@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "attack/hair-midnight-front/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 43,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 43,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-midnight-front/E/01": {
+      "frame": {
+        "x": 54,
+        "y": 2,
+        "w": 43,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 43,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-midnight-front/E/02": {
+      "frame": {
+        "x": 101,
+        "y": 2,
+        "w": 43,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 43,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-midnight-front/E/03": {
+      "frame": {
+        "x": 148,
+        "y": 2,
+        "w": 43,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 43,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-midnight-front/W/00": {
+      "frame": {
+        "x": 195,
+        "y": 2,
+        "w": 44,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 44,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-midnight-front/W/01": {
+      "frame": {
+        "x": 243,
+        "y": 2,
+        "w": 44,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 44,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-midnight-front/W/02": {
+      "frame": {
+        "x": 291,
+        "y": 2,
+        "w": 44,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 44,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/hair-midnight-front/W/03": {
+      "frame": {
+        "x": 339,
+        "y": 2,
+        "w": 44,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 38,
+        "w": 44,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/hair-midnight-front/E": [
+      "attack/hair-midnight-front/E/00",
+      "attack/hair-midnight-front/E/01",
+      "attack/hair-midnight-front/E/02",
+      "attack/hair-midnight-front/E/03"
+    ],
+    "attack/hair-midnight-front/W": [
+      "attack/hair-midnight-front/W/00",
+      "attack/hair-midnight-front/W/01",
+      "attack/hair-midnight-front/W/02",
+      "attack/hair-midnight-front/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-hair-midnight-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 385,
+      "h": 49
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

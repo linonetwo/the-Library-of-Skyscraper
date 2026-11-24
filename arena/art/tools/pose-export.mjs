@@ -118,6 +118,11 @@ export async function exportPoses(configPath, output) {
         );
         state = projected.state;
       }
+      // Explicit projected joints let grounded poses retain 3D contact semantics.
+      for (const [id, point] of Object.entries(input.jointPositions || {}))
+        state[id] = { ...state[id], point };
+      for (const [id, degrees] of Object.entries(input.jointAngles || {}))
+        state[id] = { ...state[id], angle: degrees * Math.PI / 180 };
       const foot = direction.feet?.[input.contactFoot];
       if (foot) {
         if (previous !== input.contactFoot)
@@ -162,7 +167,7 @@ export async function exportPoses(configPath, output) {
             ? (input.attachmentAngles[a.id] * Math.PI) / 180
             : state[a.angleJoint || a.joint].angle +
                 ((a.rotation || 0) * Math.PI) / 180,
-          projected?.mapping[a.id],
+          input.attachmentMappings?.[a.id] ?? projected?.mapping[a.id],
         );
       }
       const composite = [];
@@ -262,6 +267,7 @@ export async function exportPoses(configPath, output) {
         soleGroundWorld,
         worldLegs: projected?.world.legs,
         projectionMappings: projected?.ratios,
+        supportContacts: input.supportContacts,
         joints: state,
       });
     }

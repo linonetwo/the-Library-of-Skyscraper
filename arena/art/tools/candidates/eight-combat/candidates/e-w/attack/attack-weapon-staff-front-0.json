@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "attack/weapon-staff-front/E/03": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 21,
+        "h": 97
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 74,
+        "w": 21,
+        "h": 97
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/weapon-staff-front/E/00": {
+      "frame": {
+        "x": 32,
+        "y": 2,
+        "w": 49,
+        "h": 90
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 69,
+        "y": 71,
+        "w": 49,
+        "h": 90
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/weapon-staff-front/E/02": {
+      "frame": {
+        "x": 85,
+        "y": 2,
+        "w": 96,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 97,
+        "w": 96,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/weapon-staff-front/E/01": {
+      "frame": {
+        "x": 185,
+        "y": 2,
+        "w": 97,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 101,
+        "w": 97,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/weapon-staff-front/W/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/weapon-staff-front/W/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/weapon-staff-front/W/02": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/weapon-staff-front/W/03": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/weapon-staff-front/E": [
+      "attack/weapon-staff-front/E/00",
+      "attack/weapon-staff-front/E/01",
+      "attack/weapon-staff-front/E/02",
+      "attack/weapon-staff-front/E/03"
+    ],
+    "attack/weapon-staff-front/W": [
+      "attack/weapon-staff-front/W/00",
+      "attack/weapon-staff-front/W/01",
+      "attack/weapon-staff-front/W/02",
+      "attack/weapon-staff-front/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-weapon-staff-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 284,
+      "h": 101
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

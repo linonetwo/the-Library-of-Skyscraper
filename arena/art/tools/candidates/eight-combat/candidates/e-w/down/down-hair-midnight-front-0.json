@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "down/hair-midnight-front/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 45,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 91,
+        "w": 45,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/E/02": {
+      "frame": {
+        "x": 56,
+        "y": 2,
+        "w": 35,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 165,
+        "y": 153,
+        "w": 35,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/W/00": {
+      "frame": {
+        "x": 95,
+        "y": 2,
+        "w": 46,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 91,
+        "w": 46,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/E/03": {
+      "frame": {
+        "x": 145,
+        "y": 2,
+        "w": 34,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 173,
+        "y": 168,
+        "w": 34,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/W/01": {
+      "frame": {
+        "x": 183,
+        "y": 2,
+        "w": 48,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 86,
+        "y": 126,
+        "w": 48,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/W/02": {
+      "frame": {
+        "x": 235,
+        "y": 2,
+        "w": 34,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 57,
+        "y": 154,
+        "w": 34,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/W/03": {
+      "frame": {
+        "x": 273,
+        "y": 2,
+        "w": 33,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 168,
+        "w": 33,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-midnight-front/E/01": {
+      "frame": {
+        "x": 310,
+        "y": 2,
+        "w": 49,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 125,
+        "w": 49,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    }
+  },
+  "animations": {
+    "down/hair-midnight-front/E": [
+      "down/hair-midnight-front/E/00",
+      "down/hair-midnight-front/E/01",
+      "down/hair-midnight-front/E/02",
+      "down/hair-midnight-front/E/03"
+    ],
+    "down/hair-midnight-front/W": [
+      "down/hair-midnight-front/W/00",
+      "down/hair-midnight-front/W/01",
+      "down/hair-midnight-front/W/02",
+      "down/hair-midnight-front/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "down-hair-midnight-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 361,
+      "h": 48
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
