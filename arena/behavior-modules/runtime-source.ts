@@ -34,7 +34,7 @@ export function decide(ctx: RuleContext): RuleDecisionResult {
       let intent: ActionIntentDraft | undefined;
       let selected = false;
       let reason = '';
-      const action = (type: 'gather'|'deliver'|'attack'): ActionIntentDraft => ({type,actorId:actor.id,priority:m.priority});
+      const action = (type: 'gather'|'deliver'|'attack'|'capture'): ActionIntentDraft => ({type,actorId:actor.id,priority:m.priority});
       switch(m.kind) {
         case 'retreat':
           if (actor.hp <= m.config.hpThreshold && base) { selected=true; intent=move(ctx,actor,base,m.priority); reason='health threshold reached'; }
@@ -52,7 +52,18 @@ export function decide(ctx: RuleContext): RuleDecisionResult {
         case 'defend': {
           const target = m.config.roomId ? ctx.world.rooms.find(r=>r.id===m.config.roomId) : room;
           if (target && (m.config.roomId || target.enemyHp>0 || ctx.world.enemies?.some(e=>e.roomId===target.id && e.hp>0))) {
-            selected=true; intent=actor.roomId!==target.id ? move(ctx,actor,target,m.priority) : (target.enemyHp>0 || ctx.world.enemies?.some(e=>e.roomId===target.id && e.hp>0)) ? action('attack') : undefined; reason='guard assigned room';
+            selected=true; reason='guard assigned room';
+            if (actor.roomId!==target.id) intent=move(ctx,actor,target,m.priority);
+            else if (actor.task?.kind!=='guard' || actor.task.target!==target.id) { intent=action('capture'); reason='assigning guard task'; }
+            else {
+              const enemy=ctx.world.enemies?.find(e=>e.roomId===target.id && e.hp>0);
+              const config=ctx.world.scenarioConfig as {attackRange?:number;combatIntervalTicks?:number}|undefined;
+              const distance=enemy && actor.worldPosition ? Math.hypot(enemy.worldPosition.x-actor.worldPosition.x,enemy.worldPosition.y-actor.worldPosition.y) : undefined;
+              if (enemy && distance!==undefined && config?.attackRange!==undefined && distance>config.attackRange) reason='approaching hostile with guard task';
+              else if ((enemy || target.enemyHp>0) && config?.combatIntervalTicks!==undefined && actor.actionTick!==undefined && ctx.tick<actor.actionTick+config.combatIntervalTicks) reason='attack cooldown';
+              else if (enemy || target.enemyHp>0) { intent=action('attack'); reason='hostile in attack range'; }
+              else reason='holding catalog guard task';
+            }
           }
           break;
         }

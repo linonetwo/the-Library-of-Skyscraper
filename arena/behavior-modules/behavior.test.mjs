@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import vm from 'node:vm';
+import { readFile } from 'node:fs/promises';
 import { build } from '../script-toolchain/node_modules/esbuild/lib/main.js';
 import { compileRule } from '../script-toolchain/src/compile.mjs';
 const built = await build({entryPoints:[new URL('./index.ts',import.meta.url).pathname],bundle:true,write:false,format:'esm',platform:'node'});
@@ -70,4 +71,52 @@ test('generated project uses authority compiler and independent V8 worker', {ski
  const state=await request(path+'/scripts/state',undefined,session.token);
  assert.equal(state.memory.aiTrace.v,1);
  assert.ok(state.memory.aiTrace.tick>0);
+});
+test('defend establishes guard pursuit, respects range and cooldown, then holds catalog',async()=>{
+ const plan=api.createFirstExpeditionPlan();const run=await executable(plan);
+ const ctx=context({role:'guard',roomId:'site',worldPosition:{x:0,y:0},actionTick:0});
+ ctx.world.rooms=ctx.world.rooms.map(r=>r.id==='site'?{...r,id:'room-3',enemyHp:20}:r);ctx.squad.actors[0].roomId='room-3';
+ ctx.world.enemies=[{id:'e',roomId:'room-3',hp:20,worldPosition:{x:10,y:0}}];
+ ctx.world.scenarioConfig={attackRange:2,combatIntervalTicks:4};
+ assert.equal(run.decide(ctx).intents[0].type,'capture');
+ ctx.squad.actors[0].task={kind:'guard',target:'room-3',stage:'guarding'};
+ assert.deepEqual(run.decide(ctx).intents,[]);assert.match(run.decide(ctx).memoryPatch.set.aiTrace.actors[0].reason,/approaching/);
+ ctx.world.enemies[0].worldPosition.x=1;assert.equal(run.decide(ctx).intents[0].type,'attack');
+ ctx.squad.actors[0].actionTick=6;assert.deepEqual(run.decide(ctx).intents,[]);
+ ctx.world.enemies=[];ctx.world.rooms.find(r=>r.id==='room-3').enemyHp=0;
+ assert.deepEqual(run.decide(ctx).intents,[]);assert.match(run.decide(ctx).memoryPatch.set.aiTrace.actors[0].reason,/holding/);
+});
+test('first expedition seed42 damages guardians, deposits materials and completes catalog', {skip:!process.env.ARENA_MODULE_TEST_URL}, async()=>{
+ let session;
+ async function request(path,body) {const res=await fetch(process.env.ARENA_MODULE_TEST_URL+'/api/sessions'+path,{method:body===undefined?'GET':'POST',headers:{'content-type':'application/json',...(session?{authorization:'Bearer '+session.token}:{})},...(body===undefined?{}:{body:JSON.stringify(body)})});const data=await res.json();assert.equal(res.ok,true,JSON.stringify(data));return data;}
+ session=await request('',{mode:'training',seed:42});const path='/'+session.sessionId;
+ await request(path+'/commands',{type:'pause',paused:true});
+ const initial=await request(path+'/state');
+ const published=await request(path+'/scripts/publish',api.toRuleSourceProject(api.createFirstExpeditionPlan()));assert.deepEqual(published.compilation.diagnostics,[]);
+ let damage=false,deposit=false,construction=false,cataloging=false,snapshot;
+ for(let i=0;i<16;i++) {
+  snapshot=await request(path+'/commands',{type:'step',ticks:20});
+  damage ||= snapshot.enemies.some(enemy=>enemy.hp<(initial.enemies.find(e=>e.id===enemy.id)?.hp??enemy.hp));
+  deposit ||= snapshot.players[0].materials>initial.players[0].materials;
+  construction ||= snapshot.buildings.some(b=>b.kind==='catalog' && b.constructionTicks>0);
+  cataloging ||= snapshot.actors.some(a=>a.role==='scout' && a.task?.stage==='cataloging');
+  if(snapshot.result)break;
+ }
+ assert.equal(snapshot.result?.winner,'p1');assert.match(snapshot.result.reason,/远征胜利/);
+ assert.ok(damage,'guardian HP decreased');assert.ok(deposit,'materials deposited');assert.ok(construction,'catalog construction advanced');assert.ok(cataloging,'scout guards completed catalog');
+ console.log('first expedition authoritative result',JSON.stringify({tick:snapshot.tick,damage,deposit,construction,cataloging,result:snapshot.result}));
+});
+
+test('archived PR77 runtime stays read-only but resolves its own module source lines',async()=>{
+ const project=JSON.parse(await readFile(new URL('./fixtures/pr77-project.json',import.meta.url),'utf8'));
+ assert.equal(api.recoverBehaviorPlan(project),null);
+ const compiled=await compileRule(project);assert.deepEqual(compiled.diagnostics,[]);
+ for(const id of ['gather','haul','build','defend','retreat','hold']) {
+  const ref=api.getModuleSourceRef(project,id);assert.ok(ref,id);assert.ok(ref.line>0);
+  assert.ok(project.files[ref.file].split('\n')[ref.line-1].includes(id));
+ }
+ const mismatch=structuredClone(project);mismatch.files['ai-plan.ts']=mismatch.files['ai-plan.ts'].replace('"hpThreshold":30}', '"hpThreshold":31}');
+ assert.equal(api.getModuleSourceRef(mismatch,'retreat'),null);
+ const handwritten=structuredClone(project);handwritten.files['main.ts']='export function decide(){return {intents:[]}}';
+ assert.equal(api.getModuleSourceRef(handwritten,'gather'),null);
 });
