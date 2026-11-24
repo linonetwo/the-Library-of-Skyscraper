@@ -133,3 +133,17 @@
   padding: 14px;
   border-radius: 8px;
 }
+.behavior-card-summary {
+  font-size: 11px;
+  color: #b9c5d0;
+  flex: 1;
+}
+.behavior-card header {
+  flex-wrap: wrap;
+}
+.behavior-card[data-enabled="false"] {
+  opacity: 0.8;
+}
+.behavior-card [hidden] {
+  display: none;
+}

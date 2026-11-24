@@ -34,7 +34,9 @@ export function useBehaviorWorkbench() {
       toRuleSourceProject(next),
       workbench.draft.baseVersion,
     );
+  const canReplaceProject = !backup || !!plan;
   const replaceProject = (project: RuleSourceProject) => {
+    if (!canReplaceProject) return;
     if (!backup) {
       localStorage.setItem(backupKey, JSON.stringify(workbench.draft));
       setBackup(workbench.draft);
@@ -58,6 +60,7 @@ export function useBehaviorWorkbench() {
     updatePlan,
     createPlan,
     replaceProject,
+    canReplaceProject,
     backup,
     restoreBackup,
   };

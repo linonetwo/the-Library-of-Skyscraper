@@ -25,6 +25,7 @@ export default function BehaviorWorkbench({
   onViewChange?: (view: "modules" | "source" | "versions") => void;
 }) {
   const w = useBehaviorWorkbench();
+  const [selectedModuleId, setSelectedModuleId] = useState<string>();
   const [localTab, setLocalTab] = useState<"modules" | "source" | "versions">(
     "modules",
   );
@@ -83,6 +84,14 @@ export default function BehaviorWorkbench({
                   <BehaviorModuleCard
                     key={m.moduleId}
                     module={m}
+                    expanded={selectedModuleId === m.moduleId}
+                    onToggle={() =>
+                      setSelectedModuleId(
+                        selectedModuleId === m.moduleId
+                          ? undefined
+                          : m.moduleId,
+                      )
+                    }
                     onSource={() => locate(m.moduleId)}
                     onChange={(next) =>
                       w.updatePlan({
@@ -104,7 +113,9 @@ export default function BehaviorWorkbench({
               项目，无法恢复为模块组合。可以继续编辑源码，或明确替换草稿为官方组合。
             </p>
             <button onClick={() => setTab("source")}>继续编辑当前源码</button>
-            <button onClick={w.createPlan}>替换草稿为官方组合</button>
+            <button disabled={!w.canReplaceProject} onClick={w.createPlan}>
+              替换草稿为官方组合
+            </button>
           </section>
         ))}
       {tab === "source" && (
@@ -112,7 +123,7 @@ export default function BehaviorWorkbench({
           <select
             aria-label="载入规则模板"
             value=""
-            disabled={w.busy}
+            disabled={w.busy || !w.canReplaceProject}
             onChange={(event) =>
               w.replaceProject(scriptTemplates[event.target.value].project)
             }
