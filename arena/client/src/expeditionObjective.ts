@@ -36,6 +36,13 @@ export function expeditionObjective(snapshot: Snapshot, player?: Player): Expedi
     living,
   );
   if (snapshot.paused && snapshot.tick === 0) {
+    if (player.script) {
+      const tasks = actors.map((a) => `${label(a)}：${a.task
+        ? ({gather:"采集运输",build:"建设编目台",guard:"护卫编目",return:"返回据点"}[a.task.kind])
+        : "等待AI首拍"}`).join("；");
+      return { title: "AI规则已接管 → 开始远征",
+        detail: `已发布 ${player.script.sourceHash.slice(0, 8)} · ${tasks}`, roomId };
+    }
     const assigned = actors.length > 0 && actors.every((a) => a.task);
     return { title: assigned ? "分工已就绪 → 开始远征" : "准备远征 → 推荐分工 → 开始远征",
       detail: actors.map((a) => `${label(a)}：${a.task ? ({gather:"采集运输",build:"建设编目台",guard:"护卫编目",return:"返回据点"}[a.task.kind]) : "待分工"}`).join("；"), roomId };
