@@ -190,3 +190,50 @@ fn legacy_script_advance_keeps_per_intent_rejection_semantics() {
     let upgraded = restored.export_replay().unwrap();
     Session::from_replay(&upgraded).unwrap();
 }
+
+#[test]
+fn selected_operation_restores_across_reset_without_using_same_tick_or_final_state() {
+    let mut session = Session::new_legacy("selected-frame".into(), Mode::Training, 42);
+    session.join("token".into()).unwrap();
+    session
+        .command(
+            "p1",
+            Command::Move {
+                actor_id: "p1-scout".into(),
+                room_id: "room-1".into(),
+            },
+        )
+        .unwrap();
+    session.advance();
+    let before_reset = session.export_replay().unwrap().operations.len();
+    let first = serde_json::to_value(session.snapshot()).unwrap();
+    session.command("p1", Command::Reset {}).unwrap();
+    session.advance();
+    let replay = session.export_replay().unwrap();
+    let after_reset = replay.operations.len();
+    let second = serde_json::to_value(session.snapshot()).unwrap();
+    assert_eq!(first["tick"], second["tick"]);
+    assert_ne!(first["actors"], second["actors"]);
+    assert_eq!(
+        serde_json::to_value(
+            replay
+                .session_after_operation(before_reset)
+                .unwrap()
+                .snapshot()
+        )
+        .unwrap(),
+        first
+    );
+    assert_eq!(
+        serde_json::to_value(
+            replay
+                .session_after_operation(after_reset)
+                .unwrap()
+                .snapshot()
+        )
+        .unwrap(),
+        second
+    );
+    assert_eq!(replay.session_after_operation(0).unwrap().tick, 0);
+    assert!(replay.session_after_operation(after_reset + 1).is_err());
+}

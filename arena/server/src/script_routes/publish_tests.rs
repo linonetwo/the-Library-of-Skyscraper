@@ -172,7 +172,7 @@ async fn runtime_memory_survives_ticks_preview_and_restart() {
             State(store.clone()),
             Path("runtime".into()),
             headers.clone(),
-            Json(counter()),
+            Json(PreviewRequest::Live(counter())),
         )
         .await
         .unwrap();

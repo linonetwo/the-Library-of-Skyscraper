@@ -68,6 +68,22 @@ pub struct ReplayTimeline {
 }
 
 impl Replay {
+    /// Restore the state after exactly N recorded operations (0 is the initial
+    /// frame). Used only after the HTTP caller has authorized the recording.
+    pub fn session_after_operation(&self, operation_index: usize) -> Result<Session, String> {
+        self.validate_limits()?;
+        if operation_index > self.operations.len() {
+            return Err("operationIndex is outside the recording".into());
+        }
+        let mut session = Session::new(self.session_id.clone(), self.mode, self.seed);
+        session.configure_replay_version(self.simulation_version);
+        for (index, operation) in self.operations[..operation_index].iter().enumerate() {
+            session.replay_operations.clear();
+            session.replay_operation(index, operation)?;
+        }
+        Ok(session)
+    }
+
     /// Each frame follows one recorded operation; reset starts a new tick range.
     pub fn timeline(&self) -> Result<ReplayTimeline, String> {
         self.validate_limits()?;

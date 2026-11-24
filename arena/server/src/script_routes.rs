@@ -22,8 +22,16 @@ pub async fn preview(
     State(store): State<Store>,
     Path(id): Path<String>,
     headers: HeaderMap,
-    Json(project): Json<SourceProject>,
+    Json(request): Json<PreviewRequest>,
 ) -> Result<Json<Value>, Error> {
+    let project = match request {
+        PreviewRequest::Compare(request) => {
+            return compare::preview_compare(&store, &id, &headers, request)
+                .await
+                .map(Json);
+        }
+        PreviewRequest::Live(project) => project,
+    };
     store.with_player(&id, &headers, |_, _| Ok(())).await?;
     let compilation = compile_project(&project).await?;
     let hash = compilation["bundle"]["sourceHash"].as_str();
@@ -142,3 +150,8 @@ pub async fn state(
         })
         .await
 }
+
+mod compare;
+pub use compare::PreviewRequest;
+#[cfg(test)]
+mod compare_tests;
