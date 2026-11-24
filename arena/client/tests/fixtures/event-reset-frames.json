@@ -1,0 +1,75 @@
+{
+  "source": "0c06adf authority; normal UI single step → reset → single step",
+  "frames": [
+    {
+      "operationIndex": 0,
+      "tick": 0,
+      "snapshot": {
+        "events": []
+      }
+    },
+    {
+      "operationIndex": 1,
+      "tick": 0,
+      "snapshot": {
+        "events": [
+          {
+            "id": 1,
+            "tick": 0,
+            "kind": "join",
+            "message": "p1 的三人小队抵达中庭",
+            "playerId": "p1"
+          }
+        ]
+      }
+    },
+    {
+      "operationIndex": 2,
+      "tick": 1,
+      "snapshot": {
+        "events": [
+          {
+            "id": 1,
+            "tick": 0,
+            "kind": "join",
+            "message": "p1 的三人小队抵达中庭",
+            "playerId": "p1"
+          }
+        ]
+      }
+    },
+    {
+      "operationIndex": 3,
+      "tick": 0,
+      "snapshot": {
+        "events": [
+          {
+            "id": 1,
+            "tick": 0,
+            "kind": "join",
+            "message": "p1 的三人小队抵达中庭",
+            "playerId": "p1"
+          }
+        ]
+      }
+    },
+    {
+      "operationIndex": 4,
+      "tick": 1,
+      "snapshot": {
+        "events": [
+          {
+            "id": 1,
+            "tick": 0,
+            "kind": "join",
+            "message": "p1 的三人小队抵达中庭",
+            "playerId": "p1"
+          }
+        ]
+      }
+    }
+  ],
+  "resets": [
+    3
+  ]
+}

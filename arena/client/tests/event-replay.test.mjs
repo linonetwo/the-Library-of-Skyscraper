@@ -23,3 +23,12 @@ test('matching requires actual id, kind, message and tick, never nearby time',()
  const target=event(8,25);assert.equal(eventFrameIndex([frame(1,25,[event(9,25)]),frame(2,26,[event(8,25,'settlement','不同结算')])],target),null);
  assert.equal(eventFrameIndex([],target),null);
 });
+test('actual authority recording: UI step-reset-step selects the second join occurrence',async()=>{
+ const {readFile}=await import('node:fs/promises');
+ const recording=JSON.parse(await readFile(new URL('./fixtures/event-reset-frames.json',import.meta.url),'utf8'));
+ const target=recording.frames.at(-1).snapshot.events[0];
+ const index=eventFrameIndex(recording.frames,target,recording.resets);
+ assert.equal(index,3);assert.equal(recording.frames[index].operationIndex,3);
+ assert.equal(recording.frames[index].tick,0);
+ assert.equal(eventFrameIndex(recording.frames,target),3);
+});

@@ -7,7 +7,7 @@ export default function JournalPanel() {
   const [replayOpen, setReplayOpen] = useState(false);
   const [replayTarget, setReplayTarget] = useState<import("./eventReplay").EventFocus | null>(null);
   const focused = useRef<HTMLDivElement>(null);
-  const focus = journalFocus?.sessionId === snapshot?.sessionId && journalFocus.sessionId === session?.sessionId ? journalFocus : null;
+  const focus = journalFocus && journalFocus.sessionId === snapshot?.sessionId && journalFocus.sessionId === session?.sessionId ? journalFocus : null;
   useEffect(() => { setReplayOpen(false); setReplayTarget(null); }, [session?.sessionId]);
   useEffect(() => { focused.current?.scrollIntoView({ block: "center" }); focused.current?.focus(); }, [focus]);
 
