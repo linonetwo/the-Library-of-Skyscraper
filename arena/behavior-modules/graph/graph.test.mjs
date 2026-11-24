@@ -61,3 +61,11 @@ test('graph ID rename and fragment copy remap internal edges while sharing offic
  const fragment=api.cloneGraphFragment(graph,'cargo-check');const copied=api.applyGraphPatch(graph,fragment.patch);const root=copied.nodes.find(n=>n.id===fragment.rootId);assert.equal(root.yes,fragment.idMap['haul-node']);assert.equal(copied.nodes.find(n=>n.id===root.yes).moduleId,'haul');assert.equal(copied.modules.length,graph.modules.length);
  assert.throws(()=>api.renameGraphObject(graph,'cargo-check','gather'),/duplicate/);
 });
+test('explicit v1 conversion preserves action selection without mutating original plan',async()=>{
+ const v1built=await build({entryPoints:[new URL('../index.ts',import.meta.url).pathname],bundle:true,write:false,format:'esm',platform:'node'});const v1=await import('data:text/javascript;base64,'+Buffer.from(v1built.outputFiles[0].text).toString('base64'));
+ const plan=v1.createFirstExpeditionPlan();const before=JSON.stringify(plan);const graph=api.fromBehaviorPlan(plan);const graphRun=await executable(graph);assert.equal(JSON.stringify(plan),before);
+ const compilation=await compileRule(v1.toRuleSourceProject(plan));assert.deepEqual(compilation.diagnostics,[]);
+ for(const patch of [{},{cargo:8},{hp:10},{role:'guard'},{role:'scout'}]){
+  const sandbox=vm.createContext({});vm.runInContext(compilation.bundle.code,sandbox);const old=JSON.parse(JSON.stringify(sandbox.__arenaRule.decide(context(patch))));assert.deepEqual(graphRun.decide(context(patch)).intents,old.intents);
+ }
+});
