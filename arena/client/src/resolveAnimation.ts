@@ -96,8 +96,10 @@ function selectAnimation(
       );
     }
   };
-  if (impactActive && impact?.kind === "hit")
+  if (impactActive && impact?.kind === "hit") {
+    if (actionActive && action?.kind === "attack") aim();
     return result("hit", impact.startedTick * tickMs, impact);
+  }
   if (actionActive && action?.kind === "attack") {
     aim();
     return result("attack", action.startedTick * tickMs, action);

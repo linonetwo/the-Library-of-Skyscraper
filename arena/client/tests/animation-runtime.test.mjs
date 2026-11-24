@@ -17,7 +17,7 @@ test('half-open unequal frame intervals, loops and held last frame',()=>{
 test('nonlethal hit interrupts attack then resumes its original phase',()=>{
  const actor={actionCue:cue('attack',10,3),impactCue:cue('hit',11,1)};
  const before=resolve(actor,5499);assert.equal(before.clip,'attack');
- const interrupted=resolve(actor,5550);assert.equal(interrupted.clip,'hit');assert.equal(interrupted.impact,true);
+ const interrupted=resolve(actor,5550);assert.equal(interrupted.clip,'hit');assert.equal(interrupted.impact,true);assert.equal(interrupted.direction,before.direction);
  assert.deepEqual(resolve({...actor},5550),interrupted);
  const resumed=resolve(actor,6000);assert.equal(resumed.clip,'attack');assert.equal(resumed.elapsedMs,1000);
  assert.equal(resumed.frame,resolve({actionCue:actor.actionCue},6000).frame);
