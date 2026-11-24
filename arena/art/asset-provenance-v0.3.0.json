@@ -29,11 +29,45 @@
           "reviewedCommit": "9b7894c851a5d94cf852c7b06e22903f34e6649b",
           "scope": "offline five work actions source only",
           "status": "approved"
+        },
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/85#pullrequestreview-6039323397",
+          "reviewedCommit": "888ef3091c60becca2abf60b26dcb4e934a4268f",
+          "scope": "eight-direction collect/carry/unload/build/catalog integration and observed sim4 gameplay; selected textures readiness including paused late load; not every direction/runtime combination or full P3",
+          "status": "approved"
+        },
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/92#pullrequestreview-6039038115",
+          "reviewedCommit": "297de64d0aaebc09a14347e2407ec75102673709",
+          "scope": "offline eight-heading grounded player pose layers only; 64 registration slots include transparent reused NE/SW back-hair; not combat sequence, runtime footpoint playback or release",
+          "status": "approved"
+        },
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/93#pullrequestreview-6040710771",
+          "reviewedCommit": "d2d5bd32758047752a2602cd206bf419e1806807",
+          "scope": "offline frozen player attack/hit/down projected pose inputs and eight-heading descriptors only; not runtime cues, paused replay, readiness or unarmed punch",
+          "status": "approved"
+        },
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/96#pullrequestreview-6042800020",
+          "reviewedCommit": "c4f27cb7c346be86ec3917ea926c1a15e4ecb2a2",
+          "scope": "offline attack/hit descriptor layer registration correction: omit fully absent back-hair layers, preserve per-heading present order and reject partial coverage; no down, pose or pixel changes; not runtime acceptance",
+          "status": "approved"
+        },
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/98#pullrequestreview-6045626015",
+          "reviewedCommit": "5dc8428fb3e87cd858f4b5a724651bc34d37c6e9",
+          "scope": "combat clip technical integration: per-snapshot observed-action queue and threat-room prewarm, atomic ready-only clip registration, existing shared clock/loader, reconnect and paused late-down; excludes authority spacing visual acceptance",
+          "status": "approved"
+        },
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/98#pullrequestreview-6045636291",
+          "reviewedCommit": "5dc8428fb3e87cd858f4b5a724651bc34d37c6e9",
+          "scope": "scoped runtime clip visual integration: staff/unarmed attack and hit, zero-vector SW retention and lethal down; paused tick72 late-load down frame3 holds ground coordinates; excludes readability of overlapping combatants and whole P3",
+          "status": "approved"
         }
       ],
       "pending": [
-        "PR85 runtime work integration review",
-        "player combat clips and runtime review",
         "whole-version packaged acceptance"
       ]
     },
@@ -66,9 +100,16 @@
       "entries": [
         "tiles/manifest.json"
       ],
-      "reviews": [],
+      "reviews": [
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/85#issuecomment-7134682866",
+          "reviewedCommit": "fe498340675dcfcea2f48d87308b70328372949c",
+          "scope": "ground 128x64 2:1 tiles/threshold/target inlays and room-corridor continuity in five main-work screenshots; excludes unseen tower, dynamic combat, all environment placements and whole-version release",
+          "status": "approved"
+        }
+      ],
       "pending": [
-        "scoped v0.3 ground review provenance verification"
+        "whole-version packaged acceptance"
       ]
     },
     "world": {
@@ -76,9 +117,16 @@
       "entries": [
         "iso-v030-world/manifest.json"
       ],
-      "reviews": [],
+      "reviews": [
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/85#issuecomment-7134682866",
+          "reviewedCommit": "fe498340675dcfcea2f48d87308b70328372949c",
+          "scope": "world resource-pile projected offset and foot-depth registration; visible warehouse/core/construction fence/completed catalog in five main-work screenshots; excludes unseen tower, dynamic combat, all environment placements and whole-version release",
+          "status": "approved"
+        }
+      ],
       "pending": [
-        "scoped v0.3 world object review provenance verification"
+        "whole-version packaged acceptance"
       ]
     },
     "buildings": {
@@ -111,11 +159,57 @@
           "reviewedCommit": "929eb25de7318dfdbd7616b17021a051953f2512",
           "scope": "five prototype environment pieces and integration only",
           "status": "approved"
+        },
+        {
+          "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/97#pullrequestreview-6044845378",
+          "reviewedCommit": "29e090077e0a38beb7080a6ff8dca1be891f651f",
+          "scope": "room-2 single decorative shelf placement v3.5, actual matched-camera closeups and overview; front-wall protruding feet resolved; no footpoint, path or building change; not all environment placements",
+          "status": "approved"
         }
       ],
       "pending": [
         "whole-version packaged acceptance"
       ]
     }
+  },
+  "runtimeControls": {
+    "reviews": [
+      {
+        "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/95#pullrequestreview-6043183794",
+        "reviewedCommit": "5d6b23489796d3050197e7fa9a20d6beb11f0d8e",
+        "scope": "MCP five official behavior cards through real controls; per-card typed config rejects invalid mixed requests before mutations; preview/live/replay version hashes and candidate origin; not whole-package acceptance",
+        "status": "approved"
+      },
+      {
+        "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/101#pullrequestreview-6046791219",
+        "reviewedCommit": "c2747fc746b17544f0b85052bad421f317f9a27a",
+        "scope": "paused HUD wording only: tick0 preparation, paused tick>0 expedition paused; counterattack state, buttons and interfaces unchanged",
+        "status": "approved"
+      }
+    ],
+    "pending": [
+      "whole-version packaged controls acceptance"
+    ]
+  },
+  "combatPositioning": {
+    "simulationVersion": 5,
+    "legacyReplayVersions": "<=4 preserve original behavior",
+    "reviews": [
+      {
+        "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/100#pullrequestreview-6046840891",
+        "reviewedCommit": "f9419e2915941eb91ebec4e10c6f33885e51fde5",
+        "scope": "sim5 authority arrival-edge combat spacing at both travel call sites; recommended35 and UI first-expedition trajectories, max 0.75 tile/tick, old/reset/replay boundaries; UI AI won tick223; no global collision or retreat change",
+        "status": "approved"
+      },
+      {
+        "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/100#pullrequestreview-6047049070",
+        "reviewedCommit": "f9419e2915941eb91ebec4e10c6f33885e51fde5",
+        "scope": "sim5 combat-spacing visual fix: player attack/hit/down and actual counterattack in recommended deployment and first-expedition AI; stationary feet separated about 1.8m, brief retreat crossings distinguished; lower enemy/background contrast near shelving remains; not general avoidance or whole-release acceptance",
+        "status": "approved"
+      }
+    ],
+    "pending": [
+      "whole-version packaged acceptance"
+    ]
   }
 }
