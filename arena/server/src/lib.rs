@@ -50,3 +50,8 @@ mod travel;
 
 #[cfg(test)]
 mod action_runtime_tests;
+
+#[cfg(test)]
+mod combat_spacing_tests;
+
+mod combat_approach;
