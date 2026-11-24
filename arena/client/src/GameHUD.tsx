@@ -100,7 +100,9 @@ export default function GameHUD() {
             : snapshot?.scenario?.counterattackTick != null
               ? "反扑即将抵达"
               : snapshot?.paused
-                ? "准备阶段"
+                ? snapshot.tick === 0
+                  ? "准备阶段"
+                  : "远征暂停"
                 : "远征进行中"}
         </span>
         <span title={connection}>●</span>
