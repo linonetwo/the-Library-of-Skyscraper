@@ -1,6 +1,6 @@
 # AI1 / P4b：可玩的行为模块工作台（v0.3）
 
-**交付边界。** 地图 HUD 常驻文字按钮「AI 工作台」，一击打开游戏内编辑面板，默认「行为模块」，同面板可到「TypeScript」「版本」。保留全屏地图及当前训练局，不另开网页，不要求先找到设置或注册智能体。首发让玩家编排一个小队，而不是展示五张静态说明卡。本合同面向可玩基线 `c261061`；是交付要求，不是完成报告。
+**交付边界。** 地图 HUD 常驻「AI 模块」按钮，一击打开游戏内工作台；单排切换行为模块、TypeScript、发布版本与行动预设。保留全屏地图及当前训练局，不另开网页。初次进入即显示五张可编辑的优先级卡片；完整状态机和决策树不是这些卡片的别名。
 
 ## 1. 玩家编辑什么
 
@@ -12,23 +12,23 @@
 
 默认模板提供全部五项。`moduleId` 是组合内唯一且稳定的绑定 ID，不是显示名、种类或数组下标；`hold` 保留。每项可开关、改优先顺序、按 `roleFilter?: ('gatherer'|'guard'|'scout')[]` 限定岗位；省略表示全部。`priority` 数字越大越靠前，同值保持数组顺序，UI 重排必须真正改变评估顺序。卡片列出岗位、条件、参数单位、动作和不适用时的下一跳。连线直接表示「本角色 → 首个启用且匹配岗位的卡 → 命中则选择动作 / 未命中则下一卡 → 保持」，不开放任意接线。无需图引擎。
 
-| 卡 / `kind` | `config`（初值） | 对真实 SDK 的输出 |
+| 卡 / `kind` | `config`（默认「首场远征」） | 对真实 SDK 的输出 |
 |---|---|---|
-| 采集 `gather` | `targetRoomId?`（自动选有剩余资源的资源房） | 有空余容量才尝试；异房 `move`、同房 `gather`。指定目标耗尽则不命中。 |
-| 搬运 `haul` | `minCargo`（1 件，以当前载量比较） | 达阈值且有货则回基地，异房 `move`、抵达 `deliver`；以实际入库为准。 |
-| 建造 `build` | `roomId`（训练目标房）、`buildingKind`（`catalog`）、`minMaterials`（40 件启动门槛；默认关闭） | 新工地须过材料门槛，无敌且工地合法才施工；先 `move` 后 `build`，已建完不新建。仅 `tower` / `catalog`；编目台仅目标房。材料门槛不是服务端造价。 |
-| 守卫 `defend` | `roomId?`（当前房） | 驻守指定房；异房 `move`、遭敌 `attack`，已驻防无敌可保持；攻击范围、冷却与伤害归权威。 |
-| 撤退 `retreat` | `hpThreshold`（30 HP，绝对生命值而非百分比） | `hp <= hpThreshold` 回基地 `move`，已安全则保持，不发送伪 `retreat`。 |
+| 采集 `gather` | 采撷师；`targetRoomId: "room-1"` | 有空余容量才尝试；异房 `move`、同房 `gather`。指定目标耗尽则不命中；清空目标后自动选资源房。 |
+| 搬运 `haul` | 采撷师；`minCargo: 8` 件 | 达阈值且有货则回基地，异房 `move`、抵达 `deliver`；以实际入库为准。 |
+| 建造 `build` | 巡书使；`roomId: "room-3"`、`buildingKind: "catalog"`、`minMaterials: 25` | 新工地须过材料门槛；先 `move` 后 `build`，已建完不新建。仅 `tower` / `catalog`；编目台仅目标房。材料门槛不是服务端造价。 |
+| 守卫 `defend` | 守卷人、巡书使；`roomId: "room-3"` | 异房 `move`，抵达后 `capture` 建立权威驻防任务；追近后按距离和冷却 `attack`。无敌时保持驻守，符合场景条件才实际编目。 |
+| 撤退 `retreat` | 全队；`hpThreshold: 20` HP（绝对生命值） | `hp <= hpThreshold` 回基地 `move`，已安全则保持，不发送伪 `retreat`。 |
 
 每个自有角色每次最多一个意图。倒地或已在路上不重复派移动；没有适用卡时 `hold` 返回零意图并说明原因，不代表强制取消正在进行的权威动作。固定快照与配置产生相同选择，不读取隐藏地图、浏览器时间或随机数。生成规则与手写规则都进权威意图/动作校验；`taskPatches` 是计划队列，不能替代执行。
 
 ## 2. 一个工程，两种编辑界面
 
-`createDefaultBehaviorPlan()` → `toRuleSourceProject(plan)` → 已有 `{entry:"main.ts",files:Record<string,string>}`。`main.ts` 导出 `decide`；`ai-plan.ts` 首行是 `// @arena-ai/v1 <canonical JSON>`，下方是有类型的绑定定义（每项单独可定位）；`runtime.ts` 是可读、随源码归档的策略实现，仅依赖项目文件与 SDK。用 JSON 序列化字符串值，不拼代码表达式。相同模型、生成器和工具链生成相同源码、同一 `sourceHash`。编辑历史里的旧工程可以直接执行，不依赖客户端新版本生成器。
+新草稿使用 `createFirstExpeditionPlan()`；显式选择「物流循环」才使用 `createDefaultBehaviorPlan()`。两者都由 `toRuleSourceProject(plan)` 生成已有 `{entry:"main.ts",files:Record<string,string>}`。`main.ts` 导出 `decide`；`ai-plan.ts` 首行是 `// @arena-ai/v1 <canonical JSON>`，下方是有类型的绑定定义（每项单独可定位）；`runtime.ts` 是可读、随源码归档的策略实现，仅依赖项目文件与 SDK。相同模型、生成器和工具链生成相同源码、同一 `sourceHash`。旧工程执行及只读源码定位使用归档文件，不要求与今天的生成器逐字相同。
 
 模块页和 Monaco 共用挂在面板宿主上的一个 `useScriptWorkbench`；仍用 `draftKey(session)` 的 `files/entry/activeFile/baseVersion`。编辑模块调用既有项目更新路径、作废过期诊断/预览；不自动发布。打开/切回/载入版本时，`recoverBehaviorPlan(project)` 只解析自己版本的 marker（`JSON.parse`），并验证该工程仍是生成结果；不可识别不作可逆转换。直接编辑生成文件、改入口或增加手写文件后仍是完整源码工程。不得仅凭 marker 盲写其他文件或从任意 TS 推断策略。
 
-手写工程初次进面板显示「此草稿由源码管理」和可浏览的五卡模板；第一次采用模板须显式确认，完整保留可恢复的上一份工程（含额外文件、入口、基础版本，独立于已发布历史）。不能打开面板就写默认草稿；原本无用户修改的初始样例可直接进入可编辑模板。只做这一处草稿归属处理，不引入同步服务。回滚活动版本仍是既有操作，不顺带覆盖未保存的当前编辑。
+只有未发布且未改动的初始单文件样例会自动进入「首场远征」；既有模块草稿继续编辑原组合，手写草稿默认保留源码。玩家主动采用官方组合或源码模板时，先将当前 `RuleDraft` 压入该会话、该玩家的 `${draftKey(session)}:replacement-history`，再载入所选工程，不弹确认窗。普通改参数、切页和试跑不压栈。「撤销上次替换」弹出栈顶，恢复原文件、入口和基础版本；例如手写 A → 采用模板 → 编辑成手写 B → 另一模板，连续两次撤销分别恢复 B、A。该栈只处理本地草稿替换，与已发布版本历史、活动版本回滚相互独立。
 
 ## 3. 如何知道谁选了什么
 
