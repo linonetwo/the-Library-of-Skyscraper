@@ -271,10 +271,10 @@ export default function MapCanvas(props: MapProps) {
         },
         now,
       );
-      if (p.snapshot) dynamics.update(p.snapshot, actors.simulationTime(now));
+      if (p.snapshot) dynamics.update(p.snapshot, actors.simulationTime(now), now);
       poses = actors.render(now);
       setActorsLoading(false);
-      host.dataset.enemies = JSON.stringify(dynamics.render(actors.simulationTime(now)));
+      host.dataset.enemies = JSON.stringify(dynamics.render(actors.simulationTime(now), now));
       host.dataset.actors = JSON.stringify(poses);
       applyCamera();
     };
@@ -318,7 +318,7 @@ export default function MapCanvas(props: MapProps) {
         app.ticker.add(() => {
           const now = performance.now();
           poses = actors.render(now);
-          host.dataset.enemies = JSON.stringify(dynamics.render(actors.simulationTime(now)));
+          host.dataset.enemies = JSON.stringify(dynamics.render(actors.simulationTime(now), now));
           host.dataset.actors = JSON.stringify(poses);
           applyCamera();
         });

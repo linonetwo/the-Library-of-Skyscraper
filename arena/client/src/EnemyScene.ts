@@ -24,7 +24,7 @@ export class EnemyScene {
   private tick = -1;
   private tickMs = 500;
   constructor(private parent: Container, private assets: LoadedAssetSet) {}
-  update(snapshot: Snapshot, simulationTime: number) {
+  update(snapshot: Snapshot, simulationTime: number, now: number) {
     const snap = snapshot.sessionId !== this.session || snapshot.tick < this.tick || snapshot.tick > this.tick + 1 || snapshot.paused;
     this.session = snapshot.sessionId;
     this.tick = snapshot.tick;
@@ -50,17 +50,17 @@ export class EnemyScene {
         this.parent.addChild(node);
         view = {node,doll,motion:new ActorMotion(position,this.tickMs),enemy,title,bar,shadow};
         this.views.set(enemy.id,view);
-        view.motion.move(position,simulationTime,true,[],enemy.motionDistanceMilli ?? 0);
+        view.motion.move(position,now,true,[],enemy.motionDistanceMilli ?? 0);
       }
       view.enemy = enemy;
-      view.motion.move(position,simulationTime,snap,[],enemy.motionDistanceMilli ?? 0,scenario.speedMilliPerTick / this.tickMs,this.tickMs);
+      view.motion.move(position,now,snap,[],enemy.motionDistanceMilli ?? 0,scenario.speedMilliPerTick / this.tickMs,this.tickMs);
       view.title.text = enemy.hp <= 0 ? "守卫已倒地" : "敌方 · 书库守卫";
       view.bar.clear().rect(-26,-94,52,5).fill(0x173438).rect(-26,-94,52*Math.max(0,enemy.hp/enemy.maxHp),5).fill(0xe8907d);
     }
   }
-  render(simulationTime: number) {
+  render(simulationTime: number, now: number) {
     return [...this.views.values()].map(view => {
-      const motion = view.motion.sample(simulationTime);
+      const motion = view.motion.sample(now);
       const resolved = resolveAnimation(view.enemy,simulationTime,{
         moving:motion.moving,direction:motion.direction,tickDurationMs:this.tickMs,
         worldPosition:view.enemy.worldPosition,motionDistanceMilli:motion.motionDistanceMilli,

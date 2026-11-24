@@ -35,3 +35,20 @@ test('enemy registered bank resolves real eight-direction attack, impact and hel
   assert.deepEqual(descriptors.walk.groundPivot,[96,172.8]);
   assert.equal(catalog.walk.cycleWorldStride,1.08);
 });
+
+test('enemy movement uses display time while a 420ms snapshot advances the shared cue clock', async () => {
+  const {ActorMotion} = await import('../src/actorMotion.ts');
+  const {SimulationClock} = await import('../src/SimulationClock.ts');
+  const clock = new SimulationClock(), snapshot = {sessionId:'enemy',tick:1,paused:false,tickDurationMs:500};
+  const motion = new ActorMotion({x:0,y:0},500);
+  clock.update(snapshot,0);
+  motion.move({x:48,y:24},0,false,[],750,1.5,500);
+  const before = motion.sample(420);
+  clock.update({...snapshot,tick:2},420);
+  assert.equal(clock.sample(420),1000);
+  motion.move({x:96,y:48},420,false,[],1500,1.5,500);
+  const after = motion.sample(420);
+  assert.equal(after.x,before.x);
+  assert.equal(after.motionDistanceMilli,630);
+  assert.equal(motion.sample(500).motionDistanceMilli,750);
+});

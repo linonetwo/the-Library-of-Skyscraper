@@ -45,8 +45,8 @@ export class WorldEntities {
       this.enemies = new EnemyScene(this.parent, assets);
     });
   }
-  update(snapshot: Snapshot, simulationTime = snapshot.tick * (snapshot.tickDurationMs || 500)) {
-    this.enemies?.update(snapshot, simulationTime);
+  update(snapshot: Snapshot, simulationTime = snapshot.tick * (snapshot.tickDurationMs || 500), now = simulationTime) {
+    this.enemies?.update(snapshot, simulationTime, now);
     if (this.buildingSnapshot?.sessionId !== snapshot.sessionId ||
         snapshot.tick < this.buildingSnapshot.tick) this.buildingHp.clear();
     this.buildingSnapshot = { sessionId: snapshot.sessionId, tick: snapshot.tick };
@@ -303,8 +303,8 @@ export class WorldEntities {
         this.buildingHp.delete(id);
       }
   }
-  render(simTimeMs: number) {
-    const enemies = this.enemies?.render(simTimeMs) ?? [];
+  render(simTimeMs: number, now = simTimeMs) {
+    const enemies = this.enemies?.render(simTimeMs, now) ?? [];
     for (const fx of this.buildingFeedback) {
       fx.shot.visible = fx.shotTick !== undefined && simTimeMs >= fx.shotTick * fx.tickMs && simTimeMs < (fx.shotTick + 1) * fx.tickMs;
       fx.hit.visible = fx.hitTick !== undefined && simTimeMs >= fx.hitTick * fx.tickMs && simTimeMs < (fx.hitTick + 1) * fx.tickMs;
