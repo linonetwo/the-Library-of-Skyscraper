@@ -47,7 +47,10 @@ for(const [h,row] of Object.entries(rows)){
    const {data,info:{width:w,height:hh}}=await sharp(bytes).extract(bound).ensureAlpha().raw().toBuffer({resolveWithObject:true});largest(data,w,hh);
    const [u,v]=row.p[i].map(pt=>pt.map((n,j)=>n*scale-[bound.left,bound.top][j]));
    const src=unit(sub(v,u)),tgt=unit(sub(b,a)),srcN=[-src[1],src[0]],dstN=[-tgt[1],tgt[0]];
-   const longitudinal=norm(sub(b,a))/norm(sub(v,u));
+   // A rounded skull has real vertical thickness; projecting a flat neck-
+   // crown strip in the camera-depth directions would squash it to 10 px.
+   const axisLength=isHead?Math.max(norm(sub(b,a)),h==="N"||h==="S"?26:24):norm(sub(b,a));
+   const longitudinal=axisLength/norm(sub(v,u));
    // Width perpendicular to the ground axis is not simply a scaled screen
    // width: preserve the jaw, mantle and shoulder radii at world scale.
    let vals=[];for(let p=0;p<w*hh;p++)if(data[p*4+3]>125)vals.push(dot(sub([p%w,Math.floor(p/w)],u),srcN));
@@ -68,7 +71,16 @@ for(const [h,row] of Object.entries(rows)){
       const back=f<.03||(f<.40&&Math.abs(r)>11);
       if((depth==="back")!==back)continue;
      }
-     data.copy(raw,4*(y*256+x),k,k+4);
+     // Texture parts project to 25-45 px: footprint supersampling keeps the
+     // dark ink contours from becoming isolated high-frequency speckles.
+     let rr=0,gg=0,bb=0,aa=0;
+     for(const oy of [-.35,0,.35])for(const ox of [-.35,0,.35]){
+       const du=(ox*tgt[0]+oy*tgt[1])/longitudinal,dv=(ox*dstN[0]+oy*dstN[1])/lateral;
+       const xx=Math.round(sx+du*src[0]+dv*srcN[0]),yy=Math.round(sy+du*src[1]+dv*srcN[1]);
+       if(xx<0||yy<0||xx>=w||yy>=hh)continue;const kk=4*(yy*w+xx),alpha=data[kk+3];
+       aa+=alpha;rr+=alpha*data[kk];gg+=alpha*data[kk+1];bb+=alpha*data[kk+2];
+     }
+     if(aa)raw.set([rr/aa,gg/aa,bb/aa,aa/9].map(Math.round),4*(y*256+x));
     }
     const part=id+(depth==="single"?"":"-"+depth),image=`${h}/${part}.png`;
     await sharp(raw,{raw:{width:256,height:256,channels:4}}).png().toFile(new URL(image,out).pathname);
