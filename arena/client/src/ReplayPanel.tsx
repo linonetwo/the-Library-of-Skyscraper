@@ -6,9 +6,9 @@ import { useReplay } from "./useReplay";
 import type { Session } from "./types";
 import ReplayRules from "./ReplayRules";
 
-export default function ReplayPanel({ session, onClose }: { session: Session; onClose: () => void }) {
+export default function ReplayPanel({ session, onClose, target }: { session: Session; onClose: () => void; target?: import("./eventReplay").EventFocus | null }) {
   const dialog = useDialog(onClose);
-  const replay = useReplay(session);
+  const replay = useReplay(session, target);
   const [selected, setSelected] = useState<string | null>(null);
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
   const [focusIntent,setFocusIntent]=useState<import("./cameraController").FocusIntent>();
@@ -25,6 +25,9 @@ export default function ReplayPanel({ session, onClose }: { session: Session; on
         </header>
         {replay.error && <p role="alert">{replay.error}</p>}
         {replay.timeline ? <>
+          {target && <p role="status">{replay.eventLocated
+            ? `已定位事件 #${target.event.id} · T${target.event.tick} · ${target.event.message}`
+            : `录制中未找到事件 #${target.event.id} · T${target.event.tick}；可用录制范围：操作 ${replay.timeline.frames[0]?.operationIndex}–${replay.timeline.frames.at(-1)?.operationIndex}，T${replay.timeline.frames[0]?.tick}–T${replay.timeline.frames.at(-1)?.tick}（按操作顺序，可能含重置）。可继续正常播放。`}</p>}
           <div style={{ position: "relative", height: "min(52vh, 540px)", background: "#172b2e", borderRadius: "16px", overflow: "hidden" }}>
             <MapCanvas snapshot={snapshot} selected={selected} selectedRoom={selectedRoom}
               zoom={1} showRoutes focusIntent={focusIntent}
