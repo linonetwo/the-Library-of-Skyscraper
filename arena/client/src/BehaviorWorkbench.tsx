@@ -58,7 +58,7 @@ export default function BehaviorWorkbench({
       <p>
         按优先级尝试模块，首个满足条件的模块选择动作。修改草稿后试跑，再发布到战场。
       </p>
-      {w.backup && <button onClick={w.restoreBackup}>恢复替换前草稿</button>}
+      {w.backup && <button onClick={w.restoreBackup}>撤销上次替换</button>}
       <ScriptVersion busy={w.busy} onDisable={() => void w.run("disable")} />
       <div className="behavior-tabs" role="tablist" aria-label="AI 编辑视图">
         {(["modules", "source", "versions"] as const).map((id, i) => (
@@ -113,9 +113,7 @@ export default function BehaviorWorkbench({
               项目，无法恢复为模块组合。可以继续编辑源码，或明确替换草稿为官方组合。
             </p>
             <button onClick={() => setTab("source")}>继续编辑当前源码</button>
-            <button disabled={!w.canReplaceProject} onClick={w.createPlan}>
-              替换草稿为官方组合
-            </button>
+            <button onClick={w.createPlan}>替换草稿为官方组合</button>
           </section>
         ))}
       {tab === "source" && (
@@ -123,7 +121,7 @@ export default function BehaviorWorkbench({
           <select
             aria-label="载入规则模板"
             value=""
-            disabled={w.busy || !w.canReplaceProject}
+            disabled={w.busy}
             onChange={(event) =>
               w.replaceProject(scriptTemplates[event.target.value].project)
             }

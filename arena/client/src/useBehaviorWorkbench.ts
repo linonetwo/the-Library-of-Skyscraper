@@ -12,11 +12,10 @@ import { recallSource } from "./scriptTemplates";
 
 export function useBehaviorWorkbench() {
   const workbench = useScriptWorkbench();
-  const backupKey = `${draftKey(workbench.session)}:before-modules`;
-  const [backup, setBackup] = useState<RuleDraft | null>(() => {
-    const saved = localStorage.getItem(backupKey);
-    return saved ? JSON.parse(saved) : null;
-  });
+  const historyKey = `${draftKey(workbench.session)}:replacement-history`;
+  const [history, setHistory] = useState<RuleDraft[]>(() =>
+    JSON.parse(localStorage.getItem(historyKey) ?? "[]"),
+  );
   const stock =
     !workbench.draft.baseVersion &&
     workbench.draft.entry === "main.ts" &&
@@ -34,25 +33,24 @@ export function useBehaviorWorkbench() {
       toRuleSourceProject(next),
       workbench.draft.baseVersion,
     );
-  const canReplaceProject = !backup || !!plan;
+  const saveHistory = (next: RuleDraft[]) => {
+    localStorage.setItem(historyKey, JSON.stringify(next));
+    setHistory(next);
+  };
   const replaceProject = (project: RuleSourceProject) => {
-    if (!canReplaceProject) return;
-    if (!backup) {
-      localStorage.setItem(backupKey, JSON.stringify(workbench.draft));
-      setBackup(workbench.draft);
-    }
+    saveHistory([...history, workbench.draft]);
     workbench.loadProject(project);
   };
   const createPlan = () =>
     replaceProject(toRuleSourceProject(createDefaultBehaviorPlan()));
+  const backup = history.at(-1);
   const restoreBackup = () => {
     if (!backup) return;
     workbench.loadProject(
       { files: backup.files, entry: backup.entry },
       backup.baseVersion,
     );
-    localStorage.removeItem(backupKey);
-    setBackup(null);
+    saveHistory(history.slice(0, -1));
   };
   return {
     ...workbench,
@@ -60,7 +58,6 @@ export function useBehaviorWorkbench() {
     updatePlan,
     createPlan,
     replaceProject,
-    canReplaceProject,
     backup,
     restoreBackup,
   };
