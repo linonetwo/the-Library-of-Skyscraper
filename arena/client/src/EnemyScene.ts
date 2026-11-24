@@ -1,3 +1,4 @@
+import scenario from "../../shared/first-expedition.json";
 import { Container, Graphics, Text } from "pixi.js";
 import { ActorMotion } from "./actorMotion";
 import { DollRenderer } from "./DollRenderer";
@@ -52,8 +53,7 @@ export class EnemyScene {
         view.motion.move(position,simulationTime,true,[],enemy.motionDistanceMilli ?? 0);
       }
       view.enemy = enemy;
-      view.motion.duration = this.tickMs;
-      view.motion.move(position,simulationTime,snap,[],enemy.motionDistanceMilli ?? 0);
+      view.motion.move(position,simulationTime,snap,[],enemy.motionDistanceMilli ?? 0,scenario.speedMilliPerTick / this.tickMs,this.tickMs);
       view.title.text = enemy.hp <= 0 ? "守卫已倒地" : "敌方 · 书库守卫";
       view.bar.clear().rect(-26,-94,52,5).fill(0x173438).rect(-26,-94,52*Math.max(0,enemy.hp/enemy.maxHp),5).fill(0xe8907d);
     }
