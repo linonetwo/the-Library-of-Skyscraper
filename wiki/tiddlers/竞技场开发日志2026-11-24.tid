@@ -2,7 +2,7 @@ title: 竞技场开发日志2026-11-24
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261124022230000
-modified: 20261124022230000
+modified: 20261124053000000
 
 !! 主试玩与AI工作台
 
@@ -12,18 +12,22 @@ modified: 20261124022230000
 
 [img[竞技场2026-11-24AI工作台发布实机.png]]
 
-图为今日主入口的真实源码工作台，地图与角色保持可见。可视行为模块编辑候选继续收合，当前主入口显示的仍是已合源码／预设功能。
+图为今日稍早的真实源码工作台。随后主入口已更新到下方行为模块界面。
 
 !! 行为模块可视编辑与真实执行
 
 Astra冻结AI1合同：采集、搬运、建造、守卫、撤退五模块按priority组合，配置生成唯一TS工程，沿既有编译／V8试跑／发布／历史／回放链；无第二模拟或发布接口。核心[[PR77|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/77]]已按固定f86bcf9经独立Astra审与全CI后合入。真实8790试跑、发布及20tick执行有私有aiTrace，采集者实际负重4回程；任务补丁仅记计划，真实执行来自动作intents。
 
-界面Sol的独立5181候选已实际完成参数修改→预览路径及动作→发布→采集入库4材，库存10到14；运行trace与版本历史可见，手写草稿替换后恢复逐字段一致，浏览器错误0。独立试跑／已发布运行／回放以sourceHash和operationIndex标明来源。界面尚待Astra完整实机评审、CI与主入口接入。
+[[PR81|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/81]]精确294721e经Astra评审及完整CI通过后合入ea3b7d0；主试玩5175已同步。进入训练远征→顶部“AI 模块”，默认直接展示五张可展开卡片，支持参数、角色、房间、优先级及源码跳转。主代理实际修改撤退阈值30→25，试跑生成a9ebd64d3515并发布；开始远征后采集入库，库存10→18。主页面的历史版本和实际操作回放均展示决策路径，浏览器错误0。试跑／已发布／回放以sourceHash和operationIndex区分来源。手写草稿和模板替换使用单一撤销历史，可依次恢复B、A的完整files／entry／baseVersion。
 
-首场远征五卡模板复用现有capture建立guard任务以靠近，脚本再按真实范围和冷却发attack；构建与采运仍走既有权威动作。Sol两轮真实seed42在tick233胜利，观察到守卫与反扑敌人HP归0、建材入库、编目台16／16完成及巡书使驻守编目；该后续模板候选单独收合。
+[img[竞技场2026-11-24AI模块编辑实机.png]]
+
+图为今日主试玩的实际模块参数页，撤退阈值25；背景地图与纸娃娃角色来自运行中的游戏。
+
+首场远征五卡模板复用现有capture建立guard任务以靠近，脚本再按真实范围和冷却发attack；构建与采运仍走既有权威动作。Sol两轮真实seed42在tick233胜利，观察到守卫与反扑敌人HP归0、建材入库、编目台16／16完成及巡书使驻守编目；完整模板与历史源码定位修复已在[[PR80|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/80]]合入cac1b63，真实8790复跑8项通过；前端首场模板选择入口继续接入。旧PR77归档仍能定位原始模块源码。
 
 !! 并行美术与动作接入
 
-八向carry／unload／collect／build／catalog离线候选[[PR73|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/73]]经Astra修正N向工具遮挡与NW货包可读性后接受，实机接线待完成。敌人八向五动作[[PR79|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/79]]在独立5180已实际观测待机、行走、攻击、受击和倒地，继续评审。全部仍在v0.3 AI1／P1–P5完整批次，尚待整版集中验收与统一发布。
+八向carry／unload／collect／build／catalog离线候选[[PR73|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/73]]经Astra修正N向工具遮挡与NW货包可读性后接受，实机接线待完成。敌人八向五动作[[PR79|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/79]]在独立5180已实际观测待机、行走、攻击、受击和倒地，已由Astra批准，CI通过并合入8ab947b，主试玩同步；玩家五工作动作继续运行时接线。全部仍在v0.3 AI1／P1–P5完整批次，尚待整版集中验收与统一发布。
 
-计划保持精简，见[[竞技场AI模块编辑实施计划]]、[[竞技场v0.3.0版本计划]]。今日主代理状态／录屏在root/2026-11-24/main-eight、ai-workbench；界面候选证据在arena-v030-ai-evidence/ui。
+计划保持精简，见[[竞技场AI模块编辑实施计划]]、[[竞技场v0.3.0版本计划]]。今日主代理状态／录屏在root/2026-11-24/main-eight、ai-workbench、ai-modules；首场模板权威证据在ai-first-expedition。完整FSM／决策树图编辑仍保留原需求，本轮可见交付为五模块优先组合。
