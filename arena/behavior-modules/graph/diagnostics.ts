@@ -1,3 +1,4 @@
+import { graphDraftSourceRef } from './source';
 import type { GraphCondition, GraphDiagnostic, RuleGraph, RuleNode } from './types';
 export function nodeChildren(node: RuleNode): string[] {
   switch(node.type) {
@@ -6,6 +7,7 @@ export function nodeChildren(node: RuleNode): string[] {
     case 'score':return [...node.candidates.map(c=>c.nodeId),node.fallback];
     case 'module':return [node.fallback];case 'log':return [node.next];case 'hold':case 'check':return [];
   }
+  return [];
 }
 export function diagnoseGraph(graph: RuleGraph): GraphDiagnostic[] {
   const diagnostics:GraphDiagnostic[]=[];
@@ -22,6 +24,7 @@ export function diagnoseGraph(graph: RuleGraph): GraphDiagnostic[] {
     if(c.type!=='compare'||!['hp','cargo','cargoCapacity','materials','roomEnemyHp','targetEnemyHp','tickInState'].includes(c.field)||!['lt','lte','eq','gte','gt'].includes(c.op)||!Number.isFinite(c.value)||typeof c.missing!=='boolean')add(id,'condition','Invalid field, comparison or missing branch');
     if(c.type==='compare'&&c.field==='targetEnemyHp'&&!c.roomId)add(id,'condition','Target-room field requires roomId');
   };
+  if(!graph.roles.length)add(graph.graphId,'entry','Graph requires at least one role entry');
   const roles=new Set<string>();
   for(const r of graph.roles){if(roles.has(r.role)||!['gatherer','guard','scout'].includes(r.role))add(r.id,'role','Each supported role has one entry');roles.add(r.role);if(!states.has(r.initialStateId)||!states.has(r.fallbackStateId))add(r.id,'entry','Missing initial/fallback state');}
   for(const s of graph.states){if(!nodes.has(s.treeId))add(s.id,'tree','Missing persistent tree');for(const e of [...s.entry,...s.exit]){if(e.type==='task'&&(!Number.isInteger(e.priority)||!e.roomId||!['move','gather','deliver','build','attack','capture'].includes(e.kind)))add(s.id,'effect','Invalid task plan');if(!['task','reason','remember'].includes(e.type))add(s.id,'effect','Unsupported effect');}}
@@ -32,6 +35,7 @@ export function diagnoseGraph(graph: RuleGraph): GraphDiagnostic[] {
     if(!valid)add(m.moduleId,'module-config','Unsupported module kind/config');
   }
   for(const n of graph.nodes){
+    if(!['check','condition','priority','sequence','score','log','module','hold'].includes(n.type))add(n.id,'node-kind','Unsupported executable node kind');
     for(const child of nodeChildren(n))if(!nodes.has(child))add(n.id,'reference','Missing node '+child);
     if(n.type==='condition'||n.type==='check')condition(n.id,n.condition);
     if(n.type==='module'&&!modules.has(n.moduleId))add(n.id,'module','Missing module binding');
@@ -45,5 +49,5 @@ export function diagnoseGraph(graph: RuleGraph): GraphDiagnostic[] {
   graph.states.filter(s=>!reachable.has(s.id)).forEach(s=>add(s.id,'unreachable','State is unreachable','warning'));
   const treeReachable=new Set<string>();const walk=(id:string)=>{if(treeReachable.has(id)||!nodes.has(id))return;treeReachable.add(id);nodeChildren(nodes.get(id)!).forEach(walk);};graph.states.filter(s=>reachable.has(s.id)).forEach(s=>walk(s.treeId));
   graph.nodes.filter(n=>!treeReachable.has(n.id)).forEach(n=>add(n.id,'unreachable','Node is unreachable','warning'));
-  return diagnostics;
+  return diagnostics.map(d=>({...d,sourceRef:graphDraftSourceRef(graph,d.objectId)??undefined}));
 }

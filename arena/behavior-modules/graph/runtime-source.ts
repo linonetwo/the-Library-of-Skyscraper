@@ -62,7 +62,7 @@ export function decide(ctx:RuleContext):RuleDecisionResult {
      const result=decideModule({...ctx,squad:{actors:[actor]},limits:{...ctx.limits,maxIntents:1}});
      const item=(result.memoryPatch?.set?.aiTrace as unknown as {actors:{moduleId:string;reason:string}[]})?.actors[0];
      if(item && item.moduleId===module.moduleId)return {selected:true,nodeId:id,moduleId:module.moduleId,intent:result.intents[0],reason:item.reason,logs:[]};
-     return evaluate(node.fallback);
+     const fallback=evaluate(node.fallback);return !fallback.intent && item?.reason==='travel in progress'?{...fallback,reason:item.reason}:fallback;
     }
     case 'priority':{for(const child of node.children){const result=evaluate(child);if(result.selected)return result;}return evaluate(node.fallback);}
     case 'sequence':{

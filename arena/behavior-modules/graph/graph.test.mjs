@@ -13,7 +13,7 @@ test('graph diagnostics and immutable serializable patch baseline',()=>{
  const node=graph.nodes.find(n=>n.id==='cargo-check');const changed=api.applyGraphPatch(graph,{graphId:graph.graphId,baseRevision:0,operations:[{type:'putNode',node:{...node,condition:{...node.condition,value:6}}}]});
  assert.equal(graph.revision,0);assert.equal(changed.revision,1);assert.equal(node.condition.value,8);
  assert.throws(()=>api.applyGraphPatch(changed,{graphId:graph.graphId,baseRevision:0,operations:[]}),/stale/);
- changed.nodes.find(n=>n.id==='gather-node').fallback='cargo-check';assert.ok(api.diagnoseGraph(changed).some(d=>d.code==='tree-cycle'));assert.throws(()=>api.toGraphSourceProject(changed));
+ changed.nodes.find(n=>n.id==='gather-node').fallback='cargo-check';assert.ok(api.diagnoseGraph(changed).some(d=>d.code==='tree-cycle'&&d.sourceRef?.file==='graph-plan.ts'));assert.throws(()=>api.toGraphSourceProject(changed));
 });
 test('logistics fixture compiles in existing toolchain and threshold changes actual V8 intent',async()=>{
  const graph=api.createLogisticsGraph();const a=await executable(graph);assert.equal(a.decide(context()).intents[0].type,'gather');
