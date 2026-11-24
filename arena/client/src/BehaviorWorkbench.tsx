@@ -59,19 +59,37 @@ export default function BehaviorWorkbench({
         按优先级尝试模块，首个满足条件的模块选择动作。修改草稿后试跑，再发布到战场。
       </p>
       {w.backup && <button onClick={w.restoreBackup}>撤销上次替换</button>}
+      <label className="behavior-template">
+        官方组合{" "}
+        <select
+          aria-label="载入官方行为组合"
+          value=""
+          onChange={(event) =>
+            w.createPlan(event.target.value as "expedition" | "logistics")
+          }
+        >
+          <option value="" disabled>
+            选择组合 · 替换草稿并保留撤销历史
+          </option>
+          <option value="expedition">首场远征 · 清守卫、建目录馆、编目</option>
+          <option value="logistics">物流循环 · 采集与入库</option>
+        </select>
+      </label>
       <ScriptVersion busy={w.busy} onDisable={() => void w.run("disable")} />
-      <div className="behavior-tabs" role="tablist" aria-label="AI 编辑视图">
-        {(["modules", "source", "versions"] as const).map((id, i) => (
-          <button
-            key={id}
-            role="tab"
-            aria-selected={tab === id}
-            onClick={() => setTab(id)}
-          >
-            {["行为模块", "TypeScript 源码", "发布版本"][i]}
-          </button>
-        ))}
-      </div>
+      {!view && (
+        <div className="behavior-tabs" role="tablist" aria-label="AI 编辑视图">
+          {(["modules", "source", "versions"] as const).map((id, i) => (
+            <button
+              key={id}
+              role="tab"
+              aria-selected={tab === id}
+              onClick={() => setTab(id)}
+            >
+              {["行为模块", "TypeScript 源码", "发布版本"][i]}
+            </button>
+          ))}
+        </div>
+      )}
       {tab === "modules" &&
         (w.plan ? (
           <>
@@ -113,7 +131,7 @@ export default function BehaviorWorkbench({
               项目，无法恢复为模块组合。可以继续编辑源码，或明确替换草稿为官方组合。
             </p>
             <button onClick={() => setTab("source")}>继续编辑当前源码</button>
-            <button onClick={w.createPlan}>替换草稿为官方组合</button>
+            <button onClick={() => w.createPlan()}>替换草稿为官方组合</button>
           </section>
         ))}
       {tab === "source" && (

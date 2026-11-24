@@ -25,6 +25,8 @@ export default function RuleEditor() {
       <div className="ai-mode-tabs" role="tablist" aria-label="AI 工作台模式">
         <button
           role="tab"
+          id="ai-modules-tab"
+          aria-controls="ai-editor-panel"
           aria-selected={view === "modules"}
           onClick={() => setView("modules")}
         >
@@ -41,6 +43,15 @@ export default function RuleEditor() {
         </button>
         <button
           role="tab"
+          id="ai-versions-tab"
+          aria-controls="ai-editor-panel"
+          aria-selected={view === "versions"}
+          onClick={() => setView("versions")}
+        >
+          发布版本
+        </button>
+        <button
+          role="tab"
           id="ai-presets-tab"
           aria-selected={!coding}
           aria-controls="ai-editor-panel"
@@ -52,7 +63,14 @@ export default function RuleEditor() {
       <div
         id="ai-editor-panel"
         role="tabpanel"
-        aria-labelledby={coding ? "ai-typescript-tab" : "ai-presets-tab"}
+        aria-labelledby={
+          {
+            modules: "ai-modules-tab",
+            source: "ai-typescript-tab",
+            versions: "ai-versions-tab",
+            presets: "ai-presets-tab",
+          }[view]
+        }
       >
         {coding ? (
           <Suspense fallback={<p>正在加载 TypeScript 工作台…</p>}>
