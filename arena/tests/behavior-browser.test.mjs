@@ -81,10 +81,7 @@ test(
       },
     });
     assert.equal(invalid.isError, true);
-    assert.match(
-      invalid.content[0].text,
-      /haul does not have config field hpThreshold/,
-    );
+    assert.match(invalid.content[0].text, /hpThreshold/);
     assert.equal(
       (await call("Page.getState")).behavior.modules.find(
         (m) => m.moduleId === "haul",

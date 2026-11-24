@@ -10,6 +10,22 @@ const fields = {
   roomId: "房间",
   buildingKind: "设施",
 };
+const editable = {
+  enabled: z.boolean().optional(),
+  priority: z.number().int().optional(),
+  roles: z.array(z.enum(Object.keys(roles))).optional(),
+};
+const configShapes = {
+  retreat: { hpThreshold: z.number().min(0).max(100).optional() },
+  haul: { minCargo: z.number().min(0).optional() },
+  build: {
+    roomId: z.string().optional(),
+    buildingKind: z.enum(["catalog", "tower"]).optional(),
+    minMaterials: z.number().min(0).optional(),
+  },
+  defend: { roomId: z.string().optional() },
+  gather: { targetRoomId: z.string().optional() },
+};
 export const behaviorActionSchemas = [
   ...["openBehavior", "undoBehaviorReplacement"].map((type) =>
     z.object({ type: z.literal(type) }).strict(),
@@ -26,26 +42,19 @@ export const behaviorActionSchemas = [
       moduleId: z.enum(moduleIds),
     })
     .strict(),
-  z
-    .object({
-      type: z.literal("setBehaviorModule"),
-      moduleId: z.enum(moduleIds),
-      enabled: z.boolean().optional(),
-      priority: z.number().int().optional(),
-      roles: z.array(z.enum(Object.keys(roles))).optional(),
-      config: z
+  z.discriminatedUnion(
+    "moduleId",
+    Object.entries(configShapes).map(([moduleId, config]) =>
+      z
         .object({
-          hpThreshold: z.number().min(0).max(100).optional(),
-          minCargo: z.number().min(0).optional(),
-          minMaterials: z.number().min(0).optional(),
-          targetRoomId: z.string().optional(),
-          roomId: z.string().optional(),
-          buildingKind: z.enum(["catalog", "tower"]).optional(),
+          type: z.literal("setBehaviorModule"),
+          moduleId: z.literal(moduleId),
+          ...editable,
+          config: z.object(config).strict().optional(),
         })
-        .strict()
-        .optional(),
-    })
-    .strict(),
+        .strict(),
+    ),
+  ),
 ];
 async function open(page) {
   const tab = page.getByRole("tab", { name: "行为模块", exact: true });
@@ -73,22 +82,6 @@ export async function performBehaviorAction(page, action) {
     ].includes(action.type)
   )
     return false;
-  if (action.type === "setBehaviorModule") {
-    const keys = {
-      retreat: ["hpThreshold"],
-      haul: ["minCargo"],
-      build: ["roomId", "buildingKind", "minMaterials"],
-      defend: ["roomId"],
-      gather: ["targetRoomId"],
-    }[action.moduleId];
-    const invalid = Object.keys(action.config ?? {}).find(
-      (key) => !keys.includes(key),
-    );
-    if (invalid)
-      throw new Error(
-        `${action.moduleId} does not have config field ${invalid}`,
-      );
-  }
   await open(page);
   if (action.type === "openBehavior") return true;
   if (action.type === "loadBehaviorTemplate") {
