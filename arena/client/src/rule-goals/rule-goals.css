@@ -4,3 +4,5 @@
 .rule-goals article { border: 1px solid #718096; margin-block: .5rem; padding: .5rem; }
 .rule-goals article > button { margin-inline-start: .5rem; }
 .rule-goal-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-block: .5rem; }
+.rule-goals > label { display: block; }
+.rule-goals article > label { display: inline-flex; align-items: center; gap: .4rem; }
