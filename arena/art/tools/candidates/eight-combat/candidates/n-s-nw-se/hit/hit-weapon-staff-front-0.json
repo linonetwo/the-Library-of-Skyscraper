@@ -1,0 +1,226 @@
+{
+  "frames": {
+    "hit/weapon-staff-front/S/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 26,
+        "h": 94
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 73,
+        "w": 26,
+        "h": 94
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/SE/01": {
+      "frame": {
+        "x": 37,
+        "y": 2,
+        "w": 20,
+        "h": 94
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 75,
+        "w": 20,
+        "h": 94
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/SE/00": {
+      "frame": {
+        "x": 61,
+        "y": 2,
+        "w": 33,
+        "h": 93
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 69,
+        "w": 33,
+        "h": 93
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/S/00": {
+      "frame": {
+        "x": 98,
+        "y": 2,
+        "w": 38,
+        "h": 91
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 71,
+        "w": 38,
+        "h": 91
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/N/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/N/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/NW/00": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/weapon-staff-front/NW/01": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/weapon-staff-front/N": [
+      "hit/weapon-staff-front/N/00",
+      "hit/weapon-staff-front/N/01"
+    ],
+    "hit/weapon-staff-front/S": [
+      "hit/weapon-staff-front/S/00",
+      "hit/weapon-staff-front/S/01"
+    ],
+    "hit/weapon-staff-front/NW": [
+      "hit/weapon-staff-front/NW/00",
+      "hit/weapon-staff-front/NW/01"
+    ],
+    "hit/weapon-staff-front/SE": [
+      "hit/weapon-staff-front/SE/00",
+      "hit/weapon-staff-front/SE/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-weapon-staff-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 138,
+      "h": 98
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

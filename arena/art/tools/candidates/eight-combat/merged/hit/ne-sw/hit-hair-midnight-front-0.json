@@ -1,0 +1,122 @@
+{
+  "frames": {
+    "hit/hair-midnight-front/NE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 41,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 39,
+        "w": 41,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-midnight-front/NE/01": {
+      "frame": {
+        "x": 52,
+        "y": 2,
+        "w": 42,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 40,
+        "w": 42,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-midnight-front/SW/00": {
+      "frame": {
+        "x": 98,
+        "y": 2,
+        "w": 46,
+        "h": 53
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 77,
+        "y": 43,
+        "w": 46,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "hit/hair-midnight-front/SW/01": {
+      "frame": {
+        "x": 148,
+        "y": 2,
+        "w": 46,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 43,
+        "w": 46,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "hit/hair-midnight-front/NE": [
+      "hit/hair-midnight-front/NE/00",
+      "hit/hair-midnight-front/NE/01"
+    ],
+    "hit/hair-midnight-front/SW": [
+      "hit/hair-midnight-front/SW/00",
+      "hit/hair-midnight-front/SW/01"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "hit-hair-midnight-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 196,
+      "h": 62
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

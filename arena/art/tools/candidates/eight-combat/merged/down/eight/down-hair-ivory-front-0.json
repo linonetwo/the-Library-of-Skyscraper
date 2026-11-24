@@ -1,0 +1,834 @@
+{
+  "frames": {
+    "down/hair-ivory-front/SW/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 48,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 88,
+        "w": 48,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/NE/01": {
+      "frame": {
+        "x": 59,
+        "y": 2,
+        "w": 48,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 120,
+        "w": 48,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/NE/00": {
+      "frame": {
+        "x": 111,
+        "y": 2,
+        "w": 47,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 91,
+        "w": 47,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/SW/01": {
+      "frame": {
+        "x": 162,
+        "y": 2,
+        "w": 48,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 121,
+        "w": 48,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/E/00": {
+      "frame": {
+        "x": 214,
+        "y": 2,
+        "w": 44,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 91,
+        "w": 44,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/N/01": {
+      "frame": {
+        "x": 262,
+        "y": 2,
+        "w": 43,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 115,
+        "w": 43,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/S/01": {
+      "frame": {
+        "x": 309,
+        "y": 2,
+        "w": 44,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 104,
+        "y": 126,
+        "w": 44,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/E/01": {
+      "frame": {
+        "x": 357,
+        "y": 2,
+        "w": 43,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 124,
+        "w": 43,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/W/00": {
+      "frame": {
+        "x": 404,
+        "y": 2,
+        "w": 45,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 91,
+        "w": 45,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/W/01": {
+      "frame": {
+        "x": 453,
+        "y": 2,
+        "w": 43,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 124,
+        "w": 43,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/N/00": {
+      "frame": {
+        "x": 500,
+        "y": 2,
+        "w": 43,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 89,
+        "w": 43,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/S/00": {
+      "frame": {
+        "x": 547,
+        "y": 2,
+        "w": 43,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 104,
+        "y": 92,
+        "w": 43,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/SE/00": {
+      "frame": {
+        "x": 594,
+        "y": 2,
+        "w": 43,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 93,
+        "w": 43,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/NW/00": {
+      "frame": {
+        "x": 641,
+        "y": 2,
+        "w": 42,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 90,
+        "w": 42,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/SE/01": {
+      "frame": {
+        "x": 687,
+        "y": 2,
+        "w": 41,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 126,
+        "y": 129,
+        "w": 41,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/E/02": {
+      "frame": {
+        "x": 732,
+        "y": 2,
+        "w": 33,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 166,
+        "y": 157,
+        "w": 33,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/NW/01": {
+      "frame": {
+        "x": 769,
+        "y": 2,
+        "w": 42,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 120,
+        "w": 42,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/E/03": {
+      "frame": {
+        "x": 815,
+        "y": 2,
+        "w": 32,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 174,
+        "y": 171,
+        "w": 32,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/W/02": {
+      "frame": {
+        "x": 851,
+        "y": 2,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 156,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/SE/02": {
+      "frame": {
+        "x": 891,
+        "y": 2,
+        "w": 29,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 153,
+        "y": 178,
+        "w": 29,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/W/03": {
+      "frame": {
+        "x": 924,
+        "y": 2,
+        "w": 35,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 170,
+        "w": 35,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/SE/03": {
+      "frame": {
+        "x": 963,
+        "y": 2,
+        "w": 29,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 158,
+        "y": 195,
+        "w": 29,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/NE/02": {
+      "frame": {
+        "x": 996,
+        "y": 2,
+        "w": 37,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 146,
+        "y": 141,
+        "w": 37,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/SW/02": {
+      "frame": {
+        "x": 1037,
+        "y": 2,
+        "w": 30,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 180,
+        "w": 30,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/NE/03": {
+      "frame": {
+        "x": 1071,
+        "y": 2,
+        "w": 35,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 152,
+        "y": 153,
+        "w": 35,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/SW/03": {
+      "frame": {
+        "x": 1110,
+        "y": 2,
+        "w": 30,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 71,
+        "y": 197,
+        "w": 30,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/NW/02": {
+      "frame": {
+        "x": 1144,
+        "y": 2,
+        "w": 35,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 142,
+        "w": 35,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/NW/03": {
+      "frame": {
+        "x": 1183,
+        "y": 2,
+        "w": 33,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 69,
+        "y": 154,
+        "w": 33,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/N/02": {
+      "frame": {
+        "x": 1220,
+        "y": 2,
+        "w": 37,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 132,
+        "w": 37,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/S/03": {
+      "frame": {
+        "x": 1261,
+        "y": 2,
+        "w": 39,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 216,
+        "w": 39,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/N/03": {
+      "frame": {
+        "x": 1304,
+        "y": 2,
+        "w": 37,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 143,
+        "w": 37,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/S/02": {
+      "frame": {
+        "x": 1345,
+        "y": 2,
+        "w": 39,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 199,
+        "w": 39,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    }
+  },
+  "animations": {
+    "down/hair-ivory-front/NE": [
+      "down/hair-ivory-front/NE/00",
+      "down/hair-ivory-front/NE/01",
+      "down/hair-ivory-front/NE/02",
+      "down/hair-ivory-front/NE/03"
+    ],
+    "down/hair-ivory-front/SW": [
+      "down/hair-ivory-front/SW/00",
+      "down/hair-ivory-front/SW/01",
+      "down/hair-ivory-front/SW/02",
+      "down/hair-ivory-front/SW/03"
+    ],
+    "down/hair-ivory-front/E": [
+      "down/hair-ivory-front/E/00",
+      "down/hair-ivory-front/E/01",
+      "down/hair-ivory-front/E/02",
+      "down/hair-ivory-front/E/03"
+    ],
+    "down/hair-ivory-front/W": [
+      "down/hair-ivory-front/W/00",
+      "down/hair-ivory-front/W/01",
+      "down/hair-ivory-front/W/02",
+      "down/hair-ivory-front/W/03"
+    ],
+    "down/hair-ivory-front/N": [
+      "down/hair-ivory-front/N/00",
+      "down/hair-ivory-front/N/01",
+      "down/hair-ivory-front/N/02",
+      "down/hair-ivory-front/N/03"
+    ],
+    "down/hair-ivory-front/S": [
+      "down/hair-ivory-front/S/00",
+      "down/hair-ivory-front/S/01",
+      "down/hair-ivory-front/S/02",
+      "down/hair-ivory-front/S/03"
+    ],
+    "down/hair-ivory-front/NW": [
+      "down/hair-ivory-front/NW/00",
+      "down/hair-ivory-front/NW/01",
+      "down/hair-ivory-front/NW/02",
+      "down/hair-ivory-front/NW/03"
+    ],
+    "down/hair-ivory-front/SE": [
+      "down/hair-ivory-front/SE/00",
+      "down/hair-ivory-front/SE/01",
+      "down/hair-ivory-front/SE/02",
+      "down/hair-ivory-front/SE/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "down-hair-ivory-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1386,
+      "h": 50
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

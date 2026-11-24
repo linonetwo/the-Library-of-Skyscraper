@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "down/hair-ivory-front/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 44,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 91,
+        "w": 44,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/E/01": {
+      "frame": {
+        "x": 55,
+        "y": 2,
+        "w": 43,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 124,
+        "w": 43,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/W/00": {
+      "frame": {
+        "x": 102,
+        "y": 2,
+        "w": 45,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 91,
+        "w": 45,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/W/01": {
+      "frame": {
+        "x": 151,
+        "y": 2,
+        "w": 43,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 124,
+        "w": 43,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/E/02": {
+      "frame": {
+        "x": 198,
+        "y": 2,
+        "w": 33,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 166,
+        "y": 157,
+        "w": 33,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/E/03": {
+      "frame": {
+        "x": 235,
+        "y": 2,
+        "w": 32,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 174,
+        "y": 171,
+        "w": 32,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/W/02": {
+      "frame": {
+        "x": 271,
+        "y": 2,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 156,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "down/hair-ivory-front/W/03": {
+      "frame": {
+        "x": 311,
+        "y": 2,
+        "w": 35,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 170,
+        "w": 35,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    }
+  },
+  "animations": {
+    "down/hair-ivory-front/E": [
+      "down/hair-ivory-front/E/00",
+      "down/hair-ivory-front/E/01",
+      "down/hair-ivory-front/E/02",
+      "down/hair-ivory-front/E/03"
+    ],
+    "down/hair-ivory-front/W": [
+      "down/hair-ivory-front/W/00",
+      "down/hair-ivory-front/W/01",
+      "down/hair-ivory-front/W/02",
+      "down/hair-ivory-front/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "down-hair-ivory-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 348,
+      "h": 47
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

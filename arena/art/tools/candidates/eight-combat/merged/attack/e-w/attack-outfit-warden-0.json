@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "attack/outfit-warden/E/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 29,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 76,
+        "w": 29,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/E/01": {
+      "frame": {
+        "x": 40,
+        "y": 2,
+        "w": 26,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 76,
+        "w": 26,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/E/02": {
+      "frame": {
+        "x": 70,
+        "y": 2,
+        "w": 26,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 76,
+        "w": 26,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/E/03": {
+      "frame": {
+        "x": 100,
+        "y": 2,
+        "w": 24,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 83,
+        "y": 76,
+        "w": 24,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/W/00": {
+      "frame": {
+        "x": 128,
+        "y": 2,
+        "w": 31,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 79,
+        "y": 76,
+        "w": 31,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/W/01": {
+      "frame": {
+        "x": 163,
+        "y": 2,
+        "w": 35,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 76,
+        "w": 35,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/W/02": {
+      "frame": {
+        "x": 202,
+        "y": 2,
+        "w": 31,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 79,
+        "y": 76,
+        "w": 31,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "attack/outfit-warden/W/03": {
+      "frame": {
+        "x": 237,
+        "y": 2,
+        "w": 26,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 76,
+        "w": 26,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "attack/outfit-warden/E": [
+      "attack/outfit-warden/E/00",
+      "attack/outfit-warden/E/01",
+      "attack/outfit-warden/E/02",
+      "attack/outfit-warden/E/03"
+    ],
+    "attack/outfit-warden/W": [
+      "attack/outfit-warden/W/00",
+      "attack/outfit-warden/W/01",
+      "attack/outfit-warden/W/02",
+      "attack/outfit-warden/W/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "attack-outfit-warden-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 265,
+      "h": 62
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
