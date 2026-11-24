@@ -1,0 +1,3154 @@
+{
+  "cell": [
+    256,
+    256
+  ],
+  "groundPivot": [
+    128,
+    204.8
+  ],
+  "renderScale": 1,
+  "status": "source candidate, not runtime acceptance",
+  "directions": {
+    "NE": {
+      "heading": [
+        0,
+        -1
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        160,
+        177.0424492345
+      ],
+      "crown": [
+        180.48,
+        162.883265646
+      ],
+      "shoulderWorld": {
+        "left": [
+          -0.19,
+          -0.4,
+          0.16
+        ],
+        "right": [
+          0.19,
+          -0.4,
+          0.16
+        ]
+      },
+      "attachments": [
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "../source/legacy/variants-down/NE/torso.png",
+          "canvas": [
+            256,
+            256
+          ],
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            560,
+            0,
+            720,
+            640
+          ],
+          "sourceStart": [
+            721,
+            492
+          ],
+          "sourceEnd": [
+            1155,
+            157
+          ],
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            160,
+            177.0424492345
+          ],
+          "axisScale": 0.06728416469535847,
+          "widthScale": 0.1,
+          "variant": "down-grounded",
+          "originalUprightSourceReused": false,
+          "zOrder": 3
+        },
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "../source/legacy/variants-down/NE/head.png",
+          "canvas": [
+            256,
+            256
+          ],
+          "pivot": [
+            160,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            560,
+            640
+          ],
+          "sourceStart": [
+            143,
+            465
+          ],
+          "sourceEnd": [
+            400,
+            150
+          ],
+          "targetStart": [
+            160,
+            177.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            162.883265646
+          ],
+          "axisScale": 0.061243931323494136,
+          "widthScale": 0.085,
+          "variant": "down-grounded",
+          "originalUprightSourceReused": false,
+          "zOrder": 8
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "image": "../source/legacy/equipment-down-clothes/NE/outfit-scholar.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "variant": "down-grounded",
+          "sourceRect": [
+            0,
+            0,
+            640,
+            640
+          ],
+          "sourceStart": [
+            235,
+            370
+          ],
+          "sourceEnd": [
+            506,
+            144
+          ],
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            160,
+            177.0424492345
+          ],
+          "axisScale": 0.10453923155257121,
+          "widthScale": 0.1,
+          "transparentHoles": [
+            [
+              506,
+              132,
+              52,
+              16
+            ],
+            [
+              555,
+              267,
+              25,
+              44
+            ]
+          ],
+          "sleeveMode": "sleeveless"
+        },
+        {
+          "id": "outfit-warden",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "../source/legacy/equipment-down-clothes/NE/outfit-warden.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "variant": "down-grounded",
+          "sourceRect": [
+            640,
+            0,
+            640,
+            640
+          ],
+          "sourceStart": [
+            875,
+            405
+          ],
+          "sourceEnd": [
+            1135,
+            140
+          ],
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            160,
+            177.0424492345
+          ],
+          "axisScale": 0.0993641283415876,
+          "widthScale": 0.1,
+          "transparentHoles": [
+            [
+              1135,
+              129,
+              54,
+              20
+            ],
+            [
+              1181,
+              279,
+              28,
+              48
+            ]
+          ],
+          "sleeveMode": "shared articulated sleeves mapped to grounded shoulder/elbow/wrist"
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "image": "../source/legacy/equipment-down-hair/NE/hair-ivory-back.png",
+          "pivot": [
+            160,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "variant": "down-grounded",
+          "sourceRect": [
+            0,
+            0,
+            640,
+            640
+          ],
+          "sourceStart": [
+            236,
+            476
+          ],
+          "sourceEnd": [
+            399,
+            150
+          ],
+          "targetStart": [
+            160,
+            177.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            162.883265646
+          ],
+          "axisScale": 0.06831132721789313,
+          "widthScale": 0.085
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "image": "../source/legacy/equipment-down-hair/NE/hair-ivory-front.png",
+          "pivot": [
+            160,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "variant": "down-grounded",
+          "sourceRect": [
+            0,
+            0,
+            640,
+            640
+          ],
+          "sourceStart": [
+            236,
+            476
+          ],
+          "sourceEnd": [
+            399,
+            150
+          ],
+          "targetStart": [
+            160,
+            177.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            162.883265646
+          ],
+          "axisScale": 0.06831132721789313,
+          "widthScale": 0.085
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "../source/legacy/equipment-down-hair/NE/hair-midnight-back.png",
+          "pivot": [
+            160,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "variant": "down-grounded",
+          "sourceRect": [
+            640,
+            0,
+            640,
+            640
+          ],
+          "sourceStart": [
+            864,
+            486
+          ],
+          "sourceEnd": [
+            1031,
+            151
+          ],
+          "targetStart": [
+            160,
+            177.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            162.883265646
+          ],
+          "axisScale": 0.06651576098921486,
+          "widthScale": 0.085
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "../source/legacy/equipment-down-hair/NE/hair-midnight-front.png",
+          "pivot": [
+            160,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "variant": "down-grounded",
+          "sourceRect": [
+            640,
+            0,
+            640,
+            640
+          ],
+          "sourceStart": [
+            864,
+            486
+          ],
+          "sourceEnd": [
+            1031,
+            151
+          ],
+          "targetStart": [
+            160,
+            177.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            162.883265646
+          ],
+          "axisScale": 0.06651576098921486,
+          "widthScale": 0.085
+        }
+      ]
+    },
+    "SW": {
+      "heading": [
+        0,
+        1
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        96,
+        209.0424492345
+      ],
+      "crown": [
+        75.52000000000001,
+        215.36326564600003
+      ],
+      "shoulderWorld": {
+        "left": [
+          0.19,
+          0.4,
+          0.16
+        ],
+        "right": [
+          -0.19,
+          0.4,
+          0.16
+        ]
+      },
+      "attachments": [
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "../source/legacy/variants-down/SW/torso.png",
+          "canvas": [
+            256,
+            256
+          ],
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            560,
+            640,
+            720,
+            640
+          ],
+          "sourceStart": [
+            1075,
+            791
+          ],
+          "sourceEnd": [
+            653,
+            1121
+          ],
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            96,
+            209.0424492345
+          ],
+          "axisScale": 0.0649403036242254,
+          "widthScale": 0.1,
+          "variant": "down-grounded",
+          "originalUprightSourceReused": false,
+          "zOrder": 3
+        },
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "../source/legacy/variants-down/SW/head.png",
+          "canvas": [
+            256,
+            256
+          ],
+          "pivot": [
+            96,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            640,
+            560,
+            640
+          ],
+          "sourceStart": [
+            416,
+            843
+          ],
+          "sourceEnd": [
+            168,
+            1065
+          ],
+          "targetStart": [
+            96,
+            209.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            215.36326564600003
+          ],
+          "axisScale": 0.0643933701616105,
+          "widthScale": 0.085,
+          "variant": "down-grounded",
+          "originalUprightSourceReused": false,
+          "zOrder": 8
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "image": "../source/legacy/equipment-down-clothes/SW/outfit-scholar.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "variant": "down-grounded",
+          "sourceRect": [
+            0,
+            640,
+            640,
+            640
+          ],
+          "sourceStart": [
+            393,
+            867
+          ],
+          "sourceEnd": [
+            117,
+            1105
+          ],
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            96,
+            209.0424492345
+          ],
+          "axisScale": 0.0954577995793641,
+          "widthScale": 0.1,
+          "transparentHoles": [
+            [
+              119,
+              1103,
+              40,
+              32
+            ],
+            [
+              301,
+              1101,
+              23,
+              37
+            ]
+          ],
+          "sleeveMode": "sleeveless"
+        },
+        {
+          "id": "outfit-warden",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "../source/legacy/equipment-down-clothes/SW/outfit-warden.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "variant": "down-grounded",
+          "sourceRect": [
+            640,
+            640,
+            640,
+            640
+          ],
+          "sourceStart": [
+            1040,
+            845
+          ],
+          "sourceEnd": [
+            755,
+            1120
+          ],
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            96,
+            209.0424492345
+          ],
+          "axisScale": 0.0878417330634274,
+          "widthScale": 0.1,
+          "transparentHoles": [
+            [
+              755,
+              1111,
+              43,
+              33
+            ],
+            [
+              933,
+              1105,
+              25,
+              38
+            ]
+          ],
+          "sleeveMode": "shared articulated sleeves mapped to grounded shoulder/elbow/wrist"
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "image": "../source/legacy/equipment-down-hair/SW/hair-ivory-back.png",
+          "pivot": [
+            96,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "variant": "down-grounded",
+          "sourceRect": [
+            0,
+            640,
+            640,
+            640
+          ],
+          "sourceStart": [
+            438,
+            826
+          ],
+          "sourceEnd": [
+            195,
+            1090
+          ],
+          "targetStart": [
+            96,
+            209.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            215.36326564600003
+          ],
+          "axisScale": 0.05973410084095119,
+          "widthScale": 0.085
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "image": "../source/legacy/equipment-down-hair/SW/hair-ivory-front.png",
+          "pivot": [
+            96,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "variant": "down-grounded",
+          "sourceRect": [
+            0,
+            640,
+            640,
+            640
+          ],
+          "sourceStart": [
+            438,
+            826
+          ],
+          "sourceEnd": [
+            195,
+            1090
+          ],
+          "targetStart": [
+            96,
+            209.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            215.36326564600003
+          ],
+          "axisScale": 0.05973410084095119,
+          "widthScale": 0.085
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "../source/legacy/equipment-down-hair/SW/hair-midnight-back.png",
+          "pivot": [
+            96,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "variant": "down-grounded",
+          "sourceRect": [
+            640,
+            640,
+            640,
+            640
+          ],
+          "sourceStart": [
+            1060,
+            824
+          ],
+          "sourceEnd": [
+            838,
+            1090
+          ],
+          "targetStart": [
+            96,
+            209.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            215.36326564600003
+          ],
+          "axisScale": 0.06186208070018509,
+          "widthScale": 0.085
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "../source/legacy/equipment-down-hair/SW/hair-midnight-front.png",
+          "pivot": [
+            96,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "variant": "down-grounded",
+          "sourceRect": [
+            640,
+            640,
+            640,
+            640
+          ],
+          "sourceStart": [
+            1060,
+            824
+          ],
+          "sourceEnd": [
+            838,
+            1090
+          ],
+          "targetStart": [
+            96,
+            209.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            215.36326564600003
+          ],
+          "axisScale": 0.06186208070018509,
+          "widthScale": 0.085
+        }
+      ]
+    },
+    "N": {
+      "heading": [
+        -0.7071067811865476,
+        -0.7071067811865476
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        128,
+        170.41503223653046
+      ],
+      "crown": [
+        128,
+        152.01430176933
+      ],
+      "shoulderWorld": {
+        "left": [
+          -0.4171930009000631,
+          -0.148492424049175,
+          0.16
+        ],
+        "right": [
+          -0.148492424049175,
+          -0.4171930009000631,
+          0.16
+        ]
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "N/head.png",
+          "pivot": [
+            128,
+            170.41503223653046
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 8,
+          "targetStart": [
+            128,
+            170.41503223653046
+          ],
+          "targetEnd": [
+            128,
+            152.01430176933
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 0,
+            "top": 24,
+            "width": 240,
+            "height": 315
+          },
+          "sourceStart": [
+            121.60000000000001,
+            289.6
+          ],
+          "sourceEnd": [
+            123.2,
+            88
+          ],
+          "axisScale": 0.09127059018112528,
+          "widthScale": 0.1505487992046723
+        },
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "N/torso.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 3,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            128,
+            170.41503223653046
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 240,
+            "top": 24,
+            "width": 256,
+            "height": 315
+          },
+          "sourceStart": [
+            369.6,
+            251.20000000000002
+          ],
+          "sourceEnd": [
+            371.20000000000005,
+            72
+          ],
+          "axisScale": 0.1393857787846292,
+          "widthScale": 0.15020946456278275
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "image": "N/outfit-scholar.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            128,
+            170.41503223653046
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 496,
+            "top": 24,
+            "width": 264,
+            "height": 315
+          },
+          "sourceStart": [
+            630.4000000000001,
+            225.60000000000002
+          ],
+          "sourceEnd": [
+            630.4000000000001,
+            59.2
+          ],
+          "axisScale": 0.15011374489825444,
+          "widthScale": 0.16972477064220184
+        },
+        {
+          "id": "outfit-warden",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "N/outfit-warden.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            128,
+            170.41503223653046
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 760,
+            "top": 24,
+            "width": 266,
+            "height": 315
+          },
+          "sourceStart": [
+            886.4000000000001,
+            232
+          ],
+          "sourceEnd": [
+            889.6,
+            60.800000000000004
+          ],
+          "axisScale": 0.14587946718248887,
+          "widthScale": 0.16415200614734932
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "image": "N/hair-ivory-back.png",
+          "pivot": [
+            128,
+            170.41503223653046
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            128,
+            170.41503223653046
+          ],
+          "targetEnd": [
+            128,
+            152.01430176933
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1026,
+            "top": 24,
+            "width": 246,
+            "height": 315
+          },
+          "sourceStart": [
+            1148.8,
+            272
+          ],
+          "sourceEnd": [
+            1147.2,
+            73.60000000000001
+          ],
+          "axisScale": 0.0927426014998191,
+          "widthScale": 0.1588357856594784
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "image": "N/hair-ivory-front.png",
+          "pivot": [
+            128,
+            170.41503223653046
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            128,
+            170.41503223653046
+          ],
+          "targetEnd": [
+            128,
+            152.01430176933
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1026,
+            "top": 24,
+            "width": 246,
+            "height": 315
+          },
+          "sourceStart": [
+            1148.8,
+            272
+          ],
+          "sourceEnd": [
+            1147.2,
+            73.60000000000001
+          ],
+          "axisScale": 0.0927426014998191,
+          "widthScale": 0.1588357856594784
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "N/hair-midnight-back.png",
+          "pivot": [
+            128,
+            170.41503223653046
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            128,
+            170.41503223653046
+          ],
+          "targetEnd": [
+            128,
+            152.01430176933
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1272,
+            "top": 24,
+            "width": 264,
+            "height": 315
+          },
+          "sourceStart": [
+            1400,
+            268.8
+          ],
+          "sourceEnd": [
+            1395.2,
+            73.60000000000001
+          ],
+          "axisScale": 0.09423754993523606,
+          "widthScale": 0.16625665701432837
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "N/hair-midnight-front.png",
+          "pivot": [
+            128,
+            170.41503223653046
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            128,
+            170.41503223653046
+          ],
+          "targetEnd": [
+            128,
+            152.01430176933
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1272,
+            "top": 24,
+            "width": 264,
+            "height": 315
+          },
+          "sourceStart": [
+            1400,
+            268.8
+          ],
+          "sourceEnd": [
+            1395.2,
+            73.60000000000001
+          ],
+          "axisScale": 0.09423754993523606,
+          "widthScale": 0.16625665701432837
+        }
+      ]
+    },
+    "W": {
+      "heading": [
+        -0.7071067811865476,
+        0.7071067811865476
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        82.74516600406096,
+        193.0424492345
+      ],
+      "crown": [
+        53.782072246659965,
+        189.12326564600002
+      ],
+      "shoulderWorld": {
+        "left": [
+          -0.148492424049175,
+          0.4171930009000631,
+          0.16
+        ],
+        "right": [
+          -0.4171930009000631,
+          0.148492424049175,
+          0.16
+        ]
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "W/head.png",
+          "pivot": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 8,
+          "targetStart": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "targetEnd": [
+            53.782072246659965,
+            189.12326564600002
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 0,
+            "top": 387,
+            "width": 234,
+            "height": 232
+          },
+          "sourceStart": [
+            190.4,
+            548.8000000000001
+          ],
+          "sourceEnd": [
+            27.200000000000003,
+            499.20000000000005
+          ],
+          "axisScale": 0.17134852424809852,
+          "widthScale": 0.1793432535573149
+        },
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "W/torso.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 3,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 234,
+            "top": 387,
+            "width": 267,
+            "height": 232
+          },
+          "sourceStart": [
+            435.20000000000005,
+            528
+          ],
+          "sourceEnd": [
+            256,
+            496
+          ],
+          "axisScale": 0.24894089627723232,
+          "widthScale": 0.20999104732510637
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "image": "W/outfit-scholar.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 501,
+            "top": 387,
+            "width": 264,
+            "height": 232
+          },
+          "sourceStart": [
+            680,
+            515.2
+          ],
+          "sourceEnd": [
+            544,
+            472
+          ],
+          "axisScale": 0.3175687120126768,
+          "widthScale": 0.25000775975016953
+        },
+        {
+          "id": "outfit-warden",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "W/outfit-warden.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 765,
+            "top": 387,
+            "width": 262,
+            "height": 232
+          },
+          "sourceStart": [
+            956.8000000000001,
+            518.4
+          ],
+          "sourceEnd": [
+            801.6,
+            475.20000000000005
+          ],
+          "axisScale": 0.28129004175627326,
+          "widthScale": 0.25331039837571057
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "image": "W/hair-ivory-back.png",
+          "pivot": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "targetEnd": [
+            53.782072246659965,
+            189.12326564600002
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1027,
+            "top": 387,
+            "width": 239,
+            "height": 232
+          },
+          "sourceStart": [
+            1211.2,
+            548.8000000000001
+          ],
+          "sourceEnd": [
+            1064,
+            499.20000000000005
+          ],
+          "axisScale": 0.18815874555243692,
+          "widthScale": 0.18863886916339534
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "image": "W/hair-ivory-front.png",
+          "pivot": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "targetEnd": [
+            53.782072246659965,
+            189.12326564600002
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1027,
+            "top": 387,
+            "width": 239,
+            "height": 232
+          },
+          "sourceStart": [
+            1211.2,
+            548.8000000000001
+          ],
+          "sourceEnd": [
+            1064,
+            499.20000000000005
+          ],
+          "axisScale": 0.18815874555243692,
+          "widthScale": 0.18863886916339534
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "W/hair-midnight-back.png",
+          "pivot": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "targetEnd": [
+            53.782072246659965,
+            189.12326564600002
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1266,
+            "top": 387,
+            "width": 270,
+            "height": 232
+          },
+          "sourceStart": [
+            1452.8000000000002,
+            552
+          ],
+          "sourceEnd": [
+            1294.4,
+            500.8
+          ],
+          "axisScale": 0.17557033423472398,
+          "widthScale": 0.20414703445069157
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "W/hair-midnight-front.png",
+          "pivot": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            82.74516600406096,
+            193.0424492345
+          ],
+          "targetEnd": [
+            53.782072246659965,
+            189.12326564600002
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1266,
+            "top": 387,
+            "width": 270,
+            "height": 232
+          },
+          "sourceStart": [
+            1452.8000000000002,
+            552
+          ],
+          "sourceEnd": [
+            1294.4,
+            500.8
+          ],
+          "axisScale": 0.17557033423472398,
+          "widthScale": 0.20414703445069157
+        }
+      ]
+    },
+    "NW": {
+      "heading": [
+        -1,
+        0
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        96,
+        177.0424492345
+      ],
+      "crown": [
+        75.52000000000001,
+        162.883265646
+      ],
+      "shoulderWorld": {
+        "left": [
+          -0.4,
+          0.19,
+          0.16
+        ],
+        "right": [
+          -0.4,
+          -0.19,
+          0.16
+        ]
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "NW/head.png",
+          "pivot": [
+            96,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 8,
+          "targetStart": [
+            96,
+            177.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            162.883265646
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 0,
+            "top": 674,
+            "width": 232,
+            "height": 313
+          },
+          "sourceStart": [
+            190.4,
+            891.2
+          ],
+          "sourceEnd": [
+            57.6,
+            732.8000000000001
+          ],
+          "axisScale": 0.12045287737763938,
+          "widthScale": 0.16805955772983552
+        },
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "NW/torso.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 3,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            96,
+            177.0424492345
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 232,
+            "top": 674,
+            "width": 288,
+            "height": 313
+          },
+          "sourceStart": [
+            416,
+            876.8000000000001
+          ],
+          "sourceEnd": [
+            288,
+            736
+          ],
+          "axisScale": 0.19385969324270202,
+          "widthScale": 0.17404763571749562
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "image": "NW/outfit-scholar.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            96,
+            177.0424492345
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 520,
+            "top": 674,
+            "width": 251,
+            "height": 313
+          },
+          "sourceStart": [
+            659.2,
+            867.2
+          ],
+          "sourceEnd": [
+            566.4,
+            728
+          ],
+          "axisScale": 0.22049765290744783,
+          "widthScale": 0.19475240466009874
+        },
+        {
+          "id": "outfit-warden",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "NW/outfit-warden.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            96,
+            177.0424492345
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 771,
+            "top": 674,
+            "width": 264,
+            "height": 313
+          },
+          "sourceStart": [
+            931.2,
+            865.6
+          ],
+          "sourceEnd": [
+            838.4000000000001,
+            729.6
+          ],
+          "axisScale": 0.22405063074408296,
+          "widthScale": 0.17587150208259356
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "image": "NW/hair-ivory-back.png",
+          "pivot": [
+            96,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            96,
+            177.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            162.883265646
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1035,
+            "top": 674,
+            "width": 234,
+            "height": 313
+          },
+          "sourceStart": [
+            1198.4,
+            872
+          ],
+          "sourceEnd": [
+            1080,
+            736
+          ],
+          "axisScale": 0.1380786045127289,
+          "widthScale": 0.17567998969767532
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "image": "NW/hair-ivory-front.png",
+          "pivot": [
+            96,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            96,
+            177.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            162.883265646
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1035,
+            "top": 674,
+            "width": 234,
+            "height": 313
+          },
+          "sourceStart": [
+            1198.4,
+            872
+          ],
+          "sourceEnd": [
+            1080,
+            736
+          ],
+          "axisScale": 0.1380786045127289,
+          "widthScale": 0.17567998969767532
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "NW/hair-midnight-back.png",
+          "pivot": [
+            96,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            96,
+            177.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            162.883265646
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1269,
+            "top": 674,
+            "width": 267,
+            "height": 313
+          },
+          "sourceStart": [
+            1446.4,
+            873.6
+          ],
+          "sourceEnd": [
+            1334.4,
+            739.2
+          ],
+          "axisScale": 0.14231556261823305,
+          "widthScale": 0.18347888127526743
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "NW/hair-midnight-front.png",
+          "pivot": [
+            96,
+            177.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            96,
+            177.0424492345
+          ],
+          "targetEnd": [
+            75.52000000000001,
+            162.883265646
+          ],
+          "source": "source/grounded-a.png",
+          "sourceRect": {
+            "left": 1269,
+            "top": 674,
+            "width": 267,
+            "height": 313
+          },
+          "sourceStart": [
+            1446.4,
+            873.6
+          ],
+          "sourceEnd": [
+            1334.4,
+            739.2
+          ],
+          "axisScale": 0.14231556261823305,
+          "widthScale": 0.18347888127526743
+        }
+      ]
+    },
+    "S": {
+      "heading": [
+        0.7071067811865476,
+        0.7071067811865476
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        128,
+        215.66986623246953
+      ],
+      "crown": [
+        128,
+        226.23222952267005
+      ],
+      "shoulderWorld": {
+        "left": [
+          0.4171930009000631,
+          0.148492424049175,
+          0.16
+        ],
+        "right": [
+          0.148492424049175,
+          0.4171930009000631,
+          0.16
+        ]
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "S/head.png",
+          "pivot": [
+            128,
+            215.66986623246953
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 8,
+          "targetStart": [
+            128,
+            215.66986623246953
+          ],
+          "targetEnd": [
+            128,
+            226.23222952267005
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 0,
+            "top": 35,
+            "width": 250,
+            "height": 335
+          },
+          "sourceStart": [
+            128,
+            99.2
+          ],
+          "sourceEnd": [
+            131.20000000000002,
+            321.6
+          ],
+          "axisScale": 0.04748772528858462,
+          "widthScale": 0.1599508057056995
+        },
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "S/torso.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 3,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            128,
+            215.66986623246953
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 250,
+            "top": 35,
+            "width": 254,
+            "height": 335
+          },
+          "sourceStart": [
+            384,
+            134.4
+          ],
+          "sourceEnd": [
+            387.20000000000005,
+            318.40000000000003
+          ],
+          "axisScale": 0.11017848500299615,
+          "widthScale": 0.16811170352784194
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "image": "S/outfit-scholar.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            128,
+            215.66986623246953
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 504,
+            "top": 35,
+            "width": 259,
+            "height": 335
+          },
+          "sourceStart": [
+            638.4000000000001,
+            160
+          ],
+          "sourceEnd": [
+            641.6,
+            316.8
+          ],
+          "axisScale": 0.12928371030247154,
+          "widthScale": 0.17938248211660313
+        },
+        {
+          "id": "outfit-warden",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "S/outfit-warden.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            128,
+            215.66986623246953
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 763,
+            "top": 35,
+            "width": 266,
+            "height": 335
+          },
+          "sourceStart": [
+            894.4000000000001,
+            158.4
+          ],
+          "sourceEnd": [
+            894.4000000000001,
+            320
+          ],
+          "axisScale": 0.12546972057468767,
+          "widthScale": 0.18932038834951456
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "image": "S/hair-ivory-back.png",
+          "pivot": [
+            128,
+            215.66986623246953
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            128,
+            215.66986623246953
+          ],
+          "targetEnd": [
+            128,
+            226.23222952267005
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1029,
+            "top": 35,
+            "width": 254,
+            "height": 335
+          },
+          "sourceStart": [
+            1145.6000000000001,
+            123.2
+          ],
+          "sourceEnd": [
+            1150.4,
+            320
+          ],
+          "axisScale": 0.05365458841851037,
+          "widthScale": 0.17236274072927954
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "image": "S/hair-ivory-front.png",
+          "pivot": [
+            128,
+            215.66986623246953
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            128,
+            215.66986623246953
+          ],
+          "targetEnd": [
+            128,
+            226.23222952267005
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1029,
+            "top": 35,
+            "width": 254,
+            "height": 335
+          },
+          "sourceStart": [
+            1145.6000000000001,
+            123.2
+          ],
+          "sourceEnd": [
+            1150.4,
+            320
+          ],
+          "axisScale": 0.05365458841851037,
+          "widthScale": 0.17236274072927954
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "S/hair-midnight-back.png",
+          "pivot": [
+            128,
+            215.66986623246953
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            128,
+            215.66986623246953
+          ],
+          "targetEnd": [
+            128,
+            226.23222952267005
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1283,
+            "top": 35,
+            "width": 253,
+            "height": 335
+          },
+          "sourceStart": [
+            1408,
+            126.4
+          ],
+          "sourceEnd": [
+            1406.4,
+            315.20000000000005
+          ],
+          "axisScale": 0.05594271199357142,
+          "widthScale": 0.18259270562254099
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "S/hair-midnight-front.png",
+          "pivot": [
+            128,
+            215.66986623246953
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            128,
+            215.66986623246953
+          ],
+          "targetEnd": [
+            128,
+            226.23222952267005
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1283,
+            "top": 35,
+            "width": 253,
+            "height": 335
+          },
+          "sourceStart": [
+            1408,
+            126.4
+          ],
+          "sourceEnd": [
+            1406.4,
+            315.20000000000005
+          ],
+          "axisScale": 0.05594271199357142,
+          "widthScale": 0.18259270562254099
+        }
+      ]
+    },
+    "E": {
+      "heading": [
+        0.7071067811865476,
+        -0.7071067811865476
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        173.25483399593904,
+        193.0424492345
+      ],
+      "crown": [
+        202.21792775334004,
+        189.12326564600002
+      ],
+      "shoulderWorld": {
+        "left": [
+          0.148492424049175,
+          -0.4171930009000631,
+          0.16
+        ],
+        "right": [
+          0.4171930009000631,
+          -0.148492424049175,
+          0.16
+        ]
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "E/head.png",
+          "pivot": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 8,
+          "targetStart": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "targetEnd": [
+            202.21792775334004,
+            189.12326564600002
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 0,
+            "top": 400,
+            "width": 246,
+            "height": 235
+          },
+          "sourceStart": [
+            28.8,
+            550.4
+          ],
+          "sourceEnd": [
+            225.60000000000002,
+            508.8
+          ],
+          "axisScale": 0.1453007440869251,
+          "widthScale": 0.18453041891599714
+        },
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "E/torso.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 3,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 246,
+            "top": 400,
+            "width": 264,
+            "height": 235
+          },
+          "sourceStart": [
+            308.8,
+            523.2
+          ],
+          "sourceEnd": [
+            492.8,
+            518.4
+          ],
+          "axisScale": 0.24619823538103225,
+          "widthScale": 0.21142877176064112
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "image": "E/outfit-scholar.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 510,
+            "top": 400,
+            "width": 253,
+            "height": 235
+          },
+          "sourceStart": [
+            576,
+            521.6
+          ],
+          "sourceEnd": [
+            740.8000000000001,
+            526.4
+          ],
+          "axisScale": 0.2748584799985777,
+          "widthScale": 0.25297698640865024
+        },
+        {
+          "id": "outfit-warden",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "E/outfit-warden.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 763,
+            "top": 400,
+            "width": 269,
+            "height": 235
+          },
+          "sourceStart": [
+            851.2,
+            528
+          ],
+          "sourceEnd": [
+            1003.2,
+            518.4
+          ],
+          "axisScale": 0.29753799748811693,
+          "widthScale": 0.25273212058959943
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "image": "E/hair-ivory-back.png",
+          "pivot": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "targetEnd": [
+            202.21792775334004,
+            189.12326564600002
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1032,
+            "top": 400,
+            "width": 235,
+            "height": 235
+          },
+          "sourceStart": [
+            1228.8000000000002,
+            534.4
+          ],
+          "sourceEnd": [
+            1067.2,
+            496
+          ],
+          "axisScale": 0.1759608888022049,
+          "widthScale": 0.19052246804065925
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "image": "E/hair-ivory-front.png",
+          "pivot": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "targetEnd": [
+            202.21792775334004,
+            189.12326564600002
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1032,
+            "top": 400,
+            "width": 235,
+            "height": 235
+          },
+          "sourceStart": [
+            1228.8000000000002,
+            534.4
+          ],
+          "sourceEnd": [
+            1067.2,
+            496
+          ],
+          "axisScale": 0.1759608888022049,
+          "widthScale": 0.19052246804065925
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "E/hair-midnight-back.png",
+          "pivot": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "targetEnd": [
+            202.21792775334004,
+            189.12326564600002
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1267,
+            "top": 400,
+            "width": 269,
+            "height": 235
+          },
+          "sourceStart": [
+            1478.4,
+            540.8000000000001
+          ],
+          "sourceEnd": [
+            1334.4,
+            499.20000000000005
+          ],
+          "axisScale": 0.1949919943194966,
+          "widthScale": 0.19877115350811955
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "E/hair-midnight-front.png",
+          "pivot": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            173.25483399593904,
+            193.0424492345
+          ],
+          "targetEnd": [
+            202.21792775334004,
+            189.12326564600002
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1267,
+            "top": 400,
+            "width": 269,
+            "height": 235
+          },
+          "sourceStart": [
+            1478.4,
+            540.8000000000001
+          ],
+          "sourceEnd": [
+            1334.4,
+            499.20000000000005
+          ],
+          "axisScale": 0.1949919943194966,
+          "widthScale": 0.19877115350811955
+        }
+      ]
+    },
+    "SE": {
+      "heading": [
+        1,
+        0
+      ],
+      "hip": [
+        128,
+        195.3939593876
+      ],
+      "neck": [
+        160,
+        209.0424492345
+      ],
+      "crown": [
+        180.48,
+        215.36326564600003
+      ],
+      "shoulderWorld": {
+        "left": [
+          0.4,
+          -0.19,
+          0.16
+        ],
+        "right": [
+          0.4,
+          0.19,
+          0.16
+        ]
+      },
+      "attachments": [
+        {
+          "id": "head",
+          "layer": "body",
+          "joint": "neck",
+          "image": "SE/head.png",
+          "pivot": [
+            160,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 8,
+          "targetStart": [
+            160,
+            209.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            215.36326564600003
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 0,
+            "top": 670,
+            "width": 238,
+            "height": 311
+          },
+          "sourceStart": [
+            65.60000000000001,
+            745.6
+          ],
+          "sourceEnd": [
+            201.60000000000002,
+            902.4000000000001
+          ],
+          "axisScale": 0.10326148794048833,
+          "widthScale": 0.1789509211999426
+        },
+        {
+          "id": "torso",
+          "layer": "body",
+          "joint": "pelvis",
+          "image": "SE/torso.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 3,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            160,
+            209.0424492345
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 238,
+            "top": 670,
+            "width": 252,
+            "height": 311
+          },
+          "sourceStart": [
+            308.8,
+            753.6
+          ],
+          "sourceEnd": [
+            448,
+            924.8000000000001
+          ],
+          "axisScale": 0.1576669813746378,
+          "widthScale": 0.19549626938810097
+        },
+        {
+          "id": "outfit-scholar",
+          "layer": "outfit-scholar",
+          "joint": "pelvis",
+          "image": "SE/outfit-scholar.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            160,
+            209.0424492345
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 490,
+            "top": 670,
+            "width": 270,
+            "height": 311
+          },
+          "sourceStart": [
+            601.6,
+            769.6
+          ],
+          "sourceEnd": [
+            729.6,
+            920
+          ],
+          "axisScale": 0.1761520462264195,
+          "widthScale": 0.20999931675400058
+        },
+        {
+          "id": "outfit-warden",
+          "layer": "outfit-warden",
+          "joint": "pelvis",
+          "image": "SE/outfit-warden.png",
+          "pivot": [
+            128,
+            195.3939593876
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 5,
+          "targetStart": [
+            128,
+            195.3939593876
+          ],
+          "targetEnd": [
+            160,
+            209.0424492345
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 760,
+            "top": 670,
+            "width": 267,
+            "height": 311
+          },
+          "sourceStart": [
+            841.6,
+            756.8000000000001
+          ],
+          "sourceEnd": [
+            966.4000000000001,
+            924.8000000000001
+          ],
+          "axisScale": 0.1662305574441764,
+          "widthScale": 0.24126247017794375
+        },
+        {
+          "id": "hair-ivory-back",
+          "layer": "hair-ivory-back",
+          "joint": "neck",
+          "image": "SE/hair-ivory-back.png",
+          "pivot": [
+            160,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            160,
+            209.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            215.36326564600003
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1027,
+            "top": 670,
+            "width": 231,
+            "height": 311
+          },
+          "sourceStart": [
+            1200,
+            892.8000000000001
+          ],
+          "sourceEnd": [
+            1068.8,
+            750.4000000000001
+          ],
+          "axisScale": 0.11069368513356824,
+          "widthScale": 0.17659822074304002
+        },
+        {
+          "id": "hair-ivory-front",
+          "layer": "hair-ivory-front",
+          "joint": "neck",
+          "image": "SE/hair-ivory-front.png",
+          "pivot": [
+            160,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            160,
+            209.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            215.36326564600003
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1027,
+            "top": 670,
+            "width": 231,
+            "height": 311
+          },
+          "sourceStart": [
+            1200,
+            892.8000000000001
+          ],
+          "sourceEnd": [
+            1068.8,
+            750.4000000000001
+          ],
+          "axisScale": 0.11069368513356824,
+          "widthScale": 0.17659822074304002
+        },
+        {
+          "id": "hair-midnight-back",
+          "layer": "hair-midnight-back",
+          "joint": "neck",
+          "image": "SE/hair-midnight-back.png",
+          "pivot": [
+            160,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            160,
+            209.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            215.36326564600003
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1258,
+            "top": 670,
+            "width": 278,
+            "height": 311
+          },
+          "sourceStart": [
+            1464,
+            886.4000000000001
+          ],
+          "sourceEnd": [
+            1328,
+            758.4000000000001
+          ],
+          "axisScale": 0.11476230922115507,
+          "widthScale": 0.20738864278865005
+        },
+        {
+          "id": "hair-midnight-front",
+          "layer": "hair-midnight-front",
+          "joint": "neck",
+          "image": "SE/hair-midnight-front.png",
+          "pivot": [
+            160,
+            209.0424492345
+          ],
+          "restTopLeft": [
+            0,
+            0
+          ],
+          "size": [
+            256,
+            256
+          ],
+          "zOrder": 0,
+          "targetStart": [
+            160,
+            209.0424492345
+          ],
+          "targetEnd": [
+            180.48,
+            215.36326564600003
+          ],
+          "source": "source/grounded-b.png",
+          "sourceRect": {
+            "left": 1258,
+            "top": 670,
+            "width": 278,
+            "height": 311
+          },
+          "sourceStart": [
+            1464,
+            886.4000000000001
+          ],
+          "sourceEnd": [
+            1328,
+            758.4000000000001
+          ],
+          "axisScale": 0.11476230922115507,
+          "widthScale": 0.20738864278865005
+        }
+      ]
+    }
+  },
+  "sources": {
+    "source/grounded-a.png": "f2ecf34bbf38f1a9cd9e45693b0c7d6740070aa1d9b03242b9914aa9419fdb21",
+    "source/grounded-b.png": "c319fbb3f93a4f7a3bc51d421fdf13613da2733bb0ef6c2f398ba71abb039b35"
+  }
+}

@@ -1,0 +1,374 @@
+{
+  "status": "grounded-hair-registration-candidate",
+  "releaseApproved": false,
+  "cell": [
+    256,
+    256
+  ],
+  "groundPivot": [
+    128,
+    204.8
+  ],
+  "renderScale": 1,
+  "source": "arena/art/source/iso-v030-down-hair.png",
+  "sourceSha256": "1a53ca11d8b0df1b7135536ac316df09bab8832316ad25aa390264f6658f48f0",
+  "sourceSuccessCount": 1,
+  "directions": {
+    "NE": [
+      {
+        "id": "hair-ivory-back",
+        "layer": "hair-ivory-back",
+        "joint": "neck",
+        "image": "NE/hair-ivory-back.png",
+        "pivot": [
+          160,
+          177.0424492345
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 0,
+        "variant": "down-grounded",
+        "sourceRect": [
+          0,
+          0,
+          640,
+          640
+        ],
+        "sourceStart": [
+          236,
+          476
+        ],
+        "sourceEnd": [
+          399,
+          150
+        ],
+        "targetStart": [
+          160,
+          177.0424492345
+        ],
+        "targetEnd": [
+          180.48,
+          162.883265646
+        ],
+        "axisScale": 0.06831132721789313,
+        "widthScale": 0.085
+      },
+      {
+        "id": "hair-ivory-front",
+        "layer": "hair-ivory-front",
+        "joint": "neck",
+        "image": "NE/hair-ivory-front.png",
+        "pivot": [
+          160,
+          177.0424492345
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 0,
+        "variant": "down-grounded",
+        "sourceRect": [
+          0,
+          0,
+          640,
+          640
+        ],
+        "sourceStart": [
+          236,
+          476
+        ],
+        "sourceEnd": [
+          399,
+          150
+        ],
+        "targetStart": [
+          160,
+          177.0424492345
+        ],
+        "targetEnd": [
+          180.48,
+          162.883265646
+        ],
+        "axisScale": 0.06831132721789313,
+        "widthScale": 0.085
+      },
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "NE/hair-midnight-back.png",
+        "pivot": [
+          160,
+          177.0424492345
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 0,
+        "variant": "down-grounded",
+        "sourceRect": [
+          640,
+          0,
+          640,
+          640
+        ],
+        "sourceStart": [
+          864,
+          486
+        ],
+        "sourceEnd": [
+          1031,
+          151
+        ],
+        "targetStart": [
+          160,
+          177.0424492345
+        ],
+        "targetEnd": [
+          180.48,
+          162.883265646
+        ],
+        "axisScale": 0.06651576098921486,
+        "widthScale": 0.085
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "NE/hair-midnight-front.png",
+        "pivot": [
+          160,
+          177.0424492345
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 0,
+        "variant": "down-grounded",
+        "sourceRect": [
+          640,
+          0,
+          640,
+          640
+        ],
+        "sourceStart": [
+          864,
+          486
+        ],
+        "sourceEnd": [
+          1031,
+          151
+        ],
+        "targetStart": [
+          160,
+          177.0424492345
+        ],
+        "targetEnd": [
+          180.48,
+          162.883265646
+        ],
+        "axisScale": 0.06651576098921486,
+        "widthScale": 0.085
+      }
+    ],
+    "SW": [
+      {
+        "id": "hair-ivory-back",
+        "layer": "hair-ivory-back",
+        "joint": "neck",
+        "image": "SW/hair-ivory-back.png",
+        "pivot": [
+          96,
+          209.0424492345
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 0,
+        "variant": "down-grounded",
+        "sourceRect": [
+          0,
+          640,
+          640,
+          640
+        ],
+        "sourceStart": [
+          438,
+          826
+        ],
+        "sourceEnd": [
+          195,
+          1090
+        ],
+        "targetStart": [
+          96,
+          209.0424492345
+        ],
+        "targetEnd": [
+          75.52000000000001,
+          215.36326564600003
+        ],
+        "axisScale": 0.05973410084095119,
+        "widthScale": 0.085
+      },
+      {
+        "id": "hair-ivory-front",
+        "layer": "hair-ivory-front",
+        "joint": "neck",
+        "image": "SW/hair-ivory-front.png",
+        "pivot": [
+          96,
+          209.0424492345
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 0,
+        "variant": "down-grounded",
+        "sourceRect": [
+          0,
+          640,
+          640,
+          640
+        ],
+        "sourceStart": [
+          438,
+          826
+        ],
+        "sourceEnd": [
+          195,
+          1090
+        ],
+        "targetStart": [
+          96,
+          209.0424492345
+        ],
+        "targetEnd": [
+          75.52000000000001,
+          215.36326564600003
+        ],
+        "axisScale": 0.05973410084095119,
+        "widthScale": 0.085
+      },
+      {
+        "id": "hair-midnight-back",
+        "layer": "hair-midnight-back",
+        "joint": "neck",
+        "image": "SW/hair-midnight-back.png",
+        "pivot": [
+          96,
+          209.0424492345
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 0,
+        "variant": "down-grounded",
+        "sourceRect": [
+          640,
+          640,
+          640,
+          640
+        ],
+        "sourceStart": [
+          1060,
+          824
+        ],
+        "sourceEnd": [
+          838,
+          1090
+        ],
+        "targetStart": [
+          96,
+          209.0424492345
+        ],
+        "targetEnd": [
+          75.52000000000001,
+          215.36326564600003
+        ],
+        "axisScale": 0.06186208070018509,
+        "widthScale": 0.085
+      },
+      {
+        "id": "hair-midnight-front",
+        "layer": "hair-midnight-front",
+        "joint": "neck",
+        "image": "SW/hair-midnight-front.png",
+        "pivot": [
+          96,
+          209.0424492345
+        ],
+        "restTopLeft": [
+          0,
+          0
+        ],
+        "size": [
+          256,
+          256
+        ],
+        "zOrder": 0,
+        "variant": "down-grounded",
+        "sourceRect": [
+          640,
+          640,
+          640,
+          640
+        ],
+        "sourceStart": [
+          1060,
+          824
+        ],
+        "sourceEnd": [
+          838,
+          1090
+        ],
+        "targetStart": [
+          96,
+          209.0424492345
+        ],
+        "targetEnd": [
+          75.52000000000001,
+          215.36326564600003
+        ],
+        "axisScale": 0.06186208070018509,
+        "widthScale": 0.085
+      }
+    ]
+  }
+}
