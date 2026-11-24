@@ -25,8 +25,9 @@ export function createLogisticsGraph(): RuleGraph {
       { id: 'gather-node', type: 'module', moduleId: 'gather', fallback: 'hold-node' },
       { id: 'haul-node', type: 'module', moduleId: 'haul', fallback: 'hold-node' },
       { id: 'defend-node', type: 'module', moduleId: 'defend', fallback: 'hold-node' },
-      { id: 'build-node', type: 'module', moduleId: 'build', fallback: 'defend-node' },
+      { id: 'build-node', type: 'module', moduleId: 'build', fallback: 'pass-node' },
       { id: 'build-first', type: 'priority', children: ['build-node', 'defend-node'], fallback: 'hold-node' },
+      { id: 'pass-node', type: 'pass', reason: 'candidate unavailable' },
       { id: 'hold-node', type: 'hold', reason: 'no applicable action' },
     ], modules: createFirstExpeditionPlan().modules.map(module=>module.kind==='haul' ? { ...module, config: {minCargo:1} } : module),
   };

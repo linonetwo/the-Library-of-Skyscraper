@@ -17,6 +17,7 @@ export type RuleNode =
   | { id: string; type: 'score'; candidates: { id: string; nodeId: string; weight: number; when?: GraphCondition }[]; fallback: string }
   | { id: string; type: 'log'; reason: string; next: string }
   | { id: string; type: 'module'; moduleId: string; fallback: string }
+  | { id: string; type: 'pass'; reason: string }
   | { id: string; type: 'hold'; reason: string };
 export interface GraphState { id: string; name: string; treeId: string; entry: GraphEffect[]; exit: GraphEffect[] }
 export interface GraphTransition { id: string; from: string; to: string; priority: number; condition: GraphCondition; cooldownTicks: number; minStateTicks: number }

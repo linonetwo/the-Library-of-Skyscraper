@@ -5,7 +5,7 @@ export function nodeChildren(node: RuleNode): string[] {
     case 'condition':return [node.yes,node.no];
     case 'priority':case 'sequence':return [...node.children,node.fallback];
     case 'score':return [...node.candidates.map(c=>c.nodeId),node.fallback];
-    case 'module':return [node.fallback];case 'log':return [node.next];case 'hold':case 'check':return [];
+    case 'module':return [node.fallback];case 'log':return [node.next];case 'hold':case 'pass':case 'check':return [];
   }
   return [];
 }
@@ -35,7 +35,7 @@ export function diagnoseGraph(graph: RuleGraph): GraphDiagnostic[] {
     if(!valid)add(m.moduleId,'module-config','Unsupported module kind/config');
   }
   for(const n of graph.nodes){
-    if(!['check','condition','priority','sequence','score','log','module','hold'].includes(n.type))add(n.id,'node-kind','Unsupported executable node kind');
+    if(!['check','condition','priority','sequence','score','log','module','hold','pass'].includes(n.type))add(n.id,'node-kind','Unsupported executable node kind');
     for(const child of nodeChildren(n))if(!nodes.has(child))add(n.id,'reference','Missing node '+child);
     if(n.type==='condition'||n.type==='check')condition(n.id,n.condition);
     if(n.type==='module'&&!modules.has(n.moduleId))add(n.id,'module','Missing module binding');

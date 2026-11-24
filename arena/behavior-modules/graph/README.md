@@ -18,3 +18,15 @@ priorities/weights. Node IDs, state IDs, role IDs, transition IDs and module IDs
 are globally unique. Entry/exit effects never produce intents. Existing v1 module
 runtime supplies all module actions. v2 memory uses graphState and aiTrace.v=2;
 sourceHash and operationIndex remain supplied by the authority shell.
+
+`pass` is an explicit unavailable candidate. Selectors continue after pass; a
+selected `hold` terminates them. A module used inside priority/score should route
+its unavailable fallback to pass when the parent should try the next candidate.
+Sequence evaluates checks in order and discards its pending result/logs if any gate
+fails; it never commits two actions. Scoring computes weights/guards without
+committing candidate actions; only the selected outcome is returned.
+
+`serializeGraphDraft` persists even invalid typed drafts and exact matching drafts
+can be recovered. Use `toGraphSourceProject` for preview/publication: this is the
+shared diagnostics gate. Diagnostic source coordinates also exist on invalid
+models through `graphDraftSourceRef`. Archived source lookup remains read-only.

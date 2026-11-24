@@ -69,3 +69,17 @@ test('explicit v1 conversion preserves action selection without mutating origina
   const sandbox=vm.createContext({});vm.runInContext(compilation.bundle.code,sandbox);const old=JSON.parse(JSON.stringify(sandbox.__arenaRule.decide(context(patch))));assert.deepEqual(graphRun.decide(context(patch)).intents,old.intents);
  }
 });
+test('priority and score skip explicit pass but explicit hold terminates candidate selection',async()=>{
+ for(const selector of ['priority','score']){
+  const graph=api.createLogisticsGraph();graph.states.find(s=>s.id==='working').treeId='selector';graph.modules.find(m=>m.kind==='gather').enabled=false;
+  graph.nodes.find(n=>n.id==='gather-node').fallback='pass-node';
+  graph.nodes.push(selector==='priority'?{id:'selector',type:'priority',children:['gather-node','defend-node'],fallback:'hold-node'}:{id:'selector',type:'score',candidates:[{id:'first-score',nodeId:'gather-node',weight:10},{id:'second-score',nodeId:'defend-node',weight:5}],fallback:'hold-node'});
+  const defend=graph.modules.find(m=>m.kind==='defend');defend.roleFilter=['gatherer'];defend.config.roomId='room-3';
+  const run=await executable(graph);const selected=run.decide(context());assert.equal(selected.intents[0].type,'move');assert.equal(selected.memoryPatch.set.aiTrace.actors[0].moduleId,'defend');
+  graph.nodes.find(n=>n.id==='gather-node').fallback='hold-node';const held=(await executable(graph)).decide(context());assert.deepEqual(held.intents,[]);assert.equal(held.memoryPatch.set.aiTrace.actors[0].selectedNodeId,'hold-node');
+ }
+});
+test('invalid graph saves as draft while validated generation blocks preview/publication',()=>{
+ const graph=api.createLogisticsGraph();graph.nodes.find(n=>n.id==='gather-node').fallback='cargo-check';
+ const draft=api.serializeGraphDraft(graph);assert.ok(draft.files['graph-plan.ts']);assert.deepEqual(api.recoverRuleGraph(draft),graph);assert.throws(()=>api.toGraphSourceProject(graph),/acyclic/);
+});
