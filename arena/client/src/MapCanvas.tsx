@@ -1,4 +1,5 @@
-import { paintMobilityFacilities, paintMobilitySelection } from "./mapMobility";
+import { paintMobilitySelection } from "./mapMobility";
+import { paintMobilityFacilities } from "./mobilityFacilities";
 import { loadLibraryTextures } from './libraryLayout';
 import { loadWorldAssets } from "./worldAssets";
 import { WorldEntities } from "./WorldEntities";
@@ -233,7 +234,7 @@ export default function MapCanvas(props: MapProps) {
           if (child.label?.startsWith("shelf:") || child.label?.startsWith("decor:"))
             child.destroy({ children: true });
         mobilityFacilities.removeChildren().forEach((child) => child.destroy());
-        if (p.snapshot) paintMobilityFacilities(mobilityFacilities, p.snapshot, (id) => {
+        if (p.snapshot) paintMobilityFacilities(mobilityFacilities, p.snapshot, tiles, (id) => {
           if (!dragged) latest.current.onMobilityEdge?.(id);
         });
         paintMap(
