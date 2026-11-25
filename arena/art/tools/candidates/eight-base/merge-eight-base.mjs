@@ -26,6 +26,11 @@ for(const action of ['walk','idle']){
    }
   }
  }
+ for(const direction of out.directions) out.layerOrderByDirection[direction]=out.layerOrderByDirection[direction].filter(layer=>{
+  const present=Array.from({length:out.clip.frameCount},(_,frame)=>keys.has(`${action}/${layer}/${direction}/${String(frame).padStart(2,'0')}`));
+  if(present.some(Boolean)&&!present.every(Boolean))throw Error(`Partial layer ${action}/${layer}/${direction}`);
+  return present.every(Boolean);
+ });
  out.layers=[...map.values()];out.activeLayers=out.layers.filter(l=>l.active).map(l=>l.layer);out.inactiveLayers=out.layers.filter(l=>!l.active).map(l=>l.layer);out.decodedBytes=out.layers.reduce((s,l)=>s+l.decodedBytes,0);
  await writeFile(path.join(target,'atlas-budget.json'),JSON.stringify(out,null,2));
  console.log(action,out.directions.length,'directions',keys.size,'unique frames',out.decodedBytes,'decoded bytes');
