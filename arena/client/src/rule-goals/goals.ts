@@ -8,7 +8,7 @@ const fields = { 载量: 'cargo', HP: 'hp', 生命: 'hp', 建材: 'materials' } 
 const operators = { '<': 'lt', '<=': 'lte', '=': 'eq', '>=': 'gte', '>': 'gt' } as const;
 const fingerprint = (graph: RuleGraph) => JSON.stringify(graph);
 const display = (value: unknown) => JSON.stringify(value);
-function reachesModule(graph: RuleGraph, stateId: string, kind: 'haul' | 'retreat'): boolean {
+function reachesModule(graph: RuleGraph, stateId: string, kind: 'haul' | 'retreat', role: RuleGraph['roles'][number]['role'], threshold: number): boolean {
   const state = graph.states.find(state => state.id === stateId), pending = state ? [state.treeId] : [], visited = new Set<string>();
   while (pending.length) {
     const id = pending.pop()!;
@@ -16,7 +16,7 @@ function reachesModule(graph: RuleGraph, stateId: string, kind: 'haul' | 'retrea
     visited.add(id);
     const node = graph.nodes.find(node => node.id === id);
     if (!node) continue;
-    if (node.type === 'module' && graph.modules.some(module => module.moduleId === node.moduleId && module.kind === kind && module.enabled)) return true;
+    if (node.type === 'module' && graph.modules.some(module => module.moduleId === node.moduleId && module.kind === kind && module.enabled && (!module.roleFilter || module.roleFilter.includes(role)) && (module.kind === 'haul' ? module.config.minCargo <= threshold : module.kind === 'retreat' && module.config.hpThreshold >= threshold))) return true;
     if (node.type === 'condition') pending.push(node.yes, node.no);
     else if (node.type === 'priority' || node.type === 'sequence') pending.push(...node.children, node.fallback);
     else if (node.type === 'score') pending.push(...node.candidates.map(candidate => candidate.nodeId), node.fallback);
@@ -53,8 +53,8 @@ export function proposeGoals(graph: RuleGraph, text: string): GoalProposal {
         const field = match[2] ? 'cargo' : 'hp', value = Number(match[2] ?? match[3]);
         if (!Number.isSafeInteger(value)) throw new Error('阈值须为安全范围内的非负整数');
         if (field === 'hp' && value > 100) throw new Error('生命阈值须为0–100');
-        const candidates = graph.transitions.filter(transition => transition.from === state.id && reachesModule(graph, transition.to, field === 'cargo' ? 'haul' : 'retreat') && transition.condition.type === 'compare' && transition.condition.field === field && (field === 'cargo' ? ['gte', 'gt'].includes(transition.condition.op) : ['lt', 'lte'].includes(transition.condition.op)));
-        if (candidates.length !== 1) throw new Error(`岗位入口 ${state.id} 对应的${field === 'cargo' ? '返程' : '低血'}转移有 ${candidates.length} 条，请使用带稳定ID的语法`);
+        const candidates = graph.transitions.filter(transition => transition.from === state.id && reachesModule(graph, transition.to, field === 'cargo' ? 'haul' : 'retreat', role.role, value) && transition.condition.type === 'compare' && transition.condition.field === field && (field === 'cargo' ? ['gte', 'gt'].includes(transition.condition.op) : ['lt', 'lte'].includes(transition.condition.op)));
+        if (candidates.length !== 1) throw new Error(`岗位入口 ${state.id} 对应的${field === 'cargo' ? '返程' : '低血'}转移有 ${candidates.length} 条，请检查目标模块的启用、岗位及阈值，再使用带稳定ID的语法`);
         const transition = candidates[0];
         if (transition.condition.type !== 'compare') throw new Error('转移不是数值条件');
         setCondition(transition.id, { ...transition.condition, value, op: field === 'cargo' ? 'gte' : 'lt' });

@@ -50,3 +50,10 @@ test('natural goal refuses disabled destinations rather than inventing a support
  const proposal=proposeGoals(graph,'守卷人生命低于25撤退');assert.equal(proposal.changes.length,0);assert.equal(proposal.errors.length,1);
  const large=proposeGoals(graph,'条件 cargo-check：载量 >= 999999999999999999999');assert.equal(large.changes.length,0);assert.match(large.errors[0],/安全范围/);
 });
+
+test('natural goal refuses incompatible module role or a hidden higher unload threshold',()=>{
+ const graph=createLogisticsGraph();graph.modules.find(m=>m.kind==='haul').config.minCargo=8;
+ assert.equal(proposeGoals(graph,'采撷师载量到6就回仓').changes.length,0);
+ const retreat=createRetreatGraph();retreat.modules.find(m=>m.kind==='retreat').roleFilter=['scout'];
+ assert.equal(proposeGoals(retreat,'守卷人生命低于25撤退').changes.length,0);
+});
