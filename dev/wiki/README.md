@@ -22,3 +22,12 @@ reload externally edited source files themselves.
 This is a local development service with unauthenticated Wiki write access;
 use it on a trusted workspace connection. Stop `npm start` with Ctrl-C to stop
 both processes. No bundler or framework is involved.
+
+Startup keeps checking the same child’s `/status` until it succeeds or that child
+stops. After 120 seconds it logs one slow-start warning and continues waiting;
+a late successful response still enables the proxy and advances the reload
+revision. Stop cancels that startup wait. Signal-terminated children are treated
+as exited before a source-change restart.
+
+Run the isolated lifecycle checks with `node --test server.test.cjs`. They use
+short controlled delays and ephemeral HTTP ports, not the running Wiki ports.
