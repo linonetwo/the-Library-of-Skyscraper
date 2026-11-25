@@ -1,3 +1,4 @@
+import { ReadOnlySource } from "./ReadOnlySource";
 import { useEffect, useRef, useState } from 'react';
 import { arenaApi } from '../arenaApi';
 import type { Session } from '../types';
@@ -128,6 +129,6 @@ export function RuleComparison({session, draftProject}: {
       <h4>意图差异</h4>
       {actorIds.length ? <table><thead><tr><th>角色</th><th>A</th><th>B</th></tr></thead><tbody>{actorIds.map(id => <tr key={id}><th>{id}</th><td>{intentsA.filter(i => i.actorId === id).map(i => i.type).join('、') || '无意图'}</td><td>{intentsB.filter(i => i.actorId === id).map(i => i.type).join('、') || '无意图'}</td></tr>)}</tbody></table> : <p>两版均无可用意图；请结合诊断与失败信息查看。</p>}
     </>}
-    {source && <details open className="comparison-source"><summary>只读版本 {source.hash} · {source.file}:{source.line}</summary><pre>{source.text.split('\n').map((line,i) => <span key={i} className={i+1===source.line ? 'source-selected' : ''}>{String(i+1).padStart(3)} {line}{'\n'}</span>)}</pre></details>}
+    {source && <details open className="comparison-source"><summary>只读版本 {source.hash} · {source.file}:{source.line}</summary><ReadOnlySource text={source.text} line={source.line} /></details>}
   </section>;
 }
