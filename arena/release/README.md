@@ -44,3 +44,11 @@ actual new dist indices/descriptors; its `rules` field additionally hashes and
 copies `arena/release/rule-provenance-v0.4.0.json`. Source paths in that record refer
 to sourceCommit, not new package runtime services. v0.3/v0.2 metadata branches,
 notes, launch paths and per-file checksum layout remain reproducible.
+
+For a client-only v0.4.1 patch, first verify that Rust sources, SDK/toolchain/tools
+and all dependency locks match the accepted v0.4.0 source. Build the fixed client
+once and collect a new empty-data package with the original Rust and Node bytes.
+Pass `runtimeReuse` to `collectPackage` with the original source commit, archive
+SHA256 and the reused-files evidence hash; the manifest explicitly labels reused
+binaries. Record the per-file comparison outside the archive, and run targeted
+patch acceptance before release. This path does not run `build.mjs` or Cargo.

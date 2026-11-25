@@ -36,8 +36,8 @@ export function buildMetadata(source, version) {
  for(const name of ['server','script-runner']) modules[name]=read(`arena/${name}/Cargo.toml`).match(/^version = "([^"]+)"/m)[1];
  const locks=['client/package-lock.json','script-toolchain/package-lock.json','tools/package-lock.json','server/Cargo.lock','script-runner/Cargo.lock'];
  return {protocol:'arena.v1',modules,
-  assets: ['0.3.0','0.4.0'].includes(version) ? currentAssets() : legacyAssets(),
-  ...(version==='0.4.0' ? {rules:{schemaVersions:[1,2],provenance:{path:'arena/release/rule-provenance-v0.4.0.json',sha256:sha256('arena/release/rule-provenance-v0.4.0.json')}}} : {}),
+  assets: ['0.3.0','0.4.0','0.4.1'].includes(version) ? currentAssets() : legacyAssets(),
+  ...(['0.4.0','0.4.1'].includes(version) ? {rules:{schemaVersions:[1,2],provenance:{path:'arena/release/rule-provenance-v0.4.0.json',sha256:sha256('arena/release/rule-provenance-v0.4.0.json')}}} : {}),
   dependencies:Object.fromEntries(locks.map(path=>[`arena/${path}`,sha256(`arena/${path}`)])),
   toolchain:Object.fromEntries(['npm','rustc','cargo'].map(command=>[command,execFileSync(command,['--version'],{encoding:'utf8'}).trim()]))};
 }
