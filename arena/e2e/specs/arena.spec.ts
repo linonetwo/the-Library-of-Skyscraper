@@ -26,7 +26,7 @@ test('single player: atlas, rule publication, tick control and real screenshot',
   const before = await state(page);
   await stepTraining(page);
   await expect.poll(async () => (await state(page)).tick).toBe(before.tick + 1);
-  await openMenu(page, '行动规则');
+  await openMenu(page, '编辑 AI 规则');
   await page.getByRole('tab', { name: '行动预设', exact: true }).click();
   await page.getByRole('button', { name: /02守卫书库|02 守卫书库/ }).click();
   await page.getByLabel('生命值撤退阈值').fill('45');

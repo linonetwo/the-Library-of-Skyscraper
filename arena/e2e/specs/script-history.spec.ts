@@ -16,7 +16,7 @@ async function capture(page: Page, label: string) {
 }
 
 async function openScripts(page: Page) {
-  await openMenu(page, '行动规则');
+  await openMenu(page, '编辑 AI 规则');
   await page.getByRole("tab", { name: "TypeScript", exact: true }).click();
   await expect(page.getByRole("textbox", { name: "TypeScript规则源码" })).toBeVisible({ timeout: 20000 });
 }
