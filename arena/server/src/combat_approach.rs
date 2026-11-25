@@ -154,6 +154,9 @@ pub(crate) fn stop_segmented_before_opponent(travel: &mut Option<Travel>, oppone
             revised.push(s);
         }
     }
+    // Unchanged geometry keeps its original cumulative timing. Only the
+    // shortened suffix receives a different duration; elapsed/index stay put.
+    crate::travel_segments::allocate_durations(&mut revised);
     t.segments = Some(revised);
     crate::travel_segments::refresh(t);
 }

@@ -153,7 +153,9 @@ fn climb_uses_registered_ladders_transfers_platform_and_beats_ground_detour() {
             s.advance();
             let a = actor(&mut s);
             max = max.max(a.world_height_milli.unwrap());
-            phases.push(a.locomotion.unwrap().phase);
+            if let Some(locomotion) = a.locomotion {
+                phases.push(locomotion.phase);
+            }
             if s.tick > 100 {
                 panic!("climb stalled");
             }
@@ -304,4 +306,46 @@ fn registered_landings_have_real_floor_and_clear_existing_prop_footprints() {
             }
         }
     }
+}
+
+#[test]
+fn final_ground_arrival_is_stable_idle_but_final_jump_keeps_landing_sample() {
+    let mut s = game();
+    s.command(
+        "p1",
+        Command::Move {
+            actor_id: "p1-gatherer".into(),
+            room_id: "room-1".into(),
+        },
+    )
+    .unwrap();
+    finish(&mut s);
+    assert!(actor(&mut s).locomotion.is_none());
+    let arrived = actor(&mut s).world_position;
+    s.advance();
+    assert_eq!(actor(&mut s).world_position, arrived);
+    assert!(actor(&mut s).locomotion.is_none());
+
+    // Explicit domain fixture with a jump as the final segment (no ground tail).
+    let mut a = actor(&mut s);
+    crate::mobility::edge(&mut a, "jump-room-1-room-2", TravelKind::Jump, s.tick).unwrap();
+    let t = a.travel.as_mut().unwrap();
+    let gap = t
+        .segments
+        .as_ref()
+        .unwrap()
+        .iter()
+        .find(|x| x.kind == TravelKind::Jump)
+        .unwrap()
+        .clone();
+    a.world_position = gap.from.xy();
+    t.segments = Some(vec![gap]);
+    t.segment = 0;
+    t.segment_elapsed_micros = Some(0);
+    crate::travel_segments::refresh(t);
+    for _ in 0..4 {
+        crate::travel::advance(&mut a, 7);
+    }
+    assert!(a.travel.is_none());
+    assert_eq!(a.locomotion.unwrap().phase, LocomotionPhase::Landing);
 }

@@ -346,6 +346,14 @@ fn advance_segmented_actor(actor: &mut Actor, version: u32) -> bool {
         } else if let Some(room) = step.arrived {
             actor.room_id = room;
             actor.state = "idle".into();
+            if actor.locomotion.as_ref().is_some_and(|motion| {
+                matches!(
+                    motion.phase,
+                    crate::LocomotionPhase::Walk | crate::LocomotionPhase::Run
+                )
+            }) {
+                actor.locomotion = None;
+            }
         }
         break;
     }
