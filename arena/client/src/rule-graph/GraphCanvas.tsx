@@ -50,7 +50,8 @@ export function GraphCanvas({
           id: t.id,
           from: t.from,
           to: t.to,
-          label: `${t.id} · P${t.priority}`,
+          label: `${graph.states.find((s) => s.id === t.from)?.name ?? t.from} → ${graph.states.find((s) => s.id === t.to)?.name ?? t.to}`,
+          detail: `${t.id} · 优先级 ${t.priority}`,
         }))
       : nodes.flatMap((n) =>
           nodeEdges(n).map((edge, i) => ({
@@ -58,6 +59,7 @@ export function GraphCanvas({
             from: n.id,
             to: edge.target,
             label: edge.label,
+            detail: `${n.id} · ${edge.label} → ${edge.target}`,
           })),
         );
   const position = new Map(
@@ -149,7 +151,7 @@ export function GraphCanvas({
                 {edge.label}
                 {!end ? " · 引用缺失" : ""}
               </text>
-              {mode === "states" && <title>{edge.id}</title>}
+              <title>{edge.detail}</title>
             </g>
           );
         })}

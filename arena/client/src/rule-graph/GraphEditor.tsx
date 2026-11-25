@@ -386,7 +386,12 @@ export function GraphEditor({
               }}
             >
               {diagnostic.severity === "error" ? "错误" : "提示"} ·{" "}
-              {diagnostic.objectId} · {diagnostic.message}
+              {diagnostic.objectId} ·{" "}
+              {diagnostic.code === "tree-cycle"
+                ? "决策树不能成环；请修改连接"
+                : diagnostic.code === "unreachable"
+                  ? "当前入口无法到达此对象"
+                  : diagnostic.message}
             </button>
           ))
         ) : (

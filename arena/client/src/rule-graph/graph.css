@@ -276,3 +276,9 @@
 .graph-workbench .graph-tools {
   margin: 8px 0;
 }
+
+.graph-edge path.graph-edge-hit {
+  stroke: transparent;
+  stroke-width: 14;
+  pointer-events: stroke;
+}
