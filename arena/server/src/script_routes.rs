@@ -146,7 +146,9 @@ pub async fn state(
                 .get(owner)
                 .and_then(|p| p.script.as_ref())
                 .map(|s| s.source_hash.as_str());
-            Ok(Json(session.rule_state(owner, hash)))
+            let mut state = session.rule_state(owner, hash);
+            state["operationIndex"] = json!(session.recorded_operation_index());
+            Ok(Json(state))
         })
         .await
 }

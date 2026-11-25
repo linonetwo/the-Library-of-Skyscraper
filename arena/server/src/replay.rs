@@ -228,6 +228,11 @@ impl Session {
 
     /// Never returns a truncated recording. A long-running/reset session remains
     /// playable after the recording limit, but cannot claim reproducible export.
+    /// Current committed recording boundary, including commands at the same tick.
+    pub fn recorded_operation_index(&self) -> Option<usize> {
+        (!self.replay_overflowed).then_some(self.replay_operations.len())
+    }
+
     pub fn export_replay(&mut self) -> Result<Replay, String> {
         self.export_replay_for(None)
     }
