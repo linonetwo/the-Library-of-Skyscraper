@@ -8,18 +8,18 @@
       "leftGrab": {
         "image": "N/leftGrab.png",
         "size": [
-          20,
-          11
+          30,
+          21
         ],
         "anatomicalSide": "left",
         "gesture": "grab",
         "wristPivot": [
-          11.37946942963511,
-          8.605740019258578
+          16.379469429635108,
+          13.605740019258578
         ],
         "localContact": [
-          10.569125058395326,
-          4.112076424818068
+          15.569125058395326,
+          9.112076424818067
         ],
         "wristTowardElbow": [
           0.6153318120989638,
@@ -29,7 +29,7 @@
           1,
           0
         ],
-        "status": "pending",
+        "status": "pending revised hook-volume review",
         "source": "../revised/NE/leftGrab.png",
         "sourceHash": "43ea2429668a5e837f06776d2aa0909f1b31df526849c388c4cb1f7eecb4b82b",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -39,23 +39,24 @@
           1.414213562373095,
           -0.35355339059327373,
           0.7071067811865476
-        ]
+        ],
+        "hookVolume": "High-resolution retained original; transverse thickness only beyond wrist, endpoint segment extended beyond rung. Wrist and rung axes fixed."
       },
       "rightGrab": {
         "image": "N/rightGrab.png",
         "size": [
-          18,
-          10
+          28,
+          20
         ],
         "anatomicalSide": "right",
         "gesture": "grab",
         "wristPivot": [
-          10.169609727024925,
-          8.135867563160117
+          15.169609727024925,
+          13.135867563160117
         ],
         "localContact": [
-          11.433209545005287,
-          4.938684252025142
+          16.433209545005287,
+          9.938684252025142
         ],
         "wristTowardElbow": [
           0.5304854250333534,
@@ -65,7 +66,7 @@
           1,
           0
         ],
-        "status": "pending",
+        "status": "pending revised hook-volume review",
         "source": "../revised/NE/rightGrab.png",
         "sourceHash": "cb1a6ff9757661d4e94bd3100ac214692690293e93c2837d50c4d6e24142c262",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -75,7 +76,8 @@
           1.414213562373095,
           -0.35355339059327373,
           0.7071067811865476
-        ]
+        ],
+        "hookVolume": "High-resolution retained original; transverse thickness only beyond wrist, endpoint segment extended beyond rung. Wrist and rung axes fixed."
       },
       "leftBrace": {
         "image": "N/leftBrace.png",
@@ -101,7 +103,7 @@
           1,
           0
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/NE/leftBrace.png",
         "sourceHash": "9b6d58aa4a616a0866cb631e37961c7e8fe01ae5836b458623d31617fc78fa05",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -137,7 +139,7 @@
           1,
           0
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/NE/rightBrace.png",
         "sourceHash": "e8cb3fcbaa9741f76f38ad44cff186192c2fdf2808aea69a4bef01d2c812178b",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -175,7 +177,7 @@
           -1,
           0
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/SW/leftGrab.png",
         "sourceHash": "debc7b4f336e35b8efd756af69efa6aa0bb6bfebc46ed265b3740e07663cdacf",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -211,7 +213,7 @@
           -1,
           0
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/SW/rightGrab.png",
         "sourceHash": "9b80079e1d620f6fe2aba2dd7f4be3b0529612e04b2531bb5d4a2e7dacbd5946",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -247,7 +249,7 @@
           -1,
           0
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/SW/leftBrace.png",
         "sourceHash": "dfc7955f9bb78e306097af741bd9528648d417f7bf531bcc6a7221d08cb21ae1",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -283,7 +285,7 @@
           -1,
           0
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/SW/rightBrace.png",
         "sourceHash": "9c5196b4ae50356d5b2b53b16b00017e64a3621d5bdc92ab58e0d0adec56af47",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -300,18 +302,18 @@
       "leftGrab": {
         "image": "NW/leftGrab.png",
         "size": [
-          18,
-          6
+          28,
+          16
         ],
         "anatomicalSide": "left",
         "gesture": "grab",
         "wristPivot": [
-          14.56,
-          4.2335
+          19.560000000000002,
+          9.2335
         ],
         "localContact": [
-          7.632000000000001,
-          1.3425000000000002
+          12.632000000000001,
+          6.3425
         ],
         "wristTowardElbow": [
           0.9767946670038231,
@@ -321,7 +323,7 @@
           0.8944271909999159,
           -0.4472135954999579
         ],
-        "status": "pending",
+        "status": "pending revised hook-volume review",
         "source": "../revised/NE/leftGrab.png",
         "sourceHash": "43ea2429668a5e837f06776d2aa0909f1b31df526849c388c4cb1f7eecb4b82b",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -331,23 +333,24 @@
           2,
           -0.5,
           6.123233995736766e-17
-        ]
+        ],
+        "hookVolume": "High-resolution retained original; transverse thickness only beyond wrist, endpoint segment extended beyond rung. Wrist and rung axes fixed."
       },
       "rightGrab": {
         "image": "NW/rightGrab.png",
         "size": [
-          16,
-          6
+          26,
+          16
         ],
         "anatomicalSide": "right",
         "gesture": "grab",
         "wristPivot": [
-          13.04,
-          4.329000000000001
+          18.04,
+          9.329
         ],
         "localContact": [
-          9.412,
-          1.6215000000000006
+          14.412,
+          6.621500000000001
         ],
         "wristTowardElbow": [
           0.9674271176133487,
@@ -357,7 +360,7 @@
           0.8944271909999159,
           -0.4472135954999579
         ],
-        "status": "pending",
+        "status": "pending revised hook-volume review",
         "source": "../revised/NE/rightGrab.png",
         "sourceHash": "cb1a6ff9757661d4e94bd3100ac214692690293e93c2837d50c4d6e24142c262",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -367,7 +370,8 @@
           2,
           -0.5,
           6.123233995736766e-17
-        ]
+        ],
+        "hookVolume": "High-resolution retained original; transverse thickness only beyond wrist, endpoint segment extended beyond rung. Wrist and rung axes fixed."
       },
       "leftBrace": {
         "image": "NW/leftBrace.png",
@@ -393,7 +397,7 @@
           0.8944271909999159,
           -0.4472135954999579
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/NE/leftBrace.png",
         "sourceHash": "9b6d58aa4a616a0866cb631e37961c7e8fe01ae5836b458623d31617fc78fa05",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -429,7 +433,7 @@
           0.8944271909999159,
           -0.4472135954999579
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/NE/rightBrace.png",
         "sourceHash": "e8cb3fcbaa9741f76f38ad44cff186192c2fdf2808aea69a4bef01d2c812178b",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -467,7 +471,7 @@
           -0.8944271909999159,
           0.4472135954999579
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/SW/leftGrab.png",
         "sourceHash": "debc7b4f336e35b8efd756af69efa6aa0bb6bfebc46ed265b3740e07663cdacf",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -503,7 +507,7 @@
           -0.8944271909999159,
           0.4472135954999579
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/SW/rightGrab.png",
         "sourceHash": "9b80079e1d620f6fe2aba2dd7f4be3b0529612e04b2531bb5d4a2e7dacbd5946",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -539,7 +543,7 @@
           -0.8944271909999159,
           0.4472135954999579
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/SW/leftBrace.png",
         "sourceHash": "dfc7955f9bb78e306097af741bd9528648d417f7bf531bcc6a7221d08cb21ae1",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -575,7 +579,7 @@
           -0.8944271909999159,
           0.4472135954999579
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "source": "../revised/SW/rightBrace.png",
         "sourceHash": "9c5196b4ae50356d5b2b53b16b00017e64a3621d5bdc92ab58e0d0adec56af47",
         "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
@@ -613,7 +617,7 @@
           0,
           1
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "method": "new independently painted profile",
         "source": "../source/profile.png",
         "sourceGrid": "R1C1",
@@ -648,7 +652,7 @@
           0,
           1
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "method": "new independently painted profile",
         "source": "../source/profile.png",
         "sourceGrid": "R1C2",
@@ -683,7 +687,7 @@
           0,
           1
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "method": "new independently painted profile",
         "source": "../source/profile.png",
         "sourceGrid": "R1C3",
@@ -718,7 +722,7 @@
           0,
           1
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "method": "new independently painted profile",
         "source": "../source/profile.png",
         "sourceGrid": "R1C4",
@@ -755,7 +759,7 @@
           0,
           -1
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "method": "new independently painted profile",
         "source": "../source/profile.png",
         "sourceGrid": "R2C1",
@@ -790,7 +794,7 @@
           0,
           -1
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "method": "new independently painted profile",
         "source": "../source/profile.png",
         "sourceGrid": "R2C2",
@@ -825,7 +829,7 @@
           0,
           -1
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "method": "new independently painted profile",
         "source": "../source/profile.png",
         "sourceGrid": "R2C3",
@@ -860,7 +864,7 @@
           0,
           -1
         ],
-        "status": "pending",
+        "status": "offline source accepted at 724397e",
         "method": "new independently painted profile",
         "source": "../source/profile.png",
         "sourceGrid": "R2C4",

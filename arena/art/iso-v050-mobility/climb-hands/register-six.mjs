@@ -32,16 +32,32 @@ for(const [row,[h,link]] of Object.entries(views).entries()){
    const a=deg*Math.PI/180,c=Math.cos(a),s=Math.sin(a),m=[c,-2*s,.5*s,c];
    const xy=([x,y])=>[m[0]*x+m[1]*y,m[2]*x+m[3]*y],corners=[[0,0],[w,0],[0,hh],[w,hh]].map(xy);
    const left=Math.floor(Math.min(...corners.map(v=>v[0]))),top=Math.floor(Math.min(...corners.map(v=>v[1]))),width=Math.ceil(Math.max(...corners.map(v=>v[0])))-left,height=Math.ceil(Math.max(...corners.map(v=>v[1])))-top;
-   const pixel=Buffer.alloc(width*height*4),local=pt=>xy(pt).map((v,j)=>v-[left,top][j]);
-   for(let y=0;y<height;y++)for(let x=0;x<width;x++){
+   const restore=(h==="N"||h==="NW")&&kind==="grab",pad=restore?5:0;
+   const bw=width+2*pad,bh=height+2*pad,pixel=Buffer.alloc(bw*bh*4),local=pt=>xy(pt).map((v,j)=>v-[left,top][j]+pad);
+   const anchor=xy(p.wristPivot),contact=xy(p.localContact),axis=norm(contact.map((v,i)=>v-anchor[i])),distance=Math.hypot(...contact.map((v,i)=>v-anchor[i]));
+   let full;
+   if(restore){
+    const path=new URL("revised/"+p.source,root);full=await sharp(path.pathname).extract(p.sourceCrop).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+   }
+   for(let y=0;y<bh;y++)for(let x=0;x<bw;x++){
     let sum=[0,0,0],alpha=0;
     for(const dy of [.125,.375,.625,.875])for(const dx of [.125,.375,.625,.875]){
-     const tx=x+left+dx,ty=y+top+dy,ix=Math.floor(c*tx+2*s*ty),iy=Math.floor(-.5*s*tx+c*ty);
-     if(ix<0||ix>=w||iy<0||iy>=hh)continue;const i=4*(iy*w+ix),aa=data[i+3];alpha+=aa;for(let k=0;k<3;k++)sum[k]+=aa*data[i+k];
-    }if(alpha)pixel.set([...sum.map(v=>Math.round(v/alpha)),Math.round(alpha/16)],4*(y*width+x));
+     let tx=x+left+dx-pad,ty=y+top+dy-pad;
+     if(restore){
+      const ax=tx-anchor[0],ay=ty-anchor[1],t=ax*axis[0]+ay*axis[1],v=-ax*axis[1]+ay*axis[0];
+      const weight=Math.max(0,Math.min(1,(t/distance-.2)/.62));
+      const cross=v/(1+weight*(h==="NW"?2.05:1.4));
+      const u=t<=distance?t:distance+(t-distance)/1.25;
+      tx=anchor[0]+axis[0]*u-axis[1]*cross;ty=anchor[1]+axis[1]*u+axis[0]*cross;
+     }
+     const xx=c*tx+2*s*ty,yy=-.5*s*tx+c*ty;
+     if(xx<0||xx>=w||yy<0||yy>=hh)continue;
+     const iw=full?.info.width??w,ih=full?.info.height??hh,d=full?.data??data,i=4*(Math.floor(yy*ih/hh)*iw+Math.floor(xx*iw/w)),aa=d[i+3];alpha+=aa;for(let k=0;k<3;k++)sum[k]+=aa*d[i+k];
+    }if(alpha)pixel.set([...sum.map(v=>Math.round(v/alpha)),Math.round(alpha/16)],4*(y*bw+x));
    }
-   buf=await sharp(pixel,{raw:{width,height,channels:4}}).png().toBuffer();wp=local(p.wristPivot);cp=local(p.localContact);normal=norm(xy(p.wristTowardElbow));
+   buf=await sharp(pixel,{raw:{width:bw,height:bh,channels:4}}).png().toBuffer();wp=local(p.wristPivot);cp=local(p.localContact);normal=norm(xy(p.wristTowardElbow));
    details={source:`../revised/${p.image}`,sourceHash:sha(old),method:"same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",degrees:deg,matrix:m};
+   if(restore)details.hookVolume="High-resolution retained original; transverse thickness only beyond wrist, endpoint segment extended beyond rung. Wrist and rung axes fixed.";
   }else{
    const [rect,wr,el,contact]=fresh[h][col],s=profileRatio;
    const b={left:Math.round(rect[0]*s),top:Math.round(rect[1]*s),width:Math.round(rect[2]*s)-Math.round(rect[0]*s),height:Math.round(rect[3]*s)-Math.round(rect[1]*s)};
@@ -52,7 +68,7 @@ for(const [row,[h,link]] of Object.entries(views).entries()){
   }
   const image=h+"/"+name+".png";await writeFile(new URL(image,out),buf);const {data,info:{width:w,height:hh}}=await sharp(buf).ensureAlpha().raw().toBuffer({resolveWithObject:true});
   const wa=dir.joints[side+"Wrist"].restOffset,L=Math.hypot(...wa),fd=fwd[h],rail=norm([-fd[1]-fd[0],.5*(-fd[1]+fd[0])]);
-  manifest.directions[h][name]={image,size:[w,hh],anatomicalSide:side,gesture:kind,wristPivot:wp,localContact:cp,wristTowardElbow:normal,rungScreenAxis:rail,status:"pending",...details};
+  manifest.directions[h][name]={image,size:[w,hh],anatomicalSide:side,gesture:kind,wristPivot:wp,localContact:cp,wristTowardElbow:normal,rungScreenAxis:rail,status:(h==="N"||h==="NW")&&kind==="grab"?"pending revised hook-volume review":"offline source accepted at 724397e",...details};
   for(const [oi,ward]of [false,true].entries()){
    const cx=col*64+32,cy=(row*2+oi)*46+23;
    for(let t=-24;t<=24;t+=.4){let x=Math.round(cx+t*rail[0]),y=Math.round(cy+t*rail[1]);blend(x,y,[144,120,77],255);if(kind==="grab")blend(x,y+1,[181,148,97],230);}
