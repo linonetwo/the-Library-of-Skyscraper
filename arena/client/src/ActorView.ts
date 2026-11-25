@@ -240,6 +240,8 @@ export class ActorView {
       worldHeightMilli: mobility?.worldHeightMilli,
       supportHeightMilli: mobility?.supportHeightMilli,
       authoritativeLocomotion: this.actor.locomotion,
+      authoritativeWorldPosition: this.actor.worldPosition,
+      authoritativeWorldHeightMilli: this.actor.worldHeightMilli,
       presentationProgress: mobility?.locomotion?.progress,
       direction: selection?.direction ?? pose.direction,
       frame: selection?.frame ?? pose.frame,
