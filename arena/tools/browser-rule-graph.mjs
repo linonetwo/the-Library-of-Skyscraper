@@ -27,7 +27,7 @@ export const graphActionSchemas = [
   z
     .object({
       type: z.literal("loadRuleGraphTemplate"),
-      template: z.enum(["logistics", "retreat"]),
+      template: z.enum(["logistics", "retreat", "shortcut"]),
     })
     .strict(),
   z.object({ type: z.literal("selectRuleGraphObject"), kind, id }).strict(),
@@ -45,6 +45,7 @@ export const graphActionSchemas = [
         "score",
         "log",
         "module",
+        "mobility",
         "hold",
         "pass",
       ]),
@@ -95,7 +96,7 @@ export async function performGraphAction(page, action) {
     page.getByRole("button", { name, exact: true }).click();
   if (action.type === "loadRuleGraphTemplate")
     await click(
-      action.template === "logistics" ? "载入物流状态图" : "载入撤退冷却图",
+      ({logistics:"载入物流状态图",retreat:"载入撤退冷却图",shortcut:"载入捷径支援图"})[action.template],
     );
   else if (action.type === "convertBehaviorToRuleGraph")
     await click("从当前五卡显式创建规则图");

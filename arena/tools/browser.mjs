@@ -1,3 +1,4 @@
+import { mobilityActionSchemas, performMobilityAction, readMobilityState } from './browser-mobility.mjs';
 import {graphActionSchemas,performGraphAction,readGraphState} from './browser-rule-graph.mjs';
 import {goalActionSchemas,performGoalAction,readGoalState} from './browser-goals.mjs';
 import {behaviorActionSchemas,performBehaviorAction,readBehaviorState} from './browser-behavior.mjs';
@@ -16,7 +17,7 @@ export function registerBrowserTools(server) {
     ...graphActionSchemas, ...goalActionSchemas,
     ...expeditionActionSchemas,
     ...workshopActionSchemas,
-    ...mapActionSchemas,
+    ...mapActionSchemas, ...mobilityActionSchemas,
     ...behaviorActionSchemas,
     ...['openReplay', 'closeReplay', 'playReplay', 'pauseReplay', 'locateReplayTaskSource', 'startTraining', 'resetTraining', 'resumeLatest', 'openLobby', 'openRules', 'openScripts', 'compileScript', 'previewScript', 'publishScript', 'disableScript', 'openScriptHistory', 'loadScriptVersion', 'restoreScriptVersion', 'closeLobby', 'gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type) }).strict()),
     z.object({ type: z.literal('seekReplay'), operationIndex: z.number().int().min(0) }).strict(),
@@ -96,7 +97,7 @@ export function registerBrowserTools(server) {
       memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
       tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
     } : null;
-    return { url: active.url(), graph: await readGraphState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    return { url: active.url(), mobility: await readMobilityState(active), graph: await readGraphState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   const perform = async ({ action }) => {
     const active = current();
@@ -104,6 +105,7 @@ export function registerBrowserTools(server) {
     if (await performGoalAction(active, action)) return { performed: action.type };
     if (await performBehaviorAction(active, action)) return { performed: action.type };
     if (await performExpeditionAction(active, action)) return { performed: action.type };
+    if (await performMobilityAction(active, action)) return { performed: action.type };
     if (await performMapAction(active, action)) return { performed: action.type };
     if (await performWorkshopAction(active, action)) return { performed: action.type };
     const click = name => active.getByRole('button', { name, exact: true }).click();
