@@ -31,6 +31,7 @@ const groups = [
 export function GraphEditor({
   graph,
   trace,
+  traceSourceHash,
   diagnostics,
   onApply,
   onLocate,
@@ -45,6 +46,7 @@ export function GraphEditor({
 }: {
   graph: RuleGraph;
   trace?: GraphTrace | null;
+  traceSourceHash?: string;
   diagnostics: GraphDiagnostic[];
   onApply: (patch: GraphPatch) => void;
   onLocate: (id: string) => void;
@@ -152,7 +154,7 @@ export function GraphEditor({
   return (
     <section
       data-rule-graph
-      data-graph-state={JSON.stringify({graph, selection, diagnostics, trace, view:mode, treeState})}
+      data-graph-state={JSON.stringify({graph, selection, diagnostics, trace, traceSourceHash, view:mode, treeState})}
       className="rule-graph-editor"
       aria-label="规则图编辑器"
       onKeyDown={(e) => {

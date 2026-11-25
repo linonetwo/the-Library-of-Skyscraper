@@ -97,6 +97,11 @@ export function GraphCanvas({
           return (
             <g
               key={edge.id}
+              role="button"
+              tabIndex={0}
+              aria-label={`连接 ${edge.from} ${edge.label} ${edge.to || "未连接"}`}
+              onClick={() => onSelect({kind: mode === "states" ? "transitions" : "nodes",id: mode === "states" ? edge.id : edge.from})}
+              onKeyDown={e => {if(e.key === "Enter" || e.key === " "){e.preventDefault();onSelect({kind:mode === "states" ? "transitions" : "nodes",id:mode === "states" ? edge.id : edge.from});}}}
               data-edge-id={edge.id}
               data-from={edge.from}
               data-to={edge.to}

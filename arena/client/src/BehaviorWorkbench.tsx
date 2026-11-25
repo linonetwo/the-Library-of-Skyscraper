@@ -166,6 +166,7 @@ export default function BehaviorWorkbench({
             <GraphEditor
               graph={g.graph}
               trace={currentGraphTrace}
+              traceSourceHash={currentGraphTrace ? w.preview?.sourceHash : undefined}
               diagnostics={g.diagnostics}
               selection={graphSelection}
               onSelect={setGraphSelection}
@@ -376,7 +377,7 @@ export default function BehaviorWorkbench({
             onLocate={locate}
           />
         )}
-        {currentGraphTrace && <section aria-label="当前草稿规则图试跑路径"><h4>当前草稿试跑 · {w.preview?.sourceHash}</h4><TraceView value={currentGraphTrace} locate={locateGraph}/></section>}
+        {currentGraphTrace && <section aria-label="当前草稿规则图试跑路径" data-source-hash={w.preview?.sourceHash}><h4>当前草稿试跑 · {w.preview?.sourceHash}</h4><TraceView value={currentGraphTrace} locate={locateGraph}/></section>}
         {w.preview && <PreviewStatePatch preview={w.preview} />}
       </section>
       <ScriptRuntime key={`${w.session?.sessionId}:${w.session?.playerId}`} />
