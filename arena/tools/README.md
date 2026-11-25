@@ -134,3 +134,31 @@ not claim to verify clicking the browser’s settlement retry button.
 工坊 `openWorkshop` 保持当前页面 origin，候选 `ARENA_UI_URL` 不会被切回默认5173。
 
 真实 stdio 验证：`ARENA_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5181 ARENA_BASE_URL=http://127.0.0.1:8790 node --test ../tests/behavior-browser.test.mjs`。
+
+### 规则图与中文目标
+
+`openRuleGraph` 打开实际规则图页；`convertBehaviorToRuleGraph` 显式转换当前五卡，
+`loadRuleGraphTemplate {template: logistics|retreat}` 载入界面示例。
+`addRuleGraphObject {kind}` 支持 state、transition、role 和界面九种节点类型；
+`selectRuleGraphObject {kind: nodes|states|transitions|roles|modules,id}` 选择对象树条目。
+`setRuleGraphView {view: states|tree}` 切换画布；`selectRuleGraphTree {stateId}`
+选择状态持续树（空字符串显示全部节点），节点选择保留当前树。
+`copyRuleGraphSelection`、`deleteRuleGraphSelection`、`renameRuleGraphObject {id}`、
+`undoRuleGraph`、`redoRuleGraph` 使用对应可见按钮。
+`setRuleGraphField {label,value,index?}` 按参数区的准确 label 填值/选择/勾选；
+`connectRuleGraph {port,target,index?}` 操作准确 label 的引用选择器（例如「满足时」、
+「持续决策树入口」、「初始状态」），target 为空字符串即断开。
+重复 label 用从0开始的 index 选择。`selectRuleGraphDiagnostic {index}` 选择诊断对象，
+`locateRuleGraphSource` 定位所选对象的生成源码。
+
+`Page.getState.graph` 的 `graph/selection/diagnostics/view/treeState` 直接读取可见编辑器
+公开的渲染状态；`nodes/edges` 读取当前画布 DOM，`source/results/traces` 读取实际源码定位、
+编译结果及有来源标签/哈希的轨迹。隐藏编辑器返回 visible:false，不从存储重建或计算图。
+编译与 V8 试跑继续使用原 `compileScript` / `previewScript`。
+
+中文目标操作：`proposeRuleGoals {text}`、`selectRuleGoalChange {changeId,selected}`、
+`locateRuleGoalObject {changeId}`、`acceptRuleGoalChanges`、`rejectRuleGoalChanges`、
+`undoRuleGoalChanges`。`Page.getState.goals` 返回可见目标文本、状态、差异及勾选状态和警告。
+所有图与目标修改都经可见控件，与手动编辑共用同一草稿、撤销与编译路径。
+
+真实 stdio 验证：`ARENA_BROWSER=1 node --test ../tests/rule-graph-browser.test.mjs`。
