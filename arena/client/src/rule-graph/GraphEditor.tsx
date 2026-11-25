@@ -82,7 +82,6 @@ export function GraphEditor({
     }
     if (next.kind === "nodes") {
       setMode("tree");
-      setTreeState("");
     }
   };
   const add = () => {

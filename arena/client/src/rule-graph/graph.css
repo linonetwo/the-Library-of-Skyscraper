@@ -282,3 +282,4 @@
   stroke-width: 14;
   pointer-events: stroke;
 }
+.graph-edge[aria-pressed="true"] > path:not(.graph-edge-hit) {stroke:var(--gold);stroke-width:3;}

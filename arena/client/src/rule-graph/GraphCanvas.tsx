@@ -1,3 +1,4 @@
+import { layoutDecisionNodes } from "./treeLayout";
 import type { GraphTrace, RuleGraph } from "../../../behavior-modules/graph";
 import { nodeEdges, nodeNames, type GraphSelection } from "./graphObjects";
 export function GraphCanvas({
@@ -52,6 +53,8 @@ export function GraphCanvas({
           to: t.to,
           label: `${graph.states.find((s) => s.id === t.from)?.name ?? t.from} → ${graph.states.find((s) => s.id === t.to)?.name ?? t.to}`,
           detail: `${t.id} · 优先级 ${t.priority}`,
+          portIndex: 0,
+          portCount: 1,
         }))
       : nodes.flatMap((n) =>
           nodeEdges(n).map((edge, i) => ({
@@ -60,14 +63,19 @@ export function GraphCanvas({
             to: edge.target,
             label: edge.label,
             detail: `${n.id} · ${edge.label} → ${edge.target}`,
+            portIndex: i,
+            portCount: nodeEdges(n).length,
           })),
         );
-  const position = new Map(
-    items.map((item, i) => [
-      item.id,
-      { x: 30 + (i % 3) * 230, y: 60 + Math.floor(i / 3) * 150 },
-    ]),
-  );
+  const position =
+    mode === "tree"
+      ? layoutDecisionNodes(items, edges)
+      : new Map(
+          items.map((item, i) => [
+            item.id,
+            { x: 30 + (i % 3) * 230, y: 60 + Math.floor(i / 3) * 150 },
+          ]),
+        );
   return (
     <div
       className="graph-canvas"
@@ -76,8 +84,8 @@ export function GraphCanvas({
       <svg
         role="group"
         aria-label={mode === "states" ? "跨步状态转移" : "单步决策连接"}
-        width="740"
-        height={Math.max(250, Math.ceil(items.length / 3) * 150 + 80)}
+        width={Math.max(740, ...[...position.values()].map((p) => p.x + 210))}
+        height={Math.max(250, ...[...position.values()].map((p) => p.y + 140))}
       >
         <defs>
           <marker
@@ -97,6 +105,7 @@ export function GraphCanvas({
           const end = position.get(edge.to);
           if (!start) return null;
           const paired =
+            mode === "states" &&
             end &&
             start.y === end.y &&
             edges.some(
@@ -104,7 +113,12 @@ export function GraphCanvas({
             );
           const top = !!end && start.x < end.x;
           const x = paired ? start.x + 85 : start.x + 170;
-          const y = paired ? start.y + (top ? 0 : 76) : start.y + 38;
+          const y = paired
+            ? start.y + (top ? 0 : 76)
+            : start.y +
+              (mode === "tree"
+                ? (76 * (edge.portIndex + 1)) / (edge.portCount + 1)
+                : 38);
           const tx = end ? end.x + (paired ? 85 : 0) : x + 35;
           const ty = end
             ? paired
@@ -136,17 +150,25 @@ export function GraphCanvas({
                   });
                 }
               }}
+              aria-pressed={mode === "states" && selected?.kind === "transitions" && selected.id === edge.id}
               data-edge-id={edge.id}
               data-from={edge.from}
               data-to={edge.to}
               data-port={edge.label}
               className={!end ? "graph-edge dangling" : "graph-edge"}
             >
+              <path className="graph-edge-hit" d={path} />
               <path d={path} markerEnd="url(#rule-edge-arrow)" />
               <text
-                textAnchor="middle"
-                x={(x + tx) / 2}
-                y={paired ? bend + (top ? 5 : 2) : (y + ty) / 2 - 7}
+                textAnchor={mode === "tree" ? "start" : "middle"}
+                x={mode === "tree" ? x + 12 : (x + tx) / 2}
+                y={
+                  mode === "tree"
+                    ? y - 7
+                    : paired
+                      ? bend + (top ? 5 : 2)
+                      : (y + ty) / 2 - 7
+                }
               >
                 {edge.label}
                 {!end ? " · 引用缺失" : ""}
