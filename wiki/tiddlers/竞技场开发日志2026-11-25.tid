@@ -2,7 +2,7 @@ title: 竞技场开发日志2026-11-25
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261125021839000
-modified: 20261125042050000
+modified: 20261125064945000
 
 !! 今日进展与入口
 
@@ -51,3 +51,13 @@ MCP沿可见界面提供图选择／创建／连线／编辑／源码及目标�
 [img[竞技场2026-11-25主试玩决策树编辑实机.png]]
 
 图为最新主试玩，左侧对象树、中间作业决策树和右侧条件参数，阈值已改4，两条分支与汇合出口均可见。状态机／树／TypeScript共用同一工程；整包G5仍在安排中。
+
+!! 图工具收齐与撤退控制权修正
+
+图编辑器[[PR111|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/111]]已按2b7cb09经Astra技术6051510458、视觉6052587079及CI通过，合入30a02b3b3b1dcb535dc34cb57647b0ce52113c22。源码窗滚动[[PR112|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/112]]按acb2e4d经Astra6052910631及CI通过，合入0ef781b9a1b9cf792889c933a50b0a7aead65fd7；实机A83／B85／回放83定位行均在源码窗内，外层面板保持位置。
+
+统一图及中文目标MCP[[PR114|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/114]]按9c4d8ce经独立Astra6052873055及CI通过，合入d6ecd9629f55715d5e78e2bf3021c97f0d681813。实际stdio12.02秒完成选树、参数编辑、源码定位、编译和真实V8路径，Page.getState区分草稿、实跑与回放来源。
+
+固定源产包前，主代理发现实际图控制权冲突：撤退冷却图的低血20／恢复60与旧行动预设35／权威恢复80同时存在。script_driver先用快照执行V8，随后提交脚本意图和记忆，再旅行／task_tick／战斗；task_tick仍按旧预设35置retreating，基地治疗也只在这个标志下进行。因此图的20撤退可能被35先退，图的60恢复也可能仍受旧80阈值影响。G5准备中的60／80案例只作合法机制场景，完整产品行为继续修正。Astra正统一TS／图接管、预设控制、据点恢复与旧重演语义，Sol随后实施；全源冻结与生产包跟随该项齐备推进。
+
+G5六场景脚本准备齐备：真实改图、可保存错误草图、同帧对照、连续状态与版本记忆、中文部分补丁及旧多文件草稿恢复、实际MCP与390宽度键盘操作。当前尚未执行本版固定生产包验收。后续机动原型[[PR34|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/34]]的标题及目标说明已对齐v0.5.0候选；完整安排继续见[[竞技场开发计划]]。
