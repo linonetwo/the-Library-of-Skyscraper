@@ -349,3 +349,94 @@ fn final_ground_arrival_is_stable_idle_but_final_jump_keeps_landing_sample() {
     assert!(a.travel.is_none());
     assert_eq!(a.locomotion.unwrap().phase, LocomotionPhase::Landing);
 }
+
+#[test]
+fn both_climb_directions_keep_physical_ladder_faces_and_original_timing() {
+    for (room, y, target) in [("room-4", 1., "room-3"), ("room-3", 6., "room-4")] {
+        let mut s = game();
+        at(&mut s, room, -7., y);
+        s.command(
+            "p1",
+            Command::Climb {
+                actor_id: "p1-gatherer".into(),
+                edge_id: "climb-room-4-room-3".into(),
+            },
+        )
+        .unwrap();
+        let mut a = actor(&mut s);
+        // The pre-fix registration differs only in the remote physical face.
+        let mut old_faces = a.clone();
+        for segment in old_faces
+            .travel
+            .as_mut()
+            .unwrap()
+            .segments
+            .as_mut()
+            .unwrap()
+        {
+            if segment.ladder_facing.is_some() {
+                segment.ladder_facing = Some(Position { x: 0., y: 1. });
+            }
+        }
+        for segment in a.travel.as_ref().unwrap().segments.as_ref().unwrap() {
+            if matches!(segment.role, SegmentRole::Ladder | SegmentRole::Transfer) {
+                let physical = if segment.from.y.min(segment.to.y) >= 5500 {
+                    -1.
+                } else {
+                    1.
+                };
+                assert_eq!(segment.ladder_facing, Some(Position { x: 0., y: physical }));
+            }
+        }
+        let mut vertical_faces = vec![];
+        let mut ticks = 0;
+        while a.travel.is_some() {
+            let previous = a.clone();
+            travel::advance(&mut a, 7);
+            travel::advance(&mut old_faces, 7);
+            ticks += 1;
+            assert_eq!(a.world_position, old_faces.world_position);
+            assert_eq!(a.world_height_milli, old_faces.world_height_milli);
+            let clock = |actor: &Actor| {
+                actor.travel.as_ref().map(|t| {
+                    (
+                        t.segment,
+                        t.segment_elapsed_micros,
+                        t.distance_milli,
+                        t.total_distance_milli,
+                        t.progress,
+                    )
+                })
+            };
+            assert_eq!(clock(&a), clock(&old_faces));
+            if a.world_position == previous.world_position
+                && a.world_height_milli != previous.world_height_milli
+            {
+                let face = if a.world_position.y == 6. { -1. } else { 1. };
+                assert_eq!(a.last_move_direction, Position { x: 0., y: face });
+                vertical_faces.push((
+                    a.world_position.y as i64,
+                    a.world_height_milli > previous.world_height_milli,
+                ));
+            }
+            if a.world_height_milli == previous.world_height_milli
+                && a.world_position.y != previous.world_position.y
+                && a.locomotion
+                    .as_ref()
+                    .is_some_and(|m| m.phase == LocomotionPhase::Crest)
+            {
+                assert_eq!(a.last_move_direction.x, 0.);
+                assert_eq!(
+                    a.last_move_direction.y.signum(),
+                    (a.world_position.y - previous.world_position.y).signum()
+                );
+            }
+            assert!(ticks < 40);
+        }
+        assert!(old_faces.travel.is_none());
+        assert_eq!(a.room_id, target);
+        assert_eq!(a.world_height_milli, Some(0));
+        assert!(vertical_faces.contains(&(1, room == "room-4")));
+        assert!(vertical_faces.contains(&(6, room == "room-3")));
+    }
+}

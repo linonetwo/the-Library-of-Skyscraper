@@ -1063,7 +1063,7 @@
           "durationMicros": 500000,
           "ladderFacing": {
             "x": 0,
-            "y": 1
+            "y": -1
           },
           "role": "transfer"
         },
@@ -1084,7 +1084,7 @@
           "durationMicros": 1500000,
           "ladderFacing": {
             "x": 0,
-            "y": 1
+            "y": -1
           },
           "role": "ladder"
         }
