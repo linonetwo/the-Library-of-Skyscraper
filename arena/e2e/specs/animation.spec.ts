@@ -41,3 +41,21 @@ test("pilot coverage remains explicit and each complete jump frame is reachable"
     await expect(page.getByLabel('动画衣装')).toBeVisible();
   }
 });
+test('a loop resumes its inspected frame after completing an earlier cycle', async ({ page }) => {
+  await page.goto('/animation-lab'); await ready(page);
+  await page.getByLabel('动作', { exact: true }).selectOption('walk'); await ready(page);
+  await page.getByLabel('播放速度', { exact: true }).selectOption('12');
+  let previous = -1, wrapped = false;
+  await expect.poll(async () => {
+    const current = (await poses(page))[0].frame;
+    wrapped ||= previous > 12 && current < previous;
+    previous = current;
+    return wrapped && current >= 5 && current <= 8;
+  }, { intervals: [20] }).toBe(true);
+  await page.getByRole('button', { name: '暂停动画', exact: true }).click();
+  const paused = (await poses(page))[0].frame;
+  await page.getByRole('button', { name: '播放动画', exact: true }).click();
+  await page.waitForTimeout(40);
+  const resumed = (await poses(page))[0].frame;
+  expect((resumed - paused + 16) % 16).toBeLessThanOrEqual(3);
+});

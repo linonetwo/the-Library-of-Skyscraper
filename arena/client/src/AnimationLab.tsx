@@ -94,7 +94,7 @@ export default function AnimationLab() {
         {Object.keys(definition?.clips ?? { idle: null }).map(key => <option key={key} value={key}>{labActionLabels[key as Clip]}</option>)}
       </select></label>
       <button disabled={!readyClip} onClick={() => {
-        if (!playing && readyClip && elapsed.current >= clipDuration(readyClip.timing)) { elapsed.current = 0; setFrame(0); }
+        if (!playing && readyClip && readyClip.timing.playback !== "loop" && elapsed.current >= clipDuration(readyClip.timing)) { elapsed.current = 0; setFrame(0); }
         setPlaying(!playing);
       }}>{playing ? "暂停动画" : "播放动画"}</button>
       <button disabled={playing || !readyClip} onClick={step}>下一帧</button>
