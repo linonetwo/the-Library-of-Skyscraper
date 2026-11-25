@@ -1,3 +1,4 @@
+import { ReadOnlySource } from "./ReadOnlySource";
 import { useEffect, useRef, useState } from 'react';
 import { arenaApi } from '../arenaApi';
 import type { Session } from '../types';
@@ -34,6 +35,6 @@ export function RecordedGraphTrace({session, sourceHash, value, operationIndex, 
     <p>路径表示规则选择；是否命中或入库请看该局事件。</p>
     <TraceView value={trace} locate={id => void locate(id)} />
     {error && <p role="alert">{error}</p>}
-    {source && <details open><summary>该版只读源码 · {source.file}:{source.line}</summary><pre>{source.text.split('\n').map((line,i) => <span key={i} className={i+1 === source.line ? 'source-selected' : ''}>{i+1} {line}{'\n'}</span>)}</pre></details>}
+    {source && <details open><summary>该版只读源码 · {source.file}:{source.line}</summary><ReadOnlySource text={source.text} line={source.line} /></details>}
   </section>;
 }
