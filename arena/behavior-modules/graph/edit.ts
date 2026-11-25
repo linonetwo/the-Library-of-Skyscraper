@@ -12,6 +12,7 @@ function remapNode(node:RuleNode,map:Record<string,string>):RuleNode {
  switch(result.type){case 'condition':result.yes=ref(result.yes);result.no=ref(result.no);break;
  case 'priority':case 'sequence':result.children=result.children.map(ref);result.fallback=ref(result.fallback);break;
  case 'score':result.candidates=result.candidates.map(c=>({...c,id:ref(c.id),nodeId:ref(c.nodeId)}));result.fallback=ref(result.fallback);break;
+ case 'mobility':result.fallback=ref(result.fallback);break;
  case 'log':result.next=ref(result.next);break;case 'module':result.moduleId=ref(result.moduleId);result.fallback=ref(result.fallback);break;}
  return result;
 }

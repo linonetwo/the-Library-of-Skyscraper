@@ -10,7 +10,11 @@ export type GraphEffect =
   | { type: 'remember'; key: string; value: string | number | boolean | null }
   | { type: 'reason'; reason: string }
   | { type: 'task'; taskId: string; roomId: string; kind: 'move' | 'gather' | 'deliver' | 'build' | 'attack' | 'capture'; priority: number };
+export type MobilityAction =
+  | { type: 'run'; viaRoomId: string; roomId: string }
+  | { type: 'jump' | 'climb'; edgeId: string };
 export type RuleNode =
+  | { id: string; type: 'mobility'; action: MobilityAction; priority: number; fallback: string }
   | { id: string; type: 'check'; condition: GraphCondition }
   | { id: string; type: 'condition'; condition: GraphCondition; yes: string; no: string }
   | { id: string; type: 'priority' | 'sequence'; children: string[]; fallback: string }

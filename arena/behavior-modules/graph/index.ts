@@ -5,3 +5,4 @@ export { diagnoseGraph } from './diagnostics';
 export { toGraphSourceProject, serializeGraphDraft, recoverRuleGraph, getGraphSourceRef } from './project';
 export { freshGraphId, renameGraphObject, cloneGraphFragment } from './edit';
 export { graphDraftSourceRef } from './source';
+export { createShortcutSupportGraph } from './mobility-example';

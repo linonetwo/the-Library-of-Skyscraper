@@ -7,6 +7,7 @@ import {
   serializeGraphDraft,
   createLogisticsGraph,
   createRetreatGraph,
+  createShortcutSupportGraph,
   fromBehaviorPlan,
   type RuleGraph,
   type GraphPatch,
@@ -43,8 +44,8 @@ export function useRuleGraphDraft(
       setError((cause as Error).message);
     }
   };
-  const replace = (template: "logistics" | "retreat" | "priority") => {
-    const next =
+  const replace = (template: "logistics" | "retreat" | "priority" | "shortcut") => {
+    const next = template === "shortcut" ? createShortcutSupportGraph() :
       template === "priority" && workbench.plan
         ? fromBehaviorPlan(workbench.plan)
         : template === "retreat"

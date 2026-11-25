@@ -167,6 +167,7 @@ export default function BehaviorWorkbench({
               载入物流状态图
             </button>
             <button onClick={() => g.replace("retreat")}>载入撤退冷却图</button>
+            <button onClick={() => g.replace("shortcut")}>载入捷径支援图</button>
             {w.plan && (
               <button onClick={() => g.replace("priority")}>
                 从当前五卡显式创建规则图
