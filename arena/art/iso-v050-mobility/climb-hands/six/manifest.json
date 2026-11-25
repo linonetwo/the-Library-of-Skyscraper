@@ -1,0 +1,880 @@
+{
+  "status": "candidate; independent multi-angle hand review pending",
+  "pinnedTwoView": "899a86dc038b9a9157d962099da261e02ebf3f0d",
+  "independentTwoViewApproval": "2026-11-25: NE/SW eight slots approved for two-view offline use only",
+  "profileSourceSha256": "db3f84d84458faf1382622d7cbb252b82835301468ced05a5e0f103b6e0e6b4e",
+  "directions": {
+    "N": {
+      "leftGrab": {
+        "image": "N/leftGrab.png",
+        "size": [
+          30,
+          21
+        ],
+        "anatomicalSide": "left",
+        "gesture": "grab",
+        "wristPivot": [
+          16.379469429635108,
+          13.605740019258578
+        ],
+        "localContact": [
+          15.569125058395326,
+          9.112076424818067
+        ],
+        "wristTowardElbow": [
+          0.6153318120989638,
+          0.7882682037346206
+        ],
+        "rungScreenAxis": [
+          1,
+          0
+        ],
+        "status": "pending revised hook-volume review",
+        "source": "../revised/NE/leftGrab.png",
+        "sourceHash": "43ea2429668a5e837f06776d2aa0909f1b31df526849c388c4cb1f7eecb4b82b",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -45,
+        "matrix": [
+          0.7071067811865476,
+          1.414213562373095,
+          -0.35355339059327373,
+          0.7071067811865476
+        ],
+        "hookVolume": "High-resolution retained original; transverse thickness only beyond wrist, endpoint segment extended beyond rung. Wrist and rung axes fixed."
+      },
+      "rightGrab": {
+        "image": "N/rightGrab.png",
+        "size": [
+          28,
+          20
+        ],
+        "anatomicalSide": "right",
+        "gesture": "grab",
+        "wristPivot": [
+          15.169609727024925,
+          13.135867563160117
+        ],
+        "localContact": [
+          16.433209545005287,
+          9.938684252025142
+        ],
+        "wristTowardElbow": [
+          0.5304854250333534,
+          0.8476940567369706
+        ],
+        "rungScreenAxis": [
+          1,
+          0
+        ],
+        "status": "pending revised hook-volume review",
+        "source": "../revised/NE/rightGrab.png",
+        "sourceHash": "cb1a6ff9757661d4e94bd3100ac214692690293e93c2837d50c4d6e24142c262",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -45,
+        "matrix": [
+          0.7071067811865476,
+          1.414213562373095,
+          -0.35355339059327373,
+          0.7071067811865476
+        ],
+        "hookVolume": "High-resolution retained original; transverse thickness only beyond wrist, endpoint segment extended beyond rung. Wrist and rung axes fixed."
+      },
+      "leftBrace": {
+        "image": "N/leftBrace.png",
+        "size": [
+          20,
+          11
+        ],
+        "anatomicalSide": "left",
+        "gesture": "brace",
+        "wristPivot": [
+          11.642513152236504,
+          8.628367436256546
+        ],
+        "localContact": [
+          11.802319284784664,
+          8.061974904526123
+        ],
+        "wristTowardElbow": [
+          0.4872197225804696,
+          0.8732794180149961
+        ],
+        "rungScreenAxis": [
+          1,
+          0
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/NE/leftBrace.png",
+        "sourceHash": "9b6d58aa4a616a0866cb631e37961c7e8fe01ae5836b458623d31617fc78fa05",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -45,
+        "matrix": [
+          0.7071067811865476,
+          1.414213562373095,
+          -0.35355339059327373,
+          0.7071067811865476
+        ]
+      },
+      "rightBrace": {
+        "image": "N/rightBrace.png",
+        "size": [
+          20,
+          11
+        ],
+        "anatomicalSide": "right",
+        "gesture": "brace",
+        "wristPivot": [
+          11.658069501422608,
+          8.904846187700487
+        ],
+        "localContact": [
+          11.590187250428698,
+          7.967222595847125
+        ],
+        "wristTowardElbow": [
+          0.6415552004911064,
+          0.7670768701524091
+        ],
+        "rungScreenAxis": [
+          1,
+          0
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/NE/rightBrace.png",
+        "sourceHash": "e8cb3fcbaa9741f76f38ad44cff186192c2fdf2808aea69a4bef01d2c812178b",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -45,
+        "matrix": [
+          0.7071067811865476,
+          1.414213562373095,
+          -0.35355339059327373,
+          0.7071067811865476
+        ]
+      }
+    },
+    "S": {
+      "leftGrab": {
+        "image": "S/leftGrab.png",
+        "size": [
+          18,
+          10
+        ],
+        "anatomicalSide": "left",
+        "gesture": "grab",
+        "wristPivot": [
+          7.768982204896597,
+          2.4277480720317115
+        ],
+        "localContact": [
+          10.337901140947324,
+          7.167838379715733
+        ],
+        "wristTowardElbow": [
+          -0.6837090236674587,
+          -0.7297547334246559
+        ],
+        "rungScreenAxis": [
+          -1,
+          0
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/SW/leftGrab.png",
+        "sourceHash": "debc7b4f336e35b8efd756af69efa6aa0bb6bfebc46ed265b3740e07663cdacf",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -45,
+        "matrix": [
+          0.7071067811865476,
+          1.414213562373095,
+          -0.35355339059327373,
+          0.7071067811865476
+        ]
+      },
+      "rightGrab": {
+        "image": "S/rightGrab.png",
+        "size": [
+          18,
+          10
+        ],
+        "anatomicalSide": "right",
+        "gesture": "grab",
+        "wristPivot": [
+          6.841965214761034,
+          2.3679975490214487
+        ],
+        "localContact": [
+          11.577459328367341,
+          6.352897814398236
+        ],
+        "wristTowardElbow": [
+          -0.04506694597132073,
+          -0.998983969030944
+        ],
+        "rungScreenAxis": [
+          -1,
+          0
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/SW/rightGrab.png",
+        "sourceHash": "9b80079e1d620f6fe2aba2dd7f4be3b0529612e04b2531bb5d4a2e7dacbd5946",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -45,
+        "matrix": [
+          0.7071067811865476,
+          1.414213562373095,
+          -0.35355339059327373,
+          0.7071067811865476
+        ]
+      },
+      "leftBrace": {
+        "image": "S/leftBrace.png",
+        "size": [
+          20,
+          11
+        ],
+        "anatomicalSide": "left",
+        "gesture": "brace",
+        "wristPivot": [
+          8.049703597027657,
+          2.2294046199088857
+        ],
+        "localContact": [
+          8.903888588701006,
+          3.4046160902409275
+        ],
+        "wristTowardElbow": [
+          -0.47986679147781575,
+          -0.8773413602679326
+        ],
+        "rungScreenAxis": [
+          -1,
+          0
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/SW/leftBrace.png",
+        "sourceHash": "dfc7955f9bb78e306097af741bd9528648d417f7bf531bcc6a7221d08cb21ae1",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -45,
+        "matrix": [
+          0.7071067811865476,
+          1.414213562373095,
+          -0.35355339059327373,
+          0.7071067811865476
+        ]
+      },
+      "rightBrace": {
+        "image": "S/rightBrace.png",
+        "size": [
+          23,
+          12
+        ],
+        "anatomicalSide": "right",
+        "gesture": "brace",
+        "wristPivot": [
+          8.969649519351355,
+          2.7820085694061722
+        ],
+        "localContact": [
+          9.84929035514742,
+          3.952977399051095
+        ],
+        "wristTowardElbow": [
+          -0.5925361425030237,
+          -0.805543865861839
+        ],
+        "rungScreenAxis": [
+          -1,
+          0
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/SW/rightBrace.png",
+        "sourceHash": "9c5196b4ae50356d5b2b53b16b00017e64a3621d5bdc92ab58e0d0adec56af47",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -45,
+        "matrix": [
+          0.7071067811865476,
+          1.414213562373095,
+          -0.35355339059327373,
+          0.7071067811865476
+        ]
+      }
+    },
+    "NW": {
+      "leftGrab": {
+        "image": "NW/leftGrab.png",
+        "size": [
+          28,
+          16
+        ],
+        "anatomicalSide": "left",
+        "gesture": "grab",
+        "wristPivot": [
+          19.560000000000002,
+          9.2335
+        ],
+        "localContact": [
+          12.632000000000001,
+          6.3425
+        ],
+        "wristTowardElbow": [
+          0.9767946670038231,
+          0.21417791322377414
+        ],
+        "rungScreenAxis": [
+          0.8944271909999159,
+          -0.4472135954999579
+        ],
+        "status": "pending revised hook-volume review",
+        "source": "../revised/NE/leftGrab.png",
+        "sourceHash": "43ea2429668a5e837f06776d2aa0909f1b31df526849c388c4cb1f7eecb4b82b",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -90,
+        "matrix": [
+          6.123233995736766e-17,
+          2,
+          -0.5,
+          6.123233995736766e-17
+        ],
+        "hookVolume": "High-resolution retained original; transverse thickness only beyond wrist, endpoint segment extended beyond rung. Wrist and rung axes fixed."
+      },
+      "rightGrab": {
+        "image": "NW/rightGrab.png",
+        "size": [
+          26,
+          16
+        ],
+        "anatomicalSide": "right",
+        "gesture": "grab",
+        "wristPivot": [
+          18.04,
+          9.329
+        ],
+        "localContact": [
+          14.412,
+          6.621500000000001
+        ],
+        "wristTowardElbow": [
+          0.9674271176133487,
+          0.25314970295524386
+        ],
+        "rungScreenAxis": [
+          0.8944271909999159,
+          -0.4472135954999579
+        ],
+        "status": "pending revised hook-volume review",
+        "source": "../revised/NE/rightGrab.png",
+        "sourceHash": "cb1a6ff9757661d4e94bd3100ac214692690293e93c2837d50c4d6e24142c262",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -90,
+        "matrix": [
+          6.123233995736766e-17,
+          2,
+          -0.5,
+          6.123233995736766e-17
+        ],
+        "hookVolume": "High-resolution retained original; transverse thickness only beyond wrist, endpoint segment extended beyond rung. Wrist and rung axes fixed."
+      },
+      "leftBrace": {
+        "image": "NW/leftBrace.png",
+        "size": [
+          18,
+          6
+        ],
+        "anatomicalSide": "left",
+        "gesture": "brace",
+        "wristPivot": [
+          14.778,
+          4.1565
+        ],
+        "localContact": [
+          14.09,
+          3.6995000000000005
+        ],
+        "wristTowardElbow": [
+          0.9624913791342437,
+          0.27131226491307275
+        ],
+        "rungScreenAxis": [
+          0.8944271909999159,
+          -0.4472135954999579
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/NE/leftBrace.png",
+        "sourceHash": "9b6d58aa4a616a0866cb631e37961c7e8fe01ae5836b458623d31617fc78fa05",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -90,
+        "matrix": [
+          6.123233995736766e-17,
+          2,
+          -0.5,
+          6.123233995736766e-17
+        ]
+      },
+      "rightBrace": {
+        "image": "NW/rightBrace.png",
+        "size": [
+          18,
+          6
+        ],
+        "anatomicalSide": "right",
+        "gesture": "brace",
+        "wristPivot": [
+          15.18,
+          4.346500000000001
+        ],
+        "localContact": [
+          13.806,
+          3.7075000000000005
+        ],
+        "wristTowardElbow": [
+          0.9796027006414901,
+          0.20094414372133113
+        ],
+        "rungScreenAxis": [
+          0.8944271909999159,
+          -0.4472135954999579
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/NE/rightBrace.png",
+        "sourceHash": "e8cb3fcbaa9741f76f38ad44cff186192c2fdf2808aea69a4bef01d2c812178b",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -90,
+        "matrix": [
+          6.123233995736766e-17,
+          2,
+          -0.5,
+          6.123233995736766e-17
+        ]
+      }
+    },
+    "SE": {
+      "leftGrab": {
+        "image": "SE/leftGrab.png",
+        "size": [
+          16,
+          6
+        ],
+        "anatomicalSide": "left",
+        "gesture": "grab",
+        "wristPivot": [
+          3.2700000000000005,
+          1.1415000000000002
+        ],
+        "localContact": [
+          11.79,
+          3.5850000000000004
+        ],
+        "wristTowardElbow": [
+          -0.984013095437195,
+          -0.17809612013772178
+        ],
+        "rungScreenAxis": [
+          -0.8944271909999159,
+          0.4472135954999579
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/SW/leftGrab.png",
+        "sourceHash": "debc7b4f336e35b8efd756af69efa6aa0bb6bfebc46ed265b3740e07663cdacf",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -90,
+        "matrix": [
+          6.123233995736766e-17,
+          2,
+          -0.5,
+          6.123233995736766e-17
+        ]
+      },
+      "rightGrab": {
+        "image": "SE/rightGrab.png",
+        "size": [
+          16,
+          6
+        ],
+        "anatomicalSide": "right",
+        "gesture": "grab",
+        "wristPivot": [
+          2.5300000000000002,
+          1.427
+        ],
+        "localContact": [
+          11.514,
+          2.5705000000000005
+        ],
+        "wristTowardElbow": [
+          -0.9022464615807435,
+          -0.431220735314326
+        ],
+        "rungScreenAxis": [
+          -0.8944271909999159,
+          0.4472135954999579
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/SW/rightGrab.png",
+        "sourceHash": "9b80079e1d620f6fe2aba2dd7f4be3b0529612e04b2531bb5d4a2e7dacbd5946",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -90,
+        "matrix": [
+          6.123233995736766e-17,
+          2,
+          -0.5,
+          6.123233995736766e-17
+        ]
+      },
+      "leftBrace": {
+        "image": "SE/leftBrace.png",
+        "size": [
+          18,
+          6
+        ],
+        "anatomicalSide": "left",
+        "gesture": "brace",
+        "wristPivot": [
+          3.1880000000000006,
+          0.9020000000000001
+        ],
+        "localContact": [
+          5.454,
+          1.431
+        ],
+        "wristTowardElbow": [
+          -0.961641487890467,
+          -0.2743094033528725
+        ],
+        "rungScreenAxis": [
+          -0.8944271909999159,
+          0.4472135954999579
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/SW/leftBrace.png",
+        "sourceHash": "dfc7955f9bb78e306097af741bd9528648d417f7bf531bcc6a7221d08cb21ae1",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -90,
+        "matrix": [
+          6.123233995736766e-17,
+          2,
+          -0.5,
+          6.123233995736766e-17
+        ]
+      },
+      "rightBrace": {
+        "image": "SE/rightBrace.png",
+        "size": [
+          22,
+          6
+        ],
+        "anatomicalSide": "right",
+        "gesture": "brace",
+        "wristPivot": [
+          4.620000000000001,
+          0.9675000000000002
+        ],
+        "localContact": [
+          6.898,
+          1.4845000000000002
+        ],
+        "wristTowardElbow": [
+          -0.9743187599941043,
+          -0.22517316430594228
+        ],
+        "rungScreenAxis": [
+          -0.8944271909999159,
+          0.4472135954999579
+        ],
+        "status": "offline source accepted at 724397e",
+        "source": "../revised/SW/rightBrace.png",
+        "sourceHash": "9c5196b4ae50356d5b2b53b16b00017e64a3621d5bdc92ab58e0d0adec56af47",
+        "method": "same anatomical hand, positive-determinant ground-plane yaw; visible surfaces require review",
+        "degrees": -90,
+        "matrix": [
+          6.123233995736766e-17,
+          2,
+          -0.5,
+          6.123233995736766e-17
+        ]
+      }
+    },
+    "E": {
+      "leftGrab": {
+        "image": "E/leftGrab.png",
+        "size": [
+          9,
+          6
+        ],
+        "anatomicalSide": "left",
+        "gesture": "grab",
+        "wristPivot": [
+          1.3009655898876402,
+          3.170219123505976
+        ],
+        "localContact": [
+          5.925948033707865,
+          3.87699203187251
+        ],
+        "wristTowardElbow": [
+          -0.9770112259362975,
+          -0.21318786174276624
+        ],
+        "rungScreenAxis": [
+          0,
+          1
+        ],
+        "status": "offline source accepted at 724397e",
+        "method": "new independently painted profile",
+        "source": "../source/profile.png",
+        "sourceGrid": "R1C1",
+        "sourceCrop": {
+          "left": 28,
+          "top": 115,
+          "width": 356,
+          "height": 251
+        }
+      },
+      "rightGrab": {
+        "image": "E/rightGrab.png",
+        "size": [
+          9,
+          6
+        ],
+        "anatomicalSide": "right",
+        "gesture": "grab",
+        "wristPivot": [
+          1.3797008547008534,
+          3.401595744680851
+        ],
+        "localContact": [
+          5.738888888888887,
+          4.5811170212765955
+        ],
+        "wristTowardElbow": [
+          -0.9865071457629255,
+          -0.16371820716916616
+        ],
+        "rungScreenAxis": [
+          0,
+          1
+        ],
+        "status": "offline source accepted at 724397e",
+        "method": "new independently painted profile",
+        "source": "../source/profile.png",
+        "sourceGrid": "R1C2",
+        "sourceCrop": {
+          "left": 471,
+          "top": 107,
+          "width": 351,
+          "height": 235
+        }
+      },
+      "leftBrace": {
+        "image": "E/leftBrace.png",
+        "size": [
+          10,
+          5
+        ],
+        "anatomicalSide": "left",
+        "gesture": "brace",
+        "wristPivot": [
+          1.4203703703703698,
+          2.142361111111111
+        ],
+        "localContact": [
+          2.5610596707818916,
+          3.5889625420875415
+        ],
+        "wristTowardElbow": [
+          -0.9393027282042874,
+          -0.3430894705291644
+        ],
+        "rungScreenAxis": [
+          0,
+          1
+        ],
+        "status": "offline source accepted at 724397e",
+        "method": "new independently painted profile",
+        "source": "../source/profile.png",
+        "sourceGrid": "R1C3",
+        "sourceCrop": {
+          "left": 896,
+          "top": 148,
+          "width": 405,
+          "height": 198
+        }
+      },
+      "rightBrace": {
+        "image": "E/rightBrace.png",
+        "size": [
+          10,
+          5
+        ],
+        "anatomicalSide": "right",
+        "gesture": "brace",
+        "wristPivot": [
+          1.2083838996763738,
+          2.2271056149732615
+        ],
+        "localContact": [
+          2.6436589805825252,
+          3.511753565062389
+        ],
+        "wristTowardElbow": [
+          -0.9207632509303302,
+          -0.3901218216611444
+        ],
+        "rungScreenAxis": [
+          0,
+          1
+        ],
+        "status": "offline source accepted at 724397e",
+        "method": "new independently painted profile",
+        "source": "../source/profile.png",
+        "sourceGrid": "R1C4",
+        "sourceCrop": {
+          "left": 1338,
+          "top": 144,
+          "width": 412,
+          "height": 187
+        }
+      }
+    },
+    "W": {
+      "leftGrab": {
+        "image": "W/leftGrab.png",
+        "size": [
+          9,
+          6
+        ],
+        "anatomicalSide": "left",
+        "gesture": "grab",
+        "wristPivot": [
+          7.543289660056657,
+          3.1181469298245625
+        ],
+        "localContact": [
+          3.4914837110481582,
+          4.4797697368421066
+        ],
+        "wristTowardElbow": [
+          0.9917793506715389,
+          -0.12795983581398152
+        ],
+        "rungScreenAxis": [
+          0,
+          -1
+        ],
+        "status": "offline source accepted at 724397e",
+        "method": "new independently painted profile",
+        "source": "../source/profile.png",
+        "sourceGrid": "R2C1",
+        "sourceCrop": {
+          "left": 46,
+          "top": 556,
+          "width": 353,
+          "height": 228
+        }
+      },
+      "rightGrab": {
+        "image": "W/rightGrab.png",
+        "size": [
+          9,
+          6
+        ],
+        "anatomicalSide": "right",
+        "gesture": "grab",
+        "wristPivot": [
+          7.364470108695652,
+          2.8462106299212606
+        ],
+        "localContact": [
+          2.9806895380434777,
+          3.762893700787402
+        ],
+        "wristTowardElbow": [
+          0.9936056459240565,
+          -0.11290624600897059
+        ],
+        "rungScreenAxis": [
+          0,
+          -1
+        ],
+        "status": "offline source accepted at 724397e",
+        "method": "new independently painted profile",
+        "source": "../source/profile.png",
+        "sourceGrid": "R2C2",
+        "sourceCrop": {
+          "left": 475,
+          "top": 554,
+          "width": 368,
+          "height": 254
+        }
+      },
+      "leftBrace": {
+        "image": "W/leftBrace.png",
+        "size": [
+          10,
+          5
+        ],
+        "anatomicalSide": "left",
+        "gesture": "brace",
+        "wristPivot": [
+          8.516505636070852,
+          2.207063008130082
+        ],
+        "localContact": [
+          7.132799919484702,
+          3.4690548780487815
+        ],
+        "wristTowardElbow": [
+          0.880443516849645,
+          -0.474151045171714
+        ],
+        "rungScreenAxis": [
+          0,
+          -1
+        ],
+        "status": "offline source accepted at 724397e",
+        "method": "new independently painted profile",
+        "source": "../source/profile.png",
+        "sourceGrid": "R2C3",
+        "sourceCrop": {
+          "left": 904,
+          "top": 584,
+          "width": 414,
+          "height": 205
+        }
+      },
+      "rightBrace": {
+        "image": "W/rightBrace.png",
+        "size": [
+          10,
+          5
+        ],
+        "anatomicalSide": "right",
+        "gesture": "brace",
+        "wristPivot": [
+          8.498363095238098,
+          2.1549873737373733
+        ],
+        "localContact": [
+          7.002430555555553,
+          3.4615951178451176
+        ],
+        "wristTowardElbow": [
+          0.8962304273209676,
+          -0.4435887973608847
+        ],
+        "rungScreenAxis": [
+          0,
+          -1
+        ],
+        "status": "offline source accepted at 724397e",
+        "method": "new independently painted profile",
+        "source": "../source/profile.png",
+        "sourceGrid": "R2C4",
+        "sourceCrop": {
+          "left": 1345,
+          "top": 591,
+          "width": 420,
+          "height": 198
+        }
+      }
+    }
+  }
+}
