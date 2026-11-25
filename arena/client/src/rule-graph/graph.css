@@ -286,3 +286,17 @@
   stroke: var(--gold);
   stroke-width: 3;
 }
+.graph-canvas[data-state-pairs="true"] .graph-edge text {
+  font-size: 11px;
+  paint-order: stroke;
+  stroke: #101e25;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+.graph-canvas[data-state-pairs="true"] .graph-edge .graph-transition-id,
+.graph-node .graph-state-id {
+  font:
+    10px ui-monospace,
+    monospace;
+  fill: #c5d4cf;
+}
