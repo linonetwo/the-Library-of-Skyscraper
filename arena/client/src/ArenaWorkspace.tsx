@@ -70,7 +70,7 @@ export function useArenaWorkspace() {
     kind: "actor", id, revision: (old?.revision ?? 0) + 1,
   }));
   const selectActor = (id: string) => {
-    setMobilityChoice(null);
+    if (selected !== id) setMobilityChoice(null);
     setSelected(id);
     focusActor(id);
     setInspecting(false);
