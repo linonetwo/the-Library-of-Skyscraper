@@ -26,7 +26,7 @@ test('MCP browser controls workshop through real visible inputs', {skip:process.
  await action({type:'setWorkshopHair',hair:'midnight'});
  for(const layer of ['outfit','hair','weapon']) await action({type:'setWorkshopLayer',layer,visible:false});
  const state=(await call('Page.getState')).workshop;
- assert.equal(state.frameCount,4);
+ assert.equal(state.frameCount,16);
  assert.equal(state.frame,(before+1)%state.frameCount);
  assert.equal(state.direction,'SE');
  assert.equal(state.playing,false);
@@ -51,10 +51,10 @@ test('workshop state remains readable while atlases load or fail', {skip:process
  const page=await browser.newPage();
  let release;
  const pending=new Promise(resolve=>{release=resolve;});
- await page.route('**/assets/animation/idle-*.json',async route=>{
+ await page.route('**/assets/iso-v030-base/index.json',async route=>{
   await pending; await route.fulfill({status:503,body:'unavailable'});
  });
- await page.goto('http://127.0.0.1:5173/animation-lab');
+ await page.goto(new URL('/animation-lab',process.env.ARENA_UI_URL || 'http://127.0.0.1:5173').href);
  const loading=await readWorkshopState(page);
  assert.equal(loading.loading,true); assert.equal(loading.direction,null);
  release(); await page.getByRole('alert').waitFor();
