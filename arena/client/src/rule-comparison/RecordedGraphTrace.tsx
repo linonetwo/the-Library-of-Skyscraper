@@ -14,7 +14,7 @@ export function RecordedGraphTrace({session, sourceHash, value, operationIndex, 
   const [error, setError] = useState('');
   const request = useRef(0);
   useEffect(() => {request.current++; setSource(null); setError(''); return () => {request.current++;};},
-    [session?.sessionId, session?.token, sourceHash, operationIndex]);
+    [session?.sessionId, session?.token, sourceHash]);
   const trace = graphTrace(value);
   if (!trace) return null;
   const locate = async (id: string) => {
