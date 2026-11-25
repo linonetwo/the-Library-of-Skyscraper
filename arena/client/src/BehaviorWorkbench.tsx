@@ -108,9 +108,7 @@ export default function BehaviorWorkbench({
         <header>
           <div>
             <span className="eyebrow">
-              {tab === "graph"
-                ? "RULE GRAPH · STATE & DECISION"
-                : "AUTONOMOUS DOCTRINE · PRIORITY"}
+              AUTONOMOUS DOCTRINE · PRIORITY
             </span>
             <h2>编排小队的下一步。</h2>
           </div>
@@ -119,9 +117,7 @@ export default function BehaviorWorkbench({
       )}
       {tab !== "graph" && (
         <p>
-          {tab === "graph"
-            ? "状态跨步保留，决策树选择当前动作。选择对象编辑参数与连接，再试跑和发布。"
-            : "按优先级尝试模块，首个满足条件的模块选择动作。修改草稿后试跑，再发布到战场。"}
+          按优先级尝试模块，首个满足条件的模块选择动作。修改草稿后试跑，再发布到战场。
         </p>
       )}
       {tab !== "graph" && w.backup && (
