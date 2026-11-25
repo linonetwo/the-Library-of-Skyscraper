@@ -6,7 +6,7 @@ modified: 20261125000000000
 
 v0.4.0「可编程小队」：用真实远征回答一个问题——这名队员为什么没有撤退，我能改一条边、在同一帧验证并发布修复吗？承接已发布的[[v0.3.0|竞技场v0.3.0版本计划]]，推进M2及M4的规则调试闭环。详细语义、样例和验收见[[竞技场v0.4.0规则图设计合同]]。
 
-11月25日进度：G1图执行[[PR105|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/105]]、G4目标补丁核心[[PR106|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/106]]已合；G3同帧调试[[PR107|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/107]]技术审查与CI通过。G2编辑入口及统一MCP仍在集成。G5仅准备配方，尚未冻结整版源码、产包或发版；实机证据归[[竞技场开发日志2026-11-25]]。
+11月25日进度：G1[[PR105|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/105]]、G2[[PR111|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/111]]、G3[[PR107|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/107]]、G4[[PR106|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/106]]与统一MCP[[PR114|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/114]]均已合；源码定点[[PR112|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/112]]、sim6脚本接管与统一治疗[[PR116|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/116]]、UI职责整理[[PR117|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/117]]、八状态布局[[PR120|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/120]]已合。G5进入固定源整版接受，尚未完成实包验收或发版；详细证据归[[竞技场开发日志2026-11-25]]。
 
 |!目标版本／包|!实施／依赖|!必须交付|
 |v0.4.0 G1 图与执行|核心Sol；先定模型及样例|状态机＋决策树＋已有五模块生成同一TS工程；每角色持久状态，来源可查，旧版可读可跑|

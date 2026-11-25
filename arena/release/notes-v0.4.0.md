@@ -17,17 +17,34 @@ with identical authorized world/tasks and empty graph memory; it does not advanc
 the match or publish. Bounded Chinese goals propose revision-based patches for
 individual acceptance, rejection and undo. Unsupported phrases remain unsupported.
 
-At this recipe handoff, G2 authoring and unified graph MCP integration are still
-finishing. The rule provenance record distinguishes scoped component approvals
-from pending integration and fixed-package acceptance. No full-v0.4 acceptance is
-claimed. v0.3 visual reviews retain their original scope; actual dist index and
-clip descriptor bytes are hashed for this package without inventing new approval.
+G1/G2/G3/G4 and unified graph MCP have scoped component reviews and merged
+implementations. New expeditions use simulationVersion6: published scripts own
+retreat decisions even when they hold or fail, and living stationary actors at
+base heal once per configured healing interval (currently +4 every two ticks) independently of the preset retreat latch. Preset
+control keeps its threshold and recovery latch. Controller handoff clears only
+that owner's old latch and preserves routes/positions; replay versions <=5 keep
+their recorded behavior. Natural low-health execution of the stock graph's 20/60
+thresholds remains part of fixed-package G5 acceptance.
 
-Final source freeze, full build and G5 play acceptance wait for the complete batch.
-Acceptance must launch a fresh extraction with its own launcher and check changed
-real intents, graph diagnostics/recovery, same-frame privacy/no-write behavior,
-published transitions, cooldowns, archived source/trace, rollback, v1/handwritten
-compatibility, keyboard and narrow-screen use. Record sourceCommit, recipeCommit,
-archive SHA256 and the actual initial failures/retests before release approval.
+The rule provenance record lists exact reviewed heads, merge commits and scoped
+approvals. PR117 only extracts UI responsibilities; PR112 only reveals selected
+archived source lines. PR120 only improves paired eight-state/ten-edge layout,
+transition lanes/labels and narrow internal scrolling; its scoped layout review
+does not establish natural sim6 retreat/healing or G5 acceptance. The sim6 PR116 initially had two CI runs at 32/33 E2E
+cases; the final reviewed head fixes paired-context lifecycle/cleanup without
+changing production code, time limits or assertions, and its full CI passed.
+Those original failures remain recorded. No full-v0.4 package acceptance is
+claimed. v0.3 visual reviews retain their original scope; actual dist index and
+clip descriptor bytes are hashed without inventing new asset approval.
+
+G5 acceptance will use this complete batch after the main agent fixes one source
+and recipe commit. It must launch a fresh extraction with its own launcher and
+check changed real intents, graph diagnostics/recovery, same-frame privacy and
+no-write behavior, published transitions/cooldowns, archived source/trace,
+rollback, natural stock20/60 retreat/healing, v1/handwritten compatibility,
+keyboard and narrow-screen use. Record sourceCommit, recipeCommit, archive SHA256
+and actual initial failures/retests outside the frozen source before release
+approval. Build with CARGO_INCREMENTAL=0 while reusing the shared target/dependency
+cache; retain the actual build environment in the build evidence.
 Complete FSM depth, unsupported abilities/cooperation, open language agents and
 Steam desktop delivery continue under the product roadmap.

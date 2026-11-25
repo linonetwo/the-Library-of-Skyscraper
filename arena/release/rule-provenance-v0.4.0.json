@@ -32,17 +32,87 @@
     {
       "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/107#pullrequestreview-6050483067",
       "reviewedCommit": "4504081fdb2dd34dd6d52855c0284b0fc8fc29a7",
-      "mergeCommit": null,
+      "mergeCommit": "44fad942ce213e28218196b7f7f9364f35dfc4a2",
       "scope": "G3 reviewed owner-authorized recorded-prefix restoration, no-write same-frame comparison and independent UI request lifetimes; not full authoring or G5",
-      "status": "approved",
-      "integrationStatus": "Awaiting PR107 merge; not represented as already present in this source"
+      "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/107#pullrequestreview-6051168254",
+      "reviewedCommit": "4504081fdb2dd34dd6d52855c0284b0fc8fc29a7",
+      "mergeCommit": "44fad942ce213e28218196b7f7f9364f35dfc4a2",
+      "scope": "G3 owner-frame cargo4 comparison shows gather versus return/move, fresh-memory candidates distinguished from recorded choice, archived hash/file/source line on replay and narrow stacked candidates; not graph authoring or full v0.4",
+      "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/111#pullrequestreview-6051510458",
+      "reviewedCommit": "2b7cb09ea6f0b231bb070316dced81bb04213ec3",
+      "mergeCommit": "30a02b3b3b1dcb535dc34cb57647b0ce52113c22",
+      "scope": "G2 technical source-of-truth/invalid-draft recovery versus validated execution gate, graph undo/redo distinct from project replacement, file-aware source cursor lookup and view-only layout; not G5",
+      "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/111#pullrequestreview-6052587079",
+      "reviewedCommit": "2b7cb09ea6f0b231bb070316dced81bb04213ec3",
+      "mergeCommit": "30a02b3b3b1dcb535dc34cb57647b0ce52113c22",
+      "scope": "G2 desktop selected cargo-check true/false edges to haul/gather, converging unavailable module paths and aligned editable inspector; narrow selected tabs/templates/object list/tree selector readable, canvas/inspector below captured viewport; not simultaneous full-pane visibility or G5",
+      "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/112#pullrequestreview-6052910631",
+      "reviewedCommit": "acb2e4dfcd7aa84a6d329dfa50102c46e40da480",
+      "mergeCommit": "0ef781b9a1b9cf792889c933a50b0a7aead65fd7",
+      "scope": "Shared read-only source-pane scrolling only; selected A83/B85/replay83 line visible within each local pane; owner/version lookup unchanged",
+      "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/114#pullrequestreview-6052873055",
+      "reviewedCommit": "9c4d8ce4fdad7919a9ee7f59bbd69467d68604a9",
+      "mergeCommit": "d6ecd9629f55715d5e78e2bf3021c97f0d681813",
+      "scope": "Unified graph/goal MCP through visible controls; editor-derived tree/edge/config/trace, selected tree persistence, source navigation, compilation and V8 draft hash; draft traces distinct from published records; not G5",
+      "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/116#pullrequestreview-6053417127",
+      "reviewedCommit": "e475ad429d2af4ce39ed205af183a3ead195e11f",
+      "mergeCommit": "bac802126b5fed061d60722bc533f01d34594e41",
+      "scope": "sim6 owner published-metadata controller selection: script hold/failure does not trigger preset retreat; base healing once per configured healing interval (currently +4 every two ticks) after death check and stationary arrival, no script 80HP latch; preset thresholds/latch retained, own lock cleared on controller handoff without moving routes; <=5 replay keeps old semantics; not G5 natural stock20/60 acceptance",
+      "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/116#pullrequestreview-6054064023",
+      "reviewedCommit": "0ff466f44ac9459c2105e6929983d1b052934433",
+      "mergeCommit": "bac802126b5fed061d60722bc533f01d34594e41",
+      "scope": "Final test-only paired-context lifecycle correction over reviewed e475ad4 product code: host/replay/private assertions complete before host map unload, guest reconnect/tick/identity assertions retained, finally frees contexts; unchanged 45/60s limits and no retries/assertion removal; previous two 32/33 CI failures retained",
+      "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/117#pullrequestreview-6053623147",
+      "reviewedCommit": "45ebef9ed36d24d11ac25a9cedc53be32a822d4d",
+      "mergeCommit": "7e9b5a41f28d05beed939014c272b0a5b80f139a",
+      "scope": "UI responsibility extraction only: graph defaults/edit/reference/diagnostic controls and run panel keep one host graph/draft state and revision-based patches; no storage, MCP protocol or execution-chain changes; not G5",
+      "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/120#pullrequestreview-6056531481",
+      "reviewedCommit": "59729d64d32d6dd255ba536b62af0efdb5b3539d",
+      "mergeCommit": "c8c0cb0bc9748f3bd85904be6dff339a08e29362",
+      "scope": "Four view files only: paired eight-state/ten-edge layout, separate transition lanes/labels and 390px internal scrolling; stable IDs/recovery targets and edge selection remain on the same graph, non-paired grid and DAG unchanged; scoped sim5 layout evidence, not natural sim6 stock20/60 execution or G5",
+      "status": "approved"
     }
   ],
   "pending": [
-    "G3 reviewed same-frame service/UI merge and integrated host acceptance",
-    "G2 authoring host and unified graph MCP exact-head review",
     "G1-G4 integrated fixed-source package acceptance",
     "fresh-extraction launch, victory/defeat, graph editing, same-frame comparison, version recovery, replay, keyboard and narrow-screen evidence",
     "independent final technical and visual acceptance"
+  ],
+  "simulationVersion": 6,
+  "legacyReplayScope": "Versions <=5 retain recorded controller/healing semantics.",
+  "verificationHistory": [
+    {
+      "pr": 116,
+      "finalCI": "https://github.com/linonetwo/the-Library-of-Skyscraper/actions/runs/45575314510",
+      "result": "success",
+      "priorAttempts": "Two earlier CI attempts each passed 32/33 E2E cases and failed at paired-browser lifecycle/cleanup under original time budgets; retained as failures, not a first-run-green claim. Final exact head includes only the reviewed test lifecycle correction over e475ad4 production code."
+    }
   ]
 }
