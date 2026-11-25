@@ -10,7 +10,7 @@ import "./styles/script-runtime.css";
 
 export function ScriptRuntime() {
   const { session, snapshot } = useArena();
-  const [state, setState] = useState<RuleRuntimeState>();
+  const [state, setState] = useState<{ sessionId: string; playerId: string; value: RuleRuntimeState }>();
   const [error, setError] = useState("");
   const activeVersion = snapshot?.players.find(player => player.id === session?.playerId)?.script?.sourceHash ?? null;
   useEffect(() => {
@@ -21,14 +21,15 @@ export function ScriptRuntime() {
     const refresh = async () => {
       try {
         const value = await arenaApi.scriptState(session);
-        if (current && value.sourceHash === activeVersion) { setState(value); setError(""); }
+        if (current && value.sourceHash === activeVersion) { setState({sessionId:session.sessionId, playerId:session.playerId, value}); setError(""); }
       } catch (cause) { if (current) setError((cause as Error).message); }
       if (current) timer = setTimeout(refresh, 500);
     };
     void refresh();
     return () => { current = false; clearTimeout(timer); };
   }, [session?.sessionId, session?.token, activeVersion]);
-  const visibleState = state?.sourceHash === activeVersion ? state : undefined;
+  const visibleState = state?.sessionId === session?.sessionId && state?.playerId === session?.playerId
+    && state?.value.sourceHash === activeVersion ? state.value : undefined;
   const trace = readBehaviorTrace(visibleState?.memory.aiTrace);
   return <section className="script-runtime" aria-label="规则运行状态">
     <header><div><span className="eyebrow">STRATEGY NOTES</span><h3>规则运行状态</h3></div>

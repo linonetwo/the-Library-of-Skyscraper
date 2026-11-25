@@ -28,28 +28,29 @@ export function RuleComparison({session, draftProject}: {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const generation = useRef(0);
+  const loadGeneration = useRef(0);
   const draftSignature = JSON.stringify(draftProject);
 
   useEffect(() => { generation.current++; setCapture(null); setSource(null); setBusy(false); }, [draftSignature, operationIndex, baselineHash]);
   useEffect(() => {
-    let alive = true; generation.current++; initialDraft.current = cloneProject(draftProject);
+    const load = ++loadGeneration.current; generation.current++; initialDraft.current = cloneProject(draftProject);
     setTimeline(null); setVersions(null); setCapture(null); setSource(null); setBusy(false); setError(''); setLoading(true);
     void Promise.all([arenaApi.timeline(session), arenaApi.scriptVersions(session)]).then(([recording, list]) => {
-      if (!alive) return;
+      if (load !== loadGeneration.current) return;
       setTimeline(recording); setVersions(list); setOperationIndex(recording.frames.at(-1)?.operationIndex ?? 0);
       setBaselineHash(list.activeSourceHash ?? list.versions[0]?.sourceHash ?? '');
-    }, cause => {if (alive) setError(message(cause));}).finally(() => {if(alive) setLoading(false);});
-    return () => {alive = false; generation.current++;};
+    }, cause => {if (load === loadGeneration.current) setError(message(cause));}).finally(() => {if(load === loadGeneration.current) setLoading(false);});
+    return () => {loadGeneration.current++; generation.current++;};
   }, [session.sessionId, session.token]);
 
   async function refresh() {
-    const revision = ++generation.current; setLoading(true); setCapture(null); setSource(null); setBusy(false); setError('');
+    const revision = ++loadGeneration.current; generation.current++; setLoading(true); setCapture(null); setSource(null); setBusy(false); setError('');
     try {
       const [recording, list] = await Promise.all([arenaApi.timeline(session), arenaApi.scriptVersions(session)]);
-      if (revision !== generation.current) return;
+      if (revision !== loadGeneration.current) return;
       setTimeline(recording); setVersions(list); setOperationIndex(recording.frames.at(-1)?.operationIndex ?? 0);
-    } catch(cause) {if(revision === generation.current) setError(message(cause));}
-    finally {if(revision === generation.current) setLoading(false);}
+    } catch(cause) {if(revision === loadGeneration.current) setError(message(cause));}
+    finally {if(revision === loadGeneration.current) setLoading(false);}
   }
   async function compare() {
     const revision = ++generation.current; setBusy(true); setError(''); setCapture(null); setSource(null);
