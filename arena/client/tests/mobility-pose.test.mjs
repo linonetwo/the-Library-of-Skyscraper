@@ -63,6 +63,7 @@ test("pause, seek, reconnect, segment changes and final landing use the exact au
     assert.equal(pose.worldHeightMilli, current.worldHeightMilli);
     assert.equal(pose.locomotion.progress, current.locomotion.progress);
     assert.deepEqual(pose.worldPosition, current.worldPosition);
+    if (snap) assert.equal(pose.moving, false, "paused or seek snapshots have no presentation movement");
   }
   assert.equal(
     sampleMobilityPose(undefined, { worldPosition: { x: 0, y: 0 } }, 0.5),

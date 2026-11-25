@@ -107,7 +107,7 @@ export function sampleMobilityPose(
     locomotionDistanceMilli,
     locomotion,
     direction,
-    moving: !!current.travel || (!!approaching && t < 1),
+    moving: !snap && (!!current.travel || (!!approaching && t < 1)),
     frame: 0,
   };
 }
