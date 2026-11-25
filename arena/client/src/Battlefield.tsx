@@ -146,7 +146,7 @@ export default function Battlefield() {
                 编辑 AI 规则 <ArrowUpRight size={17} />
               </button>
             </div>
-            <p id="ai-entry-description">在暂停的训练局中编辑行为模块或规则图</p>
+            <p id="ai-entry-description">打开训练局，编辑行为模块或规则图</p>
             <button className="text-button" onClick={() => setLobby(true)}>
               或加入联机赛局 <ChevronRight size={13} />
             </button>

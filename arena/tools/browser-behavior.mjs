@@ -59,7 +59,7 @@ export const behaviorActionSchemas = [
 async function open(page) {
   const tab = page.getByRole("tab", { name: "行为模块", exact: true });
   if (!(await tab.isVisible()))
-    await page.getByRole("button", { name: "编辑 AI 规则", exact: true }).click();
+    await page.locator(".ai-entry").click();
   await tab.click();
   await page.locator(".behavior-workbench").waitFor();
 }
