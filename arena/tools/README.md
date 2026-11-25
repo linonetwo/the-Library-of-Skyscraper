@@ -141,6 +141,8 @@ not claim to verify clicking the browser’s settlement retry button.
 `loadRuleGraphTemplate {template: logistics|retreat}` 载入界面示例。
 `addRuleGraphObject {kind}` 支持 state、transition、role 和界面九种节点类型；
 `selectRuleGraphObject {kind: nodes|states|transitions|roles|modules,id}` 选择对象树条目。
+`setRuleGraphView {view: states|tree}` 切换画布；`selectRuleGraphTree {stateId}`
+选择状态持续树（空字符串显示全部节点），节点选择保留当前树。
 `copyRuleGraphSelection`、`deleteRuleGraphSelection`、`renameRuleGraphObject {id}`、
 `undoRuleGraph`、`redoRuleGraph` 使用对应可见按钮。
 `setRuleGraphField {label,value,index?}` 按参数区的准确 label 填值/选择/勾选；

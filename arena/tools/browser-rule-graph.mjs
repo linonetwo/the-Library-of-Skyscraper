@@ -11,6 +11,18 @@ const simple = [
   "locateRuleGraphSource",
 ];
 export const graphActionSchemas = [
+  z
+    .object({
+      type: z.literal("setRuleGraphView"),
+      view: z.enum(["states", "tree"]),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("selectRuleGraphTree"),
+      stateId: z.string().max(160),
+    })
+    .strict(),
   ...simple.map((type) => z.object({ type: z.literal(type) }).strict()),
   z
     .object({
@@ -93,7 +105,19 @@ export async function performGraphAction(page, action) {
       exact: true,
     });
     await graph.waitFor({ state: "visible" });
-    if (action.type === "selectRuleGraphObject") {
+    if (action.type === "setRuleGraphView") {
+      await graph
+        .getByRole("tab", {
+          name: action.view === "tree" ? "决策树" : "状态图",
+          exact: true,
+        })
+        .click();
+    } else if (action.type === "selectRuleGraphTree") {
+      await graph.getByRole("tab", { name: "决策树", exact: true }).click();
+      await graph
+        .getByLabel("查看状态持续树", { exact: true })
+        .selectOption(action.stateId);
+    } else if (action.type === "selectRuleGraphObject") {
       // Resolve user IDs as data, never interpolate them into CSS selectors.
       const buttons = graph.locator("[data-object-kind][data-object-id]");
       const values = await buttons.evaluateAll((items) =>

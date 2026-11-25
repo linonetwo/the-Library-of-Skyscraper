@@ -39,6 +39,34 @@ test(
     await action({ type: "loadRuleGraphTemplate", template: "logistics" });
     const baseline = await graph();
     assert(baseline.graph.nodes.length > 0);
+    const treeState = baseline.graph.states[0];
+    await action({
+      type: "selectRuleGraphObject",
+      kind: "states",
+      id: treeState.id,
+    });
+    await action({
+      type: "selectRuleGraphObject",
+      kind: "nodes",
+      id: treeState.treeId,
+    });
+    const selectedTree = await graph();
+    assert.equal(selectedTree.view, "tree");
+    assert.equal(
+      selectedTree.treeState,
+      treeState.id,
+      "selecting a node preserves the selected state tree",
+    );
+    assert.equal(selectedTree.selection.id, treeState.treeId);
+    assert(
+      selectedTree.nodes.some((node) => node.id === treeState.treeId),
+      "DAG contains the selected root",
+    );
+    await action({ type: "selectRuleGraphTree", stateId: "" });
+    assert.equal((await graph()).treeState, "");
+    await action({ type: "setRuleGraphView", view: "states" });
+    assert.equal((await graph()).view, "states");
+
     await action({ type: "addRuleGraphObject", kind: "condition" });
     const added = (await graph()).selection;
     await action({ type: "setRuleGraphField", label: "阈值", value: 9 });
