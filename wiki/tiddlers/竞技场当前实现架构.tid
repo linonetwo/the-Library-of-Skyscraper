@@ -2,19 +2,20 @@ title: 竞技场当前实现架构
 tags: 竞技场开发计划 竞技场目录：架构
 type: text/vnd.tiddlywiki
 created: 20261104212551000
-modified: 20261121134507000
+modified: 20261125071206000
 
-更新于2026-11-21。已发布入口为v0.2.1；v0.3.0「首场书库远征」玩法代码已由[[PR45|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/45]]合入，完整美术与整版发布继续推进。以下区分已运行的公共骨架和本版新实现，进度见[[竞技场v0.3.0版本计划]]及[[竞技场开发日志2026-11-21]]。
+更新于2026-11-25。已发布版本为[[v0.3.0|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.3.0]]；主试玩5175已提供v0.4规则图工作台开发预览。图模型、状态机／决策树编辑、中文目标补丁、同帧V8对照、源码与回放定位和MCP均已合入；当前集中修正脚本与预设的撤退控制权，随后固定整版包。进度见[[竞技场v0.4.0版本计划]]及[[竞技场开发日志2026-11-25]]。
 
 !! 数据流与职责
 
 React 界面经 HTTP 提交命令，Rust / Axum 服务执行 Session 权威模拟，通过 WebSocket 推送 Snapshot。Pixi 将快照与本地展示选择组合成战场。MCP 复用命令接口，并提供浏览器页面、操作和截图能力。
 
 * 客户端：App装配全视口游戏舞台；ArenaWorkspace管理角色／房间选择与显式镜头意图；useArenaSession管理网络会话；arenaApi封装传输。GameHUD提供资源、小队与常用操作，角色详情、规则、回放与工坊按需打开。MapCanvas持有Pixi生命周期；mapLayout提供独立地块与走廊，isoGeometry负责2:1投影／逆变换，CameraController处理镜头，mapScene缓存静态地板与道具，WorldEntities按快照更新资源、敌人和建筑，ActorScene复用角色节点。ExpeditionTasks提供任务与目标指令，ExpeditionResult展示结算与重试。
-* 服务端：store 使用赛局目录锁与每局串行锁管理状态；session 管理单局状态；commands 分派玩家命令；v0.3的travel逐tick推进世界旅行，tasks统一手动任务与运输／撤退，construction处理扣材与现场施工，combat处理位置射程与伤害，scenario处理编目、反扑和胜败；legacy模块保留旧模拟语义；simulation按固定顺序推进tick；replay 重演操作；checkpoint／persistence 保存完整私有赛局，lifecycle 管理定时归档和退出。
+* 服务端：store 使用赛局目录锁与每局串行锁管理状态；session 管理单局状态；commands 分派玩家命令；travel逐tick推进世界旅行，tasks统一手动任务与运输／撤退，construction处理扣材与现场施工，combat处理位置射程与伤害，scenario处理编目、反扑和胜败；legacy模块保留旧模拟语义；simulation按固定顺序推进tick；replay 重演操作；checkpoint／persistence 保存完整私有赛局，lifecycle 管理定时归档和退出。
 * 脚本：Monaco／useScriptWorkbench 编辑多文件项目与发布；script-toolchain 编译带版本的 JS；script_worker 复用两个常驻 V8 进程；script_driver 从同 tick 快照取得决策；scripting 按角色选择意图并复用动作结算。实时推进与 HTTP 单步共用异步 driver。script_versions管理每玩家的不可变源码包目录，script_version_routes提供历史读取与恢复。
-* 技术美术：proxy-imagegen独立方向源 → 分肢／衣发／武器attachment与关节注册 → 统一pose离线烘焙 → 原14层纹理图集 → 纸娃娃Sprite合成。运行时沿用图集。NE／SW新相机样板已实际渲染，完整步态、八向与外观组继续制作；动作、方向、帧号、装备层和world stride为共同索引。
-* 工具：MCP 的 Session、Simulation、Script、Replay、Page、Input 分组复用运行中的游戏；浏览器用例覆盖单机与双客户端。
+* 技术美术：proxy-imagegen独立方向源 → 分肢／衣发／武器attachment与关节注册 → 统一pose离线烘焙 → 共享坐标的分层纹理图集 → 纸娃娃Sprite合成。运行时沿用图集。八向idle／walk、carry／unload／collect／build／catalog及attack／hit／down已接入实际场景，衣装／头发／法杖独立组合；动作、方向、帧号、装备层和world stride为共同索引。单一加载器先呈现idle／walk，再按实际动作准备完整模块，暂停到帧仍能更新。奔跑、跳跃和攀爬的整套外观适配归v0.5候选。
+* 规则创作：BehaviorWorkbench共用一个RuleDraft／RuleSourceProject，五卡、图或手写TS分别编辑同一工程。规则图schemaVersion2以稳定对象ID标识岗位、状态、转移、树节点与五模块引用；图补丁改变模型，生成原TS工程。GraphEditor提供对象树、DAG画布及参数，Monaco负责源码；两者按文件／行／对象ID互相定位。模型诊断来自同一图层，编辑历史与发布回滚各有明确职责。
+* 工具：MCP 的 Session、Simulation、Script、Replay、Page、Input 分组复用运行中的游戏；图与目标操作点击可见控件，Page.getState读取同一界面的graph／selection／diagnostics／trace及来源。浏览器用例覆盖单机与双客户端。
 
 !! 已采用的设计模式
 
@@ -23,6 +24,8 @@ React 界面经 HTTP 提交命令，Rust / Axum 服务执行 Session 权威模�
 |命令模式|玩家动作、规则调整、步进等序列化 Command|
 |操作记录与重演|Join、Command、Advance、ScriptPublication 与 ScriptAdvance 重建独立 Session 和时间轴；脚本回放消费录制决策|
 |策略选择|内置 gather／defend／explore 与用户 TS decide(ctx) 提供行动决策|
+|状态机与组合决策树|每角色memory保存状态、进入tick和转移冷却；每tick最多一次转移，持续树组合条件、优先／顺序／评分、日志、模块、hold和pass|
+|单一工程与结构化补丁|图与五卡生成同一可编译TS工程；中文目标输出稳定对象ID差异，逐项采纳／撤销复用GraphPatch；手写多文件工程保留原文及替换历史|
 |意图与结算分离|脚本输出带优先级的动作描述；角色手动动作优先，每角色选一条脚本动作|
 |组合式纸娃娃|四头身身体、衣装、前后发片、前后法杖和手指共享帧坐标与挂点；地图与角色预览共用动作目录及图层选择|
 |单一世界几何与投影|shared/world-map.json的中心、折线路网、地板、道具占地和建筑锚点通过Snapshot共享；worldPosition用于交互与射程，2:1投影和镜头只负责呈现；输入沿相反次序还原|
@@ -41,13 +44,21 @@ TS 发布绑定 sourceHash，草稿按赛局与玩家保存；草稿编辑、生
 
 规则运行状态按[[竞技场规则运行状态实施方案]]实现：memory按玩家／sourceHash保存，tasks按玩家共享，显式补丁由同一tick提交。preview读取编译hash对应记忆并保留权威现场。私有checkpoint保留所有版本状态，v2回放仅导出本人私有补丁与最终状态；v1历史操作保持原结算事实。ScriptRuntime在工作台展示记忆和当前任务，MCP Script.getState使用同一owner接口。任务时间轴按[[竞技场任务回放时间轴实施方案]]输出重演后的成功增量，以operationIndex定位Reset、版本记忆与任务来源，客户端按选择位置投影；完整任务编辑继续扩展。
 
+!! 规则图执行与同帧调试
+
+图生成的TS与手写工程经相同工具链、HTTP发布接口和独立V8 worker运行。前端的Monaco与图画布编辑源码工程；服务端从当前权威Snapshot及本人任务／版本记忆构造RuleContext，脚本返回意图、memoryPatch与taskPatches。意图仍交原旅行／采集／施工／战斗结算，图执行器没有独立世界模拟。进入／退出效果写图状态、原因或任务计划，持续树才选择角色动作。
+
+图trace保存在本人版本记忆的紧凑补丁中，按actor记录起止状态、命中转移、访问节点与条件值、选中模块及原因。实跑和回放按owner、sourceHash、operationIndex关联；归档节点定位到当时版本源码。工作台同帧对照由服务端还原本人录制操作N后的世界与任务，A/B均从空记忆各经原编译器及V8执行一次，呈现下一次选择，不推进远征。比较、实录和实际入库／伤害事件分别展示。
+
+脚本接管语义的sim6修正实施中：控制来源复用已有发布元数据；TS与图决定撤退和出发，预设35／80阈值只作用于预设控制。基地治疗成为统一世界规则，按原节拍对己方基地中活着且无旅程的角色执行。切换控制来源保留位置／现有旅程，旧sim≤5按原逻辑重演。具体生效提交及实机结果记当日日志。
+
 !! 世界、动作与纸娃娃的时间轴
 
 Actor.appearance保存衣装、发型和武器，equip进入权威快照与回放。worldMap／mapVersion指定地图，simulationVersion区分旧即时切房与v0.3实际旅行。1格为1米，500毫秒tick每次前进750毫格；到达后更新roomId并进行现场交互。玩家手动、自动运输、撤退与TS意图复用同一旅行路径。建筑与角色统一使用worldPosition；施工、塔射程、敌人攻击和画面已接同一锚点，入库意图在权威tick内接近实际仓库后交货，室内与路上移动共享每tick预算。
 
 客户端ActorMotion在相邻权威位置间插值，暂停或回放seek切到对应模拟状态；动作时钟依据tick／ActionCue，目标位置决定朝向。ActorView复用Sprite池按动作合成身体、前后衣发、前后武器与手部。animationCatalog提供动作帧数／时长，animationLayers提供图层顺序，PaperDoll／AnimatedDollPreview读取同一图集。
 
-同相机投影为screenX=64(x-y)、screenY=32(x+y)-78.3837z，正交水平45度／俯角30度。独立地块128×64；新角色192透明格中可见人高约132像素，renderScale1，ground pivot=(96,172.8)。源图附件以固定关节点组合，离线姿态输出每方向的接触脚与root displacement，服装、头发与武器跟随同一pose。当前新源为两向校准，完整八向和动作矩阵按纸娃娃需求推进。
+同相机投影为screenX=64(x-y)、screenY=32(x+y)-78.3837z，正交水平45度／俯角30度。独立地块128×64；新角色192透明格中可见人高约132像素，renderScale1，ground pivot=(96,172.8)。源图附件以固定关节点组合，离线姿态输出每方向的接触脚与root displacement，服装、头发与武器跟随同一pose。上述八向工作与战斗动作共用该相机、同源分肢附件及图层注册；其他机动和技能动作继续按[[竞技场纸娃娃动画需求]]逐模块推进。
 
 完整技能／咏唱、五资源、长短赛、完整存储API、长记录分段、桌面离线包和Steam接入继续依据原系统设计与[[竞技场 Steam 上线与产品化]]推进。
 
