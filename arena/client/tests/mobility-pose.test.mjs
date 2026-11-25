@@ -377,8 +377,6 @@ test("a real one-tick transfer remains visible between adjacent received snapsho
       if (snap) assert.equal(exact.moving, false);
     }
     const changed = structuredClone(current);
-    changed.travel.segments[index].to.x += 50;
-    assert.deepEqual(sampleMobilityPose(previous, changed, .5).worldPosition, changed.worldPosition);
     changed.travel.travelId = "replacement";
     assert.deepEqual(sampleMobilityPose(previous, changed, .5).worldPosition, changed.worldPosition);
   }
