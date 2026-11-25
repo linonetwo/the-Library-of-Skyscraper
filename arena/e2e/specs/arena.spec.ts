@@ -1,5 +1,6 @@
 import { openMenu, closeOverlay, stepTraining } from './hud-helpers';
-import { test, expect, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { test, expect } from '../twoClientFixture';
 async function state(page: Page) {
   return page.evaluate(async () => {
     const auth = JSON.parse(sessionStorage.getItem('arena-session')!);
@@ -42,10 +43,8 @@ test('single player: atlas, rule publication, tick control and real screenshot',
   expect(errors).toEqual([]);
 });
 
-test('two independent browsers join a live room and reconnect with same player', async ({ browser }) => {
+test('two independent browsers join a live room and reconnect with same player', async ({ pairedContexts: [first, second] }) => {
   test.setTimeout(60000); // Two live software-rendered maps, wardrobe updates and both reconnects.
-  const first = await browser.newContext();
-  const second = await browser.newContext();
   const host = await first.newPage();
   const guest = await second.newPage();
   await host.goto('/');
@@ -88,13 +87,13 @@ test('two independent browsers join a live room and reconnect with same player',
   expect(timeline.frames.at(-1).snapshot.actors.find(
     (actor: { id: string }) => actor.id === equippedId).appearance).toEqual(appearance);
   await expect(guest.getByRole('button', { name: '暂停', exact: true })).toHaveCount(0);
-  // The host reconnect has been verified; release its renderer before the guest reconnects.
-  await first.close();
+  // Host reconnect and private state are verified. Release its renderer without flushing
+  // context traces inside the assertion budget; the fixture closes both contexts.
+  await host.goto('about:blank');
   const tick = (await state(guest)).tick;
   await guest.reload({waitUntil:"domcontentloaded"});
   await expect.poll(async () => (await state(guest)).tick).toBeGreaterThan(tick);
   expect(await guest.evaluate(() => JSON.parse(sessionStorage.getItem('arena-session')!).playerId)).toBe(identities[1]);
-  await second.close();
 });
 
 test('narrow layout presents the paper-doll squad', async ({ page }) => {

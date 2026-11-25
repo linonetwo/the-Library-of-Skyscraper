@@ -1,5 +1,5 @@
 import { actorSlot } from '../../client/src/mapLayout';
-import {test,expect} from '@playwright/test';
+import {test,expect} from '../twoClientFixture';
 import {project,inverse,containsTile} from '../../client/src/isoGeometry';
 import {mapLayout} from '../../client/src/mapLayout';
 import {fitMap} from '../../client/src/mapCamera';
@@ -43,9 +43,9 @@ test('real tile stage preserves camera picking and movement',async({page})=>{
  expect(requests.some(r=>r.includes('/assets/tiles/'))).toBe(true);expect(requests.some(r=>r.includes('library-map.png'))).toBe(false);expect(errors).toEqual([]);
 });
 
-test('two clients share authoritative positions and select actors through the camera',async({browser})=>{
+test('two clients share authoritative positions and select actors through the camera',async({pairedContexts:[one,two]})=>{
  test.setTimeout(45000);
- const one=await browser.newContext(),two=await browser.newContext();const host=await one.newPage(),guest=await two.newPage();
+ const host=await one.newPage(),guest=await two.newPage();
  await host.goto('/');await host.getByRole('button',{name:/或加入联机赛局/}).click();await host.getByRole('button',{name:/创建联机/}).click();
  await expect.poll(()=>host.evaluate(()=>sessionStorage.getItem('arena-session'))).not.toBeNull();const auth=await host.evaluate(()=>JSON.parse(sessionStorage.getItem('arena-session')!));
  const pose=async(page:typeof host)=>JSON.parse((await page.locator('.pixi-map').first().getAttribute('data-actors'))||'[]').find((a:{id:string})=>a.id==='p1-scout');
@@ -59,5 +59,5 @@ test('two clients share authoritative positions and select actors through the ca
  await host.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
  const map=host.locator('.pixi-map').first(),box=await map.boundingBox(),camera=JSON.parse((await map.getAttribute('data-camera'))!),actor=await pose(host);
  await host.mouse.click(box!.x+camera.x+actor.x*camera.scale,box!.y+camera.y+(actor.y-70)*camera.scale);
- await expect(host.getByLabel('选中角色操作')).toContainText('巡书使');await one.close();await two.close();
+ await expect(host.getByLabel('选中角色操作')).toContainText('巡书使');
 });
