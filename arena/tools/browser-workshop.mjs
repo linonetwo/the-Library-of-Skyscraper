@@ -2,9 +2,9 @@ import { z } from 'zod';
 const directions = {S:'正面', SW:'左前', W:'左侧', NW:'左后', N:'背面', NE:'右后', E:'右侧', SE:'右前'};
 const empty = ['openWorkshop','returnToArena','playWorkshop','pauseWorkshop','stepWorkshop'];
 const fields = {
- setWorkshopAction:{action:z.enum(['idle','walk'])},
+ setWorkshopAction:{action:z.string().min(1).max(80)},
  selectWorkshopDirection:{direction:z.enum(Object.keys(directions))},
- setWorkshopFps:{fps:z.union([2,4,8,12].map(z.literal))},
+ setWorkshopFps:{fps:z.union([0,2,4,8,12].map(z.literal))},
  setWorkshopOutfit:{outfit:z.enum(['scholar','warden'])},
  setWorkshopHair:{hair:z.enum(['ivory','midnight'])},
  setWorkshopLayer:{layer:z.enum(['outfit','hair','weapon']),visible:z.boolean()},
@@ -12,7 +12,7 @@ const fields = {
 export const workshopActionSchemas = [...empty.map(type=>z.object({type:z.literal(type)}).strict()),
  ...Object.entries(fields).map(([type,shape])=>z.object({type:z.literal(type),...shape}).strict())];
 const gallery = page=>page.getByRole('region',{name:'八方向动画预览'});
-async function loaded(page) { await gallery(page).getByRole('img').nth(7).waitFor(); }
+async function loaded(page) { await gallery(page).locator('[data-lab-ready=true]').waitFor(); }
 function layerControl(page,layer) {
  return page.getByRole('checkbox',{name:layer==='outfit'?/服动画层/:layer==='hair'?/发型动画层/:'法杖动画层'});
 }
@@ -32,9 +32,9 @@ export async function performWorkshopAction(page, action) {
   case 'pauseWorkshop': if(await button('暂停动画').count()) await button('暂停动画').click(); break;
   case 'stepWorkshop': await button('下一帧').click(); break;
   case 'setWorkshopFps': await page.getByLabel('播放速度').selectOption(String(action.fps)); break;
-  case 'setWorkshopOutfit': await page.getByLabel('动画衣装').selectOption(action.outfit); break;
-  case 'setWorkshopHair': await page.getByLabel('动画发型').selectOption(action.hair); break;
-  case 'setWorkshopLayer': await layerControl(page,action.layer).setChecked(action.visible); break;
+  case 'setWorkshopOutfit': await page.getByLabel('动画衣装').selectOption(action.outfit); await loaded(page); break;
+  case 'setWorkshopHair': await page.getByLabel('动画发型').selectOption(action.hair); await loaded(page); break;
+  case 'setWorkshopLayer': await layerControl(page,action.layer).setChecked(action.visible); await loaded(page); break;
  }
  return true;
 }
@@ -49,5 +49,6 @@ export async function readWorkshopState(page) {
   fps:Number(await value('播放速度')),playing:await page.getByRole('button',{name:'暂停动画',exact:true}).count()>0,
   appearance:{outfit:await value('动画衣装'),hair:await value('动画发型'),weapon:await layerControl(page,'weapon').isChecked()},
   layers:{outfit:await layerControl(page,'outfit').isChecked(),hair:await layerControl(page,'hair').isChecked()},
+  poses:await gallery(page).locator('[data-lab-poses]').evaluateAll(elements=>elements.flatMap(element=>JSON.parse(element.dataset.labPoses))),
   loading:await page.locator('[role=status]').count()>0,error:await page.getByRole('alert').count()?await page.getByRole('alert').innerText():null};
 }

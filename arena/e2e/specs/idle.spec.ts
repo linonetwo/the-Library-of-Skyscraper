@@ -9,27 +9,33 @@ import { animationLayers } from "../../client/src/walkLayers";
 test("idle atlas covers every appearance and paused inspection stays fixed", async ({ page, request }) => {
   const errors: string[] = [];
   page.on("pageerror", e => errors.push(e.message));
+  const index = await request.get('/assets/iso-v030-base/index.json').then(response => response.json());
+  const entry = index.clips.find((clip: { action: string }) => clip.action === 'idle');
+  const descriptor = await request.get(`${entry.root}/${entry.descriptor}`).then(response => response.json());
+  const frames = new Set<string>();
+  for (const layer of descriptor.layers) for (const atlasPage of layer.pages) {
+    const response = await request.get(`${entry.root}/${atlasPage.json}`);
+    expect(response.ok()).toBeTruthy();
+    Object.keys((await response.json()).frames).forEach(key => frames.add(key));
+  }
   for (const outfit of ["scholar", "warden"] as const)
     for (const hair of ["ivory", "midnight"] as const)
       for (const weapon of [false, true])
-        for (const layer of animationLayers("idle", { outfit, hair, weapon })) {
-          const response = await request.get(`/assets/animation/idle-${layer}.json`);
-          expect(response.ok()).toBeTruthy();
-          const atlas = await response.json();
-          for (const direction of ["S", "SW", "W", "NW", "N", "NE", "E", "SE"])
-            for (let frame = 0; frame < 4; frame++)
-              expect(atlas.frames[`idle/${layer}/${direction}/0${frame}`].frame.w).toBe(192);
-        }
+        for (const direction of descriptor.directions)
+          for (const layer of animationLayers("idle", { outfit, hair, weapon }, descriptor.activeLayers, descriptor, direction))
+            for (let frame = 0; frame < descriptor.clip.frameCount; frame++)
+              expect(frames.has(`idle/${layer}/${direction}/${String(frame).padStart(2, '0')}`)).toBe(true);
   await page.goto("/animation-lab");
-  await expect(page.getByRole("region", { name: "八方向动画预览" }).getByRole("img")).toHaveCount(8);
+  const gallery = page.getByRole("region", { name: "八方向动画预览" });
+  const poses = async () => JSON.parse(await gallery.locator('[data-lab-poses]').getAttribute('data-lab-poses') || '[]');
+  await expect.poll(async () => (await poses()).length).toBe(8);
   await page.getByRole("button", { name: "暂停动画" }).click();
   const frame = await page.getByLabel("当前帧").innerText();
   await page.waitForTimeout(400);
   await expect(page.getByLabel("当前帧")).toHaveText(frame);
   for (const outfit of ["scholar", "warden"]) {
     await page.getByLabel("动画衣装").selectOption(outfit);
-    await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-outfit")).toHaveCount(8);
-    await expect(page.getByRole("region", { name: "八方向动画预览" }).locator(".animated-outfit").first()).toHaveAttribute("style", new RegExp(`idle-${outfit === "scholar" ? "outfit-scholar" : "outfit-warden"}`));
+    await expect.poll(async () => (await poses()).filter((pose: { layers: string[] }) => pose.layers.some(key => key.includes(`/outfit-${outfit}/`))).length).toBe(8);
   }
   await page.getByRole("button", { name: "下一帧" }).click();
   await expect(page.getByLabel("当前帧")).not.toHaveText(frame);

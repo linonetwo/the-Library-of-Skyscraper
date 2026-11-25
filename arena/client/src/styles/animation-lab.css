@@ -156,3 +156,8 @@
   transform:scale(1.4)}
 }
 
+.lab-same-source,.lab-canvas { width:100%; min-width:0 }
+.lab-canvas canvas { display:block; width:100%; height:auto }
+.lab-facing-controls { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px }
+.lab-facing-controls button { padding:8px 2px; font-size:12px }
+.lab-facing-controls [aria-pressed=true] { border-color:#d6b775 }
