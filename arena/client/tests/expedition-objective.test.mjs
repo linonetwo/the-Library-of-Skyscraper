@@ -46,3 +46,16 @@ test('disabling published AI restores task preparation; preview alone does not p
  assert.match(expeditionObjective(s,player).detail,/待分工/);
  assert.equal(expeditionObjective({...s,actors:[actor]},{...player,script:null}).title,'分工已就绪 → 开始远征');
 });
+
+test('taskless AI travelling toward the objective is shown as incoming, never as absent or already working',()=>{
+ const travelling={...actor,task:null,cargo:0,roomId:'resource',travel:{targetRoomId:'target'}};
+ const o=expeditionObjective({...base,actors:[travelling],enemies:[{id:'guardian',hp:20,roomId:'target'}]},player);
+ assert.match(o.detail,/采撷师：前往目标 · 书库/);
+ assert.doesNotMatch(o.detail,/尚无存活执行者|施工中|驻守/);
+});
+test('leaving the objective does not count as presence even while roomId still names the origin',()=>{
+ const leaving={...actor,cargo:0,roomId:'target',task:{kind:'guard',target:'target'},travel:{targetRoomId:'base'}};
+ const o=expeditionObjective({...base,actors:[leaving],enemies:[{id:'guardian',hp:20,roomId:'target'}]},player);
+ assert.match(o.detail,/尚无存活执行者/);
+ assert.doesNotMatch(o.detail,/采撷师/);
+});

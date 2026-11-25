@@ -4,6 +4,8 @@ import type { Snapshot } from "./types";
 import { project, diamond } from "./isoGeometry";
 import { mapLayout, mapRoomCenter } from "./mapLayout";
 export type MapProps = {
+  mobilityChoice?: import("./mobilityChoices").MobilityChoice;
+  onMobilityEdge?: (edgeId: string) => void;
   focusIntent?: import("./cameraController").FocusIntent;
   snapshot: Snapshot | null;
   suspended?: boolean;

@@ -3,10 +3,11 @@ import { Feather, Check } from "lucide-react";
 import PaperDoll from "./PaperDoll";
 import { roleNames } from "./types";
 
-import { useArena, stateName } from "./ArenaWorkspace";
+import { actorActivity } from "./actorActivity";
+import { useArena } from "./ArenaWorkspace";
 
 export default function SquadPanel() {
-  const { selected, ownActors, selectActor } =
+  const { selected, ownActors, selectActor, snapshot } =
     useArena();
 
   return (
@@ -35,7 +36,7 @@ export default function SquadPanel() {
               <div>
                 <small>{unit.role.toUpperCase()}</small>
                 <strong>{roleNames[unit.role]}</strong>
-                <span>{stateName(unit.state)}</span>
+                <span>{snapshot ? actorActivity(unit, snapshot).title : "前往目标"}</span>
                 <span>携带 {unit.cargo} / {unit.cargoCapacity}</span>
                 <div className="health-track">
                   <i

@@ -1,3 +1,5 @@
+import { paintMobilitySelection } from "./mapMobility";
+import { paintMobilityFacilities } from "./mobilityFacilities";
 import { loadLibraryTextures } from './libraryLayout';
 import { loadWorldAssets } from "./worldAssets";
 import { WorldEntities } from "./WorldEntities";
@@ -39,6 +41,9 @@ export default function MapCanvas(props: MapProps) {
     let preparationRevision = 0;
     const world = new Container();
     let renderLayer = new Container();
+    const mobilitySelection = new Container();
+    let mobilityKey = "";
+    let authoritySnapshot: MapProps["snapshot"] | undefined;
     const entities = new Container({ sortableChildren: true });
     let tiles: Record<string, Texture> = {};
     const controller = new CameraController();
@@ -183,6 +188,18 @@ export default function MapCanvas(props: MapProps) {
     const paint = () => {
       if (!actors || disposed) return;
       const p = latest.current;
+      if (p.snapshot !== authoritySnapshot) {
+        authoritySnapshot = p.snapshot;
+        host.dataset.authorityState = JSON.stringify(p.snapshot && {
+          tick: p.snapshot.tick, paused: p.snapshot.paused,
+          simulationVersion: p.snapshot.simulationVersion, mapVersion: p.snapshot.mapVersion,
+          actors: p.snapshot.actors.map(({ id, owner, role, roomId, hp, cargo, worldPosition,
+            worldHeightMilli, lastMoveDirection, locomotion, travel }) => ({
+            id, owner, role, roomId, hp, cargo, worldPosition, worldHeightMilli, lastMoveDirection, locomotion, travel,
+          })),
+          players: p.snapshot.players.map(({ id, script }) => ({ id, script })),
+        });
+      }
       if (p.suspended || p.snapshot?.paused) app.stop();
       else if (!document.hidden) app.start();
       host.dataset.roomTargets = JSON.stringify(
@@ -228,6 +245,12 @@ export default function MapCanvas(props: MapProps) {
         for (const child of [...entities.children])
           if (child.label?.startsWith("shelf:") || child.label?.startsWith("decor:"))
             child.destroy({ children: true });
+        for (const child of [...entities.children]) {
+          if (child.label?.startsWith("mobility:")) child.destroy({ children: true });
+        }
+        if (p.snapshot) paintMobilityFacilities(entities, p.snapshot, tiles, (id) => {
+          if (!dragged) latest.current.onMobilityEdge?.(id);
+        });
         paintMap(
           renderLayer,
           {
@@ -239,6 +262,14 @@ export default function MapCanvas(props: MapProps) {
           entities,
           tiles,
         );
+      }
+      const selectedActor = p.snapshot?.actors.find((actor) => actor.id === p.selected);
+      const selectedMobility = JSON.stringify([p.snapshot?.mapVersion, p.selected, selectedActor?.roomId,
+        selectedActor?.travel?.travelId, selectedActor?.travel?.segments ?? selectedActor?.travel?.path, p.mobilityChoice]);
+      if (selectedMobility !== mobilityKey) {
+        mobilityKey = selectedMobility;
+        mobilitySelection.removeChildren().forEach((child) => child.destroy());
+        if (p.snapshot) paintMobilitySelection(mobilitySelection, p.snapshot, selectedActor, p.mobilityChoice ?? null);
       }
       const appearanceKey = p.assetSet ? "sample" : !p.snapshot ? "" :
         (p.snapshot.simulationVersion ?? 0) >= 4
@@ -334,7 +365,7 @@ export default function MapCanvas(props: MapProps) {
         if (disposed) return;
         dynamics = new WorldEntities(entities, tiles, worldAssets);
         actors = new ActorScene(actorTextures, entities, worldAssets);
-        world.addChild(renderLayer, entities);
+        world.addChild(renderLayer, entities, mobilitySelection);
         app.ticker.add(() => {
           const now = performance.now();
           poses = actors.render(now);
@@ -412,6 +443,7 @@ export default function MapCanvas(props: MapProps) {
     props.snapshot,
     props.selected,
     props.selectedRoom,
+    props.mobilityChoice,
     props.zoom,
     props.showRoutes,
     props.assetSet,

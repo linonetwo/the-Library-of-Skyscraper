@@ -16,6 +16,8 @@ import RuleEditor from "./RuleEditor";
 export default function Battlefield() {
   const {
     snapshot,
+    mobilityChoice,
+    setMobilityChoice,
     busy,
     start,
     resume,
@@ -97,6 +99,11 @@ export default function Battlefield() {
           </button>
         </div>
         <MapCanvas
+          mobilityChoice={mobilityChoice}
+          onMobilityEdge={(edgeId) => {
+            const edge = snapshot?.worldMap?.mobilityEdges?.find((edge) => edge.edgeId === edgeId);
+            if (edge) setMobilityChoice({ kind: edge.kind, edgeId });
+          }}
           suspended={view !== "map"}
           focusIntent={focusIntent}
           snapshot={snapshot}
