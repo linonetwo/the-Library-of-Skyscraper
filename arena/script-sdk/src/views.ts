@@ -82,7 +82,7 @@ export interface AuthorizedWorldView {
   readonly scenarioConfig?: unknown;
 }
 
-export type TaskKind = 'move' | 'gather' | 'deliver' | 'build' | 'attack' | 'capture';
+export type TaskKind = 'run' | 'jump' | 'climb' | 'move' | 'gather' | 'deliver' | 'build' | 'attack' | 'capture';
 export type TaskStatus = 'queued' | 'running' | 'blocked' | 'completed' | 'failed' | 'cancelled';
 
 export interface TaskDraft {
