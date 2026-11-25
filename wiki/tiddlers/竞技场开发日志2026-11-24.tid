@@ -2,7 +2,11 @@ title: 竞技场开发日志2026-11-24
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261124022230000
-modified: 20261124192407000
+modified: 20261124221631000
+
+!! 今日交付
+
+[[v0.3.0开发预览已发布|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.3.0]]，Tag固定a90ba3be402c80c8a3ae3c6859ee3afaaee5cde7，运行包／SHA256／manifest／公开验收汇总四件已上传。主试玩5175、Wiki3000和固定包验收入口5185继续运行。Astra在本次发布后开始规划v0.4.0完整AI编排界面；原有机动、武器及Steam交付范围继续保留版本归属。
 
 !! 主试玩与AI工作台
 
@@ -10,7 +14,7 @@ modified: 20261124192407000
 
 [[PR76|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/76]]已合，主入口顶部常驻“AI 模块”按钮。实际修复Monaco初始化时读取未注册typescriptDefaults造成整页空白，以及标准库名称不匹配造成的错误诊断。主代理今日在5175亲自打开工作台，载入资源优先模板，编译→真实V8试跑→发布成功，版本5161de1ed58b，pageerror为0。
 
-今日稍早的源码工作台截图保存在“竞技场2026-11-24AI工作台发布实机.png”；下方保留模块控件、工作动作与最新书架摆位三张图；早期参数与胜利图继续保留为图片条目。
+今日稍早的源码工作台截图保存在“竞技场2026-11-24AI工作台发布实机.png”；下方保留模块控件、接敌战斗与最新生产包胜利三张图；早期参数与胜利图继续保留为图片条目。
 
 !! 行为模块可视编辑与真实执行
 
@@ -36,7 +40,7 @@ Astra冻结AI1合同：采集、搬运、建造、守卫、撤退五模块按pri
 
 主代理随后在5175新建正常推荐分工局，真实观察collect24、满载carry40、build51、catalog66、unload96；五动作实际纸娃娃纹理均有readback，浏览器错误0。施工暂停中换守卫衣／墨蓝发并关闭法杖，仍握槌；再携杖时背挂，恢复后继续原任务。状态、截图与录像位于root/2026-11-24/main-work。
 
-[img[竞技场2026-11-24八向工作建造实机.png]]
+施工阶段实机见[[竞技场2026-11-24八向工作建造实机.png]]。
 
 图为主试玩实际建造阶段；五个动作来自相同场景和权威任务。敌人八向五动作[[PR79|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/79]]已进入主试玩。玩家attack／hit／down的八向独立落地源[[PR92|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/92]]、姿态烘焙[[PR93|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/93]]与逐向图层清单[[PR96|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/96]]已合；运行时[[PR98|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/98]]按精确5dc8428经两Astra审与完整CI后合入0cf0e652，主试玩已更新。
 
@@ -48,7 +52,7 @@ PR98新增战斗图集后，双端换装与重连曾因逐套预载全部动作�
 
 [[PR97|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/97]]已合入e2805e7，room2两座书架沿后沿成角，地图library-v3.5候选实机经Astra同机位比较后接受；架脚落在地砖内，中央与北入口保持清楚。主代理随后已将8790更新到固定e2805e7构建，二进制SHA256 d3190f3b9b8862c5b1200b2c9a35eb9ce79718cf6b1044a8143677b1c6b15ea4；先正常停止并备份原live-data，再用同一路径启动，321个文件保留。今日自建训练局以原凭据恢复tick0暂停态，实际返回library-v3.5；主页面重新进入同局显示新摆位，pageerror为0。记录在root/2026-11-24/main-map。
 
-[img[竞技场2026-11-24书架摆位实机.png]]
+书架摆位实机见[[竞技场2026-11-24书架摆位实机.png]]。
 
 图为主5175恢复原训练局后实际返回的新摆位：两书架沿后沿成角，足点与墙保持分离。
 
@@ -63,3 +67,33 @@ Astra近景进一步指出同坐标近战时敌人遮住玩家躯干，已列为
 [[PR89|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/89]]对齐合同，[[PR90|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/90]]实现v0.3实际dist资源入口／动作描述哈希及分范围评审出处，保留原打包布局和逐文件清单。元数据已实测，整版固定源产包与解包启动、胜败／双端／规则恢复／回放集中验收随P3齐备推进。全部仍属于v0.3 AI1／P1–P5完整批次，统一发布。
 
 计划保持精简，见[[竞技场AI模块编辑实施计划]]、[[竞技场v0.3.0版本计划]]。今日主代理状态／录屏在root/2026-11-24/main-eight、ai-workbench、ai-modules；首场模板权威证据在ai-first-expedition。完整FSM／决策树图编辑仍保留原需求，本轮可见交付为五模块优先组合。
+
+!! 新局接敌站位与整版源码冻结
+
+[[PR100|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/100]]按精确f9419e2经Astra技术6046840891、独立视觉6047049070与CI45477217005通过，合入80d91dbc。接敌几何收在小型combat_approach模块，旅程继续使用原Travel：沿最后来向在实际攻击距离内停靠；反扑遇入口边驻守时选走廊与房间交界的合法侧点。每tick移动上限0.75格。新局simulationVersion5记录决定性规则；旧≤4保持原重演。推荐35与默认模块20两条真实反扑轨迹，静止交战最小距离均1.8格；少数近距是持续移动的返程交叉，随后拉开。默认模块新局连续tick223胜利，浏览器错误0。
+
+主代理随后将8790更新到固定80d91dbc二进制（SHA256 4f1783031a6363e931eae0484bbf843b88dcfeb88ab37ec2c227b09d91bae727），正常停止、私有备份、沿用同live-data启动。322个文件保留，原训练局凭据恢复成功，旧sim4角色／tick0／暂停态保持。主5175前端同源更新，[[PR101|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/101]]让开始后的暂停显示“远征暂停”。开发Vite曾在分支同步后出现Pixi shape-builder重复注册白屏，强制重建依赖预打包缓存后落地页恢复，未改变产品源码。
+
+主代理又在5175新建sim5训练局，以正常500ms计时、0%撤退的单采撷师护卫实战拍摄：持杖／守卫衣／墨蓝发attack与hit，再换学者衣／象牙发／空手attack与hit，直到倒地。实际足点(-8,6.2)，敌方(-8,8)，持续交战身体分离；暂停末帧保持down/03与同一足点。此轮只在截图时暂停，全程无训练step命令，pageerror为0。状态／换装选层／截图在root/2026-11-24/main-combat。
+
+[img[竞技场2026-11-24分离站位持杖战斗实机.png]]
+
+图为今日主试玩的真实持杖attack/02，角色衣服、头发与法杖分别取纸娃娃图层。
+
+[[PR102|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/102]]已合并补齐准确动作、场景和接敌站位的分范围审查出处。v0.3.0整版sourceCommit与recipeCommit冻结为a90ba3be402c80c8a3ae3c6859ee3afaaee5cde7；P5开始在独立5185／8794由该源制作生产包、解包启动并集中完成胜败／双端／AI恢复／回放／存档重启。冻结后进入整批验收，最终结果与公开地址见下文。
+
+!! P5生产包集中验收结果
+
+唯一固定源生产构建、归档校验、新解包逐文件校验及实际package/start.sh已完成。sourceCommit与recipeCommit均为a90ba3be402c80c8a3ae3c6859ee3afaaee5cde7；运行归档SHA256为40948e97361dbd33c40f92ba50aa980ab315c7067fe6f5aa3b452c53c134ec9f，manifest SHA256为73ceab3a0af8364c8850085edc139622089cb9dfa89891f11ba5f8b0c63afd12。实际包运行在独立5185／8794，和主／稳定服务分别使用自己的数据目录。
+
+构建内31项客户端测试、Rust／clippy、SDK、runner、美术、7项实际V8路由、25项HTTP／MCP／浏览器及完整33项E2E通过。工具链15项中1项生成工程HTTP预览初次在并发实玩时超出原100ms执行预算，返回148.67ms；保留原失败日志，随后仅对同包的该精确用例按原预算复跑，1／1通过。并发争用是可能因素，当前证据尚未单独证明根因；产品源码与预算保持原值。
+
+实际seed42推荐分工局以正常计时tick230胜利，3／3存活、编目60、总入库120、建设消耗25、携货损失0。独立空闲局完整8分钟tick960失败，再由可见UI同seed重试返回tick0。胜局结算#82／T230进入真实日志并定位operation233回放。五卡通过真实UI将撤退25发布A，再45发布B，再历史恢复A，实跑与回放路径均可读取；A为8cced9088f1f、B为7ec9c396e4cf。
+
+[img[竞技场2026-11-24生产包远征胜利实机.png]]
+
+图为同一固定生产包的正常胜局，地图、目标、资源与结算均取真实权威状态。跟随采撷师的阶段截图用于说明施工／编目／反扑已发生；各动作近景与衣发组合另有PR85／98／100及主站的分项实机依据。
+
+保存恢复使用该包的实际start.sh正常停启，60个checkpoint文件名保留，选中暂停局的文件哈希、完整snapshot和私有scriptState逐值相同；同凭据恢复守卫衣／墨蓝发／法杖与A版，再由正常时钟12→14继续。Astra独立视觉验收接受此40948归档：实际包目标、采运、胜局、事件回放、AI五卡／版本恢复和战斗近景清楚；持杖attack／down与1.8格接敌、暂停末帧实际演出，其余组合引用相同冻结素材的分项证据。
+
+完整报告与公开附件清单位于p5/a90ba3b/ACCEPTANCE.md和public/UPLOAD-WHITELIST.json。v0.3.0开发预览已按本次固定源公开发布，远端四件附件的大小和SHA256均与原本地文件一致；公开包保持169,141,017字节。运行时存档与私有凭据保留本地。Steam整体目标及完整FSM／决策树继续按后续版本推进。

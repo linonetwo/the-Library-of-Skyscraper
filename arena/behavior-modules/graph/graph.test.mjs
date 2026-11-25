@@ -83,3 +83,11 @@ test('invalid graph saves as draft while validated generation blocks preview/pub
  const graph=api.createLogisticsGraph();graph.nodes.find(n=>n.id==='gather-node').fallback='cargo-check';
  const draft=api.serializeGraphDraft(graph);assert.ok(draft.files['graph-plan.ts']);assert.deepEqual(api.recoverRuleGraph(draft),graph);assert.throws(()=>api.toGraphSourceProject(graph),/acyclic/);
 });
+test('transition cooldown survives leaving and reentering source state; roles recover their own tree',async()=>{
+ const graph=api.createLogisticsGraph();graph.transitions.find(t=>t.id==='start-return').cooldownTicks=8;const run=await executable(graph);
+ const entered=run.decide(context({cargo:8},{},5));const exited=run.decide(context({cargo:0},entered.memoryPatch.set,6));
+ const blocked=run.decide(context({cargo:8},exited.memoryPatch.set,7));assert.equal(blocked.memoryPatch.set.aiTrace.actors[0].transitionId,null);
+ const allowed=run.decide(context({cargo:8},blocked.memoryPatch.set,13));assert.equal(allowed.memoryPatch.set.aiTrace.actors[0].transitionId,'start-return');
+ const retreat=await executable(api.createRetreatGraph());const low=retreat.decide(context({role:'guard',hp:10}));assert.equal(low.memoryPatch.set.graphState.a.stateId,'recovering-guarding');
+ const recovered=retreat.decide(context({role:'guard',hp:80},low.memoryPatch.set,10));assert.equal(recovered.memoryPatch.set.graphState.a.stateId,'guarding');
+});
