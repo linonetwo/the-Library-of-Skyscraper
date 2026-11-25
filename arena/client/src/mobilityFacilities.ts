@@ -87,7 +87,13 @@ export function paintMobilityFacilities(layer: Container, snapshot: Snapshot, te
       for(let z=low;z<=high;z+=250){const p={...segment.from,z};beam(depthPart(structure,p,-.04),mobilityPoint(offset(p,nx,ny)),mobilityPoint(offset(p,-nx,-ny)),4,wood,0xf4d9a7);}
       const foot={...segment.from,z:low},top={...segment.to,z:high};
       deck(structure,offset(foot,-facing.x/norm*220,-facing.y/norm*220),offset(foot,facing.x/norm*220,facing.y/norm*220),600,wood);
-      deck(structure,top,offset(top,facing.x/norm*500,facing.y/norm*500),650,wood);
+      const transfer = edge.segments.find(s => s.role === "transfer" &&
+        [s.from,s.to].some(p => p.x === top.x && p.y === top.y && p.z === top.z));
+      if (transfer) {
+        const inner = transfer.from.x === top.x && transfer.from.y === top.y && transfer.from.z === top.z
+          ? transfer.to : transfer.from;
+        deck(structure,top,inner,650,wood);
+      }
     }
     const first=edge.segments[0]?.from,last=edge.segments.at(-1)?.to;
     if(!first||!last)continue;
