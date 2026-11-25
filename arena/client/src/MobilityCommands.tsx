@@ -42,9 +42,10 @@ export default function MobilityCommands() {
           <option key={edge.edgeId} value={edge.edgeId}>{roomName(edge.fromRoomId)} ↔ {roomName(edge.toRoomId)} · {edge.edgeId}</option>)}
       </select></label>}
       {edge && <p>{edge.edgeId} · {roomName(actor.roomId === edge.toRoomId ? edge.toRoomId : edge.fromRoomId)} → {roomName(actor.roomId === edge.toRoomId ? edge.fromRoomId : edge.toRoomId)}</p>}
+      <p>金色：路线预览 · 青色：当前行程</p>
       <p role="status">{reason}</p>
       <button className="primary" disabled={!ready || !isOwner || actor.hp <= 0 || !!player?.script || !!actor.travel || !selected}
-        onClick={() => { if (selected) void command(selected); }}>确认机动</button>
+        onClick={async () => { if (selected && await command(selected)) setMobilityChoice(null); }}>确认机动</button>
       {choice && <button onClick={() => setMobilityChoice(null)}>清除路线预览</button>}
     </details>
   );

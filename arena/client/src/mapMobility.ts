@@ -1,6 +1,6 @@
 import { Container, Graphics } from "pixi.js";
 import { project } from "./isoGeometry";
-import type { MobilityEdge } from "./mobilityTypes";
+import type { TravelSegment } from "./mobilityTypes";
 import type { Actor, Snapshot } from "./types";
 import type { MobilityChoice } from "./mobilityChoices";
 import { mobilityPoint as point } from "./mobilityFacilities";
@@ -11,8 +11,8 @@ function arrow(line: Graphics, from: { x: number; y: number }, to: { x: number; 
   for (const turn of [-0.55, 0.55]) line.moveTo(to.x - Math.cos(angle + turn) * 14, to.y - Math.sin(angle + turn) * 14).lineTo(to.x, to.y);
 }
 
-function edgePath(line: Graphics, edge: MobilityEdge, reverse: boolean) {
-  const segments = reverse ? [...edge.segments].reverse().map((segment) => ({ ...segment, from: segment.to, to: segment.from })) : edge.segments;
+function segmentPath(line: Graphics, source: TravelSegment[], reverse = false) {
+  const segments = reverse ? [...source].reverse().map((segment) => ({ ...segment, from: segment.to, to: segment.from })) : source;
   segments.forEach((segment, index) => {
     const from = point(segment.from);
     if (index === 0) line.moveTo(from.x, from.y);
@@ -29,7 +29,19 @@ function edgePath(line: Graphics, edge: MobilityEdge, reverse: boolean) {
 }
 
 export function paintMobilitySelection(layer: Container, snapshot: Snapshot, actor: Actor | undefined, choice: MobilityChoice) {
-  if (!actor || !choice) return;
+  if (!actor || (snapshot.simulationVersion ?? 0) < 7) return;
+  if (actor.travel) {
+    const current = new Graphics();
+    if (actor.travel.segments) segmentPath(current, actor.travel.segments);
+    else actor.travel.path.forEach((p, index) => {
+      const q = project(p.x, p.y);
+      if (index === 0) current.moveTo(q.x, q.y); else current.lineTo(q.x, q.y);
+    });
+    current.stroke({ color: 0x89c8bd, width: 3, alpha: 0.8 });
+    current.eventMode = "none";
+    layer.addChild(current);
+  }
+  if (!choice) return;
   const line = new Graphics();
   if (choice.kind === "run") {
     const ids = [actor.roomId, choice.viaRoomId, choice.roomId];
@@ -45,7 +57,7 @@ export function paintMobilitySelection(layer: Container, snapshot: Snapshot, act
     }
   } else {
     const edge = snapshot.worldMap?.mobilityEdges?.find((edge) => edge.edgeId === choice.edgeId);
-    if (edge) edgePath(line, edge, actor.roomId === edge.toRoomId);
+    if (edge) segmentPath(line, edge.segments, actor.roomId === edge.toRoomId);
   }
   line.stroke({ color: gold, width: 4, alpha: 0.9 });
   line.eventMode = "none";

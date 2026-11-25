@@ -249,7 +249,7 @@ export default function MapCanvas(props: MapProps) {
           tiles,
         );
       }
-      const selectedMobility = JSON.stringify([p.snapshot?.mapVersion, p.selected, p.snapshot?.actors.find((actor) => actor.id === p.selected)?.roomId, p.mobilityChoice]);
+      const selectedMobility = JSON.stringify([p.snapshot?.mapVersion, p.selected, p.snapshot?.actors.find((actor) => actor.id === p.selected)?.roomId, p.snapshot?.actors.find((actor) => actor.id === p.selected)?.travel?.travelId, p.mobilityChoice]);
       if (selectedMobility !== mobilityKey) {
         mobilityKey = selectedMobility;
         mobilitySelection.removeChildren().forEach((child) => child.destroy());
