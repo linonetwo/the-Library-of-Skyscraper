@@ -14,6 +14,7 @@ export type Clip =
   | "unload"
   | "down";
 export type RegisteredClip = ClipTiming & {
+  directions?: readonly import("./directions").Direction[];
   cycleWorldStride?: number;
   groundPivot: readonly [number, number];
   renderScale?: number;

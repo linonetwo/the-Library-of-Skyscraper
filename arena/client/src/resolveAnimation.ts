@@ -138,7 +138,8 @@ export function resolveAnimation(
   catalog: Partial<Record<Clip, RegisteredClip>> = animationCatalog,
 ) {
   const selection = selectAnimation(actor, simTimeMs, motion);
-  const clip = catalog[selection.clip]
+  const requested = catalog[selection.clip];
+  const clip = requested && (!requested.directions || requested.directions.includes(selection.direction))
     ? selection.clip
     : selection.clip === "carry"
       ? "walk"
