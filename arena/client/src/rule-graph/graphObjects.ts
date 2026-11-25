@@ -95,7 +95,12 @@ export function makeNode(graph: RuleGraph, type: RuleNode["type"]): RuleNode {
     case "log":
       return { id, type, reason: "说明选择原因", next: fallback };
     case "module":
-      return { id, type, moduleId: graph.modules[0]?.moduleId ?? "", fallback: graph.nodes.find(n => n.type === "pass")?.id ?? fallback };
+      return {
+        id,
+        type,
+        moduleId: graph.modules[0]?.moduleId ?? "",
+        fallback: graph.nodes.find((n) => n.type === "pass")?.id ?? fallback,
+      };
     case "pass":
       return { id, type, reason: "候选未命中" };
     case "hold":

@@ -15,8 +15,12 @@ export function GraphCanvas({
   onSelect: (value: GraphSelection) => void;
   rootId?: string;
 }) {
-  const visited = new Set(trace?.actors.flatMap(a => a.visited.map(n => n.nodeId)));
-  const selectedPath = new Set(trace?.actors.flatMap(a => [a.selectedNodeId,a.endStateId]));
+  const visited = new Set(
+    trace?.actors.flatMap((a) => a.visited.map((n) => n.nodeId)),
+  );
+  const selectedPath = new Set(
+    trace?.actors.flatMap((a) => [a.selectedNodeId, a.endStateId]),
+  );
   const visible = new Set<string>();
   const visit = (id: string) => {
     if (visible.has(id)) return;
@@ -59,7 +63,7 @@ export function GraphCanvas({
   const position = new Map(
     items.map((item, i) => [
       item.id,
-      { x: 30 + (i % 3) * 230, y: 28 + Math.floor(i / 3) * 135 },
+      { x: 30 + (i % 3) * 230, y: 60 + Math.floor(i / 3) * 150 },
     ]),
   );
   return (
@@ -71,7 +75,7 @@ export function GraphCanvas({
         role="group"
         aria-label={mode === "states" ? "跨步状态转移" : "单步决策连接"}
         width="740"
-        height={Math.max(250, Math.ceil(items.length / 3) * 135 + 40)}
+        height={Math.max(250, Math.ceil(items.length / 3) * 150 + 80)}
       >
         <defs>
           <marker
@@ -90,29 +94,58 @@ export function GraphCanvas({
           const start = position.get(edge.from);
           const end = position.get(edge.to);
           if (!start) return null;
-          const x = start.x + 170,
-            y = start.y + 38,
-            tx = end?.x ?? x + 35,
-            ty = end ? end.y + 38 : y + 34;
+          const paired =
+            end &&
+            start.y === end.y &&
+            edges.some(
+              (other) => other.from === edge.to && other.to === edge.from,
+            );
+          const top = !!end && start.x < end.x;
+          const x = paired ? start.x + 85 : start.x + 170;
+          const y = paired ? start.y + (top ? 0 : 76) : start.y + 38;
+          const tx = end ? end.x + (paired ? 85 : 0) : x + 35;
+          const ty = end
+            ? paired
+              ? end.y + (top ? 0 : 76)
+              : end.y + 38
+            : y + 34;
+          const bend = y + (top ? -45 : 45);
+          const path = paired
+            ? `M${x},${y} C${x},${bend} ${tx},${bend} ${tx},${ty}`
+            : `M${x},${y} C${x + 60},${y} ${tx - 50},${ty} ${tx},${ty}`;
           return (
             <g
               key={edge.id}
               role="button"
               tabIndex={0}
               aria-label={`连接 ${edge.from} ${edge.label} ${edge.to || "未连接"}`}
-              onClick={() => onSelect({kind: mode === "states" ? "transitions" : "nodes",id: mode === "states" ? edge.id : edge.from})}
-              onKeyDown={e => {if(e.key === "Enter" || e.key === " "){e.preventDefault();onSelect({kind:mode === "states" ? "transitions" : "nodes",id:mode === "states" ? edge.id : edge.from});}}}
+              onClick={() =>
+                onSelect({
+                  kind: mode === "states" ? "transitions" : "nodes",
+                  id: mode === "states" ? edge.id : edge.from,
+                })
+              }
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelect({
+                    kind: mode === "states" ? "transitions" : "nodes",
+                    id: mode === "states" ? edge.id : edge.from,
+                  });
+                }
+              }}
               data-edge-id={edge.id}
               data-from={edge.from}
               data-to={edge.to}
               data-port={edge.label}
               className={!end ? "graph-edge dangling" : "graph-edge"}
             >
-              <path
-                d={`M${x},${y} C${x + 60},${y} ${tx - 50},${ty} ${tx},${ty}`}
-                markerEnd="url(#rule-edge-arrow)"
-              />
-              <text x={(x + tx) / 2} y={(y + ty) / 2 - 7}>
+              <path d={path} markerEnd="url(#rule-edge-arrow)" />
+              <text
+                textAnchor="middle"
+                x={(x + tx) / 2}
+                y={paired ? bend + (top ? 5 : 2) : (y + ty) / 2 - 7}
+              >
                 {edge.label}
                 {!end ? " · 引用缺失" : ""}
               </text>

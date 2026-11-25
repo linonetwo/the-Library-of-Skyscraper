@@ -131,7 +131,11 @@ export function EffectFields({
                   }
                 />
               </label>
-              <GraphRoomSelect label="任务目标房间" value={effect.roomId} onChange={roomId => edit(i,{...effect,roomId})}/>
+              <GraphRoomSelect
+                label="任务目标房间"
+                value={effect.roomId}
+                onChange={(roomId) => edit(i, { ...effect, roomId })}
+              />
               <label>
                 任务种类
                 <select

@@ -108,11 +108,22 @@ export function ConditionFields({
               }
             />
           </label>
-          <GraphRoomSelect label="指定房间" empty="当前房间" value={value.roomId ?? ""} onChange={roomId => onChange({...value,roomId:roomId||undefined})}/>
+          <GraphRoomSelect
+            label="指定房间"
+            empty="当前房间"
+            value={value.roomId ?? ""}
+            onChange={(roomId) =>
+              onChange({ ...value, roomId: roomId || undefined })
+            }
+          />
         </>
       )}
       {value.type === "atRoom" && (
-        <GraphRoomSelect label="位于房间" value={value.roomId} onChange={roomId => onChange({...value,roomId})}/>
+        <GraphRoomSelect
+          label="位于房间"
+          value={value.roomId}
+          onChange={(roomId) => onChange({ ...value, roomId })}
+        />
       )}
       {"missing" in value && (
         <label>

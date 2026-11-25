@@ -24,7 +24,11 @@ function Reference({
   return (
     <label>
       {label}
-      <select aria-label={label} value={value} onChange={(e) => onChange(e.target.value)}>
+      <select
+        aria-label={label}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
         <option value="">断开 · 待连接</option>
         {value && !items.some((item) => item.id === value) && (
           <option value={value}>{value} · 引用缺失</option>

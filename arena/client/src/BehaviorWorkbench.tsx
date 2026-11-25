@@ -92,35 +92,61 @@ export default function BehaviorWorkbench({
   const trace = readBehaviorTrace(
     w.preview?.execution?.decision?.memoryPatch?.set?.aiTrace,
   );
-  const graphPreview = graphTrace(w.preview?.execution?.decision?.memoryPatch?.set?.aiTrace);
-  const currentGraphTrace = graphPreview?.graphId === g.graph?.graphId && w.preview?.sourceHash === w.compilation?.bundle?.sourceHash ? graphPreview : null;
+  const graphPreview = graphTrace(
+    w.preview?.execution?.decision?.memoryPatch?.set?.aiTrace,
+  );
+  const currentGraphTrace =
+    graphPreview?.graphId === g.graph?.graphId &&
+    w.preview?.sourceHash === w.compilation?.bundle?.sourceHash
+      ? graphPreview
+      : null;
   return (
-    <div className="script-workbench behavior-workbench">
-      <header>
-        <div>
-          <span className="eyebrow">{tab === "graph" ? "RULE GRAPH · STATE & DECISION" : "AUTONOMOUS DOCTRINE · PRIORITY"}</span>
-          <h2>编排小队的下一步。</h2>
-        </div>
-        {onBack && <button onClick={onBack}>返回</button>}
-      </header>
-      <p>{tab === "graph" ? "状态跨步保留，决策树选择当前动作。选择对象编辑参数与连接，再试跑和发布。" : "按优先级尝试模块，首个满足条件的模块选择动作。修改草稿后试跑，再发布到战场。"}</p>
-      {w.backup && <button onClick={w.restoreBackup}>撤销上次替换</button>}
-      {tab === "modules" && <label className="behavior-template">
-        官方组合{" "}
-        <select
-          aria-label="载入官方行为组合"
-          value=""
-          onChange={(event) =>
-            w.createPlan(event.target.value as "expedition" | "logistics")
-          }
-        >
-          <option value="" disabled>
-            选择组合 · 替换草稿并保留撤销历史
-          </option>
-          <option value="expedition">首场远征 · 清守卫、建目录馆、编目</option>
-          <option value="logistics">物流循环 · 采集与入库</option>
-        </select>
-      </label>}
+    <div
+      className={`script-workbench behavior-workbench ${tab === "graph" ? "graph-workbench" : ""}`}
+    >
+      {tab !== "graph" && (
+        <header>
+          <div>
+            <span className="eyebrow">
+              {tab === "graph"
+                ? "RULE GRAPH · STATE & DECISION"
+                : "AUTONOMOUS DOCTRINE · PRIORITY"}
+            </span>
+            <h2>编排小队的下一步。</h2>
+          </div>
+          {onBack && <button onClick={onBack}>返回</button>}
+        </header>
+      )}
+      {tab !== "graph" && (
+        <p>
+          {tab === "graph"
+            ? "状态跨步保留，决策树选择当前动作。选择对象编辑参数与连接，再试跑和发布。"
+            : "按优先级尝试模块，首个满足条件的模块选择动作。修改草稿后试跑，再发布到战场。"}
+        </p>
+      )}
+      {tab !== "graph" && w.backup && (
+        <button onClick={w.restoreBackup}>撤销上次替换</button>
+      )}
+      {tab === "modules" && (
+        <label className="behavior-template">
+          官方组合{" "}
+          <select
+            aria-label="载入官方行为组合"
+            value=""
+            onChange={(event) =>
+              w.createPlan(event.target.value as "expedition" | "logistics")
+            }
+          >
+            <option value="" disabled>
+              选择组合 · 替换草稿并保留撤销历史
+            </option>
+            <option value="expedition">
+              首场远征 · 清守卫、建目录馆、编目
+            </option>
+            <option value="logistics">物流循环 · 采集与入库</option>
+          </select>
+        </label>
+      )}
       {g.blocked && (
         <p className="graph-source-status" role="alert">
           草图待修；模型诊断阻止编译、试跑与发布。源码与当前草图同步保存。
@@ -146,6 +172,9 @@ export default function BehaviorWorkbench({
       {tab === "graph" && (
         <>
           <div className="graph-tools">
+            {w.backup && (
+              <button onClick={w.restoreBackup}>撤销上次替换</button>
+            )}
             <button onClick={() => g.replace("logistics")}>
               载入物流状态图
             </button>
@@ -166,7 +195,9 @@ export default function BehaviorWorkbench({
             <GraphEditor
               graph={g.graph}
               trace={currentGraphTrace}
-              traceSourceHash={currentGraphTrace ? w.preview?.sourceHash : undefined}
+              traceSourceHash={
+                currentGraphTrace ? w.preview?.sourceHash : undefined
+              }
               diagnostics={g.diagnostics}
               selection={graphSelection}
               onSelect={setGraphSelection}
@@ -176,7 +207,9 @@ export default function BehaviorWorkbench({
               onRedo={g.redo}
               canUndo={g.canUndo}
               canRedo={g.canRedo}
-              comparisonEditor={<RuleComparison session={w.session!} draftProject={w.draft} />}
+              comparisonEditor={
+                <RuleComparison session={w.session!} draftProject={w.draft} />
+              }
               goalEditor={
                 <RuleGoalEditor
                   graph={g.graph}
@@ -377,7 +410,15 @@ export default function BehaviorWorkbench({
             onLocate={locate}
           />
         )}
-        {currentGraphTrace && <section aria-label="当前草稿规则图试跑路径" data-source-hash={w.preview?.sourceHash}><h4>当前草稿试跑 · {w.preview?.sourceHash}</h4><TraceView value={currentGraphTrace} locate={locateGraph}/></section>}
+        {currentGraphTrace && (
+          <section
+            aria-label="当前草稿规则图试跑路径"
+            data-source-hash={w.preview?.sourceHash}
+          >
+            <h4>当前草稿试跑 · {w.preview?.sourceHash}</h4>
+            <TraceView value={currentGraphTrace} locate={locateGraph} />
+          </section>
+        )}
         {w.preview && <PreviewStatePatch preview={w.preview} />}
       </section>
       <ScriptRuntime key={`${w.session?.sessionId}:${w.session?.playerId}`} />

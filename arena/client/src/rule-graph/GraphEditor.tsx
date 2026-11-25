@@ -131,10 +131,12 @@ export function GraphEditor({
       next = { kind: "roles", id };
     } else if (newKind.startsWith("binding:")) {
       const kind = newKind.slice(8);
-      const template = createDefaultBehaviorPlan().modules.find(m => m.kind === kind)!;
+      const template = createDefaultBehaviorPlan().modules.find(
+        (m) => m.kind === kind,
+      )!;
       const moduleId = freshId(graph, `${kind}-binding`);
-      operation = {type:"putModule",module:{...template,moduleId}};
-      next = {kind:"modules",id:moduleId};
+      operation = { type: "putModule", module: { ...template, moduleId } };
+      next = { kind: "modules", id: moduleId };
     } else {
       const node = makeNode(graph, newKind as RuleNode["type"]);
       operation = { type: "putNode", node };
@@ -154,7 +156,15 @@ export function GraphEditor({
   return (
     <section
       data-rule-graph
-      data-graph-state={JSON.stringify({graph, selection, diagnostics, trace, traceSourceHash, view:mode, treeState})}
+      data-graph-state={JSON.stringify({
+        graph,
+        selection,
+        diagnostics,
+        trace,
+        traceSourceHash,
+        view: mode,
+        treeState,
+      })}
       className="rule-graph-editor"
       aria-label="规则图编辑器"
       onKeyDown={(e) => {
@@ -195,7 +205,11 @@ export function GraphEditor({
           <option value="state">状态</option>
           <option value="transition">状态转移</option>
           <option value="role">岗位入口</option>
-          {createDefaultBehaviorPlan().modules.map(m => <option key={m.kind} value={`binding:${m.kind}`}>模块绑定 · {m.kind}</option>)}
+          {createDefaultBehaviorPlan().modules.map((m) => (
+            <option key={m.kind} value={`binding:${m.kind}`}>
+              模块绑定 · {m.kind}
+            </option>
+          ))}
           {Object.entries(nodeNames).map(([id, name]) => (
             <option key={id} value={id}>
               {name}
@@ -236,7 +250,10 @@ export function GraphEditor({
                 {name} · {graph[kind].length}
               </summary>
               {graph[kind].map((value) => {
-                const id = kind === "modules" ? (value as RuleGraph["modules"][number]).moduleId : (value as {id:string}).id;
+                const id =
+                  kind === "modules"
+                    ? (value as RuleGraph["modules"][number]).moduleId
+                    : (value as { id: string }).id;
                 const label =
                   "name" in value
                     ? value.name
@@ -362,8 +379,7 @@ export function GraphEditor({
                 const kind = groups.find(([key]) =>
                   graph[key].some(
                     (o) =>
-                      ("id" in o ? o.id : o.moduleId) ===
-                      diagnostic.objectId,
+                      ("id" in o ? o.id : o.moduleId) === diagnostic.objectId,
                   ),
                 )?.[0];
                 if (kind) choose({ kind, id: diagnostic.objectId });

@@ -1,4 +1,7 @@
-import { recoverRuleGraph, toGraphSourceProject } from "../../behavior-modules/graph";
+import {
+  recoverRuleGraph,
+  toGraphSourceProject,
+} from "../../behavior-modules/graph";
 import { useRef, useState } from "react";
 import { useArena } from "./ArenaWorkspace";
 import { arenaApi } from "./arenaApi";
@@ -81,7 +84,10 @@ export function useScriptWorkbench() {
     setPreview(null);
     try {
       const graph = recoverRuleGraph(draft);
-      const project = graph && ["compile", "preview", "publish"].includes(mode) ? toGraphSourceProject(graph) : { files: draft.files, entry: draft.entry };
+      const project =
+        graph && ["compile", "preview", "publish"].includes(mode)
+          ? toGraphSourceProject(graph)
+          : { files: draft.files, entry: draft.entry };
       if (mode === "rollback")
         acceptSnapshot(await arenaApi.rollbackScript(session!, hash!));
       else if (mode === "disable")
