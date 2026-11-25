@@ -20,6 +20,7 @@ export function EffectFields({
           <label>
             类型
             <select
+              aria-label="类型"
               value={effect.type}
               onChange={(e) =>
                 edit(
@@ -64,6 +65,7 @@ export function EffectFields({
               <label>
                 值类型
                 <select
+                  aria-label="值类型"
                   value={effect.value === null ? "null" : typeof effect.value}
                   onChange={(e) =>
                     edit(i, {
@@ -139,6 +141,7 @@ export function EffectFields({
               <label>
                 任务种类
                 <select
+                  aria-label="任务种类"
                   value={effect.kind}
                   onChange={(e) =>
                     edit(i, {

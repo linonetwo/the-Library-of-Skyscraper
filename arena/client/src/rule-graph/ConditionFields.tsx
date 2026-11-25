@@ -44,6 +44,7 @@ export function ConditionFields({
       <label>
         判断方式
         <select
+          aria-label="判断方式"
           value={value.type}
           onChange={(e) => changeType(e.target.value as GraphCondition["type"])}
         >
@@ -59,6 +60,7 @@ export function ConditionFields({
           <label>
             输入
             <select
+              aria-label="输入"
               value={value.field}
               onChange={(e) =>
                 onChange({ ...value, field: e.target.value as GraphField })
@@ -74,6 +76,7 @@ export function ConditionFields({
           <label>
             关系
             <select
+              aria-label="关系"
               value={value.op}
               onChange={(e) =>
                 onChange({

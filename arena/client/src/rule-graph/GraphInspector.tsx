@@ -363,6 +363,7 @@ export function GraphInspector({
         <label>
           岗位
           <select
+            aria-label="岗位"
             value={role.role}
             onChange={(e) =>
               save({ ...role, role: e.target.value as GraphRole["role"] })

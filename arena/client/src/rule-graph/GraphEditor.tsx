@@ -307,6 +307,7 @@ export function GraphEditor({
             <label>
               查看状态持续树
               <select
+                aria-label="查看状态持续树"
                 value={treeState}
                 onChange={(e) => setTreeState(e.target.value)}
               >
