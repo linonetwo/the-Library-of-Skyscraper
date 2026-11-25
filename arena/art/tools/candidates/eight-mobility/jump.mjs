@@ -91,6 +91,8 @@ export function jumpPoses(direction) {
         left: stage.wrists,
         right: [-0.05, Math.min(0.89, stage.wrists[1] - 0.12)],
       },
+      ankleAngles: direction.worldForward[0] > 0.7 && direction.worldForward[1] > 0.7 && stage.phase === "airborne"
+        ? { left: 35, right: -35 } : {},
       phase: stage.phase,
       contacts: {
         left: {
@@ -102,7 +104,7 @@ export function jumpPoses(direction) {
           soleHeight: stage.feet[1][1] - 0.11,
         },
       },
-      staffAngle: direction.worldForward[1] > 0 ? -18 : 18,
+      staffAngle: direction.worldForward[0] < -0.7 && direction.worldForward[1] > 0.7 ? 25 : direction.worldForward[1] > 0 ? -18 : 18,
       durationMs: 250,
     }),
   );

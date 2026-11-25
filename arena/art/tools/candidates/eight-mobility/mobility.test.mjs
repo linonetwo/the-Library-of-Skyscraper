@@ -4,7 +4,7 @@ import { loadRig } from "./rig.mjs";
 import { runPoses, runStride } from "./run.mjs";
 import { jumpPoses } from "./jump.mjs";
 const distance = (a, b) => Math.hypot(...a.map((n, i) => n - b[i]));
-const rig = await loadRig(["NE", "SW"]);
+const rig = await loadRig(["NE", "SW", "E", "W", "N", "S", "NW", "SE"]);
 test("new run has stance and flight with a distinct authoritative distance stride", () => {
   assert.notEqual(runStride, 1.08);
   for (const d of Object.values(rig.directions)) {

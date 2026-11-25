@@ -33,6 +33,7 @@ export function articulate(
     contacts,
     staffAngle = 20,
     durationMs,
+    ankleAngles = {},
   },
 ) {
   const heading = direction.worldForward,
@@ -58,6 +59,13 @@ export function articulate(
       [...heading, 0],
     );
     world[s + "Shoulder"] = wp(lean, sign * 0.19, neckZ - 0.065);
+    // The accepted north raster has a narrower collar. Preserve its registered
+    // shoulder contact instead of placing the independent arm outside the torso.
+    if (heading[0] < -0.7 && heading[1] < -0.7) {
+      const [dx, dy] = direction.joints[s + "Shoulder"].restOffset;
+      const across = dx / 64, along = (dy - 78.38367177 * 0.065) / 32;
+      world[s + "Shoulder"] = add(world.neck, [(along + across) / 2, (along - across) / 2, -0.065]);
+    }
     world[s + "Wrist"] = wp(
       wrists[s][0],
       sign * (s === "right" ? 0.32 : 0.22),
@@ -111,7 +119,7 @@ export function articulate(
     Math.PI;
   jointAngles.neck = 0;
   for (const s of ["left", "right"]) {
-    jointAngles[s + "Ankle"] = 0;
+    jointAngles[s + "Ankle"] = ankleAngles[s] ?? 0;
     jointAngles[s + "Wrist"] = jointAngles[s + "Elbow"];
   }
   return {
