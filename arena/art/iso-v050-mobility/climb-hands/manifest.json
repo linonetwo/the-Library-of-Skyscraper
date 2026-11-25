@@ -1,0 +1,256 @@
+{
+  "source": "source/ne-sw-hands.png",
+  "sha256": "fecdedebefe2a703df8c6c1d4be5ec94c96a24342d30624d8ea29262384f0c7b",
+  "canvas": [
+    192,
+    192
+  ],
+  "scale": 1,
+  "review": "pilot; bilateral anatomy NOT accepted; no production fallback",
+  "directions": {
+    "NE": {
+      "leftGrab": {
+        "image": "NE/leftGrab.png",
+        "requestedAnatomicalSide": "left",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "grab",
+        "wristPivot": [
+          1.533,
+          7.28
+        ],
+        "localContact": [
+          7.315,
+          3.816
+        ],
+        "wristTowardElbow": [
+          -0.6593831083577524,
+          0.7518071005334205
+        ],
+        "size": [
+          9,
+          9
+        ],
+        "sourceCrop": {
+          "left": 59,
+          "top": 83,
+          "width": 348,
+          "height": 336
+        },
+        "occlusion": "rear rung; near fingers in front; center in hook cavity"
+      },
+      "rightGrab": {
+        "image": "NE/rightGrab.png",
+        "requestedAnatomicalSide": "right",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "grab",
+        "wristPivot": [
+          1.56,
+          7.33
+        ],
+        "localContact": [
+          6.987,
+          3.915
+        ],
+        "wristTowardElbow": [
+          -0.7124032369112033,
+          0.7017703527782005
+        ],
+        "size": [
+          9,
+          9
+        ],
+        "sourceCrop": {
+          "left": 497,
+          "top": 83,
+          "width": 331,
+          "height": 336
+        },
+        "occlusion": "rear rung; near fingers in front; center in hook cavity"
+      },
+      "leftBrace": {
+        "image": "NE/leftBrace.png",
+        "requestedAnatomicalSide": "left",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "brace",
+        "wristPivot": [
+          1.687,
+          7.389
+        ],
+        "localContact": [
+          2.601,
+          7.045
+        ],
+        "wristTowardElbow": [
+          -0.7481531964587157,
+          0.6635260316133847
+        ],
+        "size": [
+          10,
+          9
+        ],
+        "sourceCrop": {
+          "left": 918,
+          "top": 81,
+          "width": 364,
+          "height": 338
+        },
+        "occlusion": "platform edge behind palm heel"
+      },
+      "rightBrace": {
+        "image": "NE/rightBrace.png",
+        "requestedAnatomicalSide": "right",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "brace",
+        "wristPivot": [
+          1.589,
+          7.389
+        ],
+        "localContact": [
+          2.673,
+          7.045
+        ],
+        "wristTowardElbow": [
+          -0.7529533334570632,
+          0.6580739150246702
+        ],
+        "size": [
+          10,
+          9
+        ],
+        "sourceCrop": {
+          "left": 1366,
+          "top": 81,
+          "width": 358,
+          "height": 338
+        },
+        "occlusion": "platform edge behind palm heel"
+      }
+    },
+    "SW": {
+      "leftGrab": {
+        "image": "SW/leftGrab.png",
+        "requestedAnatomicalSide": "left",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "grab",
+        "wristPivot": [
+          7.324,
+          1.279
+        ],
+        "localContact": [
+          4.816,
+          5.601
+        ],
+        "wristTowardElbow": [
+          0.9146038153378184,
+          -0.40435116046514064
+        ],
+        "size": [
+          9,
+          8
+        ],
+        "sourceCrop": {
+          "left": 70,
+          "top": 497,
+          "width": 325,
+          "height": 301
+        },
+        "occlusion": "rear rung; near fingers in front; center in hook cavity"
+      },
+      "rightGrab": {
+        "image": "SW/rightGrab.png",
+        "requestedAnatomicalSide": "right",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "grab",
+        "wristPivot": [
+          7.146,
+          1.265
+        ],
+        "localContact": [
+          4.859,
+          5.757
+        ],
+        "wristTowardElbow": [
+          0.8860982128088198,
+          -0.46349752669999805
+        ],
+        "size": [
+          9,
+          8
+        ],
+        "sourceCrop": {
+          "left": 499,
+          "top": 497,
+          "width": 349,
+          "height": 316
+        },
+        "occlusion": "rear rung; near fingers in front; center in hook cavity"
+      },
+      "leftBrace": {
+        "image": "SW/leftBrace.png",
+        "requestedAnatomicalSide": "left",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "brace",
+        "wristPivot": [
+          8.196,
+          1.594
+        ],
+        "localContact": [
+          7.138,
+          2.727
+        ],
+        "wristTowardElbow": [
+          0.752047053940795,
+          -0.659109420854361
+        ],
+        "size": [
+          10,
+          9
+        ],
+        "sourceCrop": {
+          "left": 917,
+          "top": 499,
+          "width": 367,
+          "height": 323
+        },
+        "occlusion": "platform edge behind palm heel"
+      },
+      "rightBrace": {
+        "image": "SW/rightBrace.png",
+        "requestedAnatomicalSide": "right",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "brace",
+        "wristPivot": [
+          8.157,
+          1.594
+        ],
+        "localContact": [
+          7.034,
+          2.727
+        ],
+        "wristTowardElbow": [
+          0.7836450641596199,
+          -0.6212088323730317
+        ],
+        "size": [
+          10,
+          9
+        ],
+        "sourceCrop": {
+          "left": 1366,
+          "top": 499,
+          "width": 362,
+          "height": 323
+        },
+        "occlusion": "platform edge behind palm heel"
+      }
+    }
+  }
+}
