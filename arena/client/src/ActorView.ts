@@ -1,3 +1,4 @@
+import {sampleMobilityPose} from "./mobilityPose";
 import expeditionConfig from "../../shared/first-expedition.json";
 import { DollRenderer, type DollTextures } from "./DollRenderer";
 export type { DollTextures } from "./DollRenderer";
@@ -15,6 +16,7 @@ import { ActorMotion, facing, type Point } from "./actorMotion";
 export class ActorView {
   readonly node = new Container();
   readonly motion: ActorMotion;
+  mobility?: {previous?:Actor;current:Actor;snap:boolean;tick:number};
   samplePose?: "NE" | "SW";
   sampleWalk = false;
   assetSet?: LoadedAssetSet;
@@ -98,7 +100,7 @@ export class ActorView {
       this.actionTick = actor.actionTick ?? -1;
     }
     this.actor = actor;
-    this.motion.move(
+    if (!this.mobility) this.motion.move(
       destination, now, snap, path, actor.motionDistanceMilli,
       this.authoritativeAnimation
         ? (actor.travel?.speedMilliPerTick ?? expeditionConfig.speedMilliPerTick) / this.tickDuration
@@ -134,10 +136,11 @@ export class ActorView {
   }
 
   render(now: number, simNow = this.simulationTime) {
-    const pose = this.motion.sample(now);
+    const mobility = this.mobility && sampleMobilityPose(this.mobility.previous,this.mobility.current,(simNow-this.mobility.tick*this.tickDuration)/this.tickDuration,this.mobility.snap);
+    const pose = mobility ?? this.motion.sample(now);
     const selection = this.authoritativeAnimation
       ? resolveAnimation(
-          this.actor,
+          mobility ? {...this.actor,locomotion:mobility.locomotion} : this.actor,
           simNow,
           {
             ...pose,
@@ -146,14 +149,15 @@ export class ActorView {
               : pose.moving ||
                 !!this.actor.travel ||
                 this.actor.task?.stage === "approaching",
-            worldPosition: inverse(pose.x, pose.y),
+            worldPosition: mobility?.worldPosition ?? inverse(pose.x, pose.y),
             tickDurationMs: this.tickDuration,
           },
           this.assetSet?.catalog,
         )
       : undefined;
     this.node.position.set(pose.x, pose.y);
-    this.node.zIndex = pose.y;
+    this.node.zIndex = mobility ? project(mobility.worldPosition.x,mobility.worldPosition.y).y : pose.y;
+    this.shadow.y = mobility ? (mobility.worldHeightMilli-mobility.supportHeightMilli)/1000*78.384 : 0;
     this.activity.clear();
     const cue = this.actor.actionCue;
     const cueActive = isCueActive(cue, simNow, this.tickDuration);
@@ -232,6 +236,11 @@ export class ActorView {
     return {
       id: this.actor.id,
       ...pose,
+      worldPosition: mobility?.worldPosition ?? this.actor.worldPosition,
+      worldHeightMilli: mobility?.worldHeightMilli,
+      supportHeightMilli: mobility?.supportHeightMilli,
+      authoritativeLocomotion: this.actor.locomotion,
+      presentationProgress: mobility?.locomotion?.progress,
       direction: selection?.direction ?? pose.direction,
       frame: selection?.frame ?? pose.frame,
       animation: action,

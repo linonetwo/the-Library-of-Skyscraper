@@ -18,13 +18,14 @@ export type AnimationEntity = Pick<
   | "worldPosition"
   | "state"
 > &
-  Partial<Pick<Actor, "cargo" | "task">>;
+  Partial<Pick<Actor, "cargo" | "task" | "locomotion">>;
 export type AnimationMotion = {
   moving: boolean;
   direction: Direction;
   tickDurationMs: number;
   worldPosition?: WorldPoint;
   motionDistanceMilli: number;
+  locomotionDistanceMilli?: number;
 };
 export type AnimationSelection = {
   clip: Clip;
@@ -33,7 +34,9 @@ export type AnimationSelection = {
   cueDurationMs?: number;
   holdLast?: boolean;
   motionDistanceMilli: number;
+  locomotionDistanceMilli?: number;
   impact: boolean;
+  locomotion?: Actor["locomotion"];
 };
 
 export function cueActive(
@@ -78,7 +81,9 @@ function selectAnimation(
     cueDurationMs:
       cue && cue.durationTicks > 0 ? cue.durationTicks * tickMs : undefined,
     motionDistanceMilli: motion.motionDistanceMilli,
+    locomotionDistanceMilli: motion.locomotionDistanceMilli,
     impact: !!impactActive && impact?.kind === "hit",
+    locomotion: actor.locomotion,
   });
   if (actor.hp <= 0 || actor.state === "downed") {
     const down = impact?.kind === "down" ? impact : undefined;
@@ -109,6 +114,7 @@ function selectAnimation(
     aim();
     return result("unload", action.startedTick * tickMs, action);
   }
+  if (actor.locomotion && ["run","jump","climb"].includes(actor.locomotion.kind)) return result(actor.locomotion.kind as Clip);
   if (motion.moving) return result(actor.cargo ? "carry" : "walk");
   if (actionActive && action?.kind === "gather") {
     aim();
@@ -144,8 +150,16 @@ export function resolveAnimation(
     : selection.cueDurationMs
       ? (selection.elapsedMs / selection.cueDurationMs) * duration
       : selection.elapsedMs;
-  const frame = selection.holdLast
+  const phaseRange = selection.locomotion && spec.phaseFrames?.[selection.locomotion.phase];
+  const mobilityU = selection.locomotion?.progress;
+  const phaseFrame = phaseRange && selection.locomotion
+    ? phaseRange.first + Math.min(phaseRange.last-phaseRange.first, Math.floor((phaseRange.cycleDistanceMilli
+      ? ((selection.locomotionDistanceMilli ?? selection.motionDistanceMilli) % phaseRange.cycleDistanceMilli) / phaseRange.cycleDistanceMilli
+      : mobilityU ?? 0) * (phaseRange.last-phaseRange.first+1)))
+    : clip === "jump" && mobilityU !== undefined
+      ? frameAt(spec,Math.max(0,Math.min(1,mobilityU))*duration) : undefined;
+  const frame = phaseFrame ?? (selection.holdLast
     ? spec.frameCount - 1
-    : frameAt(spec, elapsed);
+    : frameAt(spec, elapsed));
   return { ...selection, requestedClip: selection.clip, clip, frame };
 }
