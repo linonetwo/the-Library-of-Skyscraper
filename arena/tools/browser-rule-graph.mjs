@@ -153,6 +153,15 @@ export async function performGraphAction(page, action) {
         }[action.type],
       );
   }
+  if (action.type === "locateRuleGraphSource") {
+    await page
+      .getByRole("textbox", { name: "TypeScript规则源码", exact: true })
+      .waitFor({ state: "visible", timeout: 20000 });
+    await page.waitForFunction(() => {
+      const button = document.querySelector(".graph-source-locate button");
+      return button && !button.disabled;
+    });
+  }
   return true;
 }
 export async function readGraphState(page) {
