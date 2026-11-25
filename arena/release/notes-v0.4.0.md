@@ -28,7 +28,9 @@ thresholds remains part of fixed-package G5 acceptance.
 
 The rule provenance record lists exact reviewed heads, merge commits and scoped
 approvals. PR117 only extracts UI responsibilities; PR112 only reveals selected
-archived source lines. The sim6 PR116 initially had two CI runs at 32/33 E2E
+archived source lines. PR120 only improves paired eight-state/ten-edge layout,
+transition lanes/labels and narrow internal scrolling; its scoped layout review
+does not establish natural sim6 retreat/healing or G5 acceptance. The sim6 PR116 initially had two CI runs at 32/33 E2E
 cases; the final reviewed head fixes paired-context lifecycle/cleanup without
 changing production code, time limits or assertions, and its full CI passed.
 Those original failures remain recorded. No full-v0.4 package acceptance is

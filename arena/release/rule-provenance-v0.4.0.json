@@ -91,6 +91,13 @@
       "mergeCommit": "7e9b5a41f28d05beed939014c272b0a5b80f139a",
       "scope": "UI responsibility extraction only: graph defaults/edit/reference/diagnostic controls and run panel keep one host graph/draft state and revision-based patches; no storage, MCP protocol or execution-chain changes; not G5",
       "status": "approved"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/120#pullrequestreview-6056531481",
+      "reviewedCommit": "59729d64d32d6dd255ba536b62af0efdb5b3539d",
+      "mergeCommit": "c8c0cb0bc9748f3bd85904be6dff339a08e29362",
+      "scope": "Four view files only: paired eight-state/ten-edge layout, separate transition lanes/labels and 390px internal scrolling; stable IDs/recovery targets and edge selection remain on the same graph, non-paired grid and DAG unchanged; scoped sim5 layout evidence, not natural sim6 stock20/60 execution or G5",
+      "status": "approved"
     }
   ],
   "pending": [
