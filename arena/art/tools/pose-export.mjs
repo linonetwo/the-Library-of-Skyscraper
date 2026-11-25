@@ -381,6 +381,7 @@ export async function exportPoses(configPath, output) {
           playback: config.playback || "loop",
           cycleWorldStride: config.cycleWorldStride,
           releaseFrame: config.releaseFrame,
+          phaseFrames: config.phaseFrames,
         },
         layerOrderByDirection: config.layerOrderByDirection,
         variants: config.variants,
