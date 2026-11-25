@@ -1,4 +1,5 @@
 import type { Actor } from "./types";
+import type { CrestFrameKey } from "./animationCatalog";
 import type { Locomotion } from "./mobilityTypes";
 import { project } from "./isoGeometry.ts";
 import { facing } from "./directions.ts";
@@ -82,6 +83,17 @@ export function sampleMobilityPose(
     ? facing({ x: 0, y: 0 }, project(vector.x, vector.y))
     : "S";
   const segment = current.travel?.segments?.[current.travel.segment];
+  const segmentIndex = current.travel?.segment ?? 0;
+  const segments = current.travel?.segments;
+  const before = segments?.[segmentIndex - 1]?.role;
+  const after = segments?.[segmentIndex + 1]?.role;
+  const crestFrameKey: CrestFrameKey | undefined = segment?.role === "transfer"
+    ? before === "ladder" && after === "traverse" ? "crestUp"
+      : before === "traverse" && after === "ladder" ? "crestDown" : undefined
+    : undefined;
+  const climbDirection = segment?.ladderFacing
+    ? facing({ x: 0, y: 0 }, project(segment.ladderFacing.x, segment.ladderFacing.y))
+    : undefined;
   // A ladder casts to its foot floor. Transfer and high walkway are bearing platforms.
   const supportHeightMilli =
     segment?.role === "transfer" || segment?.role === "traverse"
@@ -106,6 +118,9 @@ export function sampleMobilityPose(
     motionDistanceMilli,
     locomotionDistanceMilli,
     locomotion,
+    crestFrameKey,
+    climbDirection,
+    segmentRole: segment?.role,
     direction,
     moving: !snap && (!!current.travel || (!!approaching && t < 1)),
     frame: 0,

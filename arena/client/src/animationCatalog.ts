@@ -13,13 +13,14 @@ export type Clip =
   | "hit"
   | "unload"
   | "down";
+export type CrestFrameKey = "crestUp" | "crestDown";
 export type RegisteredClip = ClipTiming & {
   directions?: readonly import("./directions").Direction[];
   cycleWorldStride?: number;
   groundPivot: readonly [number, number];
   renderScale?: number;
   releaseFrame?: number;
-  phaseFrames?: Partial<Record<import("./mobilityTypes").LocomotionPhase, {first:number;last:number;cycleDistanceMilli?:number}>>;
+  phaseFrames?: Partial<Record<import("./mobilityTypes").LocomotionPhase | CrestFrameKey, {first:number;last:number;cycleDistanceMilli?:number}>>;
 };
 /** Only actions with complete registered atlases are exposed to players. */
 export const animationCatalog = {
