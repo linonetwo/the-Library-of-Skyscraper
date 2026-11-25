@@ -100,6 +100,13 @@ export default function MonacoRuleEditor({
       if (view) editor.restoreViewState(view);
     }
     selected.current = activeFile;
+    const position = editor.getPosition();
+    if (position)
+      positionChange.current?.({
+        file: activeFile,
+        line: position.lineNumber,
+        column: position.column,
+      });
     for (const [file, model] of models.current) {
       if (!(file in files)) {
         model.dispose();

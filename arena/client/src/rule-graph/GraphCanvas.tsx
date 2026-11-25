@@ -150,7 +150,11 @@ export function GraphCanvas({
                   });
                 }
               }}
-              aria-pressed={mode === "states" && selected?.kind === "transitions" && selected.id === edge.id}
+              aria-pressed={
+                mode === "states" &&
+                selected?.kind === "transitions" &&
+                selected.id === edge.id
+              }
               data-edge-id={edge.id}
               data-from={edge.from}
               data-to={edge.to}
