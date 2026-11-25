@@ -46,8 +46,9 @@ test('three generated actions execute in the production independent V8 runner', 
  }
 });
 test('shortcut support example keeps the five official modules and hands arrival back to work',async()=>{
- const g=api.createShortcutSupportGraph();assert.equal(g.modules.length,5);assert.deepEqual(api.diagnoseGraph(g).filter(d=>d.severity==='error'),[]);
+ const g=api.createShortcutSupportGraph();assert.deepEqual([...new Set(g.modules.map(m=>m.kind))].sort(),['build','defend','gather','haul','retreat']);assert.deepEqual(api.diagnoseGraph(g).filter(d=>d.severity==='error'),[]);
  const {bundle}=await compile(g);const ctx=context();ctx.world.worldMap.mobilityEdges=[{edgeId:'jump-room-1-room-2',kind:'jump',fromRoomId:'room-1',toRoomId:'room-2',segments:[],landingRadiusMilli:400},{edgeId:'climb-room-4-room-3',kind:'climb',fromRoomId:'room-4',toRoomId:'room-3',segments:[],landingRadiusMilli:400}];
+ const base=context({roomId:'room-0'});assert.equal(evaluate(bundle,base).intents[0].type,'move');assert.equal(evaluate(bundle,base).intents[0].roomId,'room-1');
  assert.equal(evaluate(bundle,ctx).intents[0].type,'run');
  ctx.squad.actors[0].role='gatherer';assert.equal(evaluate(bundle,ctx).intents[0].type,'jump');
  ctx.squad.actors[0].roomId='room-2';ctx.world.rooms.find(r=>r.id==='room-2').resources=100;assert.equal(evaluate(bundle,ctx).intents[0].type,'gather');
