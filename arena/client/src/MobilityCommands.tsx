@@ -39,9 +39,9 @@ export default function MobilityCommands() {
         onChange={(event) => setMobilityChoice({ kind: choice.kind, edgeId: event.target.value })}>
         <option value="">选择通路（可预览两端）</option>
         {snapshot.worldMap.mobilityEdges.filter((edge) => edge.kind === choice.kind).map((edge) =>
-          <option key={edge.edgeId} value={edge.edgeId}>{roomName(edge.fromRoomId)} ↔ {roomName(edge.toRoomId)} · {edge.edgeId}</option>)}
+          <option key={edge.edgeId} value={edge.edgeId}>{roomName(edge.fromRoomId)} ↔ {roomName(edge.toRoomId)} · {edge.kind === "jump" ? "跃桥" : "攀梯"}</option>)}
       </select></label>}
-      {edge && <p>{edge.edgeId} · {roomName(actor.roomId === edge.toRoomId ? edge.toRoomId : edge.fromRoomId)} → {roomName(actor.roomId === edge.toRoomId ? edge.fromRoomId : edge.toRoomId)}</p>}
+      {edge && <p>{roomName(actor.roomId === edge.toRoomId ? edge.toRoomId : edge.fromRoomId)} → {roomName(actor.roomId === edge.toRoomId ? edge.fromRoomId : edge.toRoomId)}</p>}
       <div className="mobility-view-actions">
         <button onClick={overviewMap}>查看路线全图</button>
         <button onClick={() => focusActor(actor.id)}>定位选中角色</button>
