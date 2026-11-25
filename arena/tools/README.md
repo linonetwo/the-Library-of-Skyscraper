@@ -162,3 +162,18 @@ not claim to verify clicking the browser’s settlement retry button.
 所有图与目标修改都经可见控件，与手动编辑共用同一草稿、撤销与编译路径。
 
 真实 stdio 验证：`ARENA_BROWSER=1 node --test ../tests/rule-graph-browser.test.mjs`。
+
+### 机动指挥
+
+沿当前所选角色的可见“机动指挥”控件调用 `Input.action`：
+`chooseMobility {kind: run|jump|climb}`、`setRunRoute {viaRoomId, roomId}`、
+`selectMobilityEdge {edgeId}`、`confirmMobility`、`clearMobilityPreview`。
+选择路线只预览；确认沿页面原有命令请求执行，脚本接管等禁用原因保留在可见控件中。
+`Page.getState.mobility` 返回控件选项、当前选择、原因与确认禁用状态。
+`mobilityAuthority` 读取地图当前权威 snapshot 的只读 DOM 投影，包含 tick、暂停、
+simulation/map 版本、角色位置/高度/朝向/locomotion/Travel 与玩家脚本来源；
+地图未挂载时为空数组。不从插值 pose 推断实际位置，也不添加操作索引。
+图模板 `loadRuleGraphTemplate {template: "shortcut"}` 点击同一可见捷径支援图入口。
+
+需要 sim7 UI/权威和 Chromium，定向验证三动作：
+`ARENA_MOBILITY_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5191 ARENA_BASE_URL=http://127.0.0.1:8799 node --test ../tests/mobility-browser.test.mjs`。
