@@ -30,9 +30,12 @@ export function sampleTravelInterval(previous: Sample | undefined, current: Samp
   const startDistance = index === a.segment ? a.distanceMilli : prefix;
   const endDistance = index === b.segment ? b.distanceMilli : prefix + segment.lengthMilli;
   const distance = lerp(startDistance, endDistance);
-  const phase: Locomotion["phase"] = index === a.segment ? previous.locomotion!.phase : index === b.segment ? current.locomotion!.phase
-    : segment.role === "transfer" ? "crest" : segment.role === "ladder" ? (segment.to.z < segment.from.z ? "descend" : "grip")
-    : segment.kind === "jump" ? "airborne" : segment.kind === "run" ? "run" : "walk";
+  const jumpPhase = previous.locomotion?.kind === "jump" ? previous.locomotion.phase
+    : current.locomotion?.kind === "jump" ? current.locomotion.phase : "airborne";
+  const phase: Locomotion["phase"] = segment.role === "transfer" ? "crest"
+    : segment.role === "ladder" ? (segment.to.z > segment.from.z ? "grip" : "descend")
+    : segment.role === "traverse" ? "traverse"
+    : segment.kind === "jump" ? jumpPhase : segment.kind === "run" ? "run" : "walk";
   const u = elapsed / segment.durationMicros;
   return { segmentIndex: index,
     worldPosition: { x: lerp(from.x, to.x) / 1000, y: lerp(from.y, to.y) / 1000 },

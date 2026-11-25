@@ -400,3 +400,23 @@ test("crossed segments use their committed durations rather than blending unrela
   assert.equal(pose.worldPosition.x, 1.375);
   assert.equal(pose.worldHeightMilli, 1500);
 });
+
+test("installed Travel without locomotion still samples its short ground entrance before the ladder", () => {
+  const segments = [
+    { kind: "walk", role: "ground", from: { x: 0, y: 0, z: 0 }, to: { x: 300, y: 0, z: 0 }, lengthMilli: 300, durationMicros: 200000 },
+    { kind: "climb", role: "ladder", from: { x: 300, y: 0, z: 0 }, to: { x: 300, y: 0, z: 1500 }, lengthMilli: 1500, durationMicros: 1500000, ladderFacing: { x: 0, y: 1 } },
+  ];
+  const previous = { ...actor, worldPosition: { x: 0, y: 0 }, worldHeightMilli: 0, motionDistanceMilli: 0,
+    travel: { travelId: "installed", segments, segment: 0, segmentElapsedMicros: 0, distanceMilli: 0 } };
+  const current = { ...previous, worldPosition: { x: .3, y: 0 }, worldHeightMilli: 300, motionDistanceMilli: 600,
+    locomotion: { kind: "climb", phase: "grip", progress: .2 },
+    travel: { ...previous.travel, segment: 1, segmentElapsedMicros: 300000, distanceMilli: 600 } };
+  const pose = sampleMobilityPose(previous, current, .2);
+  assert.equal(pose.locomotion.kind, "walk");
+  assert.equal(pose.locomotion.phase, "walk");
+  assert.equal(pose.locomotion.progress, .5);
+  assert.deepEqual(pose.worldPosition, { x: .15, y: 0 });
+  assert.equal(pose.worldHeightMilli, 0);
+  assert.equal(pose.motionDistanceMilli, 150);
+  assert.equal(resolveAnimation({ ...current, locomotion: pose.locomotion }, 0, { ...motion, ...pose }, climbCatalog).clip, "walk");
+});
