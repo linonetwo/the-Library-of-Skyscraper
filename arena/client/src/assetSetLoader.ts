@@ -61,6 +61,7 @@ export function loadAssetSet(index: AssetSetIndex) {
               textures: {},
               timing: {
                 ...descriptor.clip,
+                directions: descriptor.directions,
                 groundPivot: descriptor.groundPivot,
                 renderScale: descriptor.renderScale,
               },

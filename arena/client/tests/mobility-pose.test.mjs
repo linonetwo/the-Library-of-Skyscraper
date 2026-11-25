@@ -209,6 +209,15 @@ test('unreviewed mobility art stays unavailable and the registered idle remains 
   assert.equal(selected.frame,0);
  }
 });
+test('partial descriptors play only registered headings and never borrow another direction',()=>{
+ const catalog={idle:clip,walk:clip,jump:{...clip,directions:['NE','SW']}};
+ const jumping={...actor,locomotion:{kind:'jump',phase:'airborne',progress:.5}};
+ const accepted=resolveAnimation({...jumping,lastMoveDirection:{x:0,y:-1}},0,motion,catalog);
+ assert.equal(accepted.direction,'NE');assert.equal(accepted.clip,'jump');
+ const pending=resolveAnimation(jumping,0,motion,catalog);
+ assert.equal(pending.requestedClip,'jump');assert.equal(pending.clip,'idle');
+ assert.equal(pending.direction,'SE','unreviewed heading retains its own idle pose');
+});
 
 const guardSample = (x, distance) => ({
   ...actor,
