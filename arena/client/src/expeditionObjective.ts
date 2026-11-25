@@ -50,8 +50,10 @@ export function expeditionObjective(snapshot: Snapshot, player?: Player): Expedi
   const enemies = (snapshot.enemies ?? []).filter((e) => e.hp > 0);
   const guardians = enemies.filter((e) => e.roomId === roomId);
   const hp = snapshot.enemies ? guardians.reduce((sum, e) => sum + e.hp, 0) : target?.enemyHp ?? 0;
-  const toward = (a: Actor, id: string | undefined) =>
-    a.travel ? a.travel.targetRoomId === id : a.roomId === id;
+  const toward = (a: Actor, id: string | undefined) => {
+    const activity = actorActivity(a, snapshot);
+    return activity.travelling ? activity.targetRoomId === id : activity.presentRoomId === id;
+  };
   const defenders = living.filter((a) => toward(a, roomId));
   if (snapshot.scenario?.counterattackSpawned && enemies.length) {
     const threatRoom = enemies[0].roomId;

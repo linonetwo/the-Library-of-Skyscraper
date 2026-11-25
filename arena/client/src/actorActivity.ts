@@ -53,5 +53,5 @@ export function actorActivity(actor: Actor, snapshot: Snapshot) {
     ? `${[method, phase, title, destination?.name ?? targetRoomId].filter(Boolean).join(" · ")}`
     : actor.task ? `${destination?.name ?? targetRoomId} · ${stateName(actor.task.stage)}`
     : "选择任务与目的地开始行动";
-  return { title, detail, method, phase, etaSeconds, targetRoomId, returning, atTarget, travelling: !!travel };
+  return { title, detail, method, phase, etaSeconds, targetRoomId, presentRoomId: travel ? undefined : actor.roomId, returning, atTarget, travelling: !!travel };
 }

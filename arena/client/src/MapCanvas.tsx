@@ -249,11 +249,13 @@ export default function MapCanvas(props: MapProps) {
           tiles,
         );
       }
-      const selectedMobility = JSON.stringify([p.snapshot?.mapVersion, p.selected, p.snapshot?.actors.find((actor) => actor.id === p.selected)?.roomId, p.snapshot?.actors.find((actor) => actor.id === p.selected)?.travel?.travelId, p.mobilityChoice]);
+      const selectedActor = p.snapshot?.actors.find((actor) => actor.id === p.selected);
+      const selectedMobility = JSON.stringify([p.snapshot?.mapVersion, p.selected, selectedActor?.roomId,
+        selectedActor?.travel?.travelId, selectedActor?.travel?.segments ?? selectedActor?.travel?.path, p.mobilityChoice]);
       if (selectedMobility !== mobilityKey) {
         mobilityKey = selectedMobility;
         mobilitySelection.removeChildren().forEach((child) => child.destroy());
-        if (p.snapshot) paintMobilitySelection(mobilitySelection, p.snapshot, p.snapshot.actors.find((actor) => actor.id === p.selected), p.mobilityChoice ?? null);
+        if (p.snapshot) paintMobilitySelection(mobilitySelection, p.snapshot, selectedActor, p.mobilityChoice ?? null);
       }
       const appearanceKey = p.assetSet ? "sample" : !p.snapshot ? "" :
         (p.snapshot.simulationVersion ?? 0) >= 4
