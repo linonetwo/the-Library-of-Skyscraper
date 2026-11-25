@@ -1,0 +1,274 @@
+{
+  "source": "../source/ne-sw-hands.png",
+  "sha256": "fecdedebefe2a703df8c6c1d4be5ec94c96a24342d30624d8ea29262384f0c7b",
+  "canvas": [
+    192,
+    192
+  ],
+  "scale": 1,
+  "review": "complement fit awaiting independent bilateral acceptance; individually retained four old slots",
+  "directions": {
+    "NE": {
+      "leftGrab": {
+        "image": "NE/leftGrab.png",
+        "requestedAnatomicalSide": "left",
+        "verifiedAnatomicalSide": "left",
+        "handednessApproved": true,
+        "gesture": "grab",
+        "wristPivot": [
+          1.533,
+          7.28
+        ],
+        "localContact": [
+          7.315,
+          3.816
+        ],
+        "wristTowardElbow": [
+          -0.6593831083577524,
+          0.7518071005334205
+        ],
+        "size": [
+          9,
+          9
+        ],
+        "sourceCrop": {
+          "left": 59,
+          "top": 83,
+          "width": 348,
+          "height": 336
+        },
+        "occlusion": "rear rung; near fingers in front; center in hook cavity",
+        "source": "../source/ne-sw-hands.png",
+        "sourceGrid": "R1C1"
+      },
+      "rightGrab": {
+        "image": "NE/rightGrab.png",
+        "requestedAnatomicalSide": "right",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "grab",
+        "wristPivot": [
+          1.342,
+          6.52
+        ],
+        "localContact": [
+          6.757,
+          4.706
+        ],
+        "wristTowardElbow": [
+          -0.7230503583276179,
+          0.6907953237553824
+        ],
+        "size": [
+          9,
+          8
+        ],
+        "sourceCrop": {
+          "left": 49,
+          "top": 105,
+          "width": 524,
+          "height": 461
+        },
+        "occlusion": "rear rung; near fingers in front; center in hook cavity",
+        "source": "../source/complement.png",
+        "sourceGrid": "R1C1"
+      },
+      "leftBrace": {
+        "image": "NE/leftBrace.png",
+        "requestedAnatomicalSide": "left",
+        "verifiedAnatomicalSide": "left",
+        "handednessApproved": true,
+        "gesture": "brace",
+        "wristPivot": [
+          1.687,
+          7.389
+        ],
+        "localContact": [
+          2.601,
+          7.045
+        ],
+        "wristTowardElbow": [
+          -0.7481531964587157,
+          0.6635260316133847
+        ],
+        "size": [
+          10,
+          9
+        ],
+        "sourceCrop": {
+          "left": 918,
+          "top": 81,
+          "width": 364,
+          "height": 338
+        },
+        "occlusion": "platform edge behind palm heel",
+        "source": "../source/ne-sw-hands.png",
+        "sourceGrid": "R1C3"
+      },
+      "rightBrace": {
+        "image": "NE/rightBrace.png",
+        "requestedAnatomicalSide": "right",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "brace",
+        "wristPivot": [
+          1.307,
+          7.59
+        ],
+        "localContact": [
+          2.585,
+          6.903
+        ],
+        "wristTowardElbow": [
+          -0.6343166116780226,
+          0.7730733704825908
+        ],
+        "size": [
+          10,
+          9
+        ],
+        "sourceCrop": {
+          "left": 669,
+          "top": 80,
+          "width": 545,
+          "height": 502
+        },
+        "occlusion": "platform edge behind palm heel",
+        "source": "../source/complement.png",
+        "sourceGrid": "R1C2"
+      }
+    },
+    "SW": {
+      "leftGrab": {
+        "image": "SW/leftGrab.png",
+        "requestedAnatomicalSide": "left",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "grab",
+        "wristPivot": [
+          7.717,
+          1.635
+        ],
+        "localContact": [
+          2.83,
+          5.895
+        ],
+        "wristTowardElbow": [
+          0.5864143748159952,
+          -0.8100112227674167
+        ],
+        "size": [
+          9,
+          8
+        ],
+        "sourceCrop": {
+          "left": 68,
+          "top": 704,
+          "width": 526,
+          "height": 484
+        },
+        "occlusion": "rear rung; near fingers in front; center in hook cavity",
+        "source": "../source/complement.png",
+        "sourceGrid": "R2C1"
+      },
+      "rightGrab": {
+        "image": "SW/rightGrab.png",
+        "requestedAnatomicalSide": "right",
+        "verifiedAnatomicalSide": "right",
+        "handednessApproved": true,
+        "gesture": "grab",
+        "wristPivot": [
+          7.146,
+          1.265
+        ],
+        "localContact": [
+          4.859,
+          5.757
+        ],
+        "wristTowardElbow": [
+          0.8860982128088198,
+          -0.46349752669999805
+        ],
+        "size": [
+          9,
+          8
+        ],
+        "sourceCrop": {
+          "left": 499,
+          "top": 497,
+          "width": 349,
+          "height": 316
+        },
+        "occlusion": "rear rung; near fingers in front; center in hook cavity",
+        "source": "../source/ne-sw-hands.png",
+        "sourceGrid": "R2C2"
+      },
+      "leftBrace": {
+        "image": "SW/leftBrace.png",
+        "requestedAnatomicalSide": "left",
+        "verifiedAnatomicalSide": "left",
+        "handednessApproved": true,
+        "gesture": "brace",
+        "wristPivot": [
+          8.196,
+          1.594
+        ],
+        "localContact": [
+          7.138,
+          2.727
+        ],
+        "wristTowardElbow": [
+          0.752047053940795,
+          -0.659109420854361
+        ],
+        "size": [
+          10,
+          9
+        ],
+        "sourceCrop": {
+          "left": 917,
+          "top": 499,
+          "width": 367,
+          "height": 323
+        },
+        "occlusion": "platform edge behind palm heel",
+        "source": "../source/ne-sw-hands.png",
+        "sourceGrid": "R2C3"
+      },
+      "rightBrace": {
+        "image": "SW/rightBrace.png",
+        "requestedAnatomicalSide": "right",
+        "verifiedAnatomicalSide": null,
+        "handednessApproved": false,
+        "gesture": "brace",
+        "wristPivot": [
+          8.065,
+          2.31
+        ],
+        "localContact": [
+          7.031,
+          3.449
+        ],
+        "wristTowardElbow": [
+          0.6788176756942993,
+          -0.7343068589935609
+        ],
+        "size": [
+          10,
+          11
+        ],
+        "sourceCrop": {
+          "left": 678,
+          "top": 662,
+          "width": 522,
+          "height": 555
+        },
+        "occlusion": "platform edge behind palm heel",
+        "source": "../source/complement.png",
+        "sourceGrid": "R2C2"
+      }
+    }
+  },
+  "complementSource": "../source/complement.png",
+  "complementSha256": "cdb227d542b5fa318b95c4f08c150ccfef70b7613b996795ae12fe479b29d39a"
+}

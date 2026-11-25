@@ -11,20 +11,33 @@ const marks={
  SW:[[[38,269,214,432],[181,295],[194,289],[132,383]],[[270,269,459,440],[420,296],[435,288],[372,392]],[[496,270,695,445],[659,301],[673,289],[638,323]],[[739,270,935,445],[899,301],[913,290],[877,323]]]
 };
 const mr={source:"source/ne-sw-hands.png",sha256:createHash("sha256").update(source).digest("hex"),canvas:[192,192],scale:1,review:"pilot; bilateral anatomy NOT accepted; no production fallback",directions:{}};
+const second=process.argv.includes("--complement"),out=second?new URL("revised/",root):root;
+const patch=second?await readFile(new URL("source/complement.png",root)):null;
+const patchMarks={
+  "NE/rightGrab":[[28,60,329,325],[73,276],[55,293],[254,216]],
+  "NE/rightBrace":[[384,46,697,334],[425,289],[409,309],[465,267]],
+  "SW/leftGrab":[[39,404,341,682],[298,461],[312,441],[134,609]],
+  "SW/rightBrace":[[389,380,689,699],[631,447],[653,424],[600,480]]
+};
+if(second){await mkdir(out,{recursive:true});mr.source="../source/ne-sw-hands.png";mr.complementSource="../source/complement.png";mr.complementSha256=createHash("sha256").update(patch).digest("hex");mr.review="complement fit awaiting independent bilateral acceptance; individually retained four old slots";}
 const sheet=Buffer.alloc(4*58*4*44*4),W=232,H=176;
 for(let i=0;i<W*H;i++)sheet.set([231,227,216,255],4*i);
 function mix(x,y,col,a=255){if(x<0||x>=W||y<0||y>=H)return;const k=4*(y*W+x);for(let j=0;j<3;j++)sheet[k+j]=Math.round((col[j]*a+sheet[k+j]*(255-a))/255);}
 const specs=["leftGrab","rightGrab","leftBrace","rightBrace"];
 for(const [di,[h,items]] of Object.entries(marks).entries()){
- mr.directions[h]={};await mkdir(new URL(h+"/",root),{recursive:true});
- for(const [col,[b,wrist,tail,contact]]of items.entries()){
-  const side=col%2?"right":"left",kind=col<2?"grab":"brace",name=specs[col],crop={left:Math.round(b[0]*s),top:Math.round(b[1]*s),width:Math.round(b[2]*s)-Math.round(b[0]*s),height:Math.round(b[3]*s)-Math.round(b[1]*s)};
-  const hand=await sharp(source).extract(crop).resize({width:col<2?9:10}).png().toBuffer();
+ mr.directions[h]={};await mkdir(new URL(h+"/",out),{recursive:true});
+ for(const [col,original]of items.entries()){
+  const side=col%2?"right":"left",kind=col<2?"grab":"brace",name=specs[col],replacement=second&&patchMarks[h+"/"+name];
+  const [b,wrist,tail,contact]=replacement||original;
+  const pixels=replacement?patch:source,ratio=replacement?(await sharp(patch).metadata()).width/720:s;
+  const crop={left:Math.round(b[0]*ratio),top:Math.round(b[1]*ratio),width:Math.round(b[2]*ratio)-Math.round(b[0]*ratio),height:Math.round(b[3]*ratio)-Math.round(b[1]*ratio)};
+  const hand=await sharp(pixels).extract(crop).resize({width:col<2?9:10}).png().toBuffer();
   const {data:p,info:im}=await sharp(hand).ensureAlpha().raw().toBuffer({resolveWithObject:true});
-  const local=([x,y])=>[(x*s-crop.left)*im.width/crop.width,(y*s-crop.top)*im.height/crop.height].map(v=>+v.toFixed(3));
+  const local=([x,y])=>[(x*ratio-crop.left)*im.width/crop.width,(y*ratio-crop.top)*im.height/crop.height].map(v=>+v.toFixed(3));
   const pv=local(wrist),cp=local(contact),t=local(tail),len=Math.hypot(t[0]-pv[0],t[1]-pv[1]),unit=[(t[0]-pv[0])/len,(t[1]-pv[1])/len];
-  const image=h+"/"+name+".png";await writeFile(new URL(image,root),hand);
+  const image=h+"/"+name+".png";await writeFile(new URL(image,out),hand);
   mr.directions[h][name]={image,requestedAnatomicalSide:side,verifiedAnatomicalSide:null,handednessApproved:false,gesture:kind,wristPivot:pv,localContact:cp,wristTowardElbow:unit,size:[im.width,im.height],sourceCrop:crop,occlusion:kind==="grab"?"rear rung; near fingers in front; center in hook cavity":"platform edge behind palm heel"};
+  if(second)Object.assign(mr.directions[h][name],{source:replacement?mr.complementSource:mr.source,sourceGrid:replacement?({NE:{rightGrab:"R1C1",rightBrace:"R1C2"},SW:{leftGrab:"R2C1",rightBrace:"R2C2"}}[h][name]):`R${di+1}C${col+1}`,verifiedAnatomicalSide:replacement?null:side,handednessApproved:!replacement});
   const d=cfg.directions[h],j=d.joints[side+"Wrist"].restOffset,e=d.joints[side+"Elbow"].cell,L=Math.hypot(...j);
   for(const [oi,outfit]of ["scholar","warden"].entries()){
    const cx=col*58+29,cy=(di*2+oi)*44+21,base=[cx-cp[0]+pv[0],cy-cp[1]+pv[1]];
@@ -46,6 +59,6 @@ for(const [di,[h,items]] of Object.entries(marks).entries()){
   }
  }
 }
-await writeFile(new URL("manifest.json",root),JSON.stringify(mr,null,2)+"\n");
-await sharp(sheet,{raw:{width:W,height:H,channels:4}}).png().toFile(new URL("fit-1x.png",root).pathname);
-await sharp(sheet,{raw:{width:W,height:H,channels:4}}).resize(W*4,H*4,{kernel:"nearest"}).png().toFile(new URL("fit-4x.png",root).pathname);
+await writeFile(new URL("manifest.json",out),JSON.stringify(mr,null,2)+"\n");
+await sharp(sheet,{raw:{width:W,height:H,channels:4}}).png().toFile(new URL("fit-1x.png",out).pathname);
+await sharp(sheet,{raw:{width:W,height:H,channels:4}}).resize(W*4,H*4,{kernel:"nearest"}).png().toFile(new URL("fit-4x.png",out).pathname);
