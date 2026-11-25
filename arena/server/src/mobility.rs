@@ -188,6 +188,9 @@ pub fn within_enemy_range(actor: &Actor, enemy: crate::Position, range: u64, ver
     if version < 7 {
         return crate::travel::distance(actor.world_position, enemy) <= range;
     }
+    if actor.world_height_milli.unwrap_or(0) == 0 {
+        return crate::travel::distance(actor.world_position, enemy) <= range;
+    }
     let p = Point3Milli::ground(actor.world_position);
     let e = Point3Milli::ground(enemy);
     let dx = p.x as i128 - e.x as i128;

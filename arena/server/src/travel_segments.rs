@@ -179,10 +179,10 @@ pub fn advance(
             break;
         }
         if budget == 0 {
-            if segment.kind != TravelKind::Jump {
-                if let Some(next) = segments.get(t.segment) {
-                    motion.locomotion = Some(sample(next, 0));
-                }
+            if segment.kind != TravelKind::Jump
+                && let Some(next) = segments.get(t.segment)
+            {
+                motion.locomotion = Some(sample(next, 0));
             }
             break;
         }

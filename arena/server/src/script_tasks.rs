@@ -101,7 +101,9 @@ mod mobility_plan_tests {
         for kind in ["run", "jump", "climb"] {
             let patch = serde_json::json!({"type":"upsert","task":{"id":"plan-a","actorId":"a","roomId":"room-3","kind":kind,"priority":50,"status":"running","blockedReason":null}});
             let parsed: TaskPatchDraft = serde_json::from_value(patch).unwrap();
-            let TaskPatchDraft::Upsert { task } = parsed else { panic!("not a plan"); };
+            let TaskPatchDraft::Upsert { task } = parsed else {
+                panic!("not a plan");
+            };
             assert_eq!(serde_json::to_value(task).unwrap()["kind"], kind);
         }
     }

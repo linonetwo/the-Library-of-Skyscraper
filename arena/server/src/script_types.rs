@@ -87,7 +87,10 @@ impl ScriptIntent {
                 actor_id,
                 room_id: room_id.clone(),
             },
-            ScriptAction::Run { via_room_id, room_id } => crate::Command::Run {
+            ScriptAction::Run {
+                via_room_id,
+                room_id,
+            } => crate::Command::Run {
                 actor_id,
                 via_room_id: via_room_id.clone(),
                 room_id: room_id.clone(),

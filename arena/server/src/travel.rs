@@ -317,8 +317,12 @@ fn advance_segmented_actor(actor: &mut Actor, version: u32) -> bool {
             remaining,
             return_pending,
         );
-        actor.world_height_milli = step.motion.height_milli;
-        actor.locomotion = step.motion.locomotion.clone();
+        if let Some(height) = step.motion.height_milli {
+            actor.world_height_milli = Some(height);
+        }
+        if let Some(locomotion) = &step.motion.locomotion {
+            actor.locomotion = Some(locomotion.clone());
+        }
         step.motion.record(
             version,
             &mut actor.motion_distance_milli,
