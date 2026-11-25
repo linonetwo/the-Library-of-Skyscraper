@@ -55,3 +55,6 @@ mod action_runtime_tests;
 mod combat_spacing_tests;
 
 mod combat_approach;
+
+#[cfg(test)]
+mod script_retreat_tests;

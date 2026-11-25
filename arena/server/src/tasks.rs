@@ -165,6 +165,17 @@ impl Session {
         );
         Ok(())
     }
+    fn heal_at_base(&self, a: &mut Actor) {
+        if a.travel.is_none()
+            && a.room_id == "room-0"
+            && self
+                .tick
+                .is_multiple_of(crate::scenario::number("healIntervalTicks"))
+        {
+            a.hp = (a.hp + crate::scenario::number("healAmount") as u32).min(a.max_hp);
+        }
+    }
+
     pub(crate) fn task_tick(&mut self, a: &mut Actor) {
         if a.hp == 0 {
             a.travel = None;
@@ -175,11 +186,18 @@ impl Session {
             }
             return;
         }
+        // Old recordings retain the preset safety controller even with a script.
+        let preset_controls_retreat =
+            self.simulation_version < 6 || self.players[&a.owner].script.is_none();
         let threshold = self.players[&a.owner].rule.retreat_hp;
-        if a.hp * 100 <= a.max_hp * threshold {
+        if preset_controls_retreat && a.hp * 100 <= a.max_hp * threshold {
             a.retreating = true;
         }
-        if a.retreating {
+        // In sim6 healing is a property of resting at home, not a controller latch.
+        if self.simulation_version >= 6 {
+            self.heal_at_base(a);
+        }
+        if preset_controls_retreat && a.retreating {
             a.state = "retreating".into();
             if let Some(t) = &mut a.task {
                 t.stage = "retreating".into();
@@ -193,11 +211,8 @@ impl Session {
                 a.state = "retreating".into();
                 return;
             }
-            if self
-                .tick
-                .is_multiple_of(crate::scenario::number("healIntervalTicks"))
-            {
-                a.hp = (a.hp + crate::scenario::number("healAmount") as u32).min(a.max_hp);
+            if self.simulation_version < 6 {
+                self.heal_at_base(a);
             }
             a.state = "recovering".into();
             if a.hp >= crate::scenario::number("recoverHp") as u32 {

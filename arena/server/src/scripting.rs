@@ -13,7 +13,7 @@ impl Session {
     }
 
     pub(crate) fn set_script_metadata(&mut self, owner: &str, script: Option<ScriptMetadata>) {
-        if script.is_some() && self.simulation_version >= 3 {
+        if self.simulation_version >= 3 && (script.is_some() || self.simulation_version >= 6) {
             let entities: Vec<_> = self
                 .world
                 .query::<(bevy_ecs::prelude::Entity, &crate::Actor)>()
@@ -22,7 +22,14 @@ impl Session {
                 .map(|(e, _)| e)
                 .collect();
             for e in entities {
-                self.world.get_mut::<crate::Actor>(e).unwrap().task = None;
+                let mut actor = self.world.get_mut::<crate::Actor>(e).unwrap();
+                if script.is_some() {
+                    actor.task = None;
+                }
+                if self.simulation_version >= 6 {
+                    // A controller change keeps the committed route, not its old latch.
+                    actor.retreating = false;
+                }
             }
         }
         self.players.get_mut(owner).unwrap().script = script.clone();
