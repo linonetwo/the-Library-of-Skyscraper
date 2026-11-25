@@ -130,7 +130,7 @@ export default function GameHUD() {
             setTraining(false);
           }}
         >
-          AI 模块
+          编辑 AI 规则
         </button>
         <button
           className="menu-trigger"
@@ -154,7 +154,7 @@ export default function GameHUD() {
                 setMenu(false);
               }}
             >
-              {["行动规则", "赛局日志"][i]}
+              {["编辑 AI 规则", "赛局日志"][i]}
             </button>
           ))}
           <button

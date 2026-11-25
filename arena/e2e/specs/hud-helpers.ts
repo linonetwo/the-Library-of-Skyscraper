@@ -11,7 +11,7 @@ export async function openMenu(page: Page, destination: string) {
   } else {
     await menu.waitFor({ state: "visible" });
   }
-  const target = page.getByRole("button", { name: destination, exact: true });
+  const target = page.getByRole("navigation", { name: "游戏菜单" }).getByRole("button", { name: destination, exact: true });
   if (!(await target.isVisible())) await menu.click();
   await target.click();
 }

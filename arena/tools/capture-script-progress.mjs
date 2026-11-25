@@ -25,7 +25,7 @@ try {
   await page.goto(process.env.ARENA_UI_URL ?? 'http://127.0.0.1:5173/');
   await page.getByRole('button', { name: '开启训练远征' }).click();
   await page.getByRole('button', { name: '重置训练局' }).click();
-  await page.getByRole('button', { name: '行动规则', exact: true }).click();
+  await page.locator('.ai-entry').click();
   await page.getByRole('tab', { name: 'TypeScript', exact: true }).click();
   const editor = page.getByRole('textbox', { name: 'TypeScript规则源码' });
   await editor.waitFor();

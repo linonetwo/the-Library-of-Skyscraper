@@ -2,13 +2,12 @@ import { ScrollText, ArrowUpRight, Check } from "lucide-react";
 import { lazy, Suspense, useState } from "react";
 
 import { useArena, presetNames } from "./ArenaWorkspace";
+import { readDraft, isStockDraft } from "./ruleDraft";
+import { recoverBehaviorPlan } from "../../behavior-modules";
+import { recoverRuleGraph } from "../../behavior-modules/graph";
 const BehaviorWorkbench = lazy(() => import("./BehaviorWorkbench"));
 
 export default function RuleEditor() {
-  const [view, setView] = useState<
-    "modules" | "graph" | "source" | "versions" | "presets"
-  >("modules");
-  const coding = view !== "presets";
   const {
     command,
     preset,
@@ -19,6 +18,14 @@ export default function RuleEditor() {
     ready,
     session,
   } = useArena();
+  const [view, setView] = useState<
+    "modules" | "graph" | "source" | "versions" | "presets"
+  >(() => {
+    const draft = readDraft(session);
+    if (recoverRuleGraph(draft)) return "graph";
+    return isStockDraft(draft) || recoverBehaviorPlan(draft) ? "modules" : "source";
+  });
+  const coding = view !== "presets";
   return (
     <div className="ai-workbench">
       <h2>AI 工作台</h2>
@@ -83,7 +90,7 @@ export default function RuleEditor() {
         }
       >
         {coding ? (
-          <Suspense fallback={<p>正在加载 TypeScript 工作台…</p>}>
+          <Suspense fallback={<p>正在加载 AI 工作台…</p>}>
             <BehaviorWorkbench
               view={
                 coding
