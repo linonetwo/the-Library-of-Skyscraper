@@ -23,6 +23,7 @@ export const nodeNames = {
   score: "评分选择",
   log: "原因记录",
   module: "官方模块",
+  mobility: "机动动作",
   hold: "保持",
   pass: "未命中",
 };
@@ -49,6 +50,7 @@ export function nodeEdges(node: RuleNode): { label: string; target: string }[] {
       ];
     case "log":
       return [{ label: "然后", target: node.next }];
+    case "mobility":
     case "module":
       return [{ label: "未命中", target: node.fallback }];
     case "hold":
@@ -62,6 +64,8 @@ export function makeNode(graph: RuleGraph, type: RuleNode["type"]): RuleNode {
   const id = freshId(graph, type);
   const fallback = graph.nodes.find((n) => n.type === "hold")?.id ?? "";
   switch (type) {
+    case "mobility":
+      return { id, type, action: { type: "run", viaRoomId: "", roomId: "" }, priority: 50, fallback };
     case "check":
       return {
         id,

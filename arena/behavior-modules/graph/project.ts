@@ -1,6 +1,7 @@
 import type { RuleSourceProject } from '../types';
 import { runtimeSource } from '../runtime-source';
 import { graphRuntimeSource } from './runtime-source';
+import { addMobilityRuntime, mobilityRuntimeSource } from './mobility-source';
 import { diagnoseGraph } from './diagnostics';
 import type { RuleGraph, GraphSourceRef } from './types';
 import { graphMarker as marker, canonical, graphPlanSource } from './source';
@@ -10,7 +11,8 @@ export function toGraphSourceProject(graph:RuleGraph):RuleSourceProject {
 }
 /** Save invalid drafts without granting publish/preview approval. */
 export function serializeGraphDraft(graph:RuleGraph):RuleSourceProject {
- return {entry:'main.ts',files:{'main.ts':"export {decide} from './graph-runtime';\n",'graph-plan.ts':graphPlanSource(graph),'graph-runtime.ts':graphRuntimeSource,'module-runtime.ts':runtimeSource.replace("import { plan } from './ai-plan';","import { modulePlan as plan } from './graph-plan';")}};
+ const mobility=graph.nodes.some(node=>node.type==='mobility');
+ return {entry:'main.ts',files:{'main.ts':"export {decide} from './graph-runtime';\n",'graph-plan.ts':graphPlanSource(graph),'graph-runtime.ts':mobility?addMobilityRuntime(graphRuntimeSource):graphRuntimeSource,...(mobility?{'mobility-runtime.ts':mobilityRuntimeSource}:{}),'module-runtime.ts':runtimeSource.replace("import { plan } from './ai-plan';","import { modulePlan as plan } from './graph-plan';")}};
 }
 export function recoverRuleGraph(project:RuleSourceProject):RuleGraph|null {
  try{const line=project.files['graph-plan.ts']?.split('\n')[0];if(!line?.startsWith(marker))return null;const graph=JSON.parse(line.slice(marker.length)) as RuleGraph;const generated=serializeGraphDraft(graph);return (project.entry??'main.ts')===generated.entry&&canonical(project.files)===canonical(generated.files)?graph:null;}catch{return null;}

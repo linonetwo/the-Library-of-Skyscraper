@@ -1,6 +1,7 @@
 import type { RuleGraph, RuleNode } from "../../../behavior-modules/graph";
 import { ConditionFields, defaultCondition } from "./ConditionFields";
 import { GraphReference } from "./GraphReference";
+import { MobilityNodeFields } from "./MobilityNodeFields";
 import { nodeNames } from "./graphObjects";
 export function NodeFields({
   graph,
@@ -187,6 +188,7 @@ export function NodeFields({
           </button>
         </fieldset>
       )}
+      {node.type === "mobility" && <MobilityNodeFields node={node} onChange={update} />}
       {node.type === "module" && (
         <GraphReference
           label="官方模块绑定"
