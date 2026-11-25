@@ -2,7 +2,7 @@ title: 竞技场v0.5.0版本计划
 tags: 竞技场目录：版本计划 竞技场开发计划
 type: text/vnd.tiddlywiki
 created: 20261125140000000
-modified: 20261125190512000
+modified: 20261125211053000
 
 v0.5.0「书库捷径」：队员能沿道路疾跑、跃过断桥、攀越高廊；玩家可在地图指挥，也可改规则让小队自己走。动作改变真实归途或支援时间，换装、重连、回放仍是同一个人走同一条路。建立在[[已发布的v0.4.0|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.0]]（48fdf11）之上。以下为本版工作包编号，非总里程碑编号；技术边界和验收场景见[[竞技场v0.5.0机动设计合同]]。
 
@@ -10,8 +10,8 @@ v0.5.0「书库捷径」：队员能沿道路疾跑、跃过断桥、攀越高�
 
 |!工作包|!当前状态|
 |M1|[[PR129|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/129]]已合0b7bd22；sim7权威分段旅行、双向捷径及旧sim兼容已通过精确审与CI|
-|M2|[[Draft PR127|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/127]]；真实三动作UI、390宽度与脚本接管限制已作候选验证，尚待收合|
-|M3|小批动作源／烘焙推进中；纯runtime PR130室内／暂停采样修正在审，木纹高廊候选实图已记日报；未宣称192组齐备|
+|M2|[[PR127|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/127]]已合056be045；真实三动作UI、390宽度、脚本接管限制与权威只读出口已入主线|
+|M3|纯runtime[[PR130|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/130]]已合a8d8777；NE／SW跑跳样板[[PR134|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/134]]已合7b23287；32手件离线源[[PR135|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/135]]已合55596f5。完整climb／其余方向／192组仍待；工坊PR137进行中|
 |M4|SDK[[PR126|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/126]]已合bef9d9，图生成[[PR128|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/128]]已合6002d81；可见MCP[[PR132|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/132]]已合2e43e11，完整机动阶段待M5|
 |M5|正常时钟driver已参数化、六组映射准备；等待M1–M4齐备与整版source／recipe冻结，未启动集中包验收|
 
