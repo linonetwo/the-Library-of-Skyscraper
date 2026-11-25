@@ -1,11 +1,11 @@
 import {fitMap,type Bounds} from './mapCamera';
 import type {GridPoint} from './isoGeometry';
-export type FocusIntent={kind:'actor'|'room';id:string;revision:number};
+export type FocusIntent={kind:'actor'|'room';id:string;revision:number}|{kind:'overview';revision:number};
 type Mode={kind:'overview'}|{kind:'actor';id:string}|{kind:'room';id:string}|{kind:'manual';center:GridPoint};
 export class CameraController {
  mode:Mode={kind:'overview'};scale=1;private revision=-1;private zoom=1;
  transform={x:0,y:0,scale:1};
- focus(intent:FocusIntent|undefined){if(intent&&intent.revision!==this.revision){this.revision=intent.revision;this.mode={kind:intent.kind,id:intent.id};this.scale=1;}}
+ focus(intent:FocusIntent|undefined){if(intent&&intent.revision!==this.revision){this.revision=intent.revision;if(intent.kind==='overview')this.overview();else this.mode={kind:intent.kind,id:intent.id};this.scale=1;}}
  apply(bounds:Bounds,width:number,height:number,zoom:number,actor:(id:string)=>GridPoint|undefined,room:(id:string)=>GridPoint|undefined){
   this.zoom=zoom;
   if(this.mode.kind==='overview')this.transform=fitMap(bounds,width,height,zoom);

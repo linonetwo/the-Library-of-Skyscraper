@@ -3,16 +3,16 @@ import { useArena } from "./ArenaWorkspace";
 import { mobilityCommand, runChoices } from "./mobilityChoices";
 
 export default function MobilityCommands() {
-  const { actor, snapshot, ready, isOwner, player, command, mobilityChoice: choice, setMobilityChoice } = useArena();
+  const { actor, snapshot, ready, isOwner, player, command, overviewMap, focusActor, mobilityChoice: choice, setMobilityChoice } = useArena();
   if (!actor || !snapshot || (snapshot.simulationVersion ?? 0) < 7 || !snapshot.worldMap?.mobilityEdges?.length) return null;
   const roomName = (id: string) => snapshot.rooms.find((room) => room.id === id)?.name ?? id;
   const routes = runChoices(snapshot, actor.roomId);
   const selected = mobilityCommand(snapshot, actor, choice);
   const edge = choice && choice.kind !== "run" ? snapshot.worldMap.mobilityEdges.find((edge) => edge.edgeId === choice.edgeId) : undefined;
-  const reason = !isOwner ? "请选择本人角色" : actor.hp <= 0 ? "倒地角色无法机动"
+  const reason = !isOwner ? "请选择本人角色" : actor.hp <= 0 ? "角色恢复后可继续机动"
     : player?.script ? "AI 规则已接管；停用脚本后可手动指挥"
     : actor.travel ? "角色正在行进；到达后可选择下一条路线"
-    : choice && choice.kind !== "run" && choice.edgeId && !selected ? "角色尚未到达这条通路的端点房间" : !selected ? "选择动作与路线后确认" : "预览不会下令，确认后由服务器执行";
+    : choice && choice.kind !== "run" && choice.edgeId && !selected ? "角色尚未到达这条通路的端点房间" : !selected ? "选择动作与路线后确认" : "确认后执行所选路线";
   return (
     <details className="mobility-commands" open={!!choice}>
       <summary>机动指挥</summary>
@@ -42,6 +42,10 @@ export default function MobilityCommands() {
           <option key={edge.edgeId} value={edge.edgeId}>{roomName(edge.fromRoomId)} ↔ {roomName(edge.toRoomId)} · {edge.edgeId}</option>)}
       </select></label>}
       {edge && <p>{edge.edgeId} · {roomName(actor.roomId === edge.toRoomId ? edge.toRoomId : edge.fromRoomId)} → {roomName(actor.roomId === edge.toRoomId ? edge.fromRoomId : edge.toRoomId)}</p>}
+      <div className="mobility-view-actions">
+        <button onClick={overviewMap}>查看路线全图</button>
+        <button onClick={() => focusActor(actor.id)}>定位选中角色</button>
+      </div>
       <p>金色：路线预览 · 青色：当前行程</p>
       <p role="status">{reason}</p>
       <button className="primary" disabled={!ready || !isOwner || actor.hp <= 0 || !!player?.script || !!actor.travel || !selected}

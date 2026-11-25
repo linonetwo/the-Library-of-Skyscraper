@@ -66,14 +66,13 @@ export function useArenaWorkspace() {
       }));
     }
   };
+  const focusActor = (id: string) => setFocusIntent((old) => ({
+    kind: "actor", id, revision: (old?.revision ?? 0) + 1,
+  }));
   const selectActor = (id: string) => {
     setMobilityChoice(null);
     setSelected(id);
-    setFocusIntent((old) => ({
-      kind: "actor",
-      id,
-      revision: (old?.revision ?? 0) + 1,
-    }));
+    focusActor(id);
     setInspecting(false);
     setSelectedRoom(null);
   };
@@ -130,6 +129,8 @@ export function useArenaWorkspace() {
     ...arena,
     mobilityChoice,
     setMobilityChoice,
+    focusActor,
+    overviewMap: () => setFocusIntent((old) => ({ kind: "overview", revision: (old?.revision ?? 0) + 1 })),
     start,
     resume,
     selected,
