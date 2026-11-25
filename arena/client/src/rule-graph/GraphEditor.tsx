@@ -1,3 +1,8 @@
+import {
+  GraphObjectActions,
+  GraphObjectBrowser,
+  GraphDiagnostics,
+} from "./GraphObjectBrowser";
 import { useEffect, useState, type ReactNode } from "react";
 import {
   renameGraphObject,
@@ -5,29 +10,12 @@ import {
   type GraphPatch,
   type GraphOperation,
   type GraphDiagnostic,
-  type RuleNode,
   type GraphTrace,
 } from "../../../behavior-modules/graph";
 import { GraphCanvas } from "./GraphCanvas";
 import { GraphInspector } from "./GraphInspector";
-import {
-  freshId,
-  makeNode,
-  copyFragment,
-  nodeNames,
-  removeObject,
-  type GraphSelection,
-} from "./graphObjects";
-import { createDefaultBehaviorPlan } from "../../../behavior-modules";
-import { roleNames } from "../types";
+import { copyFragment, type GraphSelection } from "./graphObjects";
 import "./graph.css";
-const groups = [
-  ["roles", "岗位入口"],
-  ["states", "状态"],
-  ["transitions", "状态转移"],
-  ["nodes", "决策节点"],
-  ["modules", "官方模块"],
-] as const;
 export function GraphEditor({
   graph,
   trace,
@@ -64,7 +52,6 @@ export function GraphEditor({
     setRename(selection?.id ?? "");
   }, [selection?.id]);
   const [mode, setMode] = useState<"states" | "tree">("states");
-  const [newKind, setNewKind] = useState("state");
   const [rename, setRename] = useState("");
   const [error, setError] = useState("");
   const edit = (operations: GraphOperation[]) =>
@@ -84,66 +71,6 @@ export function GraphEditor({
       setMode("tree");
     }
   };
-  const add = () => {
-    let operation: GraphOperation;
-    let next: GraphSelection;
-    const root = graph.nodes.find((n) => n.type === "hold")?.id ?? "";
-    if (newKind === "state") {
-      const id = freshId(graph, "state");
-      operation = {
-        type: "putState",
-        state: { id, name: "新状态", treeId: root, entry: [], exit: [] },
-      };
-      next = { kind: "states", id };
-    } else if (newKind === "transition") {
-      const id = freshId(graph, "transition");
-      operation = {
-        type: "putTransition",
-        transition: {
-          id,
-          from: graph.states[0]?.id ?? "",
-          to: graph.states[1]?.id ?? "",
-          priority: 10,
-          condition: {
-            type: "compare",
-            field: "cargo",
-            op: "gte",
-            value: 6,
-            missing: false,
-          },
-          cooldownTicks: 0,
-          minStateTicks: 0,
-        },
-      };
-      next = { kind: "transitions", id };
-    } else if (newKind === "role") {
-      const id = freshId(graph, "role");
-      operation = {
-        type: "putRole",
-        role: {
-          id,
-          role: "gatherer",
-          initialStateId: graph.states[0]?.id ?? "",
-          fallbackStateId: graph.states[0]?.id ?? "",
-        },
-      };
-      next = { kind: "roles", id };
-    } else if (newKind.startsWith("binding:")) {
-      const kind = newKind.slice(8);
-      const template = createDefaultBehaviorPlan().modules.find(
-        (m) => m.kind === kind,
-      )!;
-      const moduleId = freshId(graph, `${kind}-binding`);
-      operation = { type: "putModule", module: { ...template, moduleId } };
-      next = { kind: "modules", id: moduleId };
-    } else {
-      const node = makeNode(graph, newKind as RuleNode["type"]);
-      operation = { type: "putNode", node };
-      next = { kind: "nodes", id: node.id };
-    }
-    edit([operation]);
-    choose(next);
-  };
   const action = (run: () => void) => {
     try {
       setError("");
@@ -151,6 +78,14 @@ export function GraphEditor({
     } catch (cause) {
       setError((cause as Error).message);
     }
+  };
+  const copySelected = () => {
+    if (selection)
+      action(() => {
+        const copy = copyFragment(graph, selection);
+        edit(copy.operations);
+        choose(copy.selection);
+      });
   };
   return (
     <section
@@ -175,11 +110,7 @@ export function GraphEditor({
         }
         if ((e.ctrlKey || e.metaKey) && e.key === "d" && selection) {
           e.preventDefault();
-          action(() => {
-            const copy = copyFragment(graph, selection);
-            edit(copy.operations);
-            choose(copy.selection);
-          });
+          copySelected();
         }
       }}
     >
@@ -195,96 +126,19 @@ export function GraphEditor({
           重做图修改
         </button>
       </header>
-      <div className="graph-tools">
-        <select
-          aria-label="新增规则对象类型"
-          value={newKind}
-          onChange={(e) => setNewKind(e.target.value)}
-        >
-          <option value="state">状态</option>
-          <option value="transition">状态转移</option>
-          <option value="role">岗位入口</option>
-          {createDefaultBehaviorPlan().modules.map((m) => (
-            <option key={m.kind} value={`binding:${m.kind}`}>
-              模块绑定 · {m.kind}
-            </option>
-          ))}
-          {Object.entries(nodeNames).map(([id, name]) => (
-            <option key={id} value={id}>
-              {name}
-            </option>
-          ))}
-        </select>
-        <button onClick={add}>新增规则对象</button>
-        <button
-          disabled={!selection}
-          onClick={() =>
-            selection &&
-            action(() => {
-              const copy = copyFragment(graph, selection);
-              edit(copy.operations);
-              choose(copy.selection);
-            })
-          }
-        >
-          复制所选片段
-        </button>
-        <button
-          disabled={!selection}
-          onClick={() => {
-            if (selection) {
-              edit([removeObject(selection)]);
-              onSelect(null);
-            }
-          }}
-        >
-          删除所选对象
-        </button>
-      </div>
+      <GraphObjectActions
+        graph={graph}
+        selection={selection}
+        onEdit={edit}
+        onSelect={(next) => (next ? choose(next) : onSelect(null))}
+        onCopy={copySelected}
+      />
       <div className="graph-workspace">
-        <nav aria-label="本规则对象树" className="graph-object-tree">
-          {groups.map(([kind, name]) => (
-            <details open key={kind}>
-              <summary>
-                {name} · {graph[kind].length}
-              </summary>
-              {graph[kind].map((value) => {
-                const id =
-                  kind === "modules"
-                    ? (value as RuleGraph["modules"][number]).moduleId
-                    : (value as { id: string }).id;
-                const label =
-                  "name" in value
-                    ? value.name
-                    : "role" in value
-                      ? roleNames[value.role]
-                      : "type" in value
-                        ? nodeNames[value.type]
-                        : id;
-                return (
-                  <button
-                    key={id}
-                    data-object-kind={kind}
-                    data-object-id={id}
-                    aria-pressed={
-                      selection?.kind === kind && selection.id === id
-                    }
-                    onClick={() => choose({ kind, id })}
-                  >
-                    <span>{label}</span>
-                    <code>{id}</code>
-                  </button>
-                );
-              })}
-            </details>
-          ))}
-          <details>
-            <summary>源码与测试场景</summary>
-            <p>
-              节点的「定位源码」打开同一生成工程；试跑与版本在工作台中操作。
-            </p>
-          </details>
-        </nav>
+        <GraphObjectBrowser
+          graph={graph}
+          selection={selection}
+          onSelect={choose}
+        />
         <div className="graph-main">
           <div role="tablist" aria-label="规则图画布模式">
             <button
@@ -368,36 +222,11 @@ export function GraphEditor({
         </aside>
       </div>
       {error && <p role="alert">{error}</p>}
-      <section className="graph-diagnostics" aria-label="规则图诊断">
-        <h4>模型诊断</h4>
-        {diagnostics.length ? (
-          diagnostics.map((diagnostic, i) => (
-            <button
-              key={i}
-              data-severity={diagnostic.severity}
-              onClick={() => {
-                const kind = groups.find(([key]) =>
-                  graph[key].some(
-                    (o) =>
-                      ("id" in o ? o.id : o.moduleId) === diagnostic.objectId,
-                  ),
-                )?.[0];
-                if (kind) choose({ kind, id: diagnostic.objectId });
-              }}
-            >
-              {diagnostic.severity === "error" ? "错误" : "提示"} ·{" "}
-              {diagnostic.objectId} ·{" "}
-              {diagnostic.code === "tree-cycle"
-                ? "决策树不能成环；请修改连接"
-                : diagnostic.code === "unreachable"
-                  ? "当前入口无法到达此对象"
-                  : diagnostic.message}
-            </button>
-          ))
-        ) : (
-          <p>当前图无模型诊断；编译、试跑和运行结果以各自返回为准。</p>
-        )}
-      </section>
+      <GraphDiagnostics
+        graph={graph}
+        diagnostics={diagnostics}
+        onSelect={choose}
+      />
       {goalEditor}
       {comparisonEditor}
     </section>
