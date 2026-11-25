@@ -208,3 +208,53 @@ test('unreviewed mobility art stays unavailable and the registered idle remains 
   assert.equal(selected.frame,0);
  }
 });
+
+const guardSample = (x, distance) => ({
+  ...actor,
+  role: "guard",
+  state: "fighting",
+  roomId: "room-1",
+  task: null,
+  travel: null,
+  worldPosition: { x, y: 1 },
+  worldHeightMilli: 0,
+  motionDistanceMilli: distance,
+});
+test("guard approach without a Travel or approaching task interpolates position and walk stride on the same clock", () => {
+  const previous = guardSample(0, 0);
+  const current = guardSample(0.75, 750);
+  const pose = sampleMobilityPose(previous, current, 0.5);
+  assert.deepEqual(pose.worldPosition, { x: 0.375, y: 1 });
+  assert.equal(pose.motionDistanceMilli, 375);
+  assert.equal(pose.moving, true);
+  const selected = resolveAnimation(current, 250, { ...motion, ...pose }, {
+    idle: clip,
+    walk: { ...clip, playback: "loop", cycleWorldStride: 1.5 },
+  });
+  assert.equal(selected.clip, "walk");
+  assert.equal(selected.frame, 2);
+  const arrived = sampleMobilityPose(previous, current, 1);
+  assert.deepEqual(arrived.worldPosition, current.worldPosition);
+  assert.equal(arrived.moving, false);
+});
+test("ordinary approach snaps on pause, seek, room changes or death and stationary guards stay idle", () => {
+  const previous = guardSample(0, 0);
+  const current = guardSample(0.75, 750);
+  for (const [before, after, snap] of [
+    [previous, current, true],
+    [undefined, current, false],
+    [previous, { ...current, roomId: "room-2" }, false],
+    [previous, { ...current, hp: 0 }, false],
+    [{ ...previous, hp: 0 }, current, false],
+    [previous, { ...current, worldHeightMilli: 100 }, false],
+  ]) {
+    const pose = sampleMobilityPose(before, after, 0.5, snap);
+    assert.deepEqual(pose.worldPosition, after.worldPosition);
+    assert.equal(pose.moving, false);
+  }
+  for (const after of [previous, { ...previous, motionDistanceMilli: 750 }, { ...current, motionDistanceMilli: 0 }]) {
+    const pose = sampleMobilityPose(previous, after, 0.5);
+    assert.deepEqual(pose.worldPosition, after.worldPosition);
+    assert.equal(pose.moving, false);
+  }
+});

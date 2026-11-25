@@ -5,6 +5,8 @@ import { facing } from "./directions.ts";
 import type { Direction } from "./directions";
 type Sample = Pick<
   Actor,
+  | "hp"
+  | "roomId"
   | "worldPosition"
   | "worldHeightMilli"
   | "motionDistanceMilli"
@@ -29,7 +31,24 @@ export function sampleMobilityPose(
     previous.travel?.travelId === current.travel.travelId &&
     previous.travel.segment === current.travel.segment &&
     previous.locomotion?.kind === current.locomotion?.kind;
-  const t = sameSegment ? Math.max(0, Math.min(1, fraction)) : 1;
+  // Rust approach_actor moves within a room without creating a Travel. Keep it
+  // on this same clock and interpolate only received, living ground samples.
+  const approaching =
+    !snap &&
+    previous?.worldPosition &&
+    previous.hp > 0 &&
+    current.hp > 0 &&
+    previous.roomId === current.roomId &&
+    previous.worldHeightMilli === 0 &&
+    current.worldHeightMilli === 0 &&
+    !previous.travel &&
+    !current.travel &&
+    !previous.locomotion &&
+    !current.locomotion &&
+    (current.motionDistanceMilli ?? 0) > (previous.motionDistanceMilli ?? 0) &&
+    (previous.worldPosition.x !== current.worldPosition.x ||
+      previous.worldPosition.y !== current.worldPosition.y);
+  const t = sameSegment || approaching ? Math.max(0, Math.min(1, fraction)) : 1;
   const lerp = (a: number, b: number) => a + (b - a) * t;
   const worldPosition = {
     x: lerp(
@@ -88,7 +107,7 @@ export function sampleMobilityPose(
     locomotionDistanceMilli,
     locomotion,
     direction,
-    moving: !!current.travel,
+    moving: !!current.travel || (!!approaching && t < 1),
     frame: 0,
   };
 }
