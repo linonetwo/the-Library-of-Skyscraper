@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
+import type { MobilityChoice } from "./mobilityChoices";
 import { useArenaSession } from "./useArenaSession";
 import type { Appearance, Session } from "./types";
 
@@ -7,37 +8,13 @@ export const presetNames = {
   defend: "守卫书库",
   explore: "深入探索",
 };
-const stateNames: Record<string, string> = {
-  idle: "等待指令",
-  queued: "待出发",
-  construction: "施工中",
-  complete: "任务完成",
-  completed: "任务完成",
-  failed: "任务失败",
-  travelling: "前往目标",
-  building: "施工中",
-  waiting: "等待条件",
-  cataloging: "驻守编目",
-  returning: "运返回库",
-  recovering: "据点恢复",
-  downed: "倒地",
-  blocked: "任务受阻",
-  moving: "探索行进",
-  gathering: "采集藏材",
-  transporting: "运返中庭",
-  delivering: "藏材入库",
-  fighting: "迎战威胁",
-  retreating: "撤退休整",
-  defending: "守卫书库",
-  guarding: "守卫书库",
-  scouting: "巡查书库",
-};
-export const stateName = (value = "idle") => stateNames[value] || value;
+export { stateName } from "./actorActivity";
 
 export function useArenaWorkspace() {
   const arena = useArenaSession();
   const { session, snapshot, connection, busy } = arena;
   const [inspecting, setInspecting] = useState(false);
+  const [mobilityChoice, setMobilityChoice] = useState<MobilityChoice>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [focusIntent, setFocusIntent] =
     useState<import("./cameraController").FocusIntent>();
@@ -90,6 +67,7 @@ export function useArenaWorkspace() {
     }
   };
   const selectActor = (id: string) => {
+    setMobilityChoice(null);
     setSelected(id);
     setFocusIntent((old) => ({
       kind: "actor",
@@ -135,6 +113,7 @@ export function useArenaWorkspace() {
     if (next) {
       setLobby(false);
       setSelected(null);
+      setMobilityChoice(null);
       setSelectedRoom(null);
       setView(destination);
     }
@@ -149,6 +128,8 @@ export function useArenaWorkspace() {
     enter(await arena.resume(saved), destination);
   return {
     ...arena,
+    mobilityChoice,
+    setMobilityChoice,
     start,
     resume,
     selected,

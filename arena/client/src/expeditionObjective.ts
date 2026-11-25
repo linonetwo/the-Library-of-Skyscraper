@@ -1,3 +1,4 @@
+import { actorActivity } from "./actorActivity.ts";
 import type { Actor, Player, Snapshot } from "./types.ts";
 import { roleNames } from "./types.ts";
 import { reasonName } from "./scenarioLabels.ts";
@@ -13,8 +14,7 @@ export function expeditionObjective(snapshot: Snapshot, player?: Player): Expedi
   const living = actors.filter((a) => a.hp > 0);
   const label = (a: Actor) => roleNames[a.role];
   const cargo = actors.filter((a) => a.cargo > 0).map((a) => {
-    const destination = snapshot.rooms.find((room) => room.id === a.travel?.targetRoomId);
-    const returning = destination?.kind === "base" || a.task?.kind === "return";
+    const { returning } = actorActivity(a, snapshot);
     return `${label(a)}携带${a.cargo}${returning ? "返程" : "运输中"}`;
   }).join("；");
   const latest = [...snapshot.events].reverse().find((event) => event.playerId === player.id);
@@ -28,7 +28,7 @@ export function expeditionObjective(snapshot: Snapshot, player?: Player): Expedi
   for (const [kind, name] of [["catalog", "编目台"], ["warehouse", "前线仓库"], ["tower", "防御塔"]]) result = result.split(kind).join(name);
   const finish = (title: string, executing: Actor[], focus = roomId): ExpeditionObjective => ({
     title,
-    detail: `${executing.length ? executing.map(label).join("、") : "尚无存活执行者"} · ${cargo || `库存${player.materials}材`} · ${result}`,
+    detail: `${executing.length ? executing.map((actor) => `${label(actor)}${actor.travel ? `：${actorActivity(actor, snapshot).detail}` : ""}`).join("、") : "尚无存活执行者"} · ${cargo || `库存${player.materials}材`} · ${result}`,
     roomId: focus,
   });
   if (snapshot.phase === "settled" || snapshot.result) return finish(
@@ -50,14 +50,17 @@ export function expeditionObjective(snapshot: Snapshot, player?: Player): Expedi
   const enemies = (snapshot.enemies ?? []).filter((e) => e.hp > 0);
   const guardians = enemies.filter((e) => e.roomId === roomId);
   const hp = snapshot.enemies ? guardians.reduce((sum, e) => sum + e.hp, 0) : target?.enemyHp ?? 0;
-  const defenders = living.filter((a) => a.roomId === roomId || a.task?.target === roomId);
+  const toward = (a: Actor, id: string | undefined) =>
+    a.travel ? a.travel.targetRoomId === id : a.roomId === id;
+  const defenders = living.filter((a) => toward(a, roomId));
   if (snapshot.scenario?.counterattackSpawned && enemies.length) {
     const threatRoom = enemies[0].roomId;
-    return finish(`抵御反扑 · 敌方HP ${enemies.reduce((sum, e) => sum + e.hp, 0)}`, living.filter((a) => a.roomId === threatRoom || a.task?.target === threatRoom), threatRoom);
+    return finish(`抵御反扑 · 敌方HP ${enemies.reduce((sum, e) => sum + e.hp, 0)}`, living.filter((a) => toward(a, threatRoom)), threatRoom);
   }
   if (hp > 0) return finish(`清除${target?.name ?? "目标书库"}守卫 · 剩余HP ${hp}`, defenders);
   const catalog = snapshot.buildings.find((b) => b.owner === player.id && b.kind === "catalog" && b.roomId === roomId && (b.hp ?? 1) > 0);
-  const builders = living.filter((a) => a.task?.kind === "build" && a.task.target === roomId && a.task.buildingKind === "catalog");
+  const builders = living.filter((a) => toward(a, roomId) &&
+    (a.travel || a.state === "building" || a.task?.kind === "build" && a.task.target === roomId && a.task.buildingKind === "catalog"));
   if (!catalog) {
     const cost = snapshot.scenarioConfig?.buildingCosts?.catalog ?? 25;
     if (player.materials < cost) {

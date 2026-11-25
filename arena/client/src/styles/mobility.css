@@ -1,0 +1,22 @@
+.mobility-commands {
+  grid-column: 1 / -1;
+  max-height: 36vh;
+  overflow: auto;
+  padding: 8px 12px;
+  border: 1px solid var(--line, #baa06c85);
+  background: #142c31f2;
+  color: #e4d7b7;
+  font-size: 12px;
+}
+.mobility-commands summary { cursor: pointer; }
+.mobility-kinds, .mobility-fields { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.mobility-commands label { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+.mobility-commands select { max-width: 100%; background: #10262b; color: #e4d7b7; border: 1px solid #baa06c85; padding: 6px; font: inherit; }
+.mobility-commands button { padding: 6px 10px; border: 1px solid #baa06c85; margin-right: 6px; }
+.mobility-commands button[aria-pressed="true"] { background: #776745; }
+.mobility-commands :focus-visible { outline: 2px solid #e3c286; outline-offset: 2px; }
+.mobility-commands p { margin: 8px 0; }
+@media (max-width: 600px) {
+  .mobility-fields { flex-direction: column; }
+  .mobility-commands { max-height: 30vh; }
+}

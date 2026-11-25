@@ -1,17 +1,20 @@
+import MobilityCommands from "./MobilityCommands";
+import { actorActivity } from "./actorActivity";
 import { expeditionObjective } from "./expeditionObjective";
 import { reasonName } from "./scenarioLabels";
 import { useState } from "react";
-import { useArena, stateName } from "./ArenaWorkspace";
+import { useArena } from "./ArenaWorkspace";
 import { roleNames } from "./types";
 import PaperDoll from "./PaperDoll";
 import SimulationBar from "./SimulationBar";
-import ExpeditionTasks, { taskNames } from "./ExpeditionTasks";
+import ExpeditionTasks from "./ExpeditionTasks";
 export default function GameHUD() {
   const [menu, setMenu] = useState(false),
     [training, setTraining] = useState(false),
     [tasks, setTasks] = useState(true);
   const {
     snapshot,
+    mobilityChoice,
     view,
     actor,
     ownActors,
@@ -41,14 +44,7 @@ export default function GameHUD() {
   const objective = expeditionObjective(snapshot, player ?? undefined);
   const downed = ownActors.filter((a) => a.hp <= 0);
   const cargo = ownActors.reduce((sum, a) => sum + a.cargo, 0);
-  const eta = actor?.travel
-    ? Math.ceil(
-        (((actor.travel.totalDistanceMilli - actor.travel.distanceMilli) /
-          actor.travel.speedMilliPerTick) *
-          (snapshot?.tickDurationMs ?? 500)) /
-          1000,
-      )
-    : 0;
+  const activity = actor ? actorActivity(actor, snapshot) : undefined;
   return (
     <div className="game-hud">
       <header className="game-top">
@@ -208,11 +204,7 @@ export default function GameHUD() {
                 <PaperDoll small {...unit.appearance} />
                 <span>{roleNames[unit.role]}</span>
                 <small>
-                  {unit.hp <= 0
-                    ? "倒地"
-                    : unit.task
-                      ? taskNames[unit.task.kind]
-                      : stateName(unit.state)}
+                  {actorActivity(unit, snapshot).title}
                 </small>
                 <progress value={unit.hp} max={unit.maxHp} />
               </button>
@@ -221,18 +213,14 @@ export default function GameHUD() {
           <div className="dock-summary">
             <strong>
               {roleNames[actor.role]} ·{" "}
-              {actor.task ? taskNames[actor.task.kind] : stateName(actor.state)}
+              {activity?.title}
             </strong>
             <small>
               生命 {actor.hp}/{actor.maxHp} · 负重 {actor.cargo}/
               {actor.cargoCapacity}
             </small>
             <small>
-              {actor.travel
-                ? `前往 ${snapshot?.rooms.find((r) => r.id === actor.travel?.targetRoomId)?.name} · ETA ${eta}秒`
-                : actor.task
-                  ? `${snapshot?.rooms.find((r) => r.id === actor.task?.target)?.name} · ${stateName(actor.task.stage)}`
-                  : "选择任务与目的地开始行动"}
+              {activity?.detail}{actor.travel ? ` · 估计 ${activity?.etaSeconds}秒` : ""}
             </small>
             {actor.task?.blockedReason && (
               <small className="risk-text">
@@ -274,7 +262,8 @@ export default function GameHUD() {
               </select>
             </label>
           </div>
-          {tasks && <ExpeditionTasks />}
+          {tasks && !mobilityChoice && <ExpeditionTasks />}
+          <MobilityCommands />
         </section>
       )}
     </div>

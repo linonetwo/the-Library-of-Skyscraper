@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { actorActivity } from "./actorActivity";
 import PaperDoll from "./PaperDoll";
 import { outfitNames, roleNames } from "./types";
 import type { Outfit } from "./types";
@@ -73,7 +74,7 @@ export default function CharacterInspector() {
         </div>
         <div>
           <span>行动状态</span>
-          <b className="state-text">{stateName(actor?.state)}</b>
+          <b className="state-text">{actor && snapshot ? actorActivity(actor, snapshot).title : stateName(actor?.state)}</b>
         </div>
         <div>
           <span>随身藏材</span>

@@ -1,3 +1,4 @@
+import { paintMobilityFacilities, paintMobilitySelection } from "./mapMobility";
 import { loadLibraryTextures } from './libraryLayout';
 import { loadWorldAssets } from "./worldAssets";
 import { WorldEntities } from "./WorldEntities";
@@ -39,6 +40,9 @@ export default function MapCanvas(props: MapProps) {
     let preparationRevision = 0;
     const world = new Container();
     let renderLayer = new Container();
+    const mobilityFacilities = new Container();
+    const mobilitySelection = new Container();
+    let mobilityKey = "";
     const entities = new Container({ sortableChildren: true });
     let tiles: Record<string, Texture> = {};
     const controller = new CameraController();
@@ -228,6 +232,10 @@ export default function MapCanvas(props: MapProps) {
         for (const child of [...entities.children])
           if (child.label?.startsWith("shelf:") || child.label?.startsWith("decor:"))
             child.destroy({ children: true });
+        mobilityFacilities.removeChildren().forEach((child) => child.destroy());
+        if (p.snapshot) paintMobilityFacilities(mobilityFacilities, p.snapshot, (id) => {
+          if (!dragged) latest.current.onMobilityEdge?.(id);
+        });
         paintMap(
           renderLayer,
           {
@@ -239,6 +247,12 @@ export default function MapCanvas(props: MapProps) {
           entities,
           tiles,
         );
+      }
+      const selectedMobility = JSON.stringify([p.snapshot?.mapVersion, p.selected, p.snapshot?.actors.find((actor) => actor.id === p.selected)?.roomId, p.mobilityChoice]);
+      if (selectedMobility !== mobilityKey) {
+        mobilityKey = selectedMobility;
+        mobilitySelection.removeChildren().forEach((child) => child.destroy());
+        if (p.snapshot) paintMobilitySelection(mobilitySelection, p.snapshot, p.snapshot.actors.find((actor) => actor.id === p.selected), p.mobilityChoice ?? null);
       }
       const appearanceKey = p.assetSet ? "sample" : !p.snapshot ? "" :
         (p.snapshot.simulationVersion ?? 0) >= 4
@@ -334,7 +348,7 @@ export default function MapCanvas(props: MapProps) {
         if (disposed) return;
         dynamics = new WorldEntities(entities, tiles, worldAssets);
         actors = new ActorScene(actorTextures, entities, worldAssets);
-        world.addChild(renderLayer, entities);
+        world.addChild(renderLayer, mobilityFacilities, entities, mobilitySelection);
         app.ticker.add(() => {
           const now = performance.now();
           poses = actors.render(now);
@@ -412,6 +426,7 @@ export default function MapCanvas(props: MapProps) {
     props.snapshot,
     props.selected,
     props.selectedRoom,
+    props.mobilityChoice,
     props.zoom,
     props.showRoutes,
     props.assetSet,
