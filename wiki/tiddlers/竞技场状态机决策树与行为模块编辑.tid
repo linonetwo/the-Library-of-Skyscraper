@@ -1,12 +1,12 @@
 created: 20260609001000000
 creator: 林一二
-modified: 20261125142343000
+modified: 20261125160904000
 modifier: 林一二
 tags: 前端界面 AI生成 竞技场目录：需求
 title: 竞技场状态机决策树与行为模块编辑
 type: text/vnd.tiddlywiki
 
-[[v0.4.0已发布|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.0]]，已支持可编辑状态机（FSM）、决策图（DAG）、行为模块及TypeScript源码，并可编译、同帧试跑和发布。当前[[主试玩5175|http://localhost:5175]]入口为「开启训练远征」→「AI 模块」→「规则图」→载入物流／撤退示例。v0.4.1正在实施首页「编辑 AI 规则」直达原工坊与已有草稿定位，尚未交付。实施与合同见[[竞技场AI模块编辑实施计划]]、[[竞技场v0.4.0规则图设计合同]]；本页保留完整需求及后续动作词汇。
+[[v0.4.0已发布|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.0]]，已支持可编辑状态机（FSM）、决策图（DAG）、行为模块及TypeScript源码，并可编译、同帧试跑和发布。当前[[稳定试玩5173|http://localhost:5173]]及[[主试玩5175|http://localhost:5175]]已部署[[v0.4.1|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.1]]：首页「编辑 AI 规则」直达同一工坊，新用户进入暂停训练准备局，已有图／手写草稿打开对应页签；可再选择「规则图」载入物流／撤退示例，不自动发布。独立包已通过有界验收和主代理实玩，并于2026-11-25正式发布预览。实施与合同见[[竞技场AI模块编辑实施计划]]、[[竞技场v0.4.0规则图设计合同]]；本页保留完整需求及后续动作词汇。
 
 !! 职责
 
