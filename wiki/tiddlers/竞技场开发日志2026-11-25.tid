@@ -2,7 +2,7 @@ title: 竞技场开发日志2026-11-25
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261125021839000
-modified: 20261125182732000
+modified: 20261125190512000
 
 !! 当前可访问的核心编辑界面
 
@@ -130,7 +130,7 @@ Astra对同包4张实图作最终视觉审阅并通过：阈值4与节点分支�
 
 实际package/start.sh重启完成：旧launcher560010正常SIGTERM后5192／8797均退出，再从原归档解压目录启动新launcher645420／server645422／vite645423。同59个data文件的名字与字节哈希在停服前、退出后、启动后完全相同，原暂停局tick12的checkpoint SHA保持49294a990762930b7b86334f3a1ecec1c00ca025275c581c3ad3cb01da4f06c7，snapshot和scripts/state逐值相同。
 
-[img[竞技场2026-11-25固定包重启续玩实机.png]]
+[[v0.4.0固定包重启续玩历史实机|竞技场2026-11-25固定包重启续玩实机.png]]
 
 主代理随后使用实际浏览器导出的localStorage，在欢迎页点击「继续上次远征」，恢复原玩家身份、物流草图与生效A源码。完整snapshot／private runtime／版本列表／归档原源码均与停服前逐值相同；正常继续远征到tick18后暂停，守卫衣装、墨蓝发和法杖保持。此图为实际重启后续玩的地图，root-play/save-recovery/recovery.json记录原tick12→18与各项原值对应。实际进程、正常单机胜败、双端规则隔离、图编辑、MCP及回放均已收齐，等待最终同包技术验收结论后按v0.4.0统一发布。
 
@@ -187,3 +187,13 @@ core有界实包smoke最终六项通过、页面错误0：首页进入暂停tick
 M4 authority-graph.json另记录该新权威上真实图执行：三角色分别run／jump／climb，反向jump落回room1后采得cargo4；录制同帧T23将动作叶run改jump，经真实V8得到不同下一动作、未写世界或私有runtime，发布后T24实际目标改为room2，归档源码可定位。这是已完成的单项规则因果证据，仍不替代整包M5。
 
 M5已复用主代理normal-mobility.mjs静态参数化，沿已有M2／M4控件与包内MCP读取权威XYZ、方向、相位和分段Travel；六组证据映射留独立planning目录，没有另建仓库验收框架。正常玩法证据标normal-clock-500ms，训练单步可用于逐帧视觉采样并独立标training-step，两者不混称。集中全suite与六组实机仍待完整固定source＝recipe和实际解包，串行执行；不重复已绿领域单测，不先产包或发布。
+
+!! 高廊材质与角色定位的最新研发实机
+
+[img[竞技场2026-11-25高廊机动场景实机.png]]
+
+主代理在5191／8799新拍正常500ms时钟高廊行进，前端23da2a284f80b75c04a2373ee2035975e9a5aeb0、权威ab2b9fb7d0e9f0d79044ed64cd03bc4b073eca4d。此帧T21已暂停，真实locomotion为walk／traverse、worldHeightMilli=1500，travel从room4指向room3；文件名虽含crest，画面与caption按实际高廊行进阶段记录。T19握梯高度1333毫米、T32落地到room3的compact快照另存material-focus/normal-mobility.json，页面错误0。
+
+木纹高廊、梯脚与单实体层序已进入候选，角色已定位到高廊中央。此图展示研发机动及材质接入；人物当前仍是idle占位，不作为完整攀梯动画或NE／SW最终动作的通过证据。M3纯runtime PR130的室内／暂停采样修正仍在审，完整方向与外观序列继续待独立视觉；v0.5未冻结、未发布。日报保留首页直达AI、此高廊、v0.4胜利三张内嵌图；原重启截图及当时恢复结论保留为正文历史链接。
+
+M4可见MCP PR132已通过精确审与CI，合入2e43e11e53aa478505e19daa5c93c628d256b638。工具点击现有控件并读取同一权威snapshot，三条路线的开始已实测；jump／climb开头仍可能只是走向踏板／梯脚，不能把初始Travel记成完整起跳、落地或攀越完成。完整阶段与正常时钟双向路线仍由M5固定包定向收齐。
