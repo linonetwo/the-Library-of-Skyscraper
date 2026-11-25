@@ -1,3 +1,5 @@
+import { RecordedGraphTrace } from "./rule-comparison/RecordedGraphTrace";
+import { useArena } from "./ArenaWorkspace";
 import {BehaviorTraceView,readBehaviorTrace} from "./BehaviorFlow";
 import { useMemo, useState } from "react";
 import { projectRuleHistory } from "./replayRuleState";
@@ -8,6 +10,8 @@ import "./styles/replay-rules.css";
 export default function ReplayRules({ timeline, frame, onSeek }: {
   timeline: ReplayTimeline; frame: ReplayFrame; onSeek: (index: number) => void;
 }) {
+  const { session } = useArena();
+  const sourceSession = session?.sessionId === timeline.sessionId && session.playerId === timeline.ruleHistory?.playerId ? session : null;
   const history = timeline.ruleHistory;
   const hash = frame.snapshot.players.find(player => player.id === history?.playerId)?.script?.sourceHash ?? null;
   const state = useMemo(() => history && projectRuleHistory(history, frame.operationIndex, hash),
@@ -21,6 +25,7 @@ export default function ReplayRules({ timeline, frame, onSeek }: {
     {state ? <>
       <p>版本 {hash?.slice(0, 12) ?? "预设行动"} · 随录制操作展示本人的策略记忆与任务。</p>
       {trace && hash && <BehaviorTraceView trace={trace} sourceHash={hash} source="回放" />}
+      {hash && <RecordedGraphTrace key={hash} session={sourceSession} sourceHash={hash} value={state.memory.aiTrace} operationIndex={frame.operationIndex} label="回放实录" />}
       <div className="replay-rules-grid">
         <div><h4>版本记忆</h4><pre aria-label="回放规则记忆">{JSON.stringify(state.memory, null, 2)}</pre></div>
         <div><h4>小队任务 <span>{state.tasks.length}</span></h4>

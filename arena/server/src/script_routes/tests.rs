@@ -66,7 +66,7 @@ async fn compile_route_uses_typescript_and_preserves_authority_state() {
         State(store.clone()),
         Path("scripts".into()),
         headers,
-        Json(bad_project),
+        Json(PreviewRequest::Live(bad_project)),
     )
     .await
     .unwrap();

@@ -1,3 +1,4 @@
+import type { RuleComparisonRequest, RuleComparisonResult } from "./rule-comparison/types";
 import { serverUrl, socketUrl } from "./serverConnection";
 import type { Command, Session, Snapshot } from "./types";
 import type { ReplayTimeline } from "./useReplay";
@@ -38,6 +39,8 @@ export const arenaApi = {
     request<CompileResult>(`/${session.sessionId}/scripts/compile`, session, project),
   preview: (session: Session, project: RuleSourceProject) =>
     request<ScriptPreview>(`/${session.sessionId}/scripts/preview`, session, project),
+  compareRules: (session: Session, input: RuleComparisonRequest) =>
+    request<RuleComparisonResult>(`/${session.sessionId}/scripts/preview`, session, input),
   timeline: (session: Session) =>
     request<ReplayTimeline>(`/${session.sessionId}/replay/timeline`, session),
   create: (mode: "training" | "online") =>

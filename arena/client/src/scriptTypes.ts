@@ -18,6 +18,7 @@ export interface ScriptPublication {
   snapshot?: import("./types").Snapshot;
 }
 export interface RuleRuntimeState {
+  operationIndex?: number | null;
   sourceHash: string | null;
   memory: import("../../script-sdk/src/views").RuleMemory;
   tasks: import("../../script-sdk/src/views").TaskQueueView;
