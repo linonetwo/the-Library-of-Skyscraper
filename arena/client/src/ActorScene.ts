@@ -8,6 +8,7 @@ import { actorSlot, mapLayout } from "./mapLayout";
 export class ActorScene {
   readonly node: Container;
   private views = new Map<string, ActorView>();
+  private previousActors = new Map<string, import("./types").Actor>();
   private snapshotActors = new Map<string, import("./types").Actor>();
   private session = "";
   private tick = -1;
@@ -31,7 +32,9 @@ export class ActorScene {
       snapshot.tick < this.tick ||
       snapshot.tick > this.tick + 1 ||
       snapshot.paused;
+    if (snapshot.sessionId !== this.session || snapshot.tick !== this.tick) this.previousActors = this.snapshotActors;
     this.snapshotActors = new Map(snapshot.actors.map((a) => [a.id, a]));
+    if (snap) this.previousActors = this.snapshotActors;
     this.session = snapshot.sessionId;
     this.tick = snapshot.tick;
     const ids = new Set(snapshot.actors.map((actor) => actor.id));
@@ -79,6 +82,7 @@ export class ActorScene {
               : [...link.points].reverse()
             ).map((p) => project(p.x, p.y))
           : [];
+      view.mobility = (snapshot.simulationVersion ?? 0) >= 7 ? {previous:this.previousActors.get(actor.id),current:actor,snap,tick:snapshot.tick} : undefined;
       view.simulationTime = this.clock.sample(now);
       view.authoritativeAnimation = (snapshot.simulationVersion ?? 0) >= 4;
       view.tickDuration = snapshot.tickDurationMs || 500;
@@ -113,7 +117,7 @@ export class ActorScene {
       ...pose,
       task: this.snapshotActors.get(pose.id)?.task,
       travel: this.snapshotActors.get(pose.id)?.travel,
-      worldPosition: this.snapshotActors.get(pose.id)?.worldPosition,
+      worldPosition: pose.worldPosition,
     }));
   }
 }

@@ -2,6 +2,9 @@ import { frameAt, type ClipTiming } from "./animationTiming.ts";
 export type Clip =
   | "idle"
   | "walk"
+  | "run"
+  | "jump"
+  | "climb"
   | "carry"
   | "collect"
   | "build"
@@ -15,6 +18,7 @@ export type RegisteredClip = ClipTiming & {
   groundPivot: readonly [number, number];
   renderScale?: number;
   releaseFrame?: number;
+  phaseFrames?: Partial<Record<import("./mobilityTypes").LocomotionPhase, {first:number;last:number;cycleDistanceMilli?:number}>>;
 };
 /** Only actions with complete registered atlases are exposed to players. */
 export const animationCatalog = {

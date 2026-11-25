@@ -14,6 +14,9 @@ export function neededMainActions(snapshot: Pick<Snapshot, "actors" | "enemies" 
   if (actors.some(a => a.task?.stage === "construction")) needed.add("build");
   if (actors.some(a => a.task?.stage === "cataloging")) needed.add("catalog");
   for (const actor of actors.filter(a => a.hp > 0)) {
+    for (const segment of actor.travel?.segments?.slice(actor.travel.segment) ?? [])
+      if (segment.kind !== "walk") needed.add(segment.kind);
+    if (actor.locomotion && actor.locomotion.kind !== "walk") needed.add(actor.locomotion.kind);
     const threatened = snapshot.enemies?.some(e => e.hp > 0 && (e.roomId === actor.roomId || e.roomId === actor.travel?.targetRoomId));
     if (threatened || actor.task?.kind === "guard" || active(actor.impactCue,"hit"))
       for (const action of ["attack", "hit", "down"] as const) needed.add(action);
