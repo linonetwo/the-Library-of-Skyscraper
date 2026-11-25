@@ -6,7 +6,7 @@ const BehaviorWorkbench = lazy(() => import("./BehaviorWorkbench"));
 
 export default function RuleEditor() {
   const [view, setView] = useState<
-    "modules" | "source" | "versions" | "presets"
+    "modules" | "graph" | "source" | "versions" | "presets"
   >("modules");
   const coding = view !== "presets";
   const {
@@ -31,6 +31,15 @@ export default function RuleEditor() {
           onClick={() => setView("modules")}
         >
           行为模块
+        </button>
+        <button
+          role="tab"
+          id="ai-graph-tab"
+          aria-controls="ai-editor-panel"
+          aria-selected={view === "graph"}
+          onClick={() => setView("graph")}
+        >
+          规则图
         </button>
         <button
           role="tab"
@@ -66,6 +75,7 @@ export default function RuleEditor() {
         aria-labelledby={
           {
             modules: "ai-modules-tab",
+            graph: "ai-graph-tab",
             source: "ai-typescript-tab",
             versions: "ai-versions-tab",
             presets: "ai-presets-tab",
@@ -76,7 +86,9 @@ export default function RuleEditor() {
           <Suspense fallback={<p>正在加载 TypeScript 工作台…</p>}>
             <BehaviorWorkbench
               view={
-                coding ? (view as "modules" | "source" | "versions") : "modules"
+                coding
+                  ? (view as "modules" | "graph" | "source" | "versions")
+                  : "modules"
               }
               onViewChange={setView}
               key={`${session?.sessionId}:${session?.playerId}`}
