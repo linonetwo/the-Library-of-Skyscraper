@@ -53,10 +53,7 @@ export function useBehaviorWorkbench() {
   const backup = history.at(-1);
   const restoreBackup = () => {
     if (!backup) return;
-    workbench.loadProject(
-      { files: backup.files, entry: backup.entry },
-      backup.baseVersion,
-    );
+    workbench.restoreDraft(backup);
     saveHistory(history.slice(0, -1));
   };
   return {

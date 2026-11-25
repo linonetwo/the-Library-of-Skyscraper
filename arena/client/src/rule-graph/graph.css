@@ -1,0 +1,288 @@
+.rule-graph-editor {
+  min-width: 0;
+  color: var(--paper);
+}
+.rule-graph-editor > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0;
+}
+.rule-graph-editor header small {
+  display: block;
+  color: var(--dim);
+  font-size: 11px;
+}
+.graph-tools {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.graph-workspace {
+  display: grid;
+  grid-template-columns: 160px minmax(260px, 1fr) 280px;
+  gap: 12px;
+  align-items: start;
+}
+.graph-object-tree {
+  background: #102229;
+  border: 1px solid var(--line);
+  padding: 8px;
+  border-radius: 6px;
+  max-height: 580px;
+  overflow: auto;
+}
+.graph-object-tree details {
+  padding-bottom: 10px;
+}
+.graph-object-tree summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--gold);
+}
+.graph-object-tree button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-top: 6px;
+}
+.graph-object-tree button code {
+  display: block;
+  font-size: 10px;
+  color: var(--dim);
+  overflow-wrap: anywhere;
+}
+.rule-graph-editor [aria-pressed="true"],
+.rule-graph-editor [aria-selected="true"] {
+  border-color: var(--gold) !important;
+  background: #3a3d2b !important;
+}
+.graph-main {
+  min-width: 0;
+}
+.graph-main > [role="tablist"] {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.graph-canvas {
+  overflow: auto;
+  border: 1px solid var(--line);
+  background: #101e25;
+  border-radius: 8px;
+  max-height: 580px;
+}
+.graph-node rect {
+  fill: #1c353b;
+  stroke: #59706c;
+  stroke-width: 1.5;
+}
+.graph-node[aria-pressed="true"] rect {
+  fill: #3d422e;
+  stroke: var(--gold);
+  stroke-width: 2;
+}
+.graph-node {
+  cursor: pointer;
+  outline: none;
+}
+.graph-node:focus-visible rect {
+  stroke: #fff2cf;
+  stroke-width: 3;
+}
+.graph-node text {
+  fill: var(--paper);
+  font-size: 13px;
+  pointer-events: none;
+}
+.graph-node text.graph-node-detail {
+  fill: #9eb3b7;
+  font-size: 10px;
+}
+.graph-edge path {
+  fill: none;
+  stroke: #819692;
+  stroke-width: 1.5;
+}
+.graph-edge text {
+  fill: var(--gold);
+  font-size: 10px;
+}
+.graph-edge.dangling path {
+  stroke: #e79c87;
+  stroke-dasharray: 5 4;
+}
+.graph-canvas marker path {
+  fill: #819692;
+}
+.graph-workspace aside {
+  background: #142a30;
+  padding: 12px;
+  border-radius: 6px;
+  min-width: 0;
+  max-height: 680px;
+  overflow: auto;
+}
+.rule-graph-editor label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 10px 0;
+  font-size: 12px;
+}
+.rule-graph-editor input:not([type="checkbox"]),
+.rule-graph-editor select {
+  max-width: 65%;
+  min-width: 0;
+  width: 180px;
+}
+.rule-graph-editor fieldset {
+  border: 1px solid var(--line);
+  padding: 8px;
+  margin: 12px 0;
+}
+.rule-graph-editor legend {
+  font-size: 11px;
+  color: var(--gold);
+}
+.graph-condition .graph-condition {
+  margin-left: 8px;
+}
+.graph-inspector > header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.graph-inspector code {
+  overflow-wrap: anywhere;
+  font-size: 11px;
+}
+.graph-inspector small {
+  color: var(--dim);
+  font-size: 11px;
+}
+.graph-inspector .behavior-card {
+  padding: 8px;
+}
+.graph-diagnostics {
+  border-top: 1px solid var(--line);
+  margin-top: 15px;
+}
+.graph-diagnostics button {
+  display: block;
+  text-align: left;
+  margin: 6px 0;
+}
+.graph-diagnostics [data-severity="error"] {
+  color: #f1aa99 !important;
+}
+.graph-source-status {
+  border: 1px solid #b88a58;
+  background: #3a3025;
+  padding: 10px;
+}
+.workspace-overlay:has(.rule-graph-editor) {
+  width: min(1320px, calc(100vw - 24px));
+}
+.graph-source-locate {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+@media (max-width: 1100px) {
+  .graph-workspace {
+    grid-template-columns: 145px minmax(260px, 1fr);
+  }
+  .graph-workspace aside {
+    grid-column: 1/-1;
+    max-height: none;
+  }
+  .graph-object-tree {
+    max-height: 440px;
+  }
+}
+@media (max-width: 600px) {
+  .graph-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .graph-object-tree {
+    max-height: 180px;
+  }
+  .graph-canvas {
+    max-height: 380px;
+  }
+  .graph-tools button {
+    flex: 1 1 auto;
+  }
+  .rule-graph-editor input:not([type="checkbox"]),
+  .rule-graph-editor select {
+    max-width: 65%;
+  }
+}
+
+.graph-node[data-visited="true"] rect {
+  stroke: #8ac7d0;
+  stroke-width: 2.5;
+}
+.graph-node[data-selected-path="true"] rect {
+  fill: #344a2c;
+  stroke: var(--gold);
+  stroke-width: 3;
+}
+@media (max-width: 600px) {
+  .ai-workbench > .ai-mode-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .ai-workbench > .ai-mode-tabs > button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+.graph-edge[role="button"] {
+  cursor: pointer;
+  outline: none;
+}
+.graph-edge:focus-visible path {
+  stroke: var(--gold);
+  stroke-width: 3;
+}
+
+.graph-workbench > .script-version {
+  margin: 6px 0;
+  padding: 8px 10px;
+  gap: 8px;
+}
+.graph-workbench > .script-version div {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.graph-workbench > .script-version small {
+  margin-top: 0;
+}
+.graph-workbench .rule-graph-editor > header {
+  padding: 4px 0;
+}
+.graph-workbench .rule-graph-editor > header > div {
+  margin-right: auto;
+}
+.graph-workbench .graph-tools {
+  margin: 8px 0;
+}
+
+.graph-edge path.graph-edge-hit {
+  stroke: transparent;
+  stroke-width: 14;
+  pointer-events: stroke;
+}
+.graph-edge[aria-pressed="true"] > path:not(.graph-edge-hit) {
+  stroke: var(--gold);
+  stroke-width: 3;
+}
