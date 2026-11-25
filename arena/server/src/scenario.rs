@@ -79,6 +79,8 @@ impl Session {
             self.scenario.counterattack_spawned = true;
             let position = crate::Position { x: -8., y: 0. };
             let travel = crate::Travel {
+                segments: None,
+                segment_elapsed_micros: None,
                 travel_id: format!("counterattack-{}", self.tick),
                 target_room_id: target.clone(),
                 path: vec![position, crate::travel::center(&target)],

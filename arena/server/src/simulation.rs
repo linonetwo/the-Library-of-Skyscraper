@@ -25,6 +25,10 @@ impl Session {
         actors.sort_by(|a, b| a.1.id.cmp(&b.1.id));
         let previous_tasks = actors.iter().map(|(e, a)| (*e, a.task.clone())).collect();
         for (e, mut a) in actors {
+            if self.simulation_version >= 7 && a.hp > 0 && a.travel.is_none() {
+                a.locomotion = None;
+                a.world_height_milli = Some(0);
+            }
             if self.simulation_version >= 5
                 && let Some(t) = &a.travel
             {
@@ -34,7 +38,11 @@ impl Session {
                     .filter(|e| e.hp > 0 && e.travel.is_none() && e.room_id == t.target_room_id)
                     .map(|e| e.world_position)
                     .collect();
-                crate::combat_approach::stop_before_opponent(&mut a.travel, &targets);
+                if a.travel.as_ref().is_some_and(|t| t.segments.is_some()) {
+                    crate::combat_approach::stop_segmented_before_opponent(&mut a.travel, &targets);
+                } else {
+                    crate::combat_approach::stop_before_opponent(&mut a.travel, &targets);
+                }
             }
             if a.hp > 0 && crate::travel::advance(&mut a, self.simulation_version) {
                 a.last_moved_tick = self.tick;

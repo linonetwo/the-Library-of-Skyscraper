@@ -67,6 +67,18 @@ fn route(from: &str, to: &str) -> Vec<Position> {
     }
     path
 }
+pub fn start_for_version(
+    actor: &mut Actor,
+    target: &str,
+    tick: u64,
+    version: u32,
+) -> Result<(), String> {
+    if version >= 7 {
+        crate::mobility::walk(actor, target, tick)
+    } else {
+        start(actor, target, tick)
+    }
+}
 pub fn start(actor: &mut Actor, target: &str, tick: u64) -> Result<(), String> {
     if actor.hp == 0 {
         return Err("actor downed".into());
@@ -91,6 +103,8 @@ pub fn start(actor: &mut Actor, target: &str, tick: u64) -> Result<(), String> {
     }
     let total = path.windows(2).map(|w| distance(w[0], w[1])).sum();
     actor.travel = Some(Travel {
+        segments: None,
+        segment_elapsed_micros: None,
         travel_id: format!("{}-{tick}-{target}", actor.id),
         target_room_id: target.into(),
         path,
@@ -105,6 +119,9 @@ pub fn start(actor: &mut Actor, target: &str, tick: u64) -> Result<(), String> {
     Ok(())
 }
 pub fn advance(actor: &mut Actor, version: u32) -> bool {
+    if version >= 7 && actor.travel.as_ref().is_some_and(|t| t.segments.is_some()) {
+        return advance_segmented_actor(actor, version);
+    }
     let Some(t) = actor.travel.as_mut() else {
         return false;
     };
@@ -149,6 +166,8 @@ pub fn advance(actor: &mut Actor, version: u32) -> bool {
                 return true;
             }
             *t = Travel {
+                segments: None,
+                segment_elapsed_micros: None,
                 travel_id: format!("{}-retreat-{}", actor.id, t.started_tick),
                 target_room_id: "room-0".into(),
                 path,
@@ -179,6 +198,15 @@ pub fn advance_motion(
     position: &mut Position,
     travel: &mut Option<Travel>,
 ) -> (Option<String>, crate::action_runtime::Motion) {
+    if travel.as_ref().is_some_and(|t| t.segments.is_some()) {
+        let step = crate::travel_segments::advance(
+            position,
+            travel,
+            crate::travel_segments::TICK_MICROS,
+            false,
+        );
+        return (step.arrived, step.motion);
+    }
     let Some(t) = travel.as_mut() else {
         return (None, Default::default());
     };
@@ -271,4 +299,51 @@ pub fn approach_enemy(e: &mut crate::Enemy, target: Position, stop: u64, tick: u
         &mut e.motion_distance_milli,
         &mut e.last_move_direction,
     );
+}
+
+/// Both ordinary and special segments consume this single tick's time remainder.
+fn advance_segmented_actor(actor: &mut Actor, version: u32) -> bool {
+    let mut remaining = crate::travel_segments::TICK_MICROS;
+    loop {
+        let return_pending = actor.retreating
+            && actor
+                .travel
+                .as_ref()
+                .is_some_and(|t| t.target_room_id != "room-0");
+        let started = actor.travel.as_ref().unwrap().started_tick;
+        let step = crate::travel_segments::advance(
+            &mut actor.world_position,
+            &mut actor.travel,
+            remaining,
+            return_pending,
+        );
+        actor.world_height_milli = step.motion.height_milli;
+        actor.locomotion = step.motion.locomotion.clone();
+        step.motion.record(
+            version,
+            &mut actor.motion_distance_milli,
+            &mut actor.last_move_direction,
+        );
+        remaining = step.remaining_micros;
+        if step.safe_stop {
+            actor.travel = crate::mobility::return_at(
+                actor,
+                crate::Point3Milli::ground(actor.world_position),
+                started,
+            );
+            if actor.travel.is_none() {
+                actor.room_id = "room-0".into();
+                actor.state = "idle".into();
+                break;
+            }
+            if remaining > 0 {
+                continue;
+            }
+        } else if let Some(room) = step.arrived {
+            actor.room_id = room;
+            actor.state = "idle".into();
+        }
+        break;
+    }
+    true
 }

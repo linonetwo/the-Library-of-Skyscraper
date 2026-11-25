@@ -61,12 +61,16 @@ pub(crate) fn assign_task(
 
 #[derive(Default)]
 pub(crate) struct Motion {
+    pub height_milli: Option<i64>,
+    pub locomotion: Option<crate::Locomotion>,
     pub distance_milli: u64,
     pub direction: Position,
 }
 impl Motion {
     pub fn between(from: Position, to: Position) -> Self {
         Self {
+            height_milli: None,
+            locomotion: None,
             distance_milli: crate::travel::distance(from, to),
             direction: Position {
                 x: to.x - from.x,

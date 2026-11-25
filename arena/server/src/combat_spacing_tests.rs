@@ -83,6 +83,8 @@ fn counterattack_uses_same_road_budget_and_stops_before_defender() {
     let mut p = Position { x: -8., y: 0. };
     let defender = Position { x: -8., y: 8. };
     let mut t = Some(Travel {
+        segments: None,
+        segment_elapsed_micros: None,
         travel_id: "counter".into(),
         target_room_id: "room-3".into(),
         path: vec![p, defender],

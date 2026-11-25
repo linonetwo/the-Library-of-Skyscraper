@@ -244,7 +244,7 @@ impl Session {
             version: REPLAY_VERSION,
             simulation_version: self.simulation_version,
             map_version: if self.simulation_version >= 3 {
-                crate::travel::world_map()["version"]
+                crate::travel_map::world_map(self.simulation_version)["version"]
                     .as_str()
                     .unwrap()
                     .into()

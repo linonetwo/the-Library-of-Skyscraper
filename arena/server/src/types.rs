@@ -27,6 +27,10 @@ pub struct Player {
 #[derive(Component, Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Actor {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub world_height_milli: Option<i64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub locomotion: Option<crate::Locomotion>,
     #[serde(default)]
     pub last_moved_tick: u64,
     #[serde(default)]
@@ -156,6 +160,26 @@ pub enum Command {
         #[serde(rename = "roomId")]
         room_id: String,
     },
+    Run {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+        #[serde(rename = "viaRoomId")]
+        via_room_id: String,
+        #[serde(rename = "roomId")]
+        room_id: String,
+    },
+    Jump {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+        #[serde(rename = "edgeId")]
+        edge_id: String,
+    },
+    Climb {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+        #[serde(rename = "edgeId")]
+        edge_id: String,
+    },
     Gather {
         #[serde(rename = "actorId")]
         actor_id: String,
@@ -201,6 +225,10 @@ pub struct Position {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Travel {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub segments: Option<Vec<crate::TravelSegment>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub segment_elapsed_micros: Option<u64>,
     pub travel_id: String,
     pub target_room_id: String,
     pub path: Vec<Position>,

@@ -497,6 +497,8 @@ fn tower_and_enemy_use_building_anchor_for_range_and_attack() {
         y: anchor.y,
     };
     s.enemies[0].travel = Some(Travel {
+        segments: None,
+        segment_elapsed_micros: None,
         travel_id: "range-test".into(),
         target_room_id: "room-1".into(),
         path: vec![s.enemies[0].world_position, anchor],

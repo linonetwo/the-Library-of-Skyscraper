@@ -119,11 +119,13 @@ impl Session {
                         self.simulation_version,
                     );
                 }
-                if crate::travel::distance(a.world_position, self.enemies[i].world_position)
-                    <= crate::scenario::number("attackRange") * 1000
-                    && self.tick
-                        >= self.enemies[i].action_tick
-                            + crate::scenario::number("combatIntervalTicks")
+                if crate::mobility::within_enemy_range(
+                    &a,
+                    self.enemies[i].world_position,
+                    crate::scenario::number("attackRange") * 1000,
+                    self.simulation_version,
+                ) && self.tick
+                    >= self.enemies[i].action_tick + crate::scenario::number("combatIntervalTicks")
                 {
                     self.enemies[i].action_tick = self.tick;
                     let dmg = crate::scenario::number("enemyDamage") as u32;

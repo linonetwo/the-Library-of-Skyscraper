@@ -104,3 +104,52 @@ pub(crate) fn stop_before_opponent(travel: &mut Option<Travel>, opponents: &[Pos
         t.total_distance_milli = total;
     }
 }
+
+/// Reuse the sim5 solver only on the final safe ground tail. Gap/ladder topology
+/// remains intact even when the actor has not reached that tail yet.
+pub(crate) fn stop_segmented_before_opponent(travel: &mut Option<Travel>, opponents: &[Position]) {
+    let Some(t) = travel.as_mut() else { return };
+    let Some(segments) = t.segments.as_ref() else {
+        return;
+    };
+    let safe = |s: &crate::TravelSegment| {
+        s.role == crate::SegmentRole::Ground && s.from.z == 0 && s.to.z == 0
+    };
+    let start = segments.iter().rposition(|s| !safe(s)).map_or(0, |i| i + 1);
+    if start == segments.len() {
+        return;
+    }
+    let mut view = t.clone();
+    crate::travel_segments::refresh(&mut view);
+    let before: u64 = segments.iter().take(start).map(|s| s.length_milli).sum();
+    view.path = std::iter::once(segments[start].from.xy())
+        .chain(segments[start..].iter().map(|s| s.to.xy()))
+        .collect();
+    view.distance_milli = view.distance_milli.saturating_sub(before);
+    view.total_distance_milli = segments[start..].iter().map(|s| s.length_milli).sum();
+    view.speed_milli_per_tick = segments[t.segment.max(start).min(segments.len() - 1)]
+        .kind
+        .speed();
+    view.segments = None;
+    view.segment_elapsed_micros = None;
+    let original = view.path.clone();
+    let mut wrapper = Some(view);
+    stop_before_opponent(&mut wrapper, opponents);
+    let clipped = wrapper.unwrap();
+    if clipped.path == original {
+        return;
+    }
+    let mut revised = segments[..start].to_vec();
+    for (i, pair) in clipped.path.windows(2).enumerate() {
+        let s = crate::travel_segments::linear(
+            segments[start + i].kind,
+            crate::Point3Milli::ground(pair[0]),
+            crate::Point3Milli::ground(pair[1]),
+        );
+        if s.length_milli > 0 {
+            revised.push(s);
+        }
+    }
+    t.segments = Some(revised);
+    crate::travel_segments::refresh(t);
+}

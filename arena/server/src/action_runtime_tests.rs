@@ -131,6 +131,8 @@ fn road_turn_counts_path_length_and_room_delivery_counts_only_real_motion() {
     // One tick crosses a right-angle bend; accumulated distance is not its chord.
     let mut p = Position { x: 0., y: 0. };
     let mut travel = Some(Travel {
+        segments: None,
+        segment_elapsed_micros: None,
         travel_id: "turn".into(),
         target_room_id: "room-0".into(),
         path: vec![p, Position { x: 0.5, y: 0. }, Position { x: 0.5, y: 1. }],
