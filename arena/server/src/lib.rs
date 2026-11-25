@@ -58,3 +58,15 @@ mod combat_approach;
 
 #[cfg(test)]
 mod script_retreat_tests;
+
+mod mobility_types;
+pub use mobility_types::{
+    Locomotion, LocomotionPhase, Point3Milli, SegmentRole, TravelKind, TravelSegment,
+};
+mod mobility;
+#[cfg(test)]
+mod mobility_persistence_tests;
+#[cfg(test)]
+mod mobility_tests;
+mod travel_map;
+mod travel_segments;

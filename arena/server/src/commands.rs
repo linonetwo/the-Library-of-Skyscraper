@@ -39,6 +39,9 @@ impl Session {
             && matches!(
                 command,
                 Command::Task { .. }
+                    | Command::Run { .. }
+                    | Command::Jump { .. }
+                    | Command::Climb { .. }
                     | Command::Move { .. }
                     | Command::Gather { .. }
                     | Command::Deliver { .. }
@@ -67,6 +70,7 @@ impl Session {
         if self.result.is_some() && !matches!(command, Command::Reset {}) {
             return Err("session settled; reset to retry same seed".into());
         }
+        let jump_command = matches!(&command, Command::Jump { .. });
         match command {
             Command::Task {
                 actor_id,
@@ -118,10 +122,42 @@ impl Session {
                 );
                 self.world.entity_mut(e).insert(a);
             }
+            Command::Run {
+                actor_id,
+                via_room_id,
+                room_id,
+            } => {
+                if self.simulation_version < 7 {
+                    return Err("run requires simulationVersion7".into());
+                }
+                let (e, mut a) = self.actor(owner, &actor_id)?;
+                crate::mobility::run(&mut a, &via_room_id, &room_id, self.tick)?;
+                a.task = None;
+                self.world.entity_mut(e).insert(a);
+            }
+            Command::Jump { actor_id, edge_id } | Command::Climb { actor_id, edge_id } => {
+                if self.simulation_version < 7 {
+                    return Err("mobility edge requires simulationVersion7".into());
+                }
+                let kind = if jump_command {
+                    crate::TravelKind::Jump
+                } else {
+                    crate::TravelKind::Climb
+                };
+                let (e, mut a) = self.actor(owner, &actor_id)?;
+                crate::mobility::edge(&mut a, &edge_id, kind, self.tick)?;
+                a.task = None;
+                self.world.entity_mut(e).insert(a);
+            }
             Command::Move { actor_id, room_id } => {
                 self.room_index(&room_id)?;
                 let (e, mut a) = self.owned_actor(owner, &actor_id)?;
-                crate::travel::start(&mut a, &room_id, self.tick)?;
+                crate::travel::start_for_version(
+                    &mut a,
+                    &room_id,
+                    self.tick,
+                    self.simulation_version,
+                )?;
                 a.task = None;
                 self.world.entity_mut(e).insert(a);
             }

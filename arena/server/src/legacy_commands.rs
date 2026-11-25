@@ -27,6 +27,9 @@ impl Session {
             _ => None,
         };
         match command {
+            Command::Run { .. } | Command::Jump { .. } | Command::Climb { .. } => {
+                return Err("mobility requires simulationVersion7".into());
+            }
             Command::Task { .. } => return Err("tasks require simulation v3".into()),
             Command::Equip {
                 actor_id,

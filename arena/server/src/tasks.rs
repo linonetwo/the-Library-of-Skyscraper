@@ -207,7 +207,12 @@ impl Session {
                 return;
             }
             if a.room_id != "room-0" {
-                let _ = crate::travel::start(a, "room-0", self.tick);
+                let _ = crate::travel::start_for_version(
+                    a,
+                    "room-0",
+                    self.tick,
+                    self.simulation_version,
+                );
                 a.state = "retreating".into();
                 return;
             }
@@ -270,7 +275,12 @@ impl Session {
             }
         }
         if a.room_id != destination {
-            let _ = crate::travel::start(a, &destination, self.tick);
+            let _ = crate::travel::start_for_version(
+                a,
+                &destination,
+                self.tick,
+                self.simulation_version,
+            );
             task.stage = if destination != task.target {
                 "transporting"
             } else {

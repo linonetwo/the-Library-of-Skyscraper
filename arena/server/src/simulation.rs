@@ -25,6 +25,10 @@ impl Session {
         actors.sort_by(|a, b| a.1.id.cmp(&b.1.id));
         let previous_tasks = actors.iter().map(|(e, a)| (*e, a.task.clone())).collect();
         for (e, mut a) in actors {
+            if self.simulation_version >= 7 && a.hp > 0 && a.travel.is_none() {
+                a.locomotion = None;
+                a.world_height_milli = Some(0);
+            }
             if self.simulation_version >= 5
                 && let Some(t) = &a.travel
             {

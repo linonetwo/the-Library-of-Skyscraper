@@ -72,7 +72,7 @@ impl Session {
             })
             .collect();
         Self {
-            simulation_version: 6,
+            simulation_version: 7,
             scenario: Scenario {
                 remaining_ticks: crate::scenario::number("durationTicks"),
                 ..Default::default()
@@ -146,6 +146,8 @@ impl Session {
         self.tokens.insert(token, id.clone());
         for role in ["scout", "gatherer", "guard"] {
             self.world.spawn(Actor {
+                world_height_milli: (self.simulation_version >= 7).then_some(0),
+                locomotion: None,
                 last_moved_tick: 0,
                 pending_delivery: false,
                 action_cue: None,
@@ -223,7 +225,7 @@ impl Session {
         Snapshot {
             simulation_version: self.simulation_version,
             map_version: if self.simulation_version >= 3 {
-                crate::travel::world_map()["version"]
+                crate::travel_map::world_map(self.simulation_version)["version"]
                     .as_str()
                     .unwrap()
                     .into()
@@ -236,7 +238,7 @@ impl Session {
                 0
             },
             world_map: if self.simulation_version >= 3 {
-                crate::travel::world_map().clone()
+                crate::travel_map::world_map(self.simulation_version).clone()
             } else {
                 serde_json::Value::Null
             },
