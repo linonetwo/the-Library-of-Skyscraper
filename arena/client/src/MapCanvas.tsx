@@ -43,6 +43,7 @@ export default function MapCanvas(props: MapProps) {
     let renderLayer = new Container();
     const mobilitySelection = new Container();
     let mobilityKey = "";
+    let authoritySnapshot: MapProps["snapshot"] | undefined;
     const entities = new Container({ sortableChildren: true });
     let tiles: Record<string, Texture> = {};
     const controller = new CameraController();
@@ -187,6 +188,18 @@ export default function MapCanvas(props: MapProps) {
     const paint = () => {
       if (!actors || disposed) return;
       const p = latest.current;
+      if (p.snapshot !== authoritySnapshot) {
+        authoritySnapshot = p.snapshot;
+        host.dataset.authorityState = JSON.stringify(p.snapshot && {
+          tick: p.snapshot.tick, paused: p.snapshot.paused,
+          simulationVersion: p.snapshot.simulationVersion, mapVersion: p.snapshot.mapVersion,
+          actors: p.snapshot.actors.map(({ id, owner, role, roomId, hp, cargo, worldPosition,
+            worldHeightMilli, lastMoveDirection, locomotion, travel }) => ({
+            id, owner, role, roomId, hp, cargo, worldPosition, worldHeightMilli, lastMoveDirection, locomotion, travel,
+          })),
+          players: p.snapshot.players.map(({ id, script }) => ({ id, script })),
+        });
+      }
       if (p.suspended || p.snapshot?.paused) app.stop();
       else if (!document.hidden) app.start();
       host.dataset.roomTargets = JSON.stringify(
