@@ -20,7 +20,7 @@ individual acceptance, rejection and undo. Unsupported phrases remain unsupporte
 G1/G2/G3/G4 and unified graph MCP have scoped component reviews and merged
 implementations. New expeditions use simulationVersion6: published scripts own
 retreat decisions even when they hold or fail, and living stationary actors at
-base heal once per world tick independently of the preset retreat latch. Preset
+base heal once per configured healing interval (currently +4 every two ticks) independently of the preset retreat latch. Preset
 control keeps its threshold and recovery latch. Controller handoff clears only
 that owner's old latch and preserves routes/positions; replay versions <=5 keep
 their recorded behavior. Natural low-health execution of the stock graph's 20/60

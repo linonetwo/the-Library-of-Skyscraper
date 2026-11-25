@@ -75,7 +75,7 @@
       "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/116#pullrequestreview-6053417127",
       "reviewedCommit": "e475ad429d2af4ce39ed205af183a3ead195e11f",
       "mergeCommit": "bac802126b5fed061d60722bc533f01d34594e41",
-      "scope": "sim6 owner published-metadata controller selection: script hold/failure does not trigger preset retreat; base healing once per world tick after death check and stationary arrival, no script 80HP latch; preset thresholds/latch retained, own lock cleared on controller handoff without moving routes; <=5 replay keeps old semantics; not G5 natural stock20/60 acceptance",
+      "scope": "sim6 owner published-metadata controller selection: script hold/failure does not trigger preset retreat; base healing once per configured healing interval (currently +4 every two ticks) after death check and stationary arrival, no script 80HP latch; preset thresholds/latch retained, own lock cleared on controller handoff without moving routes; <=5 replay keeps old semantics; not G5 natural stock20/60 acceptance",
       "status": "approved"
     },
     {
