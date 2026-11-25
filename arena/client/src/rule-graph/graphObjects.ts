@@ -1,3 +1,4 @@
+import { createDefaultBehaviorPlan } from "../../../behavior-modules";
 import {
   freshGraphId,
   cloneGraphFragment,
@@ -194,4 +195,76 @@ export function copyFragment(
     return { operations, selection: { kind: "states", id } };
   }
   return { operations, selection: { kind: "nodes", id: cloned.rootId } };
+}
+
+export const graphObjectGroups = [
+  ["roles", "岗位入口"],
+  ["states", "状态"],
+  ["transitions", "状态转移"],
+  ["nodes", "决策节点"],
+  ["modules", "官方模块"],
+] as const;
+
+export function createGraphObject(
+  graph: RuleGraph,
+  newKind: string,
+): { operation: GraphOperation; selection: GraphSelection } {
+  let operation: GraphOperation;
+  let next: GraphSelection;
+  const root = graph.nodes.find((n) => n.type === "hold")?.id ?? "";
+  if (newKind === "state") {
+    const id = freshId(graph, "state");
+    operation = {
+      type: "putState",
+      state: { id, name: "新状态", treeId: root, entry: [], exit: [] },
+    };
+    next = { kind: "states", id };
+  } else if (newKind === "transition") {
+    const id = freshId(graph, "transition");
+    operation = {
+      type: "putTransition",
+      transition: {
+        id,
+        from: graph.states[0]?.id ?? "",
+        to: graph.states[1]?.id ?? "",
+        priority: 10,
+        condition: {
+          type: "compare",
+          field: "cargo",
+          op: "gte",
+          value: 6,
+          missing: false,
+        },
+        cooldownTicks: 0,
+        minStateTicks: 0,
+      },
+    };
+    next = { kind: "transitions", id };
+  } else if (newKind === "role") {
+    const id = freshId(graph, "role");
+    operation = {
+      type: "putRole",
+      role: {
+        id,
+        role: "gatherer",
+        initialStateId: graph.states[0]?.id ?? "",
+        fallbackStateId: graph.states[0]?.id ?? "",
+      },
+    };
+    next = { kind: "roles", id };
+  } else if (newKind.startsWith("binding:")) {
+    const kind = newKind.slice(8);
+    const template = createDefaultBehaviorPlan().modules.find(
+      (m) => m.kind === kind,
+    )!;
+    const moduleId = freshId(graph, `${kind}-binding`);
+    operation = { type: "putModule", module: { ...template, moduleId } };
+    next = { kind: "modules", id: moduleId };
+  } else {
+    const node = makeNode(graph, newKind as RuleNode["type"]);
+    operation = { type: "putNode", node };
+    next = { kind: "nodes", id: node.id };
+  }
+
+  return { operation, selection: next };
 }

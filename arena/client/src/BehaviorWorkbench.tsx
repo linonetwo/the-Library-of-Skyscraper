@@ -1,4 +1,5 @@
-import { TraceView, graphTrace } from "./rule-comparison/TraceView";
+import { WorkbenchRunPanel } from "./WorkbenchRunPanel";
+import { graphTrace } from "./rule-comparison/TraceView";
 import { RuleComparison } from "./rule-comparison/RuleComparison";
 import { GraphEditor } from "./rule-graph/GraphEditor";
 import { useRuleGraphDraft } from "./rule-graph/useRuleGraphDraft";
@@ -10,14 +11,10 @@ import { lazy, Suspense, useState } from "react";
 import { getModuleSourceRef } from "../../behavior-modules";
 import { useBehaviorWorkbench } from "./useBehaviorWorkbench";
 import { BehaviorModuleCard } from "./BehaviorModuleCard";
-import {
-  BehaviorFlow,
-  BehaviorTraceView,
-  readBehaviorTrace,
-} from "./BehaviorFlow";
+import { BehaviorFlow } from "./BehaviorFlow";
 import { ScriptFiles } from "./ScriptFiles";
 import { ScriptHistory } from "./ScriptHistory";
-import { ScriptRuntime, PreviewStatePatch } from "./ScriptRuntime";
+import { ScriptRuntime } from "./ScriptRuntime";
 import { ScriptVersion } from "./ScriptVersion";
 import "./styles/scripts.css";
 import "./styles/behavior-workbench.css";
@@ -89,9 +86,6 @@ export default function BehaviorWorkbench({
     if (ref)
       w.jump({ ...ref, message: "模块配置", code: 0, severity: "warning" });
   };
-  const trace = readBehaviorTrace(
-    w.preview?.execution?.decision?.memoryPatch?.set?.aiTrace,
-  );
   const graphPreview = graphTrace(
     w.preview?.execution?.decision?.memoryPatch?.set?.aiTrace,
   );
@@ -107,9 +101,7 @@ export default function BehaviorWorkbench({
       {tab !== "graph" && (
         <header>
           <div>
-            <span className="eyebrow">
-              AUTONOMOUS DOCTRINE · PRIORITY
-            </span>
+            <span className="eyebrow">AUTONOMOUS DOCTRINE · PRIORITY</span>
             <h2>编排小队的下一步。</h2>
           </div>
           {onBack && <button onClick={onBack}>返回</button>}
@@ -334,89 +326,23 @@ export default function BehaviorWorkbench({
           onRestore={(hash) => void w.run("rollback", hash)}
         />
       }
-      <div className="script-toolbar">
-        <button
-          disabled={!w.session || w.busy || g.blocked}
-          onClick={() => void w.run("compile")}
-        >
-          编译 TypeScript
-        </button>
-        <button
-          disabled={!w.session || w.busy || g.blocked}
-          onClick={() => void w.run("preview")}
-        >
-          试跑当前快照
-        </button>
-        <button
-          className="primary"
-          disabled={!w.ready || w.busy || g.blocked}
-          onClick={() => void w.run("publish")}
-        >
-          发布到战场
-        </button>
-      </div>
-      <section className="script-results" aria-label="脚本运行结果">
-        {w.busy && <p>处理中…</p>}
-        {w.error && <p role="alert">{w.error}</p>}
-        {w.compilation?.diagnostics.map((d, i) => (
-          <button
-            className="script-diagnostic"
-            key={i}
-            onClick={() => {
-              setTab("source");
-              w.jump(d);
-            }}
-          >
-            {d.file}:{d.line}:{d.column} · {d.message}
-          </button>
-        ))}
-        {w.compilation?.bundle && (
-          <p>编译通过 · {w.compilation.bundle.sourceHash.slice(0, 12)}</p>
-        )}
-        {w.preview?.execution && (
-          <p>
-            T{w.preview.tick} · V8 {w.preview.execution.durationMs.toFixed(2)}{" "}
-            ms
-          </p>
-        )}
-        {w.preview?.execution?.failure && (
-          <p role="alert">{w.preview.execution.failure.message}</p>
-        )}
-        {w.preview?.execution?.decision && (
-          <div aria-label="试跑动作意图">
-            <strong>
-              动作意图 {w.preview.execution.decision.intents.length} 条
-            </strong>
-            {w.preview.execution.decision.intents.map((intent, i) => (
-              <div className="intent-row" key={i}>
-                <code>{intent.actorId}</code>
-                <b>{intent.type}</b>
-                <span>
-                  {"roomId" in intent ? intent.roomId : intent.reason}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-        {trace && w.preview?.sourceHash && (
-          <BehaviorTraceView
-            trace={trace}
-            sourceHash={w.preview.sourceHash}
-            source="试跑当前草稿"
-            onLocate={locate}
-          />
-        )}
-        {currentGraphTrace && (
-          <section
-            aria-label="当前草稿规则图试跑路径"
-            data-source-hash={w.preview?.sourceHash}
-          >
-            <h4>当前草稿试跑 · {w.preview?.sourceHash}</h4>
-            <TraceView value={currentGraphTrace} locate={locateGraph} />
-          </section>
-        )}
-        {w.preview && <PreviewStatePatch preview={w.preview} />}
-      </section>
+      <WorkbenchRunPanel
+        hasSession={!!w.session}
+        ready={w.ready}
+        busy={w.busy}
+        blocked={g.blocked}
+        error={w.error}
+        compilation={w.compilation}
+        preview={w.preview}
+        currentGraphTrace={currentGraphTrace}
+        onRun={(mode) => void w.run(mode)}
+        onDiagnostic={(d) => {
+          setTab("source");
+          w.jump(d);
+        }}
+        onLocateModule={locate}
+        onLocateGraph={locateGraph}
+      />
       <ScriptRuntime key={`${w.session?.sessionId}:${w.session?.playerId}`} />
     </div>
   );
