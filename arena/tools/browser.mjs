@@ -1,4 +1,4 @@
-import { mobilityActionSchemas, performMobilityAction, readMobilityState } from './browser-mobility.mjs';
+import { mobilityActionSchemas, performMobilityAction, readMobilityState, readMobilityAuthority } from './browser-mobility.mjs';
 import {graphActionSchemas,performGraphAction,readGraphState} from './browser-rule-graph.mjs';
 import {goalActionSchemas,performGoalAction,readGoalState} from './browser-goals.mjs';
 import {behaviorActionSchemas,performBehaviorAction,readBehaviorState} from './browser-behavior.mjs';
@@ -97,7 +97,7 @@ export function registerBrowserTools(server) {
       memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
       tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
     } : null;
-    return { url: active.url(), mobility: await readMobilityState(active), graph: await readGraphState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    return { url: active.url(), mobility: await readMobilityState(active), mobilityAuthority: await readMobilityAuthority(active), graph: await readGraphState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   const perform = async ({ action }) => {
     const active = current();

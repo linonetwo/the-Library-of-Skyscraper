@@ -46,3 +46,9 @@ export async function readMobilityState(page) {
     confirmDisabled: [...panel.querySelectorAll('button')].find(button => button.textContent === '确认机动')?.disabled ?? true,
   })));
 }
+
+/** The renderer's public current snapshot projection; never infer authority from a pose. */
+export async function readMobilityAuthority(page) {
+  return page.locator('.pixi-map').evaluateAll(maps => maps.map(map =>
+    map.dataset.authorityState ? JSON.parse(map.dataset.authorityState) : null));
+}
