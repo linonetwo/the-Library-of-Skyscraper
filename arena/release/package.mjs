@@ -5,7 +5,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { platform, release, arch } from 'node:os';
 
-export async function collectPackage({ source, destination, version, sourceCommit, recipeCommit }) {
+export async function collectPackage({ source, destination, version, sourceCommit, recipeCommit, runtimeReuse }) {
  const payload=resolve(destination,'package');
  for(const dir of ['bin','data','logs','arena/client','arena/art']) mkdirSync(resolve(payload,dir),{recursive:true});
  const copy=(from,to)=>cpSync(from,to,{recursive:true});
@@ -32,7 +32,8 @@ export async function collectPackage({ source, destination, version, sourceCommi
   .replaceAll('{{version}}',version).replaceAll('{{sourceCommit}}',sourceCommit);
  writeFileSync(resolve(payload,'README.md'),readme);
  writeFileSync(resolve(payload,'manifest.json'),JSON.stringify({version,status:'local-candidate',sourceCommit,recipeCommit,...metadata,
-  platform:`${platform()} ${release()} ${arch()}`,node:process.version,binaries:'cargo debug --locked',ports:[5173,8787],
+  platform:`${platform()} ${release()} ${arch()}`,node:process.version,binaries:runtimeReuse ? 'reused cargo debug --locked' : 'cargo debug --locked',
+  ...(runtimeReuse ? {runtimeReuse} : {}),ports:[5173,8787],
   data:'empty package-local directory',steamDesktopArtifact:false},null,2)+'\n');
  execFileSync('bash',['-c',"find . -type f ! -name FILES.sha256 -print0 | sort -z | xargs -0 sha256sum > FILES.sha256"],{cwd:payload});
  const archive=`arena-v${version}-${platform()}-${arch()}-candidate.tar.gz`;
