@@ -2,9 +2,18 @@ title: 竞技场v0.5.0版本计划
 tags: 竞技场目录：版本计划 竞技场开发计划
 type: text/vnd.tiddlywiki
 created: 20261125140000000
-modified: 20261125140000000
+modified: 20261125182732000
 
 v0.5.0「书库捷径」：队员能沿道路疾跑、跃过断桥、攀越高廊；玩家可在地图指挥，也可改规则让小队自己走。动作改变真实归途或支援时间，换装、重连、回放仍是同一个人走同一条路。建立在[[已发布的v0.4.0|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.0]]（48fdf11）之上。以下为本版工作包编号，非总里程碑编号；技术边界和验收场景见[[竞技场v0.5.0机动设计合同]]。
+
+11月25日实施状态（本版尚未发布；当前正式主试玩5173／5175仍为v0.4.1）：
+
+|!工作包|!当前状态|
+|M1|[[PR129|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/129]]已合0b7bd22；sim7权威分段旅行、双向捷径及旧sim兼容已通过精确审与CI|
+|M2|[[Draft PR127|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/127]]；真实三动作UI、390宽度与脚本接管限制已作候选验证，尚待收合|
+|M3|小批动作源／烘焙与纯runtime接入推进中，待独立实机视觉审；未宣称192组齐备|
+|M4|SDK[[PR126|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/126]]已合bef9d9，图生成[[PR128|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/128]]已合6002d81；可见MCP接入继续收尾|
+|M5|正常时钟driver已参数化、六组映射准备；等待M1–M4齐备与整版source／recipe冻结，未启动集中包验收|
 
 |!目标版本／包|!归属与依赖|!可交付结果|
 |v0.5 M1 路网与权威旅行|领域Sol；Astra先审地图／类型|两条双向地图捷径、双边疾跑；连续坐标、高度、相位及到达结算进入同一Travel、checkpoint与录制，旧局原样重演|

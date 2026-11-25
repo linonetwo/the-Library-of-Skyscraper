@@ -2,7 +2,7 @@ title: 竞技场开发日志2026-11-25
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261125021839000
-modified: 20261125160904000
+modified: 20261125182732000
 
 !! 当前可访问的核心编辑界面
 
@@ -175,3 +175,15 @@ core有界实包smoke最终六项通过、页面错误0：首页进入暂停tick
 [[v0.4.1 AI入口修复|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.1]]已于2026-11-25 16:03:44 UTC实际发布为预览版（draft=false，prerelease=true），Tag／source／recipe均为0644d5ba3f4811f981b2a6f3d7a3481945dc3adc。四项附件的远端大小与digest均匹配发布前白名单：原归档165680738字节／bae6a9b7c751a21e93c218175bef3f874c3eb4afe202d26e26c3d1bc542adf72；.sha256为106字节；manifest为8543字节／e0eabe3ec6ef2e21a83dcfe7638f12a86f454693e75837b6c6cf056882d49165；公开ACCEPTANCE为4526字节。evidence/published.json保存四项下载地址与远端读回。
 
 首次gh操作在四件已上传后遇publish HTTP500及cleanup HTTP500；确认同一draft附件齐全后直接再次发布成功，未重新打包或上传。原失败保留；原v0.4.0发布资产及两版实际包保持。当前稳定入口[[5173|http://localhost:5173]]与[[5175|http://localhost:5175]]均可首页「编辑 AI 规则」直接进入工作台，独立v0.4.1包为[[5193|http://localhost:5193]]。早先段落中的“待包验收／发布”为当时进度，现已按本节收尾。
+
+!! v0.5书库捷径实施进度（尚未发布）
+
+当前正式主试玩5173／5175保持已发布v0.4.1；v0.5按[[竞技场v0.5.0版本计划]]与[[竞技场v0.5.0机动设计合同]]在独立候选研发，不把逐功能PR合入记为整版发布。M1权威旅行PR129已合0b7bd22beb34826ffb18e54a2f97dee0fd29354e；SDK PR126已合bef9d9f8、图生成PR128已合6002d819。M2 Draft PR127已验证可见机动控件、390宽键盘与脚本接管下的手动限制，仍待收合；M3小批动画和纯runtime待独立视觉，尚未完成三动作×八向×两衣×两发×两持物的192组完整序列验收。
+
+主代理已在独立5191／8799候选实际用正常500ms时钟完成run、climb双向和jump，没有写入快照或用单步替代行进。该轮前端66e6e57、权威72b88bdd817d7d01d89cbd561ebb5ada4ca4fc1b，sim7／library-v5.0：run在T16从room1向room3途经基地，足点由(9,0)前进到(7.5,0)；climb在T37暂停于crest高度1500毫米，T50到room4地面；jump在T112暂停于airborne高度1189毫米，T117落到room2地面。normal-mobility.json保留compact快照、手动暂停与继续方法、travelId及目标，页面错误0。首次高廊截图镜头仍在基地，没有定位角色，故本次不把它作新动作近景图，也不替换本日日报现有三张v0.4.1／v0.4.0实机图；待新木纹高廊深度与NE／SW真动画后再由主代理拍摄。
+
+随后权威更新到ab2b9fb7d0e9f0d79044ed64cd03bc4b073eca4d，独立地图文件world-map-v5.json的SHA256为67001f6b61f26761e91428be7fd505ad2cc1bec7533f98bcf95739efde43176e。M1首轮CI发现普通地面到达的末端locomotion要到下一hold拍才清除；修复为普通地面到达立即归idle，并保留jump落地采样，原HTTP／MCP hold断言未放宽，原失败记录保留。最终头ab2b9fb精确审及CI通过后合入。
+
+M4 authority-graph.json另记录该新权威上真实图执行：三角色分别run／jump／climb，反向jump落回room1后采得cargo4；录制同帧T23将动作叶run改jump，经真实V8得到不同下一动作、未写世界或私有runtime，发布后T24实际目标改为room2，归档源码可定位。这是已完成的单项规则因果证据，仍不替代整包M5。
+
+M5已复用主代理normal-mobility.mjs静态参数化，沿已有M2／M4控件与包内MCP读取权威XYZ、方向、相位和分段Travel；六组证据映射留独立planning目录，没有另建仓库验收框架。正常玩法证据标normal-clock-500ms，训练单步可用于逐帧视觉采样并独立标training-step，两者不混称。集中全suite与六组实机仍待完整固定source＝recipe和实际解包，串行执行；不重复已绿领域单测，不先产包或发布。
