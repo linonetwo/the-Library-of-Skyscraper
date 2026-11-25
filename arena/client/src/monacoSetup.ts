@@ -3,6 +3,7 @@ import "monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution"
 import * as ts from "monaco-editor/esm/vs/language/typescript/monaco.contribution";
 import EditorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
 import TsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker";
+import mobility from "../../script-sdk/src/mobility.ts?raw";
 import views from "../../script-sdk/src/views.ts?raw";
 import contract from "../../script-sdk/src/contract.ts?raw";
 
@@ -18,7 +19,7 @@ ts.typescriptDefaults.setCompilerOptions({
 });
 ts.typescriptDefaults.setEagerModelSync(true);
 ts.typescriptDefaults.addExtraLib(
-  `declare module "@skyscraper/arena-script-sdk" {\n${views}\n${contract.replace(/^import type[\s\S]*?;\n/, "")}\n}`,
+  `declare module "@skyscraper/arena-script-sdk" {\n${mobility}\n${views.replace(/^import type.*;\n/, "")}\n${contract.replace(/^import type[\s\S]*?;\n/, "")}\n}`,
   "file:///arena-sdk.d.ts",
 );
 monaco.editor.defineTheme("arena-ink", {

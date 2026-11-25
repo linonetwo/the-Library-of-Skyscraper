@@ -1,3 +1,6 @@
+import type { Locomotion, MobilityEdge, TravelSegment } from './mobility.ts';
+type ReadonlyView<T> = { readonly [K in keyof T]: ReadonlyView<T[K]> };
+
 export type EntityId = string;
 
 export interface PlayerScriptView {
@@ -28,7 +31,9 @@ export interface ActorScriptView {
   readonly cargoCapacity: number;
   /** Authoritative ground tiles; arrival commits roomId only after travel finishes. */
   readonly worldPosition?: { readonly x: number; readonly y: number };
-  readonly travel?: { readonly travelId: string; readonly targetRoomId: string; readonly path: readonly { readonly x: number; readonly y: number }[]; readonly distanceMilli: number; readonly totalDistanceMilli: number; readonly speedMilliPerTick: number; readonly progress: number } | null;
+  readonly worldHeightMilli?: number;
+  readonly locomotion?: ReadonlyView<Locomotion>;
+  readonly travel?: { readonly segment?: number; readonly startedTick?: number; readonly segmentElapsedMicros?: number; readonly segments?: readonly ReadonlyView<TravelSegment>[]; readonly travelId: string; readonly targetRoomId: string; readonly path: readonly { readonly x: number; readonly y: number }[]; readonly distanceMilli: number; readonly totalDistanceMilli: number; readonly speedMilliPerTick: number; readonly progress: number } | null;
   readonly task?: { readonly buildingKind?: 'tower' | 'catalog' | 'warehouse' | null; readonly kind: 'gather' | 'build' | 'guard' | 'return'; readonly target: string; readonly stage: string; readonly blockedReason: string | null } | null;
   readonly retreating?: boolean;
   readonly actionTick?: number;
@@ -72,7 +77,7 @@ export interface AuthorizedWorldView {
   readonly actors: readonly ActorScriptView[];
   readonly buildings: readonly BuildingScriptView[];
   readonly enemies?: readonly { readonly id: string; readonly roomId: string; readonly hp: number; readonly maxHp: number; readonly worldPosition: { readonly x: number; readonly y: number }; readonly state: string }[];
-  readonly worldMap?: unknown;
+  readonly worldMap?: { readonly version: string; readonly links: readonly { readonly from: string; readonly to: string }[]; readonly mobilityEdges?: readonly ReadonlyView<MobilityEdge>[] };
   readonly scenario?: { readonly catalogProgress: number; readonly remainingTicks: number; readonly blockedReason: string | null; readonly counterattackTick: number | null };
   readonly scenarioConfig?: unknown;
 }

@@ -17,7 +17,7 @@ export function decide(ctx: RuleContext): RuleDecisionResult {
           id: 'plan-' + intent.actorId,
           actorId: intent.actorId,
           roomId: 'roomId' in intent ? intent.roomId : ctx.squad.actors.find(actor => actor.id === intent.actorId)!.roomId,
-          kind: intent.type,
+          kind: intent.type === 'run' || intent.type === 'jump' || intent.type === 'climb' ? 'move' : intent.type,
           priority: intent.priority,
           status: 'running' as const,
           blockedReason: null,

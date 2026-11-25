@@ -32,6 +32,10 @@ export interface MoveIntentDraft extends BaseIntentDraft {
   readonly roomId: EntityId;
 }
 
+export interface RunIntentDraft extends BaseIntentDraft { readonly type: 'run'; readonly viaRoomId: EntityId; readonly roomId: EntityId }
+export interface JumpIntentDraft extends BaseIntentDraft { readonly type: 'jump'; readonly edgeId: string }
+export interface ClimbIntentDraft extends BaseIntentDraft { readonly type: 'climb'; readonly edgeId: string }
+
 export interface GatherIntentDraft extends BaseIntentDraft { readonly type: 'gather' }
 export interface DeliverIntentDraft extends BaseIntentDraft { readonly type: 'deliver' }
 export interface AttackIntentDraft extends BaseIntentDraft { readonly type: 'attack' }
@@ -45,7 +49,7 @@ export interface BuildIntentDraft extends BaseIntentDraft {
 
 /** v0 names follow today's authority commands: deliver/capture, not transfer/claim. */
 export type ActionIntentDraft =
-  | MoveIntentDraft | GatherIntentDraft | DeliverIntentDraft
+  | MoveIntentDraft | RunIntentDraft | JumpIntentDraft | ClimbIntentDraft | GatherIntentDraft | DeliverIntentDraft
   | AttackIntentDraft | CaptureIntentDraft | BuildIntentDraft;
 
 export interface RuleMemoryPatch {
