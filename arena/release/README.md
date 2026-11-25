@@ -30,3 +30,17 @@ its scoped source/runtime reviews and pending items do not imply whole-version
 approval. See `notes-v0.3.0.md`. Metadata implementation alone does not freeze a
 final source, create a package, or authorize a tag/release. The v0.2 command and its
 historical approval-record branch remain available unchanged.
+
+The v0.4 graph feature batch uses its own candidate archive and version notes:
+
+```sh
+node arena/release/build.mjs 0.4.0 SOURCE_COMMIT /absolute/new/v040-output
+```
+
+Wait for complete G1-G4 authoring/MCP integration and the source-freeze instruction
+before running this full build. Metadata preparation alone does not start G5 or
+approve release. The manifest reuses scoped v0.3 asset provenance while hashing
+actual new dist indices/descriptors; its `rules` field additionally hashes and
+copies `arena/release/rule-provenance-v0.4.0.json`. Source paths in that record refer
+to sourceCommit, not new package runtime services. v0.3/v0.2 metadata branches,
+notes, launch paths and per-file checksum layout remain reproducible.

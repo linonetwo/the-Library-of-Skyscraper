@@ -22,6 +22,8 @@ test('v0.3 metadata hashes shipped dist bytes and follows actual index clips',()
   assert.equal(metadata.assets.groups.player.clips[0].action,'new-action');
   assert.deepEqual(metadata.assets.groups.player.clips[0].descriptor,{path:'arena/client/dist/assets/action-source/atlas.json',sha256:createHash('sha256').update('actual descriptor bytes').digest('hex')});
   assert.equal(metadata.assets.approval,undefined);
+  put('arena/release/rule-provenance-v0.4.0.json',{schemaVersion:1,version:'0.4.0',status:'local-candidate'});
+  const graph=buildMetadata(root,'0.4.0');assert.deepEqual(graph.assets,metadata.assets);assert.equal(metadata.rules,undefined);assert.deepEqual(graph.rules.schemaVersions,[1,2]);assert.equal(graph.rules.provenance.path,'arena/release/rule-provenance-v0.4.0.json');assert.equal(graph.rules.provenance.sha256,createHash('sha256').update(JSON.stringify({schemaVersion:1,version:'0.4.0',status:'local-candidate'})).digest('hex'));
   put('arena/client/public/assets/manifest.json',{approvalRecord:'arena/art/approval-v0.2.0.json'});put('arena/art/approval-v0.2.0.json','legacy approval');put('arena/client/public/assets/animation/coverage.json',{contentVersion:'legacy'});put('arena/client/public/assets/tiles/manifest.json',{contentVersion:'old-tiles',schemaVersion:1});
   const legacy=buildMetadata(root,'0.2.0');assert.equal(legacy.assets.approval.path,'arena/art/approval-v0.2.0.json');assert.equal(legacy.assets.animation.contentVersion,'legacy');assert.equal(legacy.assets.provenance,undefined);
  } finally {rmSync(root,{recursive:true,force:true});}

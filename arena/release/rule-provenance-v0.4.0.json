@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "version": "0.4.0",
+  "status": "local-candidate",
+  "releaseApproved": false,
+  "schemaVersions": [
+    1,
+    2
+  ],
+  "assetProvenance": "arena/art/asset-provenance-v0.3.0.json",
+  "assetScope": "Inherited scoped v0.3 asset reviews; actual packaged dist indices and descriptors are hashed separately. This record grants no new visual approval.",
+  "sourceEntries": [
+    "arena/behavior-modules/index.ts",
+    "arena/behavior-modules/graph/index.ts"
+  ],
+  "sourceEntryScope": "Repository paths within the manifest sourceCommit; executable generated projects and the UI bundle use the existing compiler and independent V8 worker. These paths are not extra package runtime entrypoints.",
+  "reviews": [
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/105#pullrequestreview-6049354499",
+      "reviewedCommit": "1c83c931d18bee653f4136e2292c35cc2a29c03a",
+      "scope": "G1 graph execution/diagnostics/serialization technical scope; pass versus hold, per-transition cooldown, per-role state, single action; not G2/G3 workflows or G5",
+      "status": "approved",
+      "mergeCommit": "ac0bd3ac4fae3a23d84f4ec41a1557adfb55fa60"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/106#pullrequestreview-6050236577",
+      "reviewedCommit": "5d5c78562e917f2310c973f3ce6d6a4ca47f852e",
+      "scope": "G4 bounded Chinese goal proposals and reversible selective patches, correct reversed-branch handling; actual cargo4 threshold8/4 comparison; not G2 host, unified MCP or G5",
+      "status": "approved",
+      "mergeCommit": "74870667cf93a3f713e1e5cbc0dd7838b855051e"
+    },
+    {
+      "review": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/107#pullrequestreview-6050483067",
+      "reviewedCommit": "4504081fdb2dd34dd6d52855c0284b0fc8fc29a7",
+      "mergeCommit": null,
+      "scope": "G3 reviewed owner-authorized recorded-prefix restoration, no-write same-frame comparison and independent UI request lifetimes; not full authoring or G5",
+      "status": "approved",
+      "integrationStatus": "Awaiting PR107 merge; not represented as already present in this source"
+    }
+  ],
+  "pending": [
+    "G3 reviewed same-frame service/UI merge and integrated host acceptance",
+    "G2 authoring host and unified graph MCP exact-head review",
+    "G1-G4 integrated fixed-source package acceptance",
+    "fresh-extraction launch, victory/defeat, graph editing, same-frame comparison, version recovery, replay, keyboard and narrow-screen evidence",
+    "independent final technical and visual acceptance"
+  ]
+}
