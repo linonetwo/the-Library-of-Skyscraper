@@ -99,3 +99,36 @@ test("climb alternates independent contacts in ascent and descent without raster
     );
   }
 });
+test("climb reuses the successful independent forearms and stowed staff registrations", async () => {
+  const { loadClimbRig } = await import("./rig.mjs");
+  const config = await loadClimbRig([
+    "NE",
+    "SW",
+    "E",
+    "W",
+    "N",
+    "S",
+    "NW",
+    "SE",
+  ]);
+  for (const direction of Object.values(config.directions)) {
+    assert(!direction.attachments.some((a) => a.id === "left-forearm-hand"));
+    assert(
+      direction.attachments.some(
+        (a) => a.id === "left-forearm" && a.joint === "leftElbow",
+      ),
+    );
+    assert(
+      direction.attachments.some(
+        (a) => a.id === "right-forearm" && a.joint === "rightElbow",
+      ),
+    );
+    assert.equal(
+      direction.attachments.find((a) => a.id === "staff").joint,
+      "pelvis",
+    );
+    assert(
+      !direction.attachments.some((a) => a.layer.startsWith("cargo-bundle")),
+    );
+  }
+});

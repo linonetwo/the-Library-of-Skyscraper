@@ -67,3 +67,68 @@ export async function loadRig(names) {
   delete config.breathingPending;
   return config;
 }
+
+/** Accepted carry registrations already separate both forearms and stow the staff. */
+export async function loadClimbRig(names) {
+  const config = await loadRig(names);
+  const nePath = path.join(here, "../ne-sw-carry/pose.json");
+  const ne = await read(nePath);
+  for (const name of names) {
+    let direction;
+    if (ne.directions[name]) {
+      direction = structuredClone(ne.directions[name]);
+      for (const a of direction.attachments)
+        a.image = path.resolve(path.dirname(nePath), a.image);
+    } else {
+      direction = config.directions[name];
+      const original = direction.attachments.find(
+        (a) => a.id === "left-forearm-hand",
+      );
+      direction.attachments = direction.attachments.filter(
+        (a) => a.id !== "left-forearm-hand",
+      );
+      for (const mode of ["forearm", "natural-hand"])
+        direction.attachments.push({
+          ...original,
+          id: "left-" + mode,
+          image: path.join(
+            here,
+            "../eight-work/hands",
+            name,
+            "left-" + mode + ".png",
+          ),
+          joint: mode === "forearm" ? "leftElbow" : "leftWrist",
+          pivot:
+            mode === "forearm"
+              ? original.pivot
+              : direction.joints.leftWrist.cell.map(
+                  (v, i) => v - original.restTopLeft[i],
+                ),
+          layer: mode === "forearm" ? original.layer : "hand-left-front",
+          ...(mode === "natural-hand" ? { angleJoint: "leftElbow" } : {}),
+        });
+      const staff = direction.attachments.find((a) => a.id === "staff");
+      const sign = name === "W" || name === "NW" ? -1 : 1,
+        angle = (-sign * 18 * Math.PI) / 180;
+      const v = [sign * 10, -17],
+        offset = [
+          v[0] * Math.cos(angle) - v[1] * Math.sin(angle),
+          v[0] * Math.sin(angle) + v[1] * Math.cos(angle),
+        ];
+      staff.joint = "pelvis";
+      staff.layer = "weapon-staff-back";
+      staff.pivot = staff.pivot.map((v, i) => v - offset[i]);
+    }
+    direction.attachments = direction.attachments.filter(
+      (a) =>
+        !a.layer.startsWith("cargo-bundle") && !a.layer.startsWith("work-prop"),
+    );
+    direction.stowedStaffAngle =
+      ne.directions[name]?.poses[0].attachmentAngles.staff ??
+      (name === "W" || name === "NW" ? -18 : 18);
+    direction.poses = [];
+    config.directions[name] = direction;
+  }
+  config.handMode = "natural";
+  return config;
+}

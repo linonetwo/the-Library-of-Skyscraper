@@ -48,7 +48,7 @@ export function climbPoses(direction) {
           wrists,
           phase: descending ? "descend" : "grip",
           contacts,
-          staffAngle: 75,
+          staffAngle: direction.stowedStaffAngle ?? 18,
           durationMs: frame % 4 === 3 ? 70 : 60,
         }),
       );
@@ -66,7 +66,7 @@ export function climbPoses(direction) {
         wrists: { left: [0.2, 0.9 - 0.12 * u], right: [0.18, 0.88 - 0.1 * u] },
         phase: "crest",
         contacts: { transferProgress: u },
-        staffAngle: 75,
+        staffAngle: direction.stowedStaffAngle ?? 18,
         durationMs: frame % 4 === 3 ? 70 : 60,
       }),
     );
