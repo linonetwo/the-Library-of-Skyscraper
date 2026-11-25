@@ -109,7 +109,7 @@ export function registerBrowserTools(server) {
     const click = name => active.getByRole('button', { name, exact: true }).click();
     const menu = async name => {
       if (!await active.getByRole('navigation', { name: '游戏菜单' }).isVisible()) await click('菜单');
-      await click(name);
+      await active.getByRole('navigation', { name: '游戏菜单' }).getByRole('button', { name, exact: true }).click();
     };
     const details = async () => {
       if (!await active.locator('.character-drawer').isVisible()) {
