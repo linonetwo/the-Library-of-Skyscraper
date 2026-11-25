@@ -6,6 +6,15 @@ import type { Snapshot } from "./types";
 export const mobilityPoint = (p: Point3Milli) => project(p.x / 1000, p.y / 1000, p.z / 1000);
 type Screen = { x: number; y: number };
 const gold = 0xd7b66e;
+let piece = 0;
+function depthPart(layer: Container, p: Point3Milli, bias = -.03) {
+  const node = new Container();
+  node.label = `mobility:${piece++}`;
+  node.zIndex = project(p.x / 1000, p.y / 1000).y + bias;
+  node.eventMode = "passive";
+  layer.addChild(node);
+  return node;
+}
 // One crop per loaded atlas texture, retained with that atlas's lifetime.
 const timberCrops = new WeakMap<Texture, Texture>();
 function timber(textures: Record<string, Texture>) {
@@ -36,15 +45,14 @@ const offset = (p: Point3Milli, x: number, y: number, z = 0): Point3Milli => ({x
 function deck(layer: Container, from: Point3Milli, to: Point3Milli, width: number, wood: Texture | undefined) {
   const length = Math.hypot(to.x-from.x,to.y-from.y); if (!length) return;
   const nx=-(to.y-from.y)/length*width/2, ny=(to.x-from.x)/length*width/2;
-  const a=offset(from,nx,ny), b=offset(to,nx,ny), c=offset(to,-nx,-ny), d=offset(from,-nx,-ny);
-  // Dark fascia below the near side establishes thickness without moving the walking surface.
-  quad(layer,[c,d,offset(d,0,0,-100),offset(c,0,0,-100)].map(mobilityPoint),wood,0x9b7955);
   const boards=Math.max(1,Math.ceil(length/250));
   for(let i=0;i<boards;i++) {
     const p=(u:number)=>offset(from,(to.x-from.x)*u,(to.y-from.y)*u,(to.z-from.z)*u);
-    quad(layer,[offset(p(i/boards),nx,ny),offset(p((i+1)/boards),nx,ny),offset(p((i+1)/boards),-nx,-ny),offset(p(i/boards),-nx,-ny)].map(mobilityPoint),wood,i%2?0xf1d8ad:0xffebc6);
+    quad(depthPart(layer,p((i+.5)/boards)),[offset(p(i/boards),nx,ny),offset(p((i+1)/boards),nx,ny),offset(p((i+1)/boards),-nx,-ny),offset(p(i/boards),-nx,-ny)].map(mobilityPoint),wood,i%2?0xf1d8ad:0xffebc6);
+    const nearA=offset(p(i/boards),-nx,-ny),nearB=offset(p((i+1)/boards),-nx,-ny);
+    quad(depthPart(layer,p((i+.5)/boards)),[nearA,nearB,offset(nearB,0,0,-100),offset(nearA,0,0,-100)].map(mobilityPoint),wood,0x9b7955);
+    for(const sign of [-1,1]) beam(depthPart(layer,offset(p((i+.5)/boards),nx*sign,ny*sign),.01),mobilityPoint(offset(p(i/boards),nx*sign,ny*sign)),mobilityPoint(offset(p((i+1)/boards),nx*sign,ny*sign)),3,wood,0xb78d4b);
   }
-  for(const [start,end] of [[a,b],[d,c]]) beam(layer,mobilityPoint(start),mobilityPoint(end),3,wood,0xb78d4b);
 }
 function selectable(layer:Container, points:Screen[], edgeId:string, onSelect:(id:string)=>void) {
   const hit=new Graphics();
@@ -57,15 +65,15 @@ function label(layer:Container,text:string,p:Screen) {
 }
 /** Static structures use the authority's XYZ surfaces; no animation or movement is simulated here. */
 export function paintMobilityFacilities(layer: Container, snapshot: Snapshot, textures: Record<string, Texture>, onSelect: (edgeId: string) => void) {
-  const wood=timber(textures);
+  const wood=timber(textures); piece=0;
   for(const edge of snapshot.worldMap?.mobilityEdges??[]) {
-    const structure=new Container();structure.eventMode="passive";layer.addChild(structure);
+    const structure=layer;
     for(const support of edge.supports??[]) {
       for(const end of [support.from,support.to]) {
         const foot=mobilityPoint({...end,z:0}),top=mobilityPoint(end);
-        structure.addChild(new Graphics().ellipse(foot.x,foot.y,15,6).fill({color:0x102321,alpha:.25}));
-        beam(structure,foot,top,9,wood,0xb88f66);
-        const brace=mobilityPoint(offset(end,0,350,-350));beam(structure,brace,top,6,wood,0xb88f66);
+        depthPart(structure,end,-.1).addChild(new Graphics().ellipse(foot.x,foot.y,15,6).fill({color:0x102321,alpha:.25}));
+        beam(depthPart(structure,end,-.05),foot,top,9,wood,0xb88f66);
+        const brace=mobilityPoint(offset(end,0,350,-350));beam(depthPart(structure,end,-.05),brace,top,6,wood,0xb88f66);
       }
       deck(structure,support.from,support.to,support.widthMilli,wood);
     }
@@ -74,9 +82,9 @@ export function paintMobilityFacilities(layer: Container, snapshot: Snapshot, te
       const facing=segment.ladderFacing??{x:0,y:1};const norm=Math.hypot(facing.x,facing.y)||1;
       const nx=-facing.y/norm*220,ny=facing.x/norm*220;
       // Width is perpendicular to the registered ladder face in WORLD XY.
-      for(const sign of [-1,1])beam(structure,mobilityPoint(offset(segment.from,nx*sign,ny*sign)),mobilityPoint(offset(segment.to,nx*sign,ny*sign)),5,wood);
+      for(const sign of [-1,1])beam(depthPart(structure,offset(segment.from,nx*sign,ny*sign),-.05),mobilityPoint(offset(segment.from,nx*sign,ny*sign)),mobilityPoint(offset(segment.to,nx*sign,ny*sign)),5,wood);
       const low=Math.min(segment.from.z,segment.to.z),high=Math.max(segment.from.z,segment.to.z);
-      for(let z=low;z<=high;z+=250){const p={...segment.from,z};beam(structure,mobilityPoint(offset(p,nx,ny)),mobilityPoint(offset(p,-nx,-ny)),4,wood,0xf4d9a7);}
+      for(let z=low;z<=high;z+=250){const p={...segment.from,z};beam(depthPart(structure,p,-.04),mobilityPoint(offset(p,nx,ny)),mobilityPoint(offset(p,-nx,-ny)),4,wood,0xf4d9a7);}
       const foot={...segment.from,z:low},top={...segment.to,z:high};
       deck(structure,offset(foot,-facing.x/norm*220,-facing.y/norm*220),offset(foot,facing.x/norm*220,facing.y/norm*220),600,wood);
       deck(structure,top,offset(top,facing.x/norm*500,facing.y/norm*500),650,wood);
@@ -89,14 +97,14 @@ export function paintMobilityFacilities(layer: Container, snapshot: Snapshot, te
         deck(structure,offset(p,dx*sign*600,dy*sign*600),p,900,wood);
         const side={x:-dy*450,y:dx*450};
         // Uneven short end-grain marks read as a broken lip, never a bridge across the gap.
-        for(const k of [-.65,0,.65])beam(structure,mobilityPoint(offset(p,side.x*k,side.y*k)),mobilityPoint(offset(p,side.x*k-dx*sign*90,side.y*k-dy*sign*90,-55)),3,wood);
+        for(const k of [-.65,0,.65])beam(depthPart(structure,p),mobilityPoint(offset(p,side.x*k,side.y*k)),mobilityPoint(offset(p,side.x*k-dx*sign*90,side.y*k-dy*sign*90,-55)),3,wood);
       }
     }
     for(const [index,p] of [first,last].entries()) {
       const screen=mobilityPoint(p);const room=index===0?edge.fromRoomId:edge.toRoomId;
-      structure.addChild(new Graphics().ellipse(screen.x,screen.y,edge.landingRadiusMilli/1000*64,edge.landingRadiusMilli/1000*32).stroke({color:gold,width:1,alpha:.65}));
-      label(structure,`${edge.kind==="jump"?"断桥踏板":"高廊梯脚"} · ${snapshot.rooms.find(r=>r.id===room)?.name??room}`,screen);
+      depthPart(structure,p,-.02).addChild(new Graphics().ellipse(screen.x,screen.y,edge.landingRadiusMilli/1000*64,edge.landingRadiusMilli/1000*32).stroke({color:gold,width:1,alpha:.65}));
+      label(depthPart(structure,p,.1),`${edge.kind==="jump"?"断桥踏板":"高廊梯脚"} · ${snapshot.rooms.find(r=>r.id===room)?.name??room}`,screen);
     }
-    selectable(structure,edge.segments.flatMap(s=>[mobilityPoint(s.from),mobilityPoint(s.to)]),edge.edgeId,onSelect);
+    selectable(depthPart(structure,first,.2),edge.segments.flatMap(s=>[mobilityPoint(s.from),mobilityPoint(s.to)]),edge.edgeId,onSelect);
   }
 }
