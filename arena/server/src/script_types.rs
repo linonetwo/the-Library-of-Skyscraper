@@ -54,6 +54,20 @@ pub enum ScriptAction {
         #[serde(rename = "roomId")]
         room_id: String,
     },
+    Run {
+        #[serde(rename = "viaRoomId")]
+        via_room_id: String,
+        #[serde(rename = "roomId")]
+        room_id: String,
+    },
+    Jump {
+        #[serde(rename = "edgeId")]
+        edge_id: String,
+    },
+    Climb {
+        #[serde(rename = "edgeId")]
+        edge_id: String,
+    },
     Gather,
     Deliver,
     Attack,
@@ -73,6 +87,19 @@ impl ScriptIntent {
                 actor_id,
                 room_id: room_id.clone(),
             },
+            ScriptAction::Run { via_room_id, room_id } => crate::Command::Run {
+                actor_id,
+                via_room_id: via_room_id.clone(),
+                room_id: room_id.clone(),
+            },
+            ScriptAction::Jump { edge_id } => crate::Command::Jump {
+                actor_id,
+                edge_id: edge_id.clone(),
+            },
+            ScriptAction::Climb { edge_id } => crate::Command::Climb {
+                actor_id,
+                edge_id: edge_id.clone(),
+            },
             ScriptAction::Gather => crate::Command::Gather { actor_id },
             ScriptAction::Deliver => crate::Command::Deliver { actor_id },
             ScriptAction::Attack => crate::Command::Attack { actor_id },
@@ -81,6 +108,27 @@ impl ScriptIntent {
                 room_id: room_id.clone(),
                 kind: kind.clone(),
             },
+        }
+    }
+}
+
+#[cfg(test)]
+mod mobility_tests {
+    use super::*;
+    #[test]
+    fn mobility_intents_map_to_the_same_domain_commands() {
+        for action in [
+            serde_json::json!({"type":"run","viaRoomId":"room-0","roomId":"room-3"}),
+            serde_json::json!({"type":"jump","edgeId":"jump-room-1-room-2"}),
+            serde_json::json!({"type":"climb","edgeId":"climb-room-4-room-3"}),
+        ] {
+            let mut wire = action.clone();
+            wire["actorId"] = serde_json::json!("p1-guard");
+            wire["priority"] = serde_json::json!(50);
+            let intent: ScriptIntent = serde_json::from_value(wire).unwrap();
+            let mut expected = action;
+            expected["actorId"] = serde_json::json!("p1-guard");
+            assert_eq!(serde_json::to_value(intent.command()).unwrap(), expected);
         }
     }
 }
