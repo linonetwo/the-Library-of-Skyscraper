@@ -7,9 +7,8 @@ import {
   type BehaviorPlan,
 } from "../../behavior-modules";
 import { useScriptWorkbench } from "./useScriptWorkbench";
-import { draftKey, type RuleDraft } from "./ruleDraft";
+import { draftKey, isStockDraft, type RuleDraft } from "./ruleDraft";
 import type { RuleSourceProject } from "./scriptTypes";
-import { recallSource } from "./scriptTemplates";
 
 export function useBehaviorWorkbench() {
   const workbench = useScriptWorkbench();
@@ -17,11 +16,7 @@ export function useBehaviorWorkbench() {
   const [history, setHistory] = useState<RuleDraft[]>(() =>
     JSON.parse(localStorage.getItem(historyKey) ?? "[]"),
   );
-  const stock =
-    !workbench.draft.baseVersion &&
-    workbench.draft.entry === "main.ts" &&
-    Object.keys(workbench.draft.files).length === 1 &&
-    workbench.draft.files["main.ts"] === recallSource;
+  const stock = isStockDraft(workbench.draft);
   const plan =
     recoverBehaviorPlan(workbench.draft) ??
     (stock ? createFirstExpeditionPlan() : null);

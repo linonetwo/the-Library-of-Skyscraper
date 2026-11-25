@@ -37,3 +37,12 @@ export function readDraft(session: Session | null): RuleDraft {
   if (legacy) localStorage.setItem("arena-rule-draft-imported", key);
   return draft;
 }
+
+export function isStockDraft(draft: RuleDraft): boolean {
+  return (
+    !draft.baseVersion &&
+    draft.entry === "main.ts" &&
+    Object.keys(draft.files).length === 1 &&
+    draft.files["main.ts"] === recallSource
+  );
+}

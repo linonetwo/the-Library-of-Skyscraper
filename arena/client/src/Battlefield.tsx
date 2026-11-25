@@ -35,6 +35,8 @@ export default function Battlefield() {
     selectActor,
   } = useArena();
 
+  const savedTraining = expeditions.find((entry) => entry.mode === "training");
+
   return (
     <section className="battle-section">
       <div className="section-heading">
@@ -122,14 +124,29 @@ export default function Battlefield() {
               <br />
               让规则引领行动，让知识成为力量。
             </p>
-            <button
-              className="primary"
-              disabled={busy}
-              onClick={() => void start("training")}
-            >
-              {busy ? "正在准备书库…" : "开启训练远征"}
-              <ArrowUpRight size={17} />
-            </button>
+            <div className="entry-actions">
+              <button
+                className="primary"
+                disabled={busy}
+                onClick={() => void start("training")}
+              >
+                {busy ? "正在准备书库…" : "开启训练远征"}
+                <ArrowUpRight size={17} />
+              </button>
+              <button
+                className="primary"
+                disabled={busy}
+                aria-describedby="ai-entry-description"
+                onClick={() =>
+                  void (savedTraining
+                    ? resume(savedTraining.session, "rules")
+                    : start("training", false, "rules"))
+                }
+              >
+                编辑 AI 规则 <ArrowUpRight size={17} />
+              </button>
+            </div>
+            <p id="ai-entry-description">在暂停的训练局中编辑行为模块或规则图</p>
             <button className="text-button" onClick={() => setLobby(true)}>
               或加入联机赛局 <ChevronRight size={13} />
             </button>

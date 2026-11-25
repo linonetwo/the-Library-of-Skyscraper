@@ -128,17 +128,25 @@ export function useArenaWorkspace() {
       setThreshold(player.rule.retreatHp);
     }
   }, [player?.rule.preset, player?.rule.retreatHp]);
-  const enter = (next: Session | undefined) => {
+  const enter = (
+    next: Session | undefined,
+    destination: "map" | "rules" = "map",
+  ) => {
     if (next) {
       setLobby(false);
       setSelected(null);
       setSelectedRoom(null);
-      setView("map");
+      setView(destination);
     }
   };
-  const start = async (mode: "training" | "online", join = false) =>
-    enter(await arena.start(mode, join ? joinId : undefined));
-  const resume = async (saved: Session) => enter(await arena.resume(saved));
+  const start = async (
+    mode: "training" | "online",
+    join = false,
+    destination: "map" | "rules" = "map",
+  ) =>
+    enter(await arena.start(mode, join ? joinId : undefined), destination);
+  const resume = async (saved: Session, destination: "map" | "rules" = "map") =>
+    enter(await arena.resume(saved), destination);
   return {
     ...arena,
     start,

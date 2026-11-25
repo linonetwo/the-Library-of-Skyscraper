@@ -77,7 +77,7 @@ export const graphActionSchemas = [
 async function open(page) {
   const tab = page.getByRole("tab", { name: "规则图", exact: true });
   if (!(await tab.isVisible()))
-    await page.getByRole("button", { name: "AI 模块", exact: true }).click();
+    await page.getByRole("button", { name: "编辑 AI 规则", exact: true }).click();
   await tab.click();
 }
 export async function performGraphAction(page, action) {

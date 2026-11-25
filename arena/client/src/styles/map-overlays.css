@@ -29,6 +29,18 @@
   margin: auto;
   min-width: 210px;
 }
+.entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.entry-actions .primary {
+  flex: 1;
+}
+.entry-card #ai-entry-description {
+  margin: 12px 0 0;
+}
 .entry-card .text-button {
   margin: 11px auto 0;
 }
