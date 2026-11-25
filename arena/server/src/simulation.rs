@@ -38,11 +38,7 @@ impl Session {
                     .filter(|e| e.hp > 0 && e.travel.is_none() && e.room_id == t.target_room_id)
                     .map(|e| e.world_position)
                     .collect();
-                if a.travel.as_ref().is_some_and(|t| t.segments.is_some()) {
-                    crate::combat_approach::stop_segmented_before_opponent(&mut a.travel, &targets);
-                } else {
-                    crate::combat_approach::stop_before_opponent(&mut a.travel, &targets);
-                }
+                crate::combat_approach::stop_before_opponent(&mut a.travel, &targets);
             }
             if a.hp > 0 && crate::travel::advance(&mut a, self.simulation_version) {
                 a.last_moved_tick = self.tick;

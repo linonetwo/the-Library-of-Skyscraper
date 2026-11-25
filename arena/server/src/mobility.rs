@@ -41,10 +41,16 @@ fn route(
         .map(|p| linear(kind, p[0], p[1]))
         .collect())
 }
-fn travel(actor: &Actor, target: &str, tick: u64, segments: Vec<TravelSegment>) -> Option<Travel> {
+fn travel(
+    actor: &Actor,
+    target: &str,
+    tick: u64,
+    mut segments: Vec<TravelSegment>,
+) -> Option<Travel> {
     if segments.is_empty() {
         return None;
     }
+    crate::travel_segments::allocate_durations(&mut segments);
     let mut travel = Travel {
         travel_id: format!("{}-{tick}-{target}", actor.id),
         target_room_id: target.into(),

@@ -78,7 +78,7 @@ impl Session {
         {
             self.scenario.counterattack_spawned = true;
             let position = crate::Position { x: -8., y: 0. };
-            let travel = crate::Travel {
+            let mut travel = crate::Travel {
                 segments: None,
                 segment_elapsed_micros: None,
                 travel_id: format!("counterattack-{}", self.tick),
@@ -91,6 +91,15 @@ impl Session {
                 speed_milli_per_tick: number("speedMilliPerTick"),
                 progress: 0.,
             };
+            if self.simulation_version >= 7 {
+                travel.segments = Some(vec![crate::travel_segments::linear(
+                    crate::TravelKind::Walk,
+                    crate::Point3Milli::ground(position),
+                    crate::Point3Milli::ground(crate::travel::center(&target)),
+                )]);
+                travel.segment_elapsed_micros = Some(0);
+                crate::travel_segments::refresh(&mut travel);
+            }
             self.enemies.push(Enemy {
                 last_moved_tick: 0,
                 action_cue: None,

@@ -4,6 +4,10 @@ use crate::{Position, Travel};
 /// Version-5 arrival stops on the incoming road at melee spacing, never past
 /// the opponent and back out. Only the imminent, legal target-room tail changes.
 pub(crate) fn stop_before_opponent(travel: &mut Option<Travel>, opponents: &[Position]) {
+    if travel.as_ref().is_some_and(|t| t.segments.is_some()) {
+        stop_segmented_before_opponent(travel, opponents);
+        return;
+    }
     let Some(t) = travel.as_mut() else { return };
     let c = center(&t.target_room_id);
     let half = world_map()["rooms"]

@@ -43,6 +43,22 @@ pub fn linear(kind: TravelKind, from: Point3Milli, to: Point3Milli) -> TravelSeg
         arc_height_milli: None,
     }
 }
+/// Speeds have a common third-microsecond denominator. Round cumulative time,
+/// not each segment independently, so an exact 24m run remains exactly16 ticks.
+pub fn allocate_durations(segments: &mut [TravelSegment]) {
+    let mut thirds = 0_u64;
+    let mut rounded = 0_u64;
+    for s in segments {
+        thirds += if s.kind == TravelKind::Jump {
+            2_000_000 * 3
+        } else {
+            s.length_milli * (TICK_MICROS * 3 / s.kind.speed())
+        };
+        let next = thirds.div_ceil(3);
+        s.duration_micros = next - rounded;
+        rounded = next;
+    }
+}
 pub fn point(segment: &TravelSegment, elapsed: u64) -> Point3Milli {
     let d = segment.duration_micros.max(1) as i128;
     let e = elapsed.min(segment.duration_micros) as i128;
@@ -163,8 +179,10 @@ pub fn advance(
             break;
         }
         if budget == 0 {
-            if let Some(next) = segments.get(t.segment) {
-                motion.locomotion = Some(sample(next, 0));
+            if segment.kind != TravelKind::Jump {
+                if let Some(next) = segments.get(t.segment) {
+                    motion.locomotion = Some(sample(next, 0));
+                }
             }
             break;
         }
