@@ -247,6 +247,10 @@ export class ActorView {
       frame: selection?.frame ?? pose.frame,
       animation: action,
       requestedAnimation: selection?.requestedClip,
+      requestedFacing: selection?.direction ?? pose.direction,
+      clipFacing: selection?.direction ?? pose.direction,
+      requestedDirections: selection ? this.assetSet?.clips[selection.requestedClip]?.descriptor.directions : undefined,
+      clipDirections: registration?.descriptor.directions,
       motionDistanceMilli: pose.motionDistanceMilli,
       textures,
     };

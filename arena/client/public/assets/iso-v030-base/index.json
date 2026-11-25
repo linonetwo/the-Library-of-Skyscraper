@@ -1,5 +1,5 @@
 {
-  "assetSetId": "iso-v030-eight-player-complete",
+  "assetSetId": "iso-v050-player-mobility-in-progress",
   "clips": [
     {
       "action": "idle",
@@ -49,6 +49,16 @@
     {
       "action": "catalog",
       "root": "/assets/iso-v030-workpack/catalog",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "run",
+      "root": "/assets/iso-v050-mobility/run",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "jump",
+      "root": "/assets/iso-v050-mobility/jump",
       "descriptor": "atlas-budget.json"
     }
   ]
