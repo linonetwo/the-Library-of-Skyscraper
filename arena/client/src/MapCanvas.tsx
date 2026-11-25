@@ -41,7 +41,6 @@ export default function MapCanvas(props: MapProps) {
     let preparationRevision = 0;
     const world = new Container();
     let renderLayer = new Container();
-    const mobilityFacilities = new Container();
     const mobilitySelection = new Container();
     let mobilityKey = "";
     const entities = new Container({ sortableChildren: true });
@@ -233,8 +232,10 @@ export default function MapCanvas(props: MapProps) {
         for (const child of [...entities.children])
           if (child.label?.startsWith("shelf:") || child.label?.startsWith("decor:"))
             child.destroy({ children: true });
-        mobilityFacilities.removeChildren().forEach((child) => child.destroy());
-        if (p.snapshot) paintMobilityFacilities(mobilityFacilities, p.snapshot, tiles, (id) => {
+        for (const child of [...entities.children]) {
+          if (child.label?.startsWith("mobility:")) child.destroy({ children: true });
+        }
+        if (p.snapshot) paintMobilityFacilities(entities, p.snapshot, tiles, (id) => {
           if (!dragged) latest.current.onMobilityEdge?.(id);
         });
         paintMap(
@@ -351,7 +352,7 @@ export default function MapCanvas(props: MapProps) {
         if (disposed) return;
         dynamics = new WorldEntities(entities, tiles, worldAssets);
         actors = new ActorScene(actorTextures, entities, worldAssets);
-        world.addChild(renderLayer, mobilityFacilities, entities, mobilitySelection);
+        world.addChild(renderLayer, entities, mobilitySelection);
         app.ticker.add(() => {
           const now = performance.now();
           poses = actors.render(now);
