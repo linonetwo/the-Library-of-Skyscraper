@@ -57,3 +57,14 @@ test('natural goal refuses incompatible module role or a hidden higher unload th
  const retreat=createRetreatGraph();retreat.modules.find(m=>m.kind==='retreat').roleFilter=['scout'];
  assert.equal(proposeGoals(retreat,'守卷人生命低于25撤退').changes.length,0);
 });
+
+test('natural return goal never flips an inverse or differently wired cargo condition',()=>{
+ for(const inverse of [true,false]){
+  const graph=createLogisticsGraph(),node=graph.nodes.find(n=>n.id==='cargo-check');
+  node.condition.op=inverse?'lt':'gte';node.yes='gather-node';node.no='haul-node';
+  const p=proposeGoals(graph,'采撷师载量到6就回仓');
+  assert.deepEqual(p.changes.map(c=>c.objectId),['start-return']);assert.match(p.errors[0],/真假出口方向/);
+  const result=applyGraphPatch(graph,selectedGoalPatch(graph,p,p.changes.map(c=>c.id)));
+  assert.deepEqual(result.nodes.find(n=>n.id==='cargo-check'),node);
+ }
+});

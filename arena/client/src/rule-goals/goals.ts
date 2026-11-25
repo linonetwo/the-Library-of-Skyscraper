@@ -59,7 +59,12 @@ export function proposeGoals(graph: RuleGraph, text: string): GoalProposal {
         if (transition.condition.type !== 'compare') throw new Error('转移不是数值条件');
         setCondition(transition.id, { ...transition.condition, value, op: field === 'cargo' ? 'gte' : 'lt' });
         const node = graph.nodes.find(node => node.id === state.treeId);
-        if (field === 'cargo' && node?.type === 'condition' && node.condition.type === 'compare' && node.condition.field === 'cargo') setCondition(node.id, { ...node.condition, value, op: 'gte' });
+        if (field === 'cargo' && node?.type === 'condition' && node.condition.type === 'compare' && node.condition.field === 'cargo') {
+          const yes = graph.nodes.find(item => item.id === node.yes), no = graph.nodes.find(item => item.id === node.no);
+          const directModule = (target: typeof yes, kind: 'haul' | 'gather') => target?.type === 'module' && graph.modules.some(module => module.moduleId === target.moduleId && module.kind === kind && module.enabled && (!module.roleFilter || module.roleFilter.includes(role.role)) && (module.kind !== 'haul' || module.config.minCargo <= value));
+          if (['gte', 'gt'].includes(node.condition.op) && directModule(yes, 'haul') && directModule(no, 'gather')) setCondition(node.id, { ...node.condition, value, op: 'gte' });
+          else proposal.errors.push(`入口条件 ${node.id} 的真假出口方向无法直接证明，节点未修改；请用稳定ID语法明确修改`);
+        }
       } else if ((match = line.match(/^(?:条件|转移) ([\w-]+)[：:]\s*(载量|HP|生命|建材)\s*(<=|>=|<|>|=)\s*(\d+)$/))) {
         const [, id, field, op, number] = match, value = Number(number);
         if (!Number.isSafeInteger(value)) throw new Error('阈值须为安全范围内的非负整数');
