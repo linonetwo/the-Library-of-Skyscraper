@@ -1,3 +1,5 @@
+import {graphActionSchemas,performGraphAction,readGraphState} from './browser-rule-graph.mjs';
+import {goalActionSchemas,performGoalAction,readGoalState} from './browser-goals.mjs';
 import {behaviorActionSchemas,performBehaviorAction,readBehaviorState} from './browser-behavior.mjs';
 import { expeditionActionSchemas, performExpeditionAction, readExpeditionState } from './browser-expedition.mjs';
 import { serviceOrigin } from './origins.mjs';
@@ -11,6 +13,7 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
+    ...graphActionSchemas, ...goalActionSchemas,
     ...expeditionActionSchemas,
     ...workshopActionSchemas,
     ...mapActionSchemas,
@@ -93,10 +96,12 @@ export function registerBrowserTools(server) {
       memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
       tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
     } : null;
-    return { url: active.url(), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    return { url: active.url(), graph: await readGraphState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   const perform = async ({ action }) => {
     const active = current();
+    if (await performGraphAction(active, action)) return { performed: action.type };
+    if (await performGoalAction(active, action)) return { performed: action.type };
     if (await performBehaviorAction(active, action)) return { performed: action.type };
     if (await performExpeditionAction(active, action)) return { performed: action.type };
     if (await performMapAction(active, action)) return { performed: action.type };
