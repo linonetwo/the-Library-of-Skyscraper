@@ -83,14 +83,18 @@ const stages = [
 ];
 export function jumpPoses(direction) {
   return stages.map((stage) => {
+    const southAir = direction.worldForward[0] > 0.7 && direction.worldForward[1] > 0.7 && stage.phase === "airborne";
+    const feet = southAir && stage === stages[3] ? [[0.25, 0.26], [0.12, 0.3]]
+      : southAir && stage === stages[4] ? [[0.2, 0.3], [0.32, 0.24]] : stage.feet;
     const pose = articulate(direction, {
       hipZ: stage.hip,
       lean: stage.lean,
-      ankles: { left: stage.feet[0], right: stage.feet[1] },
+      ankles: { left: feet[0], right: feet[1] },
       wrists: {
         left: stage.wrists,
         right: [-0.05, Math.min(0.89, stage.wrists[1] - 0.12)],
       },
+      kneeSpread: direction.worldForward[0] > 0.7 && direction.worldForward[1] > 0.7 && stage.phase === "airborne" ? 0.12 : 0,
       phase: stage.phase,
       contacts: {
         left: {

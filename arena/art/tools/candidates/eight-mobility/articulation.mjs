@@ -34,6 +34,7 @@ export function articulate(
     staffAngle = 20,
     durationMs,
     ankleAngles = {},
+    kneeSpread = 0,
   },
 ) {
   const heading = direction.worldForward,
@@ -60,7 +61,7 @@ export function articulate(
       world[s + "Ankle"],
       0.3187701178,
       0.3060520193,
-      [...heading, 0],
+      [heading[0] + side[0] * sign * kneeSpread, heading[1] + side[1] * sign * kneeSpread, 0],
     );
     world[s + "Shoulder"] = wp(lean, sign * 0.19, neckZ - 0.065);
     // The accepted north raster has a narrower collar. Preserve its registered
