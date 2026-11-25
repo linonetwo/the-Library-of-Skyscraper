@@ -1,6 +1,7 @@
+import { copyDependencies } from './dependencies.mjs';
 import { buildMetadata } from './manifest.mjs';
 import { execFileSync } from 'node:child_process';
-import { cpSync, mkdirSync, readFileSync, writeFileSync, chmodSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, chmodSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { platform, release, arch } from 'node:os';
@@ -8,7 +9,7 @@ import { platform, release, arch } from 'node:os';
 export async function collectPackage({ source, destination, version, sourceCommit, recipeCommit, runtimeReuse }) {
  const payload=resolve(destination,'package');
  for(const dir of ['bin','data','logs','arena/client','arena/art']) mkdirSync(resolve(payload,dir),{recursive:true});
- const copy=(from,to)=>cpSync(from,to,{recursive:true});
+ const copy=(from,to)=>cpSync(from,to,{recursive:true,verbatimSymlinks:true});
  const metadata=buildMetadata(source,version);
  copy(resolve(source,(metadata.assets.provenance??metadata.assets.approval).path),resolve(payload,(metadata.assets.provenance??metadata.assets.approval).path));
  if(metadata.rules) {
@@ -21,10 +22,14 @@ export async function collectPackage({ source, destination, version, sourceCommi
   const target=process.env.CARGO_TARGET_DIR ? resolve(source,process.env.CARGO_TARGET_DIR) : resolve(source,`arena/${name}/target`);
   copy(resolve(target,'debug',binary),resolve(payload,'bin',binary));
  }
- for(const name of ['dist','node_modules','package.json','package-lock.json','vite.config.ts'])
+ copyDependencies(resolve(source,'arena/client/node_modules'),resolve(payload,'arena/client/node_modules'));
+ for(const name of ['dist','package.json','package-lock.json','vite.config.ts'])
   copy(resolve(source,'arena/client',name),resolve(payload,'arena/client',name));
- for(const module of ['script-sdk','script-toolchain','tools'])
-  copy(resolve(source,'arena',module),resolve(payload,'arena',module));
+ for(const module of ['script-sdk','script-toolchain','tools']) {
+  const from=resolve(source,'arena',module), to=resolve(payload,'arena',module);
+  cpSync(from,to,{recursive:true,verbatimSymlinks:true,filter:path=>path!==resolve(from,'node_modules')});
+  if(existsSync(resolve(from,'node_modules'))) copyDependencies(resolve(from,'node_modules'),resolve(to,'node_modules'));
+ }
  copy(fileURLToPath(new URL('./start.sh',import.meta.url)),resolve(payload,'start.sh'));
  chmodSync(resolve(payload,'start.sh'),0o755);
  copy(fileURLToPath(new URL(`./notes-v${version}.md`,import.meta.url)),resolve(payload,`notes-v${version}.md`));
