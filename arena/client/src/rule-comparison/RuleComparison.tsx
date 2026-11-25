@@ -56,7 +56,9 @@ export function RuleComparison({session, draftProject}: {
     try {
       const graph = recoverRuleGraph(draftProject);
       const b = graph ? toGraphSourceProject(graph) : cloneProject(draftProject);
-      const a = baselineHash ? (await arenaApi.scriptVersion(session, baselineHash)).project : cloneProject(initialDraft.current);
+      const baseline = baselineHash ? (await arenaApi.scriptVersion(session, baselineHash)).project : cloneProject(initialDraft.current);
+      const aGraph = recoverRuleGraph(baseline);
+      const a = aGraph ? toGraphSourceProject(aGraph) : baseline;
       if (revision !== generation.current) return;
       const result = await arenaApi.compareRules(session, {operationIndex, initialState:'empty', a, b});
       if (revision === generation.current) setCapture({result, a, b});
