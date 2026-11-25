@@ -1,3 +1,4 @@
+import { GraphRoomSelect } from "./GraphRoomSelect";
 import type { GraphEffect } from "../../../behavior-modules/graph";
 export function EffectFields({
   label,
@@ -130,15 +131,7 @@ export function EffectFields({
                   }
                 />
               </label>
-              <label>
-                目标房间
-                <input
-                  value={effect.roomId}
-                  onChange={(e) =>
-                    edit(i, { ...effect, roomId: e.target.value })
-                  }
-                />
-              </label>
+              <GraphRoomSelect label="任务目标房间" value={effect.roomId} onChange={roomId => edit(i,{...effect,roomId})}/>
               <label>
                 任务种类
                 <select

@@ -1,3 +1,4 @@
+import { GraphRoomSelect } from "./GraphRoomSelect";
 import type {
   GraphCondition,
   GraphField,
@@ -107,25 +108,11 @@ export function ConditionFields({
               }
             />
           </label>
-          <label>
-            指定房间 · 留空当前房间
-            <input
-              value={value.roomId ?? ""}
-              onChange={(e) =>
-                onChange({ ...value, roomId: e.target.value || undefined })
-              }
-            />
-          </label>
+          <GraphRoomSelect label="指定房间" empty="当前房间" value={value.roomId ?? ""} onChange={roomId => onChange({...value,roomId:roomId||undefined})}/>
         </>
       )}
       {value.type === "atRoom" && (
-        <label>
-          房间ID
-          <input
-            value={value.roomId}
-            onChange={(e) => onChange({ ...value, roomId: e.target.value })}
-          />
-        </label>
+        <GraphRoomSelect label="位于房间" value={value.roomId} onChange={roomId => onChange({...value,roomId})}/>
       )}
       {"missing" in value && (
         <label>
