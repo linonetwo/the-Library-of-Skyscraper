@@ -1,3 +1,4 @@
+import type { Locomotion, MobilityEdge, TravelSegment } from './mobilityTypes';
 export interface Room {
   id: string;
   q: number;
@@ -19,12 +20,16 @@ export type ActionCue = {
   targetPosition: WorldPoint | null;
 };
 export interface Actor {
+  worldHeightMilli?: number;
+  locomotion?: Locomotion;
   actionCue?: ActionCue | null;
   impactCue?: ActionCue | null;
   motionDistanceMilli?: number;
   lastMoveDirection?: WorldPoint;
   worldPosition?: WorldPoint;
   travel?: null | {
+    segments?: TravelSegment[];
+    segmentElapsedMicros?: number;
     travelId: string;
     targetRoomId: string;
     path: WorldPoint[];
@@ -73,6 +78,7 @@ export interface Snapshot {
   simulationVersion?: number;
   worldMap?: {
     version: string;
+    mobilityEdges?: MobilityEdge[];
     rooms: { id: string; center: WorldPoint; floorHalfSize?: number }[];
     props?: {
       id: string;
@@ -156,6 +162,8 @@ export type Command =
     }
   | { type: "equip"; actorId: string; appearance: Appearance }
   | { type: "move"; actorId: string; roomId: string }
+  | { type: "run"; actorId: string; viaRoomId: string; roomId: string }
+  | { type: "jump" | "climb"; actorId: string; edgeId: string }
   | { type: "gather" | "deliver" | "attack" | "capture"; actorId: string }
   | { type: "build"; roomId: string; kind: "tower" | "catalog" }
   | {

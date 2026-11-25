@@ -29,6 +29,9 @@ pub(crate) struct TaskDraft {
 #[derive(Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 enum TaskKind {
+    Run,
+    Jump,
+    Climb,
     Move,
     Gather,
     Deliver,
@@ -87,5 +90,19 @@ impl TaskDraft {
             source_hash: hash.into(),
             updated_at_tick: tick,
         })
+    }
+}
+
+#[cfg(test)]
+mod mobility_plan_tests {
+    use super::*;
+    #[test]
+    fn mobility_tags_are_private_plan_records_not_executors() {
+        for kind in ["run", "jump", "climb"] {
+            let patch = serde_json::json!({"type":"upsert","task":{"id":"plan-a","actorId":"a","roomId":"room-3","kind":kind,"priority":50,"status":"running","blockedReason":null}});
+            let parsed: TaskPatchDraft = serde_json::from_value(patch).unwrap();
+            let TaskPatchDraft::Upsert { task } = parsed else { panic!("not a plan"); };
+            assert_eq!(serde_json::to_value(task).unwrap()["kind"], kind);
+        }
     }
 }

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import test from 'node:test';
 import { compileRule } from '../src/compile.mjs';
 
@@ -32,7 +32,7 @@ export const intents: ActionIntentDraft[] = [];`,
 
 test('official gather example and shared strategy compile unchanged', async () => {
   const files = Object.fromEntries(await Promise.all(
-    ['examples/gather.ts', 'examples/shared.ts', 'src/index.ts', 'src/contract.ts', 'src/views.ts']
+    ['examples/gather.ts', 'examples/shared.ts', 'src/index.ts', 'src/contract.ts', 'src/views.ts', 'src/mobility.ts']
       .map(async name => [name, await readFile(new URL(`../../script-sdk/${name}`, import.meta.url), 'utf8')]),
   ));
   const result = await compileRule({ files, entry: 'examples/gather.ts' });
@@ -78,4 +78,18 @@ test('CLI accepts multiple JSON lines and emits one response for each', async ()
   assert.equal(responses.length, 2);
   assert.ok(responses[0].bundle);
   assert.equal(responses[1].diagnostics[0].severity, 'error');
+});
+
+test('archived v0.4 three-file memory gather compiles without rewriting its task kind', async () => {
+  const project=JSON.parse(await readFile(new URL('./fixtures/v040-memory-gather.json',import.meta.url),'utf8'));
+  assert.match(project.files['main.ts'],/kind: intent.type,/);
+  const result=await compileRule(project);assert.deepEqual(result.diagnostics,[]);assert.ok(result.bundle);
+});
+
+test('archived v0.4 memory gather executes unchanged in the independent V8 runner', {skip:!process.env.ARENA_SCRIPT_RUNNER}, async () => {
+  const project=JSON.parse(await readFile(new URL('./fixtures/v040-memory-gather.json',import.meta.url),'utf8'));
+  const {context}=await import('../../script-sdk/tests/fixture.mjs');
+  const {bundle}=await compileRule(project);
+  const run=spawnSync(process.env.ARENA_SCRIPT_RUNNER,[],{input:JSON.stringify({bundle,context:context()})+'\n',encoding:'utf8'});
+  assert.equal(run.status,0,run.stderr);const result=JSON.parse(run.stdout);assert.equal(result.failure,undefined,JSON.stringify(result));assert.equal(result.decision.memoryPatch.set.ticks,1);assert.equal(result.decision.taskPatches[0].task.kind,result.decision.intents[0].type);
 });
