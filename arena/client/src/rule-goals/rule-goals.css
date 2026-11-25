@@ -1,0 +1,11 @@
+.rule-goals { border-top: 1px solid #718096; padding: .75rem; min-width: 0; }
+.rule-goals textarea { display: block; width: 100%; box-sizing: border-box; }
+.rule-goals pre, .rule-goals code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.rule-goals article { border: 1px solid #718096; margin-block: .5rem; padding: .5rem; }
+.rule-goals article > button { margin-inline-start: .5rem; }
+.rule-goal-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-block: .5rem; }
+.rule-goals > label { display: block; }
+.rule-goals article > label { display: inline-flex; align-items: center; gap: .4rem; }
+
+.rule-goals textarea { background: #101e25; color: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: .6rem; font: inherit; }
+.rule-goals textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
