@@ -74,15 +74,26 @@ impl ScriptEngineAdapter for V8Adapter {
                 message: message.clone(),
             }),
         };
+        let (decision, chants) = if failure.is_none() {
+            result
+                .map(|(decision, chants)| (Some(decision), chants))
+                .unwrap_or_default()
+        } else {
+            (None, None)
+        };
         Response {
-            decision: if failure.is_none() { result.ok() } else { None },
+            decision,
+            chants,
             failure,
             duration_ms: started.elapsed().as_secs_f64() * 1000.0,
         }
     }
 }
 
-fn evaluate(runtime: &mut JsRuntime, request: &Request) -> Result<serde_json::Value, String> {
+fn evaluate(
+    runtime: &mut JsRuntime,
+    request: &Request,
+) -> Result<(serde_json::Value, Option<Vec<crate::protocol::ChantRecord>>), String> {
     let context_json = serde_json::to_string(&request.context).map_err(|e| e.to_string())?;
     let context_literal = serde_json::to_string(&context_json).map_err(|e| e.to_string())?;
     let bootstrap = format!(
@@ -101,8 +112,12 @@ fn evaluate(runtime: &mut JsRuntime, request: &Request) -> Result<serde_json::Va
             "__arenaSerialize(__arenaRule.decide(__arenaContext))",
         )
         .map_err(|e| e.to_string())?;
-    deno_core::scope!(scope, runtime);
-    let local = v8::Local::new(scope, output);
-    let serialized = local.to_rust_string_lossy(scope);
-    serde_json::from_str(&serialized).map_err(|e| e.to_string())
+    let serialized = {
+        deno_core::scope!(scope, runtime);
+        let local = v8::Local::new(scope, output);
+        local.to_rust_string_lossy(scope)
+    };
+    let decision = serde_json::from_str(&serialized).map_err(|e| e.to_string())?;
+    let chants = crate::chant::collect(runtime, request, &decision)?;
+    Ok((decision, chants))
 }

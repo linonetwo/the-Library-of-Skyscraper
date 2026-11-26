@@ -1,0 +1,205 @@
+{
+  "scope": "Compiled SDK projects executed by the native V8 runner with a unit context; not an authority world recording.",
+  "fixtures": [
+    {
+      "name": "official",
+      "files": {
+        "main.ts": "import type {RuleContext,RuleDecisionResult} from '@skyscraper/arena-script-sdk';\nexport function decide(ctx:RuleContext):RuleDecisionResult{return {intents:[{type:'gather',actorId:'gatherer',priority:1},{type:'cast',actorId:'guard',targetId:'enemy-1',skillId:'ink-strike',priority:2}]};}\n"
+      },
+      "request": {
+        "bundle": {
+          "sourceHash": "9c063964d5eec1a139d4e21046a98893603ad78ce46c468b6b80c651bc34ef76",
+          "entry": "main.ts",
+          "code": "var __arenaRule = (() => {\n  var __defProp = Object.defineProperty;\n  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;\n  var __getOwnPropNames = Object.getOwnPropertyNames;\n  var __hasOwnProp = Object.prototype.hasOwnProperty;\n  var __export = (target, all) => {\n    for (var name in all)\n      __defProp(target, name, { get: all[name], enumerable: true });\n  };\n  var __copyProps = (to, from, except, desc) => {\n    if (from && typeof from === \"object\" || typeof from === \"function\") {\n      for (let key of __getOwnPropNames(from))\n        if (!__hasOwnProp.call(to, key) && key !== except)\n          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });\n    }\n    return to;\n  };\n  var __toCommonJS = (mod) => __copyProps(__defProp({}, \"__esModule\", { value: true }), mod);\n\n  // arena:/project/main.ts\n  var main_exports = {};\n  __export(main_exports, {\n    decide: () => decide\n  });\n  function decide(ctx) {\n    return { intents: [{ type: \"gather\", actorId: \"gatherer\", priority: 1 }, { type: \"cast\", actorId: \"guard\", targetId: \"enemy-1\", skillId: \"ink-strike\", priority: 2 }] };\n  }\n  return __toCommonJS(main_exports);\n})();\n",
+          "sourceMap": "{\n  \"version\": 3,\n  \"sources\": [\"arena:/project/main.ts\"],\n  \"sourcesContent\": [\"import type {RuleContext,RuleDecisionResult} from '@skyscraper/arena-script-sdk';\\nexport function decide(ctx:RuleContext):RuleDecisionResult{return {intents:[{type:'gather',actorId:'gatherer',priority:1},{type:'cast',actorId:'guard',targetId:'enemy-1',skillId:'ink-strike',priority:2}]};}\\n\"],\n  \"mappings\": \";;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AACO,WAAS,OAAO,KAAmC;AAAC,WAAO,EAAC,SAAQ,CAAC,EAAC,MAAK,UAAS,SAAQ,YAAW,UAAS,EAAC,GAAE,EAAC,MAAK,QAAO,SAAQ,SAAQ,UAAS,WAAU,SAAQ,cAAa,UAAS,EAAC,CAAC,EAAC;AAAA,EAAE;\",\n  \"names\": []\n}\n"
+        },
+        "context": {
+          "tick": 17,
+          "world": {
+            "enemies": [
+              {
+                "id": "enemy-1",
+                "roomId": "room-3",
+                "hp": 60
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "decision": {
+          "intents": [
+            {
+              "type": "gather",
+              "actorId": "gatherer",
+              "priority": 1
+            },
+            {
+              "type": "cast",
+              "actorId": "guard",
+              "targetId": "enemy-1",
+              "skillId": "ink-strike",
+              "priority": 2
+            }
+          ]
+        },
+        "durationMs": 16.275708,
+        "chants": [
+          {
+            "intentIndex": 1,
+            "actorId": "guard",
+            "targetId": "enemy-1",
+            "observedTick": 17,
+            "skillSourceHash": "441286bde12c417312258ecd0c12f698fbe9fbceba8139fc09e51cffe9dfd4e8",
+            "steps": [
+              {
+                "op": "observe"
+              },
+              {
+                "op": "channel",
+                "from": 0
+              },
+              {
+                "op": "seal",
+                "from": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "authored",
+      "files": {
+        "main.ts": "import type {RuleContext,RuleDecisionResult} from '@skyscraper/arena-script-sdk';\nexport function decide(ctx:RuleContext):RuleDecisionResult{return {intents:[{type:'gather',actorId:'gatherer',priority:1},{type:'cast',actorId:'guard',targetId:'enemy-1',skillId:'ink-strike',priority:2}]};}\nexport {chantInkStrike} from './skills/ink-strike';\n",
+        "skills/ink-strike.ts": "import type {ChantInkStrike} from '@skyscraper/arena-script-sdk';\nexport const chantInkStrike:ChantInkStrike=(input,api)=>{api.seal(api.channel(api.observe()));};\n"
+      },
+      "request": {
+        "bundle": {
+          "sourceHash": "f50b122e42e5a076108f5ea6927ca5ed95876dabcf3cdc72266f3b53a7815a7c",
+          "entry": "main.ts",
+          "code": "var __arenaRule = (() => {\n  var __defProp = Object.defineProperty;\n  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;\n  var __getOwnPropNames = Object.getOwnPropertyNames;\n  var __hasOwnProp = Object.prototype.hasOwnProperty;\n  var __export = (target, all) => {\n    for (var name in all)\n      __defProp(target, name, { get: all[name], enumerable: true });\n  };\n  var __copyProps = (to, from, except, desc) => {\n    if (from && typeof from === \"object\" || typeof from === \"function\") {\n      for (let key of __getOwnPropNames(from))\n        if (!__hasOwnProp.call(to, key) && key !== except)\n          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });\n    }\n    return to;\n  };\n  var __toCommonJS = (mod) => __copyProps(__defProp({}, \"__esModule\", { value: true }), mod);\n\n  // arena:/project/main.ts\n  var main_exports = {};\n  __export(main_exports, {\n    chantInkStrike: () => chantInkStrike,\n    decide: () => decide\n  });\n\n  // arena:/project/skills/ink-strike.ts\n  var chantInkStrike = (input, api) => {\n    api.seal(api.channel(api.observe()));\n  };\n\n  // arena:/project/main.ts\n  function decide(ctx) {\n    return { intents: [{ type: \"gather\", actorId: \"gatherer\", priority: 1 }, { type: \"cast\", actorId: \"guard\", targetId: \"enemy-1\", skillId: \"ink-strike\", priority: 2 }] };\n  }\n  return __toCommonJS(main_exports);\n})();\n",
+          "sourceMap": "{\n  \"version\": 3,\n  \"sources\": [\"arena:/project/main.ts\", \"arena:/project/skills/ink-strike.ts\"],\n  \"sourcesContent\": [\"import type {RuleContext,RuleDecisionResult} from '@skyscraper/arena-script-sdk';\\nexport function decide(ctx:RuleContext):RuleDecisionResult{return {intents:[{type:'gather',actorId:'gatherer',priority:1},{type:'cast',actorId:'guard',targetId:'enemy-1',skillId:'ink-strike',priority:2}]};}\\nexport {chantInkStrike} from './skills/ink-strike';\\n\", \"import type {ChantInkStrike} from '@skyscraper/arena-script-sdk';\\nexport const chantInkStrike:ChantInkStrike=(input,api)=>{api.seal(api.channel(api.observe()));};\\n\"],\n  \"mappings\": \";;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;;;ACCO,MAAM,iBAA8B,CAAC,OAAM,QAAM;AAAC,QAAI,KAAK,IAAI,QAAQ,IAAI,QAAQ,CAAC,CAAC;AAAA,EAAE;;;ADAvF,WAAS,OAAO,KAAmC;AAAC,WAAO,EAAC,SAAQ,CAAC,EAAC,MAAK,UAAS,SAAQ,YAAW,UAAS,EAAC,GAAE,EAAC,MAAK,QAAO,SAAQ,SAAQ,UAAS,WAAU,SAAQ,cAAa,UAAS,EAAC,CAAC,EAAC;AAAA,EAAE;\",\n  \"names\": []\n}\n"
+        },
+        "context": {
+          "tick": 17,
+          "world": {
+            "enemies": [
+              {
+                "id": "enemy-1",
+                "roomId": "room-3",
+                "hp": 60
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "decision": {
+          "intents": [
+            {
+              "type": "gather",
+              "actorId": "gatherer",
+              "priority": 1
+            },
+            {
+              "type": "cast",
+              "actorId": "guard",
+              "targetId": "enemy-1",
+              "skillId": "ink-strike",
+              "priority": 2
+            }
+          ]
+        },
+        "durationMs": 20.059828,
+        "chants": [
+          {
+            "intentIndex": 1,
+            "actorId": "guard",
+            "targetId": "enemy-1",
+            "observedTick": 17,
+            "skillSourceHash": "f50b122e42e5a076108f5ea6927ca5ed95876dabcf3cdc72266f3b53a7815a7c",
+            "steps": [
+              {
+                "op": "observe"
+              },
+              {
+                "op": "channel",
+                "from": 0
+              },
+              {
+                "op": "seal",
+                "from": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing-seal",
+      "files": {
+        "main.ts": "import type {RuleContext,RuleDecisionResult} from '@skyscraper/arena-script-sdk';\nexport function decide(ctx:RuleContext):RuleDecisionResult{return {intents:[{type:'gather',actorId:'gatherer',priority:1},{type:'cast',actorId:'guard',targetId:'enemy-1',skillId:'ink-strike',priority:2}]};}\nexport {chantInkStrike} from './skills/ink-strike';\n",
+        "skills/ink-strike.ts": "import type {ChantInkStrike} from '@skyscraper/arena-script-sdk';\nexport const chantInkStrike:ChantInkStrike=(input,api)=>{api.channel(api.observe());};\n"
+      },
+      "request": {
+        "bundle": {
+          "sourceHash": "381fea4a44804304d283933e7549ab710cd2b3ee649315170d6a264ead59d4c8",
+          "entry": "main.ts",
+          "code": "var __arenaRule = (() => {\n  var __defProp = Object.defineProperty;\n  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;\n  var __getOwnPropNames = Object.getOwnPropertyNames;\n  var __hasOwnProp = Object.prototype.hasOwnProperty;\n  var __export = (target, all) => {\n    for (var name in all)\n      __defProp(target, name, { get: all[name], enumerable: true });\n  };\n  var __copyProps = (to, from, except, desc) => {\n    if (from && typeof from === \"object\" || typeof from === \"function\") {\n      for (let key of __getOwnPropNames(from))\n        if (!__hasOwnProp.call(to, key) && key !== except)\n          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });\n    }\n    return to;\n  };\n  var __toCommonJS = (mod) => __copyProps(__defProp({}, \"__esModule\", { value: true }), mod);\n\n  // arena:/project/main.ts\n  var main_exports = {};\n  __export(main_exports, {\n    chantInkStrike: () => chantInkStrike,\n    decide: () => decide\n  });\n\n  // arena:/project/skills/ink-strike.ts\n  var chantInkStrike = (input, api) => {\n    api.channel(api.observe());\n  };\n\n  // arena:/project/main.ts\n  function decide(ctx) {\n    return { intents: [{ type: \"gather\", actorId: \"gatherer\", priority: 1 }, { type: \"cast\", actorId: \"guard\", targetId: \"enemy-1\", skillId: \"ink-strike\", priority: 2 }] };\n  }\n  return __toCommonJS(main_exports);\n})();\n",
+          "sourceMap": "{\n  \"version\": 3,\n  \"sources\": [\"arena:/project/main.ts\", \"arena:/project/skills/ink-strike.ts\"],\n  \"sourcesContent\": [\"import type {RuleContext,RuleDecisionResult} from '@skyscraper/arena-script-sdk';\\nexport function decide(ctx:RuleContext):RuleDecisionResult{return {intents:[{type:'gather',actorId:'gatherer',priority:1},{type:'cast',actorId:'guard',targetId:'enemy-1',skillId:'ink-strike',priority:2}]};}\\nexport {chantInkStrike} from './skills/ink-strike';\\n\", \"import type {ChantInkStrike} from '@skyscraper/arena-script-sdk';\\nexport const chantInkStrike:ChantInkStrike=(input,api)=>{api.channel(api.observe());};\\n\"],\n  \"mappings\": \";;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;;;ACCO,MAAM,iBAA8B,CAAC,OAAM,QAAM;AAAC,QAAI,QAAQ,IAAI,QAAQ,CAAC;AAAA,EAAE;;;ADA7E,WAAS,OAAO,KAAmC;AAAC,WAAO,EAAC,SAAQ,CAAC,EAAC,MAAK,UAAS,SAAQ,YAAW,UAAS,EAAC,GAAE,EAAC,MAAK,QAAO,SAAQ,SAAQ,UAAS,WAAU,SAAQ,cAAa,UAAS,EAAC,CAAC,EAAC;AAAA,EAAE;\",\n  \"names\": []\n}\n"
+        },
+        "context": {
+          "tick": 17,
+          "world": {
+            "enemies": [
+              {
+                "id": "enemy-1",
+                "roomId": "room-3",
+                "hp": 60
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "decision": {
+          "intents": [
+            {
+              "type": "gather",
+              "actorId": "gatherer",
+              "priority": 1
+            },
+            {
+              "type": "cast",
+              "actorId": "guard",
+              "targetId": "enemy-1",
+              "skillId": "ink-strike",
+              "priority": 2
+            }
+          ]
+        },
+        "durationMs": 16.22857,
+        "chants": [
+          {
+            "intentIndex": 1,
+            "actorId": "guard",
+            "targetId": "enemy-1",
+            "observedTick": 17,
+            "skillSourceHash": "381fea4a44804304d283933e7549ab710cd2b3ee649315170d6a264ead59d4c8",
+            "steps": [
+              {
+                "op": "observe"
+              },
+              {
+                "op": "channel",
+                "from": 0
+              }
+            ],
+            "reasonCode": "chant-mismatch"
+          }
+        ]
+      }
+    }
+  ]
+}

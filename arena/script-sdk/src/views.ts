@@ -1,4 +1,5 @@
 import type { Locomotion, MobilityEdge, TravelSegment } from './mobility.ts';
+import type { TacticalSnapshot, ScenarioId } from './tactics.ts';
 type ReadonlyView<T> = { readonly [K in keyof T]: ReadonlyView<T[K]> };
 
 export type EntityId = string;
@@ -73,6 +74,8 @@ export interface BuildingScriptView {
 }
 
 export interface AuthorizedWorldView {
+  readonly tactics?: TacticalSnapshot;
+  readonly scenarioId?: ScenarioId;
   readonly rooms: readonly RoomScriptView[];
   readonly actors: readonly ActorScriptView[];
   readonly buildings: readonly BuildingScriptView[];
@@ -82,7 +85,7 @@ export interface AuthorizedWorldView {
   readonly scenarioConfig?: unknown;
 }
 
-export type TaskKind = 'run' | 'jump' | 'climb' | 'move' | 'gather' | 'deliver' | 'build' | 'attack' | 'capture';
+export type TaskKind = 'run' | 'jump' | 'climb' | 'move' | 'gather' | 'deliver' | 'build' | 'attack' | 'capture' | 'repair' | 'claim' | 'cast';
 export type TaskStatus = 'queued' | 'running' | 'blocked' | 'completed' | 'failed' | 'cancelled';
 
 export interface TaskDraft {
