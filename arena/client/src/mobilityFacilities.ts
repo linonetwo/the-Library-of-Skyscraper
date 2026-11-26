@@ -86,7 +86,7 @@ export function paintMobilityFacilities(layer: Container, snapshot: Snapshot, te
     for(const segment of edge.segments) {
       if(segment.role!=="ladder")continue;
       const facing=segment.ladderFacing??{x:0,y:1};const norm=Math.hypot(facing.x,facing.y)||1;
-      const nx=-facing.y/norm*220,ny=facing.x/norm*220;
+      const nx=-facing.y/norm*320,ny=facing.x/norm*320;
       // Width is perpendicular to the registered ladder face in WORLD XY.
       for(const sign of [-1,1])beam(depthPart(structure,offset(segment.from,nx*sign,ny*sign),-.05),mobilityPoint(offset(segment.from,nx*sign,ny*sign)),mobilityPoint(offset(segment.to,nx*sign,ny*sign)),5,wood);
       const low=Math.min(segment.from.z,segment.to.z),high=Math.max(segment.from.z,segment.to.z);
