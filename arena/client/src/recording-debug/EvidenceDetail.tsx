@@ -1,6 +1,7 @@
 import type { RecordingEvidence } from './selection';
 const reasonLabels: Record<string, string> = {
   'custom-selected': '自定义模块提议动作',
+  'custom-fallback': '走本叶原后备',
   'custom-hold': '自定义模块保持',
   'custom-exit': '走已连接的命名出口',
   'custom-unconnected-exit': '命名出口走本叶后备',
