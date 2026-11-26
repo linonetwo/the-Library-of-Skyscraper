@@ -2,7 +2,7 @@ title: 竞技场开发日志2026-11-26
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261126055113000
-modified: 20261126152244000
+modified: 20261126165635000
 
 !! 今日正式AI编辑器回访
 
@@ -122,7 +122,7 @@ source＝recipe仍固定5eebbfacfef1456c97611693038a87f0ee66d4b2。实际归档1
 
 正式[[5173首页直达AI模块编辑|http://localhost:5173/?view=rules]]与[[5175主试玩|http://localhost:5175/?view=rules]]现已部署v0.5固定source 5eebbfacfef1456c97611693038a87f0ee66d4b2，同源代理8790。Core部署exit0，进程2087467／2087485／2087486，原live-data共404个文件恢复后仍404；保留原存档与身份。此前章节中5173仍v0.4.1的文字是当时状态，本节为最新上线结果，5191继续作为开发入口。
 
-[img[竞技场2026-11-26正式v5入口物流状态图实机.png]]
+[[正式v0.5入口物流状态图实机|竞技场2026-11-26正式v5入口物流状态图实机.png]]
 
 上线后一次真实浏览器回访在5173／?view=rules打开五卡并载入物流状态图，T0暂停、errors[]，main-ai-ui-revisit-first/report.json记录完成。图中为最新正式入口的可编辑物流图；载入草图本身不发布。现有五卡、FSM／决策图、TypeScript、真实预演对比与发布记录可从同一工作台使用，专用模块及完整覆盖面板仍按v0.6候选范围推进。
 
@@ -139,3 +139,21 @@ source＝recipe仍固定5eebbfacfef1456c97611693038a87f0ee66d4b2。实际归档1
 !! v0.5.0预览版正式发布
 
 [[GitHub v0.5.0 prerelease|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.5.0]]实际发布于2026-11-26T15:20:08Z，tag／source／recipe均为5eebbfacfef1456c97611693038a87f0ee66d4b2。远端四附件state与digest逐项核同：归档178509644字节（e9099000d6f31084f4c663f7e8563dc900e76cc2b5e4c3a52bf088f78c314669）、SHA文件106字节、manifest11011字节、ACCEPTANCE11664字节；release/published.json保存完整readback。首次上传进程SIGTERM保留，同一draft只续传缺失archive后发布，沿用原归档，完整批次验收与部署事实见上文。正式5173／5175已可直接进入「AI 模块编辑」，旧404会话及token保留，旧身份认证200。
+
+
+!! v0.6录制索引与编排核心已合，个人片段候选实操
+
+录制纯索引PR165已合b855b4d6，三模块／类型化实例／片段helpers与混图真实trace的PR166已合3dc047d6，均获Astra精确审与CI通过。A1核心源已合，完整玩家闭环仍待整批实玩；模块目录与录制调试UI正在接入，v0.6尚未发布。正式5173／5175与下载继续为上述v0.5。
+
+[img[竞技场2026-11-26候选个人片段共享实例实机.png]]
+
+候选5200→8801的UI source955e38b已实际完成两个草稿间保存个人片段、显式重绑房间／岗位、冲突ID重映、保留内部共享、一次撤销；浏览器与真实MCP stdio同流程均exit0。新图两片叶节点均显示「实例 gather-2」，让共享关系可见。fragments-ui-visible-sharing/report.json保留操作读回（其sourceCommit字段仍记a8bd32d+compact-preview，completed／undoRestored为true、errors[]），955e38b新图补充实例可视；binding-preview.png保留绑定预览，原first过程证据保留；桌面切片已被独立Release Astra接受，候选后续将rebase至166。此为候选局部实操；A2个人片段PR167随后已合75ec5586856915f53809b8060c3a81f02f34255d，技术6077644240、桌面视觉6077729492及CI45859425173通过。模块目录、A3 UI与全批A4验收仍在接续。
+
+当前日报三张内嵌为v0.6候选个人片段共享图、固定包NE攀梯近景、v0.5 T230胜利；旧正式AI图保留链接。v0.6按A1–A4整批验收后统一发布，当前候选能力与正式v0.5入口分开记录。
+
+
+!! 三新模块正常权威样例与录制时间归属
+
+正常时钟authority样例arena-v060-normal-composition-first/report.json已passed，实际8.7秒、18次delta、22个operation，三新模块的实际room／Travel读回已供A3使用。ruleHistory的tick标记决策T，同operation场景是推进后帧T：op4决策T0／场景T1，op21决策T17／场景T18；原第一报告r.tick为decision tick，原文件保留，后续UI双标这两类时间，避免将决策与结果帧混为同一时刻。
+
+PR168真实数据moduleVisits索引增量21973db已获Astra6077884341批准，记录时CI仍在进行；未把在途增量记作已合。v0.6已有A1核心、A2个人片段及A3纯索引合入，目录与调试UI、全批固定包验收仍在进行，正式入口和下载保持v0.5。
