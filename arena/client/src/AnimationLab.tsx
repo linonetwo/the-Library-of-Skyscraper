@@ -115,7 +115,7 @@ export default function AnimationLab() {
       <label><input type="checkbox" checked={equipped} onChange={event => setEquipped(event.target.checked)} />{outfit === "scholar" ? "学者服动画层" : "守卫服动画层"}</label>
       <label>发型 <select aria-label="动画发型" value={hair} onChange={event => setHair(event.target.value as "ivory" | "midnight")}><option value="ivory">月白</option><option value="midnight">午夜</option></select></label>
       <label><input type="checkbox" checked={haired} onChange={event => setHaired(event.target.checked)} />{hair === "ivory" ? "月白" : "午夜"}发型动画层</label>
-      <label><input type="checkbox" checked={weapon} onChange={event => { setWeapon(event.target.checked); if (!event.target.checked && action === "cast") resetAction(definition?.clips.idle ? "idle" : "recover"); }} />法杖动画层</label>
+      <label><input type="checkbox" disabled={!definition} checked={weapon} onChange={event => { setWeapon(event.target.checked); if (!event.target.checked && action === "cast") resetAction(definition?.clips.idle ? "idle" : "recover"); }} />法杖动画层</label>
     </aside></div>
     {error && <p role="alert">{error}</p>}{!readyClip && !error && <p role="status">加载图集…</p>}
     <details className="lab-details"><summary>图层与素材信息</summary><p role="note">身体、衣装、发型和空手／法杖使用远征同源独立图层。动作、方向覆盖与帧段来自当前图集描述；未注册方向留空，不借用其他朝向。</p>
