@@ -1,3 +1,9 @@
+import { CustomModuleUpgrade } from "./rule-modules/custom/CustomModuleUpgrade";
+import { CustomDefinitionEditor } from "./rule-modules/custom/CustomDefinitionEditor";
+import { CustomModuleLibrary } from "./rule-modules/custom/CustomModuleLibrary";
+import { useCustomModules } from "./rule-modules/custom/useCustomModules";
+import { createCustomModuleDraft, customModuleDefaults, type CustomModuleDefinition } from "../../behavior-modules/graph";
+import "./rule-modules/custom/custom-modules.css";
 import { RecordingDebugger } from "./recording-debug/RecordingDebugger";
 import type { ReplayOperationTarget } from "./useReplay";
 import { draftEditorView } from "./ruleDraft";
@@ -13,7 +19,7 @@ import type { GraphSelection } from "./rule-graph/graphObjects";
 import { getGraphSourceRef } from "../../behavior-modules/graph";
 import { RuleGoalEditor } from "./rule-goals/RuleGoalEditor";
 import { scriptTemplates } from "./scriptTemplates";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { getModuleSourceRef } from "../../behavior-modules";
 import { useBehaviorWorkbench } from "./useBehaviorWorkbench";
 import { BehaviorModuleCard } from "./BehaviorModuleCard";
@@ -36,6 +42,8 @@ export default function BehaviorWorkbench({
   onViewChange?: (view: "modules" | "graph" | "source" | "versions") => void;
 }) {
   const w = useBehaviorWorkbench();
+  const custom = useCustomModules();
+  const [customView, setCustomView] = useState<"library" | "author" | null>(null);
   const g = useRuleGraphDraft(w);
   const [recordingReplay, setRecordingReplay] = useState<ReplayOperationTarget | null>(null);
   const [moduleRequest, setModuleRequest] = useState<ModuleRequest | null>(null);
@@ -82,6 +90,7 @@ export default function BehaviorWorkbench({
     "modules" | "graph" | "source" | "versions"
   >("modules");
   const tab = view ?? localTab;
+  useEffect(() => setCustomView(null), [tab]);
   const setTab = (next: "modules" | "graph" | "source" | "versions") => {
     setLocalTab(next);
     onViewChange?.(next);
@@ -109,10 +118,24 @@ export default function BehaviorWorkbench({
     w.preview?.sourceHash === w.compilation?.bundle?.sourceHash
       ? graphPreview
       : null;
+  const createModule = () => { custom.edit(createCustomModuleDraft(crypto.randomUUID())); setCustomView("author"); };
+  const addDefinition = (definition: CustomModuleDefinition) => {
+    setModuleRequest({ type: "custom", definition, module: { moduleId: "custom-module", kind: "custom", definitionId: definition.definitionId, revisionId: definition.revisionId, config: customModuleDefaults(definition), enabled: true, priority: 20 } });
+    setCustomView(null); setTab("graph");
+  };
+  const creationActions = <nav className="module-creation-actions" aria-label="AI 模块创作入口">
+    <button onClick={() => { setCustomView(null); setTab("modules"); }}>调现有模块</button>
+    <button onClick={createModule}>创建自定义模块</button>
+    <button onClick={() => { setCustomView(null); setTab("graph"); }}>规则图与 TS</button>
+    <button onClick={() => setCustomView("library")}>我的模块</button>
+  </nav>;
+  if (customView === "author" && custom.draft) return <div className="script-workbench behavior-workbench">{creationActions}<CustomDefinitionEditor draft={custom.draft} session={w.session} saving={custom.saving} error={custom.error} onChange={custom.edit} onSave={custom.save} onClose={() => setCustomView("library")} /></div>;
+  if (customView === "library") return <div className="script-workbench behavior-workbench">{creationActions}{custom.draft && <button onClick={() => setCustomView("author")}>继续编辑模块本体</button>}<CustomModuleLibrary definitions={custom.definitions} onNew={createModule} onEdit={definition => { custom.edit(definition); setCustomView("author"); }} onAdd={addDefinition} onRemove={custom.remove} onClose={() => setCustomView(null)} /></div>;
   return (
     <div
       className={`script-workbench behavior-workbench ${tab === "graph" ? "graph-workbench" : ""}`}
     >
+      {creationActions}
       {tab !== "graph" && (
         <header>
           <div>
@@ -155,7 +178,7 @@ export default function BehaviorWorkbench({
           草图待修；模型诊断阻止编译、试跑与发布。源码与当前草图同步保存。
         </p>
       )}
-      {(tab === "modules" || tab === "graph") && <ModuleCatalog graph={g.graph} onChoose={request => { setModuleRequest(request); if (g.graph) setTab("graph"); }} />}
+      {(tab === "modules" || tab === "graph") && <ModuleCatalog graph={g.graph} customDefinitions={custom.definitions} onChooseCustom={addDefinition} onChoose={request => { setModuleRequest(request); if (g.graph) setTab("graph"); }} />}
       {moduleRequest && !g.graph && w.plan && <RuleGraphConversionPreview plan={w.plan} onConfirm={() => { g.replace("priority"); setTab("graph"); }} onCancel={() => setModuleRequest(null)} />}
       {moduleRequest && !g.graph && !w.plan && <p>当前手写工程保持原样；可在规则图页显式载入图草稿后接入模块，替换可撤销。</p>}
       <ScriptVersion busy={w.busy} onDisable={() => void w.run("disable")} />
@@ -199,6 +222,10 @@ export default function BehaviorWorkbench({
           )}
           {g.error && <p role="alert">{g.error}</p>}
           {!g.graph && <RecordingDebugger session={w.session} onSeekOperation={setRecordingReplay} />}
+          {g.graph && graphSelection?.kind === "modules" && (() => {
+            const module = g.graph.modules.find(item => item.moduleId === graphSelection.id);
+            return module?.kind === "custom" ? <CustomModuleUpgrade key={module.moduleId} graph={g.graph} module={module} definitions={custom.definitions} onApply={g.apply} onEditBody={definition => { custom.edit(definition); setCustomView("author"); }} /> : null;
+          })()}
           {g.graph && (
             <GraphEditor
               graph={g.graph}

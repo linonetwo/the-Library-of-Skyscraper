@@ -1,8 +1,8 @@
 import { createDefaultBehaviorPlan } from "../../../behavior-modules";
-import { createCompositionGraph, type GraphModule } from "../../../behavior-modules/graph";
+import { createCompositionGraph, type GraphModule, type CustomModuleDefinition, type CustomModuleBinding } from "../../../behavior-modules/graph";
 export type ModuleKind = Exclude<GraphModule["kind"], "custom">;
 export const moduleKinds: ModuleKind[] = ["scout", "patrol", "escort", "gather", "haul", "build", "defend", "retreat"];
-export type ModuleRequest = { type: "new"; module: GraphModule } | { type: "existing"; moduleId: string };
+export type ModuleRequest = { type: "new"; module: GraphModule } | { type: "existing"; moduleId: string } | { type: "custom"; definition: CustomModuleDefinition; module: CustomModuleBinding };
 export const moduleCatalog: Record<ModuleKind, { name: string; description: string }> = {
   gather: { name: "采集藏材", description: "采集岗位前往资源房；资源不可用时回退。" },
   haul: { name: "运输入库", description: "携带达到门槛时返回入库；货量不足时回退。" },
