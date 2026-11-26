@@ -68,6 +68,35 @@ export async function loadRig(names) {
   return config;
 }
 
+/** South run/jump use clean thighs and an always-visible independent left palm. */
+export async function loadRunJumpRig(names) {
+  const config = await loadRig(names);
+  const direction = config.directions.S;
+  if (!direction) return config;
+  for (const side of ["left", "right"]) {
+    const thigh = direction.attachments.find(a => a.id === side + "-thigh");
+    thigh.image = path.resolve(here, "../../../iso-v050-mobility/south-limb-cleanup", side + "-thigh.png");
+  }
+  const original = direction.attachments.find(a => a.id === "left-forearm-hand");
+  direction.attachments = direction.attachments.filter(a => a !== original);
+  for (const mode of ["forearm", "natural-hand"]) {
+    const palm = mode === "natural-hand";
+    direction.attachments.push({ ...original, id: "left-" + mode,
+      image: path.join(here, "../eight-work/hands/S/left-" + mode + ".png"),
+      joint: palm ? "leftWrist" : "leftElbow",
+      pivot: palm ? direction.joints.leftWrist.cell.map((v,i) => v-original.restTopLeft[i]) : original.pivot,
+      layer: palm ? "hand-left-front" : original.layer,
+      ...(palm ? { angleJoint: "leftElbow" } : {}),
+    });
+  }
+  // The left palm remains above either sleeve for empty and staff modes alike.
+  const order = config.layerOrderByDirection.S;
+  order.splice(order.indexOf("outfit-warden-front") + 1, 0, "hand-left-front");
+  for (const layers of Object.values(config.previewLooks)) layers.push("hand-left-front");
+  config.previewLayers.push("hand-left-front");
+  return config;
+}
+
 /** Accepted carry registrations already separate both forearms and stow the staff. */
 export async function loadClimbRig(names) {
   const config = await loadRig(names);

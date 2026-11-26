@@ -44,7 +44,7 @@ export function runPoses(direction) {
       wrists,
       phase: support ? "support-strike" : "flight",
       contacts,
-      staffAngle: direction.worldForward[1] > 0 ? -18 : 18,
+      staffAngle: direction.worldForward[0] < -0.7 && direction.worldForward[1] > 0.7 ? 25 : direction.worldForward[1] > 0 ? -18 : 18,
       durationMs: i === 7 || i === 15 ? 40 : 30,
     });
   });

@@ -1,10 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { loadRig } from "./rig.mjs";
+import { loadRig, loadRunJumpRig } from "./rig.mjs";
 import { runPoses, runStride } from "./run.mjs";
 import { jumpPoses } from "./jump.mjs";
 const distance = (a, b) => Math.hypot(...a.map((n, i) => n - b[i]));
-const rig = await loadRig(["NE", "SW"]);
+const rig = await loadRig(["NE", "SW", "E", "W", "N", "S", "NW", "SE"]);
 test("new run has stance and flight with a distinct authoritative distance stride", () => {
   assert.notEqual(runStride, 1.08);
   for (const d of Object.values(rig.directions)) {
@@ -130,5 +130,31 @@ test("climb reuses the successful independent forearms and stowed staff registra
     assert(
       !direction.attachments.some((a) => a.layer.startsWith("cargo-bundle")),
     );
+  }
+});
+
+test("south cleanup preserves the seven accepted headings and exposes the left palm above both sleeves", async () => {
+  const clean = await loadRunJumpRig(Object.keys(rig.directions));
+  for (const name of Object.keys(rig.directions).filter(name => name !== "S"))
+    assert.deepEqual(clean.directions[name], rig.directions[name]);
+  const south = clean.directions.S;
+  assert(!south.attachments.some(a => a.id === "left-forearm-hand"));
+  const hand = south.attachments.find(a => a.id === "left-natural-hand");
+  assert.equal(hand.joint, "leftWrist");
+  assert.equal(hand.angleJoint, "leftElbow");
+  assert.equal(hand.layer, "hand-left-front");
+  assert.equal(hand.variant, undefined);
+  assert(clean.layerOrderByDirection.S.indexOf(hand.layer) > clean.layerOrderByDirection.S.indexOf("outfit-warden-front"));
+  assert(Object.values(clean.previewLooks).every(layers => layers.includes(hand.layer)));
+  for (const side of ["left", "right"])
+    assert(south.attachments.find(a => a.id === side + "-thigh").image.includes("south-limb-cleanup/"));
+});
+
+test("south airborne sole readback follows the same adjusted ankle targets as the rendered joints", () => {
+  const poses = jumpPoses(rig.directions.S);
+  for (const frame of [3, 4]) for (const side of ["left", "right"]) {
+    const { world, contacts } = poses[frame].supportContacts;
+    assert.equal(contacts[side].soleHeight, world[side + "Ankle"][2] - .11);
+    assert.equal(contacts[side].support, false);
   }
 });

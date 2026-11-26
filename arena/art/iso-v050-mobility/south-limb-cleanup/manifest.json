@@ -1,0 +1,72 @@
+{
+  "direction": "S",
+  "scope": [
+    "run",
+    "jump"
+  ],
+  "sourceRevision": "0644d5ba3f4811f981b2a6f3d7a3481945dc3adc",
+  "attachments": {
+    "left-thigh": {
+      "source": "arena/art/tools/candidates/eight-base/inputs/art/attachments-six-directions/S/left-thigh.png",
+      "sourceSha256": "e64c55023df9452a544736911e8ed6cf81d6d4f09463ff7feeb1dd4bc63dd597",
+      "image": "left-thigh.png",
+      "sha256": "360723cedccac210ef6830853fbc339167a2c7ad94b7eb9b2dae0f12ca793a95",
+      "size": [
+        15,
+        34
+      ],
+      "joint": "leftHip",
+      "pivot": [
+        4.394793509724806,
+        5.531907914338916
+      ],
+      "restTopLeft": [
+        99.75107660954423,
+        109.67003488188476
+      ],
+      "removedNonzeroAlphaPixels": 75,
+      "alphaMask": {
+        "rowsInclusive": [
+          0,
+          16
+        ],
+        "xInclusive": [
+          10,
+          14
+        ]
+      },
+      "unchanged": "All RGB channels, all alpha outside mask, all rows from 17 onward. No rescale, trim, pivot shift or repainted garment."
+    },
+    "right-thigh": {
+      "source": "arena/art/tools/candidates/eight-base/inputs/art/attachments-six-directions/S/right-thigh.png",
+      "sourceSha256": "7c7f837e6e7957dcce1475bbba6a6b221faed0a544617716cf5cb183a4169e12",
+      "image": "right-thigh.png",
+      "sha256": "16b7d5746c2c82b2eec8bdc8a8f55d06730b681b785dc3a610577084f49eb49f",
+      "size": [
+        17,
+        34
+      ],
+      "joint": "rightHip",
+      "pivot": [
+        12.033436164444169,
+        5.6480274044327246
+      ],
+      "restTopLeft": [
+        75.8206937162868,
+        109.55391539179095
+      ],
+      "removedNonzeroAlphaPixels": 75,
+      "alphaMask": {
+        "rowsInclusive": [
+          0,
+          16
+        ],
+        "xInclusive": [
+          0,
+          4
+        ]
+      },
+      "unchanged": "All RGB channels, all alpha outside mask, all rows from 17 onward. No rescale, trim, pivot shift or repainted garment."
+    }
+  }
+}
