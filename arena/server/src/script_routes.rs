@@ -63,29 +63,36 @@ pub(crate) fn rule_context(snapshot: Snapshot, owner: &str) -> Value {
         .iter()
         .filter(|actor| actor.owner == owner)
         .collect();
-    json!({
-        "tick": snapshot.tick,
-        "player": player,
-        "squad": { "actors": actors },
-        "world": {
-            "rooms": snapshot.rooms,
-            "actors": snapshot.actors,
-            "buildings": snapshot.buildings,
-            "enemies": snapshot.enemies,
-            "worldMap": snapshot.world_map,
-            "scenario": snapshot.scenario,
-            "scenarioConfig": snapshot.scenario_config,
-        },
-        "tasks": { "items": [] },
-        "memory": {},
-        "limits": {
-            "maxIntents": actors.len() * 2,
-            "maxTaskPatches": skyscraper_arena_server::script_state::MAX_TASK_PATCHES,
-            "maxLogEntries": 32,
-            "maxMemoryBytes": skyscraper_arena_server::script_state::MAX_MEMORY_BYTES,
-            "remainingBudgetTokens": 10000,
-        },
-    })
+    let mut context = json!({
+       "tick": snapshot.tick,
+       "player": player,
+       "squad": { "actors": actors },
+       "world": {
+           "rooms": snapshot.rooms,
+           "actors": snapshot.actors,
+           "buildings": snapshot.buildings,
+           "enemies": snapshot.enemies,
+           "worldMap": snapshot.world_map,
+           "scenario": snapshot.scenario,
+           "scenarioConfig": snapshot.scenario_config,
+       },
+       "tasks": { "items": [] },
+       "memory": {},
+       "limits": {
+           "maxIntents": actors.len() * 2,
+           "maxTaskPatches": skyscraper_arena_server::script_state::MAX_TASK_PATCHES,
+           "maxLogEntries": 32,
+           "maxMemoryBytes": skyscraper_arena_server::script_state::MAX_MEMORY_BYTES,
+           "remainingBudgetTokens": 10000,
+       },
+    });
+    if let Some(scenario) = snapshot.scenario_id {
+        context["world"]["scenarioId"] = json!(scenario);
+    }
+    if let Some(tactics) = snapshot.tactics {
+        context["world"]["tactics"] = json!(tactics);
+    }
+    context
 }
 
 pub async fn publish(

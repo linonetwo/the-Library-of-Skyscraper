@@ -9,6 +9,8 @@ use std::collections::BTreeMap;
 pub struct SessionCheckpoint {
     #[serde(default)]
     rule_runtime: BTreeMap<String, crate::script_state::RuleRuntimeState>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    tactics: Option<crate::TacticalState>,
     version: u32,
     #[serde(deserialize_with = "deserialize_snapshot")]
     snapshot: Snapshot,
@@ -27,6 +29,7 @@ impl Session {
     pub fn checkpoint(&mut self) -> SessionCheckpoint {
         SessionCheckpoint {
             rule_runtime: self.rule_runtime.clone(),
+            tactics: self.tactics.clone(),
             version: 1,
             snapshot: self.snapshot(),
             tokens: self.tokens.clone(),
@@ -48,6 +51,8 @@ impl Session {
         world.spawn_batch(snapshot.actors);
         let mut session = Self {
             simulation_version: snapshot.simulation_version,
+            scenario_id: snapshot.scenario_id,
+            tactics: checkpoint.tactics,
             scenario: snapshot.scenario,
             enemies: snapshot.enemies,
             rule_runtime: checkpoint.rule_runtime,

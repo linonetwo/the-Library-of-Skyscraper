@@ -339,6 +339,17 @@ impl Session {
                     a.state = "building".into();
                 }
             }
+            "claim" if self.simulation_version >= 8 => {
+                crate::travel::approach_actor(
+                    a,
+                    crate::tactics::point_presence::anchor(&task.target),
+                    1800,
+                    self.tick,
+                    self.simulation_version,
+                );
+                task.stage = "claiming".into();
+                a.state = "claiming".into();
+            }
             "guard" => {
                 task.stage = "guarding".into();
                 a.state = "guarding".into();

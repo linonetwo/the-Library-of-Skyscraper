@@ -46,6 +46,8 @@ impl Session {
                     | Command::Gather { .. }
                     | Command::Deliver { .. }
                     | Command::Attack { .. }
+                    | Command::Repair { .. }
+                    | Command::Claim { .. }
                     | Command::Capture { .. }
                     | Command::Build { .. }
             )
@@ -61,6 +63,18 @@ impl Session {
         Ok(())
     }
     pub(crate) fn apply_command(&mut self, owner: &str, command: Command) -> Result<(), String> {
+        if self.simulation_version < 8
+            && matches!(
+                &command,
+                Command::Attack {
+                    target_id: Some(_),
+                    ..
+                } | Command::Repair { .. }
+                    | Command::Claim { .. }
+            )
+        {
+            return Err("tactics require simulationVersion8".into());
+        }
         if self.simulation_version < 3 {
             return self.legacy_apply_command(owner, command);
         }
@@ -70,6 +84,25 @@ impl Session {
         if self.result.is_some() && !matches!(command, Command::Reset {}) {
             return Err("session settled; reset to retry same seed".into());
         }
+        let clear_target = if self.simulation_version >= 8 {
+            match &command {
+                Command::Move { actor_id, .. }
+                | Command::Run { actor_id, .. }
+                | Command::Jump { actor_id, .. }
+                | Command::Climb { actor_id, .. }
+                | Command::Task { actor_id, .. }
+                | Command::Capture { actor_id }
+                | Command::Gather { actor_id }
+                | Command::Deliver { actor_id }
+                | Command::Attack {
+                    actor_id,
+                    target_id: None,
+                } => Some(actor_id.clone()),
+                _ => None,
+            }
+        } else {
+            None
+        };
         let jump_command = matches!(&command, Command::Jump { .. });
         match command {
             Command::Task {
@@ -180,9 +213,30 @@ impl Session {
                 a.pending_delivery = true;
                 self.world.entity_mut(e).insert(a);
             }
-            Command::Attack { actor_id } => {
+            Command::Attack {
+                actor_id,
+                target_id: Some(target_id),
+            } => {
+                self.targeted_attack(owner, &actor_id, &target_id)?;
+            }
+            Command::Repair {
+                actor_id,
+                building_id,
+            } => {
+                self.repair_building(owner, &actor_id, &building_id)?;
+            }
+            Command::Claim { actor_id, room_id } => {
+                self.claim_point(owner, &actor_id, &room_id)?;
+            }
+            Command::Attack {
+                actor_id,
+                target_id: None,
+            } => {
                 let (e, mut a) = self.actor(owner, &actor_id)?;
                 self.actor_attack(&mut a)?;
+                if self.simulation_version >= 8 {
+                    self.manual_actions.insert(actor_id, self.tick);
+                }
                 self.world.entity_mut(e).insert(a);
             }
             Command::Capture { actor_id } => {
@@ -251,6 +305,15 @@ impl Session {
                 }
             }
             other => self.legacy_apply_command(owner, other)?,
+        }
+        if let Some(id) = clear_target {
+            self.tactics
+                .as_mut()
+                .unwrap()
+                .actor_states
+                .get_mut(&id)
+                .unwrap()
+                .attack_target_id = None;
         }
         Ok(())
     }

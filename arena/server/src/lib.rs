@@ -75,3 +75,6 @@ mod tactics;
 pub use tactics::*;
 #[cfg(test)]
 mod tactical_dto_tests;
+
+#[cfg(test)]
+mod tactical_tests;

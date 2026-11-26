@@ -59,6 +59,14 @@ impl Session {
             if a.hp == 0 || a.travel.is_some() || a.retreating {
                 continue;
             }
+            // Explicit sim8 target actions are single commands, not a new auto-controller.
+            if self.simulation_version >= 8
+                && self.tactics.as_ref().unwrap().actor_states[&a.id]
+                    .attack_target_id
+                    .is_some()
+            {
+                continue;
+            }
             if a.task.as_ref().is_some_and(|t| t.kind == "guard")
                 && let Some(enemy) = self
                     .enemies

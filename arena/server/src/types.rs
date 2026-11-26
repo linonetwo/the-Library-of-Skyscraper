@@ -97,6 +97,8 @@ pub struct Building {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Event {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tactical: Option<crate::TacticalEvent>,
     pub id: u64,
     pub tick: u64,
     pub kind: String,
@@ -111,6 +113,10 @@ pub struct ResultSummary {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Snapshot {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub scenario_id: Option<crate::ScenarioId>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tactics: Option<crate::TacticalSnapshot>,
     #[serde(default)]
     pub simulation_version: u32,
     #[serde(default)]
@@ -191,6 +197,20 @@ pub enum Command {
     Attack {
         #[serde(rename = "actorId")]
         actor_id: String,
+        #[serde(default, rename = "targetId", skip_serializing_if = "Option::is_none")]
+        target_id: Option<String>,
+    },
+    Repair {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+        #[serde(rename = "buildingId")]
+        building_id: String,
+    },
+    Claim {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+        #[serde(rename = "roomId")]
+        room_id: String,
     },
     Capture {
         #[serde(rename = "actorId")]

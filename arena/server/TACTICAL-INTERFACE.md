@@ -1,12 +1,12 @@
-# sim8 tactical interface — T1a
+# sim8 tactical interface — T1a/T1b
 
-This slice freezes typed authority data and examples. It does not enable sim8, add a second command processor, or claim live tactical effects. The domain slices below extend the existing `Command`, session creation, checkpoint and operation replay together before new games switch to sim8. Existing sessions/replays ≤7 retain their original serialized fields and algorithms.
+T1b implements targeted attack, paid repair and persistent point capture through the existing command/tick/recording pipeline. An explicit scenario selection creates a sim8 candidate; omitted scenarioId still creates the existing sim7 first expedition until the skill domains are complete. Existing sessions/replays ≤7 retain their original serialized fields and algorithms.
 
 ## Creation and targets
 
-`POST /api/sessions` gains optional `scenarioId: "first-expedition" | "seal-contest"`; omission selects first-expedition. `mode` remains training/online. The original credentials response is unchanged. The snapshot and replay header carry `scenarioId` for sim8; old recordings omit it. Reset keeps the selected scenario. Seal contest reuses the registered `world-map-v5.json` floor/roads and adds the facts in `arena/shared/seal-contest-v1.json`; no old geometry is edited.
+`POST /api/sessions` gains optional `scenarioId: "first-expedition" | "seal-contest"`; omission selects first-expedition. For this development slice, pass scenarioId explicitly to opt into sim8. `mode` remains training/online. The original credentials response is unchanged. The snapshot and replay header carry `scenarioId` for sim8; old recordings omit it. Reset keeps the selected scenario. Seal contest reuses the registered `world-map-v5.json` floor/roads and adds the facts in `arena/shared/seal-contest-v1.json`; no old geometry is edited.
 
-The exact future command JSON is in `tests/fixtures/tactics-wire.json`:
+The command JSON is in `tests/fixtures/tactics-wire.json`:
 
 ```json
 {"type":"attack","actorId":"p1-guard","targetId":"drill-guardian-b"}
@@ -14,6 +14,8 @@ The exact future command JSON is in `tests/fixtures/tactics-wire.json`:
 {"type":"claim","actorId":"p1-guard","roomId":"room-2"}
 {"type":"cast","actorId":"p1-guard","skillId":"ink-strike","targetId":"drill-guardian-b"}
 ```
+
+The first three commands are implemented in T1b. Cast remains the next worker-backed domain slice.
 
 Attack without targetId retains ordinary attack. Capture retains the guard behavior. New targeted actions require sim8. Actors are token-owner scoped, attack/cast targets are live authorized PVE enemies, repair targets are that owner's completed buildings, and claim targets are registered non-base rooms. Enemy/building/room identity comes from existing snapshot objects; the command carries the resolved exact ID, not a client selection query.
 
@@ -41,7 +43,7 @@ Tick-derived phases (one existing 500ms clock):
 
 ## Results and the existing recording
 
-The existing Event gains an optional typed tactical result in the integration slice: action, actorId, exact targetId, phase, reasonCode and material/HP/energy/control before/after values. No private file or sourceHash appears there. The original operation owns that event; there is no independent tactical event log or clock.
+The existing Event carries an optional typed tactical result: action, actorId, exact targetId, phase, reasonCode and material/HP/energy/control before/after values. No private file or sourceHash appears there. The original operation owns that event; there is no independent tactical event log or clock.
 
 Unauthorized or malformed input uses the existing Err path without public state changes. Authorized, well-formed commands whose world judgment fails (target-gone, insufficient-materials, etc.) produce a structured domain result and typed event and are recorded through the same Command operation, so replay evaluates the same original command. Script rejection uses the existing owner script-rejected path once, without double counting. HTTP keeps the existing returned Snapshot, whose events carry the result.
 
@@ -53,4 +55,10 @@ Command ordering remains recorded order, automatic actor ordering remains ID ord
 - CoreSol: SDK/shared TS refs, four graph modules, bounded visits, compiler/V8 skill invocation records. Coordinate Rust adapter edits with WorkSol before touching server files. No ordinary user-supplied proof can authorize a cast.
 - UISol: current command UI/workbench/render consumers, using these wire facts. No client HP/cost/claim/phase simulation.
 
-T1a has format/JSON checks only until root provides Cargo space. The DTO serde fixture is a schema regression, not combat/claim/skill evidence. Full world tests and normal-clock fixed-package verification follow the domain slices.
+Targeted attack and valid repair beyond 2m take one original approach step (at most 750mm per tick, stopping at 1.8m). This is a single command step: the next command or script decision continues it. Approach changes neither HP, material stock nor attack/repair cooldown. Repeated commands cannot add another actor movement step that tick.
+
+Claim is a persistent task. Its six-tick challenge is reset by a live room guardian, nearby opposing owner or absence of an actionable claimant; completed ownership remains. One active owner scores once per point per tick, including the capture tick. Seal contest ends at 20 scored ticks or at tick 960 (higher score wins, equal scores draw).
+
+The DTO fixture checks schema. Domain tests use explicitly labelled fixed-world fixtures for lethal/last-resource boundaries, plus command-only travel, actual enemy facility damage, repair, capture, checkpoint and operation replay. Normal-clock fixed-package verification follows the complete tactical/skill batch.
+
+For sim8, `scenarioConfig.attack.rangeMilli` projects the existing effective attackRange ×1000; targeted attack reads the same value. Repair/claim/ink parameters remain in the selected scenario config. Script contexts expose the same `world.scenarioId` and `world.tactics` snapshot projection; ≤7 contexts retain their old keys.

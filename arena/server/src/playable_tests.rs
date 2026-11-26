@@ -323,6 +323,7 @@ fn script_wait_holds_fire_manual_conflicts_and_attack_uses_one_cooldown() {
         "p1",
         Command::Attack {
             actor_id: "p1-guard".into(),
+            target_id: None,
         },
     )
     .unwrap();
@@ -331,7 +332,8 @@ fn script_wait_holds_fire_manual_conflicts_and_attack_uses_one_cooldown() {
         s.apply_command(
             "p1",
             Command::Attack {
-                actor_id: "p1-guard".into()
+                actor_id: "p1-guard".into(),
+                target_id: None
             }
         )
         .is_err()
