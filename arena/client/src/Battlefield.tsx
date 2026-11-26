@@ -16,6 +16,7 @@ import RuleEditor from "./RuleEditor";
 export default function Battlefield() {
   const {
     snapshot,
+    session,
     mobilityChoice,
     setMobilityChoice,
     busy,
@@ -197,9 +198,9 @@ export default function Battlefield() {
             返回地图 ×
           </button>
         )}
-        {view === "rules" && (
+        {view === "rules" && session && (
           <div className="workspace-overlay">
-            <RuleEditor />
+            <RuleEditor key={`${session.sessionId}/${session.playerId}`} />
           </div>
         )}
         {view === "journal" && <JournalPanel />}
