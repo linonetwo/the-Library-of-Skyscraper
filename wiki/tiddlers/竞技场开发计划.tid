@@ -1,6 +1,6 @@
 created: 20261027000000000
 creator: Codex
-modified: 20261126152244000
+modified: 20261126202025000
 modifier: Codex
 tags: 竞技场目录：实施分工
 title: 竞技场开发计划
@@ -15,7 +15,7 @@ type: text/vnd.tiddlywiki
 |v0.4.0／已发布预览|Astra／Sol／主代理|[[可编程小队G1–G5|竞技场v0.4.0版本计划]]：玩家编辑状态机与决策树，真TS执行、同帧对照与回放定位；[[已发布|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.0]]|
 |v0.4.1／已发布预览|UI Sol／Astra／主代理|[[AI入口可见性修复|竞技场v0.4.1版本计划]]，[[已发布|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.1]]；[[稳定5173|http://localhost:5173]]／5175首页「编辑 AI 规则」直达同一工坊与已有草稿|
 |v0.5.0／M5通过、main已部署|Astra／Sol／主代理|完整八向机动与外观、AI入口统一；[[v0.5.0已发布|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.5.0]]，2026-11-26 15:20:08 UTC|
-|v0.6.0／已采纳待实施|Astra／Sol|[[AI战术编排与录制调试|竞技场v0.6.0版本计划]]：五到八卡、具名本地片段、录制断点／覆盖，同一TS／V8|
+|v0.6.0／已发布预览|Astra／Sol／主代理|[[AI战术编排与录制调试|竞技场v0.6.0版本计划]]：八模块／具名片段／录制断点覆盖，[[已发布|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.6.0]]并部署正式5173／5175|
 |v0.7.0／战术权威候选|Astra／Sol|武器技能／咏唱／受击起身、修复、指定目标集火、真占领；补权威语义后做专用卡|
 |v0.8.0／完整短赛候选|Astra／Sol|五资源／科技、2–4小时短赛、bot／排名奖励|
 |v0.9.0／教程候选|Astra／Sol|首小时教学、改规则与复盘修复|
@@ -31,6 +31,6 @@ type: text/vnd.tiddlywiki
 |v0.4.0 G4|[[竞技场v0.4.0规则图设计合同]]|工作台Sol：目标→节点补丁、部分采纳、撤销与真实MCP操作|
 |v0.4.0 G5|[[竞技场开发计划验收发布]]|集成Sol：完整固定源包；独立Astra审查，主代理统一发布|
 
-原完整实现继续沿[[竞技场完整实现里程碑]]及[[竞技场实现里程碑依赖验收矩阵]]推进。v0.3证据与分项不再当作开放待办。v0.4已集齐G1–G5并统一发布；v0.5固定包整批验收完成并已部署main；v0.6按独立合同实施A1–A4，不另建编排器，齐备后固定源集中验收再统一发布。
+原完整实现继续沿[[竞技场完整实现里程碑]]及[[竞技场实现里程碑依赖验收矩阵]]推进。v0.3证据与分项不再当作开放待办。v0.4已集齐G1–G5并统一发布；v0.5固定包整批验收完成并已部署main；v0.6 A1–A4已齐，固定包11实录、双签、发布及正式部署完成；v0.7接续由Astra规划，仍按整批固定源验收后统一发布。
 
 每日记录由[[竞技场目录：日报]]按标签收录；最新[[竞技场开发日志2026-11-26]]。
