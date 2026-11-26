@@ -44,10 +44,10 @@ export function CustomDefinitionEditor({ draft, session, saving, error, onChange
     {diagnostics.length > 0 && <ul role="alert">{diagnostics.map((item, index) => <li key={index}>{diagnosticNames[item.code] ?? item.message}{item.key ? ` · ${item.key}` : ""}</li>)}</ul>}
     {(error || compileError) && <p role="alert">{error || compileError}</p>}
     <div className="module-actions">
-      <button disabled={!session || compiling || saving || !!diagnostics.length} onClick={() => void check()}>{compiling ? "检查中…" : "检查模块 TypeScript"}</button>
+      <button disabled={!session || compiling || saving || !!diagnostics.length} onClick={() => void check()}>{compiling ? "编译中…" : "编译模块"}</button>
       <button disabled={saving || compiling || !!diagnostics.length} onClick={() => void onSave().then(definition => { if (definition) setSaved({ draft, definition }); })}>{saving ? "保存中…" : "保存到我的模块"}</button>
     </div>
-    {result && <div aria-label="模块源码检查结果">{result.diagnostics.length ? result.diagnostics.map((item, index) => <button key={index} onClick={() => { setView("source"); setLocation({ ...item, nonce: Date.now() }); }}>{item.file}:{item.line}:{item.column} · {item.message}</button>) : <p>TypeScript 检查通过。</p>}</div>}
+    {result && <div aria-label="模块编译结果">{result.diagnostics.length ? result.diagnostics.map((item, index) => <button key={index} onClick={() => { setView("source"); setLocation({ ...item, nonce: Date.now() }); }}>{item.file}:{item.line}:{item.column} · {item.message}</button>) : <p>模块编译通过。</p>}</div>}
     {currentSaved && <p role="status">已保存「{currentSaved.name}」· 版本 {currentSaved.revisionId.slice(0, 12)}，可从我的模块添加实例。</p>}
   </section>;
 }
