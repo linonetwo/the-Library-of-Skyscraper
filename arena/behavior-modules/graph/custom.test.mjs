@@ -59,6 +59,17 @@ test('unconnected named exits use fallback; diagnostics include named edges and 
  graph.nodes[0].exits={bagFull:'second'};graph.nodes[1].exits={bagFull:'first'};assert.ok(api.diagnoseGraph(graph).some(d=>d.code==='tree-cycle'));
  graph.nodes[0].exits={bad:'missing'};assert.ok(api.diagnoseGraph(graph).some(d=>d.code==='custom-exit'));assert.ok(api.diagnoseGraph(graph).some(d=>d.code==='reference'));
 });
+test('fixed fallback cannot be redirected by a connected named exit and needs no declared ports',async()=>{
+ const {graph}=await example();graph.modules.find(m=>m.moduleId==='custom-a').config.resourceRoom={type:'room',roomId:'missing'};
+ let {bundle}=await compile(graph);let result=execute(bundle,context([actor('g','gatherer',1)]));
+ assert.deepEqual(visits(result,'g')[0],{moduleId:'custom-a',nodeId:'first',outcome:'fallback',reasonCode:'custom-fallback',fallbackNodeId:'hold',reason:'采集房间不可用，走后备'});
+ assert.equal(result.memoryPatch.set.aiTrace.actors[0].selectedNodeId,'hold');assert.deepEqual(result.intents,[]);
+ const draft=api.createCustomModuleDraft('zero-exits');draft.exits=[];draft.source="import type {Input,Result} from './types';\nexport function decide(input:Input):Result{return {type:'fallback',reason:'original fallback'};}\n";
+ const definition=await api.saveCustomModuleDefinition(draft);graph.customDefinitions=[definition];
+ for(const module of graph.modules)if(module.kind==='custom'){module.definitionId=definition.definitionId;module.revisionId=definition.revisionId;}
+ for(const node of graph.nodes)if(node.type==='module'&&node.moduleId.startsWith('custom-'))delete node.exits;
+ ({bundle}=await compile(graph));result=execute(bundle,context([actor('g')]));assert.equal(visits(result,'g')[0].reasonCode,'custom-fallback');assert.equal(visits(result,'g')[0].exitKey,undefined);
+});
 test('revisited instances read the old snapshot and commit only their last explicit memory result',async()=>{
  for(const omitSecond of [false,true]){
   const {graph}=await example();const draft=api.createCustomModuleDraft('last-write');draft.exits=[{key:'again',label:'again'}];

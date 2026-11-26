@@ -8,7 +8,7 @@ export function decide(input: Input): Result {
   if (input.actor.cargo >= input.params.limit) return { type: 'exit', key: 'bagFull', reason: '货量达到返仓阈值' };
   if (input.actor.travel) return { type: 'hold', reason: '等待实际抵达' };
   const roomId = input.params.resourceRoom.roomId;
-  if (!input.world.rooms.some(room => room.id === roomId)) return { type: 'exit', key: 'bagFull', reason: '采集房间不可用，走后备' };
+  if (!input.world.rooms.some(room => room.id === roomId)) return { type: 'fallback', reason: '采集房间不可用，走后备' };
   if (input.actor.roomId !== roomId) return { type: 'action', intent: { type: 'move', roomId }, reason: '前往采集房间' };
   return { type: 'action', intent: { type: 'gather' }, reason: '尚未达到返仓阈值，继续采集' };
 }

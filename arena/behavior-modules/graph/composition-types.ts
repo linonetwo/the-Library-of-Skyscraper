@@ -12,7 +12,7 @@ export type CompositionModule = { [K in keyof CompositionConfig]: {
   roleFilter?: ActorRole[]; config: CompositionConfig[K];
 } }[keyof CompositionConfig];
 export type GraphModule = BehaviorModule | CompositionModule | import('./custom-types').CustomModuleBinding;
-export type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-cargo-insufficient' | 'escort-safe' | 'escort-defending' | 'custom-selected' | 'custom-hold' | 'custom-exit' | 'custom-unconnected-exit';
+export type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-cargo-insufficient' | 'escort-safe' | 'escort-defending' | 'custom-selected' | 'custom-hold' | 'custom-fallback' | 'custom-exit' | 'custom-unconnected-exit';
 export interface ModuleVisit {
   nodeId: string; moduleId: string; outcome: 'selected' | 'fallback' | 'hold';
   reasonCode: ModuleReasonCode; ref?: ModuleRef; resolvedId?: string;

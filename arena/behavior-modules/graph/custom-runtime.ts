@@ -10,6 +10,7 @@ export function selectCustom(ctx:RuleContext,actor:ActorScriptView,module:Custom
  const result=body({tick:ctx.tick,actor,player:ctx.player,squad:ctx.squad,world:ctx.world,tasks:ctx.tasks,params:module.config,memory:JSON.parse(JSON.stringify(memory))});
  visit.reason=result.reason.slice(0,240);
  const saved='memory' in result?{memory:JSON.parse(JSON.stringify(result.memory)) as MemoryValue}:{};
+ if(result.type==='fallback'){visit.reasonCode='custom-fallback';return {visit,...saved,next:fallback};}
  if(result.type==='exit'){
   const target=exits?.[result.key];visit.exitKey=result.key;visit.reasonCode=target?'custom-exit':'custom-unconnected-exit';visit.fallbackNodeId=target??fallback;
   return {visit,...saved,next:target??fallback};

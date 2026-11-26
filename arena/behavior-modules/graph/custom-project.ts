@@ -35,7 +35,7 @@ export interface CustomModuleDefinition {definitionId:string;revisionId:string;n
 export function addCustomContract(source:string):string {
  return customContractSource+source
  .replace('BehaviorModule | CompositionModule;','BehaviorModule | CompositionModule | CustomModuleBinding;')
- .replace("'escort-defending';","'escort-defending' | 'custom-selected' | 'custom-hold' | 'custom-exit' | 'custom-unconnected-exit';")
+ .replace("'escort-defending';","'escort-defending' | 'custom-selected' | 'custom-hold' | 'custom-fallback' | 'custom-exit' | 'custom-unconnected-exit';")
  .replace('  fallbackNodeId?: string;','  fallbackNodeId?: string; exitKey?:string; reason?:string;')
  .replace("moduleId: string; fallback: string }","moduleId: string; fallback: string; exits?:Record<string,string> }")
  .replace('nodes: RuleNode[]; modules: GraphModule[];','nodes: RuleNode[]; modules: GraphModule[]; customDefinitions?:CustomModuleDefinition[];');

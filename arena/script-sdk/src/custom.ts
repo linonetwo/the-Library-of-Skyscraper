@@ -11,5 +11,6 @@ export interface CustomModuleInput<P> extends Pick<RuleContext, 'tick' | 'player
 export type CustomModuleResult<E extends string> = (
   | { type: 'action'; intent: CustomAction; reason: string }
   | { type: 'hold'; reason: string }
+  | { type: 'fallback'; reason: string }
   | { type: 'exit'; key: E; reason: string }
 ) & { memory?: MemoryValue };
