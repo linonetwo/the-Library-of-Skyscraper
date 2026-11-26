@@ -26,11 +26,15 @@ export function expeditionObjective(snapshot: Snapshot, player?: Player): Expedi
   ].sort((a, b) => b[0].length - a[0].length);
   for (const [id, name] of names) result = result.split(id).join(name);
   for (const [kind, name] of [["catalog", "编目台"], ["warehouse", "前线仓库"], ["tower", "防御塔"]]) result = result.split(kind).join(name);
-  const finish = (title: string, executing: Actor[], focus = roomId): ExpeditionObjective => ({
-    title,
-    detail: `${executing.length ? executing.map((actor) => `${label(actor)}${actor.travel ? `：${actorActivity(actor, snapshot).detail}` : ""}`).join("、") : "尚无存活执行者"} · ${cargo || `库存${player.materials}材`} · ${result}`,
-    roomId: focus,
-  });
+  const finish = (title: string, executing: Actor[], focus = roomId): ExpeditionObjective => {
+    const travelling = living.filter((actor) => actorActivity(actor, snapshot).travelling);
+    const participants = executing.length ? executing : travelling;
+    const activity = participants.map((actor) => `${label(actor)}${actor.travel ? `：${actorActivity(actor, snapshot).detail}` : ""}`).join("、");
+    const status = executing.length ? activity : living.length
+      ? ["当前目标暂无执行者", activity ? `队友在途：${activity}` : ""].filter(Boolean).join(" · ")
+      : "尚无存活执行者";
+    return { title, detail: `${status} · ${cargo || `库存${player.materials}材`} · ${result}`, roomId: focus };
+  };
   if (snapshot.phase === "settled" || snapshot.result) return finish(
     snapshot.result ? `${snapshot.result.winner === player.id ? "远征胜利" : "远征结束"} · ${reasonName(snapshot.result.reason)}` : "远征结算中",
     living,

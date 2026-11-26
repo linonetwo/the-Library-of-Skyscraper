@@ -56,6 +56,27 @@ test('taskless AI travelling toward the objective is shown as incoming, never as
 test('leaving the objective does not count as presence even while roomId still names the origin',()=>{
  const leaving={...actor,cargo:0,roomId:'target',task:{kind:'guard',target:'target'},travel:{targetRoomId:'base'}};
  const o=expeditionObjective({...base,actors:[leaving],enemies:[{id:'guardian',hp:20,roomId:'target'}]},player);
- assert.match(o.detail,/尚无存活执行者/);
- assert.doesNotMatch(o.detail,/采撷师/);
+ assert.match(o.detail,/目标暂无执行者/);
+ assert.match(o.detail,/采撷师：前往支援/);
+ assert.doesNotMatch(o.detail,/尚无存活执行者|施工中|驻守编目/);
+});
+
+test('taskless published AI on a different route remains alive and reports its actual destination',()=>{
+ const jumping={...actor,id:'p1-guard',role:'guard',task:null,cargo:0,roomId:'resource',
+  locomotion:{kind:'jump',phase:'airborne',progress:.298},travel:{targetRoomId:'bridge'}};
+ const s={...base,tick:21,paused:true,actors:[jumping],rooms:[...base.rooms,{id:'bridge',name:'星砂编目台'}],
+  enemies:[{id:'guardian',hp:80,roomId:'target'}]};
+ const o=expeditionObjective(s,{...player,script:{sourceHash:'published'}});
+ assert.match(o.title,/剩余HP 80/);
+ assert.match(o.detail,/当前目标暂无执行者 · 队友在途：守卷人：跃桥 · 腾空 · 前往目标 · 星砂编目台/);
+ assert.doesNotMatch(o.detail,/尚无存活执行者|施工中|驻守编目/);
+ assert.equal(o.roomId,'target','the strategic objective still focuses its real room');
+});
+test('only the absence of living owned actors reports no surviving executor',()=>{
+ const s={...base,actors:[{...actor,hp:0,task:null}],enemies:[{id:'guardian',hp:80,roomId:'target'}]};
+ assert.match(expeditionObjective(s,player).detail,/尚无存活执行者/);
+ const waiting={...actor,task:null,travel:null,cargo:0};
+ const o=expeditionObjective({...s,actors:[waiting]},player);
+ assert.match(o.detail,/目标暂无执行者/);
+ assert.doesNotMatch(o.detail,/尚无存活执行者|前往目标/);
 });
