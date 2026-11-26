@@ -3,7 +3,7 @@ import { AnimationLabCanvas } from "./AnimationLabCanvas";
 import { labDirections } from "./AnimationLabScene";
 import { labActionLabels, labFrameTime } from "./animationLabModel";
 import { loadMainDefinition } from "./dollAssets";
-import { loadClipLayers, type LoadedAssetSet, type RegisteredDollClip } from "./assetSetLoader";
+import { loadAssetSet, type AssetSetIndex, loadClipLayers, type LoadedAssetSet, type RegisteredDollClip } from "./assetSetLoader";
 import { animationLayers } from "./walkLayers";
 import { clipDuration, frameAt } from "./animationTiming";
 import type { Clip } from "./animationCatalog";
@@ -32,7 +32,14 @@ export default function AnimationLab() {
   const readyClip = selection === readySelection ? clip : undefined;
   useEffect(() => {
     let disposed = false;
-    void loadMainDefinition().then(set => { if (!disposed) setDefinition(set); })
+    const study = new URLSearchParams(window.location.search).get("study") === "cast-recover";
+    const definition = study
+      ? fetch("/assets/iso-v070-combat-study/index.json").then(response => {
+          if (!response.ok) throw new Error(`候选动作索引 ${response.status}`);
+          return response.json() as Promise<AssetSetIndex>;
+        }).then(loadAssetSet)
+      : loadMainDefinition();
+    void definition.then(set => { if (!disposed) { setDefinition(set); if (study) setAction(set.clips.cast ? "cast" : "recover"); } })
       .catch(cause => { if (!disposed) setError(String(cause)); });
     return () => { disposed = true; };
   }, []);
@@ -91,7 +98,7 @@ export default function AnimationLab() {
       </section>
     </section><aside className="lab-controls"><h2>动作与播放</h2>
       <label>动作 <select aria-label="动作" value={action} disabled={!definition} onChange={event => resetAction(event.target.value as Clip)}>
-        {Object.keys(definition?.clips ?? { idle: null }).map(key => <option key={key} value={key}>{labActionLabels[key as Clip]}</option>)}
+        {Object.keys(definition?.clips ?? { idle: null }).map(key => <option key={key} value={key} disabled={key === "cast" && !weapon}>{labActionLabels[key as Clip]}</option>)}
       </select></label>
       <button disabled={!readyClip} onClick={() => {
         if (!playing && readyClip && readyClip.timing.playback !== "loop" && elapsed.current >= clipDuration(readyClip.timing)) { elapsed.current = 0; setFrame(0); }
@@ -108,7 +115,7 @@ export default function AnimationLab() {
       <label><input type="checkbox" checked={equipped} onChange={event => setEquipped(event.target.checked)} />{outfit === "scholar" ? "学者服动画层" : "守卫服动画层"}</label>
       <label>发型 <select aria-label="动画发型" value={hair} onChange={event => setHair(event.target.value as "ivory" | "midnight")}><option value="ivory">月白</option><option value="midnight">午夜</option></select></label>
       <label><input type="checkbox" checked={haired} onChange={event => setHaired(event.target.checked)} />{hair === "ivory" ? "月白" : "午夜"}发型动画层</label>
-      <label><input type="checkbox" checked={weapon} onChange={event => setWeapon(event.target.checked)} />法杖动画层</label>
+      <label><input type="checkbox" disabled={!definition} checked={weapon} onChange={event => { setWeapon(event.target.checked); if (!event.target.checked && action === "cast") resetAction(definition?.clips.idle ? "idle" : "recover"); }} />法杖动画层</label>
     </aside></div>
     {error && <p role="alert">{error}</p>}{!readyClip && !error && <p role="status">加载图集…</p>}
     <details className="lab-details"><summary>图层与素材信息</summary><p role="note">身体、衣装、发型和空手／法杖使用远征同源独立图层。动作、方向覆盖与帧段来自当前图集描述；未注册方向留空，不借用其他朝向。</p>
