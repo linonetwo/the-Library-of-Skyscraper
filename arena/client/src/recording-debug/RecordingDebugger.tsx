@@ -115,6 +115,6 @@ function RecordingDebuggerView({session, onSeekOperation, onOpenSource}: Recordi
       <label>已存区间<select aria-label="已存具名录制" value="" onChange={e => {const saved=ranges[Number(e.target.value)];if(saved){setHash(saved.sourceHash);setName(saved.name);setFrom(saved.fromOperation);setTo(saved.toOperation);setActor('');setObject('');clear();}}}><option value="">选择本会话区间</option>{ranges.map((saved,i) => <option key={saved.name} value={i}>{saved.name} · {saved.sourceHash.slice(0,8)} · {saved.fromOperation}–{saved.toOperation}</option>)}</select></label>
       <button onClick={() => {setFrom(0);setTo(lastOperation);}}>使用整份录制操作范围</button>
     </fieldset>
-    {index && graph && actorId && validRange && <CoverageTable index={index} range={range} graph={graph} actorId={actorId} target={target} onLocate={(operation, choice) => {setObject(choice.objectId);setKind(choice.kind);seek(operation,{...filter,...choice});}} />}
+    {index && graph && actorId && validRange && <CoverageTable index={index} range={range} graph={graph} actorId={actorId} target={target} onLocate={(operation, choice) => {setObject(choice.objectId);setKind(choice.kind);setExit('');seek(operation,{...filter,...choice,exitKey:undefined});}} />}
   </section>;
 }
