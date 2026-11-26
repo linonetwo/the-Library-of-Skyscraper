@@ -42,8 +42,10 @@ chanting0..2/release3..4/recovery5..7. Durations are preview timings; authority
 controls cast/recovery gameplay timing. FX uses independent inkFx/ink/ground/00..03 keys with orig192/pivot96,96 and
 playback once. No weaponFX pixels are synthesized here.
 
-Current limitations: NE/SW cast and packed ink passed local visual study; full
-eight-direction cast and revised recover are pending independent review. The
+Independent Astra review accepted the complete 8-heading × 4-look staff cast
+and packed ink offline. The frozen runtime files and byte hashes are in
+`candidates/eight/cast`, `candidates/ink-fx` and `freeze-cast-ink.json`. This is
+not map gameplay approval. Revised recover remains under two-heading review. The
 source brace hands were accepted for a ladder; the new
 floor use needs independent review. First palm projection is approximately
 0.7–1px above its z0 plane, and the first standing-raster transition is still
