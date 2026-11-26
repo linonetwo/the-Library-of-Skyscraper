@@ -1,0 +1,9 @@
+.graph-fragments { margin: 10px 0; padding: 10px; border: 1px solid var(--line); border-radius: 6px; background: #102229; }
+.graph-fragments summary { color: var(--gold); cursor: pointer; }
+.graph-fragments section { display: grid; gap: 8px; margin-top: 10px; }
+.graph-fragments ul { list-style: none; padding: 0; }
+.graph-fragments li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
+.graph-fragments p { margin: 0; overflow-wrap: anywhere; }
+.graph-fragments select, .graph-fragments input { max-width: 100%; min-width: 0; }
+
+.graph-fragment-actions { display: flex; flex-wrap: wrap; gap: 8px; }

@@ -1,3 +1,4 @@
+import { moduleNames } from "../BehaviorModuleCard";
 import { layoutStates } from "./stateLayout";
 import { routeStateTransitions } from "./stateRoutes";
 import { layoutDecisionNodes } from "./treeLayout";
@@ -40,6 +41,7 @@ export function GraphCanvas({
     mode === "states"
       ? routeStateTransitions(graph.states, graph.transitions, stateLayout)
       : new Map();
+  const moduleLabels = { ...moduleNames, scout: "侦察", patrol: "巡逻", escort: "护送" };
   const items =
     mode === "states"
       ? graph.states.map((s) => ({
@@ -49,12 +51,15 @@ export function GraphCanvas({
           context: stateLayout.pairs.find((p) => p.recovery.id === s.id)?.normal
             .name,
         }))
-      : nodes.map((n) => ({
-          id: n.id,
-          label: nodeNames[n.type],
-          detail: n.id,
-          context: undefined,
-        }));
+      : nodes.map((n) => {
+          const binding = n.type === "module" ? graph.modules.find(module => module.moduleId === n.moduleId) : undefined;
+          return {
+            id: n.id,
+            label: binding ? moduleLabels[binding.kind] : nodeNames[n.type],
+            detail: n.id,
+            context: n.type === "module" ? `实例 ${n.moduleId}` : undefined,
+          };
+        });
   const edges =
     mode === "states"
       ? graph.transitions.map((t) => ({
@@ -269,8 +274,9 @@ export function GraphCanvas({
                   ? `${item.detail.slice(0, 21)}…`
                   : item.detail}
               </text>
+              {mode === "tree" && item.context && <text x="12" y="65" className="graph-node-detail">{item.context.length > 23 ? `${item.context.slice(0, 21)}…` : item.context}</text>}
               <title>
-                {item.id} · {item.detail}
+                {item.id} · {item.detail} · {item.context}
               </title>
             </g>
           );
