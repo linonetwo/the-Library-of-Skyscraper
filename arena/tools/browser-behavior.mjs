@@ -175,7 +175,7 @@ export async function readBehaviorState(page) {
         text: trace.innerText,
       })),
     ),
-    publishedVersion: (await workbench.count())
+    publishedVersion: (await workbench.locator(".script-version").count())
       ? await workbench.locator(".script-version").innerText()
       : null,
     canUndoReplacement:

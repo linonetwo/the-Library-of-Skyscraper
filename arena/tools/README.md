@@ -261,3 +261,43 @@ patrol fallback, waits for actual gatherer cargo, queries the original recording
 compares a target fix at the same operation, then publishes and observes real
 guard travel. It never steps training or sends commands outside visible controls.
 Failures retain the partial report and screenshots in the new evidence directory.
+
+### Player-authored modules and tactical controls
+
+`createCustomModule` opens the visible author; `openCustomModuleLibrary` opens
+「我的模块」. Use `setCustomModuleView {view: shape|source}` and
+`setCustomModuleField {scope: author|upgrade|instance, label, value}` with the
+exact labels returned by `Page.getState.customModules`. Add/remove schema rows
+with `addCustomModuleField`, `addCustomModuleExit`,
+`removeCustomModuleField {index}` and `removeCustomModuleExit {index}` (zero based).
+`editCustomModuleSource {source}` pastes into the actual Monaco editor using the
+same clipboard/keyboard path as script editing. `compileCustomModule` and
+`saveCustomModule` click the original compile/save controls; their results remain
+in the author readout. `returnCustomModuleLibrary` returns to saved definitions.
+
+`useCustomModuleLibraryItem {operation: add|edit|remove, name, revisionPrefix}`
+uses the exact visible module name and 12-character revision prefix. Adding uses
+the existing `setRuleModuleTarget` / `confirmRuleModule` preview confirmation.
+Select the new graph node and use existing `connectRuleGraph` with the visible
+named port, e.g. `port: "货袋已满 · bagFull"`. Select the instance to use
+`editCurrentCustomModule`, `selectCustomModuleVersion {revisionId}`,
+`confirmCustomModuleUpgrade` or `cancelCustomModuleUpgrade`. Recording filters use
+`selectRecordedCustomExit {exitKey}`, `locateCustomModuleCall` and
+`locateCustomModuleBody` in the original recording panel. These controls retain
+the original draft, version, undo and archived-source behavior.
+
+`selectSessionScenario {scenarioId: first-expedition|seal-contest}` selects the
+visible creation scenario. The existing `Session.create` API also accepts this
+optional `scenarioId` for training and online sessions. `Simulation.command`
+accepts `attack {actorId,targetId?}`, `repair {actorId,buildingId}`,
+`claim {actorId,roomId}` and `cast {actorId,skillId:"ink-strike",targetId}`.
+The authority applies scenario, ownership and skill rules.
+
+For the sim8 tactical UI, use `chooseTacticalAction {kind: attack|repair|claim|cast}`,
+`selectTacticalTarget {targetId}` and `confirmTacticalAction` to operate the
+visible list and confirmation. `openTacticalDetails` expands its actual details;
+`openTacticalAI` opens the active AI rules when that entry is shown.
+`Page.getState.tactical` reads the visible choices, disabled state and status.
+Tactical controls require the integrated sim8 UI/server; T0 authoring can be
+verified independently on the authoring candidate:
+`ARENA_CUSTOM_MODULE_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5202 ARENA_BASE_URL=http://127.0.0.1:8803 ARENA_EVIDENCE_DIR=/fresh/evidence node --test arena/tests/custom-module-browser.test.mjs`.

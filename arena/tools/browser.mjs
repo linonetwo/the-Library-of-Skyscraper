@@ -1,3 +1,5 @@
+import {tacticalActionSchemas,performTacticalAction,readTacticalState} from './browser-tactical.mjs';
+import {customModuleActionSchemas,performCustomModuleAction,readCustomModuleState} from './browser-custom-modules.mjs';
 import {recordingActionSchemas,performRecordingAction,readRecordingState,readRuleComparisonState} from './browser-recording.mjs';
 import {compositionActionSchemas,performCompositionAction,readCompositionState} from './browser-composition.mjs';
 import {fragmentActionSchemas,performFragmentAction,readFragmentState} from './browser-graph-fragments.mjs';
@@ -17,7 +19,7 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
-    ...graphActionSchemas, ...goalActionSchemas, ...fragmentActionSchemas, ...compositionActionSchemas, ...recordingActionSchemas,
+    ...tacticalActionSchemas, ...customModuleActionSchemas, ...graphActionSchemas, ...goalActionSchemas, ...fragmentActionSchemas, ...compositionActionSchemas, ...recordingActionSchemas,
     ...expeditionActionSchemas,
     ...workshopActionSchemas,
     ...mapActionSchemas, ...mobilityActionSchemas,
@@ -101,10 +103,12 @@ export function registerBrowserTools(server) {
       memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
       tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
     } : null;
-    return { url: active.url(), mobility: await readMobilityState(active), mobilityAuthority: await readMobilityAuthority(active), graph: await readGraphState(active), fragments: await readFragmentState(active), composition: await readCompositionState(active), recording: await readRecordingState(active), comparison: await readRuleComparisonState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    return { url: active.url(), customModules: await readCustomModuleState(active), tactical: await readTacticalState(active), mobility: await readMobilityState(active), mobilityAuthority: await readMobilityAuthority(active), graph: await readGraphState(active), fragments: await readFragmentState(active), composition: await readCompositionState(active), recording: await readRecordingState(active), comparison: await readRuleComparisonState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   const perform = async ({ action }) => {
     const active = current();
+    if (await performTacticalAction(active, action)) return { performed: action.type };
+    if (await performCustomModuleAction(active, action)) return { performed: action.type };
     if (await performGraphAction(active, action)) return { performed: action.type };
     if (await performRecordingAction(active, action)) return { performed: action.type };
     if (await performCompositionAction(active, action)) return { performed: action.type };

@@ -101,6 +101,35 @@ test('official MCP initialize, tools/list, tools/call and private credentials', 
   }
 
 });
+test('tactical scenario and commands cross the official SDK transport with private handles', async t => {
+  const received=[];
+  const authority=createServer(async(req,res)=>{
+    let raw=''; for await(const chunk of req)raw+=chunk;
+    received.push({path:req.url,auth:req.headers.authorization,body:JSON.parse(raw)});
+    res.setHeader('Content-Type','application/json');
+    res.end(JSON.stringify(req.url==='/api/sessions'?{sessionId:'tactical',playerId:'p1',token:'TACTICAL_PRIVATE'}:{accepted:true}));
+  });
+  await new Promise(resolve=>authority.listen(0,'127.0.0.1',resolve));t.after(()=>authority.close());
+  const {client}=await connect(`http://127.0.0.1:${authority.address().port}`);t.after(()=>client.close());
+  const {handle}=await call(client,'Session.create',{mode:'online',seed:42,scenarioId:'seal-contest'});
+  assert.deepEqual(received[0].body,{mode:'online',seed:42,scenarioId:'seal-contest'});
+  for(const command of [
+    {type:'attack',actorId:'p1-guard'},
+    {type:'attack',actorId:'p1-guard',targetId:'enemy-b'},
+    {type:'repair',actorId:'p1-scout',buildingId:'warehouse-1'},
+    {type:'claim',actorId:'p1-scout',roomId:'seal-room'},
+    {type:'cast',actorId:'p1-guard',skillId:'ink-strike',targetId:'enemy-b'},
+  ]){
+    await call(client,'Simulation.command',{handle,command});
+    assert.deepEqual(received.at(-1).body,command);assert.equal(received.at(-1).auth,'Bearer TACTICAL_PRIVATE');
+  }
+  const count=received.length;
+  for(const command of [{type:'cast',actorId:'p1-guard',skillId:'invented',targetId:'enemy-b'},{type:'repair',actorId:'p1-scout',roomId:'room-1'}]){
+    const response=await client.callTool({name:'Simulation.command',arguments:{handle,command}});assert(response.isError);
+  }
+  assert.equal(received.length,count);
+});
+
 test('MCP refuses non-HTTP URLs and URL credentials before transport starts', async () => {
   for (const baseURL of ['file:///tmp/arena', 'ftp://example.com', 'http://user:secret@localhost:8787', 'http://localhost:8787/api']) {
     const child = spawn(process.execPath, [fileURLToPath(new URL('../tools/server.mjs', import.meta.url))], {

@@ -17,7 +17,11 @@ const commandSchema = z.discriminatedUnion('type', [
     outfit: z.enum(['scholar', 'warden']), hair: z.enum(['ivory', 'midnight']), weapon: z.boolean(),
   }).strict() }).strict(),
   z.object({ type: z.literal('move'), actorId: identifier, roomId: identifier }).strict(),
-  ...['gather', 'deliver', 'attack', 'capture'].map(type => z.object({ type: z.literal(type), actorId: identifier }).strict()),
+  ...['gather', 'deliver', 'capture'].map(type => z.object({ type: z.literal(type), actorId: identifier }).strict()),
+  z.object({type:z.literal('attack'),actorId:identifier,targetId:identifier.optional()}).strict(),
+  z.object({type:z.literal('repair'),actorId:identifier,buildingId:identifier}).strict(),
+  z.object({type:z.literal('claim'),actorId:identifier,roomId:identifier}).strict(),
+  z.object({type:z.literal('cast'),actorId:identifier,skillId:z.literal('ink-strike'),targetId:identifier}).strict(),
   z.object({ type: z.literal('build'), roomId: identifier, kind: z.enum(['tower', 'catalog']) }).strict(),
   z.object({ type: z.literal('rule'), preset: z.enum(['gather', 'defend', 'explore']), retreatHp: z.number().int().min(0).max(100), assignTasks: z.boolean().optional() }).strict(),
 ]);
@@ -74,7 +78,7 @@ function tool(name, description, inputSchema, run, readOnly = false) {
   });
 }
 tool('Session.create', 'Create an isolated training session or an online room. Credentials stay in MCP process memory; returned handle expires when this process exits.',
-  { mode: z.enum(['training', 'online']), seed: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER).optional() },
+  { mode: z.enum(['training', 'online']), scenarioId:z.enum(['first-expedition','seal-contest']).optional(), seed: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER).optional() },
   args => saveSession('/api/sessions', args));
 tool('Session.join', 'Join an existing online room as a new player. Training rooms are private. This is not reconnect: reuse the same handle to reconnect.',
   { sessionId: identifier }, args => saveSession(`/api/sessions/${encodeURIComponent(args.sessionId)}/join`, {}));
