@@ -325,7 +325,7 @@ export default function MapCanvas(props: MapProps) {
         },
         now,
       );
-      if (p.snapshot) dynamics.update(p.snapshot, actors.simulationTime(now), now);
+      if (p.snapshot) dynamics.update(p.snapshot, actors.simulationTime(now), now, p.tacticalPick && {...p.tacticalPick,onPick:(id)=>{if(!dragged)latest.current.tacticalPick?.onPick(id);}});
       poses = actors.render(now);
       setActorsLoading(false);
       host.dataset.enemies = JSON.stringify(dynamics.render(actors.simulationTime(now), now));
@@ -446,6 +446,7 @@ export default function MapCanvas(props: MapProps) {
     props.snapshot,
     props.selected,
     props.selectedRoom,
+    props.tacticalPick,
     props.mobilityChoice,
     props.zoom,
     props.showRoutes,

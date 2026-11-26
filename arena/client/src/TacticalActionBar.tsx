@@ -13,6 +13,8 @@ export default function TacticalActionBar(){
   <strong>战术</strong><label>行动<select aria-label="战术行动" value={t.action} onChange={e=>t.setAction(e.target.value as TacticalActionKind)}>{Object.entries(tacticalLabels).map(([key,name])=><option key={key} value={key} disabled={key==='cast'&&!t.actor?.appearance.weapon}>{name}</option>)}</select></label>
   <label className="tactical-target">目标<select aria-label="战术目标" value={t.target?.id??''} onChange={e=>t.choose(e.target.value)}><option value="">选择真实目标</option>{t.targets.map(target=><option key={target.id} value={target.id}>{target.title} · {target.detail}</option>)}</select></label>
   {t.player?.script&&<p>AI规则已接管指挥 · 目标仍可预览 <button onClick={()=>void t.openAiEditor()}>查看当前 AI 规则</button></p>}
+  <button aria-pressed={t.tacticalPicking} disabled={!t.actor||!t.isOwner} onClick={()=>t.setTacticalPicking(!t.tacticalPicking)}>{t.tacticalPicking?'结束地图选取':'在地图选择目标'}</button>
+  {t.tacticalPicking&&<p>点选{t.action==='repair'?'己方受损设施':t.action==='claim'?'控制点房间':'敌方守卫'}只锁定目标，确认后才下令。</p>}
   <button disabled={!t.enabled} onClick={()=>void t.submit()}>确认{tacticalLabels[t.action]}</button>
   <p className="tactical-short" title={t.target?.detail}>{t.target?`${tacticalLabels[t.action]} · ${t.target.title}`:'先选择己方角色与目标'}</p>
   <details><summary>目标与行动详情</summary><p>{t.target?.detail??'没有选中目标'}{t.target&&<> · 对象编号 <code>{t.target.id}</code></>} {t.target&&<button className="text-button" onClick={()=>t.setSelectedRoom(t.target!.roomId)}>定位目标房间</button>}</p><p>{range===undefined?'范围由服务端判断':`作用距离 ${range/1000} 米`} · {cost}</p>

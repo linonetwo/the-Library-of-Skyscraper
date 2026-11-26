@@ -1,3 +1,4 @@
+import type {MapTacticalPick} from "./tacticalTargets";
 import { EnemyScene, loadEnemyAssets } from "./EnemyScene";
 import { cueActive, resolveAnimation } from "./resolveAnimation";
 import type { ActionCue } from "./types";
@@ -48,8 +49,8 @@ export class WorldEntities {
       this.enemies = new EnemyScene(this.parent, assets);
     });
   }
-  update(snapshot: Snapshot, simulationTime = snapshot.tick * (snapshot.tickDurationMs || 500), now = simulationTime) {
-    this.enemies?.update(snapshot, simulationTime, now);
+  update(snapshot: Snapshot, simulationTime = snapshot.tick * (snapshot.tickDurationMs || 500), now = simulationTime, picker?:MapTacticalPick) {
+    this.enemies?.update(snapshot, simulationTime, now, picker?.kind==='enemy'?picker:undefined);
     if (this.buildingSnapshot?.sessionId !== snapshot.sessionId ||
         snapshot.tick < this.buildingSnapshot.tick) this.buildingHp.clear();
     this.buildingSnapshot = { sessionId: snapshot.sessionId, tick: snapshot.tick };
@@ -68,6 +69,8 @@ export class WorldEntities {
         this.nodes.set(id, node);
         this.parent.addChild(node);
       }
+      node.removeAllListeners("pointertap");
+      node.eventMode="none";
       for (const child of [...node.children]) child.destroy();
       return node;
     };
@@ -228,6 +231,10 @@ export class WorldEntities {
       };
       const p = project(position.x, position.y),
         node = nodeFor(building.id);
+      if(picker?.kind==='building'&&picker.ids.includes(building.id)){
+        node.eventMode='static';node.cursor='pointer';
+        node.on('pointertap',event=>{event.stopPropagation();picker.onPick(building.id);});
+      }
       node.position.copyFrom(p);
       node.zIndex = p.y;
       const complete =

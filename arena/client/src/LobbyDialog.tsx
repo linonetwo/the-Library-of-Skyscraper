@@ -1,3 +1,5 @@
+import {useState} from "react";
+import type {ScenarioId} from "./types";
 import ServerSettings from "./ServerSettings";
 import {
   BookOpen,
@@ -24,6 +26,7 @@ export default function LobbyDialog() {
     setJoinId,
     training,
   } = useArena();
+  const [scenarioId,setScenarioId]=useState<ScenarioId>("first-expedition");
   const dialog = useDialog(() => setLobby(false));
   return (
     <div className="modal-backdrop" onClick={() => setLobby(false)}>
@@ -50,14 +53,19 @@ export default function LobbyDialog() {
           训练局支持暂停与单步推进。联机局由服务器持续推进，同一编号的玩家共享战场。
         </p>
         <ServerSettings />
+        <label className="field-label">创建场景
+          <select aria-label="创建赛局场景" disabled={busy} value={scenarioId} onChange={e=>setScenarioId(e.target.value as ScenarioId)}>
+            <option value="first-expedition">首场远征</option><option value="seal-contest">据点争夺演练</option>
+          </select>
+        </label>
         <div className="lobby-options">
-          <button disabled={busy} onClick={() => void start("training")}>
+          <button disabled={busy} onClick={() => void start("training",false,"map",scenarioId)}>
             <Compass size={25} />
             <strong>本地训练</strong>
             <span>独立赛局 · 暂停与单步</span>
             <ArrowUpRight size={16} />
           </button>
-          <button disabled={busy} onClick={() => void start("online")}>
+          <button disabled={busy} onClick={() => void start("online",false,"map",scenarioId)}>
             <Network size={25} />
             <strong>创建联机</strong>
             <span>邀请伙伴 · 最多四人共享战场</span>

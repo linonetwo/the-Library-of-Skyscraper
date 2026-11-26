@@ -1,4 +1,3 @@
-import TacticalActionBar from "./TacticalActionBar";
 import ExpeditionResult from "./ExpeditionResult";
 import {
   Compass,
@@ -38,6 +37,7 @@ export default function Battlefield() {
     setLobby,
     room,
     selectActor,
+    tacticalMapPick,selectMapRoom,
   } = useArena();
 
 
@@ -68,7 +68,6 @@ export default function Battlefield() {
           </small>
         </div>
       </div>
-      <TacticalActionBar />
       <div className="map-shell">
         <div className="map-topline">
           <span>
@@ -115,7 +114,8 @@ export default function Battlefield() {
           zoom={zoom}
           showRoutes={showRoutes}
           onSelect={selectActor}
-          onRoom={setSelectedRoom}
+          onRoom={selectMapRoom}
+          tacticalPick={tacticalMapPick}
         />
         <div className="map-compass">
           <span>N</span>
