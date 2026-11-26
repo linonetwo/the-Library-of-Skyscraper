@@ -1,9 +1,11 @@
+import { releaseProfile } from './release-profiles.mjs';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 
 export function buildMetadata(source, version) {
+ const profile=releaseProfile(version);
  const read=path=>readFileSync(resolve(source,path),'utf8');
  const json=path=>JSON.parse(read(path));
  const sha256=path=>createHash('sha256').update(readFileSync(resolve(source,path))).digest('hex');
@@ -21,7 +23,7 @@ export function buildMetadata(source, version) {
   const entry=path=>({path:`arena/client/dist/assets/${path}`,sha256:sha256(`arena/client/dist/assets/${path}`)});
   return {
    provenance:{path:provenancePath,sha256:sha256(provenancePath),
-    ...(mobility ? {version:'0.3.0',scope:'inherited-baseline',note:'Inherited art provenance; not v0.5.0 approval.'} : {})},
+    ...(mobility ? {version:'0.3.0',scope:'inherited-baseline',note:`Inherited art provenance; not v${version} approval.`} : {})},
    groups:Object.fromEntries(Object.entries(provenance.groups).map(([name,group])=>[name,{
     entries:group.entries.map(entry),
     ...(group.index ? (()=>{
@@ -44,13 +46,15 @@ export function buildMetadata(source, version) {
  for(const name of ['server','script-runner']) modules[name]=read(`arena/${name}/Cargo.toml`).match(/^version = "([^"]+)"/m)[1];
  const locks=['client/package-lock.json','script-toolchain/package-lock.json','tools/package-lock.json','server/Cargo.lock','script-runner/Cargo.lock'];
  return {protocol:'arena.v1',modules,
-  assets: version==='0.5.0' ? currentAssets(true) : ['0.3.0','0.4.0','0.4.1'].includes(version) ? currentAssets() : legacyAssets(),
-  ...(['0.4.0','0.4.1'].includes(version) ? {rules:{schemaVersions:[1,2],provenance:{path:'arena/release/rule-provenance-v0.4.0.json',sha256:sha256('arena/release/rule-provenance-v0.4.0.json')}}} : {}),
-  ...(version==='0.5.0' ? {
+  assets: profile.assets==='legacy' ? legacyAssets() : currentAssets(profile.assets==='mobility'),
+  ...(profile.rules==='graph' ? {rules:{schemaVersions:[1,2],provenance:{path:'arena/release/rule-provenance-v0.4.0.json',sha256:sha256('arena/release/rule-provenance-v0.4.0.json')}}} : {}),
+  ...(profile.rules==='mobility' ? {
    rules:{schemaVersions:[1,2],provenance:{path:'arena/release/rule-provenance-v0.4.0.json',
     sha256:sha256('arena/release/rule-provenance-v0.4.0.json'),version:'0.4.0',scope:'inherited-baseline',
-    note:'Inherited rules provenance; not v0.5.0 approval.'},
-    sdk:{version:modules['script-sdk'],mobility:{path:'arena/script-sdk/src/mobility.ts',sha256:sha256('arena/script-sdk/src/mobility.ts')}}},
+    note:`Inherited rules provenance; not v${version} approval.`},
+    sdk:{version:modules['script-sdk'],mobility:{path:'arena/script-sdk/src/mobility.ts',sha256:sha256('arena/script-sdk/src/mobility.ts')}},
+    ...(profile.composition ? {composition:{schemaVersion:2,moduleKinds:['gather','haul','build','defend','retreat','scout','patrol','escort'],
+     references:['room','ownRole'],moduleVisits:{traceVersion:2,perActorLimit:8,missing:'unrecorded',truncatedField:'moduleVisitsTruncated'}}} : {})},
    world:{simulationVersion:7,version:json('arena/shared/world-map-v5.json').version,
     map:{path:'arena/shared/world-map-v5.json',sha256:sha256('arena/shared/world-map-v5.json')}},
   } : {}),
