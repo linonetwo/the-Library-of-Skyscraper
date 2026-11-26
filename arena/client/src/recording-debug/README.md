@@ -53,3 +53,25 @@ its provenance explicitly says no recording operation is available. Tests supply
 controlled operation envelopes to exercise the adapter; a separate normal-clock owner
 fixture now preserves exact per-actor facts from operations4,16,18,21. Its source
 commit, original-recording hash and omitted data are documented in provenance.
+
+## UI integration
+
+`RecordingDebugger` reads the current session's timeline/version archive through
+existing API methods. Props are `session`, `onSeekOperation({sessionId, ownerId,
+sourceHash, operationIndex})` and optional `onOpenSource({sourceHash, objectId})`.
+The host owns opening/seeking the existing replay; map the original operation to
+that timeline's frame index. If no source callback is provided, the panel opens the
+matching archive with the existing `ReadOnlySource` view. It never navigates a
+same-ID node in the current draft.
+
+The panel's object denominator comes from the selected archived graph, while actor
+and count evidence comes from that owner's original deltas. Named inclusive ranges
+store only local session/owner/hash/name/operation metadata, without credentials or
+runtime memory. Decision tick and post-operation scene tick are displayed separately.
+
+Visible controls: `录制源版本`, `录制角色`, `录制对象类型`, `录制对象`,
+`录制命中类型`, `录制操作游标`, `上一次记录`, `下一次记录`, `具名录制名称`,
+`录制区间起点`, `录制区间终点`, `已存具名录制`. The section is named
+`录制断点与覆盖`; its read-only `data-recording-state` exposes the same public
+selection identity/cursor. Tools should operate these controls and original replay,
+not recompute counts or change the authority clock.
