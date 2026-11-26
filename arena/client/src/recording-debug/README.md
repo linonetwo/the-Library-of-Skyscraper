@@ -64,7 +64,8 @@ that timeline's frame index. If no source callback is provided, the panel opens 
 matching archive with the existing `ReadOnlySource` view. It never navigates a
 same-ID node in the current draft.
 
-The panel's object denominator comes from the selected archived graph, while actor
+The panel's object denominator uses `readArchivedRuleGraph` on the selected
+archive's actual graph-plan declaration (not the current-generator editing recovery), while actor
 and count evidence comes from that owner's original deltas. Named inclusive ranges
 store only local session/owner/hash/name/operation metadata, without credentials or
 runtime memory. Decision tick and post-operation scene tick are displayed separately.

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { getGraphSourceRef, recoverRuleGraph } from '../../../behavior-modules/graph';
+import { getGraphSourceRef, readArchivedRuleGraph } from '../../../behavior-modules/graph';
 import type { Session } from '../types';
 import { ReadOnlySource } from '../rule-comparison/ReadOnlySource';
 import { indexRecording } from './index';
@@ -30,7 +30,7 @@ function RecordingDebuggerView({session, onSeekOperation, onOpenSource}: Recordi
   const timeline = recording?.timeline.sessionId === session.sessionId ? recording.timeline : null;
   const index = useMemo(() => timeline && indexRecording(timeline, session.playerId), [timeline, session.playerId]);
   const project = archive?.version.sourceHash === sourceHash ? archive.project : null;
-  const graph = useMemo(() => project && recoverRuleGraph(project), [project]);
+  const graph = useMemo(() => project && readArchivedRuleGraph(project), [project]);
   const actors = [...new Set(index?.decisions.filter(decision => decision.sourceHash === sourceHash).map(decision => decision.actor.actorId) ?? [])];
   const [actor, setActor] = useState('');
   const actorId = actor || actors[0] || '';
@@ -94,7 +94,7 @@ function RecordingDebuggerView({session, onSeekOperation, onOpenSource}: Recordi
     <EvidenceDetail selection={activeSelection} sceneTick={timeline?.frames.find(frame => frame.operationIndex === cursor)?.tick} />
     <button disabled={!project || !objectId} onClick={openSource}>打开该版只读源码</button>
     {ref && project && <details open><summary>归档 {sourceHash.slice(0,12)} · {ref.file}:{ref.line}</summary><ReadOnlySource text={project.files[ref.file] ?? ''} line={ref.line} /></details>}
-    {!graph && project && <><p>该归档是手写或无可恢复图的工程；节点分母与模块覆盖未记录，可查看原版本源码和意图。</p><button onClick={() => setSourceId('__entry__')}>查看该版入口源码</button></>}
+    {!graph && project && <><p>该归档没有可读取的图声明；节点分母与模块覆盖未记录，可查看原版本源码和意图。</p><button onClick={() => setSourceId('__entry__')}>查看该版入口源码</button></>}
     <p>完整模块记录才可标未访问；旧字段缺失为未记录，截断后缺项未知。节点列表缺项只能称未记录访问。</p>
     <fieldset><legend>具名操作闭区间</legend>
       <label>名字<input aria-label="具名录制名称" value={name} onChange={e => setName(e.target.value)} /></label>
