@@ -10,6 +10,7 @@ import {
 } from "./animationCatalog";
 import type { RegisteredDollClip } from "./assetSetLoader";
 import type { WorldAssets } from "./worldAssets";
+import { registeredAnchorPoint, type DollAnchorName } from "./registeredAnchors";
 export type DollTextures = Partial<Record<Clip, Record<string, Texture>>>;
 
 /** One sprite pool consumes the same registered clip used by animation resolution. */
@@ -23,6 +24,13 @@ export class DollRenderer {
     assets?: WorldAssets,
   ) {
     if (assets) this.cargo = new RegisteredCargo(this.node, assets);
+  }
+  /** Query the same registered frame used by update; wardrobe never changes its canvas. */
+  anchor(registered: RegisteredDollClip, direction: Direction, frame: number,
+    name: DollAnchorName, foot: {x:number;y:number}, weapon: boolean) {
+    if (!weapon && (name === "grip" || name === "staffTip")) return undefined;
+    const pixel = registered.descriptor.anchorsByDirection?.[direction]?.[frame]?.[name];
+    return pixel && registeredAnchorPoint(foot,pixel,registered.timing.groundPivot,registered.timing.renderScale??1);
   }
   update(
     action: Clip,

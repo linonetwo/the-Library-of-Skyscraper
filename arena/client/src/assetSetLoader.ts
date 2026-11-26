@@ -2,7 +2,9 @@ import { Assets, type Texture } from "pixi.js";
 import type { Clip, RegisteredClip } from "./animationCatalog";
 import type { Direction } from "./directions";
 import type { SampleRig } from "./RegisteredCargo";
+import type { DollFrameAnchors } from "./registeredAnchors";
 export type AtlasDescriptor = {
+  anchorsByDirection?: Partial<Record<Direction, DollFrameAnchors[]>>;
   clip: Omit<RegisteredClip, "groundPivot" | "renderScale"> & { action: Clip };
   renderScale: number;
   groundPivot: [number, number];
