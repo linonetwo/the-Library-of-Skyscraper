@@ -53,9 +53,6 @@
       "hair-midnight-front"
     ],
     "E": [
-      "weapon-staff-back",
-      "hair-ivory-back",
-      "hair-midnight-back",
       "body",
       "outfit-scholar",
       "outfit-warden",
@@ -69,12 +66,9 @@
     ],
     "W": [
       "weapon-staff-back",
-      "hair-ivory-back",
-      "hair-midnight-back",
       "body",
       "outfit-scholar",
       "outfit-warden",
-      "weapon-staff-front",
       "body-front",
       "outfit-warden-front",
       "hand-front",
@@ -84,7 +78,29 @@
     ],
     "N": [
       "weapon-staff-back",
-      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "NW": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SE": [
       "hair-midnight-back",
       "body",
       "outfit-scholar",
@@ -98,8 +114,6 @@
       "hair-midnight-front"
     ],
     "S": [
-      "weapon-staff-back",
-      "hair-ivory-back",
       "hair-midnight-back",
       "body",
       "outfit-scholar",
@@ -107,36 +121,7 @@
       "weapon-staff-front",
       "body-front",
       "outfit-warden-front",
-      "hand-front",
-      "hand-grip",
-      "hair-ivory-front",
-      "hair-midnight-front"
-    ],
-    "NW": [
-      "weapon-staff-back",
-      "hair-ivory-back",
-      "hair-midnight-back",
-      "body",
-      "outfit-scholar",
-      "outfit-warden",
-      "weapon-staff-front",
-      "body-front",
-      "outfit-warden-front",
-      "hand-front",
-      "hand-grip",
-      "hair-ivory-front",
-      "hair-midnight-front"
-    ],
-    "SE": [
-      "weapon-staff-back",
-      "hair-ivory-back",
-      "hair-midnight-back",
-      "body",
-      "outfit-scholar",
-      "outfit-warden",
-      "weapon-staff-front",
-      "body-front",
-      "outfit-warden-front",
+      "hand-left-front",
       "hand-front",
       "hand-grip",
       "hair-ivory-front",
@@ -177,8 +162,14 @@
     192
   ],
   "directions": [
+    "S",
+    "SW",
+    "W",
+    "NW",
+    "N",
     "NE",
-    "SW"
+    "E",
+    "SE"
   ],
   "maxPageDimension": 2048,
   "activeLayers": [
@@ -194,78 +185,127 @@
     "hand-front",
     "hand-grip",
     "weapon-staff-back",
-    "weapon-staff-front"
+    "weapon-staff-front",
+    "hand-left-front"
   ],
   "inactiveLayers": [],
   "layers": [
     {
       "layer": "body",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 32,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 226521,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 876923,
       "pages": [
         {
-          "image": "run-body-0.png",
-          "json": "run-body-0.json",
+          "image": "ne-sw/run-body-0.png",
+          "json": "ne-sw/run-body-0.json",
           "width": 1786,
           "height": 154,
           "decodedBytes": 1100176,
           "pngBytes": 198823
+        },
+        {
+          "image": "e-w-n-nw-se/run-body-0.png",
+          "json": "e-w-n-nw-se/run-body-0.json",
+          "width": 2046,
+          "height": 424,
+          "decodedBytes": 3470016,
+          "pngBytes": 626147
+        },
+        {
+          "image": "s/run-body-0.png",
+          "json": "s/run-body-0.json",
+          "width": 597,
+          "height": 134,
+          "decodedBytes": 319992,
+          "pngBytes": 62229
         }
       ],
-      "decodedBytes": 1100176
+      "decodedBytes": 4890184
     },
     {
       "layer": "body-front",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 32,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 38001,
+      "sourceFrames": 128,
+      "nonemptyFrames": 112,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 139138,
       "pages": [
         {
-          "image": "run-body-front-0.png",
-          "json": "run-body-front-0.json",
+          "image": "ne-sw/run-body-front-0.png",
+          "json": "ne-sw/run-body-front-0.json",
           "width": 1019,
           "height": 54,
           "decodedBytes": 220104,
           "pngBytes": 66596
+        },
+        {
+          "image": "e-w-n-nw-se/run-body-front-0.png",
+          "json": "e-w-n-nw-se/run-body-front-0.json",
+          "width": 2022,
+          "height": 91,
+          "decodedBytes": 736008,
+          "pngBytes": 118583
+        },
+        {
+          "image": "s/run-body-front-0.png",
+          "json": "s/run-body-front-0.json",
+          "width": 946,
+          "height": 38,
+          "decodedBytes": 143792,
+          "pngBytes": 31800
         }
       ],
-      "decodedBytes": 220104
+      "decodedBytes": 1099904
     },
     {
       "layer": "outfit-scholar",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 32,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 102141,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 326345,
       "pages": [
         {
-          "image": "run-outfit-scholar-0.png",
-          "json": "run-outfit-scholar-0.json",
+          "image": "ne-sw/run-outfit-scholar-0.png",
+          "json": "ne-sw/run-outfit-scholar-0.json",
           "width": 1685,
           "height": 70,
           "decodedBytes": 471800,
           "pngBytes": 33151
+        },
+        {
+          "image": "e-w-n-nw-se/run-outfit-scholar-0.png",
+          "json": "e-w-n-nw-se/run-outfit-scholar-0.json",
+          "width": 2035,
+          "height": 131,
+          "decodedBytes": 1066340,
+          "pngBytes": 72992
+        },
+        {
+          "image": "s/run-outfit-scholar-0.png",
+          "json": "s/run-outfit-scholar-0.json",
+          "width": 709,
+          "height": 51,
+          "decodedBytes": 144636,
+          "pngBytes": 10325
         }
       ],
-      "decodedBytes": 471800
+      "decodedBytes": 1682776
     },
     {
       "layer": "hair-ivory-back",
       "active": true,
-      "sourceFrames": 32,
+      "sourceFrames": 128,
       "nonemptyFrames": 32,
       "untrimmedPixels": 1179648,
       "trimmedPixels": 13134,
       "pages": [
         {
-          "image": "run-hair-ivory-back-0.png",
-          "json": "run-hair-ivory-back-0.json",
+          "image": "ne-sw/run-hair-ivory-back-0.png",
+          "json": "ne-sw/run-hair-ivory-back-0.json",
           "width": 1429,
           "height": 16,
           "decodedBytes": 91456,
@@ -277,175 +317,330 @@
     {
       "layer": "hair-ivory-front",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 32,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 66697,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 240796,
       "pages": [
         {
-          "image": "run-hair-ivory-front-0.png",
-          "json": "run-hair-ivory-front-0.json",
+          "image": "ne-sw/run-hair-ivory-front-0.png",
+          "json": "ne-sw/run-hair-ivory-front-0.json",
           "width": 1621,
           "height": 50,
           "decodedBytes": 324200,
           "pngBytes": 21346
+        },
+        {
+          "image": "e-w-n-nw-se/run-hair-ivory-front-0.png",
+          "json": "e-w-n-nw-se/run-hair-ivory-front-0.json",
+          "width": 2027,
+          "height": 93,
+          "decodedBytes": 754044,
+          "pngBytes": 54800
+        },
+        {
+          "image": "s/run-hair-ivory-front-0.png",
+          "json": "s/run-hair-ivory-front-0.json",
+          "width": 773,
+          "height": 46,
+          "decodedBytes": 142232,
+          "pngBytes": 10534
         }
       ],
-      "decodedBytes": 324200
+      "decodedBytes": 1220476
     },
     {
       "layer": "outfit-warden",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 32,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 83939,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 323556,
       "pages": [
         {
-          "image": "run-outfit-warden-0.png",
-          "json": "run-outfit-warden-0.json",
+          "image": "ne-sw/run-outfit-warden-0.png",
+          "json": "ne-sw/run-outfit-warden-0.json",
           "width": 1471,
           "height": 70,
           "decodedBytes": 411880,
           "pngBytes": 51646
+        },
+        {
+          "image": "e-w-n-nw-se/run-outfit-warden-0.png",
+          "json": "e-w-n-nw-se/run-outfit-warden-0.json",
+          "width": 2047,
+          "height": 131,
+          "decodedBytes": 1072628,
+          "pngBytes": 155404
+        },
+        {
+          "image": "s/run-outfit-warden-0.png",
+          "json": "s/run-outfit-warden-0.json",
+          "width": 597,
+          "height": 49,
+          "decodedBytes": 117012,
+          "pngBytes": 8081
         }
       ],
-      "decodedBytes": 411880
+      "decodedBytes": 1601520
     },
     {
       "layer": "outfit-warden-front",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 32,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 30465,
+      "sourceFrames": 128,
+      "nonemptyFrames": 112,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 130443,
       "pages": [
         {
-          "image": "run-outfit-warden-front-0.png",
-          "json": "run-outfit-warden-front-0.json",
+          "image": "ne-sw/run-outfit-warden-front-0.png",
+          "json": "ne-sw/run-outfit-warden-front-0.json",
           "width": 947,
           "height": 54,
           "decodedBytes": 204552,
           "pngBytes": 45337
+        },
+        {
+          "image": "e-w-n-nw-se/run-outfit-warden-front-0.png",
+          "json": "e-w-n-nw-se/run-outfit-warden-front-0.json",
+          "width": 2031,
+          "height": 89,
+          "decodedBytes": 723036,
+          "pngBytes": 108895
+        },
+        {
+          "image": "s/run-outfit-warden-front-0.png",
+          "json": "s/run-outfit-warden-front-0.json",
+          "width": 976,
+          "height": 37,
+          "decodedBytes": 144448,
+          "pngBytes": 22166
         }
       ],
-      "decodedBytes": 204552
+      "decodedBytes": 1072036
     },
     {
       "layer": "hair-midnight-back",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 16,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 28208,
+      "sourceFrames": 128,
+      "nonemptyFrames": 48,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 37571,
       "pages": [
         {
-          "image": "run-hair-midnight-back-0.png",
-          "json": "run-hair-midnight-back-0.json",
+          "image": "ne-sw/run-hair-midnight-back-0.png",
+          "json": "ne-sw/run-hair-midnight-back-0.json",
           "width": 725,
           "height": 47,
           "decodedBytes": 136300,
           "pngBytes": 7336
+        },
+        {
+          "image": "e-w-n-nw-se/run-hair-midnight-back-0.png",
+          "json": "e-w-n-nw-se/run-hair-midnight-back-0.json",
+          "width": 373,
+          "height": 25,
+          "decodedBytes": 37300,
+          "pngBytes": 2181
+        },
+        {
+          "image": "s/run-hair-midnight-back-0.png",
+          "json": "s/run-hair-midnight-back-0.json",
+          "width": 261,
+          "height": 20,
+          "decodedBytes": 20880,
+          "pngBytes": 1141
         }
       ],
-      "decodedBytes": 136300
+      "decodedBytes": 194480
     },
     {
       "layer": "hair-midnight-front",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 32,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 77174,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 267128,
       "pages": [
         {
-          "image": "run-hair-midnight-front-0.png",
-          "json": "run-hair-midnight-front-0.json",
+          "image": "ne-sw/run-hair-midnight-front-0.png",
+          "json": "ne-sw/run-hair-midnight-front-0.json",
           "width": 1541,
           "height": 61,
           "decodedBytes": 376004,
           "pngBytes": 20822
+        },
+        {
+          "image": "e-w-n-nw-se/run-hair-midnight-front-0.png",
+          "json": "e-w-n-nw-se/run-hair-midnight-front-0.json",
+          "width": 2021,
+          "height": 104,
+          "decodedBytes": 840736,
+          "pngBytes": 53072
+        },
+        {
+          "image": "s/run-hair-midnight-front-0.png",
+          "json": "s/run-hair-midnight-front-0.json",
+          "width": 725,
+          "height": 51,
+          "decodedBytes": 147900,
+          "pngBytes": 8786
         }
       ],
-      "decodedBytes": 376004
+      "decodedBytes": 1364640
     },
     {
       "layer": "hand-front",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 32,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 5186,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 13803,
       "pages": [
         {
-          "image": "run-hand-front-0.png",
-          "json": "run-hand-front-0.json",
+          "image": "ne-sw/run-hand-front-0.png",
+          "json": "ne-sw/run-hand-front-0.json",
           "width": 505,
           "height": 20,
           "decodedBytes": 40400,
           "pngBytes": 15680
+        },
+        {
+          "image": "e-w-n-nw-se/run-hand-front-0.png",
+          "json": "e-w-n-nw-se/run-hand-front-0.json",
+          "width": 1089,
+          "height": 15,
+          "decodedBytes": 65340,
+          "pngBytes": 17170
+        },
+        {
+          "image": "s/run-hand-front-0.png",
+          "json": "s/run-hand-front-0.json",
+          "width": 263,
+          "height": 18,
+          "decodedBytes": 18936,
+          "pngBytes": 6154
         }
       ],
-      "decodedBytes": 40400
+      "decodedBytes": 124676
     },
     {
       "layer": "hand-grip",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 32,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 4251,
+      "sourceFrames": 128,
+      "nonemptyFrames": 128,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 15772,
       "pages": [
         {
-          "image": "run-hand-grip-0.png",
-          "json": "run-hand-grip-0.json",
+          "image": "ne-sw/run-hand-grip-0.png",
+          "json": "ne-sw/run-hand-grip-0.json",
           "width": 468,
           "height": 17,
           "decodedBytes": 31824,
           "pngBytes": 12033
+        },
+        {
+          "image": "e-w-n-nw-se/run-hand-grip-0.png",
+          "json": "e-w-n-nw-se/run-hand-grip-0.json",
+          "width": 1152,
+          "height": 17,
+          "decodedBytes": 78336,
+          "pngBytes": 25950
+        },
+        {
+          "image": "s/run-hand-grip-0.png",
+          "json": "s/run-hand-grip-0.json",
+          "width": 229,
+          "height": 16,
+          "decodedBytes": 14656,
+          "pngBytes": 4562
         }
       ],
-      "decodedBytes": 31824
+      "decodedBytes": 124816
     },
     {
       "layer": "weapon-staff-back",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 16,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 58749,
+      "sourceFrames": 112,
+      "nonemptyFrames": 64,
+      "untrimmedPixels": 4128768,
+      "trimmedPixels": 220426,
       "pages": [
         {
-          "image": "run-weapon-staff-back-0.png",
-          "json": "run-weapon-staff-back-0.json",
+          "image": "ne-sw/run-weapon-staff-back-0.png",
+          "json": "ne-sw/run-weapon-staff-back-0.json",
           "width": 687,
           "height": 100,
           "decodedBytes": 274800,
           "pngBytes": 65527
+        },
+        {
+          "image": "e-w-n-nw-se/run-weapon-staff-back-0.png",
+          "json": "e-w-n-nw-se/run-weapon-staff-back-0.json",
+          "width": 1922,
+          "height": 101,
+          "decodedBytes": 776488,
+          "pngBytes": 177272
         }
       ],
-      "decodedBytes": 274800
+      "decodedBytes": 1051288
     },
     {
       "layer": "weapon-staff-front",
       "active": true,
-      "sourceFrames": 32,
-      "nonemptyFrames": 16,
-      "untrimmedPixels": 1179648,
-      "trimmedPixels": 71748,
+      "sourceFrames": 128,
+      "nonemptyFrames": 64,
+      "untrimmedPixels": 4718592,
+      "trimmedPixels": 252599,
       "pages": [
         {
-          "image": "run-weapon-staff-front-0.png",
-          "json": "run-weapon-staff-front-0.json",
+          "image": "ne-sw/run-weapon-staff-front-0.png",
+          "json": "ne-sw/run-weapon-staff-front-0.json",
           "width": 864,
           "height": 95,
           "decodedBytes": 328320,
           "pngBytes": 68300
+        },
+        {
+          "image": "e-w-n-nw-se/run-weapon-staff-front-0.png",
+          "json": "e-w-n-nw-se/run-weapon-staff-front-0.json",
+          "width": 1373,
+          "height": 98,
+          "decodedBytes": 538216,
+          "pngBytes": 119415
+        },
+        {
+          "image": "s/run-weapon-staff-front-0.png",
+          "json": "s/run-weapon-staff-front-0.json",
+          "width": 820,
+          "height": 93,
+          "decodedBytes": 305040,
+          "pngBytes": 55600
         }
       ],
-      "decodedBytes": 328320
+      "decodedBytes": 1171576
+    },
+    {
+      "layer": "hand-left-front",
+      "active": true,
+      "sourceFrames": 16,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 589824,
+      "trimmedPixels": 1704,
+      "pages": [
+        {
+          "image": "s/run-hand-left-front-0.png",
+          "json": "s/run-hand-left-front-0.json",
+          "width": 237,
+          "height": 16,
+          "decodedBytes": 15168,
+          "pngBytes": 5251
+        }
+      ],
+      "decodedBytes": 15168
     }
   ],
-  "decodedBytes": 4011816,
+  "decodedBytes": 15704996,
   "mipmapMultiplierIfEnabled": 1.3333333333333333
 }

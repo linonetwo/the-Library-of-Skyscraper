@@ -1,0 +1,220 @@
+{
+  "frames": {
+    "jump/hair-midnight-back/S/01": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 11,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 83,
+        "w": 11,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-back/S/02": {
+      "frame": {
+        "x": 22,
+        "y": 2,
+        "w": 12,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 73,
+        "w": 12,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-back/S/04": {
+      "frame": {
+        "x": 38,
+        "y": 2,
+        "w": 11,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 73,
+        "w": 11,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-back/S/05": {
+      "frame": {
+        "x": 53,
+        "y": 2,
+        "w": 12,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 72,
+        "w": 12,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-back/S/06": {
+      "frame": {
+        "x": 69,
+        "y": 2,
+        "w": 12,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 94,
+        "w": 12,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-back/S/07": {
+      "frame": {
+        "x": 85,
+        "y": 2,
+        "w": 11,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 74,
+        "w": 11,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-back/S/00": {
+      "frame": {
+        "x": 100,
+        "y": 2,
+        "w": 12,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 96,
+        "w": 12,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-back/S/03": {
+      "frame": {
+        "x": 116,
+        "y": 2,
+        "w": 12,
+        "h": 15
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 75,
+        "w": 12,
+        "h": 15
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "jump/hair-midnight-back/S": [
+      "jump/hair-midnight-back/S/00",
+      "jump/hair-midnight-back/S/01",
+      "jump/hair-midnight-back/S/02",
+      "jump/hair-midnight-back/S/03",
+      "jump/hair-midnight-back/S/04",
+      "jump/hair-midnight-back/S/05",
+      "jump/hair-midnight-back/S/06",
+      "jump/hair-midnight-back/S/07"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "jump-hair-midnight-back-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 130,
+      "h": 20
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

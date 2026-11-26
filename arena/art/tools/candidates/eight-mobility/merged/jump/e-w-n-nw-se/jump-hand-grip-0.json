@@ -1,0 +1,1028 @@
+{
+  "frames": {
+    "jump/hand-grip/SE/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 10,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 128,
+        "w": 10,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/SE/05": {
+      "frame": {
+        "x": 21,
+        "y": 2,
+        "w": 10,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 111,
+        "w": 10,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/SE/07": {
+      "frame": {
+        "x": 35,
+        "y": 2,
+        "w": 10,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 123,
+        "w": 10,
+        "h": 13
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/E/05": {
+      "frame": {
+        "x": 49,
+        "y": 2,
+        "w": 10,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 117,
+        "w": 10,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/W/00": {
+      "frame": {
+        "x": 63,
+        "y": 2,
+        "w": 12,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 103,
+        "w": 12,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/W/01": {
+      "frame": {
+        "x": 79,
+        "y": 2,
+        "w": 12,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 89,
+        "w": 12,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/W/02": {
+      "frame": {
+        "x": 95,
+        "y": 2,
+        "w": 12,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 85,
+        "w": 12,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/W/03": {
+      "frame": {
+        "x": 111,
+        "y": 2,
+        "w": 12,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 85,
+        "w": 12,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/W/04": {
+      "frame": {
+        "x": 127,
+        "y": 2,
+        "w": 12,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 85,
+        "w": 12,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/W/06": {
+      "frame": {
+        "x": 143,
+        "y": 2,
+        "w": 12,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 97,
+        "w": 12,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/N/01": {
+      "frame": {
+        "x": 159,
+        "y": 2,
+        "w": 9,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 107,
+        "w": 9,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/N/05": {
+      "frame": {
+        "x": 172,
+        "y": 2,
+        "w": 9,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 105,
+        "w": 9,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/N/06": {
+      "frame": {
+        "x": 185,
+        "y": 2,
+        "w": 9,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 115,
+        "w": 9,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/N/07": {
+      "frame": {
+        "x": 198,
+        "y": 2,
+        "w": 9,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 117,
+        "w": 9,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/NW/06": {
+      "frame": {
+        "x": 211,
+        "y": 2,
+        "w": 11,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 103,
+        "w": 11,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/SE/01": {
+      "frame": {
+        "x": 226,
+        "y": 2,
+        "w": 10,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 114,
+        "w": 10,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/SE/02": {
+      "frame": {
+        "x": 240,
+        "y": 2,
+        "w": 10,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 110,
+        "w": 10,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/SE/03": {
+      "frame": {
+        "x": 254,
+        "y": 2,
+        "w": 10,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 110,
+        "w": 10,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/SE/04": {
+      "frame": {
+        "x": 268,
+        "y": 2,
+        "w": 10,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 110,
+        "w": 10,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/SE/06": {
+      "frame": {
+        "x": 282,
+        "y": 2,
+        "w": 10,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 122,
+        "w": 10,
+        "h": 12
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/E/00": {
+      "frame": {
+        "x": 296,
+        "y": 2,
+        "w": 10,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 134,
+        "w": 10,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/E/01": {
+      "frame": {
+        "x": 310,
+        "y": 2,
+        "w": 10,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 120,
+        "w": 10,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/E/02": {
+      "frame": {
+        "x": 324,
+        "y": 2,
+        "w": 10,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 116,
+        "w": 10,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/E/03": {
+      "frame": {
+        "x": 338,
+        "y": 2,
+        "w": 10,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 116,
+        "w": 10,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/E/04": {
+      "frame": {
+        "x": 352,
+        "y": 2,
+        "w": 10,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 116,
+        "w": 10,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/E/06": {
+      "frame": {
+        "x": 366,
+        "y": 2,
+        "w": 10,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 128,
+        "w": 10,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/E/07": {
+      "frame": {
+        "x": 380,
+        "y": 2,
+        "w": 10,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 129,
+        "w": 10,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/W/05": {
+      "frame": {
+        "x": 394,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 87,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/W/07": {
+      "frame": {
+        "x": 409,
+        "y": 2,
+        "w": 12,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 91,
+        "y": 99,
+        "w": 12,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/N/00": {
+      "frame": {
+        "x": 425,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 122,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/N/02": {
+      "frame": {
+        "x": 438,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 104,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/N/03": {
+      "frame": {
+        "x": 451,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 104,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/N/04": {
+      "frame": {
+        "x": 464,
+        "y": 2,
+        "w": 9,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 104,
+        "w": 9,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/NW/00": {
+      "frame": {
+        "x": 477,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 110,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/NW/01": {
+      "frame": {
+        "x": 492,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 96,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/NW/02": {
+      "frame": {
+        "x": 507,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 92,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/NW/03": {
+      "frame": {
+        "x": 522,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 92,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/NW/04": {
+      "frame": {
+        "x": 537,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 92,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/NW/05": {
+      "frame": {
+        "x": 552,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 93,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-grip/NW/07": {
+      "frame": {
+        "x": 567,
+        "y": 2,
+        "w": 11,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 105,
+        "w": 11,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "jump/hand-grip/E": [
+      "jump/hand-grip/E/00",
+      "jump/hand-grip/E/01",
+      "jump/hand-grip/E/02",
+      "jump/hand-grip/E/03",
+      "jump/hand-grip/E/04",
+      "jump/hand-grip/E/05",
+      "jump/hand-grip/E/06",
+      "jump/hand-grip/E/07"
+    ],
+    "jump/hand-grip/W": [
+      "jump/hand-grip/W/00",
+      "jump/hand-grip/W/01",
+      "jump/hand-grip/W/02",
+      "jump/hand-grip/W/03",
+      "jump/hand-grip/W/04",
+      "jump/hand-grip/W/05",
+      "jump/hand-grip/W/06",
+      "jump/hand-grip/W/07"
+    ],
+    "jump/hand-grip/N": [
+      "jump/hand-grip/N/00",
+      "jump/hand-grip/N/01",
+      "jump/hand-grip/N/02",
+      "jump/hand-grip/N/03",
+      "jump/hand-grip/N/04",
+      "jump/hand-grip/N/05",
+      "jump/hand-grip/N/06",
+      "jump/hand-grip/N/07"
+    ],
+    "jump/hand-grip/NW": [
+      "jump/hand-grip/NW/00",
+      "jump/hand-grip/NW/01",
+      "jump/hand-grip/NW/02",
+      "jump/hand-grip/NW/03",
+      "jump/hand-grip/NW/04",
+      "jump/hand-grip/NW/05",
+      "jump/hand-grip/NW/06",
+      "jump/hand-grip/NW/07"
+    ],
+    "jump/hand-grip/SE": [
+      "jump/hand-grip/SE/00",
+      "jump/hand-grip/SE/01",
+      "jump/hand-grip/SE/02",
+      "jump/hand-grip/SE/03",
+      "jump/hand-grip/SE/04",
+      "jump/hand-grip/SE/05",
+      "jump/hand-grip/SE/06",
+      "jump/hand-grip/SE/07"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "jump-hand-grip-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 580,
+      "h": 17
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

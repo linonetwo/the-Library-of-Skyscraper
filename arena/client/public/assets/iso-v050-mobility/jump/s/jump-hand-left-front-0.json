@@ -1,0 +1,220 @@
+{
+  "frames": {
+    "jump/hand-left-front/S/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 13,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 114,
+        "y": 98,
+        "w": 13,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-left-front/S/01": {
+      "frame": {
+        "x": 24,
+        "y": 2,
+        "w": 10,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 116,
+        "y": 96,
+        "w": 10,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-left-front/S/02": {
+      "frame": {
+        "x": 38,
+        "y": 2,
+        "w": 12,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 93,
+        "w": 12,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-left-front/S/05": {
+      "frame": {
+        "x": 54,
+        "y": 2,
+        "w": 12,
+        "h": 11
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 98,
+        "w": 12,
+        "h": 11
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-left-front/S/03": {
+      "frame": {
+        "x": 70,
+        "y": 2,
+        "w": 10,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 94,
+        "w": 10,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-left-front/S/04": {
+      "frame": {
+        "x": 84,
+        "y": 2,
+        "w": 9,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 94,
+        "w": 9,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-left-front/S/06": {
+      "frame": {
+        "x": 97,
+        "y": 2,
+        "w": 10,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 116,
+        "y": 108,
+        "w": 10,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hand-left-front/S/07": {
+      "frame": {
+        "x": 111,
+        "y": 2,
+        "w": 11,
+        "h": 9
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 110,
+        "w": 11,
+        "h": 9
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "jump/hand-left-front/S": [
+      "jump/hand-left-front/S/00",
+      "jump/hand-left-front/S/01",
+      "jump/hand-left-front/S/02",
+      "jump/hand-left-front/S/03",
+      "jump/hand-left-front/S/04",
+      "jump/hand-left-front/S/05",
+      "jump/hand-left-front/S/06",
+      "jump/hand-left-front/S/07"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "jump-hand-left-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 124,
+      "h": 15
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
