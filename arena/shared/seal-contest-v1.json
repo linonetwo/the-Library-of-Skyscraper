@@ -1,0 +1,30 @@
+{
+  "id": "seal-contest",
+  "version": "seal-contest-v1",
+  "simulationVersion": 8,
+  "worldMapPath": "arena/shared/world-map-v5.json",
+  "tickDurationMs": 500,
+  "durationTicks": 960,
+  "exclusiveScoreTicks": 20,
+  "controlPoints": [
+    {"roomId": "room-2", "position": {"x": 0, "y": 8}, "radiusMilli": 2000, "requiredTicks": 6}
+  ],
+  "enemies": [
+    {"id": "drill-guardian-a", "roomId": "room-3", "position": {"x": -8.8, "y": 8}, "hp": 80},
+    {"id": "drill-guardian-b", "roomId": "room-3", "position": {"x": -7.2, "y": 8}, "hp": 80}
+  ],
+  "ownedFacilities": {
+    "kind": "warehouse",
+    "roomId": "room-3",
+    "maxHp": 100,
+    "positionsByJoinOrder": [
+      {"x": -9.4, "y": 9.5},
+      {"x": -6.6, "y": 9.5},
+      {"x": -9.4, "y": 6.5},
+      {"x": -6.6, "y": 6.5}
+    ]
+  },
+  "repair": {"rangeMilli": 2000, "intervalTicks": 4, "materialCost": 1, "healHp": 4},
+  "inkStrike": {"rangeMilli": 3000, "energyCost": 1, "maxEnergy": 3, "regenerationTicks": 8, "releaseDelayTicks": 2, "recoveryTicks": 2, "cooldownTicks": 8, "damage": 16},
+  "heavy": {"intervalTicks": 8, "telegraphTicks": 1, "damageMultiplier": 2, "downTicks": 2, "riseTicks": 2}
+}
