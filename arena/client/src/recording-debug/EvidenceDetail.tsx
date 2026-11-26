@@ -36,6 +36,6 @@ export function EvidenceDetail({selection, sceneTick}: {selection: RecordingEvid
       <p>节点 {selection.fact.nodeId} · 访问 {selection.fact.visits.length} 次 · {selection.fact.selected ? '已选择' : '未选择'}</p>
       <p>原比较值 {selection.fact.visits.map(visit => visit.value === undefined ? '未记录' : String(visit.value)).join(' / ') || '未记录'}</p>
     </>}
-    <p>记录状态：{selection.kind === 'module' ? '模块访问已记录' : '节点访问已记录'}</p>
+    <p>记录状态：{selection.kind === 'module' ? '模块访问已记录' : '节点决策已记录'}</p>
   </article>;
 }
