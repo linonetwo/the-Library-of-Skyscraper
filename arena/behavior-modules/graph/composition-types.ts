@@ -12,7 +12,7 @@ export type CompositionModule = { [K in keyof CompositionConfig]: {
   roleFilter?: ActorRole[]; config: CompositionConfig[K];
 } }[keyof CompositionConfig];
 export type GraphModule = BehaviorModule | CompositionModule;
-export type ModuleReasonCode = 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-safe' | 'escort-defending';
+export type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-safe' | 'escort-defending';
 export interface ModuleVisit {
   nodeId: string; moduleId: string; outcome: 'selected' | 'fallback' | 'hold';
   reasonCode: ModuleReasonCode; ref?: ModuleRef; resolvedId?: string;

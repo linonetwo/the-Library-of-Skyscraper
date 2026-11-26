@@ -48,3 +48,20 @@ test('v0.5 ordinary/mobility full files and archived source locations remain exa
 test('composition executes through the independent production V8 runner',{skip:!process.env.ARENA_SCRIPT_RUNNER},async()=>{
  const g=graph([module('scout','scout',{target:ref('r0'),maxEnemyHp:0,reportIntervalTicks:3})]);const {bundle}=await compile(g);assert.equal(native(bundle,context([actor('s','scout')])).memoryPatch.set.aiTrace.actors[0].moduleVisits[0].reasonCode,'scout-reported');
 });
+test('mixed graphs record old-card fallback before new choice and explicitly truncate actual visits',async()=>{
+ const g=graph([module('old','gather',{targetRoomId:'missing'}),module('new','scout',{target:ref('r0'),maxEnemyHp:0,reportIntervalTicks:3})]);g.nodes[0].fallback='second';
+ let {bundle}=await compile(g);let result=native(bundle,context([actor('g','gatherer')]));let visits=result.memoryPatch.set.aiTrace.actors[0].moduleVisits;
+ assert.deepEqual(visits.map(v=>[v.moduleId,v.outcome,v.reasonCode]),[['old','fallback','official-unavailable'],['new','hold','scout-reported']]);
+ const modules=Array.from({length:10},(_,i)=>module('scout-'+i,'scout',{target:ref('r0'),maxEnemyHp:0,reportIntervalTicks:3}));const many=graph(modules);many.nodes=[{id:'first',type:'sequence',children:modules.map(m=>'node-'+m.moduleId),fallback:'fallback'},...modules.map(m=>({id:'node-'+m.moduleId,type:'module',moduleId:m.moduleId,fallback:'fallback'})),{id:'second',type:'hold',reason:'none'},{id:'fallback',type:'hold',reason:'fallback'}];
+ ({bundle}=await compile(many));result=native(bundle,context([actor('g','gatherer')]));const trace=result.memoryPatch.set.aiTrace.actors[0];assert.equal(trace.moduleVisits.length,8);assert.equal(trace.moduleVisitsTruncated,true);assert.equal(trace.visited.filter(v=>v.nodeId.startsWith('node-')).length,10);assert.deepEqual(result.intents,[]);
+});
+test('missing rooms/filtered modules fall back and physically unfinished scout does not report',async()=>{
+ const g=graph([module('scout','scout',{target:ref('missing'),maxEnemyHp:0,reportIntervalTicks:3})]);let {bundle}=await compile(g);let result=native(bundle,context([actor('g','gatherer')]));assert.equal(result.memoryPatch.set.aiTrace.actors[0].moduleVisits[0].reasonCode,'room-missing');
+ g.modules[0].config.target=ref('r1');({bundle}=await compile(g));const a=actor('g','gatherer');a.travel={travelId:'real',targetRoomId:'r1'};result=native(bundle,context([a]));assert.equal(result.memoryPatch.set.graphState.g.moduleState.scout.reportedTick,undefined);assert.equal(result.memoryPatch.set.aiTrace.actors[0].moduleVisits[0].reasonCode,'travel-active');
+ g.modules[0].roleFilter=['guard'];({bundle}=await compile(g));result=native(bundle,context([a]));assert.equal(result.memoryPatch.set.aiTrace.actors[0].moduleVisits[0].reasonCode,'role-filtered');
+ g.modules[0].config.reportIntervalTicks=-1;assert.ok(api.diagnoseGraph(g).some(d=>d.code==='module-config'));assert.throws(()=>api.toGraphSourceProject(g));
+});
+test('escort same-room defense reuses the original guard action and safe rooms hold',async()=>{
+ const g=graph([module('escort','escort',{target:{type:'ownRole',role:'gatherer'},minCargo:5})]);const {bundle}=await compile(g);const s=actor('s','scout','r2'),a=actor('a','gatherer','r2');let result=native(bundle,context([s,a]));assert.deepEqual(result.intents.find(i=>i.actorId==='s'),{type:'capture',actorId:'s',priority:20});
+ s.roomId='r0';a.roomId='r0';result=native(bundle,context([s,a]));assert.ok(!result.intents.some(i=>i.actorId==='s'));assert.equal(result.memoryPatch.set.aiTrace.actors[0].moduleVisits[0].reasonCode,'escort-safe');
+});

@@ -11,7 +11,7 @@ export type CompositionModule = { [K in keyof CompositionConfig]: {
   roleFilter?: ActorRole[]; config: CompositionConfig[K];
 } }[keyof CompositionConfig];
 export type GraphModule = BehaviorModule | CompositionModule;
-export type ModuleReasonCode = 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-safe' | 'escort-defending';
+export type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-safe' | 'escort-defending';
 export interface ModuleVisit {
   nodeId: string; moduleId: string; outcome: 'selected' | 'fallback' | 'hold';
   reasonCode: ModuleReasonCode; ref?: ModuleRef; resolvedId?: string;
@@ -29,7 +29,7 @@ export function selectComposition(ctx:RuleContext,actor:ActorScriptView,module:C
  const visit:ModuleVisit={nodeId,moduleId:module.moduleId,outcome:'fallback',reasonCode:'disabled',fallbackNodeId};
  const selected=(reasonCode:ModuleVisit['reasonCode'],intent?:ActionIntentDraft)=>{visit.reasonCode=reasonCode;visit.outcome=intent?'selected':'hold';delete visit.fallbackNodeId;return {visit,intent};};
  const fallback=(reasonCode:ModuleVisit['reasonCode'])=>{visit.reasonCode=reasonCode;return {visit};};
- const travel=(ref:ModuleRef)=>{visit.ref=ref;visit.resolvedId=actor.travel!.targetRoomId;return selected('travel-active');};
+ const travel=(ref:ModuleRef)=>{visit.ref=ref;return selected('travel-active');};
  const toward=(roomId:string)=>{const room=ctx.world.rooms.find(r=>r.id===roomId);if(!room)return fallback('room-missing');const intent=move(ctx,actor,room,module.priority);return intent?selected('moving',intent):fallback('route-unavailable');};
  if(!module.enabled)return fallback('disabled');
  if(module.roleFilter&&!module.roleFilter.includes(actor.role))return fallback('role-filtered');
@@ -46,7 +46,7 @@ export function selectComposition(ctx:RuleContext,actor:ActorScriptView,module:C
  if(module.kind==='patrol'){
   const cursor=(state.cursor??0)%module.config.rooms.length;const ref=module.config.rooms[cursor];visit.ref=ref;visit.resolvedId=ref.roomId;visit.observed={cursor};
   if(!ctx.world.rooms.some(r=>r.id===ref.roomId))return fallback('room-missing');
-  if(actor.travel)return travel(ref);
+  if(actor.travel){delete state.arrivedTick;return travel(ref);}
   if(actor.roomId!==ref.roomId){delete state.arrivedTick;return toward(ref.roomId);}
   if(state.arrivedTick===undefined)state.arrivedTick=ctx.tick;
   visit.observed={cursor,arrivedTick:state.arrivedTick};
