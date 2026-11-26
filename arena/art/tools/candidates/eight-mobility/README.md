@@ -17,8 +17,8 @@ Climb uses the independently accepted NE/SW grab/brace sources in `iso-v050-mobi
 The climb canvas alone is 256×256 with ground pivot (128,204.8). Every projected joint and hand target receives the same (32,32) canvas margin. Root screen translation stays zero: server XYZ, height and platform movement are never baked into the sprite. The staff is stowed on the back while both independent hands grip or brace. `climb-hands.mjs` aligns each registered palm contact and wrist normal without mirroring the raster.
 
 ```sh
-node arena/art/tools/candidates/eight-mobility/bake-climb.mjs NE,SW
+node arena/art/tools/candidates/eight-mobility/bake-climb.mjs NE,SW ne-sw-climb-v3
 node --test arena/art/tools/candidates/eight-mobility/{mobility,climb}.test.mjs
 ```
 
-`candidates/ne-sw-climb` contains complete pose/contact sheets, per-phase sample sheets and all eight outfit/hair/equipment loops. This sample is pending independent visual review of the deep crouch, actual grip silhouettes, platform handoff and stowed staff; numerical contact tests do not establish visual acceptance. Do not expand climb directions or register this sample before that review. Public packs and the main index are maintained separately by the integration owner.
+`candidates/ne-sw-climb-v3` contains complete pose/contact sheets, per-phase sample sheets and all eight outfit/hair/equipment loops. This NE/SW revision passed independent offline visual review of the deep crouch, connected hips/knees, platform handoff and stowed staff. The hip anchors follow the same registered body transform through deep flexion instead of a generic hip width. Numerical contact tests do not establish real map support: the two-direction runtime candidate must still verify actual ladder rungs, boots, top platform and occlusion. Do not expand climb directions before that validation. Public packs and the main index are maintained separately by the integration owner.
