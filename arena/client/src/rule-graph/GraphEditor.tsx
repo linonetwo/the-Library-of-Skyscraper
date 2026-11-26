@@ -1,3 +1,4 @@
+import { GraphFragmentLibrary } from "../rule-fragments/GraphFragmentLibrary";
 import {
   GraphObjectActions,
   GraphObjectBrowser,
@@ -133,6 +134,7 @@ export function GraphEditor({
         onSelect={(next) => (next ? choose(next) : onSelect(null))}
         onCopy={copySelected}
       />
+      <GraphFragmentLibrary graph={graph} selection={selection} onApply={onApply} onSelect={choose} />
       <div className="graph-workspace">
         <GraphObjectBrowser
           graph={graph}
