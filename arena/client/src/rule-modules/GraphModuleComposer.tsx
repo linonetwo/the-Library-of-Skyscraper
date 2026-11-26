@@ -17,7 +17,7 @@ export function GraphModuleComposer({ graph, request, onChange, onApply, onSelec
   useEffect(() => { preview.current?.focus(); }, [request.type, module?.moduleId]);
   const cancel = () => { onChange(null); requestAnimationFrame(() => document.querySelector<HTMLButtonElement>(".module-catalog > button")?.focus()); };
   if (!module) return <p>请选择当前图中的模块实例。<button onClick={cancel}>返回编排</button></p>;
-  const references = graph.nodes.filter(node => node.type === "module" && node.moduleId === module.moduleId);
+  const references = request.type === "new" ? [] : graph.nodes.filter(node => node.type === "module" && node.moduleId === module.moduleId);
   const instanceId = request.type === "new" ? freshGraphId(graph, module.moduleId) : module.moduleId;
   const confirm = () => {
     if (!target) return;
