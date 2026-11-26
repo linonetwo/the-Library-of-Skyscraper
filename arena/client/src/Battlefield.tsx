@@ -150,7 +150,7 @@ export default function Battlefield() {
                 AI 模块编辑 <ArrowUpRight size={17} />
               </button>
             </div>
-            <p id="ai-entry-description">调五种行为、连状态图，试跑后再发布 · <a href="?view=rules">编辑器直达链接</a></p>
+            <p id="ai-entry-description">编排行为模块与状态图，试跑后发布 · <a href="?view=rules">编辑器直达链接</a></p>
             <button className="text-button" onClick={() => setLobby(true)}>
               或加入联机赛局 <ChevronRight size={13} />
             </button>

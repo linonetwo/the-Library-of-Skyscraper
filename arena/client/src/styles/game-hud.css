@@ -486,6 +486,18 @@
     font-size: 11px;
     gap: 6px;
   }
+  .game-top > button {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .game-top .objective-button {
+    flex: 1;
+    min-width: 0;
+  }
+  .game-top .objective-button > strong,
+  .game-top .objective-button > span {
+    width: 100%;
+  }
   .objective-button span {
     max-width: 190px;
     font-size: 10px;
