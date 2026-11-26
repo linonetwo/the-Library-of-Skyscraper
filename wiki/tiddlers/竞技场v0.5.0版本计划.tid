@@ -2,7 +2,7 @@ title: 竞技场v0.5.0版本计划
 tags: 竞技场目录：版本计划 竞技场开发计划
 type: text/vnd.tiddlywiki
 created: 20261125140000000
-modified: 20261126131510000
+modified: 20261126152244000
 
 v0.5.0「书库捷径」：队员能沿道路疾跑、跃过断桥、攀越高廊；玩家可在地图指挥，也可改规则让小队自己走。动作改变真实归途或支援时间，换装、重连、回放仍是同一个人走同一条路。建立在[[已发布的v0.4.0|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.0]]（48fdf11）之上。以下为本版工作包编号，非总里程碑编号；技术边界和验收场景见[[竞技场v0.5.0机动设计合同]]。
 
@@ -15,7 +15,7 @@ v0.5.0「书库捷径」：队员能沿道路疾跑、跃过断桥、攀越高�
 |M4|SDK[[PR126|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/126]]已合bef9d9，图生成[[PR128|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/128]]已合6002d81；可见MCP[[PR132|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/132]]已合2e43e11，实际改同一叶run→jump、同帧V8与发布后跃桥已由主代理实跑；完整机动阶段待M5|
 |入口可发现性|PR152已合、独立5191候选已部署「AI 模块编辑」及?view=rules直达，草稿恢复实测；归本版，不另发v0.4.2；正式仍v0.4.1|
 |呈现摘要|PR154已合0c1a9dad；无task在途HUD与run／jump／climb试跑摘要修正，候选已叠，正式入口仍v0.4.1|
-|M5|固定source＝recipe 5eebbfac实际包已启动；基础29 Node＋34 E2E及AI归档同帧编辑／发布场景通过；其余路线、192组、胜败、在线、重启旧局等集中继续，尚未整版完成或发布|
+|M5|固定5eeb实际包：基础63项、AI编辑发布、正常胜败／同seed重试、cargo／联机／重启旧局／工坊主要实录齐；390窄屏及最终技术／视觉双签均通过，M5整批完成；正式5173／5175→8790已部署并回访通过，[[GitHub v0.5.0预览版已发布|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.5.0]]（2026-11-26 15:20:08 UTC）|
 
 |!目标版本／包|!归属与依赖|!可交付结果|
 |v0.5 M1 路网与权威旅行|领域Sol；Astra先审地图／类型|两条双向地图捷径、双边疾跑；连续坐标、高度、相位及到达结算进入同一Travel、checkpoint与录制，旧局原样重演|
