@@ -47,6 +47,13 @@ export function articulateClimb(direction, input) {
       pose.attachmentAngles[`${side}-${gesture}-hand`] = angle*180/Math.PI;
     }
   }
+  if (direction.climbLeftThighAxis) {
+    // Register only the source cutout to the unchanged anatomical hip/knee.
+    const axis = direction.climbLeftThighAxis;
+    const target = pose.jointPositions.leftKnee.map((v,i) => v-pose.jointPositions.leftHip[i]);
+    pose.attachmentAngles["left-thigh"] = (Math.atan2(target[1],target[0])-Math.atan2(axis[1],axis[0]))*180/Math.PI;
+    pose.attachmentMappings["left-thigh"] = { axis, scale: Math.hypot(...target)/Math.hypot(...axis) };
+  }
   pose.hiddenAttachments = [];
   pose.handContacts = {};
   for (const side of ["left","right"]) {

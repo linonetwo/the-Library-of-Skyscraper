@@ -114,6 +114,13 @@ export async function loadClimbRig(names) {
         a.image = path.resolve(path.dirname(nePath), a.image);
     } else {
       direction = config.directions[name];
+      if (name === "N") {
+        // Alpha-weighted centers at the original hip/knee source sections:
+        // (5.083951405, 8.454674286) and (4.343948468, 33.434393766).
+        const thigh = direction.attachments.find(a => a.id === "left-thigh");
+        thigh.pivot = [5.08395140500806, thigh.pivot[1]];
+        direction.climbLeftThighAxis = [-0.740002936803529, 24.979719480710855];
+      }
       if (name === "S") useSouthThighCleanup(direction);
       if (name === "NW" || name === "SE") direction.climbShoulderSockets = ["left"];
       const original = direction.attachments.find(

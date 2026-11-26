@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import path from "node:path";
+import sharp from "sharp";
+import { stamp } from "../../pose-raster.mjs";
 import { loadClimbRig, here } from "./rig.mjs";
 import { climbInputs, climbPhaseFrames } from "./climb.mjs";
 import { registerClimbHands, articulateClimb } from "./climb-hands.mjs";
@@ -103,4 +105,29 @@ test("E swing recovery is 10mm, leaves stance feet on rungs and reverses exactly
   for (const i of [3,5]) assert.deepEqual(east[i].ankles,original[i].ankles);
   for (const input of east) for (const contact of Object.values(input.contacts))
     if (contact.support) assert(Math.abs(contact.footHeight*4-Math.round(contact.footHeight*4))<1e-9);
+});
+
+
+test("N registered thigh and unchanged shin meet at the actual knee raster", async () => {
+  const rig = await loadClimbRig(["N"]);
+  await registerClimbHands(rig, path.resolve(here, "../../../iso-v050-mobility/climb-hands/six/manifest.json"));
+  const direction = rig.directions.N;
+  for (const frame of [0,16,24,50,57,65]) {
+    const pose = articulateClimb(direction, climbInputs()[frame]);
+    const knee = pose.jointPositions.leftKnee, masks = [];
+    for (const id of ["left-thigh", "left-shin"]) {
+      const a = direction.attachments.find(a => a.id === id);
+      const {data,info} = await sharp(a.image).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+      const pixels = Buffer.alloc(192*256*4);
+      stamp(pixels,192,256,{data,width:info.width,height:info.height},pose.jointPositions[a.joint],a.pivot,
+        (pose.attachmentAngles[id] ?? pose.jointAngles[a.angleJoint ?? a.joint] ?? 0)*Math.PI/180,pose.attachmentMappings[id]);
+      const points = [];
+      for (let y=0;y<256;y++) for (let x=0;x<192;x++)
+        if (pixels[(y*192+x)*4+3]>100 && Math.hypot(x+.5-knee[0],y+.5-knee[1])<8) points.push([x,y]);
+      masks.push(points);
+    }
+    let gap = Infinity;
+    for (const a of masks[0]) for (const b of masks[1]) gap = Math.min(gap,distance(a,b));
+    assert(gap<=Math.SQRT2, `${frame}: thigh/shin opaque knee masks are not adjacent (${gap}px)`);
+  }
 });
