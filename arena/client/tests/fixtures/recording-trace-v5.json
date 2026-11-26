@@ -1,0 +1,296 @@
+{
+  "provenance": {
+    "sourceCommit": "5eebbfacfef1456c97611693038a87f0ee66d4b2",
+    "evidence": "M5 acceptance/ai-mobility-fresh/timeline.json",
+    "originalSha256": "387b66feabf31ddf5afaa026b2a9cdb15832e592425e36b015931a5fa4951403",
+    "method": "Exact sessionId, owner, operationIndex, tick, sourceHash and aiTrace for original operations24,25,36. Other operations, memory/tasks and world snapshots omitted. No identity credentials."
+  },
+  "sessionId": "a8ed1249-87e0-4d1a-a3bb-cfd860168a0f",
+  "ruleHistory": {
+    "playerId": "p1",
+    "changes": [
+      {
+        "operationIndex": 24,
+        "tick": 16,
+        "sourceHash": "2d84a7a7ffca22d901c8e9054d1b4ffb0e1b2ca354ea63e5ace37aeb8bcaba4e",
+        "memoryPatch": {
+          "set": {
+            "aiTrace": {
+              "actors": [
+                {
+                  "actorId": "p1-gatherer",
+                  "endStateId": "working",
+                  "moduleId": "approach-bridge",
+                  "reason": "guard assigned room",
+                  "selectedNodeId": "approach-bridge-node",
+                  "startStateId": "working",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "start-return",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "cargo-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "bridge-work-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "jump-from-resource",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "approach-bridge-node"
+                    }
+                  ]
+                },
+                {
+                  "actorId": "p1-guard",
+                  "endStateId": "guarding",
+                  "moduleId": null,
+                  "reason": "jump jump-room-1-room-2 to room-2",
+                  "selectedNodeId": "run-support",
+                  "startStateId": "guarding",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "run-arrived-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "run-support-check",
+                      "value": true
+                    },
+                    {
+                      "nodeId": "run-support"
+                    }
+                  ]
+                },
+                {
+                  "actorId": "p1-scout",
+                  "endStateId": "building",
+                  "moduleId": "approach-west",
+                  "reason": "guard assigned room",
+                  "selectedNodeId": "approach-west-node",
+                  "startStateId": "building",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "climb-arrived-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "climb-support-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "approach-west-node"
+                    }
+                  ]
+                }
+              ],
+              "graphId": "shortcut-support-graph",
+              "tick": 16,
+              "v": 2
+            }
+          }
+        }
+      },
+      {
+        "operationIndex": 25,
+        "tick": 17,
+        "sourceHash": "2d84a7a7ffca22d901c8e9054d1b4ffb0e1b2ca354ea63e5ace37aeb8bcaba4e",
+        "memoryPatch": {
+          "set": {
+            "aiTrace": {
+              "actors": [
+                {
+                  "actorId": "p1-gatherer",
+                  "endStateId": "working",
+                  "moduleId": null,
+                  "reason": "travel in progress",
+                  "selectedNodeId": "hold-node",
+                  "startStateId": "working",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "start-return",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "cargo-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "bridge-work-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "jump-from-resource",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "approach-bridge-node"
+                    },
+                    {
+                      "nodeId": "hold-node"
+                    }
+                  ]
+                },
+                {
+                  "actorId": "p1-guard",
+                  "endStateId": "guarding",
+                  "moduleId": null,
+                  "reason": "mobility travel in progress: room-2 / walk",
+                  "selectedNodeId": "run-support",
+                  "startStateId": "guarding",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "run-arrived-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "run-support-check",
+                      "value": true
+                    },
+                    {
+                      "nodeId": "run-support"
+                    }
+                  ]
+                },
+                {
+                  "actorId": "p1-scout",
+                  "endStateId": "building",
+                  "moduleId": null,
+                  "reason": "travel in progress",
+                  "selectedNodeId": "hold-node",
+                  "startStateId": "building",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "climb-arrived-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "climb-support-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "approach-west-node"
+                    },
+                    {
+                      "nodeId": "hold-node"
+                    }
+                  ]
+                }
+              ],
+              "graphId": "shortcut-support-graph",
+              "tick": 17,
+              "v": 2
+            }
+          }
+        }
+      },
+      {
+        "operationIndex": 38,
+        "tick": 28,
+        "sourceHash": "2d84a7a7ffca22d901c8e9054d1b4ffb0e1b2ca354ea63e5ace37aeb8bcaba4e",
+        "memoryPatch": {
+          "set": {
+            "aiTrace": {
+              "actors": [
+                {
+                  "actorId": "p1-gatherer",
+                  "endStateId": "working",
+                  "moduleId": null,
+                  "reason": "mobility travel in progress: room-1 / walk",
+                  "selectedNodeId": "jump-to-stacks",
+                  "startStateId": "working",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "start-return",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "cargo-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "bridge-work-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "jump-from-resource",
+                      "value": true
+                    },
+                    {
+                      "nodeId": "jump-to-stacks"
+                    }
+                  ]
+                },
+                {
+                  "actorId": "p1-guard",
+                  "endStateId": "guarding",
+                  "moduleId": null,
+                  "reason": "travel in progress",
+                  "selectedNodeId": "hold-node",
+                  "startStateId": "guarding",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "run-arrived-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "run-support-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "approach-east-node"
+                    },
+                    {
+                      "nodeId": "hold-node"
+                    }
+                  ]
+                },
+                {
+                  "actorId": "p1-scout",
+                  "endStateId": "building",
+                  "moduleId": null,
+                  "reason": "travel in progress",
+                  "selectedNodeId": "hold-node",
+                  "startStateId": "building",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "climb-arrived-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "climb-support-check",
+                      "value": false
+                    },
+                    {
+                      "nodeId": "approach-west-node"
+                    },
+                    {
+                      "nodeId": "hold-node"
+                    }
+                  ]
+                }
+              ],
+              "graphId": "shortcut-support-graph",
+              "tick": 28,
+              "v": 2
+            }
+          }
+        }
+      }
+    ]
+  }
+}
