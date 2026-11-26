@@ -1,3 +1,4 @@
+import { CompositionModuleFields } from "./CompositionModuleFields";
 import { useState } from "react";
 import type {
   RuleGraph,
@@ -61,7 +62,9 @@ export function GraphInspector({
   } else {
     const module = graph.modules.find((m) => m.moduleId === selection.id);
     if (!module) return null;
-    body = (
+    body = module.kind === "scout" || module.kind === "patrol" || module.kind === "escort" ? (
+      <CompositionModuleFields module={module} onChange={save} />
+    ) : (
       <BehaviorModuleCard
         module={module}
         expanded={moduleExpanded}
