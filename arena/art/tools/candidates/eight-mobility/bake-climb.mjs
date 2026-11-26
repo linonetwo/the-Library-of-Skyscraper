@@ -1,3 +1,4 @@
+import sharp from "sharp";
 import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -39,3 +40,12 @@ await writeFile(file, JSON.stringify(config, null, 2) + "\n");
 await writeFile(path.join(out, "phase-ranges.json"), JSON.stringify(climbPhaseFrames, null, 2) + "\n");
 await exportPoses(file, out);
 execFileSync(process.execPath, [path.resolve(here, "../../preview-looks.mjs"), file, out], { stdio: "inherit" });
+
+// Review sheets crop the same exported pixels; they do not introduce a renderer.
+for (const [phase, range] of Object.entries(climbPhaseFrames)) {
+  const offsets = range.last-range.first === 24 ? [0,4,8,12,16,20,23,24] : [0,1,2,3,4,5,6,7];
+  const parts = [];
+  for (let row=0; row<names.length; row++) for (const [column, offset] of offsets.entries())
+    parts.push({ input: await sharp(path.join(out, "contact-sheet.png")).extract({left:(range.first+offset)*256,top:row*256,width:256,height:256}).toBuffer(),left:column*256,top:row*256 });
+  await sharp({create:{width:8*256,height:names.length*256,channels:4,background:"#e6e2dc"}}).composite(parts).png().toFile(path.join(out, phase+"-sample.png"));
+}
