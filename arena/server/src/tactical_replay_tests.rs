@@ -5,8 +5,8 @@ fn same(a: &mut Session, b: &mut Session) {
             (serde_json::Value::Object(a), serde_json::Value::Object(b)) => {
                 for key in a.keys().chain(b.keys()) {
                     if let Some(d) = difference(
-                        &a.get(key).unwrap_or(&serde_json::Value::Null),
-                        &b.get(key).unwrap_or(&serde_json::Value::Null),
+                        a.get(key).unwrap_or(&serde_json::Value::Null),
+                        b.get(key).unwrap_or(&serde_json::Value::Null),
                         &format!("{path}.{key}"),
                     ) {
                         return Some(d);
