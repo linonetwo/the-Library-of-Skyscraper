@@ -2,6 +2,7 @@ import type {
   AuthorizedWorldView, EntityId, PlayerScriptView, RuleMemory,
   SquadScriptView, TaskQueueView, TaskDraft,
 } from './views.ts';
+import type { ChantInkStrike } from './chant.ts';
 
 export interface RuleExecutionLimits {
   readonly maxIntents: number;
@@ -38,7 +39,10 @@ export interface ClimbIntentDraft extends BaseIntentDraft { readonly type: 'clim
 
 export interface GatherIntentDraft extends BaseIntentDraft { readonly type: 'gather' }
 export interface DeliverIntentDraft extends BaseIntentDraft { readonly type: 'deliver' }
-export interface AttackIntentDraft extends BaseIntentDraft { readonly type: 'attack' }
+export interface AttackIntentDraft extends BaseIntentDraft { readonly type: 'attack'; readonly targetId?: EntityId }
+export interface RepairIntentDraft extends BaseIntentDraft { readonly type: 'repair'; readonly buildingId: EntityId }
+export interface ClaimIntentDraft extends BaseIntentDraft { readonly type: 'claim'; readonly roomId: EntityId }
+export interface CastIntentDraft extends BaseIntentDraft { readonly type: 'cast'; readonly skillId: 'ink-strike'; readonly targetId: EntityId }
 export interface CaptureIntentDraft extends BaseIntentDraft { readonly type: 'capture' }
 
 export interface BuildIntentDraft extends BaseIntentDraft {
@@ -47,10 +51,10 @@ export interface BuildIntentDraft extends BaseIntentDraft {
   readonly kind: 'tower' | 'catalog';
 }
 
-/** v0 names follow today's authority commands: deliver/capture, not transfer/claim. */
+/** Intent names follow the authority commands; capture and claim have distinct behavior. */
 export type ActionIntentDraft =
   | MoveIntentDraft | RunIntentDraft | JumpIntentDraft | ClimbIntentDraft | GatherIntentDraft | DeliverIntentDraft
-  | AttackIntentDraft | CaptureIntentDraft | BuildIntentDraft;
+  | AttackIntentDraft | CaptureIntentDraft | BuildIntentDraft | RepairIntentDraft | ClaimIntentDraft | CastIntentDraft;
 
 export interface RuleMemoryPatch {
   readonly set?: RuleMemory;
@@ -69,4 +73,5 @@ export interface RuleDecisionResult {
 
 export interface ActionRuleModule {
   decide(ctx: RuleContext): RuleDecisionResult;
+  chantInkStrike?: ChantInkStrike;
 }

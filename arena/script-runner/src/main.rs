@@ -13,6 +13,7 @@ fn main() -> io::Result<()> {
             Ok(request) => engine.execute(request),
             Err(error) => Response {
                 decision: None,
+                chants: None,
                 failure: Some(Failure {
                     kind: "protocol".into(),
                     message: error.to_string(),

@@ -35,6 +35,11 @@ export async function collectPackage({ source, destination, version, sourceCommi
   cpSync(from,to,{recursive:true,verbatimSymlinks:true,filter:path=>path!==resolve(from,'node_modules')});
   if(existsSync(resolve(from,'node_modules'))) copyDependencies(resolve(from,'node_modules'),resolve(to,'node_modules'));
  }
+ const tactical=resolve(source,'arena/shared/tactical.ts');
+ if(existsSync(tactical)) {
+  mkdirSync(resolve(payload,'arena/shared'),{recursive:true});
+  copy(tactical,resolve(payload,'arena/shared/tactical.ts'));
+ }
  copy(fileURLToPath(new URL('./start.sh',import.meta.url)),resolve(payload,'start.sh'));
  chmodSync(resolve(payload,'start.sh'),0o755);
  copy(fileURLToPath(new URL(`./notes-v${version}.md`,import.meta.url)),resolve(payload,`notes-v${version}.md`));

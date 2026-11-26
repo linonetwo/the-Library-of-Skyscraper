@@ -29,6 +29,7 @@ export function createProject(files, entry) {
   const entryPath = path.posix.resolve('/project', entry);
   const userSources = [...sources].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0);
   for (const [name, text] of sdkSources) sources.set(name, text);
+  sources.set('/shared/tactical.ts', readFileSync(new URL('../../shared/tactical.ts', import.meta.url), 'utf8'));
   sources.set('/contract.ts', `
 import type { ActionRuleModule } from '/sdk/index.ts';
 import * as rule from ${JSON.stringify(entryPath)};
