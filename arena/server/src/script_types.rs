@@ -27,6 +27,8 @@ pub struct PublishedScript {
 #[serde(rename_all = "camelCase")]
 pub struct ScriptDecision {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub chants: Option<Vec<crate::RecordedChant>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub source_hash: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub memory_patch: Option<Value>,
@@ -82,6 +84,12 @@ pub enum ScriptAction {
         #[serde(rename = "roomId")]
         room_id: String,
     },
+    Cast {
+        #[serde(rename = "skillId")]
+        skill_id: crate::SkillId,
+        #[serde(rename = "targetId")]
+        target_id: String,
+    },
     Capture,
     Build {
         #[serde(rename = "roomId")]
@@ -127,6 +135,14 @@ impl ScriptIntent {
             ScriptAction::Claim { room_id } => crate::Command::Claim {
                 actor_id,
                 room_id: room_id.clone(),
+            },
+            ScriptAction::Cast {
+                skill_id,
+                target_id,
+            } => crate::Command::Cast {
+                actor_id,
+                skill_id: *skill_id,
+                target_id: target_id.clone(),
             },
             ScriptAction::Capture => crate::Command::Capture { actor_id },
             ScriptAction::Build { room_id, kind } => crate::Command::Build {

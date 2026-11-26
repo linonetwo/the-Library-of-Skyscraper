@@ -23,6 +23,7 @@ fn session() -> Session {
 }
 fn decision(intents: serde_json::Value) -> Vec<ScriptDecision> {
     vec![ScriptDecision {
+        chants: None,
         source_hash: None,
         memory_patch: None,
         task_patches: None,

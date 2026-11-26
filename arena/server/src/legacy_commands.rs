@@ -34,7 +34,8 @@ impl Session {
                 target_id: Some(_), ..
             }
             | Command::Repair { .. }
-            | Command::Claim { .. } => return Err("tactics require simulationVersion8".into()),
+            | Command::Claim { .. }
+            | Command::Cast { .. } => return Err("tactics require simulationVersion8".into()),
             Command::Run { .. } | Command::Jump { .. } | Command::Climb { .. } => {
                 return Err("mobility requires simulationVersion7".into());
             }
@@ -44,6 +45,11 @@ impl Session {
                 appearance,
             } => {
                 let (entity, mut actor) = self.owned_actor(owner, &actor_id)?;
+                if actor.appearance.weapon != appearance.weapon
+                    && self.tactical_block(&actor_id) == Some("actor-casting")
+                {
+                    return Err("weapon locked during cast".into());
+                }
                 actor.appearance = appearance;
                 self.world.entity_mut(entity).insert(actor);
                 self.event("equip", format!("{actor_id} 更新了装束"), Some(owner));

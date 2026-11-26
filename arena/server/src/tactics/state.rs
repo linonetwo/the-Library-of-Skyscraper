@@ -22,6 +22,10 @@ pub enum SkillId {
 pub struct TacticalState {
     pub actor_states: BTreeMap<String, TacticalActorState>,
     pub control_points: BTreeMap<String, ControlPointState>,
+    #[serde(default)]
+    pub heavy_attacks: BTreeMap<String, HeavyState>,
+    #[serde(default)]
+    pub skill_sources: BTreeMap<String, BTreeMap<String, ArchivedSkillSource>>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -46,6 +50,9 @@ pub struct CastState {
     /// Exclusive end: N+2 and N+3 are recovery; N+4 is actionable.
     pub ends_tick: u64,
     pub source_hash: String,
+    pub chant: super::RecordedChant,
+    #[serde(default)]
+    pub resolved: bool,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -78,4 +85,27 @@ impl Default for TacticalActorState {
             recovery: None,
         }
     }
+}
+
+/// Enemy heavy windows share the existing enemy attack clock; this saves only
+/// the additional telegraphed target and the eight-tick cadence.
+#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct HeavyState {
+    pub last_started_tick: u64,
+    pub pending: Option<HeavyAttack>,
+}
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct HeavyAttack {
+    pub actor_id: String,
+    pub started_tick: u64,
+    pub release_tick: u64,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ArchivedSkillSource {
+    pub project: crate::SourceProject,
+    pub created_at_tick: u64,
 }

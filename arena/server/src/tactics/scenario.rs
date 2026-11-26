@@ -86,7 +86,13 @@ impl Session {
             .collect();
         let state = self.tactics.as_mut().unwrap();
         for id in ids {
-            state.actor_states.insert(id, TacticalActorState::default());
+            state.actor_states.insert(
+                id,
+                TacticalActorState {
+                    last_energy_tick: self.tick,
+                    ..Default::default()
+                },
+            );
         }
         if self.scenario_id == Some(ScenarioId::SealContest) {
             let facility = &config()["ownedFacilities"];

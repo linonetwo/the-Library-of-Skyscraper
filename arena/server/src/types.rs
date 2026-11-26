@@ -212,6 +212,14 @@ pub enum Command {
         #[serde(rename = "roomId")]
         room_id: String,
     },
+    Cast {
+        #[serde(rename = "actorId")]
+        actor_id: String,
+        #[serde(rename = "skillId")]
+        skill_id: crate::SkillId,
+        #[serde(rename = "targetId")]
+        target_id: String,
+    },
     Capture {
         #[serde(rename = "actorId")]
         actor_id: String,

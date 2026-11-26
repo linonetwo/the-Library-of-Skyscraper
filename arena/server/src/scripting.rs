@@ -85,6 +85,7 @@ impl Session {
                 }
             }
             if decision.failure.is_some() {
+                decision.chants = None;
                 decision.intents.clear();
                 decision.memory_patch = None;
                 decision.task_patches = None;
@@ -93,14 +94,14 @@ impl Session {
                 self.event("script-error", message.clone(), Some(&decision.player_id));
                 continue;
             }
-            let mut intents = decision.intents.clone();
-            intents.sort_by(|a, b| {
+            let mut intents: Vec<_> = decision.intents.iter().cloned().enumerate().collect();
+            intents.sort_by(|(_, a), (_, b)| {
                 b.priority
                     .total_cmp(&a.priority)
                     .then_with(|| a.actor_id.cmp(&b.actor_id))
             });
             let mut selected = BTreeSet::new();
-            for intent in intents {
+            for (intent_index, intent) in intents {
                 if !selected.insert(intent.actor_id.clone())
                     || self.manual_actions.get(&intent.actor_id) == Some(&self.tick)
                 {
@@ -119,7 +120,14 @@ impl Session {
                             })
                     }
                 } else {
-                    self.apply_command(&decision.player_id, intent.command())
+                    let chant = decision
+                        .chants
+                        .as_ref()
+                        .and_then(|records| {
+                            records.iter().find(|c| c.intent_index() == intent_index)
+                        })
+                        .map(|c| (c, intent_index));
+                    self.apply_command_with_chant(&decision.player_id, intent.command(), chant)
                 };
                 match result {
                     Ok(()) => {

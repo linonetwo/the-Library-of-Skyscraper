@@ -78,3 +78,6 @@ mod tactical_dto_tests;
 
 #[cfg(test)]
 mod tactical_tests;
+
+#[cfg(test)]
+mod tactical_skill_tests;

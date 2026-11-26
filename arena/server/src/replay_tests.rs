@@ -100,6 +100,7 @@ fn tampering_versions_invalid_operations_and_limits_rejected() {
     assert!(Session::from_replay(&tampered).is_err());
     tampered = replay.clone();
     tampered.operations.push(ReplayOperation::Command {
+        chant: None,
         player_id: "intruder".into(),
         command: Command::Reset {},
     });

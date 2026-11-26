@@ -202,7 +202,8 @@ fn manual_task_and_script_travel_emit_the_same_motion_facts() {
         }),
     );
     let decisions = vec![ScriptDecision {
-        player_id: "p1".into(),
+        chants: None,
+player_id: "p1".into(),
         source_hash: None,
         memory_patch: None,
         task_patches: None,

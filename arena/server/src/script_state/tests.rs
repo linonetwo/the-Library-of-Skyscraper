@@ -5,6 +5,7 @@ mod version_tests {
     use crate::{Mode, ScriptDecision};
     fn decision(owner: &str, hash: &str, patch: Value) -> ScriptDecision {
         ScriptDecision {
+            chants: None,
             player_id: owner.into(),
             source_hash: Some(hash.into()),
             memory_patch: Some(patch),
@@ -67,6 +68,7 @@ mod queue_tests {
         s.join("token".into()).unwrap();
         let task = json!({"id":"x","actorId":"p1-scout","roomId":"room-0","kind":"gather","priority":1,"status":"queued","blockedReason":null});
         let mut d = ScriptDecision {
+            chants: None,
             player_id: "p1".into(),
             source_hash: Some("a".into()),
             memory_patch: Some(json!({"set":{"private-secret":1}})),

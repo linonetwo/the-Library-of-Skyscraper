@@ -45,6 +45,7 @@ fn script_hold_and_failure_never_fall_back_to_preset_but_other_owner_does() {
         edit(&mut s, owner, |a| front(a, 30));
     }
     s.advance_scripted(vec![ScriptDecision {
+        chants: None,
         source_hash: Some("test".into()),
         player_id: "p1".into(),
         intents: vec![],
@@ -58,6 +59,7 @@ fn script_hold_and_failure_never_fall_back_to_preset_but_other_owner_does() {
     assert!(held.travel.is_none());
     assert!(guard(&mut s, "p2").retreating);
     s.advance_scripted(vec![ScriptDecision {
+        chants: None,
         source_hash: Some("test".into()),
         player_id: "p1".into(),
         intents: vec![],
@@ -84,6 +86,7 @@ fn base_heals_once_without_locking_script_and_presets_still_unlock_at_eighty() {
     assert!(!healed.retreating);
     assert_ne!(healed.state, "recovering");
     s.advance_scripted(vec![ScriptDecision {
+        chants: None,
         source_hash: Some("test".into()),
         player_id: "p1".into(),
         intents: serde_json::from_value(
@@ -196,6 +199,7 @@ fn metadata_control_replays_and_checkpoints_keep_their_recorded_version() {
         s.join("owner".into()).unwrap();
         bind(&mut s, "p1");
         s.advance_scripted(vec![ScriptDecision {
+            chants: None,
             source_hash: Some("test".into()),
             player_id: "p1".into(),
             intents: serde_json::from_value(

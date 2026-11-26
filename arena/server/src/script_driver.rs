@@ -21,6 +21,7 @@ pub async fn advance(session: &mut Session, workers: &ScriptWorkers) {
         request["context"]["tasks"] = state["tasks"].clone();
         let outcome = workers.execute(&request).await;
         let mut decision = ScriptDecision {
+            chants: None,
             source_hash: None,
             memory_patch: None,
             task_patches: None,
@@ -48,6 +49,21 @@ pub async fn advance(session: &mut Session, workers: &ScriptWorkers) {
         }
         decision.source_hash = script.bundle["sourceHash"].as_str().map(str::to_owned);
         if let Ok(response) = &outcome_copy {
+            if let Some(chants) = response.get("chants") {
+                match serde_json::from_value::<Vec<skyscraper_arena_server::ChantRecord>>(
+                    chants.clone(),
+                ) {
+                    Ok(chants) => {
+                        decision.chants = Some(
+                            chants
+                                .into_iter()
+                                .map(skyscraper_arena_server::RecordedChant::Worker)
+                                .collect(),
+                        )
+                    }
+                    Err(error) => decision.failure = Some(format!("worker chants: {error}")),
+                }
+            }
             decision.memory_patch = response["decision"].get("memoryPatch").cloned();
             if let Some(patches) = response["decision"].get("taskPatches") {
                 match serde_json::from_value(patches.clone()) {

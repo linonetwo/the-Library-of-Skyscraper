@@ -103,6 +103,7 @@ mod tests {
     #[test]
     fn deltas_are_owner_scoped_successful_and_indexed_across_resets() {
         let decision = |player: &str, hash: &str| ScriptDecision {
+            chants: None,
             player_id: player.into(),
             source_hash: Some(hash.into()),
             memory_patch: Some(json!({"set":{"counter":1}})),
@@ -136,6 +137,7 @@ mod tests {
         );
         history.record(
             &ReplayOperation::Command {
+                chant: None,
                 player_id: "p1".into(),
                 command: Command::Reset {},
             },
@@ -196,6 +198,7 @@ mod tests {
             }),
         });
         let decision = |memory_patch, task_patches| ScriptDecision {
+            chants: None,
             player_id: owner.clone(),
             source_hash: None,
             memory_patch,

@@ -46,6 +46,8 @@ pub enum ReplayOperation {
         #[serde(rename = "playerId")]
         player_id: String,
         command: Command,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        chant: Option<crate::RecordedChant>,
     },
     /// One successful call to the server's tick advancement, including an empty
     /// lobby tick. Pausing is enforced by the caller, just as in the live server.
@@ -219,9 +221,17 @@ impl Session {
                     return Err(invalid());
                 }
             }
-            ReplayOperation::Command { player_id, command } => {
-                self.command(player_id, command.clone())
-                    .map_err(|_| invalid())?;
+            ReplayOperation::Command {
+                player_id,
+                command,
+                chant,
+            } => {
+                if let Some(chant) = chant {
+                    self.command_with_chant(player_id, command.clone(), chant.clone())
+                } else {
+                    self.command(player_id, command.clone())
+                }
+                .map_err(|_| invalid())?;
             }
             ReplayOperation::Advance {} => {
                 if self.result.is_some() {
@@ -274,11 +284,24 @@ impl Session {
             final_rule_state: None,
         };
         for operation in &mut replay.operations {
+            if let ReplayOperation::Command {
+                player_id,
+                chant: Some(chant),
+                ..
+            } = operation
+            {
+                if Some(player_id.as_str()) != owner {
+                    *chant = chant.redacted();
+                }
+            }
             if let ReplayOperation::ScriptAdvance { decisions, .. } = operation {
                 for decision in decisions {
                     if Some(decision.player_id.as_str()) != owner {
                         decision.memory_patch = None;
                         decision.task_patches = None;
+                        if let Some(chants) = &mut decision.chants {
+                            *chants = chants.iter().map(crate::RecordedChant::redacted).collect();
+                        }
                     }
                 }
             }
