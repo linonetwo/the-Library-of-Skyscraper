@@ -1,3 +1,4 @@
+import {recordingActionSchemas,performRecordingAction,readRecordingState,readRuleComparisonState} from './browser-recording.mjs';
 import {compositionActionSchemas,performCompositionAction,readCompositionState} from './browser-composition.mjs';
 import {fragmentActionSchemas,performFragmentAction,readFragmentState} from './browser-graph-fragments.mjs';
 import { mobilityActionSchemas, performMobilityAction, readMobilityState, readMobilityAuthority } from './browser-mobility.mjs';
@@ -16,7 +17,7 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
-    ...graphActionSchemas, ...goalActionSchemas, ...fragmentActionSchemas, ...compositionActionSchemas,
+    ...graphActionSchemas, ...goalActionSchemas, ...fragmentActionSchemas, ...compositionActionSchemas, ...recordingActionSchemas,
     ...expeditionActionSchemas,
     ...workshopActionSchemas,
     ...mapActionSchemas, ...mobilityActionSchemas,
@@ -93,17 +94,19 @@ export function registerBrowserTools(server) {
       options.filter(option => option.value).map(option => ({ sourceHash: option.value, label: option.textContent })));
     const replayDialog = active.getByRole('dialog', { name: '书苑行迹 · 赛局回放' });
     const replay = await replayDialog.count() ? {
+      status: await replayDialog.getByRole('status').allTextContents(),
       operationIndex: Number(await active.getByRole('slider', { name: '回放进度' }).inputValue()),
       maxOperationIndex: Number(await active.getByRole('slider', { name: '回放进度' }).getAttribute('max')),
       ruleState: await active.getByLabel('回放规则状态').innerText(),
       memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
       tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
     } : null;
-    return { url: active.url(), mobility: await readMobilityState(active), mobilityAuthority: await readMobilityAuthority(active), graph: await readGraphState(active), fragments: await readFragmentState(active), composition: await readCompositionState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    return { url: active.url(), mobility: await readMobilityState(active), mobilityAuthority: await readMobilityAuthority(active), graph: await readGraphState(active), fragments: await readFragmentState(active), composition: await readCompositionState(active), recording: await readRecordingState(active), comparison: await readRuleComparisonState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   const perform = async ({ action }) => {
     const active = current();
     if (await performGraphAction(active, action)) return { performed: action.type };
+    if (await performRecordingAction(active, action)) return { performed: action.type };
     if (await performCompositionAction(active, action)) return { performed: action.type };
     if (await performFragmentAction(active, action)) return { performed: action.type };
     if (await performGoalAction(active, action)) return { performed: action.type };

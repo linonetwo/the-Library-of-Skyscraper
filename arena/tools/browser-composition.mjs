@@ -2,7 +2,7 @@ import {z} from 'zod';
 const id=z.string().min(1).max(160);
 const names={scout:'侦察',patrol:'巡逻',escort:'护送',gather:'采集藏材',haul:'运输入库',build:'建造设施',defend:'据点防守',retreat:'低血撤退'};
 export const compositionActionSchemas=[
- ...['openRuleModuleCatalog','confirmRuleModuleConversion','confirmRuleModule','cancelRuleModulePreview','copyRuleModuleInstance','addRulePatrolStop'].map(type=>z.object({type:z.literal(type)}).strict()),
+ ...['openRuleModuleCatalog','confirmRuleModuleConversion','confirmRuleModule','cancelRuleModulePreview','copyRuleModuleInstance','addRulePatrolStop','closeRuleEditor'].map(type=>z.object({type:z.literal(type)}).strict()),
  z.object({type:z.literal('previewRuleModule'),kind:z.enum(Object.keys(names))}).strict(),
  z.object({type:z.literal('previewSharedRuleModule'),moduleId:id}).strict(),
  z.object({type:z.literal('setRuleModuleTarget'),stateId:id}).strict(),
@@ -15,7 +15,8 @@ export async function performCompositionAction(page,action){
  const preview=page.getByRole('region',{name:'模块接入预览',exact:true});
  const conversion=page.getByRole('region',{name:'五卡转换预览',exact:true});
  const open=async()=>{const button=catalog.getByRole('button',{name:'＋添加模块',exact:true});if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
- if(action.type==='openRuleModuleCatalog')await open();
+ if(action.type==='closeRuleEditor')await page.getByRole('button',{name:'关闭面板',exact:true}).click();
+ else if(action.type==='openRuleModuleCatalog')await open();
  else if(action.type==='previewRuleModule'){await open();await catalog.getByRole('button',{name:'选择模块 '+names[action.kind],exact:true}).click();}
  else if(action.type==='previewSharedRuleModule'){await open();await catalog.getByLabel('引用已有模块实例',{exact:true}).selectOption(action.moduleId);}
  else if(action.type==='confirmRuleModuleConversion')await conversion.getByRole('button',{name:'确认转换并继续添加',exact:true}).click();
