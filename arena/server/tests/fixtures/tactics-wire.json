@@ -1,0 +1,26 @@
+{
+  "create": {"mode": "training", "seed": 42, "scenarioId": "seal-contest"},
+  "commands": [
+    {"type": "attack", "actorId": "p1-guard", "targetId": "drill-guardian-b"},
+    {"type": "attack", "actorId": "p1-guard"},
+    {"type": "repair", "actorId": "p1-scout", "buildingId": "p1-drill-warehouse"},
+    {"type": "claim", "actorId": "p1-guard", "roomId": "room-2"},
+    {"type": "cast", "actorId": "p1-guard", "skillId": "ink-strike", "targetId": "drill-guardian-b"}
+  ],
+  "tactics": {
+    "actorStates": [
+      {"actorId": "p1-guard", "weapon": "staff", "energy": 2, "maxEnergy": 3, "castReadyTick": 28, "attackTargetId": "drill-guardian-b", "cast": {"skillId": "ink-strike", "targetId": "drill-guardian-b", "phase": "chanting", "startedTick": 20, "releaseTick": 22, "endsTick": 24}}
+    ],
+    "controlPoints": [
+      {"roomId": "room-2", "challengerId": "p1", "progressTicks": 3, "requiredTicks": 6, "contested": false}
+    ]
+  },
+  "repairEvent": {
+    "action": "repair", "actorId": "p1-scout", "targetId": "p1-drill-warehouse", "phase": "applied",
+    "values": {"hpBefore": 60, "hpAfter": 64, "materialsBefore": 1, "materialsAfter": 0}
+  },
+  "rejectedAttackEvent": {
+    "action": "attack", "actorId": "p1-scout", "targetId": "drill-guardian-b", "phase": "rejected", "reasonCode": "target-gone",
+    "values": {"hpBefore": 0, "hpAfter": 0}
+  }
+}
