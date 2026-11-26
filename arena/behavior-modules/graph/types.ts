@@ -1,4 +1,5 @@
-import type { ActorRole, BehaviorModule } from '../types';
+import type { ActorRole } from '../types';
+import type { GraphModule, ModuleVisit } from './composition-types';
 export type GraphField = 'hp' | 'cargo' | 'cargoCapacity' | 'materials' | 'roomEnemyHp' | 'targetEnemyHp' | 'tickInState';
 export type GraphCondition =
   | { type: 'compare'; field: GraphField; op: 'lt' | 'lte' | 'eq' | 'gte' | 'gt'; value: number; missing: boolean; roomId?: string }
@@ -29,20 +30,21 @@ export interface GraphRole { id: string; role: ActorRole; initialStateId: string
 export interface RuleGraph {
   schemaVersion: 2; graphId: string; revision: number;
   roles: GraphRole[]; states: GraphState[]; transitions: GraphTransition[];
-  nodes: RuleNode[]; modules: BehaviorModule[];
+  nodes: RuleNode[]; modules: GraphModule[];
 }
 export type GraphOperation =
   | { type: 'putNode'; node: RuleNode } | { type: 'removeNode'; id: string }
   | { type: 'putState'; state: GraphState } | { type: 'removeState'; id: string }
   | { type: 'putTransition'; transition: GraphTransition } | { type: 'removeTransition'; id: string }
   | { type: 'putRole'; role: GraphRole } | { type: 'removeRole'; id: string }
-  | { type: 'putModule'; module: BehaviorModule } | { type: 'removeModule'; id: string };
+  | { type: 'putModule'; module: GraphModule } | { type: 'removeModule'; id: string };
 export interface GraphPatch { graphId: string; baseRevision: number; operations: GraphOperation[] }
 export interface GraphDiagnostic { severity: 'error' | 'warning'; objectId: string; code: string; message: string; sourceRef?: GraphSourceRef }
 export interface GraphSourceRef { file: string; line: number; column: number }
 export interface GraphActorTrace {
   actorId: string; startStateId: string; endStateId: string; transitionId: string | null;
   visited: { nodeId: string; value?: boolean | number }[];
+  moduleVisits?: ModuleVisit[]; moduleVisitsTruncated?: boolean;
   selectedNodeId: string | null; moduleId: string | null; reason: string;
 }
 export interface GraphTrace { v: 2; tick: number; graphId: string; actors: GraphActorTrace[] }

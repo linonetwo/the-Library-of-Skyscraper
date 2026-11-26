@@ -1,3 +1,5 @@
+import {compositionRuntimeSource} from './composition-source';
+import {addCompositionRuntime} from './composition-injection';
 import type { RuleSourceProject } from '../types';
 import { runtimeSource } from '../runtime-source';
 import { graphRuntimeSource } from './runtime-source';
@@ -11,8 +13,10 @@ export function toGraphSourceProject(graph:RuleGraph):RuleSourceProject {
 }
 /** Save invalid drafts without granting publish/preview approval. */
 export function serializeGraphDraft(graph:RuleGraph):RuleSourceProject {
+ const composition=graph.modules.some(m=>m.kind==='scout'||m.kind==='patrol'||m.kind==='escort');
+ const baseRuntime=composition?addCompositionRuntime(graphRuntimeSource):graphRuntimeSource;
  const mobility=graph.nodes.some(node=>node.type==='mobility');
- return {entry:'main.ts',files:{'main.ts':"export {decide} from './graph-runtime';\n",'graph-plan.ts':graphPlanSource(graph),'graph-runtime.ts':mobility?addMobilityRuntime(graphRuntimeSource):graphRuntimeSource,...(mobility?{'mobility-runtime.ts':mobilityRuntimeSource}:{}),'module-runtime.ts':runtimeSource.replace("import { plan } from './ai-plan';","import { modulePlan as plan } from './graph-plan';")}};
+ return {entry:'main.ts',files:{'main.ts':"export {decide} from './graph-runtime';\n",'graph-plan.ts':graphPlanSource(graph),'graph-runtime.ts':mobility?addMobilityRuntime(baseRuntime):baseRuntime,...(mobility?{'mobility-runtime.ts':mobilityRuntimeSource}:{}),...(composition?{'composition-runtime.ts':compositionRuntimeSource}:{}),'module-runtime.ts':(composition?runtimeSource.replace('function move(', 'export function move('):runtimeSource).replace("import { plan } from './ai-plan';","import { modulePlan as plan } from './graph-plan';")}};
 }
 export function recoverRuleGraph(project:RuleSourceProject):RuleGraph|null {
  try{const line=project.files['graph-plan.ts']?.split('\n')[0];if(!line?.startsWith(marker))return null;const graph=JSON.parse(line.slice(marker.length)) as RuleGraph;const generated=serializeGraphDraft(graph);return (project.entry??'main.ts')===generated.entry&&canonical(project.files)===canonical(generated.files)?graph:null;}catch{return null;}

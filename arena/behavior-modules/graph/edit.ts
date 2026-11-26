@@ -7,7 +7,7 @@ function allIds(graph:RuleGraph):Set<string>{return new Set([...collections.flat
 export function freshGraphId(graph:RuleGraph, preferred:string):string {
  const ids=allIds(graph);let id=preferred;for(let n=2;ids.has(id);n++)id=preferred+'-'+n;return id;
 }
-function remapNode(node:RuleNode,map:Record<string,string>):RuleNode {
+export function remapNode(node:RuleNode,map:Record<string,string>):RuleNode {
  const ref=(id:string)=>map[id]??id;const result=structuredClone(node);result.id=ref(result.id);
  switch(result.type){case 'condition':result.yes=ref(result.yes);result.no=ref(result.no);break;
  case 'priority':case 'sequence':result.children=result.children.map(ref);result.fallback=ref(result.fallback);break;
