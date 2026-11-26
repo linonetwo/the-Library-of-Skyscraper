@@ -1,0 +1,13 @@
+.recording-debugger { padding: 1rem; border: 1px solid #65756c; border-radius: .6rem; min-width: 0; }
+.recording-debugger header, .recording-controls, .recording-debugger fieldset { display: flex; flex-wrap: wrap; gap: .65rem; align-items: end; }
+.recording-debugger header { justify-content: space-between; }
+.recording-debugger label { display: grid; gap: .25rem; max-width: 100%; }
+.recording-debugger select, .recording-debugger input { max-width: 100%; min-width: 0; }
+.recording-debugger p, .recording-debugger code, .recording-debugger dd { overflow-wrap: anywhere; }
+.recording-debugger dl { display: grid; grid-template-columns: max-content minmax(0,1fr); gap: .4rem .8rem; }
+.recording-debugger dd { margin: 0; }
+.recording-debugger fieldset { margin: 1rem 0; }
+.recording-coverage-scroll { max-width: 100%; overflow-x: auto; }
+.recording-coverage-scroll table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.recording-coverage-scroll th, .recording-coverage-scroll td { padding: .4rem; text-align: left; border-bottom: 1px solid #65756c; }
+@media(max-width: 480px) { .recording-debugger { padding: .6rem; } .recording-debugger dl { grid-template-columns: 1fr; } }
