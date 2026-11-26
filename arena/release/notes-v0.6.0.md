@@ -1,53 +1,76 @@
-# v0.6.0 development preview candidate
+# v0.6.0 · Programmable squad composition
 
-This candidate adds AI composition to the existing squad expedition workbench.
-Release approval and whole-package acceptance are recorded separately after the
-complete feature batch is frozen and exercised.
+Build and reuse your squad's AI through the existing rule workbench. This batch
+adds eight module kinds, named subtree fragments and recorded rule debugging.
+The final ACCEPTANCE report records package verification and release approval.
 
 ## Open the workbench
 
-The package runs on Linux x64 with Node.js 24, `setsid` (util-linux), and a
-WebGL-capable browser. Extract it and run `./start.sh`.
+Use Linux x64, Node.js 24, `setsid` (util-linux), and a WebGL-capable browser.
+Extract the package and run `./start.sh`.
 
 - Game: http://127.0.0.1:5173/
 - AI workbench: http://127.0.0.1:5173/?view=rules or **AI 模块编辑**.
 - Default web / authority ports: **5173 / 8787**.
 
 Choose listeners with `ARENA_WEB_PORT`, `ARENA_PORT`, and `ARENA_BIND_ADDR`.
-`ARENA_PROXY_TARGET` selects the authority; the default follows `ARENA_PORT`.
-Forward the web port for remote play. Saves belong to this package's `data/`;
-logs are in `logs/authority.log`. See the included README for connection and MCP
-setup.
+`ARENA_PROXY_TARGET` selects the authority; its default follows `ARENA_PORT`.
+Forward the web port for remote play. Package saves stay in `data/`, and authority
+logs in `logs/authority.log`. The included README covers server and MCP setup.
 
-## Compose module instances
+## Compose and reuse behavior
 
-The original gather, haul, build, defend and retreat modules remain available.
-Schema-2 graphs additionally support:
+The module catalog contains **gather, haul, build, defend, retreat, scout, patrol
+and escort**. Existing five-card plans remain available; explicitly convert a
+plan to a graph when you want graph composition. Graph authoring keeps the
+existing undo path, rather than silently replacing an old plan or handwritten
+TypeScript draft.
 
-- **Scout**: visit an authorized room, respect a configured risk limit, and report
-  only after actual arrival.
-- **Patrol**: visit an ordered room list with configured dwell time. Each actor
-  and module instance keeps its own cursor.
-- **Escort**: resolve a living own-role cargo carrier deterministically and follow
-  its authoritative room or travel destination. Same-room threats reuse the
-  existing defend behavior.
+Scout visits an authorized room within its configured risk limit and reports
+only after arrival. Patrol follows ordered rooms with configured dwell time.
+Escort resolves a living cargo carrier from the selected own-team role, follows
+its authoritative destination, and reuses defend behavior for same-room threats.
+Cargo below the threshold and a missing target have distinct recorded reasons.
 
-Module IDs distinguish instances from kinds. Typed room and own-role references
-retain explicit fallbacks when the current world cannot resolve a target.
-Named local subtree fragments include their module dependencies; insertion
-explicitly maps references and preserves shared instances within the fragment.
-Existing five-card plans, ordinary graphs, mobility graphs and handwritten
-TypeScript keep their established execution and source-recovery behavior.
+Module IDs identify instances separately from their kinds. Multiple nodes may
+share an instance, while copies can carry independent configurations. Runtime
+state stays separate for each actor and module instance, including a patrol
+instance shared by two actors. Typed room and own-role references have explicit
+fallbacks when the current world cannot resolve a target.
 
-Composition records bounded reasons under the original owner/source/operation
-recording: at most eight actual module visits per actor. A missing visit field in
-older recordings means unrecorded data; truncation is explicit. A selected intent
-is a rule decision, while the authority determines its actual outcome. These
-capability notes do not certify the recorded-debugger UI or full-batch acceptance.
+Save a selected subtree as a named local fragment together with its referenced
+module dependencies. Preview insertion, map room and role bindings, then attach
+it in one graph edit. Internal sharing is retained; imported IDs avoid collisions
+and undo restores the previous graph.
 
-New expeditions continue to use **simulationVersion7** and **library-v5.0**.
-疾跑 / 跃桥 / 攀梯 use the same authoritative movement path. Existing saves and
-replays retain their recorded simulation behavior, including versions ≤6.
-The manifest hashes the shipped dist descriptors, SDK, map and locks. Inherited
-v0.3 art and v0.4 rule provenance retain their original approval scopes; final
-v0.6 acceptance is separate. The desktop shell follows the Steam productization plan.
+## Inspect the recorded decision
+
+Named recording ranges query existing owner-scoped decision deltas by source
+version and operation. Inspect the state before and after the selected operation,
+recorded module reasons, visited nodes and coverage. Query breakpoints locate
+recorded matches while the live server clock continues normally.
+
+Coverage distinguishes an observed visit, an unvisited declared object and data
+that was never recorded. Composition keeps at most eight actual module visits
+per actor; truncation is explicit. Old recordings with no visit field remain
+unrecorded evidence. An intent records the rule's choice; subsequent authority
+state determines the actual outcome.
+
+Open the source archived with that version and jump to its original object line.
+Archived graph declarations remain readable across generator versions without
+granting editable recovery to changed or handwritten projects. Same-operation
+A/B preview runs alternatives against the original owner input. Graphs and
+TypeScript use the same server compiler and independent V8 execution path as
+published rules; there is no separate graph simulator.
+
+## Runtime continuity
+
+This batch retains **simulationVersion7**, **library-v5.0**, the v0.5 artwork and
+the original 疾跑 / 跃桥 / 攀梯 authority path. Existing saves and replays preserve
+their recorded simulation behavior, including versions ≤6. Existing ordinary
+and mobility graph projects retain their generated source bytes.
+
+The manifest records exact source/recipe commits and hashes shipped resources,
+SDK, map and dependency locks. Inherited v0.3 art and v0.4 rule provenance keep
+their original scopes. The package runs through a local server and WebGL browser;
+the desktop shell follows the Steam productization plan.
