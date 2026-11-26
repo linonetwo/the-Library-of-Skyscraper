@@ -13,7 +13,7 @@ export function remapNode(node:RuleNode,map:Record<string,string>):RuleNode {
  case 'priority':case 'sequence':result.children=result.children.map(ref);result.fallback=ref(result.fallback);break;
  case 'score':result.candidates=result.candidates.map(c=>({...c,id:ref(c.id),nodeId:ref(c.nodeId)}));result.fallback=ref(result.fallback);break;
  case 'mobility':result.fallback=ref(result.fallback);break;
- case 'log':result.next=ref(result.next);break;case 'module':result.moduleId=ref(result.moduleId);result.fallback=ref(result.fallback);break;}
+ case 'log':result.next=ref(result.next);break;case 'module':result.moduleId=ref(result.moduleId);result.fallback=ref(result.fallback);if(result.exits)result.exits=Object.fromEntries(Object.entries(result.exits).map(([key,id])=>[key,ref(id)]));break;}
  return result;
 }
 /** Renaming a stable ID rewrites every executable reference atomically. */

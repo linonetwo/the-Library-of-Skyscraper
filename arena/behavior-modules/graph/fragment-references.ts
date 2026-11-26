@@ -17,6 +17,7 @@ export function mapFragmentRefs(fragment:GraphFragment,map:(ref:RoomRef|OwnRoleR
  const module=(m:GraphModule):GraphModule=>{
   const base=m.roleFilter?{...m,roleFilter:m.roleFilter.map(ownRole)}:m;
   switch(base.kind){case 'scout':return {...base,config:{...base.config,target:{type:'room',roomId:room(base.config.target.roomId)}}};
+   case 'custom':return {...base,config:Object.fromEntries(Object.entries(base.config).map(([key,value])=>[key,typeof value==='object'?map(value):value]))};
    case 'patrol':return {...base,config:{...base.config,rooms:base.config.rooms.map(ref=>({type:'room',roomId:room(ref.roomId)}))}};
    case 'escort':return {...base,config:{...base.config,target:{type:'ownRole',role:ownRole(base.config.target.role)}}};
    case 'gather':return base.config.targetRoomId===undefined?base:{...base,config:{...base.config,targetRoomId:room(base.config.targetRoomId)}};

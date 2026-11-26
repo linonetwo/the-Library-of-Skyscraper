@@ -3,13 +3,15 @@ import type { GraphFragment, GraphFragmentBindings, ModuleRef } from './composit
 import type { GraphPatch, RuleGraph, RuleNode } from './types';
 import { nodeChildren } from './diagnostics';
 import { remapNode } from './edit';
+import { referencedCustomDefinitions } from './custom-project';
 /** A fragment contains a decision subtree and only its referenced module instances. */
 export function exportGraphFragment(graph:RuleGraph,rootId:string):GraphFragment {
  const nodes:RuleNode[]=[];const visited=new Set<string>();
  const walk=(id:string)=>{if(visited.has(id))return;const node=graph.nodes.find(n=>n.id===id);if(!node)throw new Error('Missing fragment node '+id);visited.add(id);nodes.push(structuredClone(node));nodeChildren(node).forEach(walk);};walk(rootId);
  const ids=new Set(nodes.flatMap(n=>n.type==='module'?[n.moduleId]:[]));
  const modules=[...ids].map(id=>{const module=graph.modules.find(m=>m.moduleId===id);if(!module)throw new Error('Missing fragment module '+id);return structuredClone(module);});
- return {schemaVersion:1,rootId,nodes,modules};
+ const definitions=referencedCustomDefinitions({...graph,modules});
+ return {schemaVersion:1,rootId,nodes,modules,...(definitions.length?{customDefinitions:structuredClone(definitions)}:{})};
 }
 /** Explicit binding inventory includes existing room conditions/modules, not only new capabilities. */
 export function graphFragmentRefs(fragment:GraphFragment):ModuleRef[] {
@@ -27,5 +29,5 @@ export function importGraphFragment(graph:RuleGraph,fragment:GraphFragment,bindi
  const bound=mapFragmentRefs(fragment,ref=>ref.type==='room'?{...ref,roomId:bindings.rooms[ref.roomId]}:{...ref,role:bindings.ownRoles[ref.role]!});
  const nodes=bound.nodes.map(node=>remapNode(node,idMap));
  const modules=bound.modules.map(module=>({...module,moduleId:idMap[module.moduleId]}));
- return {rootId:idMap[fragment.rootId],idMap,patch:{graphId:graph.graphId,baseRevision:graph.revision,operations:[...modules.map(module=>({type:'putModule' as const,module})),...nodes.map(node=>({type:'putNode' as const,node}))]}};
+ return {rootId:idMap[fragment.rootId],idMap,patch:{graphId:graph.graphId,baseRevision:graph.revision,operations:[...(fragment.customDefinitions??[]).map(definition=>({type:'putCustomDefinition' as const,definition})),...modules.map(module=>({type:'putModule' as const,module})),...nodes.map(node=>({type:'putNode' as const,node}))]}};
 }

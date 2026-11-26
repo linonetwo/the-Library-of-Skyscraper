@@ -21,7 +21,7 @@ export type RuleNode =
   | { id: string; type: 'priority' | 'sequence'; children: string[]; fallback: string }
   | { id: string; type: 'score'; candidates: { id: string; nodeId: string; weight: number; when?: GraphCondition }[]; fallback: string }
   | { id: string; type: 'log'; reason: string; next: string }
-  | { id: string; type: 'module'; moduleId: string; fallback: string }
+  | { id: string; type: 'module'; moduleId: string; fallback: string; exits?: Record<string,string> }
   | { id: string; type: 'pass'; reason: string }
   | { id: string; type: 'hold'; reason: string };
 export interface GraphState { id: string; name: string; treeId: string; entry: GraphEffect[]; exit: GraphEffect[] }
@@ -31,8 +31,10 @@ export interface RuleGraph {
   schemaVersion: 2; graphId: string; revision: number;
   roles: GraphRole[]; states: GraphState[]; transitions: GraphTransition[];
   nodes: RuleNode[]; modules: GraphModule[];
+  customDefinitions?: import('./custom-types').CustomModuleDefinition[];
 }
 export type GraphOperation =
+  | { type: 'putCustomDefinition'; definition: import('./custom-types').CustomModuleDefinition }
   | { type: 'putNode'; node: RuleNode } | { type: 'removeNode'; id: string }
   | { type: 'putState'; state: GraphState } | { type: 'removeState'; id: string }
   | { type: 'putTransition'; transition: GraphTransition } | { type: 'removeTransition'; id: string }

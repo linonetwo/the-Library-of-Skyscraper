@@ -32,7 +32,7 @@ export const intents: ActionIntentDraft[] = [];`,
 
 test('official gather example and shared strategy compile unchanged', async () => {
   const files = Object.fromEntries(await Promise.all(
-    ['examples/gather.ts', 'examples/shared.ts', 'src/index.ts', 'src/contract.ts', 'src/views.ts', 'src/mobility.ts']
+    ['examples/gather.ts', 'examples/shared.ts', 'src/index.ts', 'src/contract.ts', 'src/views.ts', 'src/mobility.ts', 'src/custom.ts']
       .map(async name => [name, await readFile(new URL(`../../script-sdk/${name}`, import.meta.url), 'utf8')]),
   ));
   const result = await compileRule({ files, entry: 'examples/gather.ts' });
