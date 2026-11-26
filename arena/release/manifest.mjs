@@ -32,7 +32,7 @@ export function buildMetadata(source, version) {
       const details=mobility && name==='player' && ['run','jump','climb'].includes(clip.action)
        ? json(descriptor.path) : undefined;
       return {action:clip.action,descriptor,
-       ...(details?.phaseFrames!==undefined ? {phaseFrames:details.phaseFrames} : {}),
+       ...(details?.clip?.phaseFrames!==undefined ? {phaseFrames:details.clip.phaseFrames} : {}),
        ...(details?.directions!==undefined ? {directions:details.directions} : {})};
      })};
     })() : {}),
