@@ -20,7 +20,7 @@ const reasonLabels: Record<string, string> = {
 };
 
 export function EvidenceDetail({selection, sceneTick}: {selection: RecordingEvidence | null; sceneTick?: number}) {
-  if (!selection) return <p>该操作没有所选对象的对应路径事实；可查看原回放与该版源码。</p>;
+  if (!selection) return <p>当前操作：所选对象未记录路径事实。</p>;
   const fact = selection.fact;
   return <article aria-label="录制命中事实"><p>操作 {fact.operationIndex} · 决策 T{fact.tick} → 场景 T{sceneTick ?? '未记录'} · {fact.actorId}</p>
     {selection.kind === 'module' ? <>
@@ -36,6 +36,6 @@ export function EvidenceDetail({selection, sceneTick}: {selection: RecordingEvid
       <p>节点 {selection.fact.nodeId} · 访问 {selection.fact.visits.length} 次 · {selection.fact.selected ? '已选择' : '未选择'}</p>
       <p>原比较值 {selection.fact.visits.map(visit => visit.value === undefined ? '未记录' : String(visit.value)).join(' / ') || '未记录'}</p>
     </>}
-    <p>这是该版规则的真实访问/选择。权威拒绝、后拍到达或采集结果请查看原回放事件。</p>
+    <p>记录状态：{selection.kind === 'module' ? '模块访问已记录' : '节点决策已记录'}</p>
   </article>;
 }

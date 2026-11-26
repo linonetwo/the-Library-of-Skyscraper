@@ -69,7 +69,7 @@ function RecordingDebuggerView({session, onSeekOperation, onOpenSource}: Recordi
     if (!index || !objectId || !actorId) return;
     const fact = findRecordingEvidence(index, filter, direction === 'previous' && cursor < 0 ? lastOperation + 1 : cursor, direction);
     if (fact) seek(fact.fact.operationIndex);
-    else setNotice('所选版本、角色和对象没有下一条对应记录；旧字段缺失不代表未执行。');
+    else setNotice('所选版本、角色和对象没有更多对应记录。');
   };
   const openSource = () => {
     const id = activeSelection?.kind === 'module' ? activeSelection.fact.visit.nodeId : objectId;
@@ -78,7 +78,7 @@ function RecordingDebuggerView({session, onSeekOperation, onOpenSource}: Recordi
   };
   return <section className="recording-debugger" aria-label="录制断点与覆盖" data-recording-state={JSON.stringify({sessionId:session.sessionId,ownerId:session.playerId,sourceHash,actorId,target,objectId,kind,cursorOperation:cursor})}>
     <header><h3>录制断点与覆盖</h3><button disabled={loading} onClick={refresh}>刷新本人录制</button></header>
-    <p>只读原始录制 · 本人 {session.playerId} · 会话 {session.sessionId}。断点仅暂停本地回放，权威赛局继续运行。</p>
+    <p>只读原始录制 · 本人 {session.playerId} · 会话 {session.sessionId}。断点定位本地回放游标。</p>
     {loading && <p role="status">读取录制中…</p>}{error && <p role="alert">{error}</p>}
     {!index?.historyAvailable && !loading && <p>这份录制没有本人的规则历史，节点和模块证据未记录。</p>}
     <div className="recording-controls">
@@ -95,7 +95,6 @@ function RecordingDebuggerView({session, onSeekOperation, onOpenSource}: Recordi
     <button disabled={!project || !objectId} onClick={openSource}>打开该版只读源码</button>
     {ref && project && <details open><summary>归档 {sourceHash.slice(0,12)} · {ref.file}:{ref.line}</summary><ReadOnlySource text={project.files[ref.file] ?? ''} line={ref.line} /></details>}
     {!graph && project && <><p>该归档没有可读取的图声明；节点分母与模块覆盖未记录，可查看原版本源码和意图。</p><button onClick={() => setSourceId('__entry__')}>查看该版入口源码</button></>}
-    <p>完整模块记录才可标未访问；旧字段缺失为未记录，截断后缺项未知。节点列表缺项只能称未记录访问。</p>
     <fieldset><legend>具名操作闭区间</legend>
       <label>名字<input aria-label="具名录制名称" value={name} onChange={e => setName(e.target.value)} /></label>
       <label>从操作<input aria-label="录制区间起点" type="number" min={0} max={lastOperation} value={from} onChange={e => setFrom(Number(e.target.value))} /></label>
