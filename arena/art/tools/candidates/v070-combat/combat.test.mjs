@@ -6,7 +6,7 @@ import {castPoses} from './cast.mjs';
 import {recoverConfig} from './recover.mjs';
 const read=async url=>JSON.parse(await readFile(url,'utf8'));
 test('cast is eight finite reachable stationary poses with one release interval',async()=>{
- const rig=await loadRig(['NE','SW']);
+ const rig=await loadRig(['NE','SW','N','NW','W','E','SE','S']);
  for(const d of Object.values(rig.directions)){
   const poses=castPoses(d);assert.equal(poses.length,8);
   assert.deepEqual(poses.map(p=>p.supportContacts.phase),['chanting','chanting','chanting','release','release','recovery','recovery','recovery']);

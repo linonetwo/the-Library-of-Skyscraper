@@ -1,9 +1,10 @@
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import sharp from 'sharp';
 import {packTrimmedLayer} from '../../trim-atlas.mjs';
-const source=path.resolve(process.argv[2]??'/home/user/arena-v070-art-sources/manifest.json'),out=path.resolve(process.argv[3]??'/var/lib/mwc/build-scratch/arena-v070-art/ink-fx');
+const source=path.resolve(process.argv[2]??fileURLToPath(new URL('../../../iso-v070-combat/ink-fx/manifest.json',import.meta.url))),out=path.resolve(process.argv[3]??'/var/lib/mwc/build-scratch/arena-v070-art/ink-fx');
 const manifest=JSON.parse(await readFile(source,'utf8')),raw=await readFile(path.resolve(path.dirname(source),manifest.raw));
 if(createHash('sha256').update(raw).digest('hex')!==manifest.sha256)throw Error('Ink source hash mismatch');
 // Visual ellipse centers, not each phase's opaque bounding-box center. One scale
