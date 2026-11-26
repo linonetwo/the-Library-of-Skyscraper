@@ -37,7 +37,7 @@ export function CustomDefinitionEditor({ draft, session, saving, error, onChange
         <button role="tab" aria-selected={view === "source"} onClick={() => setView("source")}>行为 TypeScript</button>
       </div>
       {view === "shape" ? <DefinitionShapeFields draft={draft} onChange={onChange} /> : <>
-        <p><code>{activeFile}</code> · 输入参数和出口类型由当前定义生成。</p>
+        <p><code>{activeFile}</code> · 输入参数和出口类型由当前定义生成。</p><p>返回动作、保持、走原后备或命名出口；模块自述会随录制保存。</p>
         <Suspense fallback={<p>正在加载模块源码编辑器…</p>}><MonacoRuleEditor files={project.files} activeFile={activeFile} onChange={source => onChange({ ...draft, source })} diagnostics={result?.diagnostics ?? []} location={location} /></Suspense>
       </>}
     </fieldset>
