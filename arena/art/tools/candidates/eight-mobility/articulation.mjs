@@ -40,6 +40,7 @@ export function articulate(
     wristTargets = {},
     ankleTargets = {},
     mapTorso = false,
+    mapShoulderSockets = [],
   },
 ) {
   const heading = direction.worldForward,
@@ -101,6 +102,22 @@ export function articulate(
       sign * wristWidth[s],
       wrists[s][1],
     );
+    if (mapShoulderSockets.includes(s)) {
+      // A climb-only directional registration follows the actual torso socket.
+      // Keep anatomical shoulder height; inverse-project only its horizontal XY.
+      const axis = direction.joints.neck.restOffset;
+      const rest = direction.joints[s + "Shoulder"].restOffset.map((v,i) => v + axis[i]);
+      const fraction = rest.reduce((sum,v,i) => sum + v*axis[i],0) / norm(axis)**2;
+      const target = sub(project(world.neck), project(world.pelvis));
+      const scale = norm(target) / norm(axis);
+      const angle = Math.atan2(target[1],target[0]) - Math.atan2(axis[1],axis[0]);
+      const offset = rest.map((v,i) => v + axis[i]*fraction*(scale-1));
+      const origin = project(world.pelvis), z = world[s + "Shoulder"][2];
+      const x = origin[0] + offset[0]*Math.cos(angle) - offset[1]*Math.sin(angle);
+      const y = origin[1] + offset[0]*Math.sin(angle) + offset[1]*Math.cos(angle);
+      const across = (x-96)/64, along = (y-172.8+78.38367177*z)/32;
+      world[s + "Shoulder"] = [(along+across)/2,(along-across)/2,z];
+    }
     world[s + "Elbow"] = chain(
       world[s + "Shoulder"],
       world[s + "Wrist"],

@@ -71,3 +71,23 @@ test("climb hips stay on their registered body cutout anchors throughout deep fl
     }
   }
 });
+
+test("NW climb maps only the near shoulder to the registered torso socket", async () => {
+  const rig = await loadClimbRig(["NW"]);
+  await registerClimbHands(rig, path.resolve(here, "../../../iso-v050-mobility/climb-hands/six/manifest.json"));
+  const direction = rig.directions.NW;
+  assert.deepEqual(direction.climbShoulderSockets, ["left"]);
+  for (const input of inputs) {
+    const pose = articulateClimb(direction, input);
+    const axis = direction.joints.neck.restOffset;
+    const rest = direction.joints.leftShoulder.restOffset.map((v,i) => v+axis[i]);
+    const fraction = rest.reduce((sum,v,i) => sum+v*axis[i],0)/Math.hypot(...axis)**2;
+    const target = pose.jointPositions.neck.map((v,i) => v-pose.jointPositions.pelvis[i]);
+    const scale = Math.hypot(...target)/Math.hypot(...axis), angle = pose.jointAngles.pelvis*Math.PI/180;
+    const offset = rest.map((v,i) => v+axis[i]*fraction*(scale-1));
+    const expected = [offset[0]*Math.cos(angle)-offset[1]*Math.sin(angle),offset[0]*Math.sin(angle)+offset[1]*Math.cos(angle)].map((v,i) => v+pose.jointPositions.pelvis[i]);
+    assert(distance(expected,pose.jointPositions.leftShoulder)<1e-9);
+    const world = pose.supportContacts.world;
+    assert(Math.abs(world.leftShoulder[2]-(world.neck[2]-.065))<1e-10);
+  }
+});
