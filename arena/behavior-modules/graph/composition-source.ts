@@ -11,7 +11,7 @@ export type CompositionModule = { [K in keyof CompositionConfig]: {
   roleFilter?: ActorRole[]; config: CompositionConfig[K];
 } }[keyof CompositionConfig];
 export type GraphModule = BehaviorModule | CompositionModule;
-export type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-safe' | 'escort-defending';
+export type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-cargo-insufficient' | 'escort-safe' | 'escort-defending';
 export interface ModuleVisit {
   nodeId: string; moduleId: string; outcome: 'selected' | 'fallback' | 'hold';
   reasonCode: ModuleReasonCode; ref?: ModuleRef; resolvedId?: string;
@@ -55,8 +55,12 @@ export function selectComposition(ctx:RuleContext,actor:ActorScriptView,module:C
   return selected('patrol-advanced');
  }
  visit.ref=module.config.target;
- const target=ctx.squad.actors.filter(a=>a.id!==actor.id&&a.owner===actor.owner&&a.hp>0&&a.role===module.config.target.role&&a.cargo>=module.config.minCargo).sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0)[0];
- if(!target)return fallback('escort-target-missing');
+ const candidates=ctx.squad.actors.filter(a=>a.id!==actor.id&&a.owner===actor.owner&&a.hp>0&&a.role===module.config.target.role).sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0);
+ const target=candidates.find(a=>a.cargo>=module.config.minCargo);
+ if(!target){
+  const candidate=candidates[0];if(!candidate)return fallback('escort-target-missing');
+  visit.resolvedId=candidate.id;visit.observed={cargo:candidate.cargo,threshold:module.config.minCargo};return fallback('escort-cargo-insufficient');
+ }
  visit.resolvedId=target.id;visit.observed={cargo:target.cargo,threshold:module.config.minCargo};
  if(actor.travel)return selected('travel-active');
  const targetRoomId=target.travel?.targetRoomId??target.roomId;
