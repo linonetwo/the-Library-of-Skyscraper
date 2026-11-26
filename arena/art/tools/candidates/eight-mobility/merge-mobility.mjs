@@ -8,7 +8,7 @@ const totals=['sourceFrames','nonemptyFrames','untrimmedPixels','trimmedPixels',
 
 /** Merge reviewed direction batches; keep every atlas page byte-for-byte. */
 export async function mergeMobility(action,sources,target) {
- if(!['run','jump'].includes(action)) throw Error('Expected run or jump');
+ if(!['run','jump','climb'].includes(action)) throw Error('Expected run, jump or climb');
  let out;
  const layers=new Map(),keys=new Set();
  await mkdir(target,{recursive:true});
@@ -45,9 +45,15 @@ export async function mergeMobility(action,sources,target) {
   }
  }
  if(out.directions.length!==8||directions.some(direction=>!out.directions.includes(direction))) throw Error('Incomplete eight-direction coverage');
- const expectedCount=action==='run'?16:8,expectedDuration=action==='run'?500:2000;
+ const expectedCount=action==='climb'?66:action==='run'?16:8,expectedDuration=action==='climb'?4000:action==='run'?500:2000;
  if(out.clip.frameCount!==expectedCount||out.clip.frameDurationsMs.reduce((a,b)=>a+b,0)!==expectedDuration) throw Error('Unexpected mobility timing');
  if(action==='run'&&out.clip.cycleWorldStride!==1.5) throw Error('Unexpected run stride');
+ if(action==='climb') {
+  const phases={grip:[0,24,1500],descend:[25,49,1500],crestUp:[50,57,500],crestDown:[58,65,500]};
+  for(const [phase,[first,last,duration]] of Object.entries(phases)) {
+   if(JSON.stringify(out.clip.phaseFrames?.[phase])!==JSON.stringify({first,last})||out.clip.frameDurationsMs.slice(first,last+1).reduce((a,b)=>a+b,0)!==duration) throw Error('Unexpected climb phase '+phase);
+  }
+ }
  out.directions=directions;
  for(const direction of directions) {
   out.layerOrderByDirection[direction]=out.layerOrderByDirection[direction].filter(layer=>{
