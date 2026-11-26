@@ -223,5 +223,13 @@
     "merged/run/s/run-outfit-warden-front-0.png": "074fc19ce70d2b7f80d5c2afd9df725e2775873a933d88317c5363122fcf5745",
     "merged/run/s/run-weapon-staff-front-0.json": "7ebfaee09d28490cb7e19e21a4339971de50210c61ce8fdaa16413f1ec79c62d",
     "merged/run/s/run-weapon-staff-front-0.png": "634d0b307d72943d0fe21dba31a64c588d5daec13e5e0abc1c8b2226aa9d0cd8"
+  },
+  "sourceReview": {
+    "sourcePR": 145,
+    "sourceCommit": "932a556f576519b501ba4a3ad12f42957cf785bc",
+    "mergeCommit": "8348bb5e93fec74b87b738acdd4d80da7bbc8d8c",
+    "technicalReview": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/145#pullrequestreview-6069307210",
+    "visualReview": "https://github.com/linonetwo/the-Library-of-Skyscraper/pull/145#pullrequestreview-6069325728",
+    "scope": "offline run/jump source, not runtime contacts or complete release"
   }
 }
