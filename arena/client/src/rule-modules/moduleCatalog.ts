@@ -1,9 +1,13 @@
 import { createDefaultBehaviorPlan } from "../../../behavior-modules";
-import { createCompositionGraph, type GraphModule, type CustomModuleDefinition, type CustomModuleBinding } from "../../../behavior-modules/graph";
+import { createCompositionGraph, createTacticalModule, TACTICAL_MODULE_KINDS, type GraphModule, type CustomModuleDefinition, type CustomModuleBinding } from "../../../behavior-modules/graph";
 export type ModuleKind = Exclude<GraphModule["kind"], "custom">;
-export const moduleKinds: ModuleKind[] = ["scout", "patrol", "escort", "gather", "haul", "build", "defend", "retreat"];
+export const moduleKinds: ModuleKind[] = [...TACTICAL_MODULE_KINDS, "scout", "patrol", "escort", "gather", "haul", "build", "defend", "retreat"];
 export type ModuleRequest = { type: "new"; module: GraphModule } | { type: "existing"; moduleId: string } | { type: "custom"; definition: CustomModuleDefinition; module: CustomModuleBinding };
 export const moduleCatalog: Record<ModuleKind, { name: string; description: string }> = {
+  attack: { name: "定点攻击", description: "对指定敌人执行一次接敌或攻击；目标不可用时回退。" },
+  repair: { name: "维修建筑", description: "接近或维修受损己方建筑；条件不足时回退。" },
+  claim: { name: "争夺据点", description: "前往控制点并争夺；目标不可用时回退。" },
+  cast: { name: "施放墨印", description: "对指定敌人施放墨印；能量或冷却条件不足时回退。" },
   gather: { name: "采集藏材", description: "采集岗位前往资源房；资源不可用时回退。" },
   haul: { name: "运输入库", description: "携带达到门槛时返回入库；货量不足时回退。" },
   build: { name: "建造设施", description: "材料充足且房间安全时建造指定设施；条件不足时回退。" },
@@ -15,6 +19,7 @@ export const moduleCatalog: Record<ModuleKind, { name: string; description: stri
 };
 /** Defaults come from the official domain examples, including the original five. */
 export function moduleTemplate(kind: ModuleKind): GraphModule {
+  if (kind === "attack" || kind === "repair" || kind === "claim" || kind === "cast") return createTacticalModule(kind, kind);
   const templates: GraphModule[] = [...createDefaultBehaviorPlan().modules, ...createCompositionGraph().modules];
   return structuredClone(templates.find(module => module.kind === kind)!);
 }
