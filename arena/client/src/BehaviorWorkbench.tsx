@@ -1,3 +1,5 @@
+import { RecordingDebugger } from "./recording-debug/RecordingDebugger";
+import type { ReplayOperationTarget } from "./useReplay";
 import { draftEditorView } from "./ruleDraft";
 import { ModuleCatalog } from "./rule-modules/ModuleCatalog";
 import { RuleGraphConversionPreview } from "./rule-modules/RuleGraphConversionPreview";
@@ -22,6 +24,7 @@ import { ScriptRuntime } from "./ScriptRuntime";
 import { ScriptVersion } from "./ScriptVersion";
 import "./styles/scripts.css";
 import "./styles/behavior-workbench.css";
+const ReplayPanel = lazy(() => import("./ReplayPanel"));
 const MonacoRuleEditor = lazy(() => import("./MonacoRuleEditor"));
 export default function BehaviorWorkbench({
   onBack,
@@ -34,6 +37,7 @@ export default function BehaviorWorkbench({
 }) {
   const w = useBehaviorWorkbench();
   const g = useRuleGraphDraft(w);
+  const [recordingReplay, setRecordingReplay] = useState<ReplayOperationTarget | null>(null);
   const [moduleRequest, setModuleRequest] = useState<ModuleRequest | null>(null);
   const [graphSelection, setGraphSelection] = useState<GraphSelection | null>(
     null,
@@ -194,6 +198,7 @@ export default function BehaviorWorkbench({
             </p>
           )}
           {g.error && <p role="alert">{g.error}</p>}
+          {!g.graph && <RecordingDebugger session={w.session} onSeekOperation={setRecordingReplay} />}
           {g.graph && (
             <GraphEditor
               graph={g.graph}
@@ -212,6 +217,7 @@ export default function BehaviorWorkbench({
               onRedo={g.redo}
               canUndo={g.canUndo}
               canRedo={g.canRedo}
+              recordingEditor={<RecordingDebugger session={w.session} onSeekOperation={setRecordingReplay} />}
               comparisonEditor={
                 <RuleComparison session={w.session!} draftProject={w.draft} />
               }
@@ -287,6 +293,7 @@ export default function BehaviorWorkbench({
             <button onClick={() => w.createPlan()}>替换草稿为官方组合</button>
           </section>
         ))}
+      {recordingReplay && w.session && <Suspense fallback={<p>正在打开录制回放…</p>}><ReplayPanel session={w.session} operationTarget={recordingReplay} onClose={() => setRecordingReplay(null)} /></Suspense>}
       {tab === "source" && (
         <>
           <select

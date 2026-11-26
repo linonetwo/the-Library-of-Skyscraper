@@ -34,6 +34,7 @@ export function GraphEditor({
   canRedo,
   goalEditor,
   comparisonEditor,
+  recordingEditor,
   moduleRequest,
   onModuleRequestChange,
 }: {
@@ -51,6 +52,7 @@ export function GraphEditor({
   canRedo: boolean;
   goalEditor?: ReactNode;
   comparisonEditor?: ReactNode;
+  recordingEditor?: ReactNode;
   moduleRequest?: ModuleRequest | null;
   onModuleRequestChange?: (request: ModuleRequest | null) => void;
 }) {
@@ -239,6 +241,7 @@ export function GraphEditor({
       />
       {goalEditor}
       {comparisonEditor}
+      {recordingEditor}
     </section>
   );
 }

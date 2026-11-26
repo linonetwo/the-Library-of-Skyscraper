@@ -15,8 +15,16 @@ export interface ReplayTimeline {
   ruleHistory?: RuleHistory;
 }
 
-export function useReplay(session: Session, target?: EventFocus | null) {
+export interface ReplayOperationTarget {
+  sessionId: string;
+  ownerId: string;
+  sourceHash: string;
+  operationIndex: number;
+}
+
+export function useReplay(session: Session, target?: EventFocus | null, operationTarget?: ReplayOperationTarget | null) {
   const [timeline, setTimeline] = useState<ReplayTimeline | null>(null);
+  const [operationLocated, setOperationLocated] = useState<boolean | null>(null);
   const [eventLocated, setEventLocated] = useState<boolean | null>(null);
   const [error, setError] = useState("");
   const [index, setIndex] = useState(0);
@@ -26,13 +34,19 @@ export function useReplay(session: Session, target?: EventFocus | null) {
     let active = true;
     setTimeline(null);
     setEventLocated(null);
+    setOperationLocated(null);
     setIndex(0);
     setPlaying(false);
     setError("");
     void arenaApi.timeline(session).then(
       (recording) => { if (active) {
         setTimeline(recording);
-        if (target) {
+        if (operationTarget) {
+          const match = operationTarget.sessionId === recording.sessionId && operationTarget.ownerId === session.playerId
+            ? recording.frames.findIndex(frame => frame.operationIndex === operationTarget.operationIndex) : -1;
+          setOperationLocated(match >= 0);
+          if (match >= 0) setIndex(match);
+        } else if (target) {
           const match = target.sessionId === recording.sessionId ? eventFrameIndex(recording.frames, target.event, (recording.ruleHistory?.changes ?? []).filter(change => "reset" in change).map(change => change.operationIndex)) : null;
           setEventLocated(match !== null);
           if (match !== null) setIndex(match);
@@ -41,7 +55,7 @@ export function useReplay(session: Session, target?: EventFocus | null) {
       (cause: Error) => { if (active) setError(cause.message); },
     );
     return () => { active = false; };
-  }, [session.sessionId, session.token, target]);
+  }, [session.sessionId, session.token, target, operationTarget]);
 
   const lastIndex = (timeline?.frames.length ?? 1) - 1;
   useEffect(() => {
@@ -59,5 +73,5 @@ export function useReplay(session: Session, target?: EventFocus | null) {
     if (!playing && index === lastIndex) setIndex(0);
     setPlaying(!playing);
   };
-  return { timeline, eventLocated, frame: timeline?.frames[index], error, index, lastIndex, playing, speed, setSpeed, seek, toggle };
+  return { timeline, eventLocated, operationLocated, frame: timeline?.frames[index], error, index, lastIndex, playing, speed, setSpeed, seek, toggle };
 }

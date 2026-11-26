@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import MapCanvas from "./MapCanvas";
 import { useDialog } from "./useDialog";
-import { useReplay } from "./useReplay";
+import { useReplay, type ReplayOperationTarget } from "./useReplay";
 import type { Session } from "./types";
 import ReplayRules from "./ReplayRules";
 
-export default function ReplayPanel({ session, onClose, target }: { session: Session; onClose: () => void; target?: import("./eventReplay").EventFocus | null }) {
+export default function ReplayPanel({ session, onClose, target, operationTarget }: { session: Session; onClose: () => void; target?: import("./eventReplay").EventFocus | null; operationTarget?: ReplayOperationTarget | null }) {
   const dialog = useDialog(onClose);
-  const replay = useReplay(session, target);
+  const replay = useReplay(session, target, operationTarget);
   const [selected, setSelected] = useState<string | null>(null);
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
   const [focusIntent,setFocusIntent]=useState<import("./cameraController").FocusIntent>();
@@ -25,6 +25,7 @@ export default function ReplayPanel({ session, onClose, target }: { session: Ses
         </header>
         {replay.error && <p role="alert">{replay.error}</p>}
         {replay.timeline ? <>
+          {operationTarget && <p role="status">{replay.operationLocated ? `已定位录制操作 ${operationTarget.operationIndex} · 版本 ${operationTarget.sourceHash.slice(0, 12)}` : `这份录制中未找到操作 ${operationTarget.operationIndex}`}</p>}
           {target && <p role="status">{replay.eventLocated
             ? `已定位事件 #${target.event.id} · T${target.event.tick} · ${target.event.message}`
             : `录制中未找到事件 #${target.event.id} · T${target.event.tick}；可用录制范围：操作 ${replay.timeline.frames[0]?.operationIndex}–${replay.timeline.frames.at(-1)?.operationIndex}，T${replay.timeline.frames[0]?.tick}–T${replay.timeline.frames.at(-1)?.tick}（按操作顺序，可能含重置）。可继续正常播放。`}</p>}
