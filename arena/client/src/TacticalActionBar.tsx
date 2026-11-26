@@ -2,8 +2,40 @@ import {useTacticalActions} from './useTacticalActions';
 import {tacticalLabels,type TacticalActionKind} from './tacticalTargets';
 import './styles/tactical-actions.css';
 const phases:Record<string,string>={applied:'已执行',rejected:'未执行',approaching:'正在接近',started:'已开始',progress:'进行中',contested:'争夺中',captured:'已占领',reset:'进度重置',released:'已释放',interrupted:'已中断',completed:'已完成',downed:'被击倒',rising:'正在起身',telegraph:'重击预警'};
-const reasons:Record<string,string>={'target-gone':'目标已消失','target-outside-room':'目标不在当前房间','out-of-range':'距离不足','attack-cooldown':'出手尚未冷却','not-control-point':'不是控制点','point-outside-room':'控制点不在当前房间','actor-downed':'角色已倒下','actor-travelling':'角色正在移动','actor-not-grounded':'角色尚未落地','actor-retreating':'角色正在撤退','actor-recovering':'角色正在起身','actor-casting':'角色正在蓄咏','actor-already-acted':'本刻已经行动','point-defended':'控制点有守卫','point-contested':'控制点争夺中','no-claimant':'没有占领角色','building-gone':'设施已消失','building-not-owned':'设施不属于己方','building-destroyed':'设施已摧毁','building-incomplete':'设施尚未建成','building-full':'设施无需修复','building-outside-room':'设施不在当前房间','insufficient-materials':'库存建材不足','repair-cooldown':'修复尚未冷却'};
-const reason=(code:string)=>reasons[code]??'行动条件未满足';
+const reasons:Record<string,string>={
+ 'target-gone':'请重新选择存活目标',
+ 'target-outside-room':'请先前往目标所在房间',
+ 'out-of-range':'请接近目标后再次行动',
+ 'attack-cooldown':'出手冷却后可再次攻击',
+ 'not-control-point':'请选择控制点房间',
+ 'point-outside-room':'请先前往控制点房间',
+ 'actor-downed':'角色恢复后可继续行动',
+ 'actor-travelling':'抵达后可继续行动',
+ 'actor-not-grounded':'落地后可继续行动',
+ 'actor-retreating':'撤退结束后可继续行动',
+ 'actor-recovering':'起身后可继续行动',
+ 'actor-casting':'等待本次咏唱结束',
+ 'actor-already-acted':'下一拍可继续行动',
+ 'point-defended':'清除控制点守卫后可占领',
+ 'point-contested':'控制点争夺中，请继续驻守',
+ 'no-claimant':'请派角色前往控制点占领',
+ 'building-gone':'请重新选择现有设施',
+ 'building-not-owned':'请选择己方设施',
+ 'building-destroyed':'请选择存活的己方设施',
+ 'building-incomplete':'设施建成后可维修',
+ 'building-full':'设施耐久已满，可选择其他受损设施',
+ 'building-outside-room':'请先前往设施所在房间',
+ 'insufficient-materials':'先采运建材入库',
+ 'repair-cooldown':'维修冷却后可再次维修',
+ 'staff-required':'装备法杖后可施放墨印',
+ 'cast-cooldown':'施法冷却结束后可再次施放',
+ 'insufficient-energy':'等待能量恢复后施放',
+ 'chant-context-mismatch':'请针对当前目标重新施放',
+ 'chant-mismatch':'请在墨印 TS 中按顺序观察、聚能、封印',
+ 'chant-error':'请修正墨印 TS 运行错误后重新发布',
+ 'heavy-hit':'咏唱被重击打断，恢复后可重新施放',
+};
+const reason=(code:string)=>reasons[code]??code;
 export default function TacticalActionBar(){
  const t=useTacticalActions(),s=t.snapshot;
  if(!s||(s.simulationVersion??0)<8)return null;
