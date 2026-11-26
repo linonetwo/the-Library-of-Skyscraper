@@ -4,12 +4,13 @@ use bevy_ecs::prelude::Entity;
 
 impl Session {
     pub(crate) fn tactical_phase_tick(&mut self) {
-        let actors: Vec<_> = self
+        let mut actors: Vec<_> = self
             .world
             .query::<(Entity, &Actor)>()
             .iter(&self.world)
             .map(|(e, a)| (e, a.clone()))
             .collect();
+        actors.sort_by(|(_, a), (_, b)| a.id.cmp(&b.id));
         for (entity, mut actor) in actors {
             let state = self
                 .tactics

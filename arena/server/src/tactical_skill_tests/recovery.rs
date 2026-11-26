@@ -109,3 +109,25 @@ fn private_mid_chant_checkpoint_preserves_calls_and_fatal_hit_never_releases() {
         })
     }));
 }
+
+#[test]
+fn simultaneous_actor_recovery_events_match_after_checkpoint_entity_reordering() {
+    let mut s = setup(ScenarioId::FirstExpedition);
+    for state in s.tactics.as_mut().unwrap().actor_states.values_mut() {
+        state.recovery = Some(crate::tactics::RecoveryState {
+            started_tick: 16,
+            rising_tick: 18,
+            ends_tick: 20,
+        });
+    }
+    let bytes = serde_json::to_vec(&s.checkpoint()).unwrap();
+    let mut restored = Session::from_checkpoint(serde_json::from_slice(&bytes).unwrap()).unwrap();
+    for _ in 0..4 {
+        s.advance();
+        restored.advance();
+        assert_eq!(
+            serde_json::to_value(s.snapshot()).unwrap(),
+            serde_json::to_value(restored.snapshot()).unwrap()
+        );
+    }
+}

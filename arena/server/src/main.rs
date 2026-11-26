@@ -46,11 +46,14 @@ async fn create(
 ) -> Result<Json<Credentials>, Error> {
     let id = Uuid::new_v4().to_string();
     let token = Uuid::new_v4().to_string();
-    let mut s = if let Some(scenario) = input.scenario_id {
-        Session::new_scenario(id.clone(), input.mode, input.seed.unwrap_or(42), scenario)
-    } else {
-        Session::new(id.clone(), input.mode, input.seed.unwrap_or(42))
-    };
+    let mut s = Session::new_scenario(
+        id.clone(),
+        input.mode,
+        input.seed.unwrap_or(42),
+        input
+            .scenario_id
+            .unwrap_or(skyscraper_arena_server::ScenarioId::FirstExpedition),
+    );
     let player_id = s
         .join(token.clone())
         .map_err(|e| error(StatusCode::BAD_REQUEST, &e))?;

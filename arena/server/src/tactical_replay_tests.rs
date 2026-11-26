@@ -20,18 +20,6 @@ fn same(a: &mut Session, b: &mut Session) {
                 .enumerate()
                 .find_map(|(i, (a, b))| difference(a, b, &format!("{path}[{i}]"))),
             _ if a == b => None,
-            (serde_json::Value::Number(a), serde_json::Value::Number(b))
-                if path.contains(".lastMoveDirection.") =>
-            {
-                let (a, b) = (a.as_f64().unwrap(), b.as_f64().unwrap());
-                // Existing visual direction subtraction may round by one ULP in JSON.
-                // All authority coordinates and domain state retain exact comparison.
-                if a.is_finite() && b.is_finite() && a.to_bits().abs_diff(b.to_bits()) <= 1 {
-                    None
-                } else {
-                    Some(format!("{path}: {a:?} != {b:?}"))
-                }
-            }
             _ => Some(format!("{path}: {a} != {b}")),
         }
     }
