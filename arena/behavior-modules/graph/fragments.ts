@@ -1,5 +1,5 @@
 import {mapFragmentRefs} from './fragment-references';
-import type { GraphFragment, GraphFragmentBindings, ModuleRef } from './composition-types';
+import type { GraphFragment, GraphFragmentBindings, RoomRef, OwnRoleRef } from './composition-types';
 import type { GraphPatch, RuleGraph, RuleNode } from './types';
 import { nodeChildren } from './diagnostics';
 import { remapNode } from './edit';
@@ -14,9 +14,9 @@ export function exportGraphFragment(graph:RuleGraph,rootId:string):GraphFragment
  return {schemaVersion:1,rootId,nodes,modules,...(definitions.length?{customDefinitions:structuredClone(definitions)}:{})};
 }
 /** Explicit binding inventory includes existing room conditions/modules, not only new capabilities. */
-export function graphFragmentRefs(fragment:GraphFragment):ModuleRef[] {
- const refs:ModuleRef[]=[];const seen=new Set<string>();
- const add=(ref:ModuleRef)=>{const key=JSON.stringify(ref);if(!seen.has(key)){seen.add(key);refs.push(ref);}};
+export function graphFragmentRefs(fragment:GraphFragment):(RoomRef|OwnRoleRef)[] {
+ const refs:(RoomRef|OwnRoleRef)[]=[];const seen=new Set<string>();
+ const add=(ref:RoomRef|OwnRoleRef)=>{const key=JSON.stringify(ref);if(!seen.has(key)){seen.add(key);refs.push(ref);}};
  mapFragmentRefs(fragment,ref=>{add(ref);return ref;});return refs;
 }
 /** One patch: avoid all target IDs, copy dependencies once, preserve internal sharing. */

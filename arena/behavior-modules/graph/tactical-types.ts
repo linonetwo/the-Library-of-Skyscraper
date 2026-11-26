@@ -23,8 +23,8 @@ export function createTacticalModule(kind:keyof TacticalConfig,moduleId:string):
  const base={moduleId,enabled:true,priority:20};
  switch(kind){
   case 'attack':return {...base,kind,config:{target:{type:'enemyInRoom',roomId:'room-3',select:'lowestHp'}}};
-  case 'repair':return {...base,kind,config:{target:{type:'ownBuildingInRoom',roomId:'room-0',select:'mostDamaged'}}};
-  case 'claim':return {...base,kind,config:{target:{type:'controlPoint',roomId:'room-3'}}};
+  case 'repair':return {...base,kind,config:{target:{type:'ownBuildingInRoom',roomId:'room-3',select:'mostDamaged'}}};
+  case 'claim':return {...base,kind,config:{target:{type:'controlPoint',roomId:'room-2'}}};
   case 'cast':return {...base,kind,config:{target:{type:'enemyInRoom',roomId:'room-3',select:'lowestHp'},skillId:'ink-strike'}};
  }
 }
