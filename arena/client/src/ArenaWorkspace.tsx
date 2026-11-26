@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { MobilityChoice } from "./mobilityChoices";
 import { useArenaSession } from "./useArenaSession";
-import type { Appearance, Session } from "./types";
+import type { Appearance, Session, ScenarioId } from "./types";
 
 export const presetNames = {
   gather: "资源优先",
@@ -129,8 +129,9 @@ export function useArenaWorkspace() {
     mode: "training" | "online",
     join = false,
     destination: "map" | "rules" = "map",
+    scenarioId?: ScenarioId,
   ) =>
-    enter(await arena.start(mode, join ? joinId : undefined), destination);
+    enter(await arena.start(mode, join ? joinId : undefined, scenarioId), destination);
   const resume = async (saved: Session, destination: "map" | "rules" = "map") =>
     enter(await arena.resume(saved), destination);
   const openAiEditor = async () => {

@@ -1,7 +1,7 @@
 import { serverStorageKey } from "./serverConnection";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { arenaApi } from "./arenaApi";
-import type { Command, Session, Snapshot } from "./types";
+import type { Command, Session, Snapshot, ScenarioId } from "./types";
 import { readExpeditions, rememberExpedition } from "./expeditionLibrary";
 
 export function useArenaSession() {
@@ -101,10 +101,10 @@ export function useArenaSession() {
     return () => window.removeEventListener("storage", sync);
   }, []);
 
-  const start = (mode: "training" | "online", joinId?: string) =>
+  const start = (mode: "training" | "online", joinId?: string, scenarioId?: ScenarioId) =>
     perform(async () => {
       const next = await (joinId === undefined
-        ? arenaApi.create(mode)
+        ? arenaApi.create(mode, scenarioId)
         : arenaApi.join(joinId));
       const state = await arenaApi.state(next);
       setExpeditions(rememberExpedition(next, state));

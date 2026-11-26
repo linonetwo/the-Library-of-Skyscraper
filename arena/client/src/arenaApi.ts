@@ -1,6 +1,6 @@
 import type { RuleComparisonRequest, RuleComparisonResult } from "./rule-comparison/types";
 import { serverUrl, socketUrl } from "./serverConnection";
-import type { Command, Session, Snapshot } from "./types";
+import type { Command, Session, Snapshot, ScenarioId } from "./types";
 import type { ReplayTimeline } from "./useReplay";
 import type { CompileResult, RuleSourceProject, ScriptPreview, ScriptPublication, RuleVersionList, RuleVersionSource, RuleRuntimeState } from "./scriptTypes";
 
@@ -43,8 +43,8 @@ export const arenaApi = {
     request<RuleComparisonResult>(`/${session.sessionId}/scripts/preview`, session, input),
   timeline: (session: Session) =>
     request<ReplayTimeline>(`/${session.sessionId}/replay/timeline`, session),
-  create: (mode: "training" | "online") =>
-    request<Session>("", undefined, { mode, seed: 42 }),
+  create: (mode: "training" | "online", scenarioId?: ScenarioId) =>
+    request<Session>("", undefined, { mode, seed: 42, ...(scenarioId && {scenarioId}) }),
   join: (id: string) =>
     request<Session>(`/${encodeURIComponent(id.trim())}/join`, undefined, {}),
   state: (session: Session) =>
