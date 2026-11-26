@@ -1,3 +1,5 @@
+import { GraphModuleComposer } from "../rule-modules/GraphModuleComposer";
+import type { ModuleRequest } from "../rule-modules/moduleCatalog";
 import { GraphFragmentLibrary } from "../rule-fragments/GraphFragmentLibrary";
 import {
   GraphObjectActions,
@@ -32,6 +34,8 @@ export function GraphEditor({
   canRedo,
   goalEditor,
   comparisonEditor,
+  moduleRequest,
+  onModuleRequestChange,
 }: {
   graph: RuleGraph;
   trace?: GraphTrace | null;
@@ -47,6 +51,8 @@ export function GraphEditor({
   canRedo: boolean;
   goalEditor?: ReactNode;
   comparisonEditor?: ReactNode;
+  moduleRequest?: ModuleRequest | null;
+  onModuleRequestChange?: (request: ModuleRequest | null) => void;
 }) {
   const [treeState, setTreeState] = useState(graph.states[0]?.id ?? "");
   useEffect(() => {
@@ -134,6 +140,7 @@ export function GraphEditor({
         onSelect={(next) => (next ? choose(next) : onSelect(null))}
         onCopy={copySelected}
       />
+      {moduleRequest && onModuleRequestChange && <GraphModuleComposer graph={graph} request={moduleRequest} onChange={onModuleRequestChange} onApply={onApply} onSelect={choose} />}
       <GraphFragmentLibrary graph={graph} selection={selection} onApply={onApply} onSelect={choose} />
       <div className="graph-workspace">
         <GraphObjectBrowser
@@ -216,6 +223,7 @@ export function GraphEditor({
                 selection={selection}
                 onEdit={edit}
                 onLocate={onLocate}
+                onSelect={choose}
               />
             </>
           ) : (

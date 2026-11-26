@@ -19,7 +19,7 @@ export function BehaviorModuleCard({
 }: {
   module: BehaviorModule;
   onChange: (m: BehaviorModule) => void;
-  onSource: () => void;
+  onSource?: () => void;
   expanded: boolean;
   onToggle: () => void;
 }) {
@@ -44,7 +44,7 @@ export function BehaviorModuleCard({
       )}
       {rooms.map((room) => (
         <option key={room.id} value={room.id}>
-          {room.name}
+          {room.name} · {room.id}
         </option>
       ))}
     </>
@@ -81,7 +81,7 @@ export function BehaviorModuleCard({
         </button>
       </header>
       <div id={`params-${m.moduleId}`} hidden={!expanded}>
-        <button onClick={onSource}>查看源码 ↗</button>
+        {onSource && <button onClick={onSource}>查看源码 ↗</button>}
         <label>
           优先级{" "}
           <input

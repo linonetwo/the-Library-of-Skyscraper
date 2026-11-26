@@ -2,9 +2,7 @@ import { ScrollText, ArrowUpRight, Check } from "lucide-react";
 import { lazy, Suspense, useState } from "react";
 
 import { useArena, presetNames } from "./ArenaWorkspace";
-import { readDraft, isStockDraft } from "./ruleDraft";
-import { recoverBehaviorPlan } from "../../behavior-modules";
-import { recoverRuleGraph } from "../../behavior-modules/graph";
+import { readDraft, draftEditorView } from "./ruleDraft";
 const BehaviorWorkbench = lazy(() => import("./BehaviorWorkbench"));
 
 export default function RuleEditor() {
@@ -21,9 +19,7 @@ export default function RuleEditor() {
   const [view, setView] = useState<
     "modules" | "graph" | "source" | "versions" | "presets"
   >(() => {
-    const draft = readDraft(session);
-    if (recoverRuleGraph(draft)) return "graph";
-    return isStockDraft(draft) || recoverBehaviorPlan(draft) ? "modules" : "source";
+    return draftEditorView(readDraft(session));
   });
   const coding = view !== "presets";
   return (
