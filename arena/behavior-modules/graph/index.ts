@@ -10,3 +10,4 @@ export { createShortcutSupportGraph } from './mobility-example';
 export type * from './composition-types';
 export { MODULE_VISIT_LIMIT } from './composition-types';
 export { exportGraphFragment, importGraphFragment, graphFragmentRefs } from './fragments';
+export { createCompositionGraph } from './composition-example';
