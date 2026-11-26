@@ -24,6 +24,13 @@ pub(crate) fn catalog_working(a: &Actor, buildings: &[Building], enemies: &[Enem
 }
 impl Session {
     pub(crate) fn scenario_tick(&mut self) {
+        if self.scenario_id == Some(crate::ScenarioId::SealContest) {
+            self.contest_tick();
+            return;
+        }
+        if self.simulation_version >= 8 {
+            self.control_points_tick();
+        }
         self.scenario.remaining_ticks = number("durationTicks").saturating_sub(self.tick);
         let target = config()["targetRoomId"].as_str().unwrap().to_string();
         let catalog = self

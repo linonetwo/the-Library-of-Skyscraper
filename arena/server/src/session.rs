@@ -4,6 +4,8 @@ use std::collections::BTreeMap;
 
 pub struct Session {
     pub simulation_version: u32,
+    pub scenario_id: Option<crate::ScenarioId>,
+    pub(crate) tactics: Option<crate::TacticalState>,
     pub scenario: Scenario,
     pub enemies: Vec<Enemy>,
     pub rule_runtime: BTreeMap<String, crate::script_state::RuleRuntimeState>,
@@ -73,6 +75,8 @@ impl Session {
             .collect();
         Self {
             simulation_version: 7,
+            scenario_id: None,
+            tactics: None,
             scenario: Scenario {
                 remaining_ticks: crate::scenario::number("durationTicks"),
                 ..Default::default()
@@ -194,6 +198,9 @@ impl Session {
                 });
             }
         }
+        if self.simulation_version >= 8 {
+            self.join_tactics(&id);
+        }
         self.event("join", format!("{id} 的三人小队抵达中庭"), Some(&id));
         self.record_operation(ReplayOperation::Join {
             player_id: id.clone(),
@@ -202,6 +209,7 @@ impl Session {
     }
     pub(crate) fn event(&mut self, kind: &str, message: String, player: Option<&str>) {
         self.events.push(Event {
+            tactical: None,
             id: self.next_event,
             tick: self.tick,
             kind: kind.into(),
@@ -222,7 +230,10 @@ impl Session {
                 a.world_position = crate::travel::center(&a.room_id);
             }
         }
+        let tactics = self.tactical_snapshot(&actors);
         Snapshot {
+            scenario_id: self.scenario_id,
+            tactics,
             simulation_version: self.simulation_version,
             map_version: if self.simulation_version >= 3 {
                 crate::travel_map::world_map(self.simulation_version)["version"]
@@ -243,7 +254,7 @@ impl Session {
                 serde_json::Value::Null
             },
             scenario_config: if self.simulation_version >= 3 {
-                crate::scenario::config().clone()
+                self.scenario_config().clone()
             } else {
                 serde_json::Value::Null
             },

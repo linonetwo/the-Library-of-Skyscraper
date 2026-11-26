@@ -5,3 +5,11 @@ pub use state::*;
 pub use view::*;
 
 pub const TACTICAL_SIMULATION_VERSION: u32 = 8;
+mod attack;
+mod claim;
+mod command;
+pub(crate) mod point_presence;
+mod repair;
+mod scenario;
+mod settlement;
+mod snapshot;

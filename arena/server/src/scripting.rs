@@ -32,6 +32,13 @@ impl Session {
                 }
             }
         }
+        if let Some(tactics) = &mut self.tactics {
+            for (id, state) in &mut tactics.actor_states {
+                if id.starts_with(&format!("{owner}-")) {
+                    state.attack_target_id = None;
+                }
+            }
+        }
         self.players.get_mut(owner).unwrap().script = script.clone();
         if script.is_none() {
             self.apply_preset(owner);

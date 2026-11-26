@@ -27,6 +27,8 @@ use store::{Error, Store, error};
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 struct Create {
+    #[serde(default, rename = "scenarioId")]
+    scenario_id: Option<skyscraper_arena_server::ScenarioId>,
     mode: Mode,
     seed: Option<u64>,
 }
@@ -43,7 +45,11 @@ async fn create(
 ) -> Result<Json<Credentials>, Error> {
     let id = Uuid::new_v4().to_string();
     let token = Uuid::new_v4().to_string();
-    let mut s = Session::new(id.clone(), input.mode, input.seed.unwrap_or(42));
+    let mut s = if let Some(scenario) = input.scenario_id {
+        Session::new_scenario(id.clone(), input.mode, input.seed.unwrap_or(42), scenario)
+    } else {
+        Session::new(id.clone(), input.mode, input.seed.unwrap_or(42))
+    };
     let player_id = s
         .join(token.clone())
         .map_err(|e| error(StatusCode::BAD_REQUEST, &e))?;

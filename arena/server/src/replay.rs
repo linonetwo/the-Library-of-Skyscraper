@@ -9,6 +9,8 @@ pub const MAX_REPLAY_BYTES: usize = 2 * 1024 * 1024;
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct Replay {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub scenario_id: Option<crate::ScenarioId>,
     pub version: u32,
     #[serde(default)]
     pub simulation_version: u32,
@@ -68,6 +70,20 @@ pub struct ReplayTimeline {
 }
 
 impl Replay {
+    fn initial_session(&self) -> Session {
+        let mut session = if self.simulation_version >= 8 {
+            Session::new_scenario(
+                self.session_id.clone(),
+                self.mode,
+                self.seed,
+                self.scenario_id.unwrap_or_default(),
+            )
+        } else {
+            Session::new(self.session_id.clone(), self.mode, self.seed)
+        };
+        session.configure_replay_version(self.simulation_version);
+        session
+    }
     /// Restore the state after exactly N recorded operations (0 is the initial
     /// frame). Used only after the HTTP caller has authorized the recording.
     pub fn session_after_operation(&self, operation_index: usize) -> Result<Session, String> {
@@ -75,8 +91,7 @@ impl Replay {
         if operation_index > self.operations.len() {
             return Err("operationIndex is outside the recording".into());
         }
-        let mut session = Session::new(self.session_id.clone(), self.mode, self.seed);
-        session.configure_replay_version(self.simulation_version);
+        let mut session = self.initial_session();
         for (index, operation) in self.operations[..operation_index].iter().enumerate() {
             session.replay_operations.clear();
             session.replay_operation(index, operation)?;
@@ -87,8 +102,7 @@ impl Replay {
     /// Each frame follows one recorded operation; reset starts a new tick range.
     pub fn timeline(&self) -> Result<ReplayTimeline, String> {
         self.validate_limits()?;
-        let mut session = Session::new(self.session_id.clone(), self.mode, self.seed);
-        session.configure_replay_version(self.simulation_version);
+        let mut session = self.initial_session();
         let mut rule_history = crate::replay_rule_history::RuleHistory::for_replay(self);
         let mut frames = Vec::with_capacity(self.operations.len() + 1);
         frames.push(ReplayFrame {
@@ -241,6 +255,7 @@ impl Session {
             return Err("replay recording limit reached; export unavailable".into());
         }
         let mut replay = Replay {
+            scenario_id: self.scenario_id,
             version: REPLAY_VERSION,
             simulation_version: self.simulation_version,
             map_version: if self.simulation_version >= 3 {
@@ -278,8 +293,7 @@ impl Session {
     /// callers must not publish this object as an authenticated live session.
     pub fn from_replay(replay: &Replay) -> Result<Self, String> {
         replay.validate_limits()?;
-        let mut session = Self::new(replay.session_id.clone(), replay.mode, replay.seed);
-        session.configure_replay_version(replay.simulation_version);
+        let mut session = replay.initial_session();
         for (index, operation) in replay.operations.iter().enumerate() {
             session.replay_operation(index, operation)?;
         }

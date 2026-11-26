@@ -70,7 +70,18 @@ pub enum ScriptAction {
     },
     Gather,
     Deliver,
-    Attack,
+    Attack {
+        #[serde(default, rename = "targetId", skip_serializing_if = "Option::is_none")]
+        target_id: Option<String>,
+    },
+    Repair {
+        #[serde(rename = "buildingId")]
+        building_id: String,
+    },
+    Claim {
+        #[serde(rename = "roomId")]
+        room_id: String,
+    },
     Capture,
     Build {
         #[serde(rename = "roomId")]
@@ -105,7 +116,18 @@ impl ScriptIntent {
             },
             ScriptAction::Gather => crate::Command::Gather { actor_id },
             ScriptAction::Deliver => crate::Command::Deliver { actor_id },
-            ScriptAction::Attack => crate::Command::Attack { actor_id },
+            ScriptAction::Attack { target_id } => crate::Command::Attack {
+                actor_id,
+                target_id: target_id.clone(),
+            },
+            ScriptAction::Repair { building_id } => crate::Command::Repair {
+                actor_id,
+                building_id: building_id.clone(),
+            },
+            ScriptAction::Claim { room_id } => crate::Command::Claim {
+                actor_id,
+                room_id: room_id.clone(),
+            },
             ScriptAction::Capture => crate::Command::Capture { actor_id },
             ScriptAction::Build { room_id, kind } => crate::Command::Build {
                 room_id: room_id.clone(),
@@ -119,11 +141,15 @@ impl ScriptIntent {
 mod mobility_tests {
     use super::*;
     #[test]
-    fn mobility_intents_map_to_the_same_domain_commands() {
+    fn intents_map_to_the_same_domain_commands() {
         for action in [
             serde_json::json!({"type":"run","viaRoomId":"room-0","roomId":"room-3"}),
             serde_json::json!({"type":"jump","edgeId":"jump-room-1-room-2"}),
             serde_json::json!({"type":"climb","edgeId":"climb-room-4-room-3"}),
+            serde_json::json!({"type":"attack"}),
+            serde_json::json!({"type":"attack","targetId":"drill-guardian-b"}),
+            serde_json::json!({"type":"repair","buildingId":"p1-drill-warehouse"}),
+            serde_json::json!({"type":"claim","roomId":"room-2"}),
         ] {
             let mut wire = action.clone();
             wire["actorId"] = serde_json::json!("p1-guard");

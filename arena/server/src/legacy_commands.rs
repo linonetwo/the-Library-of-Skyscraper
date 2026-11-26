@@ -22,11 +22,19 @@ impl Session {
             Command::Move { actor_id, .. }
             | Command::Gather { actor_id }
             | Command::Deliver { actor_id }
-            | Command::Attack { actor_id }
+            | Command::Attack {
+                actor_id,
+                target_id: None,
+            }
             | Command::Capture { actor_id } => Some(actor_id.clone()),
             _ => None,
         };
         match command {
+            Command::Attack {
+                target_id: Some(_), ..
+            }
+            | Command::Repair { .. }
+            | Command::Claim { .. } => return Err("tactics require simulationVersion8".into()),
             Command::Run { .. } | Command::Jump { .. } | Command::Climb { .. } => {
                 return Err("mobility requires simulationVersion7".into());
             }
@@ -59,7 +67,11 @@ impl Session {
                 let operations = std::mem::take(&mut self.replay_operations);
                 let overflowed = self.replay_overflowed;
                 let simulation_version = self.simulation_version;
-                *self = Self::new(self.id.clone(), self.mode, self.seed);
+                *self = if let Some(scenario) = self.scenario_id {
+                    Self::new_scenario(self.id.clone(), self.mode, self.seed, scenario)
+                } else {
+                    Self::new(self.id.clone(), self.mode, self.seed)
+                };
                 self.configure_replay_version(simulation_version);
                 for token in tokens.keys() {
                     self.join(token.clone())?;
@@ -112,7 +124,10 @@ impl Session {
                 let (e, a) = self.actor(owner, &actor_id)?;
                 self.deliver(e, a)?;
             }
-            Command::Attack { actor_id } => {
+            Command::Attack {
+                actor_id,
+                target_id: None,
+            } => {
                 let (e, a) = self.actor(owner, &actor_id)?;
                 self.attack(e, a)?;
             }

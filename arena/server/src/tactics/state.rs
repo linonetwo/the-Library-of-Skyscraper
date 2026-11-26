@@ -60,6 +60,22 @@ pub struct RecoveryState {
 #[derive(Clone, Debug, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ControlPointState {
+    #[serde(default)]
+    pub last_actor_id: Option<String>,
     pub challenger_id: Option<String>,
     pub progress_ticks: u32,
+}
+
+impl Default for TacticalActorState {
+    fn default() -> Self {
+        Self {
+            energy: 3,
+            last_energy_tick: 0,
+            cast_ready_tick: 0,
+            last_repair_tick: None,
+            attack_target_id: None,
+            cast: None,
+            recovery: None,
+        }
+    }
 }

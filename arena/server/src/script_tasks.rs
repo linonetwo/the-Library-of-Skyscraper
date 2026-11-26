@@ -38,6 +38,9 @@ enum TaskKind {
     Build,
     Attack,
     Capture,
+    Repair,
+    Claim,
+    Cast,
 }
 #[derive(Deserialize, Serialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
@@ -97,8 +100,8 @@ impl TaskDraft {
 mod mobility_plan_tests {
     use super::*;
     #[test]
-    fn mobility_tags_are_private_plan_records_not_executors() {
-        for kind in ["run", "jump", "climb"] {
+    fn action_tags_are_private_plan_records_not_executors() {
+        for kind in ["run", "jump", "climb", "repair", "claim", "cast"] {
             let patch = serde_json::json!({"type":"upsert","task":{"id":"plan-a","actorId":"a","roomId":"room-3","kind":kind,"priority":50,"status":"running","blockedReason":null}});
             let parsed: TaskPatchDraft = serde_json::from_value(patch).unwrap();
             let TaskPatchDraft::Upsert { task } = parsed else {
