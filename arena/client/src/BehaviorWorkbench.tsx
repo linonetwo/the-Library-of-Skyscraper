@@ -16,7 +16,7 @@ import { RuleComparison } from "./rule-comparison/RuleComparison";
 import { GraphEditor } from "./rule-graph/GraphEditor";
 import { useRuleGraphDraft } from "./rule-graph/useRuleGraphDraft";
 import type { GraphSelection } from "./rule-graph/graphObjects";
-import { getGraphSourceRef } from "../../behavior-modules/graph";
+import { createInkStrikeSourceProject, getInkStrikeSourceRef, getGraphSourceRef } from "../../behavior-modules/graph";
 import { RuleGoalEditor } from "./rule-goals/RuleGoalEditor";
 import { scriptTemplates } from "./scriptTemplates";
 import { lazy, Suspense, useEffect, useState } from "react";
@@ -123,6 +123,18 @@ export default function BehaviorWorkbench({
     setModuleRequest({ type: "custom", definition, module: { moduleId: "custom-module", kind: "custom", definitionId: definition.definitionId, revisionId: definition.revisionId, config: customModuleDefaults(definition), enabled: true, priority: 20 } });
     setCustomView(null); setTab("graph");
   };
+  const inkStrikeRef = getInkStrikeSourceRef(w.draft);
+  const hasInkStrikeFile = "skills/ink-strike.ts" in w.draft.files;
+  const editInkStrike = () => {
+    if (hasInkStrikeFile) {
+      if (inkStrikeRef) w.jump({ ...inkStrikeRef, message: "墨印技能本体", code: 0, severity: "warning" });
+      else w.selectFile("skills/ink-strike.ts");
+    } else if (g.graph && !g.blocked) {
+      const { project, activeFile } = createInkStrikeSourceProject(g.graph);
+      w.replaceProject(project, activeFile);
+    } else return;
+    setTab("source");
+  };
   const creationActions = <nav className="module-creation-actions" aria-label="AI 模块创作入口">
     <button onClick={() => { setCustomView(null); setTab("modules"); }}>调现有模块</button>
     <button onClick={createModule}>创建自定义模块</button>
@@ -181,6 +193,10 @@ export default function BehaviorWorkbench({
       {(tab === "modules" || tab === "graph") && <ModuleCatalog graph={g.graph} customDefinitions={custom.definitions} onChooseCustom={addDefinition} onChoose={request => { setModuleRequest(request); if (g.graph) setTab("graph"); }} />}
       {moduleRequest && !g.graph && w.plan && <RuleGraphConversionPreview plan={w.plan} onConfirm={() => { g.replace("priority"); setTab("graph"); }} onCancel={() => setModuleRequest(null)} />}
       {moduleRequest && !g.graph && !w.plan && <p>当前手写工程保持原样；可在规则图页显式载入图草稿后接入模块，替换可撤销。</p>}
+      {(g.graph || hasInkStrikeFile) && <div className="graph-tools">
+        <button disabled={w.busy || (!hasInkStrikeFile && g.blocked)} onClick={editInkStrike}>编辑墨印 TS</button>
+        {!hasInkStrikeFile && <small>将墨印技能加入当前工程并切换到源码，原图保留在替换历史中。</small>}
+      </div>}
       <ScriptVersion busy={w.busy} onDisable={() => void w.run("disable")} />
       {!view && (
         <div className="behavior-tabs" role="tablist" aria-label="AI 编辑视图">
