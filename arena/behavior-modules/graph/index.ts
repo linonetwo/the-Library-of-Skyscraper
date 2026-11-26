@@ -15,3 +15,7 @@ export type * from './custom-types';
 export { diagnoseCustomModule, saveCustomModuleDefinition, customModuleDefaults } from './custom-definition';
 export { addCustomModule, previewCustomModuleUpgrade, upgradeCustomModule } from './custom-patch';
 export { createCustomModuleDraft, customModuleEditorProject } from './custom-source';
+
+export type * from './tactical-types';
+export {TACTICAL_MODULE_KINDS,isTacticalModule,createTacticalModule} from './tactical-types';
+export {createInkStrikeSourceProject,getInkStrikeSourceRef} from './tactical-project';
