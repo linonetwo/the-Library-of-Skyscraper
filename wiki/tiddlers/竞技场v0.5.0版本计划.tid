@@ -11,7 +11,7 @@ v0.5.0「书库捷径」：队员能沿道路疾跑、跃过断桥、攀越高�
 |!工作包|!当前状态|
 |M1|[[PR129|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/129]]已合0b7bd22；sim7权威分段旅行、双向捷径及旧sim兼容已通过精确审与CI|
 |M2|[[PR127|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/127]]已合056be045；真实三动作UI、390宽度、脚本接管限制与权威只读出口已入主线|
-|M3|采样修复[[PR141|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/141]]已合edb54d4（18定点／65client／tsc及CI通过）；纯runtime[[PR130|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/130]]已合a8d8777；NE／SW跑跳样板[[PR134|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/134]]已合7b23287；32手件离线源[[PR135|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/135]]已合55596f5。NE／SW climb66帧离线源fb48e92待独立视觉、未注册；S消费者修正进行中。完整climb／其余方向／192组／M5仍待；工坊PR137进行中|
+|M3|采样修复[[PR141|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/141]]已合edb54d4（18定点／65client／tsc及CI通过）；纯runtime[[PR130|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/130]]已合a8d8777；NE／SW跑跳样板[[PR134|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/134]]已合7b23287；32手件离线源[[PR135|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/135]]已合55596f5。NE／SW climb66帧离线源fb48e92待独立视觉、未注册；S消费者修正进行中。完整climb／其余方向／192组／M5仍待；工坊[[PR137|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/137]]已合6cfe3a85|
 |M4|SDK[[PR126|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/126]]已合bef9d9，图生成[[PR128|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/128]]已合6002d81；可见MCP[[PR132|https://github.com/linonetwo/the-Library-of-Skyscraper/pull/132]]已合2e43e11，完整机动阶段待M5|
 |M5|正常时钟driver已参数化、六组映射准备；等待M1–M4齐备与整版source／recipe冻结，未启动集中包验收|
 
