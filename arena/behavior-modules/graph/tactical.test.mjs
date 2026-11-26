@@ -50,7 +50,14 @@ test('fragments bind selector rooms; explicit skill handover archives its actual
  const g=graph(api.createTacticalModule('cast','ink')),fragment=api.exportGraphFragment(g,'request');
  assert.deepEqual(api.graphFragmentRefs(fragment),[{type:'room',roomId:'room-3'}]);
  const inserted=api.importGraphFragment(g,fragment,{rooms:{'room-3':'room-2'},ownRoles:{}});assert.equal(inserted.patch.operations.find(op=>op.type==='putModule').module.config.target.roomId,'room-2');
- const {project,activeFile}=api.createInkStrikeSourceProject(g);assert.equal(activeFile,'skills/ink-strike.ts');assert.deepEqual((await compileRule(project)).diagnostics,[]);assert.equal(api.recoverRuleGraph(project),null);assert.equal(api.readArchivedRuleGraph(project).graphId,g.graphId);assert.deepEqual(api.getInkStrikeSourceRef(project),{file:activeFile,line:3,column:1});
+ const {project,activeFile}=api.createInkStrikeSourceProject(g);assert.equal(activeFile,'skills/ink-strike.ts');const compiled=await compileRule(project);assert.deepEqual(compiled.diagnostics,[]);
+ if(runner){
+  const run=bundle=>JSON.parse(spawnSync(runner,[],{input:JSON.stringify({bundle,context:ctx()})+'\n',encoding:'utf8'}).stdout);
+  const original=run(compiled.bundle);assert.equal(original.chants[0].skillSourceHash,compiled.bundle.sourceHash);assert.equal(original.chants[0].reasonCode,undefined);
+  const edited=structuredClone(project);edited.files[activeFile]=edited.files[activeFile].replace('api.seal(api.channel(api.observe()));','api.channel(api.observe());');
+  const next=await compileRule(edited);assert.deepEqual(next.diagnostics,[]);assert.notEqual(next.bundle.sourceHash,compiled.bundle.sourceHash);assert.equal(run(next.bundle).chants[0].reasonCode,'chant-mismatch');
+ }
+ assert.equal(api.recoverRuleGraph(project),null);assert.equal(api.readArchivedRuleGraph(project).graphId,g.graphId);assert.deepEqual(api.getInkStrikeSourceRef(project),{file:activeFile,line:3,column:1});
  const arbitrary=structuredClone(project);arbitrary.files['main.ts']="export {decide} from './graph-runtime';\n";assert.equal(api.getInkStrikeSourceRef(arbitrary),null);
 });
 test('mixed tactical and custom leaves keep one native decision and actual visit order', {skip:!runner},async()=>{
