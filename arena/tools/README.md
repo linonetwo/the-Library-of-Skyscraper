@@ -177,3 +177,24 @@ simulation/map 版本、角色位置/高度/朝向/locomotion/Travel 与玩家�
 
 需要 sim7 UI/权威和 Chromium，定向验证三动作：
 `ARENA_MOBILITY_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5191 ARENA_BASE_URL=http://127.0.0.1:8799 node --test ../tests/mobility-browser.test.mjs`。
+
+### Named graph fragments (v0.6 composition)
+
+Use `openRuleGraph` and `selectRuleGraphObject` to select a decision subtree,
+then `openRuleGraphFragments` and `saveRuleGraphFragment { name }`.
+`Page.getState.fragments` reads the actual visible library's `saved`, `selected`,
+`bindings`, `targetStateId`, `ready`, `error`, binding controls and alerts.
+`previewRuleGraphFragment { fragmentId }` opens its insertion preview;
+`setRuleGraphFragmentTarget { stateId }`,
+`bindRuleGraphFragmentRoom { fromRoomId, roomId }` and
+`bindRuleGraphFragmentRole { fromRole, role }` operate the same labeled selects.
+Only `confirmRuleGraphFragment` clicks the one insertion confirmation.
+`cancelRuleGraphFragment` returns to the list; existing `undoRuleGraph` reverses
+one confirmed insertion. Saving/previewing/binding never inserts a graph patch.
+The adapter neither exports/imports graph objects itself nor writes React state.
+
+The targeted stdio/UI scenario requires the actual v0.6 candidate UI and server:
+`ARENA_FRAGMENTS_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5200 ARENA_BASE_URL=http://127.0.0.1:8801 node --test arena/tests/graph-fragments-browser.test.mjs`.
+The three new module parameters continue through `setRuleGraphField` with the
+UI's real field labels. Recording-debug controls are added when that UI exists;
+this adapter does not fabricate trace, coverage or next-hit results.
