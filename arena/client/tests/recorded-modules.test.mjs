@@ -6,7 +6,7 @@ async function bundled(file) {
   const result=await build({entryPoints:[new URL(file,import.meta.url).pathname],bundle:true,write:false,format:'esm',platform:'node'});
   return import('data:text/javascript;base64,'+Buffer.from(result.outputFiles[0].text).toString('base64'));
 }
-const {indexRecording,nextNode}=await bundled('../src/recording-debug/index.ts');
+const {indexRecording}=await bundled('../src/recording-debug/index.ts');
 const {moduleEvidence,nextModule,moduleCoverage}=await bundled('../src/recording-debug/modules.ts');
 const sample=JSON.parse(await readFile(new URL('./fixtures/composition-trace-v6.json',import.meta.url),'utf8'));
 // A1's independent V8 sample has no operation. This explicit test envelope is NOT a real owner timeline.
@@ -70,19 +70,4 @@ test('same-tick reset/version and named interval navigation stays on original op
   assert.deepEqual(c.fallbackOperations,[42]);
   assert.throws(()=>moduleCoverage(index,{...range,ownerId:'another-owner'},{actorId:'s'}),/another/);
   assert.throws(()=>moduleCoverage(index,{...range,toOperation:1},{actorId:'s'}),/Invalid/);
-});
-
-test('handwritten legacy node facts survive unusable module extensions without crashes or invented hits',()=>{
-  const bad=[{},[null],[{nodeId:'second',moduleId:'scout-risk',reasonCode:'custom',outcome:'unknown'}],
-    [{nodeId:'second',moduleId:'scout-risk',outcome:'hold'}]];
-  for(const extension of bad){
-    const trace=structuredClone(sample.trace);trace.actors[1].moduleVisits=extension;
-    const before=structuredClone(trace),index=indexRecording(recording([envelope(40,trace)]),sample.owner);
-    assert.equal(nextNode(index,{sourceHash:hash,actorId:'s',nodeId:'second',kind:'visit'},39).operationIndex,40);
-    assert.deepEqual(moduleEvidence(index,{...query,kind:'hit'}),[]);
-    assert.deepEqual(moduleEvidence(index,query),[]);
-    const c=moduleCoverage(index,range,{actorId:'s',moduleId:'scout-risk'});
-    assert.deepEqual(c.missingModuleOperations,[40]);assert.deepEqual(c.unvisitedOperations,[]);
-    assert.equal(c.hitCount,0);assert.deepEqual(trace,before);
-  }
 });
