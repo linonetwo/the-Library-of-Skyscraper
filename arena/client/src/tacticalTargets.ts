@@ -14,3 +14,7 @@ export function tacticalCommand(action:TacticalActionKind,actorId:string,targetI
  if(action==='cast')return {type:action,actorId,targetId,skillId:'ink-strike'};
  return {type:action,actorId,targetId};
 }
+
+/** View-only pick bridge: IDs always come from the same live list as the select. */
+export type MapTacticalPick={kind:'enemy'|'building';ids:readonly string[];onPick:(id:string)=>void};
+export const tacticalSelectionKey=(sessionId:string,actorId:string,action:TacticalActionKind,id:string)=>JSON.stringify([sessionId,actorId,action,id]);

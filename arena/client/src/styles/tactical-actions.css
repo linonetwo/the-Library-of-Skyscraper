@@ -1,3 +1,6 @@
 .tactical-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px;border:1px solid #ae92564d;background:#142b30;color:#e6dfcb}
 .tactical-bar label{display:flex;gap:6px;align-items:center;min-width:0}.tactical-target{flex:1}.tactical-bar select{max-width:100%;min-width:0}.tactical-short{flex-basis:100%;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tactical-bar details{flex-basis:100%;min-width:0}.tactical-bar details p{overflow-wrap:anywhere}.tactical-bar summary{cursor:pointer;color:#d5bc83}
 @media(max-width:600px){.tactical-target{flex-basis:100%;width:100%}.tactical-target select{flex:1;width:0}.tactical-bar>button{width:100%}.tactical-bar{font-size:13px}.tactical-bar select{font-size:13px}}
+
+.game-hud>.tactical-bar{position:absolute;top:88px;left:12px;width:min(620px,calc(100vw - 24px));max-height:calc(100dvh - 220px);overflow:auto;box-sizing:border-box;pointer-events:auto;z-index:1}
+@media(max-width:600px){.game-hud>.tactical-bar{top:112px;left:8px;width:calc(100vw - 16px);max-height:calc(100dvh - 250px)}}

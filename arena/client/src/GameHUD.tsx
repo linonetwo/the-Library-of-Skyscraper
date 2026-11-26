@@ -1,3 +1,6 @@
+import TacticalActionBar from "./TacticalActionBar";
+import {tacticalObjective} from "./tacticalObjective";
+import "./styles/tactical-map-ui.css";
 import MobilityCommands from "./MobilityCommands";
 import { actorActivity } from "./actorActivity";
 import { expeditionObjective } from "./expeditionObjective";
@@ -42,20 +45,26 @@ export default function GameHUD() {
       (snapshot?.tickDurationMs ?? 500)) /
       1000,
   );
-  const objective = expeditionObjective(snapshot, player ?? undefined);
+  const objective = tacticalObjective(snapshot,player?.id) ?? expeditionObjective(snapshot, player ?? undefined);
   const downed = ownActors.filter((a) => a.hp <= 0);
   const cargo = ownActors.reduce((sum, a) => sum + a.cargo, 0);
   const activity = actor ? actorActivity(actor, snapshot) : undefined;
   return (
     <div className="game-hud">
+      {view === "map" && <TacticalActionBar />}
       <header className="game-top">
+        <div className="hud-objective">
         <button
           className="objective-button"
           onClick={() => objective.roomId && setSelectedRoom(objective.roomId)}
         >
-          <strong style={{maxWidth:"min(42vw, 480px)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",display:"block"}}>{objective.title}</strong>
-          <span title={objective.detail} style={{maxWidth:"min(42vw, 480px)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",display:"block"}}>{objective.detail}</span>
+          <strong>{objective.title}</strong>
         </button>
+        <details className="hud-objective-details"><summary>目标详情</summary><div>
+          <strong>{objective.title}</strong><p>{objective.detail}</p>
+          {objective.roomId&&<button onClick={()=>setSelectedRoom(objective.roomId!)}>定位目标房间</button>}
+        </div></details>
+        </div>
         <b className={seconds < 60 ? "risk-text" : ""}>
           {Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, "0")}
         </b>

@@ -1,3 +1,4 @@
+import {tacticalTargets,tacticalSelectionKey,type TacticalActionKind,type MapTacticalPick} from "./tacticalTargets";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { MobilityChoice } from "./mobilityChoices";
 import { useArenaSession } from "./useArenaSession";
@@ -43,12 +44,26 @@ export function useArenaWorkspace() {
     "gather",
   );
   const [threshold, setThreshold] = useState(35);
+  const [tacticalAction,setTacticalAction]=useState<TacticalActionKind>('attack');
+  const [tacticalSelection,setTacticalSelection]=useState('');
+  const [tacticalPicking,setTacticalPicking]=useState(false);
 
   const player = snapshot?.players.find((p) => p.id === session?.playerId);
   const actor = snapshot?.actors.find((a) => a.id === selected);
   const room = snapshot?.rooms.find((r) => r.id === selectedRoom);
   const ownActors =
     snapshot?.actors.filter((a) => a.owner === session?.playerId) || [];
+  const targets=snapshot&&session?tacticalTargets(snapshot,session.playerId,tacticalAction):[];
+  const chooseTacticalTarget=(id:string)=>{
+    if(snapshot&&actor&&targets.some(target=>target.id===id))
+      setTacticalSelection(tacticalSelectionKey(snapshot.sessionId,actor.id,tacticalAction,id));
+  };
+  const tacticalMapPick:MapTacticalPick|undefined=tacticalPicking&&actor&&actor.owner===session?.playerId&&(snapshot?.simulationVersion??0)>=8&&tacticalAction!=='claim'
+    ? {kind:tacticalAction==='repair'?'building':'enemy',ids:targets.map(t=>t.id),onPick:chooseTacticalTarget}:undefined;
+  const selectMapRoom=(id:string)=>{
+    setSelectedRoom(id);
+    if(tacticalPicking&&tacticalAction==='claim')chooseTacticalTarget(id);
+  };
   const outfit = actor?.appearance.outfit ?? "scholar";
   const equip = (change: Partial<Appearance>) =>
     arena.command({
@@ -149,6 +164,7 @@ export function useArenaWorkspace() {
   return {
     ...arena,
     openAiEditor,
+    tacticalAction,setTacticalAction,tacticalSelection,tacticalPicking,setTacticalPicking,chooseTacticalTarget,tacticalMapPick,selectMapRoom,
     mobilityChoice,
     setMobilityChoice,
     focusActor,
