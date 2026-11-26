@@ -8,10 +8,14 @@ export interface NamedRecordingRange extends RecordingIdentity {
   toOperation: number;
 }
 
-export function nodeCoverage(index: RecordingIndex, range: NamedRecordingRange, actorId: string, nodeId: string) {
+export function validateRecordingRange(index: RecordingIndex, range: NamedRecordingRange): void {
   if (range.sessionId !== index.sessionId || range.ownerId !== index.ownerId) throw new Error('Named range belongs to another recording or owner');
   if (!range.name.trim() || !Number.isSafeInteger(range.fromOperation) || !Number.isSafeInteger(range.toOperation)
     || range.fromOperation < 0 || range.toOperation < range.fromOperation) throw new Error('Invalid named operation range');
+}
+
+export function nodeCoverage(index: RecordingIndex, range: NamedRecordingRange, actorId: string, nodeId: string) {
+  validateRecordingRange(index, range);
   const inside = (operation: number) => operation >= range.fromOperation && operation <= range.toOperation;
   const query = {sourceHash: range.sourceHash, actorId, nodeId, kind: 'visit' as const};
   const visits = matchingNodes(index, query).filter(node => inside(node.operationIndex));

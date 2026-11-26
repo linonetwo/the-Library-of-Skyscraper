@@ -21,8 +21,8 @@ legacy module outcome is **unrecorded**. Neither a module ID nor a reason string
 proves fallback. Missing `aiTrace`, absent node visits and unavailable owner history
 have distinct outputs. A bounded legacy visited list has no completeness flag, so
 `noRecordedVisitOperations` does not mean certainly unexecuted; `unvisitedCount`
-remains null. Module queries and fallback navigation wait for A1's shared
-`moduleVisits`/truncation contract rather than inventing an incompatible field.
+remains null. Module queries use A1's shared `ModuleVisit` type through `modules.ts`; legacy
+node evidence itself still never infers a module outcome.
 
 Resets retain their original operation boundaries. Equal ticks across reset or
 version changes are never merged. A carried memory value displayed on later frames
@@ -33,3 +33,22 @@ M5 `ai-mobility-fresh/timeline.json`, with provenance/hash. No credentials or wo
 snapshot are included. Tests use that real trace for indexing, plus explicitly
 controlled reset/version/foreign-owner/missing-data cases; those variations are
 regressions, not claimed multiplayer live trials.
+
+## Module visits
+
+`moduleEvidence`/`nextModule` filter source hash + actor + optional node/module.
+`hit` includes `selected` and `hold`; `fallback` uses the explicit visit outcome,
+not the final selected leaf. Reason code, original reference, resolved ID, observed
+facts and fallback node are retained without recomputing the decision.
+
+`moduleCoverage` reports visit/hit/fallback/hold counts and original operation lists.
+A complete recorded list with no matching visit proves that module/node unvisited
+for that actor decision. A missing field means unrecorded, an empty array means no
+recorded module access, and truncation leaves absent entries unknown. Listed
+visits still count when the list is truncated. Missing graph trace is separate.
+These facts do not prove authority acceptance, later arrival, damage or delivery.
+
+The additional v0.6 fixture is the genuine A1 independent V8 output, not a timeline:
+its provenance explicitly says no recording operation is available. Tests supply
+controlled operation envelopes to exercise the adapter; a real normal-clock owner
+timeline will be added when the coordinated live case is recorded.
