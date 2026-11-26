@@ -149,3 +149,12 @@ test("south cleanup preserves the seven accepted headings and exposes the left p
   for (const side of ["left", "right"])
     assert(south.attachments.find(a => a.id === side + "-thigh").image.includes("south-limb-cleanup/"));
 });
+
+test("south airborne sole readback follows the same adjusted ankle targets as the rendered joints", () => {
+  const poses = jumpPoses(rig.directions.S);
+  for (const frame of [3, 4]) for (const side of ["left", "right"]) {
+    const { world, contacts } = poses[frame].supportContacts;
+    assert.equal(contacts[side].soleHeight, world[side + "Ankle"][2] - .11);
+    assert.equal(contacts[side].support, false);
+  }
+});
