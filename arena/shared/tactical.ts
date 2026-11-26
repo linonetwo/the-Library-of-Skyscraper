@@ -36,6 +36,7 @@ export interface TacticalValues {
 }
 export interface TacticalEvent {
   readonly action: TacticalAction; readonly actorId: string; readonly targetId: string;
+  readonly targetPosition?: { readonly x: number; readonly y: number };
   readonly phase: TacticalPhase; readonly reasonCode?: string; readonly values: TacticalValues;
 }
 /** Resolved command DTO only; public callers cannot supply invocation proof. */

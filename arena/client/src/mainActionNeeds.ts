@@ -2,12 +2,13 @@ import type { Snapshot } from "./types";
 import type { Clip } from "./animationCatalog";
 import { cueActive } from "./resolveAnimation.ts";
 /** Current facts across the whole squad precede prewarming its next assigned work. */
-export function neededMainActions(snapshot: Pick<Snapshot, "actors" | "enemies" | "tick" | "tickDurationMs">): Clip[] {
+export function neededMainActions(snapshot: Pick<Snapshot, "actors" | "enemies" | "tick" | "tickDurationMs" | "tactics">): Clip[] {
   const needed = new Set<Clip>(), actors = snapshot.actors;
   const tickMs = snapshot.tickDurationMs || 500;
   const active = (cue: typeof actors[number]["actionCue"], kind: string) => cue?.kind === kind && cueActive(cue,snapshot.tick*tickMs,tickMs);
   if (actors.some(a => a.hp <= 0 || a.state === "downed")) needed.add("down");
   if (actors.some(a => active(a.impactCue,"hit") || active(a.actionCue,"hit"))) needed.add("hit");
+  if(snapshot.tactics?.actorStates.some(state=>state.cast))needed.add("cast");
   if (actors.some(a => active(a.actionCue,"attack") || a.state === "fighting")) needed.add("attack");
   if (actors.some(a => active(a.actionCue,"deliver"))) needed.add("unload");
   if (actors.some(a => active(a.actionCue,"gather") || a.state === "gathering")) needed.add("collect");
@@ -27,5 +28,6 @@ export function neededMainActions(snapshot: Pick<Snapshot, "actors" | "enemies" 
       if (actor.task.buildingKind === "catalog") needed.add("catalog");
     }
   }
+  if(snapshot.tactics?.actorStates.some(state=>state.weapon==="staff"))needed.add("cast");
   return [...needed];
 }
