@@ -3,7 +3,7 @@ import { AnimationLabCanvas } from "./AnimationLabCanvas";
 import { labDirections } from "./AnimationLabScene";
 import { labActionLabels, labFrameTime } from "./animationLabModel";
 import { loadMainDefinition } from "./dollAssets";
-import { loadClipLayers, type LoadedAssetSet, type RegisteredDollClip } from "./assetSetLoader";
+import { loadAssetSet, type AssetSetIndex, loadClipLayers, type LoadedAssetSet, type RegisteredDollClip } from "./assetSetLoader";
 import { animationLayers } from "./walkLayers";
 import { clipDuration, frameAt } from "./animationTiming";
 import type { Clip } from "./animationCatalog";
@@ -32,7 +32,14 @@ export default function AnimationLab() {
   const readyClip = selection === readySelection ? clip : undefined;
   useEffect(() => {
     let disposed = false;
-    void loadMainDefinition().then(set => { if (!disposed) setDefinition(set); })
+    const study = new URLSearchParams(window.location.search).get("study") === "cast-recover";
+    const definition = study
+      ? fetch("/assets/iso-v070-combat-study/index.json").then(response => {
+          if (!response.ok) throw new Error(`候选动作索引 ${response.status}`);
+          return response.json() as Promise<AssetSetIndex>;
+        }).then(loadAssetSet)
+      : loadMainDefinition();
+    void definition.then(set => { if (!disposed) { setDefinition(set); if (study) setAction(set.clips.cast ? "cast" : "recover"); } })
       .catch(cause => { if (!disposed) setError(String(cause)); });
     return () => { disposed = true; };
   }, []);

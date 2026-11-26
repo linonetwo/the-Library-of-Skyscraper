@@ -5,6 +5,8 @@ export type Clip =
   | "run"
   | "jump"
   | "climb"
+  | "cast"
+  | "recover"
   | "carry"
   | "collect"
   | "build"
@@ -20,7 +22,7 @@ export type RegisteredClip = ClipTiming & {
   groundPivot: readonly [number, number];
   renderScale?: number;
   releaseFrame?: number;
-  phaseFrames?: Partial<Record<import("./mobilityTypes").LocomotionPhase | CrestFrameKey, {first:number;last:number;cycleDistanceMilli?:number}>>;
+  phaseFrames?: Partial<Record<import("./mobilityTypes").LocomotionPhase | CrestFrameKey | "chanting" | "release" | "recovery", {first:number;last:number;cycleDistanceMilli?:number}>>;
 };
 /** Only actions with complete registered atlases are exposed to players. */
 export const animationCatalog = {
