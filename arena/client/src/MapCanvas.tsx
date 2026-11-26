@@ -41,6 +41,8 @@ export default function MapCanvas(props: MapProps) {
     let preparationRevision = 0;
     const world = new Container();
     let renderLayer = new Container();
+    // Whole-edge picking sits above rooms and below actors/interactive entities.
+    const edgePickLayer = new Container();
     const mobilitySelection = new Container();
     let mobilityKey = "";
     let authoritySnapshot: MapProps["snapshot"] | undefined;
@@ -248,7 +250,8 @@ export default function MapCanvas(props: MapProps) {
         for (const child of [...entities.children]) {
           if (child.label?.startsWith("mobility:")) child.destroy({ children: true });
         }
-        if (p.snapshot) paintMobilityFacilities(entities, p.snapshot, tiles, (id) => {
+        edgePickLayer.removeChildren().forEach(child => child.destroy({ children: true }));
+        if (p.snapshot) paintMobilityFacilities(entities, edgePickLayer, p.snapshot, tiles, (id) => {
           if (!dragged) latest.current.onMobilityEdge?.(id);
         });
         paintMap(
@@ -365,7 +368,7 @@ export default function MapCanvas(props: MapProps) {
         if (disposed) return;
         dynamics = new WorldEntities(entities, tiles, worldAssets);
         actors = new ActorScene(actorTextures, entities, worldAssets);
-        world.addChild(renderLayer, entities, mobilitySelection);
+        world.addChild(renderLayer, edgePickLayer, entities, mobilitySelection);
         app.ticker.add(() => {
           const now = performance.now();
           poses = actors.render(now);

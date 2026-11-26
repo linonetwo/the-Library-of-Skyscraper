@@ -68,7 +68,7 @@ function label(layer:Container,text:string,p:Screen) {
   node.anchor.set(.5,1);node.position.set(p.x,p.y+35);node.eventMode="none";layer.addChild(node);
 }
 /** Static structures use the authority's XYZ surfaces; no animation or movement is simulated here. */
-export function paintMobilityFacilities(layer: Container, snapshot: Snapshot, textures: Record<string, Texture>, onSelect: (edgeId: string) => void) {
+export function paintMobilityFacilities(layer: Container, edgePickLayer: Container, snapshot: Snapshot, textures: Record<string, Texture>, onSelect: (edgeId: string) => void) {
   const wood=timber(textures); piece=0;
   for(const edge of snapshot.worldMap?.mobilityEdges??[]) {
     const structure=layer;
@@ -126,6 +126,6 @@ export function paintMobilityFacilities(layer: Container, snapshot: Snapshot, te
       depthPart(structure,p,-.02).addChild(new Graphics().ellipse(screen.x,screen.y,edge.landingRadiusMilli/1000*64,edge.landingRadiusMilli/1000*32).stroke({color:gold,width:1,alpha:.65}));
       label(depthPart(structure,p,.1),`${edge.kind==="jump"?"断桥踏板":"高廊梯脚"} · ${snapshot.rooms.find(r=>r.id===room)?.name??room}`,screen);
     }
-    selectable(depthPart(structure,first,.2),edge.segments.flatMap(s=>[mobilityPoint(s.from),mobilityPoint(s.to)]),edge.edgeId,onSelect);
+    selectable(edgePickLayer,edge.segments.flatMap(s=>[mobilityPoint(s.from),mobilityPoint(s.to)]),edge.edgeId,onSelect);
   }
 }
