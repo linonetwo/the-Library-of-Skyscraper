@@ -55,7 +55,7 @@ export interface RoomScriptView {
   readonly q: number;
   readonly r: number;
   readonly name: string;
-  readonly kind: 'base' | 'resource' | 'catalog' | 'ruins';
+  readonly kind: 'base' | 'resource' | 'catalog' | 'ruins' | 'control';
   readonly resources: number;
   readonly enemyHp: number;
   readonly owner: string | null;
