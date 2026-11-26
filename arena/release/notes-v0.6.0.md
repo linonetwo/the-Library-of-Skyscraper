@@ -1,7 +1,8 @@
 # v0.6.0 · Programmable squad composition
 
 Build and reuse your squad's AI through the existing rule workbench. This batch
-adds eight module kinds, named subtree fragments and recorded rule debugging.
+expands the catalog from five to eight module kinds, with named subtree fragments
+and recorded rule debugging.
 The final ACCEPTANCE report records package verification and release approval.
 
 ## Open the workbench
@@ -48,7 +49,8 @@ and undo restores the previous graph.
 Named recording ranges query existing owner-scoped decision deltas by source
 version and operation. Inspect the state before and after the selected operation,
 recorded module reasons, visited nodes and coverage. Query breakpoints locate
-recorded matches while the live server clock continues normally.
+recorded matches by changing only the local cursor; they do not change the
+authority's running or paused state.
 
 Coverage distinguishes an observed visit, an unvisited declared object and data
 that was never recorded. Composition keeps at most eight actual module visits
@@ -59,8 +61,10 @@ state determines the actual outcome.
 Open the source archived with that version and jump to its original object line.
 Archived graph declarations remain readable across generator versions without
 granting editable recovery to changed or handwritten projects. Same-operation
-A/B preview runs alternatives against the original owner input. Graphs and
-TypeScript use the same server compiler and independent V8 execution path as
+A/B preview runs alternatives against the same recorded world and tasks, with
+empty initial script memory for both; it is not a replay of either version's
+private memory. Graphs and TypeScript use the same server compiler and independent
+V8 execution path as
 published rules; there is no separate graph simulator.
 
 ## Runtime continuity
