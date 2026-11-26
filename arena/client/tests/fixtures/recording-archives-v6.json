@@ -1,0 +1,160 @@
+{
+  "provenance": {
+    "evidence": "v060-normal-composition-first/project.json + v060-normal-composition-continuation/{project-v2.json,owner-module-recording.json}",
+    "sourceCommitV1": "2a64ee528d0ff2fb663db1cd52e02acaa0857f25",
+    "sourceCommitV2": "6222e8d546cea80d22525507b72d6e46fc9423c4",
+    "method": "Exact original archived graph-plan files and p1-guard decision deltas op4/op35. Other source files, actors and memory omitted. Reader-only fixture, no old helper copied/executed. Both hashes came from actual same-owner normal500ms publications."
+  },
+  "sessionId": "8e312fa2-c0be-43d1-8f74-66e4a4bba8fb",
+  "ownerId": "p1",
+  "versions": [
+    {
+      "label": "V1",
+      "sourceHash": "beb22fa4b3a30961130edd469f1ce8edce100d41c8fcddf6b907a09bcf7a0def",
+      "graphPlanSha256": "9e9a0ef3519a4af45388fcdc9d976ed3f1cc035a83a44d8fe34608a5de64f3b4",
+      "project": {
+        "entry": "main.ts",
+        "files": {
+          "graph-plan.ts": "// @arena-graph/v2 {\"graphId\":\"normal-scout-patrol-escort\",\"modules\":[{\"config\":{\"minCargo\":8},\"enabled\":true,\"kind\":\"haul\",\"moduleId\":\"haul\",\"priority\":80},{\"config\":{\"targetRoomId\":\"room-1\"},\"enabled\":true,\"kind\":\"gather\",\"moduleId\":\"gather\",\"priority\":20},{\"config\":{\"maxEnemyHp\":0,\"reportIntervalTicks\":4,\"target\":{\"roomId\":\"room-1\",\"type\":\"room\"}},\"enabled\":true,\"kind\":\"scout\",\"moduleId\":\"scout-resource\",\"priority\":40},{\"config\":{\"minCargo\":4,\"target\":{\"role\":\"gatherer\",\"type\":\"ownRole\"}},\"enabled\":true,\"kind\":\"escort\",\"moduleId\":\"escort-cargo\",\"priority\":40},{\"config\":{\"dwellTicks\":2,\"rooms\":[{\"roomId\":\"room-0\",\"type\":\"room\"},{\"roomId\":\"room-1\",\"type\":\"room\"}]},\"enabled\":true,\"kind\":\"patrol\",\"moduleId\":\"patrol-base-resource\",\"priority\":20}],\"nodes\":[{\"children\":[\"haul-node\",\"gather-node\"],\"fallback\":\"hold\",\"id\":\"logistics\",\"type\":\"priority\"},{\"fallback\":\"pass\",\"id\":\"haul-node\",\"moduleId\":\"haul\",\"type\":\"module\"},{\"fallback\":\"hold\",\"id\":\"gather-node\",\"moduleId\":\"gather\",\"type\":\"module\"},{\"fallback\":\"hold\",\"id\":\"scout-node\",\"moduleId\":\"scout-resource\",\"type\":\"module\"},{\"fallback\":\"patrol-node\",\"id\":\"escort-node\",\"moduleId\":\"escort-cargo\",\"type\":\"module\"},{\"fallback\":\"hold\",\"id\":\"patrol-node\",\"moduleId\":\"patrol-base-resource\",\"type\":\"module\"},{\"id\":\"pass\",\"reason\":\"candidate unavailable\",\"type\":\"pass\"},{\"id\":\"hold\",\"reason\":\"no applicable action\",\"type\":\"hold\"}],\"revision\":0,\"roles\":[{\"fallbackStateId\":\"state-gatherer\",\"id\":\"role-gatherer\",\"initialStateId\":\"state-gatherer\",\"role\":\"gatherer\"},{\"fallbackStateId\":\"state-scout\",\"id\":\"role-scout\",\"initialStateId\":\"state-scout\",\"role\":\"scout\"},{\"fallbackStateId\":\"state-guard\",\"id\":\"role-guard\",\"initialStateId\":\"state-guard\",\"role\":\"guard\"}],\"schemaVersion\":2,\"states\":[{\"entry\":[],\"exit\":[],\"id\":\"state-gatherer\",\"name\":\"\u91c7\u8fd0\",\"treeId\":\"logistics\"},{\"entry\":[],\"exit\":[],\"id\":\"state-scout\",\"name\":\"\u5b89\u5168\u623f\u4fa6\u5bdf\",\"treeId\":\"scout-node\"},{\"entry\":[],\"exit\":[],\"id\":\"state-guard\",\"name\":\"\u6709\u8d27\u62a4\u9001\u4e0e\u5de1\u903b\",\"treeId\":\"escort-node\"}],\"transitions\":[]}\nexport type ActorRole = 'gatherer' | 'guard' | 'scout';\nexport type ModuleConfig = {\n  gather: { targetRoomId?: string };\n  haul: { minCargo: number };\n  build: { roomId: string; buildingKind: 'tower' | 'catalog'; minMaterials: number };\n  defend: { roomId?: string };\n  retreat: { hpThreshold: number };\n};\nexport type BehaviorModule = { [K in keyof ModuleConfig]: {\n  moduleId: string; kind: K; enabled: boolean; priority: number;\n  roleFilter?: ActorRole[]; config: ModuleConfig[K];\n} }[keyof ModuleConfig];\nexport interface BehaviorPlan {\n  schemaVersion: 1;\n  compositionId: string;\n  mode: 'priority';\n  modules: BehaviorModule[];\n  fallbackModuleId: 'hold';\n}\n\nexport type RoomRef = { type: 'room'; roomId: string };\nexport type OwnRoleRef = { type: 'ownRole'; role: ActorRole };\nexport type ModuleRef = RoomRef | OwnRoleRef;\nexport type CompositionConfig = {\n  scout: { target: RoomRef; maxEnemyHp: number; reportIntervalTicks: number };\n  patrol: { rooms: RoomRef[]; dwellTicks: number };\n  escort: { target: OwnRoleRef; minCargo: number };\n};\nexport type CompositionModule = { [K in keyof CompositionConfig]: {\n  moduleId: string; kind: K; enabled: boolean; priority: number;\n  roleFilter?: ActorRole[]; config: CompositionConfig[K];\n} }[keyof CompositionConfig];\nexport type GraphModule = BehaviorModule | CompositionModule;\nexport type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-safe' | 'escort-defending';\nexport interface ModuleVisit {\n  nodeId: string; moduleId: string; outcome: 'selected' | 'fallback' | 'hold';\n  reasonCode: ModuleReasonCode; ref?: ModuleRef; resolvedId?: string;\n  observed?: { tick?: number; enemyHp?: number; threshold?: number; cargo?: number; cursor?: number; arrivedTick?: number };\n  fallbackNodeId?: string;\n}\nexport type GraphField = 'hp' | 'cargo' | 'cargoCapacity' | 'materials' | 'roomEnemyHp' | 'targetEnemyHp' | 'tickInState';\nexport type GraphCondition =\n  | { type: 'compare'; field: GraphField; op: 'lt' | 'lte' | 'eq' | 'gte' | 'gt'; value: number; missing: boolean; roomId?: string }\n  | { type: 'atRoom'; roomId: string; missing: boolean }\n  | { type: 'all'; conditions: GraphCondition[] }\n  | { type: 'any'; conditions: GraphCondition[] }\n  | { type: 'not'; condition: GraphCondition };\nexport type GraphEffect =\n  | { type: 'remember'; key: string; value: string | number | boolean | null }\n  | { type: 'reason'; reason: string }\n  | { type: 'task'; taskId: string; roomId: string; kind: 'move' | 'gather' | 'deliver' | 'build' | 'attack' | 'capture'; priority: number };\nexport type RuleNode =\n  | { id: string; type: 'check'; condition: GraphCondition }\n  | { id: string; type: 'condition'; condition: GraphCondition; yes: string; no: string }\n  | { id: string; type: 'priority' | 'sequence'; children: string[]; fallback: string }\n  | { id: string; type: 'score'; candidates: { id: string; nodeId: string; weight: number; when?: GraphCondition }[]; fallback: string }\n  | { id: string; type: 'log'; reason: string; next: string }\n  | { id: string; type: 'module'; moduleId: string; fallback: string }\n  | { id: string; type: 'pass'; reason: string }\n  | { id: string; type: 'hold'; reason: string };\nexport interface GraphState { id: string; name: string; treeId: string; entry: GraphEffect[]; exit: GraphEffect[] }\nexport interface GraphTransition { id: string; from: string; to: string; priority: number; condition: GraphCondition; cooldownTicks: number; minStateTicks: number }\nexport interface GraphRole { id: string; role: ActorRole; initialStateId: string; fallbackStateId: string }\nexport interface RuleGraph {\n  schemaVersion: 2; graphId: string; revision: number;\n  roles: GraphRole[]; states: GraphState[]; transitions: GraphTransition[];\n  nodes: RuleNode[]; modules: GraphModule[];\n}\nexport type GraphOperation =\n  | { type: 'putNode'; node: RuleNode } | { type: 'removeNode'; id: string }\n  | { type: 'putState'; state: GraphState } | { type: 'removeState'; id: string }\n  | { type: 'putTransition'; transition: GraphTransition } | { type: 'removeTransition'; id: string }\n  | { type: 'putRole'; role: GraphRole } | { type: 'removeRole'; id: string }\n  | { type: 'putModule'; module: GraphModule } | { type: 'removeModule'; id: string };\nexport interface GraphPatch { graphId: string; baseRevision: number; operations: GraphOperation[] }\nexport interface GraphDiagnostic { severity: 'error' | 'warning'; objectId: string; code: string; message: string; sourceRef?: GraphSourceRef }\nexport interface GraphSourceRef { file: string; line: number; column: number }\nexport interface GraphActorTrace {\n  actorId: string; startStateId: string; endStateId: string; transitionId: string | null;\n  visited: { nodeId: string; value?: boolean | number }[];\n  moduleVisits?: ModuleVisit[]; moduleVisitsTruncated?: boolean;\n  selectedNodeId: string | null; moduleId: string | null; reason: string;\n}\nexport interface GraphTrace { v: 2; tick: number; graphId: string; actors: GraphActorTrace[] }\n\nexport const graph:RuleGraph = {\"graphId\":\"normal-scout-patrol-escort\",\"revision\":0,\"schemaVersion\":2,\n\"roles\":[\n{\"fallbackStateId\":\"state-gatherer\",\"id\":\"role-gatherer\",\"initialStateId\":\"state-gatherer\",\"role\":\"gatherer\"},\n{\"fallbackStateId\":\"state-scout\",\"id\":\"role-scout\",\"initialStateId\":\"state-scout\",\"role\":\"scout\"},\n{\"fallbackStateId\":\"state-guard\",\"id\":\"role-guard\",\"initialStateId\":\"state-guard\",\"role\":\"guard\"}\n],\n\"states\":[\n{\"entry\":[],\"exit\":[],\"id\":\"state-gatherer\",\"name\":\"\u91c7\u8fd0\",\"treeId\":\"logistics\"},\n{\"entry\":[],\"exit\":[],\"id\":\"state-scout\",\"name\":\"\u5b89\u5168\u623f\u4fa6\u5bdf\",\"treeId\":\"scout-node\"},\n{\"entry\":[],\"exit\":[],\"id\":\"state-guard\",\"name\":\"\u6709\u8d27\u62a4\u9001\u4e0e\u5de1\u903b\",\"treeId\":\"escort-node\"}\n],\n\"transitions\":[\n\n],\n\"nodes\":[\n{\"children\":[\"haul-node\",\"gather-node\"],\"fallback\":\"hold\",\"id\":\"logistics\",\"type\":\"priority\"},\n{\"fallback\":\"pass\",\"id\":\"haul-node\",\"moduleId\":\"haul\",\"type\":\"module\"},\n{\"fallback\":\"hold\",\"id\":\"gather-node\",\"moduleId\":\"gather\",\"type\":\"module\"},\n{\"fallback\":\"hold\",\"id\":\"scout-node\",\"moduleId\":\"scout-resource\",\"type\":\"module\"},\n{\"fallback\":\"patrol-node\",\"id\":\"escort-node\",\"moduleId\":\"escort-cargo\",\"type\":\"module\"},\n{\"fallback\":\"hold\",\"id\":\"patrol-node\",\"moduleId\":\"patrol-base-resource\",\"type\":\"module\"},\n{\"id\":\"pass\",\"reason\":\"candidate unavailable\",\"type\":\"pass\"},\n{\"id\":\"hold\",\"reason\":\"no applicable action\",\"type\":\"hold\"}\n],\n\"modules\":[\n{\"config\":{\"minCargo\":8},\"enabled\":true,\"kind\":\"haul\",\"moduleId\":\"haul\",\"priority\":80},\n{\"config\":{\"targetRoomId\":\"room-1\"},\"enabled\":true,\"kind\":\"gather\",\"moduleId\":\"gather\",\"priority\":20},\n{\"config\":{\"maxEnemyHp\":0,\"reportIntervalTicks\":4,\"target\":{\"roomId\":\"room-1\",\"type\":\"room\"}},\"enabled\":true,\"kind\":\"scout\",\"moduleId\":\"scout-resource\",\"priority\":40},\n{\"config\":{\"minCargo\":4,\"target\":{\"role\":\"gatherer\",\"type\":\"ownRole\"}},\"enabled\":true,\"kind\":\"escort\",\"moduleId\":\"escort-cargo\",\"priority\":40},\n{\"config\":{\"dwellTicks\":2,\"rooms\":[{\"roomId\":\"room-0\",\"type\":\"room\"},{\"roomId\":\"room-1\",\"type\":\"room\"}]},\"enabled\":true,\"kind\":\"patrol\",\"moduleId\":\"patrol-base-resource\",\"priority\":20}\n]};\nexport const modulePlan:BehaviorPlan={schemaVersion:1,compositionId:graph.graphId,mode:\"priority\",modules:[],fallbackModuleId:\"hold\"};\n"
+        }
+      },
+      "change": {
+        "operationIndex": 4,
+        "tick": 0,
+        "sourceHash": "beb22fa4b3a30961130edd469f1ce8edce100d41c8fcddf6b907a09bcf7a0def",
+        "memoryPatch": {
+          "set": {
+            "aiTrace": {
+              "actors": [
+                {
+                  "actorId": "p1-guard",
+                  "endStateId": "state-guard",
+                  "moduleId": "patrol-base-resource",
+                  "moduleVisits": [
+                    {
+                      "fallbackNodeId": "patrol-node",
+                      "moduleId": "escort-cargo",
+                      "nodeId": "escort-node",
+                      "outcome": "fallback",
+                      "reasonCode": "escort-target-missing",
+                      "ref": {
+                        "role": "gatherer",
+                        "type": "ownRole"
+                      }
+                    },
+                    {
+                      "moduleId": "patrol-base-resource",
+                      "nodeId": "patrol-node",
+                      "observed": {
+                        "arrivedTick": 0,
+                        "cursor": 0
+                      },
+                      "outcome": "hold",
+                      "reasonCode": "patrol-dwelling",
+                      "ref": {
+                        "roomId": "room-0",
+                        "type": "room"
+                      },
+                      "resolvedId": "room-0"
+                    }
+                  ],
+                  "reason": "patrol-dwelling",
+                  "selectedNodeId": "patrol-node",
+                  "startStateId": "state-guard",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "escort-node"
+                    },
+                    {
+                      "nodeId": "patrol-node"
+                    }
+                  ]
+                }
+              ],
+              "graphId": "normal-scout-patrol-escort",
+              "tick": 0,
+              "v": 2
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "V2",
+      "sourceHash": "39a07535c84de25efd62a77d37e966625daad044948d46dfc37da0c08151e558",
+      "graphPlanSha256": "217d262b56b5c3693373a30e8ee9209e4e093fadca38717f8cb1a9ed0547a1f4",
+      "project": {
+        "entry": "main.ts",
+        "files": {
+          "graph-plan.ts": "// @arena-graph/v2 {\"graphId\":\"normal-scout-patrol-escort\",\"modules\":[{\"config\":{\"minCargo\":8},\"enabled\":true,\"kind\":\"haul\",\"moduleId\":\"haul\",\"priority\":80},{\"config\":{\"targetRoomId\":\"room-1\"},\"enabled\":true,\"kind\":\"gather\",\"moduleId\":\"gather\",\"priority\":20},{\"config\":{\"maxEnemyHp\":0,\"reportIntervalTicks\":4,\"target\":{\"roomId\":\"room-1\",\"type\":\"room\"}},\"enabled\":true,\"kind\":\"scout\",\"moduleId\":\"scout-resource\",\"priority\":40},{\"config\":{\"minCargo\":4,\"target\":{\"role\":\"gatherer\",\"type\":\"ownRole\"}},\"enabled\":true,\"kind\":\"escort\",\"moduleId\":\"escort-cargo\",\"priority\":40},{\"config\":{\"dwellTicks\":2,\"rooms\":[{\"roomId\":\"room-0\",\"type\":\"room\"},{\"roomId\":\"room-1\",\"type\":\"room\"}]},\"enabled\":true,\"kind\":\"patrol\",\"moduleId\":\"patrol-base-resource\",\"priority\":20}],\"nodes\":[{\"children\":[\"haul-node\",\"gather-node\"],\"fallback\":\"hold\",\"id\":\"logistics\",\"type\":\"priority\"},{\"fallback\":\"pass\",\"id\":\"haul-node\",\"moduleId\":\"haul\",\"type\":\"module\"},{\"fallback\":\"hold\",\"id\":\"gather-node\",\"moduleId\":\"gather\",\"type\":\"module\"},{\"fallback\":\"hold\",\"id\":\"scout-node\",\"moduleId\":\"scout-resource\",\"type\":\"module\"},{\"fallback\":\"patrol-node\",\"id\":\"escort-node\",\"moduleId\":\"escort-cargo\",\"type\":\"module\"},{\"fallback\":\"hold\",\"id\":\"patrol-node\",\"moduleId\":\"patrol-base-resource\",\"type\":\"module\"},{\"id\":\"pass\",\"reason\":\"candidate unavailable\",\"type\":\"pass\"},{\"id\":\"hold\",\"reason\":\"no applicable action\",\"type\":\"hold\"}],\"revision\":0,\"roles\":[{\"fallbackStateId\":\"state-gatherer\",\"id\":\"role-gatherer\",\"initialStateId\":\"state-gatherer\",\"role\":\"gatherer\"},{\"fallbackStateId\":\"state-scout\",\"id\":\"role-scout\",\"initialStateId\":\"state-scout\",\"role\":\"scout\"},{\"fallbackStateId\":\"state-guard\",\"id\":\"role-guard\",\"initialStateId\":\"state-guard\",\"role\":\"guard\"}],\"schemaVersion\":2,\"states\":[{\"entry\":[],\"exit\":[],\"id\":\"state-gatherer\",\"name\":\"\u91c7\u8fd0\",\"treeId\":\"logistics\"},{\"entry\":[],\"exit\":[],\"id\":\"state-scout\",\"name\":\"\u5b89\u5168\u623f\u4fa6\u5bdf\",\"treeId\":\"scout-node\"},{\"entry\":[],\"exit\":[],\"id\":\"state-guard\",\"name\":\"\u6709\u8d27\u62a4\u9001\u4e0e\u5de1\u903b\",\"treeId\":\"escort-node\"}],\"transitions\":[]}\nexport type ActorRole = 'gatherer' | 'guard' | 'scout';\nexport type ModuleConfig = {\n  gather: { targetRoomId?: string };\n  haul: { minCargo: number };\n  build: { roomId: string; buildingKind: 'tower' | 'catalog'; minMaterials: number };\n  defend: { roomId?: string };\n  retreat: { hpThreshold: number };\n};\nexport type BehaviorModule = { [K in keyof ModuleConfig]: {\n  moduleId: string; kind: K; enabled: boolean; priority: number;\n  roleFilter?: ActorRole[]; config: ModuleConfig[K];\n} }[keyof ModuleConfig];\nexport interface BehaviorPlan {\n  schemaVersion: 1;\n  compositionId: string;\n  mode: 'priority';\n  modules: BehaviorModule[];\n  fallbackModuleId: 'hold';\n}\n\nexport type RoomRef = { type: 'room'; roomId: string };\nexport type OwnRoleRef = { type: 'ownRole'; role: ActorRole };\nexport type ModuleRef = RoomRef | OwnRoleRef;\nexport type CompositionConfig = {\n  scout: { target: RoomRef; maxEnemyHp: number; reportIntervalTicks: number };\n  patrol: { rooms: RoomRef[]; dwellTicks: number };\n  escort: { target: OwnRoleRef; minCargo: number };\n};\nexport type CompositionModule = { [K in keyof CompositionConfig]: {\n  moduleId: string; kind: K; enabled: boolean; priority: number;\n  roleFilter?: ActorRole[]; config: CompositionConfig[K];\n} }[keyof CompositionConfig];\nexport type GraphModule = BehaviorModule | CompositionModule;\nexport type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-cargo-insufficient' | 'escort-safe' | 'escort-defending';\nexport interface ModuleVisit {\n  nodeId: string; moduleId: string; outcome: 'selected' | 'fallback' | 'hold';\n  reasonCode: ModuleReasonCode; ref?: ModuleRef; resolvedId?: string;\n  observed?: { tick?: number; enemyHp?: number; threshold?: number; cargo?: number; cursor?: number; arrivedTick?: number };\n  fallbackNodeId?: string;\n}\nexport type GraphField = 'hp' | 'cargo' | 'cargoCapacity' | 'materials' | 'roomEnemyHp' | 'targetEnemyHp' | 'tickInState';\nexport type GraphCondition =\n  | { type: 'compare'; field: GraphField; op: 'lt' | 'lte' | 'eq' | 'gte' | 'gt'; value: number; missing: boolean; roomId?: string }\n  | { type: 'atRoom'; roomId: string; missing: boolean }\n  | { type: 'all'; conditions: GraphCondition[] }\n  | { type: 'any'; conditions: GraphCondition[] }\n  | { type: 'not'; condition: GraphCondition };\nexport type GraphEffect =\n  | { type: 'remember'; key: string; value: string | number | boolean | null }\n  | { type: 'reason'; reason: string }\n  | { type: 'task'; taskId: string; roomId: string; kind: 'move' | 'gather' | 'deliver' | 'build' | 'attack' | 'capture'; priority: number };\nexport type RuleNode =\n  | { id: string; type: 'check'; condition: GraphCondition }\n  | { id: string; type: 'condition'; condition: GraphCondition; yes: string; no: string }\n  | { id: string; type: 'priority' | 'sequence'; children: string[]; fallback: string }\n  | { id: string; type: 'score'; candidates: { id: string; nodeId: string; weight: number; when?: GraphCondition }[]; fallback: string }\n  | { id: string; type: 'log'; reason: string; next: string }\n  | { id: string; type: 'module'; moduleId: string; fallback: string }\n  | { id: string; type: 'pass'; reason: string }\n  | { id: string; type: 'hold'; reason: string };\nexport interface GraphState { id: string; name: string; treeId: string; entry: GraphEffect[]; exit: GraphEffect[] }\nexport interface GraphTransition { id: string; from: string; to: string; priority: number; condition: GraphCondition; cooldownTicks: number; minStateTicks: number }\nexport interface GraphRole { id: string; role: ActorRole; initialStateId: string; fallbackStateId: string }\nexport interface RuleGraph {\n  schemaVersion: 2; graphId: string; revision: number;\n  roles: GraphRole[]; states: GraphState[]; transitions: GraphTransition[];\n  nodes: RuleNode[]; modules: GraphModule[];\n}\nexport type GraphOperation =\n  | { type: 'putNode'; node: RuleNode } | { type: 'removeNode'; id: string }\n  | { type: 'putState'; state: GraphState } | { type: 'removeState'; id: string }\n  | { type: 'putTransition'; transition: GraphTransition } | { type: 'removeTransition'; id: string }\n  | { type: 'putRole'; role: GraphRole } | { type: 'removeRole'; id: string }\n  | { type: 'putModule'; module: GraphModule } | { type: 'removeModule'; id: string };\nexport interface GraphPatch { graphId: string; baseRevision: number; operations: GraphOperation[] }\nexport interface GraphDiagnostic { severity: 'error' | 'warning'; objectId: string; code: string; message: string; sourceRef?: GraphSourceRef }\nexport interface GraphSourceRef { file: string; line: number; column: number }\nexport interface GraphActorTrace {\n  actorId: string; startStateId: string; endStateId: string; transitionId: string | null;\n  visited: { nodeId: string; value?: boolean | number }[];\n  moduleVisits?: ModuleVisit[]; moduleVisitsTruncated?: boolean;\n  selectedNodeId: string | null; moduleId: string | null; reason: string;\n}\nexport interface GraphTrace { v: 2; tick: number; graphId: string; actors: GraphActorTrace[] }\n\nexport const graph:RuleGraph = {\"graphId\":\"normal-scout-patrol-escort\",\"revision\":0,\"schemaVersion\":2,\n\"roles\":[\n{\"fallbackStateId\":\"state-gatherer\",\"id\":\"role-gatherer\",\"initialStateId\":\"state-gatherer\",\"role\":\"gatherer\"},\n{\"fallbackStateId\":\"state-scout\",\"id\":\"role-scout\",\"initialStateId\":\"state-scout\",\"role\":\"scout\"},\n{\"fallbackStateId\":\"state-guard\",\"id\":\"role-guard\",\"initialStateId\":\"state-guard\",\"role\":\"guard\"}\n],\n\"states\":[\n{\"entry\":[],\"exit\":[],\"id\":\"state-gatherer\",\"name\":\"\u91c7\u8fd0\",\"treeId\":\"logistics\"},\n{\"entry\":[],\"exit\":[],\"id\":\"state-scout\",\"name\":\"\u5b89\u5168\u623f\u4fa6\u5bdf\",\"treeId\":\"scout-node\"},\n{\"entry\":[],\"exit\":[],\"id\":\"state-guard\",\"name\":\"\u6709\u8d27\u62a4\u9001\u4e0e\u5de1\u903b\",\"treeId\":\"escort-node\"}\n],\n\"transitions\":[\n\n],\n\"nodes\":[\n{\"children\":[\"haul-node\",\"gather-node\"],\"fallback\":\"hold\",\"id\":\"logistics\",\"type\":\"priority\"},\n{\"fallback\":\"pass\",\"id\":\"haul-node\",\"moduleId\":\"haul\",\"type\":\"module\"},\n{\"fallback\":\"hold\",\"id\":\"gather-node\",\"moduleId\":\"gather\",\"type\":\"module\"},\n{\"fallback\":\"hold\",\"id\":\"scout-node\",\"moduleId\":\"scout-resource\",\"type\":\"module\"},\n{\"fallback\":\"patrol-node\",\"id\":\"escort-node\",\"moduleId\":\"escort-cargo\",\"type\":\"module\"},\n{\"fallback\":\"hold\",\"id\":\"patrol-node\",\"moduleId\":\"patrol-base-resource\",\"type\":\"module\"},\n{\"id\":\"pass\",\"reason\":\"candidate unavailable\",\"type\":\"pass\"},\n{\"id\":\"hold\",\"reason\":\"no applicable action\",\"type\":\"hold\"}\n],\n\"modules\":[\n{\"config\":{\"minCargo\":8},\"enabled\":true,\"kind\":\"haul\",\"moduleId\":\"haul\",\"priority\":80},\n{\"config\":{\"targetRoomId\":\"room-1\"},\"enabled\":true,\"kind\":\"gather\",\"moduleId\":\"gather\",\"priority\":20},\n{\"config\":{\"maxEnemyHp\":0,\"reportIntervalTicks\":4,\"target\":{\"roomId\":\"room-1\",\"type\":\"room\"}},\"enabled\":true,\"kind\":\"scout\",\"moduleId\":\"scout-resource\",\"priority\":40},\n{\"config\":{\"minCargo\":4,\"target\":{\"role\":\"gatherer\",\"type\":\"ownRole\"}},\"enabled\":true,\"kind\":\"escort\",\"moduleId\":\"escort-cargo\",\"priority\":40},\n{\"config\":{\"dwellTicks\":2,\"rooms\":[{\"roomId\":\"room-0\",\"type\":\"room\"},{\"roomId\":\"room-1\",\"type\":\"room\"}]},\"enabled\":true,\"kind\":\"patrol\",\"moduleId\":\"patrol-base-resource\",\"priority\":20}\n]};\nexport const modulePlan:BehaviorPlan={schemaVersion:1,compositionId:graph.graphId,mode:\"priority\",modules:[],fallbackModuleId:\"hold\"};\n"
+        }
+      },
+      "change": {
+        "operationIndex": 35,
+        "tick": 28,
+        "sourceHash": "39a07535c84de25efd62a77d37e966625daad044948d46dfc37da0c08151e558",
+        "memoryPatch": {
+          "set": {
+            "aiTrace": {
+              "actors": [
+                {
+                  "actorId": "p1-guard",
+                  "endStateId": "state-guard",
+                  "moduleId": "patrol-base-resource",
+                  "moduleVisits": [
+                    {
+                      "fallbackNodeId": "patrol-node",
+                      "moduleId": "escort-cargo",
+                      "nodeId": "escort-node",
+                      "observed": {
+                        "cargo": 0,
+                        "threshold": 4
+                      },
+                      "outcome": "fallback",
+                      "reasonCode": "escort-cargo-insufficient",
+                      "ref": {
+                        "role": "gatherer",
+                        "type": "ownRole"
+                      },
+                      "resolvedId": "p1-gatherer"
+                    },
+                    {
+                      "moduleId": "patrol-base-resource",
+                      "nodeId": "patrol-node",
+                      "observed": {
+                        "cursor": 0
+                      },
+                      "outcome": "hold",
+                      "reasonCode": "travel-active",
+                      "ref": {
+                        "roomId": "room-0",
+                        "type": "room"
+                      },
+                      "resolvedId": "room-0"
+                    }
+                  ],
+                  "reason": "travel-active",
+                  "selectedNodeId": "patrol-node",
+                  "startStateId": "state-guard",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "escort-node"
+                    },
+                    {
+                      "nodeId": "patrol-node"
+                    }
+                  ]
+                }
+              ],
+              "graphId": "normal-scout-patrol-escort",
+              "tick": 28,
+              "v": 2
+            }
+          }
+        }
+      }
+    }
+  ]
+}

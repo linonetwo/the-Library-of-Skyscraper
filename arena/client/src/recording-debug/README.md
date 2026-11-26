@@ -76,3 +76,10 @@ Visible controls: `录制源版本`, `录制角色`, `录制对象类型`, `录�
 `录制断点与覆盖`; its read-only `data-recording-state` exposes the same public
 selection identity/cursor. Tools should operate these controls and original replay,
 not recompute counts or change the authority clock.
+
+Archived V1/V2 graph-plan fixtures come from the same real owner recording before
+and after the cargo-reason helper correction. Both supply node/module objects and
+original source lines without copying an old generator. A separate readback of the
+original full projects confirms V1 is readable but not editable by the current
+generator; V2 is both readable and editable. Declared structure is the query
+denominator, not evidence that a handwritten helper actually executed it.
