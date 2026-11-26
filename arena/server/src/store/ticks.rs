@@ -21,6 +21,9 @@ impl Store {
                 crate::script_driver::advance(&mut entry.session, &self.workers).await;
                 entry.dirty = true;
             }
+        } else if matches!(command, Command::Cast { .. }) {
+            crate::manual_cast::execute(&mut entry.session, &player, command, &self.workers)
+                .await?;
         } else {
             entry
                 .session

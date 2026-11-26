@@ -66,7 +66,8 @@ async fn comparison_restores_owner_frame_and_keeps_each_v8_result_without_side_e
     s.join("one".into()).unwrap();
     s.join("two".into()).unwrap();
     s.advance_scripted(["p1","p2"].map(|owner| ScriptDecision {
-        player_id:owner.into(),source_hash:Some("history".into()),intents:vec![],failure:None,
+        chants: None,
+player_id:owner.into(),source_hash:Some("history".into()),intents:vec![],failure:None,
         memory_patch:Some(json!({"set":{"privateOwner":owner}})),
         task_patches:Some(vec![json!({"type":"upsert","task":{"id":format!("{owner}-task"),"actorId":format!("{owner}-scout"),"roomId":"room-1","kind":"gather","priority":1,"status":"queued","blockedReason":null}})]),
     }).to_vec());

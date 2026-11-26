@@ -186,6 +186,32 @@ impl Session {
             }
             return;
         }
+        if let Some(reason) = self.tactical_block(&a.id) {
+            self.heal_at_base(a);
+            a.state = if reason == "actor-recovering" {
+                let recovery = self.tactics.as_ref().unwrap().actor_states[&a.id]
+                    .recovery
+                    .as_ref()
+                    .unwrap();
+                if self.tick < recovery.rising_tick {
+                    "downed"
+                } else {
+                    "rising"
+                }
+            } else {
+                let cast = self.tactics.as_ref().unwrap().actor_states[&a.id]
+                    .cast
+                    .as_ref()
+                    .unwrap();
+                if self.tick < cast.release_tick {
+                    "casting"
+                } else {
+                    "cast-recovery"
+                }
+            }
+            .into();
+            return;
+        }
         // Old recordings retain the preset safety controller even with a script.
         let preset_controls_retreat =
             self.simulation_version < 6 || self.players[&a.owner].script.is_none();

@@ -22,6 +22,9 @@ impl Session {
         if a.travel.is_some() {
             return Err("actor travelling; interactions require arrival".into());
         }
+        if let Some(reason) = self.tactical_block(id) {
+            return Err(reason.into());
+        }
         if self.manual_actions.get(id) == Some(&self.tick) {
             return Err("actor already acted this tick".into());
         }
@@ -34,6 +37,23 @@ impl Session {
             .ok_or("room not found".into())
     }
     pub fn command(&mut self, owner: &str, command: Command) -> Result<(), String> {
+        self.command_recorded(owner, command, None)
+    }
+    /// Internal worker adapter and replay entry. Command JSON has no evidence field.
+    pub fn command_with_chant(
+        &mut self,
+        owner: &str,
+        command: Command,
+        chant: crate::RecordedChant,
+    ) -> Result<(), String> {
+        self.command_recorded(owner, command, Some(chant))
+    }
+    fn command_recorded(
+        &mut self,
+        owner: &str,
+        command: Command,
+        chant: Option<crate::RecordedChant>,
+    ) -> Result<(), String> {
         if self.simulation_version >= 3
             && self.players.get(owner).is_some_and(|p| p.script.is_some())
             && matches!(
@@ -48,6 +68,7 @@ impl Session {
                     | Command::Attack { .. }
                     | Command::Repair { .. }
                     | Command::Claim { .. }
+                    | Command::Cast { .. }
                     | Command::Capture { .. }
                     | Command::Build { .. }
             )
@@ -55,14 +76,23 @@ impl Session {
             return Err("TypeScript驱动小队，请先停用脚本再下达手动任务".into());
         }
         let recorded = command.clone();
-        self.apply_command(owner, command)?;
+        self.apply_command_with_chant(owner, command, chant.as_ref().map(|c| (c, 0)))?;
         self.record_operation(ReplayOperation::Command {
             player_id: owner.into(),
             command: recorded,
+            chant,
         });
         Ok(())
     }
     pub(crate) fn apply_command(&mut self, owner: &str, command: Command) -> Result<(), String> {
+        self.apply_command_with_chant(owner, command, None)
+    }
+    pub(crate) fn apply_command_with_chant(
+        &mut self,
+        owner: &str,
+        command: Command,
+        chant: Option<(&crate::RecordedChant, usize)>,
+    ) -> Result<(), String> {
         if self.simulation_version < 8
             && matches!(
                 &command,
@@ -71,6 +101,7 @@ impl Session {
                     ..
                 } | Command::Repair { .. }
                     | Command::Claim { .. }
+                    | Command::Cast { .. }
             )
         {
             return Err("tactics require simulationVersion8".into());
@@ -124,6 +155,9 @@ impl Session {
                     return Err("buildingKind required: warehouse, tower or catalog".into());
                 }
                 let (e, mut a) = self.owned_actor(owner, &actor_id)?;
+                if let Some(reason) = self.tactical_block(&actor_id) {
+                    return Err(reason.into());
+                }
                 if a.hp == 0 {
                     return Err("actor downed".into());
                 }
@@ -185,6 +219,9 @@ impl Session {
             Command::Move { actor_id, room_id } => {
                 self.room_index(&room_id)?;
                 let (e, mut a) = self.owned_actor(owner, &actor_id)?;
+                if let Some(reason) = self.tactical_block(&actor_id) {
+                    return Err(reason.into());
+                }
                 crate::travel::start_for_version(
                     &mut a,
                     &room_id,
@@ -239,6 +276,14 @@ impl Session {
                 }
                 self.world.entity_mut(e).insert(a);
             }
+            Command::Cast {
+                actor_id,
+                skill_id,
+                target_id,
+            } => {
+                let (chant, index) = chant.ok_or("cast requires worker chant record")?;
+                self.start_cast(owner, &actor_id, skill_id, &target_id, chant, index)?;
+            }
             Command::Capture { actor_id } => {
                 let (e, mut a) = self.actor(owner, &actor_id)?;
                 crate::action_runtime::assign_task(
@@ -271,6 +316,9 @@ impl Session {
                     .into_iter()
                     .next()
                     .ok_or("builder must be present, alive and stationary")?;
+                if let Some(reason) = self.tactical_block(&a.id) {
+                    return Err(reason.into());
+                }
                 self.ensure_site(owner, &room_id, &kind)?;
                 let stage = crate::action_runtime::build_stage(&a, &kind, self.simulation_version);
                 crate::action_runtime::assign_task(

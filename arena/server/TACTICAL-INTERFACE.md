@@ -1,10 +1,10 @@
-# sim8 tactical interface — T1a/T1b
+# sim8 tactical interface — T1/T2
 
-T1b implements targeted attack, paid repair and persistent point capture through the existing command/tick/recording pipeline. An explicit scenario selection creates a sim8 candidate; omitted scenarioId still creates the existing sim7 first expedition until the skill domains are complete. Existing sessions/replays ≤7 retain their original serialized fields and algorithms.
+New sessions use sim8: targeted attack, paid repair, persistent point capture, worker-backed ink strike and heavy-hit recovery share the existing command/tick/recording pipeline. Existing sessions/replays ≤7 retain their original serialized fields and algorithms.
 
 ## Creation and targets
 
-`POST /api/sessions` gains optional `scenarioId: "first-expedition" | "seal-contest"`; omission selects first-expedition. For this development slice, pass scenarioId explicitly to opt into sim8. `mode` remains training/online. The original credentials response is unchanged. The snapshot and replay header carry `scenarioId` for sim8; old recordings omit it. Reset keeps the selected scenario. Seal contest reuses the registered `world-map-v5.json` floor/roads and adds the facts in `arena/shared/seal-contest-v1.json`; no old geometry is edited.
+`POST /api/sessions` gains optional `scenarioId: "first-expedition" | "seal-contest"`; omission selects first-expedition. `mode` remains training/online. The original credentials response is unchanged. The snapshot and replay header carry `scenarioId` for sim8; old recordings omit it. Reset keeps the selected scenario. Seal contest reuses the registered `world-map-v5.json` floor/roads and adds the facts in `arena/shared/seal-contest-v1.json`; no old geometry is edited.
 
 The command JSON is in `tests/fixtures/tactics-wire.json`:
 
@@ -15,7 +15,7 @@ The command JSON is in `tests/fixtures/tactics-wire.json`:
 {"type":"cast","actorId":"p1-guard","skillId":"ink-strike","targetId":"drill-guardian-b"}
 ```
 
-The first three commands are implemented in T1b. Cast remains the next worker-backed domain slice.
+All four commands use the same authority pipeline. Manual cast runs the official JavaScript recipe through the real compiler/worker; authored cast consumes the worker response’s private chants sidechannel.
 
 Attack without targetId retains ordinary attack. Capture retains the guard behavior. New targeted actions require sim8. Actors are token-owner scoped, attack/cast targets are live authorized PVE enemies, repair targets are that owner's completed buildings, and claim targets are registered non-base rooms. Enemy/building/room identity comes from existing snapshot objects; the command carries the resolved exact ID, not a client selection query.
 
@@ -25,7 +25,7 @@ SDK refs are owned by Core and are not a second Rust target parser. Proposed nam
 
 `TacticalState` lives in one private checkpoint field. The existing Room.owner, Player.score and Appearance.weapon remain the writable ownership/score/weapon sources. Actor IDs key independent state; public `snapshot.tactics.actorStates` is a read-only projection. Public point state gives roomId, challengerId, progressTicks, requiredTicks, contested and current blockedReason; ownership is read from Room.owner.
 
-The public fixture contains actual wire examples only; its ticks and HP values are illustrative data, not runtime evidence. `snapshot.tactics` is omitted for ≤7. Cast state locks skillId, targetId, start/release/end ticks and sourceHash in private authority state; cooldown persists in actor castReadyTick. Private invocation records will use Core's separately frozen worker-result contract. They are not accepted as browser or ordinary ScriptAction proof fields and are not exposed in public snapshots/events.
+The public fixture contains actual wire examples only; its ticks and HP values are illustrative data, not runtime evidence. `snapshot.tactics` is omitted for ≤7. Cast state locks skillId, targetId, start/release/end ticks and sourceHash in private authority state; cooldown persists in actor castReadyTick. Private invocation records retain the worker's actual ordered observe/channel/seal calls, original intent index and source hash. They are not accepted as browser or ordinary ScriptAction proof fields and are not exposed in public snapshots/events.
 
 Tick-derived phases (one existing 500ms clock):
 
@@ -43,7 +43,7 @@ Tick-derived phases (one existing 500ms clock):
 
 ## Results and the existing recording
 
-The existing Event carries an optional typed tactical result: action, actorId, exact targetId, phase, reasonCode and material/HP/energy/control before/after values. No private file or sourceHash appears there. The original operation owns that event; there is no independent tactical event log or clock.
+The existing Event carries an optional typed tactical result: action, actorId, exact targetId, phase, reasonCode and material/HP/energy/control before/after values. Successful cast release also carries targetPosition, the enemy world XY at damage settlement; other phases omit it. No private file or sourceHash appears there. The original operation owns that event; there is no independent tactical event log or clock.
 
 Unauthorized or malformed input uses the existing Err path without public state changes. Authorized, well-formed commands whose world judgment fails (target-gone, insufficient-materials, etc.) produce a structured domain result and typed event and are recorded through the same Command operation, so replay evaluates the same original command. Script rejection uses the existing owner script-rejected path once, without double counting. HTTP keeps the existing returned Snapshot, whose events carry the result.
 
@@ -62,3 +62,11 @@ Claim is a persistent task. Its six-tick challenge is reset by a live room guard
 The DTO fixture checks schema. Domain tests use explicitly labelled fixed-world fixtures for lethal/last-resource boundaries, plus command-only travel, actual enemy facility damage, repair, capture, checkpoint and operation replay. Normal-clock fixed-package verification follows the complete tactical/skill batch.
 
 For sim8, `scenarioConfig.attack.rangeMilli` projects the existing effective attackRange ×1000; targeted attack reads the same value. Repair/claim/ink parameters remain in the selected scenario config. Script contexts expose the same `world.scenarioId` and `world.tactics` snapshot projection; ≤7 contexts retain their old keys.
+
+## Skill persistence and verification
+
+Ink strike costs one of three energy, regenerates one energy per eight ticks and has an eight-tick cooldown. Release applies 16 damage once after two ticks; the locked target, source and invocation survive publication changes and restart. A lost/out-of-range target or invalid recipe fizzles without refund. Seal-contest heavy attacks telegraph for one tick, use the existing enemy action window and interrupt an unfinished cast before release. Surviving targets spend two ticks down and two rising; death remains terminal.
+
+Owner recordings/checkpoints retain private invocation evidence. Public/other-owner replay retains the original intent and adjudicated result, with private steps and skill hashes removed. Replay consumes that recorded result without invoking the worker. The official single JavaScript skill is available only to its owner through the existing read-only source-version query, identified by its actual hash; it is excluded from rule rollback/listing. Authored skills use their archived rule project.
+
+Server JSON parsing enables the locked serde_json float_roundtrip feature so checkpoint doubles retain their exact bits. Production final replay comparison remains strict. Domain fixtures and the ignored real-worker manual test cover release/interruption, source isolation, restart and private/public replay; normal-clock integrated gameplay belongs to the final fixed-package acceptance.

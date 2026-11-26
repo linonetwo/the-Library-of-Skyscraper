@@ -376,6 +376,7 @@ fn script_build_uses_specified_second_actor_and_preserves_first_task() {
     s.players.get_mut("p1").unwrap().materials = 100;
     task(&mut s, "gatherer", "gather", "room-1", None);
     s.advance_scripted(vec![ScriptDecision {
+        chants: None,
         player_id: "p1".into(),
         source_hash: None,
         memory_patch: None,

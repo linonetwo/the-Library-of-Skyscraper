@@ -27,12 +27,13 @@ pub async fn version(
 ) -> Result<Json<Value>, Error> {
     store
         .with_player(&id, &headers, |session, owner| {
-            let version = session
-                .script_version(owner, &hash)
+            if let Some(version) = session.script_version(owner, &hash) {
+                return Ok(Json(json!({ "version": version.metadata, "project": version.script.project })));
+            }
+            let source = session.archived_skill_source(owner, &hash)
                 .ok_or_else(|| error(StatusCode::NOT_FOUND, "script version not found"))?;
-            Ok(Json(
-                json!({ "version": version.metadata, "project": version.script.project }),
-            ))
+            Ok(Json(json!({"version":{"kind":"skill","sourceHash":hash,
+                "entry":source.project.entry,"createdAtTick":source.created_at_tick},"project":source.project})))
         })
         .await
 }

@@ -1,0 +1,134 @@
+{
+  "scope": "Actual native V8 worker responses from Core T2 fixed unit context; not a normal-clock world recording. Domain tests explicitly construct matching fixed world inputs.",
+  "fixtures": [
+    {
+      "name": "official",
+      "response": {
+        "decision": {
+          "intents": [
+            {
+              "type": "gather",
+              "actorId": "gatherer",
+              "priority": 1
+            },
+            {
+              "type": "cast",
+              "actorId": "guard",
+              "targetId": "enemy-1",
+              "skillId": "ink-strike",
+              "priority": 2
+            }
+          ]
+        },
+        "durationMs": 16.275708,
+        "chants": [
+          {
+            "intentIndex": 1,
+            "actorId": "guard",
+            "targetId": "enemy-1",
+            "observedTick": 17,
+            "skillSourceHash": "441286bde12c417312258ecd0c12f698fbe9fbceba8139fc09e51cffe9dfd4e8",
+            "steps": [
+              {
+                "op": "observe"
+              },
+              {
+                "op": "channel",
+                "from": 0
+              },
+              {
+                "op": "seal",
+                "from": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "authored",
+      "response": {
+        "decision": {
+          "intents": [
+            {
+              "type": "gather",
+              "actorId": "gatherer",
+              "priority": 1
+            },
+            {
+              "type": "cast",
+              "actorId": "guard",
+              "targetId": "enemy-1",
+              "skillId": "ink-strike",
+              "priority": 2
+            }
+          ]
+        },
+        "durationMs": 20.059828,
+        "chants": [
+          {
+            "intentIndex": 1,
+            "actorId": "guard",
+            "targetId": "enemy-1",
+            "observedTick": 17,
+            "skillSourceHash": "f50b122e42e5a076108f5ea6927ca5ed95876dabcf3cdc72266f3b53a7815a7c",
+            "steps": [
+              {
+                "op": "observe"
+              },
+              {
+                "op": "channel",
+                "from": 0
+              },
+              {
+                "op": "seal",
+                "from": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing-seal",
+      "response": {
+        "decision": {
+          "intents": [
+            {
+              "type": "gather",
+              "actorId": "gatherer",
+              "priority": 1
+            },
+            {
+              "type": "cast",
+              "actorId": "guard",
+              "targetId": "enemy-1",
+              "skillId": "ink-strike",
+              "priority": 2
+            }
+          ]
+        },
+        "durationMs": 16.22857,
+        "chants": [
+          {
+            "intentIndex": 1,
+            "actorId": "guard",
+            "targetId": "enemy-1",
+            "observedTick": 17,
+            "skillSourceHash": "381fea4a44804304d283933e7549ab710cd2b3ee649315170d6a264ead59d4c8",
+            "steps": [
+              {
+                "op": "observe"
+              },
+              {
+                "op": "channel",
+                "from": 0
+              }
+            ],
+            "reasonCode": "chant-mismatch"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -40,6 +40,7 @@ impl Session {
         values: TacticalValues,
     ) {
         let event = TacticalEvent {
+            target_position: None,
             action,
             actor_id: a.id.clone(),
             target_id: target.into(),

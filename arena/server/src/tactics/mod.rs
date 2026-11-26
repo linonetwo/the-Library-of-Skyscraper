@@ -13,3 +13,12 @@ mod repair;
 mod scenario;
 mod settlement;
 mod snapshot;
+
+mod chant;
+pub use chant::{ChantOp, ChantRecord, ChantResult, ChantStep, ChantVerdict, RecordedChant};
+mod cast;
+mod cast_tick;
+mod damage;
+mod heavy;
+mod recovery;
+mod source;

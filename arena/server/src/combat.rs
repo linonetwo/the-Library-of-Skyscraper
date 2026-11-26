@@ -56,7 +56,11 @@ impl Session {
             .collect();
         actors.sort_by(|a, b| a.1.id.cmp(&b.1.id));
         for (e, mut a) in actors {
-            if a.hp == 0 || a.travel.is_some() || a.retreating {
+            if a.hp == 0
+                || a.travel.is_some()
+                || a.retreating
+                || self.tactical_block(&a.id).is_some()
+            {
                 continue;
             }
             // Explicit sim8 target actions are single commands, not a new auto-controller.
@@ -137,37 +141,16 @@ impl Session {
                 {
                     self.enemies[i].action_tick = self.tick;
                     let dmg = crate::scenario::number("enemyDamage") as u32;
-                    a.hp = a.hp.saturating_sub(dmg);
                     self.enemies[i].action_cue =
                         crate::ActionCue::new("attack", self.tick, 2, Some(a.world_position));
-                    crate::action_runtime::impact(
-                        &mut a.action_cue,
-                        &mut a.impact_cue,
-                        a.hp,
-                        self.tick,
+                    let enemy_id = self.enemies[i].id.clone();
+                    self.hit_actor(
+                        &mut a,
+                        &enemy_id,
                         self.enemies[i].world_position,
-                        self.simulation_version,
+                        dmg,
+                        false,
                     );
-                    self.event(
-                        "damage",
-                        format!(
-                            "{} 对 {} 造成{dmg}伤害，HP {}",
-                            self.enemies[i].id, a.id, a.hp
-                        ),
-                        Some(&a.owner),
-                    );
-                    if a.hp == 0 {
-                        a.travel = None;
-                        a.state = "downed".into();
-                        self.scenario.report.downed += 1;
-                        self.scenario.report.cargo_lost += a.cargo;
-                        a.cargo = 0;
-                        self.event(
-                            "downed",
-                            format!("{} 倒地，本局无法复活", a.id),
-                            Some(&a.owner),
-                        );
-                    }
                     self.world.entity_mut(entity).insert(a);
                 }
             } else {

@@ -16,6 +16,9 @@ impl Session {
             return;
         }
         self.tick += 1;
+        if self.simulation_version >= 8 {
+            self.tactical_phase_tick();
+        }
         let mut actors: Vec<_> = self
             .world
             .query::<(Entity, &Actor)>()
@@ -82,7 +85,13 @@ impl Session {
                 }
             }
         }
+        if self.simulation_version >= 8 {
+            self.heavy_tick();
+        }
         self.combat_tick();
+        if self.simulation_version >= 8 {
+            self.cast_release_tick();
+        }
         self.construction_tick();
         self.scenario_tick();
         self.commit_task_stages(previous_tasks);

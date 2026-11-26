@@ -155,7 +155,8 @@ fn script_world_rejection_uses_one_existing_rejection_event() {
         },
     );
     s.advance_scripted(vec![ScriptDecision {
-        source_hash: None, memory_patch: None, task_patches: None,
+        chants: None,
+source_hash: None, memory_patch: None, task_patches: None,
         player_id: "p1".into(), failure: None,
         intents: serde_json::from_value(serde_json::json!([{"type":"attack","actorId":"p1-guard","targetId":"gone","priority":50}])).unwrap(),
     }]);
