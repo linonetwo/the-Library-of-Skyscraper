@@ -1,0 +1,891 @@
+{
+  "clip": {
+    "action": "climb",
+    "frameCount": 66,
+    "frameDurationsMs": [
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      70,
+      60,
+      60,
+      60,
+      70,
+      60,
+      60,
+      60,
+      70,
+      60,
+      60,
+      60,
+      70
+    ],
+    "playback": "once",
+    "phaseFrames": {
+      "grip": {
+        "first": 0,
+        "last": 24
+      },
+      "descend": {
+        "first": 25,
+        "last": 49
+      },
+      "crestUp": {
+        "first": 50,
+        "last": 57
+      },
+      "crestDown": {
+        "first": 58,
+        "last": 65
+      }
+    }
+  },
+  "layerOrderByDirection": {
+    "NE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "W": [
+      "weapon-staff-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "NW": [
+      "weapon-staff-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "E": [
+      "weapon-staff-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SE": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "N": [
+      "weapon-staff-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "S": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  },
+  "handMode": "natural",
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    128,
+    204.8
+  ],
+  "sourceSize": [
+    256,
+    256
+  ],
+  "directions": [
+    "S",
+    "SW",
+    "W",
+    "NW",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "weapon-staff-back",
+    "hand-front"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 528,
+      "nonemptyFrames": 528,
+      "untrimmedPixels": 34603008,
+      "trimmedPixels": 2873539,
+      "pages": [
+        {
+          "image": "ne-sw/climb-body-0.png",
+          "json": "ne-sw/climb-body-0.json",
+          "width": 2010,
+          "height": 484,
+          "decodedBytes": 3891360,
+          "pngBytes": 589113
+        },
+        {
+          "image": "w/climb-body-0.png",
+          "json": "w/climb-body-0.json",
+          "width": 2041,
+          "height": 251,
+          "decodedBytes": 2049164,
+          "pngBytes": 275971
+        },
+        {
+          "image": "nw-socket-v2/climb-body-0.png",
+          "json": "nw-socket-v2/climb-body-0.json",
+          "width": 2016,
+          "height": 252,
+          "decodedBytes": 2032128,
+          "pngBytes": 287010
+        },
+        {
+          "image": "e-recovery/climb-body-0.png",
+          "json": "e-recovery/climb-body-0.json",
+          "width": 1997,
+          "height": 237,
+          "decodedBytes": 1893156,
+          "pngBytes": 274551
+        },
+        {
+          "image": "se-socket/climb-body-0.png",
+          "json": "se-socket/climb-body-0.json",
+          "width": 2003,
+          "height": 239,
+          "decodedBytes": 1914868,
+          "pngBytes": 268661
+        },
+        {
+          "image": "n-thigh/climb-body-0.png",
+          "json": "n-thigh/climb-body-0.json",
+          "width": 2013,
+          "height": 251,
+          "decodedBytes": 2021052,
+          "pngBytes": 245605
+        },
+        {
+          "image": "s-fold-d/climb-body-0.png",
+          "json": "s-fold-d/climb-body-0.json",
+          "width": 2040,
+          "height": 229,
+          "decodedBytes": 1868640,
+          "pngBytes": 190052
+        }
+      ],
+      "decodedBytes": 15670368
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 462,
+      "nonemptyFrames": 462,
+      "untrimmedPixels": 30277632,
+      "trimmedPixels": 408421,
+      "pages": [
+        {
+          "image": "ne-sw/climb-body-front-0.png",
+          "json": "ne-sw/climb-body-front-0.json",
+          "width": 2014,
+          "height": 97,
+          "decodedBytes": 781432,
+          "pngBytes": 114296
+        },
+        {
+          "image": "w/climb-body-front-0.png",
+          "json": "w/climb-body-front-0.json",
+          "width": 2022,
+          "height": 63,
+          "decodedBytes": 509544,
+          "pngBytes": 57067
+        },
+        {
+          "image": "nw-socket-v2/climb-body-front-0.png",
+          "json": "nw-socket-v2/climb-body-front-0.json",
+          "width": 2047,
+          "height": 46,
+          "decodedBytes": 376648,
+          "pngBytes": 54837
+        },
+        {
+          "image": "e-recovery/climb-body-front-0.png",
+          "json": "e-recovery/climb-body-front-0.json",
+          "width": 2046,
+          "height": 68,
+          "decodedBytes": 556512,
+          "pngBytes": 58109
+        },
+        {
+          "image": "se-socket/climb-body-front-0.png",
+          "json": "se-socket/climb-body-front-0.json",
+          "width": 2038,
+          "height": 58,
+          "decodedBytes": 472816,
+          "pngBytes": 56912
+        },
+        {
+          "image": "s-fold-d/climb-body-front-0.png",
+          "json": "s-fold-d/climb-body-front-0.json",
+          "width": 2044,
+          "height": 75,
+          "decodedBytes": 613200,
+          "pngBytes": 74452
+        }
+      ],
+      "decodedBytes": 3310152
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 528,
+      "nonemptyFrames": 528,
+      "untrimmedPixels": 34603008,
+      "trimmedPixels": 1310580,
+      "pages": [
+        {
+          "image": "ne-sw/climb-outfit-scholar-0.png",
+          "json": "ne-sw/climb-outfit-scholar-0.json",
+          "width": 2025,
+          "height": 279,
+          "decodedBytes": 2259900,
+          "pngBytes": 355939
+        },
+        {
+          "image": "w/climb-outfit-scholar-0.png",
+          "json": "w/climb-outfit-scholar-0.json",
+          "width": 2043,
+          "height": 117,
+          "decodedBytes": 956124,
+          "pngBytes": 115761
+        },
+        {
+          "image": "nw-socket-v2/climb-outfit-scholar-0.png",
+          "json": "nw-socket-v2/climb-outfit-scholar-0.json",
+          "width": 2048,
+          "height": 135,
+          "decodedBytes": 1105920,
+          "pngBytes": 148529
+        },
+        {
+          "image": "e-recovery/climb-outfit-scholar-0.png",
+          "json": "e-recovery/climb-outfit-scholar-0.json",
+          "width": 2041,
+          "height": 118,
+          "decodedBytes": 963352,
+          "pngBytes": 117059
+        },
+        {
+          "image": "se-socket/climb-outfit-scholar-0.png",
+          "json": "se-socket/climb-outfit-scholar-0.json",
+          "width": 2041,
+          "height": 110,
+          "decodedBytes": 898040,
+          "pngBytes": 119873
+        },
+        {
+          "image": "n-thigh/climb-outfit-scholar-0.png",
+          "json": "n-thigh/climb-outfit-scholar-0.json",
+          "width": 2021,
+          "height": 136,
+          "decodedBytes": 1099424,
+          "pngBytes": 104186
+        },
+        {
+          "image": "s-fold-d/climb-outfit-scholar-0.png",
+          "json": "s-fold-d/climb-outfit-scholar-0.json",
+          "width": 2029,
+          "height": 87,
+          "decodedBytes": 706092,
+          "pngBytes": 71796
+        }
+      ],
+      "decodedBytes": 7988852
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "sourceFrames": 528,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 55640,
+      "pages": [
+        {
+          "image": "ne-sw/climb-hair-ivory-back-0.png",
+          "json": "ne-sw/climb-hair-ivory-back-0.json",
+          "width": 2033,
+          "height": 44,
+          "decodedBytes": 357808,
+          "pngBytes": 31867
+        }
+      ],
+      "decodedBytes": 357808
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 528,
+      "nonemptyFrames": 528,
+      "untrimmedPixels": 34603008,
+      "trimmedPixels": 1000772,
+      "pages": [
+        {
+          "image": "ne-sw/climb-hair-ivory-front-0.png",
+          "json": "ne-sw/climb-hair-ivory-front-0.json",
+          "width": 2027,
+          "height": 195,
+          "decodedBytes": 1581060,
+          "pngBytes": 260585
+        },
+        {
+          "image": "w/climb-hair-ivory-front-0.png",
+          "json": "w/climb-hair-ivory-front-0.json",
+          "width": 2014,
+          "height": 94,
+          "decodedBytes": 757264,
+          "pngBytes": 98382
+        },
+        {
+          "image": "nw-socket-v2/climb-hair-ivory-front-0.png",
+          "json": "nw-socket-v2/climb-hair-ivory-front-0.json",
+          "width": 2025,
+          "height": 89,
+          "decodedBytes": 720900,
+          "pngBytes": 101814
+        },
+        {
+          "image": "e-recovery/climb-hair-ivory-front-0.png",
+          "json": "e-recovery/climb-hair-ivory-front-0.json",
+          "width": 2021,
+          "height": 94,
+          "decodedBytes": 759896,
+          "pngBytes": 101085
+        },
+        {
+          "image": "se-socket/climb-hair-ivory-front-0.png",
+          "json": "se-socket/climb-hair-ivory-front-0.json",
+          "width": 2011,
+          "height": 91,
+          "decodedBytes": 732004,
+          "pngBytes": 111029
+        },
+        {
+          "image": "n-thigh/climb-hair-ivory-front-0.png",
+          "json": "n-thigh/climb-hair-ivory-front-0.json",
+          "width": 2026,
+          "height": 93,
+          "decodedBytes": 753672,
+          "pngBytes": 75757
+        },
+        {
+          "image": "s-fold-d/climb-hair-ivory-front-0.png",
+          "json": "s-fold-d/climb-hair-ivory-front-0.json",
+          "width": 2021,
+          "height": 93,
+          "decodedBytes": 751812,
+          "pngBytes": 97489
+        }
+      ],
+      "decodedBytes": 6056608
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 528,
+      "nonemptyFrames": 528,
+      "untrimmedPixels": 34603008,
+      "trimmedPixels": 1396712,
+      "pages": [
+        {
+          "image": "ne-sw/climb-outfit-warden-0.png",
+          "json": "ne-sw/climb-outfit-warden-0.json",
+          "width": 2026,
+          "height": 282,
+          "decodedBytes": 2285328,
+          "pngBytes": 265912
+        },
+        {
+          "image": "w/climb-outfit-warden-0.png",
+          "json": "w/climb-outfit-warden-0.json",
+          "width": 2045,
+          "height": 151,
+          "decodedBytes": 1235180,
+          "pngBytes": 124957
+        },
+        {
+          "image": "nw-socket-v2/climb-outfit-warden-0.png",
+          "json": "nw-socket-v2/climb-outfit-warden-0.json",
+          "width": 2014,
+          "height": 160,
+          "decodedBytes": 1288960,
+          "pngBytes": 133274
+        },
+        {
+          "image": "e-recovery/climb-outfit-warden-0.png",
+          "json": "e-recovery/climb-outfit-warden-0.json",
+          "width": 2025,
+          "height": 144,
+          "decodedBytes": 1166400,
+          "pngBytes": 126789
+        },
+        {
+          "image": "se-socket/climb-outfit-warden-0.png",
+          "json": "se-socket/climb-outfit-warden-0.json",
+          "width": 2025,
+          "height": 123,
+          "decodedBytes": 996300,
+          "pngBytes": 105959
+        },
+        {
+          "image": "n-thigh/climb-outfit-warden-0.png",
+          "json": "n-thigh/climb-outfit-warden-0.json",
+          "width": 2020,
+          "height": 161,
+          "decodedBytes": 1300880,
+          "pngBytes": 138198
+        },
+        {
+          "image": "s-fold-d/climb-outfit-warden-0.png",
+          "json": "s-fold-d/climb-outfit-warden-0.json",
+          "width": 2040,
+          "height": 81,
+          "decodedBytes": 660960,
+          "pngBytes": 56995
+        }
+      ],
+      "decodedBytes": 8934008
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 462,
+      "nonemptyFrames": 462,
+      "untrimmedPixels": 30277632,
+      "trimmedPixels": 422132,
+      "pages": [
+        {
+          "image": "ne-sw/climb-outfit-warden-front-0.png",
+          "json": "ne-sw/climb-outfit-warden-front-0.json",
+          "width": 2022,
+          "height": 100,
+          "decodedBytes": 808800,
+          "pngBytes": 91787
+        },
+        {
+          "image": "w/climb-outfit-warden-front-0.png",
+          "json": "w/climb-outfit-warden-front-0.json",
+          "width": 2043,
+          "height": 69,
+          "decodedBytes": 563868,
+          "pngBytes": 55451
+        },
+        {
+          "image": "nw-socket-v2/climb-outfit-warden-front-0.png",
+          "json": "nw-socket-v2/climb-outfit-warden-front-0.json",
+          "width": 2024,
+          "height": 71,
+          "decodedBytes": 574816,
+          "pngBytes": 51108
+        },
+        {
+          "image": "e-recovery/climb-outfit-warden-front-0.png",
+          "json": "e-recovery/climb-outfit-warden-front-0.json",
+          "width": 2022,
+          "height": 69,
+          "decodedBytes": 558072,
+          "pngBytes": 53056
+        },
+        {
+          "image": "se-socket/climb-outfit-warden-front-0.png",
+          "json": "se-socket/climb-outfit-warden-front-0.json",
+          "width": 2029,
+          "height": 65,
+          "decodedBytes": 527540,
+          "pngBytes": 49325
+        },
+        {
+          "image": "s-fold-d/climb-outfit-warden-front-0.png",
+          "json": "s-fold-d/climb-outfit-warden-front-0.json",
+          "width": 1997,
+          "height": 69,
+          "decodedBytes": 551172,
+          "pngBytes": 54208
+        }
+      ],
+      "decodedBytes": 3584268
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": true,
+      "sourceFrames": 528,
+      "nonemptyFrames": 198,
+      "untrimmedPixels": 17301504,
+      "trimmedPixels": 157472,
+      "pages": [
+        {
+          "image": "ne-sw/climb-hair-midnight-back-0.png",
+          "json": "ne-sw/climb-hair-midnight-back-0.json",
+          "width": 2033,
+          "height": 95,
+          "decodedBytes": 772540,
+          "pngBytes": 73571
+        },
+        {
+          "image": "se-socket/climb-hair-midnight-back-0.png",
+          "json": "se-socket/climb-hair-midnight-back-0.json",
+          "width": 1575,
+          "height": 25,
+          "decodedBytes": 157500,
+          "pngBytes": 19525
+        },
+        {
+          "image": "s-fold-d/climb-hair-midnight-back-0.png",
+          "json": "s-fold-d/climb-hair-midnight-back-0.json",
+          "width": 1043,
+          "height": 20,
+          "decodedBytes": 83440,
+          "pngBytes": 7757
+        }
+      ],
+      "decodedBytes": 1013480
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 528,
+      "nonemptyFrames": 528,
+      "untrimmedPixels": 34603008,
+      "trimmedPixels": 1103494,
+      "pages": [
+        {
+          "image": "ne-sw/climb-hair-midnight-front-0.png",
+          "json": "ne-sw/climb-hair-midnight-front-0.json",
+          "width": 2046,
+          "height": 235,
+          "decodedBytes": 1923240,
+          "pngBytes": 238884
+        },
+        {
+          "image": "w/climb-hair-midnight-front-0.png",
+          "json": "w/climb-hair-midnight-front-0.json",
+          "width": 2047,
+          "height": 97,
+          "decodedBytes": 794236,
+          "pngBytes": 89290
+        },
+        {
+          "image": "nw-socket-v2/climb-hair-midnight-front-0.png",
+          "json": "nw-socket-v2/climb-hair-midnight-front-0.json",
+          "width": 2030,
+          "height": 108,
+          "decodedBytes": 876960,
+          "pngBytes": 95103
+        },
+        {
+          "image": "e-recovery/climb-hair-midnight-front-0.png",
+          "json": "e-recovery/climb-hair-midnight-front-0.json",
+          "width": 2005,
+          "height": 98,
+          "decodedBytes": 785960,
+          "pngBytes": 84360
+        },
+        {
+          "image": "se-socket/climb-hair-midnight-front-0.png",
+          "json": "se-socket/climb-hair-midnight-front-0.json",
+          "width": 2014,
+          "height": 99,
+          "decodedBytes": 797544,
+          "pngBytes": 80572
+        },
+        {
+          "image": "n-thigh/climb-hair-midnight-front-0.png",
+          "json": "n-thigh/climb-hair-midnight-front-0.json",
+          "width": 2021,
+          "height": 109,
+          "decodedBytes": 881156,
+          "pngBytes": 58669
+        },
+        {
+          "image": "s-fold-d/climb-hair-midnight-front-0.png",
+          "json": "s-fold-d/climb-hair-midnight-front-0.json",
+          "width": 2030,
+          "height": 102,
+          "decodedBytes": 828240,
+          "pngBytes": 66939
+        }
+      ],
+      "decodedBytes": 6887336
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 528,
+      "nonemptyFrames": 528,
+      "untrimmedPixels": 34603008,
+      "trimmedPixels": 1928718,
+      "pages": [
+        {
+          "image": "ne-sw/climb-weapon-staff-back-0.png",
+          "json": "ne-sw/climb-weapon-staff-back-0.json",
+          "width": 2016,
+          "height": 295,
+          "decodedBytes": 2378880,
+          "pngBytes": 244905
+        },
+        {
+          "image": "w/climb-weapon-staff-back-0.png",
+          "json": "w/climb-weapon-staff-back-0.json",
+          "width": 2005,
+          "height": 185,
+          "decodedBytes": 1483700,
+          "pngBytes": 102322
+        },
+        {
+          "image": "nw-socket-v2/climb-weapon-staff-back-0.png",
+          "json": "nw-socket-v2/climb-weapon-staff-back-0.json",
+          "width": 2004,
+          "height": 184,
+          "decodedBytes": 1474944,
+          "pngBytes": 104536
+        },
+        {
+          "image": "e-recovery/climb-weapon-staff-back-0.png",
+          "json": "e-recovery/climb-weapon-staff-back-0.json",
+          "width": 2030,
+          "height": 195,
+          "decodedBytes": 1583400,
+          "pngBytes": 107346
+        },
+        {
+          "image": "se-socket/climb-weapon-staff-back-0.png",
+          "json": "se-socket/climb-weapon-staff-back-0.json",
+          "width": 2018,
+          "height": 189,
+          "decodedBytes": 1525608,
+          "pngBytes": 93149
+        },
+        {
+          "image": "n-thigh/climb-weapon-staff-back-0.png",
+          "json": "n-thigh/climb-weapon-staff-back-0.json",
+          "width": 2045,
+          "height": 201,
+          "decodedBytes": 1644180,
+          "pngBytes": 91895
+        },
+        {
+          "image": "s-fold-d/climb-weapon-staff-back-0.png",
+          "json": "s-fold-d/climb-weapon-staff-back-0.json",
+          "width": 2033,
+          "height": 193,
+          "decodedBytes": 1569476,
+          "pngBytes": 85396
+        }
+      ],
+      "decodedBytes": 11660188
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 528,
+      "nonemptyFrames": 528,
+      "untrimmedPixels": 34603008,
+      "trimmedPixels": 567066,
+      "pages": [
+        {
+          "image": "ne-sw/climb-hand-front-0.png",
+          "json": "ne-sw/climb-hand-front-0.json",
+          "width": 2024,
+          "height": 128,
+          "decodedBytes": 1036288,
+          "pngBytes": 56488
+        },
+        {
+          "image": "w/climb-hand-front-0.png",
+          "json": "w/climb-hand-front-0.json",
+          "width": 991,
+          "height": 73,
+          "decodedBytes": 289372,
+          "pngBytes": 19362
+        },
+        {
+          "image": "nw-socket-v2/climb-hand-front-0.png",
+          "json": "nw-socket-v2/climb-hand-front-0.json",
+          "width": 2037,
+          "height": 105,
+          "decodedBytes": 855540,
+          "pngBytes": 48320
+        },
+        {
+          "image": "e-recovery/climb-hand-front-0.png",
+          "json": "e-recovery/climb-hand-front-0.json",
+          "width": 996,
+          "height": 64,
+          "decodedBytes": 254976,
+          "pngBytes": 19060
+        },
+        {
+          "image": "se-socket/climb-hand-front-0.png",
+          "json": "se-socket/climb-hand-front-0.json",
+          "width": 2018,
+          "height": 100,
+          "decodedBytes": 807200,
+          "pngBytes": 31407
+        },
+        {
+          "image": "n-thigh/climb-hand-front-0.png",
+          "json": "n-thigh/climb-hand-front-0.json",
+          "width": 2019,
+          "height": 110,
+          "decodedBytes": 888360,
+          "pngBytes": 46446
+        },
+        {
+          "image": "s-fold-d/climb-hand-front-0.png",
+          "json": "s-fold-d/climb-hand-front-0.json",
+          "width": 2011,
+          "height": 76,
+          "decodedBytes": 611344,
+          "pngBytes": 32117
+        }
+      ],
+      "decodedBytes": 4743080
+    }
+  ],
+  "decodedBytes": 70206148,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}

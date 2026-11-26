@@ -5,12 +5,12 @@ import {createHash} from 'node:crypto';
 import {animationLayers} from '../src/walkLayers.ts';
 const root=new URL('../public/assets/iso-v050-mobility/climb/',import.meta.url);
 const json=async file=>JSON.parse(await readFile(new URL(file,root),'utf8'));
-test('normal index registers only the reviewed NE/SW climb with all four phase ranges',async()=>{
+test('normal index registers the reviewed eight-direction climb with all four phase ranges',async()=>{
  const index=JSON.parse(await readFile(new URL('../public/assets/iso-v030-base/index.json',import.meta.url),'utf8'));
  assert.equal(index.clips.filter(clip=>clip.action==='climb').length,1);
  assert.equal(index.clips.find(clip=>clip.action==='climb').root,'/assets/iso-v050-mobility/climb');
  const descriptor=await json('atlas-budget.json');
- assert.deepEqual(descriptor.directions,['NE','SW']);assert.deepEqual(descriptor.groundPivot,[128,204.8]);
+ assert.deepEqual(descriptor.directions,['S','SW','W','NW','N','NE','E','SE']);assert.deepEqual(descriptor.groundPivot,[128,204.8]);
  assert.deepEqual(descriptor.sourceSize,[256,256]);assert.equal(descriptor.renderScale,1);
  assert.equal(descriptor.clip.frameCount,66);assert.equal(descriptor.handMode,'natural');
  const expected={grip:[0,24,1500],descend:[25,49,1500],crestUp:[50,57,500],crestDown:[58,65,500]};
@@ -30,5 +30,5 @@ test('normal index registers only the reviewed NE/SW climb with all four phase r
  const freeze=JSON.parse(await readFile(new URL('../../art/tools/candidates/eight-mobility/freeze-climb.json',import.meta.url),'utf8'));
  assert.deepEqual(hashes,freeze.files);
  for(const [file,hash] of Object.entries(hashes)) assert.equal(createHash('sha256').update(await readFile(new URL(file,root))).digest('hex'),hash);
- assert.equal(hashes['atlas-budget.json'],'68e0b6456900146eaf5bdb8f6fde0081225aff63262e80116d8461ce99addcff');
+ assert.equal(hashes['ne-sw/climb-weapon-staff-back-0.json'],'683ef93f0fecb1c3963ba7c54fb69ec92bd5cdd43c2d9f3f3f367da3479b536e');
 });
