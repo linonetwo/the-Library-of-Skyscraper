@@ -41,7 +41,7 @@ export function GraphFragmentLibrary({ graph, selection, onApply, onSelect }: {
   };
   return <details ref={library} className="graph-fragments" data-fragment-state={JSON.stringify({ saved, selected, bindings, targetStateId: target, ready: Boolean(ready), error })}>
     <summary>个人决策片段 · {saved.length}</summary>
-    <section aria-label="保存决策片段">
+    {capture && !selected && <section aria-label="保存决策片段">
       <p>选择决策节点，保存其子树及依赖的模块实例。</p>
       {capture?.fragment && <p>根节点 {capture.fragment.rootId} · {capture.fragment.nodes.length} 个节点 · {capture.fragment.modules.length} 个实例；共享引用保留。</p>}
       {capture?.fragment && <details><summary>查看保存范围</summary><p>节点：{capture.fragment.nodes.map(node => node.id).join("、")}</p><p>依赖实例：{capture.fragment.modules.map(module => module.moduleId).join("、") || "无"}</p></details>}
@@ -50,7 +50,7 @@ export function GraphFragmentLibrary({ graph, selection, onApply, onSelect }: {
       <button disabled={!name.trim() || !capture?.fragment} onClick={() => {
         persist([...saved, { id: crypto.randomUUID(), name: name.trim(), fragment: capture!.fragment! }]); setName("");
       }}>保存所选子树</button>
-    </section>
+    </section>}
     <ul>{saved.map(item => <li key={item.id}><strong>{item.name}</strong><span>{item.fragment.nodes.length} 节点 / {item.fragment.modules.length} 实例</span>
       <button data-fragment-id={item.id} onClick={() => preview(item)} aria-label={`预览插入 ${item.name}`}>预览插入</button>
       <button onClick={() => { persist(saved.filter(fragment => fragment.id !== item.id)); if (selected?.id === item.id) setSelected(null); }} aria-label={`删除片段 ${item.name}`}>删除收藏</button>
@@ -62,7 +62,7 @@ export function GraphFragmentLibrary({ graph, selection, onApply, onSelect }: {
       <p>当前入口：{graph.states.find(state => state.id === target)?.treeId} → 片段根：{selected.fragment.rootId}（插入时分配新 ID）</p>
       {refs.map(ref => ref.type === "room" ? <GraphRoomSelect key={`room:${ref.roomId}`} label={`原房间 ${ref.roomId} → 目标房间`} value={bindings.rooms[ref.roomId] ?? ""} onChange={room => setBindings({ ...bindings, rooms: { ...bindings.rooms, [ref.roomId]: room } })} /> : <label key={`role:${ref.role}`}>原岗位 {roleNames[ref.role]} · {ref.role} → 目标岗位<select aria-label={`岗位绑定 ${ref.role}`} value={bindings.ownRoles[ref.role] ?? ""} onChange={event => setBindings({ ...bindings, ownRoles: { ...bindings.ownRoles, [ref.role]: event.target.value as typeof ref.role } })}><option value="">选择岗位</option>{Object.entries(roleNames).map(([role, label]) => <option key={role} value={role}>{label} · {role}</option>)}</select></label>)}
       <p>房间绑定：{Object.entries(bindings.rooms).map(([from, to]) => `${from} → ${to}`).join("；") || "选择对应房间"}；岗位绑定：{Object.entries(bindings.ownRoles).map(([from, to]) => `${from} → ${to}`).join("；") || "按片段引用选择"}</p>
-      <button disabled={!ready} onClick={insert}>确认插入并连接</button><button onClick={() => { setSelected(null); library.current?.querySelector<HTMLButtonElement>(`[data-fragment-id="${selected.id}"]`)?.focus(); }}>返回片段列表</button>
+      <div className="graph-fragment-actions"><button disabled={!ready} onClick={insert}>确认插入并连接</button><button onClick={() => { setSelected(null); library.current?.querySelector<HTMLButtonElement>(`[data-fragment-id="${selected.id}"]`)?.focus(); }}>返回片段列表</button></div>
     </section>}
     {error && <p role="alert">{error}</p>}
   </details>;
