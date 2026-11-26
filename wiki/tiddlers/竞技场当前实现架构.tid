@@ -2,9 +2,9 @@ title: 竞技场当前实现架构
 tags: 竞技场开发计划 竞技场目录：架构
 type: text/vnd.tiddlywiki
 created: 20261104212551000
-modified: 20261125160904000
+modified: 20261126202025000
 
-更新于2026-11-25。已发布版本为[[v0.4.1|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.4.1]]；稳定试玩5173与主试玩5175现部署0644d5b的v0.4.1，首页「编辑 AI 规则」直接进入唯一工作台，已有工程定位对应页签；新用户仅建立暂停训练准备局，不自动载入模板或发布。独立补丁包5193／8798已完成有界smoke与主代理实玩，于16:03:44 UTC发布；原Rust与依赖逐字节复用v0.4.0。5192／8797运行已发布的原归档解压包。图模型、状态机／决策树编辑、中文目标补丁、同帧V8对照、源码与回放定位和MCP均已合入；sim6控制来源与基地治疗已合入并部署8790，UI职责拆分已部署5175；八状态图的转移排版也已合入，完整源码与配方固定48fdf11。实际包5192／8797已完成完整回归、图编辑与自然20／60轨迹，单机胜败、联机、真实重启恢复和独立Astra技术／视觉接受齐备，v0.4.0已统一发布；后续机动批次由Astra规划。进度见[[竞技场v0.4.0版本计划]]及[[竞技场开发日志2026-11-25]]。
+更新于2026-11-26。[[v0.6.0已发布|https://github.com/linonetwo/the-Library-of-Skyscraper/releases/tag/v0.6.0]]，固定source＝recipe 545b9acb37b05cc0b8e88f50388420e895c604d7。正式[[5173 AI模块编辑|http://localhost:5173/?view=rules]]／5175同源8790已部署实际包，八类模块、个人决策片段、录制断点与覆盖接入同一RuleGraph／TypeScript／V8。11项固定包实录、390键盘与独立技术／视觉双签完成；405原存档与token映射保留、旧身份认证200。run／jump／climb八向资产与Rust二进制承接v0.5同字节，机动正常时钟及旧sim6录制兼容已实测。详情见[[竞技场v0.6.0版本计划]]与[[竞技场开发日志2026-11-26]]。
 
 !! 数据流与职责
 
@@ -13,8 +13,8 @@ React 界面经 HTTP 提交命令，Rust / Axum 服务执行 Session 权威模�
 * 客户端：App装配全视口游戏舞台；ArenaWorkspace管理角色／房间选择与显式镜头意图；useArenaSession管理网络会话；arenaApi封装传输。GameHUD提供资源、小队与常用操作，角色详情、规则、回放与工坊按需打开。MapCanvas持有Pixi生命周期；mapLayout提供独立地块与走廊，isoGeometry负责2:1投影／逆变换，CameraController处理镜头，mapScene缓存静态地板与道具，WorldEntities按快照更新资源、敌人和建筑，ActorScene复用角色节点。ExpeditionTasks提供任务与目标指令，ExpeditionResult展示结算与重试。
 * 服务端：store 使用赛局目录锁与每局串行锁管理状态；session 管理单局状态；commands 分派玩家命令；travel逐tick推进世界旅行，tasks统一手动任务与运输／撤退，construction处理扣材与现场施工，combat处理位置射程与伤害，scenario处理编目、反扑和胜败；legacy模块保留旧模拟语义；simulation按固定顺序推进tick；replay 重演操作；checkpoint／persistence 保存完整私有赛局，lifecycle 管理定时归档和退出。
 * 脚本：Monaco／useScriptWorkbench 编辑多文件项目与发布；script-toolchain 编译带版本的 JS；script_worker 复用两个常驻 V8 进程；script_driver 从同 tick 快照取得决策；scripting 按角色选择意图并复用动作结算。实时推进与 HTTP 单步共用异步 driver。script_versions管理每玩家的不可变源码包目录，script_version_routes提供历史读取与恢复。
-* 技术美术：proxy-imagegen独立方向源 → 分肢／衣发／武器attachment与关节注册 → 统一pose离线烘焙 → 共享坐标的分层纹理图集 → 纸娃娃Sprite合成。运行时沿用图集。八向idle／walk、carry／unload／collect／build／catalog及attack／hit／down已接入实际场景，衣装／头发／法杖独立组合；动作、方向、帧号、装备层和world stride为共同索引。单一加载器先呈现idle／walk，再按实际动作准备完整模块，暂停到帧仍能更新。奔跑、跳跃和攀爬的整套外观适配归v0.5候选。
-* 规则创作：BehaviorWorkbench共用一个RuleDraft／RuleSourceProject，五卡、图或手写TS分别编辑同一工程。规则图schemaVersion2以稳定对象ID标识岗位、状态、转移、树节点与五模块引用；图补丁改变模型，生成原TS工程。GraphEditor提供对象树、DAG画布及参数，Monaco负责源码；两者按文件／行／对象ID互相定位。模型诊断来自同一图层，编辑历史与发布回滚各有明确职责。
+* 技术美术：proxy-imagegen独立方向源 → 分肢／衣发／武器attachment与关节注册 → 统一pose离线烘焙 → 共享坐标的分层纹理图集 → 纸娃娃Sprite合成。运行时沿用图集。八向idle／walk、carry／unload／collect／build／catalog及attack／hit／down已接入实际场景，衣装／头发／法杖独立组合；动作、方向、帧号、装备层和world stride为共同索引。单一加载器先呈现idle／walk，再按实际动作准备完整模块，暂停到帧仍能更新。run／jump／climb八向与衣发装备矩阵已于v0.5交付，v0.6按字节继承其原验收范围。
+* 规则创作：BehaviorWorkbench共用一个RuleDraft／RuleSourceProject，八类模块、图或手写TS分别编辑同一工程。规则图schemaVersion2以稳定对象ID标识岗位、状态、转移、树节点与typed模块实例引用；图补丁改变模型，生成原TS工程。GraphEditor提供对象树、DAG画布及参数，Monaco负责源码；两者按文件／行／对象ID互相定位。模型诊断来自同一图层，编辑历史与发布回滚各有明确职责。
 * 工具：MCP 的 Session、Simulation、Script、Replay、Page、Input 分组复用运行中的游戏；图与目标操作点击可见控件，Page.getState读取同一界面的graph／selection／diagnostics／trace及来源。浏览器用例覆盖单机与双客户端。
 
 !! 已采用的设计模式
@@ -65,3 +65,8 @@ Actor.appearance保存衣装、发型和武器，equip进入权威快照与回�
 !! 组织原则
 
 主代理负责领域边界、公共类型、集成与运行效果。Astra负责方案、美术和PR评审；Sol／Terra负责具体实现、修复、CI和按评审结论合并。优先复用同模型同职责代理，模块按职责拆分，共用命令与快照，业务规则集中在核心模拟，制作细节记录到按日工作日志。
+
+
+!! v0.6编排与录制调试
+
+模块目录预览岗位／参数后以typed GraphPatch写同一草稿；独立实例与共享引用有稳定ID。具名本地子树保存依赖，跨草稿重绑后插入并重映ID，一次撤销恢复。RecordingDebugger读取owner原录制，按sourceHash／actor／operation定位事实、归档源码与原回放帧；覆盖按具名操作区间汇总，决策T与结果场景T分别标明。正常运行仍每角色每拍一个权威意图。
