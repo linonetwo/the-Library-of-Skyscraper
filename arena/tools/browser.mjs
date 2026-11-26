@@ -1,3 +1,4 @@
+import {compositionActionSchemas,performCompositionAction,readCompositionState} from './browser-composition.mjs';
 import {fragmentActionSchemas,performFragmentAction,readFragmentState} from './browser-graph-fragments.mjs';
 import { mobilityActionSchemas, performMobilityAction, readMobilityState, readMobilityAuthority } from './browser-mobility.mjs';
 import {graphActionSchemas,performGraphAction,readGraphState} from './browser-rule-graph.mjs';
@@ -15,7 +16,7 @@ export function registerBrowserTools(server) {
   let browser;
   let page;
   const actionSchema = z.discriminatedUnion('type', [
-    ...graphActionSchemas, ...goalActionSchemas, ...fragmentActionSchemas,
+    ...graphActionSchemas, ...goalActionSchemas, ...fragmentActionSchemas, ...compositionActionSchemas,
     ...expeditionActionSchemas,
     ...workshopActionSchemas,
     ...mapActionSchemas, ...mobilityActionSchemas,
@@ -98,11 +99,12 @@ export function registerBrowserTools(server) {
       memory: await active.getByLabel('回放规则记忆').count() ? await active.getByLabel('回放规则记忆').innerText() : null,
       tasks: await active.getByLabel('回放任务队列').getByRole('listitem').allTextContents(),
     } : null;
-    return { url: active.url(), mobility: await readMobilityState(active), mobilityAuthority: await readMobilityAuthority(active), graph: await readGraphState(active), fragments: await readFragmentState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
+    return { url: active.url(), mobility: await readMobilityState(active), mobilityAuthority: await readMobilityAuthority(active), graph: await readGraphState(active), fragments: await readFragmentState(active), composition: await readCompositionState(active), goals: await readGoalState(active), behavior: await readBehaviorState(active), expedition: await readExpeditionState(active), maps, workshop: await readWorkshopState(active), replay, text: (await active.locator('body').innerText()).slice(0, 20000), buttons, battlefields, scriptVersions };
   }, true);
   const perform = async ({ action }) => {
     const active = current();
     if (await performGraphAction(active, action)) return { performed: action.type };
+    if (await performCompositionAction(active, action)) return { performed: action.type };
     if (await performFragmentAction(active, action)) return { performed: action.type };
     if (await performGoalAction(active, action)) return { performed: action.type };
     if (await performBehaviorAction(active, action)) return { performed: action.type };

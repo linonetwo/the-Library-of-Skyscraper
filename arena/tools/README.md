@@ -198,3 +198,32 @@ The targeted stdio/UI scenario requires the actual v0.6 candidate UI and server:
 The three new module parameters continue through `setRuleGraphField` with the
 UI's real field labels. Recording-debug controls are added when that UI exists;
 this adapter does not fabricate trace, coverage or next-hit results.
+
+### Module catalog and independent/shared instances
+
+`openRuleModuleCatalog` opens the visible eight-kind catalog.
+`previewRuleModule { kind }` chooses `scout`, `patrol`, `escort`, `gather`,
+`haul`, `build`, `defend` or `retreat`, without changing the graph.
+For a five-card draft, `confirmRuleModuleConversion` explicitly accepts the
+visible conversion preview before module editing; `cancelRuleModulePreview`
+returns to the five cards or current composition without confirming.
+
+Edit actual parameter controls with existing `setRuleGraphField`, using
+`scope: "modulePreview"` for the insertion preview (default remains the selected
+object inspector). Boolean fields use each real checkbox's checked state;
+for new composition modules an empty set of execution roles means nobody.
+`addRulePatrolStop` and `removeRulePatrolStop { index }` operate the visible
+route buttons; indices start at zero. `setRuleModuleTarget { stateId }` picks
+the insertion state, and `confirmRuleModule` clicks its single confirmation.
+
+`previewSharedRuleModule { moduleId }` selects an existing instance in the
+same catalog. Existing graph object selection opens an instance's references;
+`selectRuleModuleCopyReference { nodeId, selected }` checks the explicit rebind
+list and `copyRuleModuleInstance` confirms one independent copy. Original
+`undoRuleGraph` reverses the patch. `Page.getState.composition` reads actual
+catalog, conversion, preview and reference text/fields/options/checked values;
+the graph itself remains `Page.getState.graph` from the original UI state.
+The tool does not construct modules or resolve their runtime targets.
+
+The targeted visible scenario uses `ARENA_COMPOSITION_BROWSER=1` with the
+candidate UI/authority and `node --test arena/tests/composition-controls-browser.test.mjs`.
