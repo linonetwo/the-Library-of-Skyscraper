@@ -1,0 +1,3322 @@
+{
+  "frames": {
+    "climb/outfit-warden-front/NE/04": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 21,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 122,
+        "y": 114,
+        "w": 21,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/45": {
+      "frame": {
+        "x": 32,
+        "y": 2,
+        "w": 21,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 122,
+        "y": 114,
+        "w": 21,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/03": {
+      "frame": {
+        "x": 57,
+        "y": 2,
+        "w": 21,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 115,
+        "w": 21,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/46": {
+      "frame": {
+        "x": 82,
+        "y": 2,
+        "w": 21,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 115,
+        "w": 21,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/05": {
+      "frame": {
+        "x": 107,
+        "y": 2,
+        "w": 22,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 117,
+        "w": 22,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/44": {
+      "frame": {
+        "x": 133,
+        "y": 2,
+        "w": 22,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 117,
+        "w": 22,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/51": {
+      "frame": {
+        "x": 159,
+        "y": 2,
+        "w": 26,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 135,
+        "y": 175,
+        "w": 26,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/64": {
+      "frame": {
+        "x": 189,
+        "y": 2,
+        "w": 26,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 135,
+        "y": 175,
+        "w": 26,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/12": {
+      "frame": {
+        "x": 219,
+        "y": 2,
+        "w": 19,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 126,
+        "y": 145,
+        "w": 19,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/23": {
+      "frame": {
+        "x": 242,
+        "y": 2,
+        "w": 25,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 168,
+        "w": 25,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/24": {
+      "frame": {
+        "x": 271,
+        "y": 2,
+        "w": 26,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 173,
+        "w": 26,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/25": {
+      "frame": {
+        "x": 301,
+        "y": 2,
+        "w": 26,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 173,
+        "w": 26,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/26": {
+      "frame": {
+        "x": 331,
+        "y": 2,
+        "w": 25,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 168,
+        "w": 25,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/37": {
+      "frame": {
+        "x": 360,
+        "y": 2,
+        "w": 19,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 126,
+        "y": 145,
+        "w": 19,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/50": {
+      "frame": {
+        "x": 383,
+        "y": 2,
+        "w": 26,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 173,
+        "w": 26,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/52": {
+      "frame": {
+        "x": 413,
+        "y": 2,
+        "w": 26,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 178,
+        "w": 26,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/53": {
+      "frame": {
+        "x": 443,
+        "y": 2,
+        "w": 26,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 125,
+        "y": 180,
+        "w": 26,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/54": {
+      "frame": {
+        "x": 473,
+        "y": 2,
+        "w": 28,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 122,
+        "y": 164,
+        "w": 28,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/57": {
+      "frame": {
+        "x": 505,
+        "y": 2,
+        "w": 21,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 122,
+        "w": 21,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/58": {
+      "frame": {
+        "x": 530,
+        "y": 2,
+        "w": 21,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 122,
+        "w": 21,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/61": {
+      "frame": {
+        "x": 555,
+        "y": 2,
+        "w": 28,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 122,
+        "y": 164,
+        "w": 28,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/63": {
+      "frame": {
+        "x": 587,
+        "y": 2,
+        "w": 26,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 178,
+        "w": 26,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/65": {
+      "frame": {
+        "x": 617,
+        "y": 2,
+        "w": 26,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 173,
+        "w": 26,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/02": {
+      "frame": {
+        "x": 647,
+        "y": 2,
+        "w": 22,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 121,
+        "w": 22,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/06": {
+      "frame": {
+        "x": 673,
+        "y": 2,
+        "w": 22,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 121,
+        "w": 22,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/43": {
+      "frame": {
+        "x": 699,
+        "y": 2,
+        "w": 22,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 121,
+        "w": 22,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/47": {
+      "frame": {
+        "x": 725,
+        "y": 2,
+        "w": 22,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 121,
+        "w": 22,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/22": {
+      "frame": {
+        "x": 751,
+        "y": 2,
+        "w": 25,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 137,
+        "y": 165,
+        "w": 25,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/27": {
+      "frame": {
+        "x": 780,
+        "y": 2,
+        "w": 25,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 137,
+        "y": 165,
+        "w": 25,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/56": {
+      "frame": {
+        "x": 809,
+        "y": 2,
+        "w": 22,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 127,
+        "w": 22,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/59": {
+      "frame": {
+        "x": 835,
+        "y": 2,
+        "w": 22,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 127,
+        "w": 22,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/11": {
+      "frame": {
+        "x": 861,
+        "y": 2,
+        "w": 26,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 128,
+        "y": 144,
+        "w": 26,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/38": {
+      "frame": {
+        "x": 891,
+        "y": 2,
+        "w": 26,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 128,
+        "y": 144,
+        "w": 26,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/03": {
+      "frame": {
+        "x": 921,
+        "y": 2,
+        "w": 26,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 26,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/05": {
+      "frame": {
+        "x": 951,
+        "y": 2,
+        "w": 27,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 27,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/44": {
+      "frame": {
+        "x": 982,
+        "y": 2,
+        "w": 27,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 27,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/46": {
+      "frame": {
+        "x": 1013,
+        "y": 2,
+        "w": 26,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 26,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/07": {
+      "frame": {
+        "x": 1043,
+        "y": 2,
+        "w": 21,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 124,
+        "w": 21,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/21": {
+      "frame": {
+        "x": 1068,
+        "y": 2,
+        "w": 25,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 135,
+        "y": 162,
+        "w": 25,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/28": {
+      "frame": {
+        "x": 1097,
+        "y": 2,
+        "w": 25,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 135,
+        "y": 162,
+        "w": 25,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/42": {
+      "frame": {
+        "x": 1126,
+        "y": 2,
+        "w": 21,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 124,
+        "w": 21,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/04": {
+      "frame": {
+        "x": 1151,
+        "y": 2,
+        "w": 27,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 27,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/45": {
+      "frame": {
+        "x": 1182,
+        "y": 2,
+        "w": 27,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 27,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/13": {
+      "frame": {
+        "x": 1213,
+        "y": 2,
+        "w": 26,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 147,
+        "w": 26,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/36": {
+      "frame": {
+        "x": 1243,
+        "y": 2,
+        "w": 26,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 147,
+        "w": 26,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/57": {
+      "frame": {
+        "x": 1273,
+        "y": 2,
+        "w": 26,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 125,
+        "w": 26,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/58": {
+      "frame": {
+        "x": 1303,
+        "y": 2,
+        "w": 26,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 125,
+        "w": 26,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/01": {
+      "frame": {
+        "x": 1333,
+        "y": 2,
+        "w": 20,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 126,
+        "w": 20,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/48": {
+      "frame": {
+        "x": 1357,
+        "y": 2,
+        "w": 20,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 126,
+        "w": 20,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/00": {
+      "frame": {
+        "x": 1381,
+        "y": 2,
+        "w": 19,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 127,
+        "w": 19,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/08": {
+      "frame": {
+        "x": 1404,
+        "y": 2,
+        "w": 19,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 127,
+        "w": 19,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/20": {
+      "frame": {
+        "x": 1427,
+        "y": 2,
+        "w": 24,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 134,
+        "y": 160,
+        "w": 24,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/29": {
+      "frame": {
+        "x": 1455,
+        "y": 2,
+        "w": 24,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 134,
+        "y": 160,
+        "w": 24,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/41": {
+      "frame": {
+        "x": 1483,
+        "y": 2,
+        "w": 19,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 127,
+        "w": 19,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/49": {
+      "frame": {
+        "x": 1506,
+        "y": 2,
+        "w": 19,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 127,
+        "w": 19,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/62": {
+      "frame": {
+        "x": 1529,
+        "y": 2,
+        "w": 33,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 179,
+        "w": 33,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/02": {
+      "frame": {
+        "x": 1566,
+        "y": 2,
+        "w": 27,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 27,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/06": {
+      "frame": {
+        "x": 1597,
+        "y": 2,
+        "w": 27,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 27,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/43": {
+      "frame": {
+        "x": 1628,
+        "y": 2,
+        "w": 27,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 27,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/47": {
+      "frame": {
+        "x": 1659,
+        "y": 2,
+        "w": 27,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 133,
+        "w": 27,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/55": {
+      "frame": {
+        "x": 1690,
+        "y": 2,
+        "w": 30,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 129,
+        "y": 133,
+        "w": 30,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/60": {
+      "frame": {
+        "x": 1724,
+        "y": 2,
+        "w": 30,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 129,
+        "y": 133,
+        "w": 30,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/18": {
+      "frame": {
+        "x": 1758,
+        "y": 2,
+        "w": 31,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 125,
+        "y": 151,
+        "w": 31,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/19": {
+      "frame": {
+        "x": 1793,
+        "y": 2,
+        "w": 32,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 123,
+        "y": 156,
+        "w": 32,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/20": {
+      "frame": {
+        "x": 1829,
+        "y": 2,
+        "w": 33,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 161,
+        "w": 33,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/29": {
+      "frame": {
+        "x": 1866,
+        "y": 2,
+        "w": 33,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 161,
+        "w": 33,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/30": {
+      "frame": {
+        "x": 1903,
+        "y": 2,
+        "w": 32,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 123,
+        "y": 156,
+        "w": 32,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/31": {
+      "frame": {
+        "x": 1939,
+        "y": 2,
+        "w": 31,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 125,
+        "y": 151,
+        "w": 31,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/52": {
+      "frame": {
+        "x": 1974,
+        "y": 2,
+        "w": 36,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 124,
+        "y": 172,
+        "w": 36,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/53": {
+      "frame": {
+        "x": 2,
+        "y": 49,
+        "w": 36,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 129,
+        "y": 170,
+        "w": 36,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/62": {
+      "frame": {
+        "x": 42,
+        "y": 49,
+        "w": 36,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 129,
+        "y": 170,
+        "w": 36,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/63": {
+      "frame": {
+        "x": 82,
+        "y": 49,
+        "w": 36,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 124,
+        "y": 172,
+        "w": 36,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/64": {
+      "frame": {
+        "x": 122,
+        "y": 49,
+        "w": 36,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 174,
+        "w": 36,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/09": {
+      "frame": {
+        "x": 162,
+        "y": 49,
+        "w": 18,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 130,
+        "w": 18,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/40": {
+      "frame": {
+        "x": 184,
+        "y": 49,
+        "w": 18,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 130,
+        "w": 18,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/17": {
+      "frame": {
+        "x": 206,
+        "y": 49,
+        "w": 29,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 147,
+        "w": 29,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/21": {
+      "frame": {
+        "x": 239,
+        "y": 49,
+        "w": 33,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 166,
+        "w": 33,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/28": {
+      "frame": {
+        "x": 276,
+        "y": 49,
+        "w": 33,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 166,
+        "w": 33,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/32": {
+      "frame": {
+        "x": 313,
+        "y": 49,
+        "w": 29,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 147,
+        "w": 29,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/19": {
+      "frame": {
+        "x": 346,
+        "y": 49,
+        "w": 24,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 158,
+        "w": 24,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/30": {
+      "frame": {
+        "x": 374,
+        "y": 49,
+        "w": 24,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 158,
+        "w": 24,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/22": {
+      "frame": {
+        "x": 402,
+        "y": 49,
+        "w": 33,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 118,
+        "y": 172,
+        "w": 33,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/27": {
+      "frame": {
+        "x": 439,
+        "y": 49,
+        "w": 33,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 118,
+        "y": 172,
+        "w": 33,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/54": {
+      "frame": {
+        "x": 476,
+        "y": 49,
+        "w": 31,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 166,
+        "w": 31,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/61": {
+      "frame": {
+        "x": 511,
+        "y": 49,
+        "w": 31,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 166,
+        "w": 31,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/00": {
+      "frame": {
+        "x": 546,
+        "y": 49,
+        "w": 28,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 122,
+        "w": 28,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/08": {
+      "frame": {
+        "x": 578,
+        "y": 49,
+        "w": 28,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 122,
+        "w": 28,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/16": {
+      "frame": {
+        "x": 610,
+        "y": 49,
+        "w": 27,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 129,
+        "y": 144,
+        "w": 27,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/23": {
+      "frame": {
+        "x": 641,
+        "y": 49,
+        "w": 34,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 116,
+        "y": 178,
+        "w": 34,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/26": {
+      "frame": {
+        "x": 679,
+        "y": 49,
+        "w": 34,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 116,
+        "y": 178,
+        "w": 34,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/33": {
+      "frame": {
+        "x": 717,
+        "y": 49,
+        "w": 27,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 129,
+        "y": 144,
+        "w": 27,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/41": {
+      "frame": {
+        "x": 748,
+        "y": 49,
+        "w": 28,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 122,
+        "w": 28,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/49": {
+      "frame": {
+        "x": 780,
+        "y": 49,
+        "w": 28,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 122,
+        "w": 28,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/56": {
+      "frame": {
+        "x": 812,
+        "y": 49,
+        "w": 28,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 133,
+        "w": 28,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/59": {
+      "frame": {
+        "x": 844,
+        "y": 49,
+        "w": 28,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 133,
+        "w": 28,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/14": {
+      "frame": {
+        "x": 876,
+        "y": 49,
+        "w": 24,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 124,
+        "y": 150,
+        "w": 24,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/18": {
+      "frame": {
+        "x": 904,
+        "y": 49,
+        "w": 23,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 131,
+        "y": 156,
+        "w": 23,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/31": {
+      "frame": {
+        "x": 931,
+        "y": 49,
+        "w": 23,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 131,
+        "y": 156,
+        "w": 23,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/35": {
+      "frame": {
+        "x": 958,
+        "y": 49,
+        "w": 24,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 124,
+        "y": 150,
+        "w": 24,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/07": {
+      "frame": {
+        "x": 986,
+        "y": 49,
+        "w": 28,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 123,
+        "w": 28,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/42": {
+      "frame": {
+        "x": 1018,
+        "y": 49,
+        "w": 28,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 123,
+        "w": 28,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/10": {
+      "frame": {
+        "x": 1050,
+        "y": 49,
+        "w": 34,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 125,
+        "y": 144,
+        "w": 34,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/39": {
+      "frame": {
+        "x": 1088,
+        "y": 49,
+        "w": 34,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 125,
+        "y": 144,
+        "w": 34,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/55": {
+      "frame": {
+        "x": 1126,
+        "y": 49,
+        "w": 21,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 144,
+        "w": 21,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/60": {
+      "frame": {
+        "x": 1151,
+        "y": 49,
+        "w": 21,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 144,
+        "w": 21,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/09": {
+      "frame": {
+        "x": 1176,
+        "y": 49,
+        "w": 30,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 141,
+        "y": 127,
+        "w": 30,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/24": {
+      "frame": {
+        "x": 1210,
+        "y": 49,
+        "w": 35,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 114,
+        "y": 184,
+        "w": 35,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/25": {
+      "frame": {
+        "x": 1249,
+        "y": 49,
+        "w": 35,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 114,
+        "y": 184,
+        "w": 35,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/40": {
+      "frame": {
+        "x": 1288,
+        "y": 49,
+        "w": 30,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 141,
+        "y": 127,
+        "w": 30,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/50": {
+      "frame": {
+        "x": 1322,
+        "y": 49,
+        "w": 33,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 115,
+        "y": 189,
+        "w": 33,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/51": {
+      "frame": {
+        "x": 1359,
+        "y": 49,
+        "w": 33,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 187,
+        "w": 33,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/65": {
+      "frame": {
+        "x": 1396,
+        "y": 49,
+        "w": 33,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 115,
+        "y": 189,
+        "w": 33,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/17": {
+      "frame": {
+        "x": 1433,
+        "y": 49,
+        "w": 22,
+        "h": 22
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 154,
+        "w": 22,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/32": {
+      "frame": {
+        "x": 1459,
+        "y": 49,
+        "w": 22,
+        "h": 22
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 154,
+        "w": 22,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/15": {
+      "frame": {
+        "x": 1485,
+        "y": 49,
+        "w": 21,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 128,
+        "y": 151,
+        "w": 21,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/34": {
+      "frame": {
+        "x": 1510,
+        "y": 49,
+        "w": 21,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 128,
+        "y": 151,
+        "w": 21,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/15": {
+      "frame": {
+        "x": 1535,
+        "y": 49,
+        "w": 25,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 145,
+        "w": 25,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/34": {
+      "frame": {
+        "x": 1564,
+        "y": 49,
+        "w": 25,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 132,
+        "y": 145,
+        "w": 25,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/16": {
+      "frame": {
+        "x": 1593,
+        "y": 49,
+        "w": 20,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 152,
+        "w": 20,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/NE/33": {
+      "frame": {
+        "x": 1617,
+        "y": 49,
+        "w": 20,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 152,
+        "w": 20,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/01": {
+      "frame": {
+        "x": 1641,
+        "y": 49,
+        "w": 28,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 128,
+        "w": 28,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/10": {
+      "frame": {
+        "x": 1673,
+        "y": 49,
+        "w": 32,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 133,
+        "w": 32,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/39": {
+      "frame": {
+        "x": 1709,
+        "y": 49,
+        "w": 32,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 133,
+        "w": 32,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/48": {
+      "frame": {
+        "x": 1745,
+        "y": 49,
+        "w": 28,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 128,
+        "w": 28,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/12": {
+      "frame": {
+        "x": 1777,
+        "y": 49,
+        "w": 35,
+        "h": 18
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 135,
+        "y": 143,
+        "w": 35,
+        "h": 18
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/14": {
+      "frame": {
+        "x": 1816,
+        "y": 49,
+        "w": 27,
+        "h": 18
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 133,
+        "y": 146,
+        "w": 27,
+        "h": 18
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/35": {
+      "frame": {
+        "x": 1847,
+        "y": 49,
+        "w": 27,
+        "h": 18
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 133,
+        "y": 146,
+        "w": 27,
+        "h": 18
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/37": {
+      "frame": {
+        "x": 1878,
+        "y": 49,
+        "w": 35,
+        "h": 18
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 135,
+        "y": 143,
+        "w": 35,
+        "h": 18
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/11": {
+      "frame": {
+        "x": 1917,
+        "y": 49,
+        "w": 35,
+        "h": 17
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 137,
+        "y": 140,
+        "w": 35,
+        "h": 17
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/13": {
+      "frame": {
+        "x": 1956,
+        "y": 49,
+        "w": 30,
+        "h": 17
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 134,
+        "y": 146,
+        "w": 30,
+        "h": 17
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/36": {
+      "frame": {
+        "x": 1990,
+        "y": 49,
+        "w": 30,
+        "h": 17
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 134,
+        "y": 146,
+        "w": 30,
+        "h": 17
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/outfit-warden-front/SW/38": {
+      "frame": {
+        "x": 2,
+        "y": 81,
+        "w": 35,
+        "h": 17
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 137,
+        "y": 140,
+        "w": 35,
+        "h": 17
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    }
+  },
+  "animations": {
+    "climb/outfit-warden-front/NE": [
+      "climb/outfit-warden-front/NE/00",
+      "climb/outfit-warden-front/NE/01",
+      "climb/outfit-warden-front/NE/02",
+      "climb/outfit-warden-front/NE/03",
+      "climb/outfit-warden-front/NE/04",
+      "climb/outfit-warden-front/NE/05",
+      "climb/outfit-warden-front/NE/06",
+      "climb/outfit-warden-front/NE/07",
+      "climb/outfit-warden-front/NE/08",
+      "climb/outfit-warden-front/NE/09",
+      "climb/outfit-warden-front/NE/10",
+      "climb/outfit-warden-front/NE/11",
+      "climb/outfit-warden-front/NE/12",
+      "climb/outfit-warden-front/NE/13",
+      "climb/outfit-warden-front/NE/14",
+      "climb/outfit-warden-front/NE/15",
+      "climb/outfit-warden-front/NE/16",
+      "climb/outfit-warden-front/NE/17",
+      "climb/outfit-warden-front/NE/18",
+      "climb/outfit-warden-front/NE/19",
+      "climb/outfit-warden-front/NE/20",
+      "climb/outfit-warden-front/NE/21",
+      "climb/outfit-warden-front/NE/22",
+      "climb/outfit-warden-front/NE/23",
+      "climb/outfit-warden-front/NE/24",
+      "climb/outfit-warden-front/NE/25",
+      "climb/outfit-warden-front/NE/26",
+      "climb/outfit-warden-front/NE/27",
+      "climb/outfit-warden-front/NE/28",
+      "climb/outfit-warden-front/NE/29",
+      "climb/outfit-warden-front/NE/30",
+      "climb/outfit-warden-front/NE/31",
+      "climb/outfit-warden-front/NE/32",
+      "climb/outfit-warden-front/NE/33",
+      "climb/outfit-warden-front/NE/34",
+      "climb/outfit-warden-front/NE/35",
+      "climb/outfit-warden-front/NE/36",
+      "climb/outfit-warden-front/NE/37",
+      "climb/outfit-warden-front/NE/38",
+      "climb/outfit-warden-front/NE/39",
+      "climb/outfit-warden-front/NE/40",
+      "climb/outfit-warden-front/NE/41",
+      "climb/outfit-warden-front/NE/42",
+      "climb/outfit-warden-front/NE/43",
+      "climb/outfit-warden-front/NE/44",
+      "climb/outfit-warden-front/NE/45",
+      "climb/outfit-warden-front/NE/46",
+      "climb/outfit-warden-front/NE/47",
+      "climb/outfit-warden-front/NE/48",
+      "climb/outfit-warden-front/NE/49",
+      "climb/outfit-warden-front/NE/50",
+      "climb/outfit-warden-front/NE/51",
+      "climb/outfit-warden-front/NE/52",
+      "climb/outfit-warden-front/NE/53",
+      "climb/outfit-warden-front/NE/54",
+      "climb/outfit-warden-front/NE/55",
+      "climb/outfit-warden-front/NE/56",
+      "climb/outfit-warden-front/NE/57",
+      "climb/outfit-warden-front/NE/58",
+      "climb/outfit-warden-front/NE/59",
+      "climb/outfit-warden-front/NE/60",
+      "climb/outfit-warden-front/NE/61",
+      "climb/outfit-warden-front/NE/62",
+      "climb/outfit-warden-front/NE/63",
+      "climb/outfit-warden-front/NE/64",
+      "climb/outfit-warden-front/NE/65"
+    ],
+    "climb/outfit-warden-front/SW": [
+      "climb/outfit-warden-front/SW/00",
+      "climb/outfit-warden-front/SW/01",
+      "climb/outfit-warden-front/SW/02",
+      "climb/outfit-warden-front/SW/03",
+      "climb/outfit-warden-front/SW/04",
+      "climb/outfit-warden-front/SW/05",
+      "climb/outfit-warden-front/SW/06",
+      "climb/outfit-warden-front/SW/07",
+      "climb/outfit-warden-front/SW/08",
+      "climb/outfit-warden-front/SW/09",
+      "climb/outfit-warden-front/SW/10",
+      "climb/outfit-warden-front/SW/11",
+      "climb/outfit-warden-front/SW/12",
+      "climb/outfit-warden-front/SW/13",
+      "climb/outfit-warden-front/SW/14",
+      "climb/outfit-warden-front/SW/15",
+      "climb/outfit-warden-front/SW/16",
+      "climb/outfit-warden-front/SW/17",
+      "climb/outfit-warden-front/SW/18",
+      "climb/outfit-warden-front/SW/19",
+      "climb/outfit-warden-front/SW/20",
+      "climb/outfit-warden-front/SW/21",
+      "climb/outfit-warden-front/SW/22",
+      "climb/outfit-warden-front/SW/23",
+      "climb/outfit-warden-front/SW/24",
+      "climb/outfit-warden-front/SW/25",
+      "climb/outfit-warden-front/SW/26",
+      "climb/outfit-warden-front/SW/27",
+      "climb/outfit-warden-front/SW/28",
+      "climb/outfit-warden-front/SW/29",
+      "climb/outfit-warden-front/SW/30",
+      "climb/outfit-warden-front/SW/31",
+      "climb/outfit-warden-front/SW/32",
+      "climb/outfit-warden-front/SW/33",
+      "climb/outfit-warden-front/SW/34",
+      "climb/outfit-warden-front/SW/35",
+      "climb/outfit-warden-front/SW/36",
+      "climb/outfit-warden-front/SW/37",
+      "climb/outfit-warden-front/SW/38",
+      "climb/outfit-warden-front/SW/39",
+      "climb/outfit-warden-front/SW/40",
+      "climb/outfit-warden-front/SW/41",
+      "climb/outfit-warden-front/SW/42",
+      "climb/outfit-warden-front/SW/43",
+      "climb/outfit-warden-front/SW/44",
+      "climb/outfit-warden-front/SW/45",
+      "climb/outfit-warden-front/SW/46",
+      "climb/outfit-warden-front/SW/47",
+      "climb/outfit-warden-front/SW/48",
+      "climb/outfit-warden-front/SW/49",
+      "climb/outfit-warden-front/SW/50",
+      "climb/outfit-warden-front/SW/51",
+      "climb/outfit-warden-front/SW/52",
+      "climb/outfit-warden-front/SW/53",
+      "climb/outfit-warden-front/SW/54",
+      "climb/outfit-warden-front/SW/55",
+      "climb/outfit-warden-front/SW/56",
+      "climb/outfit-warden-front/SW/57",
+      "climb/outfit-warden-front/SW/58",
+      "climb/outfit-warden-front/SW/59",
+      "climb/outfit-warden-front/SW/60",
+      "climb/outfit-warden-front/SW/61",
+      "climb/outfit-warden-front/SW/62",
+      "climb/outfit-warden-front/SW/63",
+      "climb/outfit-warden-front/SW/64",
+      "climb/outfit-warden-front/SW/65"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "climb-outfit-warden-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2022,
+      "h": 100
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

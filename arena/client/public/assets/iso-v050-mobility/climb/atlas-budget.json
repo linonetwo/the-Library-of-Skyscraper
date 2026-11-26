@@ -1,0 +1,469 @@
+{
+  "clip": {
+    "action": "climb",
+    "frameCount": 66,
+    "frameDurationsMs": [
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      70,
+      60,
+      60,
+      60,
+      70,
+      60,
+      60,
+      60,
+      70,
+      60,
+      60,
+      60,
+      70
+    ],
+    "playback": "once",
+    "phaseFrames": {
+      "grip": {
+        "first": 0,
+        "last": 24
+      },
+      "descend": {
+        "first": 25,
+        "last": 49
+      },
+      "crestUp": {
+        "first": 50,
+        "last": 57
+      },
+      "crestDown": {
+        "first": 58,
+        "last": 65
+      }
+    }
+  },
+  "layerOrderByDirection": {
+    "NE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SW": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "E": [
+      "weapon-staff-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "W": [
+      "weapon-staff-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "N": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "S": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "NW": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SE": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  },
+  "handMode": "natural",
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    128,
+    204.8
+  ],
+  "sourceSize": [
+    256,
+    256
+  ],
+  "directions": [
+    "NE",
+    "SW"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "weapon-staff-back",
+    "hand-front"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 804029,
+      "pages": [
+        {
+          "image": "climb-body-0.png",
+          "json": "climb-body-0.json",
+          "width": 2010,
+          "height": 484,
+          "decodedBytes": 3891360,
+          "pngBytes": 589113
+        }
+      ],
+      "decodedBytes": 3891360
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 97505,
+      "pages": [
+        {
+          "image": "climb-body-front-0.png",
+          "json": "climb-body-front-0.json",
+          "width": 2014,
+          "height": 97,
+          "decodedBytes": 781432,
+          "pngBytes": 114296
+        }
+      ],
+      "decodedBytes": 781432
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 425620,
+      "pages": [
+        {
+          "image": "climb-outfit-scholar-0.png",
+          "json": "climb-outfit-scholar-0.json",
+          "width": 2025,
+          "height": 279,
+          "decodedBytes": 2259900,
+          "pngBytes": 355939
+        }
+      ],
+      "decodedBytes": 2259900
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 55640,
+      "pages": [
+        {
+          "image": "climb-hair-ivory-back-0.png",
+          "json": "climb-hair-ivory-back-0.json",
+          "width": 2033,
+          "height": 44,
+          "decodedBytes": 357808,
+          "pngBytes": 31867
+        }
+      ],
+      "decodedBytes": 357808
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 278174,
+      "pages": [
+        {
+          "image": "climb-hair-ivory-front-0.png",
+          "json": "climb-hair-ivory-front-0.json",
+          "width": 2027,
+          "height": 195,
+          "decodedBytes": 1581060,
+          "pngBytes": 260585
+        }
+      ],
+      "decodedBytes": 1581060
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 406790,
+      "pages": [
+        {
+          "image": "climb-outfit-warden-0.png",
+          "json": "climb-outfit-warden-0.json",
+          "width": 2026,
+          "height": 282,
+          "decodedBytes": 2285328,
+          "pngBytes": 265912
+        }
+      ],
+      "decodedBytes": 2285328
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 99014,
+      "pages": [
+        {
+          "image": "climb-outfit-warden-front-0.png",
+          "json": "climb-outfit-warden-front-0.json",
+          "width": 2022,
+          "height": 100,
+          "decodedBytes": 808800,
+          "pngBytes": 91787
+        }
+      ],
+      "decodedBytes": 808800
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 66,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 118598,
+      "pages": [
+        {
+          "image": "climb-hair-midnight-back-0.png",
+          "json": "climb-hair-midnight-back-0.json",
+          "width": 2033,
+          "height": 95,
+          "decodedBytes": 772540,
+          "pngBytes": 73571
+        }
+      ],
+      "decodedBytes": 772540
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 320596,
+      "pages": [
+        {
+          "image": "climb-hair-midnight-front-0.png",
+          "json": "climb-hair-midnight-front-0.json",
+          "width": 2046,
+          "height": 235,
+          "decodedBytes": 1923240,
+          "pngBytes": 238884
+        }
+      ],
+      "decodedBytes": 1923240
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 478366,
+      "pages": [
+        {
+          "image": "climb-weapon-staff-back-0.png",
+          "json": "climb-weapon-staff-back-0.json",
+          "width": 2016,
+          "height": 295,
+          "decodedBytes": 2378880,
+          "pngBytes": 244905
+        }
+      ],
+      "decodedBytes": 2378880
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 132,
+      "nonemptyFrames": 132,
+      "untrimmedPixels": 8650752,
+      "trimmedPixels": 157862,
+      "pages": [
+        {
+          "image": "climb-hand-front-0.png",
+          "json": "climb-hand-front-0.json",
+          "width": 2024,
+          "height": 128,
+          "decodedBytes": 1036288,
+          "pngBytes": 56488
+        }
+      ],
+      "decodedBytes": 1036288
+    }
+  ],
+  "decodedBytes": 18076636,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333
+}

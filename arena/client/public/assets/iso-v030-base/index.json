@@ -1,5 +1,5 @@
 {
-  "assetSetId": "iso-v050-player-run-jump-eight-direction",
+  "assetSetId": "iso-v050-player-run-jump-eight-climb-ne-sw",
   "clips": [
     {
       "action": "idle",
@@ -59,6 +59,11 @@
     {
       "action": "jump",
       "root": "/assets/iso-v050-mobility/jump",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "climb",
+      "root": "/assets/iso-v050-mobility/climb",
       "descriptor": "atlas-budget.json"
     }
   ]
