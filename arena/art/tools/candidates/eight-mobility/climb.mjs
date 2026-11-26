@@ -14,21 +14,48 @@ function rung(height, offset, base, lift = 0) {
   const anchor = height - p * climbStride + offset * climbStride + base;
   return { support, height: Math.min(1.5, anchor + (support ? 0 : climbStride * smooth((p - 0.5) * 2))) + (support ? 0 : lift * Math.sin(Math.PI * (p - 0.5) * 2)) };
 }
+// Keep the S billboard spine away from the camera-aligned fold that inverts
+// its projection. This bounded Hermite curve retains the original shallow lean.
+function directionalLean(lean, directionName) {
+  if (directionName !== "S" || lean <= .28) return lean;
+  const t = clamp((lean-.28)/.20);
+  return .28+.20*t-.16*t*t+.04*t*t*t;
+}
+function directionalHip(hipZ, lean, directionName) {
+  if (directionName !== "S") return hipZ;
+  const u = clamp((lean-.28)/.20);
+  return hipZ-.040*smooth(u);
+}
+function directionalTorso(hipZ, lean, directionName) {
+  return { hipZ: directionalHip(hipZ,lean,directionName), lean: directionalLean(lean,directionName),
+    // A same-frame reference supplies the actual wrist above its palm hook.
+    // It is local source data, never a previous frame or an external pose file.
+    ...(directionName === "S" && lean > .28 ? { handSeedTorso: { hipZ, lean } } : {}) };
+}
 /** Complete 1.5m ladder ranges: the 500mm gait never reaches above the top rung. */
-export function climbInputs() {
+export function climbInputs(directionName) {
   const inputs = [];
   for (const descending of [false, true]) for (let frame = 0; frame <= 24; frame++) {
-    const u = frame / 24, rootHeight = 1.5 * (descending ? 1 - u : u);
+    const u = frame / 24;
+    // Only the new E candidate normalizes rung boundaries to the exact 1/16m
+    // sample index, so its reversed release is identical to the forward release.
+    const rootHeight = directionName === "E" ? (descending ? 24-frame : frame)/16 : 1.5*(descending ? 1-u : u);
     const fold = clamp((rootHeight - 0.5) / 1);
     const ankles = {}, wrists = {}, contacts = {};
     for (const [side, offset] of [["left", 0], ["right", 0.5]]) {
       const foot = rung(rootHeight, offset, 0, 0.04);
       const hand = rung(rootHeight, offset, 1);
+      if (directionName === "E" && side === "left" && !foot.support) {
+        // A 10mm swing-foot recovery around the first release; supporting feet
+        // retain their original rung. The same height window runs in reverse.
+        const t = clamp(Math.abs(rootHeight-.25)/.0625);
+        foot.height += .01*(1-smooth(t));
+      }
       ankles[side] = [0, foot.height - rootHeight + 0.11];
       wrists[side] = [0, hand.height - rootHeight];
       contacts[side] = { support: foot.support, handSupport: hand.support || hand.height === 1.5, rootHeight, footHeight: foot.height, handHeight: hand.height, gesture: "grab" };
     }
-    inputs.push({ hipZ: 0.44 - 0.26 * fold, lean: 0.04 + 0.44 * fold, bodyForward: -0.20,
+    inputs.push({ ...directionalTorso(.44-.26*fold,.04+.44*fold,directionName), bodyForward: -0.20,
       ankles, wrists, wristWidth: { left: 0.22, right: 0.22 }, phase: descending ? "descend" : "grip",
       contacts, durationMs: 60 });
   }
@@ -46,7 +73,7 @@ export function climbInputs() {
         footHeight: 1.5+ankles[side][1]-.11, handHeight: handSupport ? 1.5 : undefined,
         rootForward: descending ? -.5*u : .5*u, gesture: side === "right" && handSupport ? "grab" : "brace" };
     }
-    inputs.push({ hipZ: .18+.44*rise, lean: .48-.45*rise, bodyForward,
+    inputs.push({ ...directionalTorso(.18+.44*rise,.48-.45*rise,directionName), bodyForward,
       ankles, wrists, wristWidth: { left: .22, right: .22 }, phase: "crest", crestDescending: descending,
       contacts, durationMs: frame % 4 === 3 ? 70 : 60 });
   }

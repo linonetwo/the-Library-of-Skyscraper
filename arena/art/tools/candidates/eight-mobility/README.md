@@ -21,4 +21,37 @@ node arena/art/tools/candidates/eight-mobility/bake-climb.mjs NE,SW ne-sw-climb-
 node --test arena/art/tools/candidates/eight-mobility/{mobility,climb}.test.mjs
 ```
 
-`candidates/ne-sw-climb-v3` contains complete pose/contact sheets, per-phase sample sheets and all eight outfit/hair/equipment loops. This NE/SW revision passed independent offline visual review of the deep crouch, connected hips/knees, platform handoff and stowed staff. The hip anchors follow the same registered body transform through deep flexion instead of a generic hip width. Numerical contact tests do not establish real map support: the two-direction runtime candidate must still verify actual ladder rungs, boots, top platform and occlusion. Do not expand climb directions before that validation. Public packs and the main index are maintained separately by the integration owner.
+The accepted NE back-staff variant B is rebuilt with the explicit trailing
+`--ne-staff-inset` option, for example `bake-climb.mjs NE,SW /absolute/scratch/climb-ne-sw-b --ne-staff-inset`.
+`climb-staff.mjs` inverse-rotates a fixed (+8,0) screen-pixel inset into the
+original constant staff registration. It changes only the NE staff pivot;
+all poses, contacts, SW and other attachment registrations remain identical.
+The flag is omitted when rebuilding historical A. The selected B staff frame
+table SHA256 is `683ef93f0fecb1c3963ba7c54fb69ec92bd5cdd43c2d9f3f3f367da3479b536e`;
+the atlas budget alone cannot distinguish these variants. The independent
+640mm-ladder Pixi comparison accepted B for NE11/36, with SW13/41 unchanged;
+this is separate from the other headings' offline acceptance.
+
+`candidates/ne-sw-climb-v3` contains complete pose/contact sheets, per-phase sample sheets and all eight outfit/hair/equipment loops. This NE/SW revision passed independent offline visual review of the deep crouch, connected hips/knees, platform handoff and stowed staff. The hip anchors follow the same registered body transform through deep flexion instead of a generic hip width. Numerical contact tests do not establish real map support: the two-direction runtime candidate must still verify actual ladder rungs, boots, top platform and occlusion. Additional headings may be prepared as offline candidates, but public direction coverage waits for independent review. Public packs and the main index are maintained separately by the integration owner.
+
+### Additional climb headings (offline candidates)
+
+`bake-climb.mjs` selects the frozen `revised` hand manifest for NE/SW and `six` for N/NW/E/W/SE/S; each image resolves relative to its own manifest. South reuses the accepted clean thigh sources while preserving their pivots. The original .22m half grip, body/hip mapping, limb lengths and 66-frame timing remain unchanged. A failed reach or actual palm-contact error aborts that batch before export, without clamping the target or changing the solver.
+
+```sh
+CLIMB_DIRECTIONS=N,NW node --test arena/art/tools/candidates/eight-mobility/climb.test.mjs
+node arena/art/tools/candidates/eight-mobility/bake-climb.mjs N,NW /absolute/scratch/climb-n-nw
+```
+
+The default tests still cover frozen NE/SW; `CLIMB_DIRECTIONS` explicitly selects another batch. Per-phase `*-looks.png` sheets copy the already exported actual directional layer order for all eight appearances; `*-sample.png` retains the general contact-sheet view. Neither changes the renderer or source pixels. These outputs are offline candidates, not public/index registrations or proof of real ladder contact.
+
+Directional climb corrections remain local: NW/SE use their registered near
+shoulder socket, N aligns its left thigh raster axis, and E recovers only the
+released swing foot by 10mm with exact forward/reverse rung sampling. S retains
+its fold-dependent right elbow, directs its aligned right knee upward, and
+maps deep lean .28–.48 to .28–.36 while lowering the top crouch by at most 40mm.
+The same pure torso transform covers ascent, descent and both crest ends.
+For that deep S fold, one same-frame solve of the original torso supplies actual
+wrist initial positions, followed by the adjusted torso solve; each retains
+the original 400 iterations and contact threshold. There is no previous-frame
+state, external frozen-pose dependency, target clamping or parameter search.

@@ -40,6 +40,9 @@ export function articulate(
     wristTargets = {},
     ankleTargets = {},
     mapTorso = false,
+    mapShoulderSockets = [],
+    elbowSideBias = {},
+    kneeLiftOnAlignment = [],
   },
 ) {
   const heading = direction.worldForward,
@@ -81,12 +84,19 @@ export function articulate(
       world[s + "Hip"] = [(along + across) / 2, (along - across) / 2, z];
     }
     world[s + "Ankle"] = ankleTargets[s] ?? wp(ankles[s][0], sign * 0.1, ankles[s][1]);
+    let kneeLift = 0;
+    if (kneeLiftOnAlignment.includes(s)) {
+      const delta = sub(world[s + "Ankle"],world[s + "Hip"]);
+      const alignment = (delta[0]*heading[0]+delta[1]*heading[1])/norm(delta);
+      const t = Math.max(0,Math.min(1,(alignment-.93)/.06));
+      kneeLift = .40*t*t*(3-2*t);
+    }
     world[s + "Knee"] = chain(
       world[s + "Hip"],
       world[s + "Ankle"],
       0.3187701178,
       0.3060520193,
-      [heading[0] + side[0] * sign * kneeSpread, heading[1] + side[1] * sign * kneeSpread, 0],
+      [heading[0] + side[0] * sign * kneeSpread, heading[1] + side[1] * sign * kneeSpread, kneeLift],
     );
     world[s + "Shoulder"] = wp(bodyForward + lean, sign * 0.19, neckZ - 0.065);
     // The accepted north raster has a narrower collar. Preserve its registered
@@ -101,14 +111,30 @@ export function articulate(
       sign * wristWidth[s],
       wrists[s][1],
     );
+    if (mapShoulderSockets.includes(s)) {
+      // A climb-only directional registration follows the actual torso socket.
+      // Keep anatomical shoulder height; inverse-project only its horizontal XY.
+      const axis = direction.joints.neck.restOffset;
+      const rest = direction.joints[s + "Shoulder"].restOffset.map((v,i) => v + axis[i]);
+      const fraction = rest.reduce((sum,v,i) => sum + v*axis[i],0) / norm(axis)**2;
+      const target = sub(project(world.neck), project(world.pelvis));
+      const scale = norm(target) / norm(axis);
+      const angle = Math.atan2(target[1],target[0]) - Math.atan2(axis[1],axis[0]);
+      const offset = rest.map((v,i) => v + axis[i]*fraction*(scale-1));
+      const origin = project(world.pelvis), z = world[s + "Shoulder"][2];
+      const x = origin[0] + offset[0]*Math.cos(angle) - offset[1]*Math.sin(angle);
+      const y = origin[1] + offset[0]*Math.sin(angle) + offset[1]*Math.cos(angle);
+      const across = (x-96)/64, along = (y-172.8+78.38367177*z)/32;
+      world[s + "Shoulder"] = [(along+across)/2,(along-across)/2,z];
+    }
     world[s + "Elbow"] = chain(
       world[s + "Shoulder"],
       world[s + "Wrist"],
       0.252,
       0.214,
       [
-        -heading[0] * 0.8 + side[0] * sign * 0.15,
-        -heading[1] * 0.8 + side[1] * sign * 0.15,
+        -heading[0] * 0.8 + side[0] * sign * (elbowSideBias[s] ?? 0.15),
+        -heading[1] * 0.8 + side[1] * sign * (elbowSideBias[s] ?? 0.15),
         -0.2,
       ],
     );

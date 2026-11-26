@@ -1,4 +1,3 @@
-import sharp from "sharp";
 import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -6,10 +5,16 @@ import { loadClimbRig, here } from "./rig.mjs";
 import { climbInputs, climbPhaseFrames } from "./climb.mjs";
 import { registerClimbHands, articulateClimb } from "./climb-hands.mjs";
 import { exportPoses } from "../../pose-export.mjs";
+import { writeClimbReviewSheets } from "./climb-review.mjs";
+import { registerClimbStaffInset } from "./climb-staff.mjs";
 const names = (process.argv[2] ?? "NE,SW").split(",");
-if (names.some(name => !["NE", "SW"].includes(name))) throw Error("Approve NE/SW complete contact sample before extending headings");
+if (names.some(name => !["NE", "SW", "N", "NW", "W", "E", "SE", "S"].includes(name))) throw Error("Unknown climb direction");
 const config = await loadClimbRig(names);
-await registerClimbHands(config, path.resolve(here, "../../../iso-v050-mobility/climb-hands/revised/manifest.json"));
+for (const [folder, registeredNames] of [
+  ["revised", names.filter(name => name === "NE" || name === "SW")],
+  ["six", names.filter(name => name !== "NE" && name !== "SW")],
+]) if (registeredNames.length)
+  await registerClimbHands(config, path.resolve(here, "../../../iso-v050-mobility/climb-hands", folder, "manifest.json"), registeredNames);
 config.action = "climb";
 config.frameCount = 66;
 config.cell = [256, 256];
@@ -23,15 +28,30 @@ config.previewLayers = config.previewLooks["scholar-ivory-staff"];
 for (const [name, direction] of Object.entries(config.directions)) {
   const available = new Set(direction.attachments.map(a => a.layer));
   config.layerOrderByDirection[name] = ["weapon-staff-back", ...config.layerOrderByDirection[name].filter(layer => layer !== "weapon-staff-back")].filter(layer => available.has(layer));
-  direction.poses = climbInputs().map(input => {
-    const pose = articulateClimb(direction, input);
+  direction.poses = climbInputs(name).map((input, frame) => {
+    let pose;
+    try { pose = articulateClimb(direction, input); }
+    catch (error) { throw new Error(`${name}/${frame}: ${error.message}; candidate not exported`, { cause: error }); }
+    for (const side of ["left", "right"]) {
+      const gesture = input.contacts[side].gesture;
+      const hand = direction.climbHands[side+(gesture === "grab" ? "Grab" : "Brace")];
+      const angle = pose.attachmentAngles[`${side}-${gesture}-hand`]*Math.PI/180;
+      const offset = hand.localContact.map((v,i)=>v-hand.wristPivot[i]);
+      const wrist = pose.jointPositions[side+"Wrist"], target = pose.handContacts[side].target;
+      const error = Math.hypot(wrist[0]+offset[0]*Math.cos(angle)-offset[1]*Math.sin(angle)-target[0],
+        wrist[1]+offset[0]*Math.sin(angle)+offset[1]*Math.cos(angle)-target[1]);
+      if (error > 1e-6) throw Error(`${name}/${frame}/${side}/${gesture}: palm contact error ${error}px; candidate not exported`);
+    }
     // Atlas margin only: world XYZ and root travel are not baked into the pose.
     for (const point of Object.values(pose.jointPositions)) { point[0] += 32; point[1] += 32; }
     for (const contact of Object.values(pose.handContacts)) contact.target = contact.target.map(value => value + 32);
     return pose;
   });
 }
-const out = path.join(here, "candidates", process.argv[3] ?? "ne-sw-climb");
+// Explicit rebuild selection: without the flag the historical A stays intact.
+if (process.argv.includes("--ne-staff-inset")) registerClimbStaffInset(config);
+const outputName = process.argv[3] ?? "ne-sw-climb";
+const out = path.isAbsolute(outputName) ? outputName : path.join(here, "candidates", outputName);
 await mkdir(out, { recursive: true });
 for (const direction of Object.values(config.directions)) for (const attachment of direction.attachments)
   attachment.image = path.relative(out, attachment.image);
@@ -41,11 +61,4 @@ await writeFile(path.join(out, "phase-ranges.json"), JSON.stringify(climbPhaseFr
 await exportPoses(file, out);
 execFileSync(process.execPath, [path.resolve(here, "../../preview-looks.mjs"), file, out], { stdio: "inherit" });
 
-// Review sheets crop the same exported pixels; they do not introduce a renderer.
-for (const [phase, range] of Object.entries(climbPhaseFrames)) {
-  const offsets = range.last-range.first === 24 ? [0,4,8,12,16,20,23,24] : [0,1,2,3,4,5,6,7];
-  const parts = [];
-  for (let row=0; row<names.length; row++) for (const [column, offset] of offsets.entries())
-    parts.push({ input: await sharp(path.join(out, "contact-sheet.png")).extract({left:(range.first+offset)*256,top:row*256,width:256,height:256}).toBuffer(),left:column*256,top:row*256 });
-  await sharp({create:{width:8*256,height:names.length*256,channels:4,background:"#e6e2dc"}}).composite(parts).png().toFile(path.join(out, phase+"-sample.png"));
-}
+await writeClimbReviewSheets(out, names.length, Object.keys(config.previewLooks).length, climbPhaseFrames);
