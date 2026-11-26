@@ -1,0 +1,1670 @@
+{
+  "frames": {
+    "climb/body/W/04": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 48,
+        "h": 137
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 93,
+        "w": 48,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/45": {
+      "frame": {
+        "x": 59,
+        "y": 2,
+        "w": 48,
+        "h": 137
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 93,
+        "w": 48,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/03": {
+      "frame": {
+        "x": 111,
+        "y": 2,
+        "w": 48,
+        "h": 131
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 94,
+        "w": 48,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/46": {
+      "frame": {
+        "x": 163,
+        "y": 2,
+        "w": 48,
+        "h": 131
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 94,
+        "w": 48,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/05": {
+      "frame": {
+        "x": 215,
+        "y": 2,
+        "w": 50,
+        "h": 130
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 96,
+        "w": 50,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/44": {
+      "frame": {
+        "x": 269,
+        "y": 2,
+        "w": 50,
+        "h": 130
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 96,
+        "w": 50,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/12": {
+      "frame": {
+        "x": 323,
+        "y": 2,
+        "w": 46,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 102,
+        "w": 46,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/37": {
+      "frame": {
+        "x": 373,
+        "y": 2,
+        "w": 46,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 102,
+        "w": 46,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/57": {
+      "frame": {
+        "x": 423,
+        "y": 2,
+        "w": 53,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 82,
+        "w": 53,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/58": {
+      "frame": {
+        "x": 480,
+        "y": 2,
+        "w": 53,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 82,
+        "w": 53,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/02": {
+      "frame": {
+        "x": 537,
+        "y": 2,
+        "w": 50,
+        "h": 124
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 96,
+        "w": 50,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/11": {
+      "frame": {
+        "x": 591,
+        "y": 2,
+        "w": 46,
+        "h": 124
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 101,
+        "w": 46,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/38": {
+      "frame": {
+        "x": 641,
+        "y": 2,
+        "w": 46,
+        "h": 124
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 101,
+        "w": 46,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/47": {
+      "frame": {
+        "x": 691,
+        "y": 2,
+        "w": 50,
+        "h": 124
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 96,
+        "w": 50,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/13": {
+      "frame": {
+        "x": 745,
+        "y": 2,
+        "w": 48,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 104,
+        "w": 48,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/36": {
+      "frame": {
+        "x": 797,
+        "y": 2,
+        "w": 48,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 104,
+        "w": 48,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/56": {
+      "frame": {
+        "x": 849,
+        "y": 2,
+        "w": 49,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 88,
+        "w": 49,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/59": {
+      "frame": {
+        "x": 902,
+        "y": 2,
+        "w": 49,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 88,
+        "w": 49,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/06": {
+      "frame": {
+        "x": 955,
+        "y": 2,
+        "w": 50,
+        "h": 121
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 96,
+        "w": 50,
+        "h": 121
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/10": {
+      "frame": {
+        "x": 1009,
+        "y": 2,
+        "w": 48,
+        "h": 121
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 99,
+        "w": 48,
+        "h": 121
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/39": {
+      "frame": {
+        "x": 1061,
+        "y": 2,
+        "w": 48,
+        "h": 121
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 99,
+        "w": 48,
+        "h": 121
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/43": {
+      "frame": {
+        "x": 1113,
+        "y": 2,
+        "w": 50,
+        "h": 121
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 96,
+        "w": 50,
+        "h": 121
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/01": {
+      "frame": {
+        "x": 1167,
+        "y": 2,
+        "w": 49,
+        "h": 119
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 96,
+        "w": 49,
+        "h": 119
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/48": {
+      "frame": {
+        "x": 1220,
+        "y": 2,
+        "w": 49,
+        "h": 119
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 96,
+        "w": 49,
+        "h": 119
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/09": {
+      "frame": {
+        "x": 1273,
+        "y": 2,
+        "w": 47,
+        "h": 118
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 97,
+        "w": 47,
+        "h": 118
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/40": {
+      "frame": {
+        "x": 1324,
+        "y": 2,
+        "w": 47,
+        "h": 118
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 97,
+        "w": 47,
+        "h": 118
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/00": {
+      "frame": {
+        "x": 1375,
+        "y": 2,
+        "w": 49,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 96,
+        "w": 49,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/08": {
+      "frame": {
+        "x": 1428,
+        "y": 2,
+        "w": 49,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 96,
+        "w": 49,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/41": {
+      "frame": {
+        "x": 1481,
+        "y": 2,
+        "w": 49,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 96,
+        "w": 49,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/49": {
+      "frame": {
+        "x": 1534,
+        "y": 2,
+        "w": 49,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 96,
+        "w": 49,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/07": {
+      "frame": {
+        "x": 1587,
+        "y": 2,
+        "w": 49,
+        "h": 113
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 96,
+        "w": 49,
+        "h": 113
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/42": {
+      "frame": {
+        "x": 1640,
+        "y": 2,
+        "w": 49,
+        "h": 113
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 96,
+        "w": 49,
+        "h": 113
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/14": {
+      "frame": {
+        "x": 1693,
+        "y": 2,
+        "w": 48,
+        "h": 111
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 106,
+        "w": 48,
+        "h": 111
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/35": {
+      "frame": {
+        "x": 1745,
+        "y": 2,
+        "w": 48,
+        "h": 111
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 106,
+        "w": 48,
+        "h": 111
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/20": {
+      "frame": {
+        "x": 1797,
+        "y": 2,
+        "w": 63,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 95,
+        "y": 122,
+        "w": 63,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/29": {
+      "frame": {
+        "x": 1864,
+        "y": 2,
+        "w": 63,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 95,
+        "y": 122,
+        "w": 63,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/55": {
+      "frame": {
+        "x": 1931,
+        "y": 2,
+        "w": 52,
+        "h": 107
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 103,
+        "w": 52,
+        "h": 107
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/60": {
+      "frame": {
+        "x": 1987,
+        "y": 2,
+        "w": 52,
+        "h": 107
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 103,
+        "w": 52,
+        "h": 107
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/19": {
+      "frame": {
+        "x": 2,
+        "y": 143,
+        "w": 59,
+        "h": 106
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 119,
+        "w": 59,
+        "h": 106
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/30": {
+      "frame": {
+        "x": 65,
+        "y": 143,
+        "w": 59,
+        "h": 106
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 119,
+        "w": 59,
+        "h": 106
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/18": {
+      "frame": {
+        "x": 128,
+        "y": 143,
+        "w": 57,
+        "h": 104
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 116,
+        "w": 57,
+        "h": 104
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/31": {
+      "frame": {
+        "x": 189,
+        "y": 143,
+        "w": 57,
+        "h": 104
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 116,
+        "w": 57,
+        "h": 104
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/17": {
+      "frame": {
+        "x": 250,
+        "y": 143,
+        "w": 53,
+        "h": 102
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 113,
+        "w": 53,
+        "h": 102
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/32": {
+      "frame": {
+        "x": 307,
+        "y": 143,
+        "w": 53,
+        "h": 102
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 103,
+        "y": 113,
+        "w": 53,
+        "h": 102
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/15": {
+      "frame": {
+        "x": 364,
+        "y": 143,
+        "w": 49,
+        "h": 101
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 108,
+        "w": 49,
+        "h": 101
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/21": {
+      "frame": {
+        "x": 417,
+        "y": 143,
+        "w": 64,
+        "h": 101
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 125,
+        "w": 64,
+        "h": 101
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/28": {
+      "frame": {
+        "x": 485,
+        "y": 143,
+        "w": 64,
+        "h": 101
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 93,
+        "y": 125,
+        "w": 64,
+        "h": 101
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/34": {
+      "frame": {
+        "x": 553,
+        "y": 143,
+        "w": 49,
+        "h": 101
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 108,
+        "w": 49,
+        "h": 101
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/16": {
+      "frame": {
+        "x": 606,
+        "y": 143,
+        "w": 52,
+        "h": 99
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 111,
+        "w": 52,
+        "h": 99
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/33": {
+      "frame": {
+        "x": 662,
+        "y": 143,
+        "w": 52,
+        "h": 99
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 111,
+        "w": 52,
+        "h": 99
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/22": {
+      "frame": {
+        "x": 718,
+        "y": 143,
+        "w": 67,
+        "h": 88
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 129,
+        "w": 67,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/27": {
+      "frame": {
+        "x": 789,
+        "y": 143,
+        "w": 67,
+        "h": 88
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 90,
+        "y": 129,
+        "w": 67,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/54": {
+      "frame": {
+        "x": 860,
+        "y": 143,
+        "w": 66,
+        "h": 85
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 125,
+        "w": 66,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/61": {
+      "frame": {
+        "x": 930,
+        "y": 143,
+        "w": 66,
+        "h": 85
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 125,
+        "w": 66,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/23": {
+      "frame": {
+        "x": 1000,
+        "y": 143,
+        "w": 69,
+        "h": 76
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 133,
+        "w": 69,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/26": {
+      "frame": {
+        "x": 1073,
+        "y": 143,
+        "w": 69,
+        "h": 76
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 133,
+        "w": 69,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/24": {
+      "frame": {
+        "x": 1146,
+        "y": 143,
+        "w": 72,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 138,
+        "w": 72,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/25": {
+      "frame": {
+        "x": 1222,
+        "y": 143,
+        "w": 72,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 138,
+        "w": 72,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/50": {
+      "frame": {
+        "x": 1298,
+        "y": 143,
+        "w": 72,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 138,
+        "w": 72,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/53": {
+      "frame": {
+        "x": 1374,
+        "y": 143,
+        "w": 71,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 138,
+        "w": 71,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/62": {
+      "frame": {
+        "x": 1449,
+        "y": 143,
+        "w": 71,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 138,
+        "w": 71,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/65": {
+      "frame": {
+        "x": 1524,
+        "y": 143,
+        "w": 72,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 138,
+        "w": 72,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/51": {
+      "frame": {
+        "x": 1600,
+        "y": 143,
+        "w": 70,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 138,
+        "w": 70,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/52": {
+      "frame": {
+        "x": 1674,
+        "y": 143,
+        "w": 71,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 138,
+        "w": 71,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/63": {
+      "frame": {
+        "x": 1749,
+        "y": 143,
+        "w": 71,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 138,
+        "w": 71,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    },
+    "climb/body/W/64": {
+      "frame": {
+        "x": 1824,
+        "y": 143,
+        "w": 70,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 138,
+        "w": 70,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8
+      }
+    }
+  },
+  "animations": {
+    "climb/body/W": [
+      "climb/body/W/00",
+      "climb/body/W/01",
+      "climb/body/W/02",
+      "climb/body/W/03",
+      "climb/body/W/04",
+      "climb/body/W/05",
+      "climb/body/W/06",
+      "climb/body/W/07",
+      "climb/body/W/08",
+      "climb/body/W/09",
+      "climb/body/W/10",
+      "climb/body/W/11",
+      "climb/body/W/12",
+      "climb/body/W/13",
+      "climb/body/W/14",
+      "climb/body/W/15",
+      "climb/body/W/16",
+      "climb/body/W/17",
+      "climb/body/W/18",
+      "climb/body/W/19",
+      "climb/body/W/20",
+      "climb/body/W/21",
+      "climb/body/W/22",
+      "climb/body/W/23",
+      "climb/body/W/24",
+      "climb/body/W/25",
+      "climb/body/W/26",
+      "climb/body/W/27",
+      "climb/body/W/28",
+      "climb/body/W/29",
+      "climb/body/W/30",
+      "climb/body/W/31",
+      "climb/body/W/32",
+      "climb/body/W/33",
+      "climb/body/W/34",
+      "climb/body/W/35",
+      "climb/body/W/36",
+      "climb/body/W/37",
+      "climb/body/W/38",
+      "climb/body/W/39",
+      "climb/body/W/40",
+      "climb/body/W/41",
+      "climb/body/W/42",
+      "climb/body/W/43",
+      "climb/body/W/44",
+      "climb/body/W/45",
+      "climb/body/W/46",
+      "climb/body/W/47",
+      "climb/body/W/48",
+      "climb/body/W/49",
+      "climb/body/W/50",
+      "climb/body/W/51",
+      "climb/body/W/52",
+      "climb/body/W/53",
+      "climb/body/W/54",
+      "climb/body/W/55",
+      "climb/body/W/56",
+      "climb/body/W/57",
+      "climb/body/W/58",
+      "climb/body/W/59",
+      "climb/body/W/60",
+      "climb/body/W/61",
+      "climb/body/W/62",
+      "climb/body/W/63",
+      "climb/body/W/64",
+      "climb/body/W/65"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "climb-body-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2041,
+      "h": 251
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
