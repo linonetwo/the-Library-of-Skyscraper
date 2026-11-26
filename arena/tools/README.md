@@ -196,5 +196,68 @@ The adapter neither exports/imports graph objects itself nor writes React state.
 The targeted stdio/UI scenario requires the actual v0.6 candidate UI and server:
 `ARENA_FRAGMENTS_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5200 ARENA_BASE_URL=http://127.0.0.1:8801 node --test arena/tests/graph-fragments-browser.test.mjs`.
 The three new module parameters continue through `setRuleGraphField` with the
-UI's real field labels. Recording-debug controls are added when that UI exists;
-this adapter does not fabricate trace, coverage or next-hit results.
+UI's real field labels. Recording controls below read the actual recording-debug panel; the adapter
+does not fabricate trace, coverage or next-hit results.
+
+### Module catalog and independent/shared instances
+
+`openRuleModuleCatalog` opens the visible eight-kind catalog.
+`previewRuleModule { kind }` chooses `scout`, `patrol`, `escort`, `gather`,
+`haul`, `build`, `defend` or `retreat`, without changing the graph.
+For a five-card draft, `confirmRuleModuleConversion` explicitly accepts the
+visible conversion preview before module editing; `cancelRuleModulePreview`
+returns to the five cards or current composition without confirming.
+
+Edit actual parameter controls with existing `setRuleGraphField`, using
+`scope: "modulePreview"` for the insertion preview (default remains the selected
+object inspector). Boolean fields use each real checkbox's checked state;
+for new composition modules an empty set of execution roles means nobody.
+`addRulePatrolStop` and `removeRulePatrolStop { index }` operate the visible
+route buttons; indices start at zero. `setRuleModuleTarget { stateId }` picks
+the insertion state, and `confirmRuleModule` clicks its single confirmation.
+
+`previewSharedRuleModule { moduleId }` selects an existing instance in the
+same catalog. Existing graph object selection opens an instance's references;
+`selectRuleModuleCopyReference { nodeId, selected }` checks the explicit rebind
+list and `copyRuleModuleInstance` confirms one independent copy. Original
+`undoRuleGraph` reverses the patch. `Page.getState.composition` reads actual
+catalog, conversion, preview and reference text/fields/options/checked values;
+the graph itself remains `Page.getState.graph` from the original UI state.
+The tool does not construct modules or resolve their runtime targets.
+
+The targeted visible scenario uses `ARENA_COMPOSITION_BROWSER=1` with the
+candidate UI/authority and `node --test arena/tests/composition-controls-browser.test.mjs`.
+
+### Recorded breakpoints, coverage and same-operation comparison
+
+`refreshRecording` loads the visible panel. Choose the actual archive and
+filters with `selectRecordingVersion { sourceHash }`,
+`selectRecordingActor { actorId }`, `selectRecordingObjectType { target }`,
+`selectRecordingObject { objectId }` and `setRecordingHitKind { kind }`.
+`setRecordingCursor { operationIndex }` accepts -1 for the panel's initial cursor.
+`nextRecording` / `previousRecording` click the original query controls and open
+the original replay. `Page.getState.replay.status` reports actual replay locating
+status; `closeReplay` returns to the retained recording filters and facts.
+`openRecordedSource` opens that record's archived read-only source.
+
+`saveRecordingRange { name, fromOperation, toOperation }`,
+`selectSavedRecording { index }` and `useFullRecordingRange` use the panel's
+named inclusive ranges. `locateRecordingCoverage { objectId, column, total }`
+clicks the exact visible coverage-cell button. `Page.getState.recording` reads
+the panel's selected archive/actor/object/original cursor, native controls,
+recorded fact, visible coverage cells and archived source location; it does not
+compute counts or search visits itself.
+
+`refreshRuleComparison`, `setRuleComparisonOperation { operationIndex }`,
+`setRuleComparisonBaseline { sourceHash }` and `compareRuleOperation` reuse the
+existing same-frame comparison. An empty baseline chooses the opening draft.
+`Page.getState.comparison` reads the visible A/B hashes, facts and intent JSON.
+
+The focused newcomer story is a real stdio driver, not a simulated trace:
+`ARENA_UI_URL=http://localhost:5200 ARENA_BASE_URL=http://localhost:8801 ARENA_EVIDENCE_DIR=/fresh/nonexistent/evidence-dir node arena/tools/run-composition-story.mjs`.
+Run only in the assigned browser slot against the integrated candidate. It creates
+one training session, publishes a deliberately mistargeted escort with a base
+patrol fallback, waits for actual gatherer cargo, queries the original recording,
+compares a target fix at the same operation, then publishes and observes real
+guard travel. It never steps training or sends commands outside visible controls.
+Failures retain the partial report and screenshots in the new evidence directory.

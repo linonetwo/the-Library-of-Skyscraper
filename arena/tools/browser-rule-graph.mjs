@@ -56,6 +56,7 @@ export const graphActionSchemas = [
     .object({
       type: z.literal("setRuleGraphField"),
       label: z.string().min(1).max(100),
+      scope: z.enum(["inspector", "modulePreview"]).optional(),
       value: z.union([z.string().max(4000), z.number().finite(), z.boolean()]),
       index: z.number().int().min(0).max(100).optional(),
     })
@@ -146,7 +147,7 @@ export async function performGraphAction(page, action) {
       action.type === "connectRuleGraph"
     ) {
       const inspector = graph.getByRole("region", {
-        name: "选中规则对象参数",
+        name: action.type === "setRuleGraphField" && action.scope === "modulePreview" ? "模块接入预览" : "选中规则对象参数",
         exact: true,
       });
       const field = inspector
