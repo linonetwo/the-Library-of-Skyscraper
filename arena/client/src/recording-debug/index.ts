@@ -37,6 +37,17 @@ export interface NodeQuery {
   kind: 'visit' | 'selected';
 }
 
+/** Handwritten JSON memory may carry a legacy trace with an unusable module extension. */
+function recordedActor(actor: GraphActorTrace): GraphActorTrace {
+  if (actor.moduleVisits === undefined) return actor;
+  const visits: unknown = actor.moduleVisits;
+  const valid = Array.isArray(visits) && visits.every(visit => visit && typeof visit === 'object'
+    && typeof visit.nodeId === 'string' && typeof visit.moduleId === 'string'
+    && typeof visit.reasonCode === 'string'
+    && (visit.outcome === 'selected' || visit.outcome === 'fallback' || visit.outcome === 'hold'));
+  return valid ? actor : {...actor, moduleVisits: undefined, moduleVisitsTruncated: undefined};
+}
+
 /** Index actual decision deltas once. Projected memory on intervening frames is not an execution. */
 export function indexRecording(recording: RecordingInput, ownerId: string): RecordingIndex {
   const history = recording.ruleHistory;
@@ -54,7 +65,8 @@ export function indexRecording(recording: RecordingInput, ownerId: string): Reco
       index.missingTraces.push({operationIndex: change.operationIndex, tick: change.tick, sourceHash: change.sourceHash});
       continue;
     }
-    for (const actor of trace.actors) {
+    for (const rawActor of trace.actors) {
+      const actor = recordedActor(rawActor);
       const common = {operationIndex: change.operationIndex, tick: change.tick, sourceHash: change.sourceHash};
       index.decisions.push({...common, graphId: trace.graphId, actor});
       const nodes = new Map<string, NodeEvidence>();
