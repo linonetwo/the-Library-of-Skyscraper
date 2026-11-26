@@ -24,12 +24,14 @@ test("same-source workshop plays all registered headings and inspects independen
   expect((await poses(page)).every((pose: { layers: string[] }) => pose.layers.some(layer => layer.includes('/outfit-warden/')) && pose.layers.some(layer => layer.includes('/hair-midnight-')))).toBe(true);
   expect(errors).toEqual([]);
 });
-test("pilot coverage remains explicit and each complete jump frame is reachable", async ({ page }) => {
+test("eight-direction coverage and each complete jump frame are reachable", async ({ page }) => {
   await page.goto('/animation-lab'); await ready(page);
   await page.getByLabel('动作', { exact: true }).selectOption('jump'); await ready(page);
   if (await page.getByRole('button', { name: '暂停动画', exact: true }).count()) await page.getByRole('button', { name: '暂停动画', exact: true }).click();
-  expect((await poses(page)).map((pose: { direction: string }) => pose.direction).sort()).toEqual(['NE','SW']);
-  await expect(page.getByRole('button', { name: '背面 N', exact: true })).toBeDisabled();
+  expect((await poses(page)).map((pose: { direction: string }) => pose.direction).sort()).toEqual(['E','N','NE','NW','S','SE','SW','W']);
+  await expect(page.getByRole('button', { name: '背面 N', exact: true })).toBeEnabled();
+  await page.getByRole('button', { name: '背面 N', exact: true }).click();
+  await expect(gallery(page).getByRole('img')).toHaveAttribute('aria-label', /N方向/);
   await page.getByRole('button', { name: '左前 SW', exact: true }).click();
   await expect(gallery(page).getByRole('img')).toHaveAttribute('aria-label', /SW方向/);
   const frames = new Set<number>();

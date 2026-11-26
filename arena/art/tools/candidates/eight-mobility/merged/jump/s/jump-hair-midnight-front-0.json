@@ -1,0 +1,220 @@
+{
+  "frames": {
+    "jump/hair-midnight-front/S/00": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 41,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 68,
+        "w": 41,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-front/S/03": {
+      "frame": {
+        "x": 52,
+        "y": 2,
+        "w": 41,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 47,
+        "w": 41,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-front/S/05": {
+      "frame": {
+        "x": 97,
+        "y": 2,
+        "w": 41,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 44,
+        "w": 41,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-front/S/06": {
+      "frame": {
+        "x": 142,
+        "y": 2,
+        "w": 41,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 66,
+        "w": 41,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-front/S/07": {
+      "frame": {
+        "x": 187,
+        "y": 2,
+        "w": 41,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 47,
+        "w": 41,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-front/S/01": {
+      "frame": {
+        "x": 232,
+        "y": 2,
+        "w": 41,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 56,
+        "w": 41,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-front/S/02": {
+      "frame": {
+        "x": 277,
+        "y": 2,
+        "w": 41,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 46,
+        "w": 41,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/hair-midnight-front/S/04": {
+      "frame": {
+        "x": 322,
+        "y": 2,
+        "w": 41,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 46,
+        "w": 41,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "jump/hair-midnight-front/S": [
+      "jump/hair-midnight-front/S/00",
+      "jump/hair-midnight-front/S/01",
+      "jump/hair-midnight-front/S/02",
+      "jump/hair-midnight-front/S/03",
+      "jump/hair-midnight-front/S/04",
+      "jump/hair-midnight-front/S/05",
+      "jump/hair-midnight-front/S/06",
+      "jump/hair-midnight-front/S/07"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "jump-hair-midnight-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 365,
+      "h": 51
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

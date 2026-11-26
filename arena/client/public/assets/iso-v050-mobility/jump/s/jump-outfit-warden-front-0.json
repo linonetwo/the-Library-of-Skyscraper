@@ -1,0 +1,220 @@
+{
+  "frames": {
+    "jump/outfit-warden-front/S/07": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 57,
+        "h": 26
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 91,
+        "w": 57,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden-front/S/00": {
+      "frame": {
+        "x": 68,
+        "y": 2,
+        "w": 57,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 102,
+        "w": 57,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden-front/S/05": {
+      "frame": {
+        "x": 129,
+        "y": 2,
+        "w": 61,
+        "h": 22
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 84,
+        "w": 61,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden-front/S/02": {
+      "frame": {
+        "x": 194,
+        "y": 2,
+        "w": 61,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 84,
+        "w": 61,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden-front/S/04": {
+      "frame": {
+        "x": 259,
+        "y": 2,
+        "w": 70,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 84,
+        "w": 70,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden-front/S/03": {
+      "frame": {
+        "x": 333,
+        "y": 2,
+        "w": 70,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 85,
+        "w": 70,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden-front/S/01": {
+      "frame": {
+        "x": 407,
+        "y": 2,
+        "w": 55,
+        "h": 19
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 93,
+        "w": 55,
+        "h": 19
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden-front/S/06": {
+      "frame": {
+        "x": 466,
+        "y": 2,
+        "w": 55,
+        "h": 17
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 105,
+        "w": 55,
+        "h": 17
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "jump/outfit-warden-front/S": [
+      "jump/outfit-warden-front/S/00",
+      "jump/outfit-warden-front/S/01",
+      "jump/outfit-warden-front/S/02",
+      "jump/outfit-warden-front/S/03",
+      "jump/outfit-warden-front/S/04",
+      "jump/outfit-warden-front/S/05",
+      "jump/outfit-warden-front/S/06",
+      "jump/outfit-warden-front/S/07"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "jump-outfit-warden-front-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 523,
+      "h": 30
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "frames": {
+    "jump/outfit-warden/S/07": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 33,
+        "h": 55
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 84,
+        "w": 33,
+        "h": 55
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden/S/04": {
+      "frame": {
+        "x": 44,
+        "y": 2,
+        "w": 33,
+        "h": 54
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 83,
+        "w": 33,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden/S/05": {
+      "frame": {
+        "x": 81,
+        "y": 2,
+        "w": 33,
+        "h": 53
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 82,
+        "w": 33,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden/S/03": {
+      "frame": {
+        "x": 118,
+        "y": 2,
+        "w": 33,
+        "h": 51
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 85,
+        "w": 33,
+        "h": 51
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden/S/01": {
+      "frame": {
+        "x": 155,
+        "y": 2,
+        "w": 33,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 94,
+        "w": 33,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden/S/02": {
+      "frame": {
+        "x": 192,
+        "y": 2,
+        "w": 33,
+        "h": 46
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 84,
+        "w": 33,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden/S/00": {
+      "frame": {
+        "x": 229,
+        "y": 2,
+        "w": 33,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 107,
+        "w": 33,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    },
+    "jump/outfit-warden/S/06": {
+      "frame": {
+        "x": 266,
+        "y": 2,
+        "w": 33,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 105,
+        "w": 33,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      }
+    }
+  },
+  "animations": {
+    "jump/outfit-warden/S": [
+      "jump/outfit-warden/S/00",
+      "jump/outfit-warden/S/01",
+      "jump/outfit-warden/S/02",
+      "jump/outfit-warden/S/03",
+      "jump/outfit-warden/S/04",
+      "jump/outfit-warden/S/05",
+      "jump/outfit-warden/S/06",
+      "jump/outfit-warden/S/07"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "jump-outfit-warden-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 301,
+      "h": 59
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
