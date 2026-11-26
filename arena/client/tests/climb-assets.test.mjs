@@ -27,6 +27,8 @@ test('normal index registers only the reviewed NE/SW climb with all four phase r
   for(let frame=0;frame<66;frame++) for(const layer of layers) assert(frames.has(`climb/${layer}/${direction}/${String(frame).padStart(2,'0')}`));
  }
  const hashes=await json('source-hashes.json');
+ const freeze=JSON.parse(await readFile(new URL('../../art/tools/candidates/eight-mobility/freeze-climb.json',import.meta.url),'utf8'));
+ assert.deepEqual(hashes,freeze.files);
  for(const [file,hash] of Object.entries(hashes)) assert.equal(createHash('sha256').update(await readFile(new URL(file,root))).digest('hex'),hash);
  assert.equal(hashes['atlas-budget.json'],'68e0b6456900146eaf5bdb8f6fde0081225aff63262e80116d8461ce99addcff');
 });
