@@ -1,0 +1,84 @@
+{
+  "sourceHash": "d57a41beceefbe7f777d1a27f0c066c69e410e716085df998f8f709bfecfbdff",
+  "owner": "p",
+  "tick": 10,
+  "trace": {
+    "v": 2,
+    "tick": 10,
+    "graphId": "composition-check",
+    "actors": [
+      {
+        "actorId": "g",
+        "startStateId": "g-state",
+        "endStateId": "g-state",
+        "transitionId": null,
+        "visited": [
+          {
+            "nodeId": "first"
+          }
+        ],
+        "selectedNodeId": "first",
+        "moduleId": "scout-home",
+        "reason": "scout-reported",
+        "moduleVisits": [
+          {
+            "nodeId": "first",
+            "moduleId": "scout-home",
+            "outcome": "hold",
+            "reasonCode": "scout-reported",
+            "ref": {
+              "roomId": "r0",
+              "type": "room"
+            },
+            "resolvedId": "r0",
+            "observed": {
+              "tick": 10,
+              "enemyHp": 0
+            }
+          }
+        ]
+      },
+      {
+        "actorId": "s",
+        "startStateId": "s-state",
+        "endStateId": "s-state",
+        "transitionId": null,
+        "visited": [
+          {
+            "nodeId": "second"
+          },
+          {
+            "nodeId": "fallback"
+          }
+        ],
+        "selectedNodeId": "fallback",
+        "moduleId": null,
+        "reason": "fallback",
+        "moduleVisits": [
+          {
+            "nodeId": "second",
+            "moduleId": "scout-risk",
+            "outcome": "fallback",
+            "reasonCode": "risk-exceeded",
+            "fallbackNodeId": "fallback",
+            "ref": {
+              "roomId": "r2",
+              "type": "room"
+            },
+            "resolvedId": "r2",
+            "observed": {
+              "enemyHp": 4,
+              "threshold": 2
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "provenance": {
+    "source": "A1 production independent V8 sample v060-composition-trace.json",
+    "sha256": "4c1ca2f3885eaccbb08eb7b18f5ae3c433ada3acc441aa93c0961cc60ed3e251",
+    "recordingOperationAvailable": false,
+    "method": "Original V8 trace/hash/owner/tick. Test operation envelopes are synthetic adapter inputs, not actual timeline recordings."
+  }
+}
