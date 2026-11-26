@@ -289,10 +289,9 @@ impl Session {
                 chant: Some(chant),
                 ..
             } = operation
+                && Some(player_id.as_str()) != owner
             {
-                if Some(player_id.as_str()) != owner {
-                    *chant = chant.redacted();
-                }
+                *chant = chant.redacted();
             }
             if let ReplayOperation::ScriptAdvance { decisions, .. } = operation {
                 for decision in decisions {
