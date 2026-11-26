@@ -1,3 +1,5 @@
+import {isTacticalModule} from './tactical-types';
+import {validTacticalConfig} from './tactical-diagnostics';
 import {validCompositionConfig} from './composition-diagnostics';
 import {diagnoseCustomGraph} from './custom-diagnostics';
 import { graphDraftSourceRef } from './source';
@@ -33,7 +35,7 @@ export function diagnoseGraph(graph: RuleGraph): GraphDiagnostic[] {
   for(const t of graph.transitions){if(!states.has(t.from)||!states.has(t.to))add(t.id,'transition','Missing transition state');if(!Number.isInteger(t.priority)||!Number.isInteger(t.cooldownTicks)||t.cooldownTicks<0||!Number.isInteger(t.minStateTicks)||t.minStateTicks<0)add(t.id,'transition','Invalid transition priority/timing');condition(t.id,t.condition);}
   for(const m of graph.modules){
     if(!Number.isInteger(m.priority)||typeof m.enabled!=='boolean')add(m.moduleId,'module-config','Invalid module priority/enabled');
-    const valid=m.kind==='scout'||m.kind==='patrol'||m.kind==='escort'?validCompositionConfig(m):m.kind==='gather'?(!m.config.targetRoomId||typeof m.config.targetRoomId==='string'):m.kind==='defend'?(!m.config.roomId||typeof m.config.roomId==='string'):m.kind==='haul'?Number.isFinite(m.config.minCargo)&&m.config.minCargo>=0:m.kind==='retreat'?Number.isFinite(m.config.hpThreshold)&&m.config.hpThreshold>=0:m.kind==='build'?!!m.config.roomId&&['tower','catalog'].includes(m.config.buildingKind)&&Number.isFinite(m.config.minMaterials)&&m.config.minMaterials>=0:false;
+    const valid=isTacticalModule(m)?validTacticalConfig(m):m.kind==='scout'||m.kind==='patrol'||m.kind==='escort'?validCompositionConfig(m):m.kind==='gather'?(!m.config.targetRoomId||typeof m.config.targetRoomId==='string'):m.kind==='defend'?(!m.config.roomId||typeof m.config.roomId==='string'):m.kind==='haul'?Number.isFinite(m.config.minCargo)&&m.config.minCargo>=0:m.kind==='retreat'?Number.isFinite(m.config.hpThreshold)&&m.config.hpThreshold>=0:m.kind==='build'?!!m.config.roomId&&['tower','catalog'].includes(m.config.buildingKind)&&Number.isFinite(m.config.minMaterials)&&m.config.minMaterials>=0:false;
     if(!valid&&m.kind!=='custom')add(m.moduleId,'module-config','Unsupported module kind/config');
   }
   for(const n of graph.nodes){

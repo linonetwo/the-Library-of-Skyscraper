@@ -1,7 +1,7 @@
 import type { ActorRole, BehaviorModule } from '../types';
 export type RoomRef = { type: 'room'; roomId: string };
 export type OwnRoleRef = { type: 'ownRole'; role: ActorRole };
-export type ModuleRef = RoomRef | OwnRoleRef;
+export type ModuleRef = RoomRef | OwnRoleRef | import('./tactical-types').TacticalRef;
 export type CompositionConfig = {
   scout: { target: RoomRef; maxEnemyHp: number; reportIntervalTicks: number };
   patrol: { rooms: RoomRef[]; dwellTicks: number };
@@ -11,12 +11,12 @@ export type CompositionModule = { [K in keyof CompositionConfig]: {
   moduleId: string; kind: K; enabled: boolean; priority: number;
   roleFilter?: ActorRole[]; config: CompositionConfig[K];
 } }[keyof CompositionConfig];
-export type GraphModule = BehaviorModule | CompositionModule | import('./custom-types').CustomModuleBinding;
-export type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-cargo-insufficient' | 'escort-safe' | 'escort-defending' | 'custom-selected' | 'custom-hold' | 'custom-fallback' | 'custom-exit' | 'custom-unconnected-exit';
+export type GraphModule = BehaviorModule | CompositionModule | import('./tactical-types').TacticalModule | import('./custom-types').CustomModuleBinding;
+export type ModuleReasonCode = 'official-selected' | 'official-unavailable' | 'disabled' | 'role-filtered' | 'room-missing' | 'risk-exceeded' | 'travel-active' | 'route-unavailable' | 'moving' | 'scout-reported' | 'scout-report-cooldown' | 'patrol-dwelling' | 'patrol-advanced' | 'escort-target-missing' | 'escort-cargo-insufficient' | 'escort-safe' | 'escort-defending' | 'tactics-unavailable' | 'target-missing' | 'cast-active' | 'recovery-active' | 'claim-active' | 'attack-requested' | 'repair-requested' | 'claim-requested' | 'cast-requested' | 'custom-selected' | 'custom-hold' | 'custom-fallback' | 'custom-exit' | 'custom-unconnected-exit';
 export interface ModuleVisit {
   nodeId: string; moduleId: string; outcome: 'selected' | 'fallback' | 'hold';
   reasonCode: ModuleReasonCode; ref?: ModuleRef; resolvedId?: string;
-  observed?: { tick?: number; enemyHp?: number; threshold?: number; cargo?: number; cursor?: number; arrivedTick?: number };
+  observed?: { tick?: number; enemyHp?: number; threshold?: number; cargo?: number; cursor?: number; arrivedTick?: number; hp?: number; maxHp?: number; materials?: number; energy?: number; readyTick?: number; progressTicks?: number };
   fallbackNodeId?: string;
   exitKey?: string; reason?: string;
 }

@@ -35,7 +35,7 @@ export interface ActorScriptView {
   readonly worldHeightMilli?: number;
   readonly locomotion?: ReadonlyView<Locomotion>;
   readonly travel?: { readonly segment?: number; readonly startedTick?: number; readonly segmentElapsedMicros?: number; readonly segments?: readonly ReadonlyView<TravelSegment>[]; readonly travelId: string; readonly targetRoomId: string; readonly path: readonly { readonly x: number; readonly y: number }[]; readonly distanceMilli: number; readonly totalDistanceMilli: number; readonly speedMilliPerTick: number; readonly progress: number } | null;
-  readonly task?: { readonly buildingKind?: 'tower' | 'catalog' | 'warehouse' | null; readonly kind: 'gather' | 'build' | 'guard' | 'return'; readonly target: string; readonly stage: string; readonly blockedReason: string | null } | null;
+  readonly task?: { readonly buildingKind?: 'tower' | 'catalog' | 'warehouse' | null; readonly kind: 'gather' | 'build' | 'guard' | 'return' | 'claim'; readonly target: string; readonly stage: string; readonly blockedReason: string | null } | null;
   readonly retreating?: boolean;
   readonly actionTick?: number;
   readonly actionCue?: {readonly kind:string;readonly startedTick:number;readonly durationTicks:number;readonly targetPosition:{readonly x:number;readonly y:number}|null}|null;
@@ -55,7 +55,7 @@ export interface RoomScriptView {
   readonly q: number;
   readonly r: number;
   readonly name: string;
-  readonly kind: 'base' | 'resource' | 'catalog' | 'ruins';
+  readonly kind: 'base' | 'resource' | 'catalog' | 'ruins' | 'control';
   readonly resources: number;
   readonly enemyHp: number;
   readonly owner: string | null;
