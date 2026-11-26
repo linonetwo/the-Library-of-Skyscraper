@@ -12,9 +12,10 @@ export default function TacticalActionBar(){
  return <section className="tactical-bar" aria-label="战术行动">
   <strong>战术</strong><label>行动<select aria-label="战术行动" value={t.action} onChange={e=>t.setAction(e.target.value as TacticalActionKind)}>{Object.entries(tacticalLabels).map(([key,name])=><option key={key} value={key} disabled={key==='cast'&&!t.actor?.appearance.weapon}>{name}</option>)}</select></label>
   <label className="tactical-target">目标<select aria-label="战术目标" value={t.target?.id??''} onChange={e=>t.choose(e.target.value)}><option value="">选择真实目标</option>{t.targets.map(target=><option key={target.id} value={target.id}>{target.title} · {target.detail}</option>)}</select></label>
+  {t.player?.script&&<p>AI规则已接管指挥 · 目标仍可预览 <button onClick={()=>void t.openAiEditor()}>查看当前 AI 规则</button></p>}
   <button disabled={!t.enabled} onClick={()=>void t.submit()}>确认{tacticalLabels[t.action]}</button>
   <p className="tactical-short" title={t.target?.detail}>{t.target?`${tacticalLabels[t.action]} · ${t.target.title}`:'先选择己方角色与目标'}</p>
-  <details><summary>目标与行动详情</summary><p>{t.target?.detail??'没有选中目标'} {t.target&&<button className="text-button" onClick={()=>t.setSelectedRoom(t.target!.roomId)}>定位目标房间</button>}</p><p>{range===undefined?'范围由服务端判断':`作用距离 ${range/1000} 米`} · {cost}</p>
+  <details><summary>目标与行动详情</summary><p>{t.target?.detail??'没有选中目标'}{t.target&&<> · 对象编号 <code>{t.target.id}</code></>} {t.target&&<button className="text-button" onClick={()=>t.setSelectedRoom(t.target!.roomId)}>定位目标房间</button>}</p><p>{range===undefined?'范围由服务端判断':`作用距离 ${range/1000} 米`} · {cost}</p>
    {t.action==='repair'&&<p>库存 {t.player?.materials??0} 建材；携带材料不计入库存。</p>}
    {t.state&&<p>能量 {t.state.energy}/{t.state.maxEnergy} · 施法冷却 {Math.max(0,t.state.castReadyTick-s.tick)*(s.tickDurationMs??500)/1000} 秒</p>}
    {t.point&&<p>占领 {t.point.progressTicks}/{t.point.requiredTicks}{t.point.contested?' · 正在争夺':''}{t.point.blockedReason?` · ${reason(t.point.blockedReason)}`:''}</p>}
