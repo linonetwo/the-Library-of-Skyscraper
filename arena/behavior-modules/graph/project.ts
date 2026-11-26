@@ -21,8 +21,19 @@ export function serializeGraphDraft(graph:RuleGraph):RuleSourceProject {
 export function recoverRuleGraph(project:RuleSourceProject):RuleGraph|null {
  try{const line=project.files['graph-plan.ts']?.split('\n')[0];if(!line?.startsWith(marker))return null;const graph=JSON.parse(line.slice(marker.length)) as RuleGraph;const generated=serializeGraphDraft(graph);return (project.entry??'main.ts')===generated.entry&&canonical(project.files)===canonical(generated.files)?graph:null;}catch{return null;}
 }
+/** Read the archived declaration for recording queries; this grants no editing/publication recovery. */
+export function readArchivedRuleGraph(project:RuleSourceProject):RuleGraph|null {
+ try {
+  const source=project.files['graph-plan.ts'];const line=source?.split('\n')[0];if(!line?.startsWith(marker))return null;
+  const declared=JSON.parse(line.slice(marker.length));const prefix='\nexport const graph:RuleGraph = ';
+  const start=source.indexOf(prefix);if(start<0)return null;
+  const end=source.indexOf(';\nexport const modulePlan:',start+prefix.length);if(end<0)return null;
+  const graph=JSON.parse(source.slice(start+prefix.length,end)) as RuleGraph;
+  return graph.schemaVersion===2&&canonical(graph)===canonical(declared)?graph:null;
+ } catch {return null;}
+}
 export function getGraphSourceRef(project:RuleSourceProject,objectId:string):GraphSourceRef|null {
- try{const source=project.files['graph-plan.ts'];const line=source?.split('\n')[0];if(!line?.startsWith(marker))return null;const graph=JSON.parse(line.slice(marker.length)) as RuleGraph;const lines=source.split('\n');
+ try{const graph=readArchivedRuleGraph(project);if(!graph)return null;const source=project.files['graph-plan.ts'];const lines=source.split('\n');
   const collections=['roles','states','transitions','nodes','modules'] as const;
   for(const key of collections){const index=graph[key].findIndex(item=>('id' in item?item.id:item.moduleId)===objectId);if(index<0)continue;const start=lines.findIndex(l=>l===JSON.stringify(key)+':[');if(start<0)return null;const actual=lines[start+index+1].replace(/,$/,'');if(actual!==canonical(graph[key][index]))return null;return {file:'graph-plan.ts',line:start+index+2,column:1};}
   for(const node of graph.nodes)if(node.type==='score'&&node.candidates.some(c=>c.id===objectId))return getGraphSourceRef(project,node.id);
