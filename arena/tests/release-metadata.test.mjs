@@ -46,19 +46,19 @@ test('v0.5 mobility metadata follows shipped registration, partial directions, S
   put('arena/shared/world-map-v5.json',{version:'fixture-library-v5.0',mobilityEdges:[]});
   put('arena/client/public/assets/player/index.json',{assetSetId:'wrong-public',clips:[clip('climb')]});
   put(indexPath,{assetSetId:'shipped-two-directions',clips:[clip('run'),clip('jump')]});
-  const run={directions:['NE','SW']};
-  const jump={directions:['NE','SW'],phaseFrames:{takeoff:[0],airborne:[1,2],landing:[3]}};
+  const run={directions:['NE','SW'],phaseFrames:{wrongTopLevel:{first:0,last:9}}};
+  const jump={directions:['NE','SW'],clip:{phaseFrames:{takeoff:{first:0,last:0},airborne:{first:1,last:2},landing:{first:3,last:3}}}};
   put('arena/client/dist/assets/mobility/run/atlas.json',run);
   put('arena/client/dist/assets/mobility/jump/atlas.json',jump);
   // A descriptor on disk alone does not register a clip.
-  put('arena/client/dist/assets/mobility/climb/atlas.json',{directions:['NE','SW'],phaseFrames:{grip:[0]}});
+  put('arena/client/dist/assets/mobility/climb/atlas.json',{directions:['NE','SW'],clip:{phaseFrames:{grip:{first:0,last:0}}}});
   const initial=buildMetadata(root,'0.5.0');
   const player=initial.assets.groups.player;
   assert.equal(player.assetSetId,'shipped-two-directions');
   assert.deepEqual(player.clips.map(c=>c.action),['run','jump']);
   assert.deepEqual(player.clips[0].directions,['NE','SW']);
   assert.equal(Object.hasOwn(player.clips[0],'phaseFrames'),false);
-  assert.deepEqual(player.clips[1].phaseFrames,jump.phaseFrames);
+  assert.deepEqual(player.clips[1].phaseFrames,jump.clip.phaseFrames);
   assert.equal(player.clips[1].descriptor.sha256,hash(jump));
   assert.equal(initial.assets.provenance.scope,'inherited-baseline');
   assert.equal(initial.assets.provenance.version,'0.3.0');
@@ -70,17 +70,17 @@ test('v0.5 mobility metadata follows shipped registration, partial directions, S
   assert.deepEqual(initial.world,{simulationVersion:7,version:'fixture-library-v5.0',map:{path:'arena/shared/world-map-v5.json',sha256:hash({version:'fixture-library-v5.0',mobilityEdges:[]})}});
 
   put(indexPath,{assetSetId:'shipped-two-directions',clips:[clip('run'),clip('jump'),clip('climb')]});
-  const climb={directions:['NE','SW'],phaseFrames:{grip:[0,1],crest:[2],descend:[3]}};
+  const climb={directions:['NE','SW'],clip:{phaseFrames:{grip:{first:0,last:1},crestUp:{first:2,last:2},descend:{first:3,last:3}}}};
   put('arena/client/dist/assets/mobility/climb/atlas.json',climb);
   const registered=buildMetadata(root,'0.5.0').assets.groups.player.clips[2];
   assert.equal(registered.action,'climb');
-  assert.deepEqual(registered.phaseFrames,climb.phaseFrames);
+  assert.deepEqual(registered.phaseFrames,climb.clip.phaseFrames);
   assert.deepEqual(registered.directions,['NE','SW']);
   assert.equal(registered.descriptor.sha256,hash(climb));
-  climb.phaseFrames.crest=[2,3];
+  climb.clip.phaseFrames.crestUp={first:2,last:3};
   put('arena/client/dist/assets/mobility/climb/atlas.json',climb);
   const updated=buildMetadata(root,'0.5.0').assets.groups.player.clips[2];
-  assert.deepEqual(updated.phaseFrames,climb.phaseFrames);
+  assert.deepEqual(updated.phaseFrames,climb.clip.phaseFrames);
   assert.notEqual(updated.descriptor.sha256,registered.descriptor.sha256);
   assert.equal(updated.descriptor.sha256,hash(climb));
  } finally {rmSync(root,{recursive:true,force:true});}
