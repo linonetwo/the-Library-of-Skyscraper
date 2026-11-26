@@ -43,7 +43,10 @@ function RecordingDebuggerView({session, onSeekOperation, onOpenSource}: Recordi
   const [cursor, setCursor] = useState(-1);
   const [selection, setSelection] = useState<RecordingEvidence | null>(null);
   const [notice, setNotice] = useState('');
-  const [sourceId, setSourceId] = useState('');
+  const [source, setSource] = useState<{sourceHash: string; objectId: string} | null>(null);
+  const sourceId = source?.sourceHash === sourceHash ? source.objectId : '';
+  const setSourceId = (objectId: string) => setSource(objectId ? {sourceHash, objectId} : null);
+  const activeSelection = selection?.fact.sourceHash === sourceHash && selection.fact.actorId === actorId ? selection : null;
   const [name, setName] = useState('');
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(0);
@@ -69,7 +72,7 @@ function RecordingDebuggerView({session, onSeekOperation, onOpenSource}: Recordi
     else setNotice('所选版本、角色和对象没有下一条对应记录；旧字段缺失不代表未执行。');
   };
   const openSource = () => {
-    const id = selection?.kind === 'module' ? selection.fact.visit.nodeId : objectId;
+    const id = activeSelection?.kind === 'module' ? activeSelection.fact.visit.nodeId : objectId;
     if (onOpenSource) onOpenSource({sourceHash, objectId: id});
     else {setSourceId(id); if (!project || !getGraphSourceRef(project, id)) setNotice('该归档工程没有对象行号；可在原多文件源码中查看手写规则。');}
   };
@@ -88,7 +91,7 @@ function RecordingDebuggerView({session, onSeekOperation, onOpenSource}: Recordi
       <button disabled={!index || !objectId || !actorId} onClick={() => next('previous')}>上一次记录</button><button disabled={!index || !objectId || !actorId} onClick={() => next('next')}>下一次记录</button>
     </div>
     {notice && <p role="status">{notice}</p>}
-    <EvidenceDetail selection={selection} sceneTick={timeline?.frames.find(frame => frame.operationIndex === cursor)?.tick} />
+    <EvidenceDetail selection={activeSelection} sceneTick={timeline?.frames.find(frame => frame.operationIndex === cursor)?.tick} />
     <button disabled={!project || !objectId} onClick={openSource}>打开该版只读源码</button>
     {ref && project && <details open><summary>归档 {sourceHash.slice(0,12)} · {ref.file}:{ref.line}</summary><ReadOnlySource text={project.files[ref.file] ?? ''} line={ref.line} /></details>}
     {!graph && project && <><p>该归档是手写或无可恢复图的工程；节点分母与模块覆盖未记录，可查看原版本源码和意图。</p><button onClick={() => setSourceId('__entry__')}>查看该版入口源码</button></>}
