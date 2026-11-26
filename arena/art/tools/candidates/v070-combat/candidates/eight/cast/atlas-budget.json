@@ -1,0 +1,1381 @@
+{
+  "clip": {
+    "action": "cast",
+    "frameCount": 8,
+    "frameDurationsMs": [
+      125,
+      125,
+      125,
+      125,
+      125,
+      125,
+      125,
+      125
+    ],
+    "playback": "once",
+    "phaseFrames": {
+      "chanting": {
+        "first": 0,
+        "last": 2
+      },
+      "release": {
+        "first": 3,
+        "last": 4
+      },
+      "recovery": {
+        "first": 5,
+        "last": 7
+      }
+    }
+  },
+  "layerOrderByDirection": {
+    "NE": [
+      "weapon-staff-back",
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SW": [
+      "hair-ivory-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "E": [
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "W": [
+      "weapon-staff-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "N": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "S": [
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-left-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "NW": [
+      "weapon-staff-back",
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ],
+    "SE": [
+      "hair-midnight-back",
+      "body",
+      "outfit-scholar",
+      "outfit-warden",
+      "weapon-staff-front",
+      "body-front",
+      "outfit-warden-front",
+      "hand-front",
+      "hand-grip",
+      "hair-ivory-front",
+      "hair-midnight-front"
+    ]
+  },
+  "appearanceOptions": {
+    "outfits": [
+      "scholar",
+      "warden"
+    ],
+    "hair": [
+      "ivory",
+      "midnight"
+    ],
+    "weaponOff": [
+      "hand-front"
+    ],
+    "weaponOn": [
+      "hand-grip",
+      "weapon-staff-back",
+      "weapon-staff-front"
+    ]
+  },
+  "exclusiveLayerGroups": [
+    [
+      "hand-front",
+      "hand-grip"
+    ]
+  ],
+  "renderScale": 1,
+  "groundPivot": [
+    96,
+    172.8
+  ],
+  "sourceSize": [
+    192,
+    192
+  ],
+  "directions": [
+    "NE",
+    "SW",
+    "N",
+    "NW",
+    "W",
+    "E",
+    "SE",
+    "S"
+  ],
+  "maxPageDimension": 2048,
+  "activeLayers": [
+    "body",
+    "body-front",
+    "outfit-scholar",
+    "hair-ivory-back",
+    "hair-ivory-front",
+    "outfit-warden",
+    "outfit-warden-front",
+    "hair-midnight-back",
+    "hair-midnight-front",
+    "hand-front",
+    "hand-grip",
+    "weapon-staff-back",
+    "weapon-staff-front",
+    "hand-left-front"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "body",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 64,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 379235,
+      "pages": [
+        {
+          "image": "cast-body-0.png",
+          "json": "cast-body-0.json",
+          "width": 2039,
+          "height": 285,
+          "decodedBytes": 2324460,
+          "pngBytes": 203455
+        }
+      ],
+      "decodedBytes": 2324460
+    },
+    {
+      "layer": "body-front",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 56,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 66787,
+      "pages": [
+        {
+          "image": "cast-body-front-0.png",
+          "json": "cast-body-front-0.json",
+          "width": 1861,
+          "height": 59,
+          "decodedBytes": 439196,
+          "pngBytes": 116424
+        }
+      ],
+      "decodedBytes": 439196
+    },
+    {
+      "layer": "outfit-scholar",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 64,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 148056,
+      "pages": [
+        {
+          "image": "cast-outfit-scholar-0.png",
+          "json": "cast-outfit-scholar-0.json",
+          "width": 2041,
+          "height": 132,
+          "decodedBytes": 1077648,
+          "pngBytes": 56433
+        }
+      ],
+      "decodedBytes": 1077648
+    },
+    {
+      "layer": "hair-ivory-back",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 16,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 6192,
+      "pages": [
+        {
+          "image": "cast-hair-ivory-back-0.png",
+          "json": "cast-hair-ivory-back-0.json",
+          "width": 717,
+          "height": 15,
+          "decodedBytes": 43020,
+          "pngBytes": 1274
+        }
+      ],
+      "decodedBytes": 43020
+    },
+    {
+      "layer": "hair-ivory-front",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 64,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 118800,
+      "pages": [
+        {
+          "image": "cast-hair-ivory-front-0.png",
+          "json": "cast-hair-ivory-front-0.json",
+          "width": 2005,
+          "height": 95,
+          "decodedBytes": 761900,
+          "pngBytes": 43821
+        }
+      ],
+      "decodedBytes": 761900
+    },
+    {
+      "layer": "outfit-warden",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 64,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 132917,
+      "pages": [
+        {
+          "image": "cast-outfit-warden-0.png",
+          "json": "cast-outfit-warden-0.json",
+          "width": 2043,
+          "height": 122,
+          "decodedBytes": 996984,
+          "pngBytes": 103611
+        }
+      ],
+      "decodedBytes": 996984
+    },
+    {
+      "layer": "outfit-warden-front",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 56,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 63689,
+      "pages": [
+        {
+          "image": "cast-outfit-warden-front-0.png",
+          "json": "cast-outfit-warden-front-0.json",
+          "width": 1863,
+          "height": 50,
+          "decodedBytes": 372600,
+          "pngBytes": 91852
+        }
+      ],
+      "decodedBytes": 372600
+    },
+    {
+      "layer": "hair-midnight-back",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 24,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 18464,
+      "pages": [
+        {
+          "image": "cast-hair-midnight-back-0.png",
+          "json": "cast-hair-midnight-back-0.json",
+          "width": 669,
+          "height": 47,
+          "decodedBytes": 125772,
+          "pngBytes": 5253
+        }
+      ],
+      "decodedBytes": 125772
+    },
+    {
+      "layer": "hair-midnight-front",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 64,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 131160,
+      "pages": [
+        {
+          "image": "cast-hair-midnight-front-0.png",
+          "json": "cast-hair-midnight-front-0.json",
+          "width": 2029,
+          "height": 109,
+          "decodedBytes": 884644,
+          "pngBytes": 39940
+        }
+      ],
+      "decodedBytes": 884644
+    },
+    {
+      "layer": "hand-front",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 64,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 6497,
+      "pages": [
+        {
+          "image": "cast-hand-front-0.png",
+          "json": "cast-hand-front-0.json",
+          "width": 918,
+          "height": 20,
+          "decodedBytes": 73440,
+          "pngBytes": 11963
+        }
+      ],
+      "decodedBytes": 73440
+    },
+    {
+      "layer": "hand-grip",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 64,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 7494,
+      "pages": [
+        {
+          "image": "cast-hand-grip-0.png",
+          "json": "cast-hand-grip-0.json",
+          "width": 930,
+          "height": 17,
+          "decodedBytes": 63240,
+          "pngBytes": 19090
+        }
+      ],
+      "decodedBytes": 63240
+    },
+    {
+      "layer": "weapon-staff-back",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 114318,
+      "pages": [
+        {
+          "image": "cast-weapon-staff-back-0.png",
+          "json": "cast-weapon-staff-back-0.json",
+          "width": 1823,
+          "height": 101,
+          "decodedBytes": 736492,
+          "pngBytes": 109352
+        }
+      ],
+      "decodedBytes": 736492
+    },
+    {
+      "layer": "weapon-staff-front",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 32,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 116088,
+      "pages": [
+        {
+          "image": "cast-weapon-staff-front-0.png",
+          "json": "cast-weapon-staff-front-0.json",
+          "width": 2021,
+          "height": 126,
+          "decodedBytes": 1018584,
+          "pngBytes": 120653
+        }
+      ],
+      "decodedBytes": 1018584
+    },
+    {
+      "layer": "hand-left-front",
+      "active": true,
+      "sourceFrames": 64,
+      "nonemptyFrames": 8,
+      "untrimmedPixels": 2359296,
+      "trimmedPixels": 1032,
+      "pages": [
+        {
+          "image": "cast-hand-left-front-0.png",
+          "json": "cast-hand-left-front-0.json",
+          "width": 136,
+          "height": 15,
+          "decodedBytes": 8160,
+          "pngBytes": 2790
+        }
+      ],
+      "decodedBytes": 8160
+    }
+  ],
+  "decodedBytes": 8926140,
+  "mipmapMultiplierIfEnabled": 1.3333333333333333,
+  "anchorsByDirection": {
+    "NE": [
+      {
+        "grip": [
+          115.59686938929055,
+          122.01440371521099
+        ],
+        "staffTip": [
+          137.83754388718356,
+          66.2384132719202
+        ],
+        "supportFoot": [
+          89.6175,
+          173.195625
+        ]
+      },
+      {
+        "grip": [
+          114.57772692197038,
+          116.93296411548783
+        ],
+        "staffTip": [
+          128.4318852641474,
+          58.50633483840919
+        ],
+        "supportFoot": [
+          89.6175,
+          173.195625
+        ]
+      },
+      {
+        "grip": [
+          117.65021786680832,
+          110.82813668744993
+        ],
+        "staffTip": [
+          155.41632535100857,
+          64.14484377078506
+        ],
+        "supportFoot": [
+          89.6175,
+          173.195625
+        ]
+      },
+      {
+        "grip": [
+          124.92260804768699,
+          108.21425120787507
+        ],
+        "staffTip": [
+          177.52911609171036,
+          79.26318864593446
+        ],
+        "supportFoot": [
+          89.6175,
+          173.195625
+        ]
+      },
+      {
+        "grip": [
+          124.0281808566871,
+          110.66146480337501
+        ],
+        "staffTip": [
+          176.6346889007105,
+          81.7104022414344
+        ],
+        "supportFoot": [
+          89.6175,
+          173.195625
+        ]
+      },
+      {
+        "grip": [
+          123.01678101280781,
+          117.14485511445018
+        ],
+        "staffTip": [
+          160.78288849700806,
+          70.46156219778531
+        ],
+        "supportFoot": [
+          89.6175,
+          173.195625
+        ]
+      },
+      {
+        "grip": [
+          122.06253577910346,
+          123.33104231024795
+        ],
+        "staffTip": [
+          132.22071769781928,
+          64.14979483980702
+        ],
+        "supportFoot": [
+          89.6175,
+          173.195625
+        ]
+      },
+      {
+        "grip": [
+          121.34875,
+          125.99687499999999
+        ],
+        "staffTip": [
+          118.98047804532578,
+          65.99687499999999
+        ],
+        "supportFoot": [
+          89.6175,
+          173.195625
+        ]
+      }
+    ],
+    "SW": [
+      {
+        "grip": [
+          72.69456242850413,
+          118.04316203159584
+        ],
+        "staffTip": [
+          45.842044624990535,
+          69.79367791264569
+        ],
+        "supportFoot": [
+          101.4625,
+          174.92375
+        ]
+      },
+      {
+        "grip": [
+          73.70750275717992,
+          111.15564094706527
+        ],
+        "staffTip": [
+          54.191480590438076,
+          59.50106410318745
+        ],
+        "supportFoot": [
+          101.4625,
+          174.92375
+        ]
+      },
+      {
+        "grip": [
+          73.09814399007503,
+          108.478088523238
+        ],
+        "staffTip": [
+          18.5801289302754,
+          99.71130666942764
+        ],
+        "supportFoot": [
+          101.4625,
+          174.92375
+        ]
+      },
+      {
+        "grip": [
+          64.99236283712536,
+          112.35381556174964
+        ],
+        "staffTip": [
+          17.992969888203298,
+          141.33876842639395
+        ],
+        "supportFoot": [
+          101.4625,
+          174.92375
+        ]
+      },
+      {
+        "grip": [
+          65.88679002812528,
+          113.9066019662497
+        ],
+        "staffTip": [
+          18.88739707920321,
+          142.89155483089402
+        ],
+        "supportFoot": [
+          101.4625,
+          174.92375
+        ]
+      },
+      {
+        "grip": [
+          67.73158084407554,
+          120.16137009623773
+        ],
+        "staffTip": [
+          13.213565784275907,
+          111.39458824242737
+        ],
+        "supportFoot": [
+          101.4625,
+          174.92375
+        ]
+      },
+      {
+        "grip": [
+          66.22082077080483,
+          124.70151065360002
+        ],
+        "staffTip": [
+          49.986726731891764,
+          71.92344114676257
+        ],
+        "supportFoot": [
+          101.4625,
+          174.92375
+        ]
+      },
+      {
+        "grip": [
+          66.931875,
+          125.55250000000001
+        ],
+        "staffTip": [
+          62.02571253501401,
+          70.55250000000001
+        ],
+        "supportFoot": [
+          101.4625,
+          174.92375
+        ]
+      }
+    ],
+    "N": [
+      {
+        "grip": [
+          115.25030278412054,
+          120.74997686789348
+        ],
+        "staffTip": [
+          88.15063318435942,
+          70.96857740049919
+        ],
+        "supportFoot": [
+          89.67989771212991,
+          175.1624197377999
+        ]
+      },
+      {
+        "grip": [
+          114.66045289012798,
+          117.27369605858983
+        ],
+        "staffTip": [
+          95.12371712291831,
+          64.0675330611444
+        ],
+        "supportFoot": [
+          89.67989771212991,
+          175.1624197377999
+        ]
+      },
+      {
+        "grip": [
+          113.38952865345634,
+          108.99572286583208
+        ],
+        "staffTip": [
+          108.88066789396267,
+          52.49572286583208
+        ],
+        "supportFoot": [
+          89.67989771212991,
+          175.1624197377999
+        ]
+      },
+      {
+        "grip": [
+          113.38952865345634,
+          101.99572286583208
+        ],
+        "staffTip": [
+          108.88066789396267,
+          45.49572286583208
+        ],
+        "supportFoot": [
+          89.67989771212991,
+          175.1624197377999
+        ]
+      },
+      {
+        "grip": [
+          113.38952865345634,
+          104.99572286583208
+        ],
+        "staffTip": [
+          108.88066789396267,
+          48.49572286583208
+        ],
+        "supportFoot": [
+          89.67989771212991,
+          175.1624197377999
+        ]
+      },
+      {
+        "grip": [
+          113.38952865345635,
+          111.99572286583208
+        ],
+        "staffTip": [
+          108.88066789396268,
+          55.49572286583208
+        ],
+        "supportFoot": [
+          89.67989771212991,
+          175.1624197377999
+        ]
+      },
+      {
+        "grip": [
+          114.38538230901274,
+          119.47063748786559
+        ],
+        "staffTip": [
+          98.22804044386781,
+          65.14274291057374
+        ],
+        "supportFoot": [
+          89.67989771212991,
+          175.1624197377999
+        ]
+      },
+      {
+        "grip": [
+          113.38952865345634,
+          123.99572286583208
+        ],
+        "staffTip": [
+          108.88066789396267,
+          67.49572286583208
+        ],
+        "supportFoot": [
+          89.67989771212991,
+          175.1624197377999
+        ]
+      }
+    ],
+    "NW": [
+      {
+        "grip": [
+          109.47224668285718,
+          118.70671668608249
+        ],
+        "staffTip": [
+          80.23970982927133,
+          71.38005578499202
+        ],
+        "supportFoot": [
+          84.6576716074644,
+          176.79161667229576
+        ]
+      },
+      {
+        "grip": [
+          110.44797417966669,
+          113.50468736670635
+        ],
+        "staffTip": [
+          88.44265620427083,
+          62.41535360960222
+        ],
+        "supportFoot": [
+          84.6576716074644,
+          176.79161667229576
+        ]
+      },
+      {
+        "grip": [
+          107.56021664902681,
+          107.74128421425736
+        ],
+        "staffTip": [
+          65.61925931500754,
+          71.19938852110762
+        ],
+        "supportFoot": [
+          84.6576716074644,
+          176.79161667229576
+        ]
+      },
+      {
+        "grip": [
+          100.55454840383553,
+          105.33329340818014
+        ],
+        "staffTip": [
+          47.914930440755015,
+          87.34928207466525
+        ],
+        "supportFoot": [
+          84.6576716074644,
+          176.79161667229576
+        ]
+      },
+      {
+        "grip": [
+          101.44897559483546,
+          107.7805070036801
+        ],
+        "staffTip": [
+          48.80935763175495,
+          89.79649567016521
+        ],
+        "supportFoot": [
+          84.6576716074644,
+          176.79161667229576
+        ]
+      },
+      {
+        "grip": [
+          102.19365350302732,
+          114.0580026412576
+        ],
+        "staffTip": [
+          60.25269616900805,
+          77.51610694810786
+        ],
+        "supportFoot": [
+          84.6576716074644,
+          176.79161667229576
+        ]
+      },
+      {
+        "grip": [
+          102.95005341783947,
+          119.84938344789367
+        ],
+        "staffTip": [
+          84.19608371984637,
+          67.47913747262814
+        ],
+        "supportFoot": [
+          84.6576716074644,
+          176.79161667229576
+        ]
+      },
+      {
+        "grip": [
+          103.64471834758501,
+          122.33329340818015
+        ],
+        "staffTip": [
+          96.18895427251799,
+          67.20829340818015
+        ],
+        "supportFoot": [
+          84.6576716074644,
+          176.79161667229576
+        ]
+      }
+    ],
+    "W": [
+      {
+        "grip": [
+          98.28301662564061,
+          117.17335806665064
+        ],
+        "staffTip": [
+          71.49649421477304,
+          68.07351369691673
+        ],
+        "supportFoot": [
+          89.23905324095992,
+          176.7633233248191
+        ]
+      },
+      {
+        "grip": [
+          99.44508118587275,
+          111.00799314504431
+        ],
+        "staffTip": [
+          80.11856963598223,
+          58.52181923884356
+        ],
+        "supportFoot": [
+          89.23905324095992,
+          176.7633233248191
+        ]
+      },
+      {
+        "grip": [
+          97.68567491081203,
+          107.55583416585225
+        ],
+        "staffTip": [
+          47.799742206849615,
+          82.26341992253151
+        ],
+        "supportFoot": [
+          89.23905324095992,
+          176.7633233248191
+        ]
+      },
+      {
+        "grip": [
+          89.98996978318941,
+          108.38542084921022
+        ],
+        "staffTip": [
+          34.23996978318941,
+          112.88542084921022
+        ],
+        "supportFoot": [
+          89.23905324095992,
+          176.7633233248191
+        ]
+      },
+      {
+        "grip": [
+          90.98996978318941,
+          110.38542084921022
+        ],
+        "staffTip": [
+          35.23996978318941,
+          114.88542084921022
+        ],
+        "supportFoot": [
+          89.23905324095992,
+          176.7633233248191
+        ]
+      },
+      {
+        "grip": [
+          91.68567491081203,
+          116.55583416585225
+        ],
+        "staffTip": [
+          41.799742206849615,
+          91.26341992253151
+        ],
+        "supportFoot": [
+          89.23905324095992,
+          176.7633233248191
+        ]
+      },
+      {
+        "grip": [
+          91.09508543507678,
+          120.89989392533252
+        ],
+        "staffTip": [
+          75.10234446868458,
+          67.30376779310276
+        ],
+        "supportFoot": [
+          89.23905324095992,
+          176.7633233248191
+        ]
+      },
+      {
+        "grip": [
+          91.98996978318941,
+          122.38542084921022
+        ],
+        "staffTip": [
+          87.48996978318941,
+          66.63542084921022
+        ],
+        "supportFoot": [
+          89.23905324095992,
+          176.7633233248191
+        ]
+      }
+    ],
+    "E": [
+      {
+        "grip": [
+          90.94445997400895,
+          122.53653053185735
+        ],
+        "staffTip": [
+          114.07680055430612,
+          71.80973958982025
+        ],
+        "supportFoot": [
+          98.95340189530951,
+          170.11617798318446
+        ]
+      },
+      {
+        "grip": [
+          89.6983240990066,
+          116.49657815542278
+        ],
+        "staffTip": [
+          105.1721853817065,
+          62.93472496676098
+        ],
+        "supportFoot": [
+          98.95340189530951,
+          170.11617798318446
+        ]
+      },
+      {
+        "grip": [
+          92.04432446208376,
+          112.57086483301232
+        ],
+        "staffTip": [
+          139.84026290718236,
+          83.86788993227522
+        ],
+        "supportFoot": [
+          98.95340189530951,
+          170.11617798318446
+        ]
+      },
+      {
+        "grip": [
+          100.2993681133338,
+          113.38371632190338
+        ],
+        "staffTip": [
+          156.0493681133338,
+          113.88371632190338
+        ],
+        "supportFoot": [
+          98.95340189530951,
+          170.11617798318446
+        ]
+      },
+      {
+        "grip": [
+          99.2993681133338,
+          115.38371632190336
+        ],
+        "staffTip": [
+          155.0493681133338,
+          115.88371632190336
+        ],
+        "supportFoot": [
+          98.95340189530951,
+          170.11617798318446
+        ]
+      },
+      {
+        "grip": [
+          98.04432446208376,
+          121.57086483301232
+        ],
+        "staffTip": [
+          145.84026290718236,
+          92.86788993227522
+        ],
+        "supportFoot": [
+          98.95340189530951,
+          170.11617798318446
+        ]
+      },
+      {
+        "grip": [
+          98.01808278341706,
+          126.44574080702449
+        ],
+        "staffTip": [
+          110.09823334687404,
+          72.0179679115237
+        ],
+        "supportFoot": [
+          98.95340189530951,
+          170.11617798318446
+        ]
+      },
+      {
+        "grip": [
+          97.0493681133338,
+          128.1337163219034
+        ],
+        "staffTip": [
+          97.5493681133338,
+          72.38371632190339
+        ],
+        "supportFoot": [
+          98.95340189530951,
+          170.11617798318446
+        ]
+      }
+    ],
+    "SE": [
+      {
+        "grip": [
+          102.54859847813611,
+          120.86055781142348
+        ],
+        "staffTip": [
+          128.1673650294387,
+          71.9249427096404
+        ],
+        "supportFoot": [
+          99.83749308196452,
+          172.84034344322177
+        ]
+      },
+      {
+        "grip": [
+          101.5370374625859,
+          113.91515327982583
+        ],
+        "staffTip": [
+          119.73231155779422,
+          61.76203615725835
+        ],
+        "supportFoot": [
+          99.83749308196452,
+          172.84034344322177
+        ]
+      },
+      {
+        "grip": [
+          101.96495627182186,
+          111.58990804908218
+        ],
+        "staffTip": [
+          156.25841408324266,
+          101.42939310743327
+        ],
+        "supportFoot": [
+          99.83749308196452,
+          172.84034344322177
+        ]
+      },
+      {
+        "grip": [
+          109.80147474307694,
+          115.52419017869167
+        ],
+        "staffTip": [
+          157.54152606269747,
+          143.30733479912652
+        ],
+        "supportFoot": [
+          99.83749308196452,
+          172.84034344322177
+        ]
+      },
+      {
+        "grip": [
+          108.90704755207703,
+          117.07697658319171
+        ],
+        "staffTip": [
+          156.64709887169755,
+          144.86012120362656
+        ],
+        "supportFoot": [
+          99.83749308196452,
+          172.84034344322177
+        ]
+      },
+      {
+        "grip": [
+          107.33151941782135,
+          123.27318962208193
+        ],
+        "staffTip": [
+          161.62497722924215,
+          113.112674680433
+        ],
+        "supportFoot": [
+          99.83749308196452,
+          172.84034344322177
+        ]
+      },
+      {
+        "grip": [
+          109.02171282046237,
+          127.4362718084445
+        ],
+        "staffTip": [
+          123.90636137935968,
+          74.24357623585563
+        ],
+        "supportFoot": [
+          99.83749308196452,
+          172.84034344322177
+        ]
+      },
+      {
+        "grip": [
+          108.29286427963979,
+          128.20656272087953
+        ],
+        "staffTip": [
+          111.79286427963979,
+          73.08156272087953
+        ],
+        "supportFoot": [
+          99.83749308196452,
+          172.84034344322177
+        ]
+      }
+    ],
+    "S": [
+      {
+        "grip": [
+          78.60760090707561,
+          116.99569449883677
+        ],
+        "staffTip": [
+          53.4964491649788,
+          67.97090425772112
+        ],
+        "supportFoot": [
+          109.18825745193682,
+          173.43369767274743
+        ]
+      },
+      {
+        "grip": [
+          81.06692294592777,
+          107.92002895512246
+        ],
+        "staffTip": [
+          34.80763249842825,
+          78.01889106216127
+        ],
+        "supportFoot": [
+          109.18825745193682,
+          173.43369767274743
+        ]
+      },
+      {
+        "grip": [
+          82.90931225403892,
+          105.8238857984558
+        ],
+        "staffTip": [
+          35.26592492289733,
+          133.466382856696
+        ],
+        "supportFoot": [
+          109.18825745193682,
+          173.43369767274743
+        ]
+      },
+      {
+        "grip": [
+          79.20504269595519,
+          114.86870432639456
+        ],
+        "staffTip": [
+          82.20504269595519,
+          169.86870432639455
+        ],
+        "supportFoot": [
+          109.18825745193682,
+          173.43369767274743
+        ]
+      },
+      {
+        "grip": [
+          79.20504269595519,
+          115.86870432639456
+        ],
+        "staffTip": [
+          82.20504269595519,
+          170.86870432639455
+        ],
+        "supportFoot": [
+          109.18825745193682,
+          173.43369767274743
+        ]
+      },
+      {
+        "grip": [
+          82.90931225403892,
+          120.82388579845579
+        ],
+        "staffTip": [
+          35.26592492289733,
+          148.46638285669596
+        ],
+        "supportFoot": [
+          109.18825745193682,
+          173.43369767274743
+        ]
+      },
+      {
+        "grip": [
+          81.06692294592779,
+          125.92002895512243
+        ],
+        "staffTip": [
+          34.80763249842826,
+          96.01889106216126
+        ],
+        "supportFoot": [
+          109.18825745193682,
+          173.43369767274743
+        ]
+      },
+      {
+        "grip": [
+          76.4550426959552,
+          126.86870432639452
+        ],
+        "staffTip": [
+          73.4550426959552,
+          71.86870432639452
+        ],
+        "supportFoot": [
+          109.18825745193682,
+          173.43369767274743
+        ]
+      }
+    ]
+  }
+}
