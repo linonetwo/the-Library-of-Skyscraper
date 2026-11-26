@@ -53,3 +53,14 @@ test('fragments bind selector rooms; explicit skill handover archives its actual
  const {project,activeFile}=api.createInkStrikeSourceProject(g);assert.equal(activeFile,'skills/ink-strike.ts');assert.deepEqual((await compileRule(project)).diagnostics,[]);assert.equal(api.recoverRuleGraph(project),null);assert.equal(api.readArchivedRuleGraph(project).graphId,g.graphId);assert.deepEqual(api.getInkStrikeSourceRef(project),{file:activeFile,line:3,column:1});
  const arbitrary=structuredClone(project);arbitrary.files['main.ts']="export {decide} from './graph-runtime';\n";assert.equal(api.getInkStrikeSourceRef(arbitrary),null);
 });
+test('mixed tactical and custom leaves keep one native decision and actual visit order', {skip:!runner},async()=>{
+ const focus=api.createTacticalModule('attack','focus');focus.config.target={type:'enemy',enemyId:'gone'};
+ let g=graph(focus);
+ const definition=await api.saveCustomModuleDefinition({...api.createCustomModuleDraft('return-body'),fields:[],exits:[],source:`import type {Input,Result} from './types';\nexport function decide(input:Input):Result{return {type:'action',intent:{type:'deliver'},reason:'return cargo'};}\n`});
+ g=api.applyGraphPatch(g,api.addCustomModule(g,definition,'return'));
+ g.nodes[0].fallback='return-node';g.nodes.push({id:'return-node',type:'module',moduleId:'return',fallback:'hold'});
+ const out=await execute(g,ctx());assert.deepEqual(out.decision.intents,[{type:'deliver',actorId:'guard',priority:20}]);
+ const visits=out.decision.memoryPatch.set.aiTrace.actors[0].moduleVisits;
+ assert.deepEqual(visits.map(v=>[v.moduleId,v.reasonCode]),[['focus','target-missing'],['return','custom-selected']]);
+ assert.equal(visits[0].fallbackNodeId,'return-node');
+});
