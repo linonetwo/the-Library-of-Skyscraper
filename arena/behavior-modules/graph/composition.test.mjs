@@ -73,3 +73,11 @@ test('missing patrol endpoints stay unresolved and legacy travel reason precedes
  const g=graph([module('patrol','patrol',{rooms:[ref('missing')],dwellTicks:1})]);let {bundle}=await compile(g);let result=native(bundle,context([actor('g','gatherer')]));assert.equal(result.memoryPatch.set.aiTrace.actors[0].moduleVisits[0].resolvedId,undefined);
  g.modules.unshift({...module('old','gather',{}),enabled:false,roleFilter:['guard']});g.nodes[0].moduleId='old';({bundle}=await compile(g));const a=actor('g','gatherer');a.travel={travelId:'active',targetRoomId:'r1'};result=native(bundle,context([a]));assert.equal(result.memoryPatch.set.aiTrace.actors[0].moduleVisits[0].reasonCode,'travel-active');
 });
+
+test('escort explains real insufficient cargo without changing qualified-target selection',async()=>{
+ const g=graph([module('escort','escort',{target:{type:'ownRole',role:'gatherer'},minCargo:4})]);const {bundle}=await compile(g);const s=actor('s','scout'),a=actor('a','gatherer','r1');a.cargo=0;
+ let result=native(bundle,context([s,a]));let visit=result.memoryPatch.set.aiTrace.actors[0].moduleVisits[0];
+ assert.deepEqual(visit,{nodeId:'second',moduleId:'escort',outcome:'fallback',reasonCode:'escort-cargo-insufficient',ref:{type:'ownRole',role:'gatherer'},resolvedId:'a',observed:{cargo:0,threshold:4},fallbackNodeId:'fallback'});assert.ok(!result.intents.some(i=>i.actorId==='s'));
+ a.hp=0;result=native(bundle,context([s,a]));visit=result.memoryPatch.set.aiTrace.actors[0].moduleVisits[0];assert.equal(visit.reasonCode,'escort-target-missing');assert.equal(visit.resolvedId,undefined);assert.equal(visit.observed,undefined);
+ a.hp=100;const z=actor('z','gatherer','r2');z.cargo=4;result=native(bundle,context([s,z,a]));visit=result.memoryPatch.set.aiTrace.actors[0].moduleVisits[0];assert.equal(visit.resolvedId,'z');assert.deepEqual(visit.observed,{cargo:4,threshold:4});assert.equal(visit.reasonCode,'moving');assert.equal(result.intents.find(i=>i.actorId==='s').roomId,'r2');
+});
