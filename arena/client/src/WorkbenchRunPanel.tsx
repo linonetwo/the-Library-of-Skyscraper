@@ -93,7 +93,9 @@ export function WorkbenchRunPanel({
                 <code>{intent.actorId}</code>
                 <b>{intent.type}</b>
                 <span>
-                  {"roomId" in intent ? intent.roomId : intent.reason}
+                  {intent.type === "run" ? `${intent.viaRoomId} → ${intent.roomId}`
+                    : "edgeId" in intent ? intent.edgeId
+                    : "roomId" in intent ? intent.roomId : intent.reason}
                 </span>
               </div>
             ))}
