@@ -12,6 +12,7 @@ pub async fn advance(session: &mut Session, workers: &ScriptWorkers) {
     }
     let snapshot = session.snapshot();
     let mut decisions = Vec::new();
+    let mut official_sources = Vec::new();
     for (owner, script) in &session.scripts {
         let request =
             json!({ "bundle": script.bundle, "context": rule_context(snapshot.clone(), owner) });
@@ -72,7 +73,20 @@ pub async fn advance(session: &mut Session, workers: &ScriptWorkers) {
                 }
             }
         }
+        if let Some(chants) = &decision.chants {
+            for chant in chants {
+                if let skyscraper_arena_server::RecordedChant::Worker(record) = chant
+                    && Some(record.skill_source_hash.as_str())
+                        != script.bundle["sourceHash"].as_str()
+                {
+                    official_sources.push((owner.clone(), record.skill_source_hash.clone()));
+                }
+            }
+        }
         decisions.push(decision);
+    }
+    for (owner, hash) in official_sources {
+        session.archive_official_chant(&owner, &hash, crate::manual_cast::OFFICIAL_SOURCE);
     }
     session.advance_scripted(decisions);
 }

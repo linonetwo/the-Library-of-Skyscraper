@@ -15,6 +15,7 @@ use tower_http::cors::{Any, CorsLayer};
 use uuid::Uuid;
 
 mod lifecycle;
+mod manual_cast;
 mod persistence;
 mod replay_routes;
 mod script_driver;
