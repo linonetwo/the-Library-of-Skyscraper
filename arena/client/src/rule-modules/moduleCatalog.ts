@@ -1,6 +1,7 @@
 import { createDefaultBehaviorPlan } from "../../../behavior-modules";
 import { createCompositionGraph, type GraphModule } from "../../../behavior-modules/graph";
 export type ModuleKind = GraphModule["kind"];
+export const moduleKinds: ModuleKind[] = ["scout", "patrol", "escort", "gather", "haul", "build", "defend", "retreat"];
 export type ModuleRequest = { type: "new"; module: GraphModule } | { type: "existing"; moduleId: string };
 export const moduleCatalog: Record<ModuleKind, { name: string; description: string }> = {
   gather: { name: "采集藏材", description: "采集岗位前往资源房；资源不可用时回退。" },
