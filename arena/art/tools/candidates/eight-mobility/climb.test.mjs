@@ -131,3 +131,17 @@ test("N registered thigh and unchanged shin meet at the actual knee raster", asy
     assert(gap<=Math.SQRT2, `${frame}: thigh/shin opaque knee masks are not adjacent (${gap}px)`);
   }
 });
+
+test("S fold-driven elbow stays readable at former singular frames and reverses deterministically", async () => {
+  const rig = await loadClimbRig(["S"]);
+  await registerClimbHands(rig, path.resolve(here, "../../../iso-v050-mobility/climb-hands/six/manifest.json"));
+  const direction = rig.directions.S;
+  const samples = climbInputs().map(input => articulateClimb(direction,input));
+  for (let frame=0;frame<25;frame++) for (const joint of ["rightShoulder","rightElbow","rightWrist"])
+    assert(distance(samples[frame].jointPositions[joint],samples[49-frame].jointPositions[joint])<1e-9);
+  for (const frame of [2,5,6,13,36,43,44,47])
+    assert(distance(samples[frame].jointPositions.rightElbow,samples[frame].jointPositions.rightWrist)>2,
+      `${frame}: right forearm collapses into the wrist projection`);
+  for (const [a,b] of [[24,25],[24,50],[49,0],[57,58],[65,25]]) for (const side of ["left","right"])
+    assert(distance(samples[a].handContacts[side].target,samples[b].handContacts[side].target)<1e-9);
+});

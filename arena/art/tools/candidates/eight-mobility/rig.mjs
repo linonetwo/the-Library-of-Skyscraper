@@ -121,7 +121,10 @@ export async function loadClimbRig(names) {
         thigh.pivot = [5.08395140500806, thigh.pivot[1]];
         direction.climbLeftThighAxis = [-0.740002936803529, 24.979719480710855];
       }
-      if (name === "S") useSouthThighCleanup(direction);
+      if (name === "S") {
+        useSouthThighCleanup(direction);
+        direction.climbRightElbowFold = true;
+      }
       if (name === "NW" || name === "SE") direction.climbShoulderSockets = ["left"];
       const original = direction.attachments.find(
         (a) => a.id === "left-forearm-hand",

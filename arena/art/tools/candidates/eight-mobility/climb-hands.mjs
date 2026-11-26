@@ -33,9 +33,14 @@ export function articulateClimb(direction, input) {
     ankles[side] = [h[0]*foot[0]+lateral[0]*sign*.1-sole[0]/128,
       h[1]*foot[0]+lateral[1]*sign*.1+sole[0]/128,foot[1]-.11+sole[1]/78.38367177];
   }
+  const elbowSideBias = {};
+  if (direction.climbRightElbowFold && (input.phase === "grip" || input.phase === "descend")) {
+    const t = Math.max(0,Math.min(1,(input.contacts.right.rootHeight-.5)/.25));
+    elbowSideBias.right = .35-.20*t*t*(3-2*t);
+  }
   let pose;
   for (let iteration=0;iteration<400;iteration++) {
-    pose = articulate(direction, { ...input, mapTorso: true, mapShoulderSockets: direction.climbShoulderSockets ?? [], ankleTargets: ankles, wristTargets: targets, staffAngle: direction.stowedStaffAngle ?? 18 });
+    pose = articulate(direction, { ...input, mapTorso: true, mapShoulderSockets: direction.climbShoulderSockets ?? [], elbowSideBias, ankleTargets: ankles, wristTargets: targets, staffAngle: direction.stowedStaffAngle ?? 18 });
     for (const side of ["left","right"]) {
       const gesture = input.contacts[side].gesture, spec = direction.climbHands[side+(gesture === "grab" ? "Grab" : "Brace")];
       const wrist = pose.jointPositions[side+"Wrist"], elbow = pose.jointPositions[side+"Elbow"];

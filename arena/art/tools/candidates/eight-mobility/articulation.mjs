@@ -41,6 +41,7 @@ export function articulate(
     ankleTargets = {},
     mapTorso = false,
     mapShoulderSockets = [],
+    elbowSideBias = {},
   },
 ) {
   const heading = direction.worldForward,
@@ -124,8 +125,8 @@ export function articulate(
       0.252,
       0.214,
       [
-        -heading[0] * 0.8 + side[0] * sign * 0.15,
-        -heading[1] * 0.8 + side[1] * sign * 0.15,
+        -heading[0] * 0.8 + side[0] * sign * (elbowSideBias[s] ?? 0.15),
+        -heading[1] * 0.8 + side[1] * sign * (elbowSideBias[s] ?? 0.15),
         -0.2,
       ],
     );
