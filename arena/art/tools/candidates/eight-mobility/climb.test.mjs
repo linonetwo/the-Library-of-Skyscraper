@@ -11,7 +11,7 @@ for (const [folder, subset] of [["revised", names.filter(n => n === "NE" || n ==
   if (subset.length) await registerClimbHands(config, path.resolve(here, "../../../iso-v050-mobility/climb-hands", folder, "manifest.json"), subset);
 const inputs = climbInputs();
 const poses = Object.fromEntries(Object.entries(config.directions).map(([name, direction]) => [
-  name, inputs.map((input, frame) => {
+  name, climbInputs(name).map((input, frame) => {
     try { return articulateClimb(direction, input); }
     catch (error) { throw new Error(`${name}/${frame}: ${error.message}`, { cause: error }); }
   }),
@@ -31,7 +31,7 @@ test("full finite climb ranges cover every frame and preserve top/bottom/crest j
 test("accepted hands and feet meet actual 250mm rungs while root travel stays outside the sprites", () => {
   for (const [name, direction] of Object.entries(config.directions)) for (const [i, pose] of poses[name].entries()) {
     assert.deepEqual(pose.rootScreenDelta, [0,0]);
-    const input = inputs[i], h = direction.worldForward, lateral = [h[1],-h[0]];
+    const input = climbInputs(name)[i], h = direction.worldForward, lateral = [h[1],-h[0]];
     for (const [side,sign] of [["left",1],["right",-1]]) {
       const contact = input.contacts[side];
       if (contact.handSupport) {
@@ -90,4 +90,17 @@ test("NW climb maps only the near shoulder to the registered torso socket", asyn
     const world = pose.supportContacts.world;
     assert(Math.abs(world.leftShoulder[2]-(world.neck[2]-.065))<1e-10);
   }
+});
+
+
+test("E swing recovery is 10mm, leaves stance feet on rungs and reverses exactly", () => {
+  const east = climbInputs("E"), original = climbInputs();
+  assert.equal(east[4].contacts.left.support, false);
+  assert.equal(east[45].contacts.left.support, false);
+  assert.equal(east[4].contacts.left.footHeight, .01);
+  assert.deepEqual(east[4].ankles, east[45].ankles);
+  assert.deepEqual(east[4].contacts, east[45].contacts);
+  for (const i of [3,5]) assert.deepEqual(east[i].ankles,original[i].ankles);
+  for (const input of east) for (const contact of Object.values(input.contacts))
+    if (contact.support) assert(Math.abs(contact.footHeight*4-Math.round(contact.footHeight*4))<1e-9);
 });

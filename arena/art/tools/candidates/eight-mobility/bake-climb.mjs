@@ -27,7 +27,7 @@ config.previewLayers = config.previewLooks["scholar-ivory-staff"];
 for (const [name, direction] of Object.entries(config.directions)) {
   const available = new Set(direction.attachments.map(a => a.layer));
   config.layerOrderByDirection[name] = ["weapon-staff-back", ...config.layerOrderByDirection[name].filter(layer => layer !== "weapon-staff-back")].filter(layer => available.has(layer));
-  direction.poses = climbInputs().map((input, frame) => {
+  direction.poses = climbInputs(name).map((input, frame) => {
     let pose;
     try { pose = articulateClimb(direction, input); }
     catch (error) { throw new Error(`${name}/${frame}: ${error.message}; candidate not exported`, { cause: error }); }
