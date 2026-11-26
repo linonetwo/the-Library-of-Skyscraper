@@ -7,6 +7,7 @@ export interface ModuleQuery {
   actorId: string;
   nodeId?: string;
   moduleId?: string;
+  exitKey?: string;
   kind: 'visit' | 'hit' | 'fallback' | 'hold';
 }
 export interface ModuleEvidence {
@@ -20,6 +21,7 @@ export interface ModuleEvidence {
 
 function matches(visit: ModuleVisit, query: ModuleQuery): boolean {
   return (!query.nodeId || visit.nodeId === query.nodeId) && (!query.moduleId || visit.moduleId === query.moduleId)
+    && (!query.exitKey || visit.exitKey === query.exitKey)
     && (query.kind === 'visit' || (query.kind === 'hit' ? visit.outcome !== 'fallback' : visit.outcome === query.kind));
 }
 

@@ -50,8 +50,9 @@ export function nodeEdges(node: RuleNode): { label: string; target: string }[] {
       ];
     case "log":
       return [{ label: "然后", target: node.next }];
-    case "mobility":
     case "module":
+      return [...Object.entries(node.exits ?? {}).map(([label, target]) => ({ label, target })), { label: "未命中", target: node.fallback }];
+    case "mobility":
       return [{ label: "未命中", target: node.fallback }];
     case "hold":
     case "check":

@@ -1,0 +1,71 @@
+.custom-module-library,
+.custom-definition-editor {
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: #102229;
+  margin-block: 12px;
+}
+.custom-module-library header,
+.custom-definition-editor header,
+.custom-exit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.custom-module-library article {
+  border-top: 1px solid var(--line);
+  padding-block: 12px;
+}
+.custom-definition-editor fieldset {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px 0;
+}
+.custom-definition-editor .custom-author-controls {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.custom-definition-editor label {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  margin: 0;
+}
+.custom-definition-editor label > :is(input:not([type="checkbox"]), select) {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+.custom-definition-editor .custom-parameter-row,
+.custom-exit-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+.custom-parameter-row > button { grid-column: 1 / -1; justify-self: start; }
+.custom-definition-editor legend { color: var(--gold); padding-inline: 4px; }
+.custom-definition-editor .script-monaco { min-height: 340px; }
+.custom-module-fields .custom-check,
+.custom-definition-editor .custom-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 12px 6px 0;
+}
+.module-creation-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-block: 10px; }
+@media (max-width: 600px) {
+  .custom-definition-editor .custom-parameter-row,
+  .custom-exit-row { grid-template-columns: minmax(0, 1fr); }
+  .custom-definition-editor fieldset { padding: 8px; }
+  .custom-definition-editor .custom-author-controls { padding: 0; }
+  .custom-module-library .module-actions,
+  .custom-definition-editor .module-actions { flex-wrap: wrap; }
+  .custom-definition-editor .script-monaco { min-height: 300px; }
+}
+
+.custom-check input[type="checkbox"] { width: auto; }

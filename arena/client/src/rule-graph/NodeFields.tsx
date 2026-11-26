@@ -12,6 +12,8 @@ export function NodeFields({
   node: RuleNode;
   onChange: (node: RuleNode) => void;
 }) {
+  const binding = node.type === "module" ? graph.modules.find(item => item.moduleId === node.moduleId) : null;
+  const definition = binding?.kind === "custom" ? graph.customDefinitions?.find(item => item.definitionId === binding.definitionId && item.revisionId === binding.revisionId) : null;
   const nodeRef = (
     label: string,
     value: string,
@@ -29,7 +31,7 @@ export function NodeFields({
   );
   return (
     <>
-      <h4>{nodeNames[node.type]}</h4>
+      <h4>{definition ? `自定义模块 · ${definition.name}` : nodeNames[node.type]}</h4>
       {(node.type === "condition" || node.type === "check") && (
         <ConditionFields
           value={node.condition}
@@ -191,7 +193,7 @@ export function NodeFields({
       {node.type === "mobility" && <MobilityNodeFields node={node} onChange={update} />}
       {node.type === "module" && (
         <GraphReference
-          label="官方模块绑定"
+          label={binding?.kind === "custom" ? "自定义模块实例绑定" : "官方模块绑定"}
           value={node.moduleId}
           items={graph.modules.map((m) => ({
             id: m.moduleId,
@@ -200,6 +202,13 @@ export function NodeFields({
           onChange={(moduleId) => update({ ...node, moduleId })}
         />
       )}
+      {node.type === "module" && (() => {
+        return definition?.exits.map(exit => nodeRef(`${exit.label} · ${exit.key}`, node.exits?.[exit.key] ?? "", target => {
+          const exits = { ...node.exits };
+          if (target) exits[exit.key] = target; else delete exits[exit.key];
+          update({ ...node, exits });
+        }));
+      })()}
       {"fallback" in node &&
         nodeRef("回退到", node.fallback, (fallback) =>
           update({ ...node, fallback }),

@@ -1,5 +1,10 @@
 import type { RecordingEvidence } from './selection';
 const reasonLabels: Record<string, string> = {
+  'custom-selected': '自定义模块提议动作',
+  'custom-fallback': '走本叶原后备',
+  'custom-hold': '自定义模块保持',
+  'custom-exit': '走已连接的命名出口',
+  'custom-unconnected-exit': '命名出口走本叶后备',
   'escort-target-missing': '未解析到符合条件的目标',
   'escort-cargo-insufficient': '队友货量不足',
   'travel-active': '已有行程，保持在途',
@@ -26,6 +31,8 @@ export function EvidenceDetail({selection, sceneTick}: {selection: RecordingEvid
     {selection.kind === 'module' ? <>
       <p>模块 {selection.fact.visit.moduleId} · 节点 {selection.fact.visit.nodeId}</p>
       <p>结果 {{selected:'规则选择',fallback:'回退',hold:'保持'}[selection.fact.visit.outcome]} · 原因 {reasonLabels[selection.fact.visit.reasonCode] ?? selection.fact.visit.reasonCode} <small>({selection.fact.visit.reasonCode})</small></p>
+      {selection.fact.visit.exitKey && <p>命名出口 {selection.fact.visit.exitKey} → {selection.fact.visit.fallbackNodeId ?? '未记录'}</p>}
+      {selection.fact.visit.reason && <p>模块自述：{selection.fact.visit.reason}</p>}
       {selection.fact.visit.observed?.cargo !== undefined && <p>当时货量 {selection.fact.visit.observed.cargo} / 需要 {selection.fact.visit.observed.threshold ?? '未记录'}</p>}
       {selection.fact.visit.observed?.enemyHp !== undefined && <p>当时敌方HP {selection.fact.visit.observed.enemyHp} / 可容忍 {selection.fact.visit.observed.threshold ?? '未记录'}</p>}
       <dl><dt>原始引用</dt><dd><code>{JSON.stringify(selection.fact.visit.ref) ?? '未记录'}</code></dd>

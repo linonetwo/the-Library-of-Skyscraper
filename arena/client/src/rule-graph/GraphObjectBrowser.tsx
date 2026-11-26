@@ -1,3 +1,4 @@
+import { graphModuleName } from "../rule-modules/moduleCatalog";
 import { useState } from "react";
 import type {
   RuleGraph,
@@ -99,7 +100,8 @@ export function GraphObjectBrowser({
               kind === "modules"
                 ? (value as RuleGraph["modules"][number]).moduleId
                 : (value as { id: string }).id;
-            const label =
+            const binding = "type" in value && value.type === "module" ? graph.modules.find(module => module.moduleId === value.moduleId) : "kind" in value && value.kind === "custom" ? value : null;
+            const label = binding?.kind === "custom" ? `自定义模块 · ${graphModuleName(graph, binding)}` :
               "name" in value
                 ? value.name
                 : "role" in value
