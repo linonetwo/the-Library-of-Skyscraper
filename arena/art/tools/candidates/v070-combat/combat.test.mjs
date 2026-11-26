@@ -10,6 +10,7 @@ test('cast is eight finite reachable stationary poses with one release interval'
  for(const d of Object.values(rig.directions)){
   const poses=castPoses(d);assert.equal(poses.length,8);
   assert.deepEqual(poses.map(p=>p.supportContacts.phase),['chanting','chanting','chanting','release','release','recovery','recovery','recovery']);
+  for(let i=1;i<poses.length;i++)assert(Math.abs(poses[i].attachmentAngles.staff-poses[i-1].attachmentAngles.staff)<100);
   for(const p of poses){assert.deepEqual(p.rootScreenDelta,[0,0]);assert.equal(p.attachmentAngles.staff,p.attachmentAngles['right-hand-grip']);for(const t of Object.values(p.wristTargets))assert(t.point.every(Number.isFinite));}
  }
 });
@@ -25,9 +26,12 @@ test('recover starts at exact down final geometry and joins the registered idle 
 });
 test('recover active load transfer keeps real limb lengths and world root fixed',async()=>{
  const config=await recoverConfig();
- for(const d of Object.values(config.directions))for(const p of d.poses.slice(1,7)){
+ for(const d of Object.values(config.directions)){
+  for(const i of [2,3])assert.deepEqual(d.poses[1].supportContacts.world.leftWrist,d.poses[i].supportContacts.world.leftWrist);
+  for(const i of [4,5])assert.deepEqual(d.poses[3].supportContacts.world.leftFoot,d.poses[i].supportContacts.world.leftFoot);
+  for(const p of d.poses.slice(1,7)){
   assert.deepEqual(p.rootScreenDelta,[0,0]);const w=p.supportContacts.world;
   for(const s of ['left','right'])for(const [a,b,length] of [['Hip','Knee',.3187701178],['Knee','Ankle',.3060520193],['Shoulder','Elbow',.252],['Elbow','Wrist',.214]])assert(Math.abs(Math.hypot(...w[s+a].map((v,i)=>v-w[s+b][i]))-length)<1e-9);
   for(const s of p.supportContacts.feet)assert.equal(w[s+'Foot'][2],0);
- }
+ }}
 });

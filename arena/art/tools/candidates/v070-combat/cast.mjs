@@ -1,7 +1,7 @@
 /** Eight deliberately authored chant / point / settle poses; no new world movement. */
 export function castPoses(direction){
  const heading=direction.worldForward,forward=[64*(heading[0]-heading[1]),32*(heading[0]+heading[1])],size=Math.hypot(...forward),u=forward.map(v=>v/size);
- const release=(Math.atan2(u[1],u[0])*180/Math.PI+90);
+ const release=((Math.atan2(u[1],u[0])*180/Math.PI+90+540)%360)-180;
  const extension=[-4,-6,0,10,9,6,2,0],lift=[-6,-12,-15,-12,-10,-6,-2,0],wind=u[0]>0?24:-24;
  const angles=[wind,wind*.65,release*.65,release,release,release*.65,wind*.5,0];
  return extension.map((reach,frame)=>{

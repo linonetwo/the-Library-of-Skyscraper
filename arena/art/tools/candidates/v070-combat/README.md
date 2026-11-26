@@ -11,12 +11,15 @@ all source layers remain independent. No public/index or runtime changes.
   source-row center (alpha>=128), transformed from the source staff pivot.
   All anchors are orig canvas pixels; trim changes no coordinate meaning.
 - `bake.mjs`: existing pose-export / trim-atlas / preview-looks, no second renderer.
+- `pack-ink.mjs`: explicit source-manifest input; four independent RGBA FX frames
+  at one uniform scale and per-frame visual ellipse centers, without Y squash.
 
 From repo root (existing art dependencies required):
 
 ```sh
 node arena/art/tools/candidates/v070-combat/bake.mjs cast /scratch/new-pilot/cast
 node arena/art/tools/candidates/v070-combat/bake.mjs recover /scratch/new-pilot/recover
+node arena/art/tools/candidates/v070-combat/pack-ink.mjs /source/manifest.json /scratch/new-pilot/ink-fx
 node --test arena/art/tools/candidates/v070-combat/combat.test.mjs
 ```
 
@@ -24,13 +27,16 @@ Inputs: frozen ne-sw-idle / carry registrations, eight-combat down pose and
 its grounded source, plus iso-v050-mobility/climb-hands/revised leftBrace.
 Original parts are not edited. Cast uses 192/pivot96,172.8; recover uses
 256/pivot128,204.8. Recover idle wrist targets receive the same +32,+32 as
-its canvas origin. The world root never rises or moves in the sprites.
+its canvas origin. The world root never rises or moves in the sprites. Recover left palm supports
+f1..3, left foot is fixed at f3..5, right foot lands at f5. The free palm uses
+existing hand-left-front, selected for either equipment mode by the same loader.
 
 `atlas-budget.json` remains the single descriptor with optional
 `anchorsByDirection[direction][frame]` holding `grip`, `staffTip`, and only
 actual supporting frames `supportPalm` / `supportFoot`. Cast phaseFrames are
 chanting0..2/release3..4/recovery5..7. Durations are preview timings; authority
-controls cast/recovery gameplay timing. No weaponFX pixels are synthesized here.
+controls cast/recovery gameplay timing. FX uses independent inkFx/ink/ground/00..03 keys with orig192/pivot96,96 and
+playback once. No weaponFX pixels are synthesized here.
 
 Current limitations: source brace hands were accepted for a ladder; the new
 floor use needs independent review. First palm projection is approximately
