@@ -115,7 +115,7 @@ export async function loadClimbRig(names) {
     } else {
       direction = config.directions[name];
       if (name === "S") useSouthThighCleanup(direction);
-      if (name === "NW") direction.climbShoulderSockets = ["left"];
+      if (name === "NW" || name === "SE") direction.climbShoulderSockets = ["left"];
       const original = direction.attachments.find(
         (a) => a.id === "left-forearm-hand",
       );
