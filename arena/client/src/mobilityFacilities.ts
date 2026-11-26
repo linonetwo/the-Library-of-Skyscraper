@@ -79,7 +79,9 @@ export function paintMobilityFacilities(layer: Container, snapshot: Snapshot, te
         beam(depthPart(structure,end,-.05),foot,top,9,wood,0xb88f66);
         const brace=mobilityPoint(offset(end,0,350,-350));beam(depthPart(structure,end,-.05),brace,top,6,wood,0xb88f66);
       }
-      deck(structure,support.from,support.to,support.widthMilli,wood);
+      // The support span includes the ladder mouths; only the real traverse is solid decking.
+      const traverses = edge.segments.filter(segment => segment.role === "traverse");
+      for (const traverse of traverses) deck(structure,traverse.from,traverse.to,support.widthMilli,wood);
     }
     for(const segment of edge.segments) {
       if(segment.role!=="ladder")continue;
@@ -96,7 +98,16 @@ export function paintMobilityFacilities(layer: Container, snapshot: Snapshot, te
       if (transfer) {
         const inner = transfer.from.x === top.x && transfer.from.y === top.y && transfer.from.z === top.z
           ? transfer.to : transfer.from;
-        deck(structure,top,inner,650,wood);
+        const length = Math.hypot(inner.x-top.x,inner.y-top.y);
+        const dx = (inner.x-top.x)/length,dy = (inner.y-top.y)/length;
+        const mouth = offset(top,dx*Math.min(250,length),dy*Math.min(250,length));
+        // An open ladder mouth exposes the complete top rung and the gripping hands.
+        // The first crest step (+290mm) lands on the solid inner half of the transfer.
+        deck(structure,mouth,inner,650,wood);
+        for (const sign of [-1,1]) {
+          const side = offset(top,-dy*270*sign,dx*270*sign);
+          deck(structure,side,offset(side,dx*Math.min(250,length),dy*Math.min(250,length)),100,wood);
+        }
       }
     }
     const first=edge.segments[0]?.from,last=edge.segments.at(-1)?.to;
