@@ -32,7 +32,7 @@ export function articulateClimb(direction, input) {
       h[1]*foot[0]+lateral[1]*sign*.1+sole[0]/128,foot[1]-.11+sole[1]/78.38367177];
   }
   let pose;
-  for (let iteration=0;iteration<160;iteration++) {
+  for (let iteration=0;iteration<400;iteration++) {
     pose = articulate(direction, { ...input, mapTorso: true, ankleTargets: ankles, wristTargets: targets, staffAngle: direction.stowedStaffAngle ?? 18 });
     for (const side of ["left","right"]) {
       const gesture = input.contacts[side].gesture, spec = direction.climbHands[side+(gesture === "grab" ? "Grab" : "Brace")];
@@ -41,7 +41,7 @@ export function articulateClimb(direction, input) {
       const angle = Math.atan2(elbow[1]-wrist[1],elbow[0]-wrist[0])-Math.atan2(normal[1],normal[0]);
       const offset = rotate(spec.localContact.map((v,i)=>v-spec.wristPivot[i]),angle);
       const error = hooks[side].map((v,i)=>v-wrist[i]-offset[i]);
-      targets[side] = targets[side].map((v,i)=>v+0.25*(i===0?error[0]/128:i===1?-error[0]/128:-error[1]/78.38367177));
+      targets[side] = targets[side].map((v,i)=>v+0.1*(i===0?error[0]/128:i===1?-error[0]/128:-error[1]/78.38367177));
       pose.attachmentAngles[`${side}-${gesture}-hand`] = angle*180/Math.PI;
     }
   }

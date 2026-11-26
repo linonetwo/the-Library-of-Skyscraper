@@ -30,7 +30,7 @@ for (const [name, direction] of Object.entries(config.directions)) {
     return pose;
   });
 }
-const out = path.join(here, "candidates", "ne-sw-climb");
+const out = path.join(here, "candidates", process.argv[3] ?? "ne-sw-climb");
 await mkdir(out, { recursive: true });
 for (const direction of Object.values(config.directions)) for (const attachment of direction.attachments)
   attachment.image = path.relative(out, attachment.image);

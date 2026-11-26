@@ -49,3 +49,18 @@ test("accepted hands and feet meet actual 250mm rungs while root travel stays ou
     }
   }
 });
+test("climb hips stay on their registered body cutout anchors throughout deep flexion", () => {
+  for (const [name, direction] of Object.entries(config.directions)) for (const pose of poses[name]) {
+    const axis = direction.joints.neck.restOffset;
+    const target = pose.jointPositions.neck.map((v,i) => v-pose.jointPositions.pelvis[i]);
+    const scale = Math.hypot(...target) / Math.hypot(...axis);
+    const angle = pose.jointAngles.pelvis * Math.PI/180;
+    for (const side of ["left", "right"]) {
+      const rest = direction.joints[side+"Hip"].restOffset;
+      const fraction = rest.reduce((sum,v,i)=>sum+v*axis[i],0)/Math.hypot(...axis)**2;
+      const offset = rest.map((v,i)=>v+axis[i]*fraction*(scale-1));
+      const expected = [offset[0]*Math.cos(angle)-offset[1]*Math.sin(angle),offset[0]*Math.sin(angle)+offset[1]*Math.cos(angle)].map((v,i)=>v+pose.jointPositions.pelvis[i]);
+      assert(distance(expected,pose.jointPositions[side+"Hip"]) < 1e-9, `${name}/${side} raster hip seam`);
+    }
+  }
+});

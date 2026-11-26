@@ -28,19 +28,19 @@ export function climbInputs() {
       wrists[side] = [0, hand.height - rootHeight];
       contacts[side] = { support: foot.support, handSupport: hand.support || hand.height === 1.5, rootHeight, footHeight: foot.height, handHeight: hand.height, gesture: "grab" };
     }
-    inputs.push({ hipZ: 0.43 - 0.25 * fold, lean: 0.04 + 0.44 * fold, bodyForward: -0.23,
+    inputs.push({ hipZ: 0.44 - 0.26 * fold, lean: 0.04 + 0.44 * fold, bodyForward: -0.20,
       ankles, wrists, wristWidth: { left: 0.22, right: 0.22 }, phase: descending ? "descend" : "grip",
       contacts, durationMs: 60 });
   }
   for (const descending of [false, true]) for (let frame = 0; frame < 8; frame++) {
     const u = frame / 7, v = descending ? 1-u : u;
     const rise = smooth(clamp((v-3/7)/(4/7)));
-    const bodyForward = -.23 + .73*rise - .5*v;
+    const bodyForward = -.20 + .70*rise - .5*v;
     const ankles = {}, wrists = {}, contacts = {};
     for (const side of ["left", "right"]) {
       const step = smooth(clamp(side === "left" ? v/(3/7) : (v-3/7)/(3/7)));
       const handSupport = side === "left" ? v <= 1/7 : v <= 3/7;
-      ankles[side] = [-.5*v+(side === "left" ? .3 : .5)*step, .11+.08*Math.sin(Math.PI*step)];
+      ankles[side] = [-.5*v+(side === "left" ? .29 : .5)*step, .11+.08*Math.sin(Math.PI*step)];
       wrists[side] = handSupport ? [-.5*v, 0] : [bodyForward+.12, .4+.45*rise];
       contacts[side] = { support: step === 0 || step === 1, handSupport, rootHeight: 1.5,
         footHeight: 1.5+ankles[side][1]-.11, handHeight: handSupport ? 1.5 : undefined,
