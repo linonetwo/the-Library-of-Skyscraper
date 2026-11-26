@@ -39,7 +39,7 @@ export function GraphFragmentLibrary({ graph, selection, onApply, onSelect }: {
       requestAnimationFrame(() => document.querySelector<HTMLButtonElement>(`[data-object-kind="nodes"][data-object-id="${CSS.escape(result.rootId)}"]`)?.focus());
     } catch (cause) { setError((cause as Error).message); }
   };
-  return <details ref={library} className="graph-fragments">
+  return <details ref={library} className="graph-fragments" data-fragment-state={JSON.stringify({ saved, selected, bindings, targetStateId: target, ready: Boolean(ready), error })}>
     <summary>个人决策片段 · {saved.length}</summary>
     <section aria-label="保存决策片段">
       <p>选择决策节点，保存其子树及依赖的模块实例。</p>
