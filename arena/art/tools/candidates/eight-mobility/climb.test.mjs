@@ -5,16 +5,23 @@ import { loadClimbRig, here } from "./rig.mjs";
 import { climbInputs, climbPhaseFrames } from "./climb.mjs";
 import { registerClimbHands, articulateClimb } from "./climb-hands.mjs";
 import { project } from "./articulation.mjs";
-const config = await loadClimbRig(["NE", "SW"]);
-await registerClimbHands(config, path.resolve(here, "../../../iso-v050-mobility/climb-hands/revised/manifest.json"));
+const names = (process.env.CLIMB_DIRECTIONS ?? "NE,SW").split(",");
+const config = await loadClimbRig(names);
+for (const [folder, subset] of [["revised", names.filter(n => n === "NE" || n === "SW")], ["six", names.filter(n => n !== "NE" && n !== "SW")]])
+  if (subset.length) await registerClimbHands(config, path.resolve(here, "../../../iso-v050-mobility/climb-hands", folder, "manifest.json"), subset);
 const inputs = climbInputs();
-const poses = Object.fromEntries(Object.entries(config.directions).map(([name, direction]) => [name, inputs.map(input => articulateClimb(direction, input))]));
+const poses = Object.fromEntries(Object.entries(config.directions).map(([name, direction]) => [
+  name, inputs.map((input, frame) => {
+    try { return articulateClimb(direction, input); }
+    catch (error) { throw new Error(`${name}/${frame}: ${error.message}`, { cause: error }); }
+  }),
+]));
 const distance = (a, b) => Math.hypot(...a.map((value, i) => value - b[i]));
 test("full finite climb ranges cover every frame and preserve top/bottom/crest joins", () => {
   assert.equal(inputs.length, 66);
   assert.deepEqual(Object.values(climbPhaseFrames).flatMap(range => Array.from({ length: range.last-range.first+1 }, (_,i) => range.first+i)), Array.from({length:66},(_,i)=>i));
   assert.deepEqual(Object.values(climbPhaseFrames).map(range => inputs.slice(range.first, range.last+1).reduce((sum,p)=>sum+p.durationMs,0)), [1500,1500,500,500]);
-  for (const [a,b] of [[24,25],[24,50],[49,0],[57,58],[65,25]]) for (const name of ["NE","SW"])
+  for (const [a,b] of [[24,25],[24,50],[49,0],[57,58],[65,25]]) for (const name of names)
     for (const joint of ["pelvis","neck","leftHip","rightHip","leftAnkle","rightAnkle"])
       assert.deepEqual(poses[name][a].jointPositions[joint], poses[name][b].jointPositions[joint]);
   assert.equal(inputs[0].contacts.left.rootHeight, 0);
@@ -36,7 +43,7 @@ test("accepted hands and feet meet actual 250mm rungs while root travel stays ou
       const offset = spec.localContact.map((value,j)=>value-spec.wristPivot[j]);
       const wrist = pose.jointPositions[side+"Wrist"];
       const actual = [wrist[0]+offset[0]*Math.cos(a)-offset[1]*Math.sin(a),wrist[1]+offset[0]*Math.sin(a)+offset[1]*Math.cos(a)];
-      assert(distance(actual,pose.handContacts[side].target) < 1e-6, `${name}/${i}/${side} palm contact`);
+      assert(distance(actual,pose.handContacts[side].target) < 1e-6, `${name}/${i}/${side} palm contact error ${distance(actual,pose.handContacts[side].target)}px`);
       const soleOffset = direction.feet[side].soleOffset;
       const actualSole = pose.jointPositions[side+"Ankle"].map((v,j)=>v+soleOffset[j]);
       const f = input.ankles[side][0], z = input.ankles[side][1]-.11;

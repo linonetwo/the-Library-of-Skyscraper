@@ -3,9 +3,11 @@ import path from "node:path";
 import { articulate, project } from "./articulation.mjs";
 const rotate = ([x,y], a) => [x*Math.cos(a)-y*Math.sin(a),x*Math.sin(a)+y*Math.cos(a)];
 /** Accepted independent hands; the manifest owns anatomical side, wrist and hook. */
-export async function registerClimbHands(config, manifestFile) {
+export async function registerClimbHands(config, manifestFile, names = Object.keys(config.directions)) {
   const manifest = JSON.parse(await readFile(manifestFile, "utf8"));
-  for (const [name, direction] of Object.entries(config.directions)) {
+  for (const name of names) {
+    const direction = config.directions[name];
+    if (!direction) throw Error("Missing pose direction " + name);
     direction.climbHands = manifest.directions[name];
     if (!direction.climbHands) throw Error("Missing hand registration " + name);
     direction.attachments = direction.attachments.filter(a => !/hand/.test(a.id));

@@ -68,15 +68,19 @@ export async function loadRig(names) {
   return config;
 }
 
+function useSouthThighCleanup(direction) {
+  for (const side of ["left", "right"]) {
+    const thigh = direction.attachments.find(a => a.id === side + "-thigh");
+    thigh.image = path.resolve(here, "../../../iso-v050-mobility/south-limb-cleanup", side + "-thigh.png");
+  }
+}
+
 /** South run/jump use clean thighs and an always-visible independent left palm. */
 export async function loadRunJumpRig(names) {
   const config = await loadRig(names);
   const direction = config.directions.S;
   if (!direction) return config;
-  for (const side of ["left", "right"]) {
-    const thigh = direction.attachments.find(a => a.id === side + "-thigh");
-    thigh.image = path.resolve(here, "../../../iso-v050-mobility/south-limb-cleanup", side + "-thigh.png");
-  }
+  useSouthThighCleanup(direction);
   const original = direction.attachments.find(a => a.id === "left-forearm-hand");
   direction.attachments = direction.attachments.filter(a => a !== original);
   for (const mode of ["forearm", "natural-hand"]) {
@@ -110,6 +114,7 @@ export async function loadClimbRig(names) {
         a.image = path.resolve(path.dirname(nePath), a.image);
     } else {
       direction = config.directions[name];
+      if (name === "S") useSouthThighCleanup(direction);
       const original = direction.attachments.find(
         (a) => a.id === "left-forearm-hand",
       );

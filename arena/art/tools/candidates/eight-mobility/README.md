@@ -21,4 +21,15 @@ node arena/art/tools/candidates/eight-mobility/bake-climb.mjs NE,SW ne-sw-climb-
 node --test arena/art/tools/candidates/eight-mobility/{mobility,climb}.test.mjs
 ```
 
-`candidates/ne-sw-climb-v3` contains complete pose/contact sheets, per-phase sample sheets and all eight outfit/hair/equipment loops. This NE/SW revision passed independent offline visual review of the deep crouch, connected hips/knees, platform handoff and stowed staff. The hip anchors follow the same registered body transform through deep flexion instead of a generic hip width. Numerical contact tests do not establish real map support: the two-direction runtime candidate must still verify actual ladder rungs, boots, top platform and occlusion. Do not expand climb directions before that validation. Public packs and the main index are maintained separately by the integration owner.
+`candidates/ne-sw-climb-v3` contains complete pose/contact sheets, per-phase sample sheets and all eight outfit/hair/equipment loops. This NE/SW revision passed independent offline visual review of the deep crouch, connected hips/knees, platform handoff and stowed staff. The hip anchors follow the same registered body transform through deep flexion instead of a generic hip width. Numerical contact tests do not establish real map support: the two-direction runtime candidate must still verify actual ladder rungs, boots, top platform and occlusion. Additional headings may be prepared as offline candidates, but public direction coverage waits for independent review. Public packs and the main index are maintained separately by the integration owner.
+
+### Additional climb headings (offline candidates)
+
+`bake-climb.mjs` selects the frozen `revised` hand manifest for NE/SW and `six` for N/NW/E/W/SE/S; each image resolves relative to its own manifest. South reuses the accepted clean thigh sources while preserving their pivots. The original .22m half grip, body/hip mapping, limb lengths and 66-frame timing remain unchanged. A failed reach or actual palm-contact error aborts that batch before export, without clamping the target or changing the solver.
+
+```sh
+CLIMB_DIRECTIONS=N,NW node --test arena/art/tools/candidates/eight-mobility/climb.test.mjs
+node arena/art/tools/candidates/eight-mobility/bake-climb.mjs N,NW /absolute/scratch/climb-n-nw
+```
+
+The default tests still cover frozen NE/SW; `CLIMB_DIRECTIONS` explicitly selects another batch. Per-phase `*-looks.png` sheets copy the already exported actual directional layer order for all eight appearances; `*-sample.png` retains the general contact-sheet view. Neither changes the renderer or source pixels. These outputs are offline candidates, not public/index registrations or proof of real ladder contact.
