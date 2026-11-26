@@ -6,7 +6,7 @@ export function nodeChildren(node: RuleNode): string[] {
     case 'condition':return [node.yes,node.no];
     case 'priority':case 'sequence':return [...node.children,node.fallback];
     case 'score':return [...node.candidates.map(c=>c.nodeId),node.fallback];
-    case 'module':case 'mobility':return [node.fallback];case 'log':return [node.next];case 'hold':case 'pass':case 'check':return [];
+    case 'module':return [node.fallback,...Object.values(node.exits??{})];case 'mobility':return [node.fallback];case 'log':return [node.next];case 'hold':case 'pass':case 'check':return [];
   }
   return [];
 }

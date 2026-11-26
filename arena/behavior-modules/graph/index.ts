@@ -11,3 +11,7 @@ export type * from './composition-types';
 export { MODULE_VISIT_LIMIT } from './composition-types';
 export { exportGraphFragment, importGraphFragment, graphFragmentRefs } from './fragments';
 export { createCompositionGraph } from './composition-example';
+export type * from './custom-types';
+export { diagnoseCustomModule, saveCustomModuleDefinition, customModuleDefaults } from './custom-definition';
+export { addCustomModule, previewCustomModuleUpgrade, upgradeCustomModule } from './custom-patch';
+export { createCustomModuleDraft, customModuleEditorProject } from './custom-source';
