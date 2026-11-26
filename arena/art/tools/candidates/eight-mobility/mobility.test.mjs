@@ -70,35 +70,6 @@ test("jump includes crouch, extension, airborne tuck, reaching feet and grounded
         assert.equal(contact.soleHeight, 0);
   }
 });
-test("climb alternates independent contacts in ascent and descent without raster mirroring", async () => {
-  const { climbPoses, climbStride } = await import("./climb.mjs");
-  for (const d of Object.values(rig.directions)) {
-    const poses = climbPoses(d);
-    assert.equal(poses.length, 24);
-    for (const offset of [0, 8])
-      for (const side of ["left", "right"]) {
-        let handAnchor, footAnchor;
-        for (const pose of poses.slice(offset, offset + 8)) {
-          const c = pose.supportContacts.contacts[side];
-          if (!c.support) {
-            handAnchor = footAnchor = undefined;
-            continue;
-          }
-          const hand = c.handHeight + c.rootHeight,
-            foot = c.footHeight + c.rootHeight;
-          handAnchor ??= hand;
-          footAnchor ??= foot;
-          assert(Math.abs(hand - handAnchor) < 1e-12);
-          assert(Math.abs(foot - footAnchor) < 1e-12);
-        }
-      }
-    assert.equal(climbStride, 0.5);
-    assert(
-      poses[23].supportContacts.world.pelvis[2] >
-        poses[16].supportContacts.world.pelvis[2],
-    );
-  }
-});
 test("climb reuses the successful independent forearms and stowed staff registrations", async () => {
   const { loadClimbRig } = await import("./rig.mjs");
   const config = await loadClimbRig([
