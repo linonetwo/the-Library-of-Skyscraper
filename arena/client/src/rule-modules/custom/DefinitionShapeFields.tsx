@@ -14,8 +14,8 @@ function changeType(field: CustomField, type: CustomField["type"]): CustomField 
 export function DefinitionShapeFields({ draft, onChange }: { draft: CustomModuleDraft; onChange: (draft: CustomModuleDraft) => void }) {
   const updateField = (index: number, field: CustomField) => onChange({ ...draft, fields: draft.fields.map((value, i) => i === index ? field : value) });
   return <>
-    <fieldset><legend>模块参数</legend>
-      {draft.fields.map((field, index) => <fieldset key={index}><legend>参数 {index + 1}</legend>
+    <fieldset className="custom-parameters"><legend>模块参数</legend>
+      {draft.fields.map((field, index) => <fieldset className="custom-parameter-row" key={index}><legend>参数 {index + 1}</legend>
         <label>参数键<input aria-label={`参数 ${index + 1} 键`} value={field.key} onChange={event => updateField(index, { ...field, key: event.target.value })} /></label>
         <label>显示名<input aria-label={`参数 ${index + 1} 显示名`} value={field.label} onChange={event => updateField(index, { ...field, label: event.target.value })} /></label>
         <label>类型<select aria-label={`参数 ${index + 1} 类型`} value={field.type} onChange={event => updateField(index, changeType(field, event.target.value as CustomField["type"]))}>{Object.entries(fieldTypes).map(([type, name]) => <option key={type} value={type}>{name}</option>)}</select></label>
@@ -29,7 +29,7 @@ export function DefinitionShapeFields({ draft, onChange }: { draft: CustomModule
       </fieldset>)}
       <button onClick={() => onChange({ ...draft, fields: [...draft.fields, { key: `parameter${draft.fields.length + 1}`, label: "新参数", type: "number", default: 0 }] })}>添加参数</button>
     </fieldset>
-    <fieldset><legend>命名出口</legend><p>提议动作、保持与后备为固定结果；这里添加可连线的分支。</p>
+    <fieldset className="custom-ports"><legend>命名出口</legend><p>提议动作、保持与后备为固定结果；这里添加可连线的分支。</p>
       {draft.exits.map((exit, index) => <div className="custom-exit-row" key={index}>
         <label>出口键<input aria-label={`出口 ${index + 1} 键`} value={exit.key} onChange={event => onChange({ ...draft, exits: draft.exits.map((value, i) => i === index ? { ...exit, key: event.target.value } : value) })} /></label>
         <label>出口显示名<input aria-label={`出口 ${index + 1} 显示名`} value={exit.label} onChange={event => onChange({ ...draft, exits: draft.exits.map((value, i) => i === index ? { ...exit, label: event.target.value } : value) })} /></label>

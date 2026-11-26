@@ -30,7 +30,7 @@ export function CustomDefinitionEditor({ draft, session, saving, error, onChange
   return <section className="custom-definition-editor" aria-label="编辑模块本体">
     <header><h3>编辑模块本体</h3><button disabled={saving || compiling} onClick={onClose}>返回我的模块</button></header>
     <p>保存为个人目录中的版本；图中已有实例保留其原版本。</p>
-    <fieldset disabled={saving || compiling}>
+    <fieldset className="custom-author-controls" disabled={saving || compiling}>
       <label>模块名称<input aria-label="自定义模块名称" value={draft.name} onChange={event => onChange({ ...draft, name: event.target.value })} /></label>
       <div role="tablist" aria-label="模块本体编辑视图">
         <button role="tab" aria-selected={view === "shape"} onClick={() => setView("shape")}>参数与出口</button>
