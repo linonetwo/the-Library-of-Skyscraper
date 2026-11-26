@@ -14,6 +14,24 @@ function rung(height, offset, base, lift = 0) {
   const anchor = height - p * climbStride + offset * climbStride + base;
   return { support, height: Math.min(1.5, anchor + (support ? 0 : climbStride * smooth((p - 0.5) * 2))) + (support ? 0 : lift * Math.sin(Math.PI * (p - 0.5) * 2)) };
 }
+// Keep the S billboard spine away from the camera-aligned fold that inverts
+// its projection. This bounded Hermite curve retains the original shallow lean.
+function directionalLean(lean, directionName) {
+  if (directionName !== "S" || lean <= .28) return lean;
+  const t = clamp((lean-.28)/.20);
+  return .28+.20*t-.16*t*t+.04*t*t*t;
+}
+function directionalHip(hipZ, lean, directionName) {
+  if (directionName !== "S") return hipZ;
+  const u = clamp((lean-.28)/.20);
+  return hipZ-.040*smooth(u);
+}
+function directionalTorso(hipZ, lean, directionName) {
+  return { hipZ: directionalHip(hipZ,lean,directionName), lean: directionalLean(lean,directionName),
+    // A same-frame reference supplies the actual wrist above its palm hook.
+    // It is local source data, never a previous frame or an external pose file.
+    ...(directionName === "S" && lean > .28 ? { handSeedTorso: { hipZ, lean } } : {}) };
+}
 /** Complete 1.5m ladder ranges: the 500mm gait never reaches above the top rung. */
 export function climbInputs(directionName) {
   const inputs = [];
@@ -37,7 +55,7 @@ export function climbInputs(directionName) {
       wrists[side] = [0, hand.height - rootHeight];
       contacts[side] = { support: foot.support, handSupport: hand.support || hand.height === 1.5, rootHeight, footHeight: foot.height, handHeight: hand.height, gesture: "grab" };
     }
-    inputs.push({ hipZ: 0.44 - 0.26 * fold, lean: 0.04 + 0.44 * fold, bodyForward: -0.20,
+    inputs.push({ ...directionalTorso(.44-.26*fold,.04+.44*fold,directionName), bodyForward: -0.20,
       ankles, wrists, wristWidth: { left: 0.22, right: 0.22 }, phase: descending ? "descend" : "grip",
       contacts, durationMs: 60 });
   }
@@ -55,7 +73,7 @@ export function climbInputs(directionName) {
         footHeight: 1.5+ankles[side][1]-.11, handHeight: handSupport ? 1.5 : undefined,
         rootForward: descending ? -.5*u : .5*u, gesture: side === "right" && handSupport ? "grab" : "brace" };
     }
-    inputs.push({ hipZ: .18+.44*rise, lean: .48-.45*rise, bodyForward,
+    inputs.push({ ...directionalTorso(.18+.44*rise,.48-.45*rise,directionName), bodyForward,
       ankles, wrists, wristWidth: { left: .22, right: .22 }, phase: "crest", crestDescending: descending,
       contacts, durationMs: frame % 4 === 3 ? 70 : 60 });
   }

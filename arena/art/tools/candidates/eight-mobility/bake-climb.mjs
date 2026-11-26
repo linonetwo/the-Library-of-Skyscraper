@@ -6,6 +6,7 @@ import { climbInputs, climbPhaseFrames } from "./climb.mjs";
 import { registerClimbHands, articulateClimb } from "./climb-hands.mjs";
 import { exportPoses } from "../../pose-export.mjs";
 import { writeClimbReviewSheets } from "./climb-review.mjs";
+import { registerClimbStaffInset } from "./climb-staff.mjs";
 const names = (process.argv[2] ?? "NE,SW").split(",");
 if (names.some(name => !["NE", "SW", "N", "NW", "W", "E", "SE", "S"].includes(name))) throw Error("Unknown climb direction");
 const config = await loadClimbRig(names);
@@ -47,6 +48,8 @@ for (const [name, direction] of Object.entries(config.directions)) {
     return pose;
   });
 }
+// Explicit rebuild selection: without the flag the historical A stays intact.
+if (process.argv.includes("--ne-staff-inset")) registerClimbStaffInset(config);
 const outputName = process.argv[3] ?? "ne-sw-climb";
 const out = path.isAbsolute(outputName) ? outputName : path.join(here, "candidates", outputName);
 await mkdir(out, { recursive: true });

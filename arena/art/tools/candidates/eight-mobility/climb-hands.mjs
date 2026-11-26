@@ -21,13 +21,22 @@ export async function registerClimbHands(config, manifestFile, names = Object.ke
 }
 /** Solve the wrist from the hook/brace contact, keeping the registered hand intact. */
 export function articulateClimb(direction, input) {
+  let initialWrists;
+  if (input.handSeedTorso) {
+    // One pure same-frame reference solve avoids treating the palm hook as the
+    // initial wrist. Both solves retain their original 400 iterations; neither
+    // reads pose history, searches parameters or loads a saved atlas.
+    const { handSeedTorso, ...reference } = input;
+    const world = articulateClimb(direction, { ...reference, ...handSeedTorso }).supportContacts.world;
+    initialWrists = { left: world.leftWrist, right: world.rightWrist };
+  }
   const targets = {}, hooks = {}, ankles = {};
   for (const [side, sign] of [["left",1],["right",-1]]) {
     const spec = direction.climbHands[side + (input.contacts[side].gesture === "grab" ? "Grab" : "Brace")];
     const h = direction.worldForward, lateral = [h[1],-h[0]];
     const f = input.wrists[side][0], z = input.wrists[side][1];
     hooks[side] = project([h[0]*f+lateral[0]*sign*.22,h[1]*f+lateral[1]*sign*.22,z]);
-    targets[side] = [h[0]*f+lateral[0]*sign*.22,h[1]*f+lateral[1]*sign*.22,z];
+    targets[side] = initialWrists?.[side]?.slice() ?? [h[0]*f+lateral[0]*sign*.22,h[1]*f+lateral[1]*sign*.22,z];
     const sole = direction.feet[side].soleOffset;
     const foot = input.ankles[side];
     ankles[side] = [h[0]*foot[0]+lateral[0]*sign*.1-sole[0]/128,
@@ -40,7 +49,7 @@ export function articulateClimb(direction, input) {
   }
   let pose;
   for (let iteration=0;iteration<400;iteration++) {
-    pose = articulate(direction, { ...input, mapTorso: true, mapShoulderSockets: direction.climbShoulderSockets ?? [], elbowSideBias, ankleTargets: ankles, wristTargets: targets, staffAngle: direction.stowedStaffAngle ?? 18 });
+    pose = articulate(direction, { ...input, mapTorso: true, mapShoulderSockets: direction.climbShoulderSockets ?? [], elbowSideBias, kneeLiftOnAlignment: direction.climbLiftRightKnee ? ["right"] : [], ankleTargets: ankles, wristTargets: targets, staffAngle: direction.stowedStaffAngle ?? 18 });
     for (const side of ["left","right"]) {
       const gesture = input.contacts[side].gesture, spec = direction.climbHands[side+(gesture === "grab" ? "Grab" : "Brace")];
       const wrist = pose.jointPositions[side+"Wrist"], elbow = pose.jointPositions[side+"Elbow"];

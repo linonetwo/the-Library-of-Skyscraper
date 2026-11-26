@@ -42,6 +42,7 @@ export function articulate(
     mapTorso = false,
     mapShoulderSockets = [],
     elbowSideBias = {},
+    kneeLiftOnAlignment = [],
   },
 ) {
   const heading = direction.worldForward,
@@ -83,12 +84,19 @@ export function articulate(
       world[s + "Hip"] = [(along + across) / 2, (along - across) / 2, z];
     }
     world[s + "Ankle"] = ankleTargets[s] ?? wp(ankles[s][0], sign * 0.1, ankles[s][1]);
+    let kneeLift = 0;
+    if (kneeLiftOnAlignment.includes(s)) {
+      const delta = sub(world[s + "Ankle"],world[s + "Hip"]);
+      const alignment = (delta[0]*heading[0]+delta[1]*heading[1])/norm(delta);
+      const t = Math.max(0,Math.min(1,(alignment-.93)/.06));
+      kneeLift = .40*t*t*(3-2*t);
+    }
     world[s + "Knee"] = chain(
       world[s + "Hip"],
       world[s + "Ankle"],
       0.3187701178,
       0.3060520193,
-      [heading[0] + side[0] * sign * kneeSpread, heading[1] + side[1] * sign * kneeSpread, 0],
+      [heading[0] + side[0] * sign * kneeSpread, heading[1] + side[1] * sign * kneeSpread, kneeLift],
     );
     world[s + "Shoulder"] = wp(bodyForward + lean, sign * 0.19, neckZ - 0.065);
     // The accepted north raster has a narrower collar. Preserve its registered

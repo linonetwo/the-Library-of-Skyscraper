@@ -7,6 +7,7 @@ import { loadClimbRig, here } from "./rig.mjs";
 import { climbInputs, climbPhaseFrames } from "./climb.mjs";
 import { registerClimbHands, articulateClimb } from "./climb-hands.mjs";
 import { project } from "./articulation.mjs";
+import { registerClimbStaffInset } from "./climb-staff.mjs";
 const names = (process.env.CLIMB_DIRECTIONS ?? "NE,SW").split(",");
 const config = await loadClimbRig(names);
 for (const [folder, subset] of [["revised", names.filter(n => n === "NE" || n === "SW")], ["six", names.filter(n => n !== "NE" && n !== "SW")]])
@@ -19,6 +20,21 @@ const poses = Object.fromEntries(Object.entries(config.directions).map(([name, d
   }),
 ]));
 const distance = (a, b) => Math.hypot(...a.map((value, i) => value - b[i]));
+test("accepted NE staff inset moves only that registration by exactly eight screen pixels", () => {
+  if (!config.directions.NE) return;
+  const candidate = structuredClone(config);
+  for (const [name, direction] of Object.entries(candidate.directions)) direction.poses = structuredClone(poses[name]);
+  const before = structuredClone(candidate), oldStaff = before.directions.NE.attachments.find(a => a.id === "staff");
+  registerClimbStaffInset(candidate);
+  const staff = candidate.directions.NE.attachments.find(a => a.id === "staff");
+  for (const pose of candidate.directions.NE.poses) {
+    const angle = (pose.attachmentAngles.staff ?? pose.jointAngles[staff.angleJoint ?? staff.joint] ?? 0)*Math.PI/180;
+    const delta = oldStaff.pivot.map((v,i) => v-staff.pivot[i]);
+    assert(distance([delta[0]*Math.cos(angle)-delta[1]*Math.sin(angle), delta[0]*Math.sin(angle)+delta[1]*Math.cos(angle)], [8,0]) < 1e-12);
+  }
+  staff.pivot = oldStaff.pivot;
+  assert.deepEqual(candidate,before);
+});
 test("full finite climb ranges cover every frame and preserve top/bottom/crest joins", () => {
   assert.equal(inputs.length, 66);
   assert.deepEqual(Object.values(climbPhaseFrames).flatMap(range => Array.from({ length: range.last-range.first+1 }, (_,i) => range.first+i)), Array.from({length:66},(_,i)=>i));
@@ -136,7 +152,7 @@ test("S fold-driven elbow stays readable at former singular frames and reverses 
   const rig = await loadClimbRig(["S"]);
   await registerClimbHands(rig, path.resolve(here, "../../../iso-v050-mobility/climb-hands/six/manifest.json"));
   const direction = rig.directions.S;
-  const samples = climbInputs().map(input => articulateClimb(direction,input));
+  const samples = climbInputs("S").map(input => articulateClimb(direction,input));
   for (let frame=0;frame<25;frame++) for (const joint of ["rightShoulder","rightElbow","rightWrist"])
     assert(distance(samples[frame].jointPositions[joint],samples[49-frame].jointPositions[joint])<1e-9);
   for (const frame of [2,5,6,13,36,43,44,47])
@@ -144,4 +160,24 @@ test("S fold-driven elbow stays readable at former singular frames and reverses 
       `${frame}: right forearm collapses into the wrist projection`);
   for (const [a,b] of [[24,25],[24,50],[49,0],[57,58],[65,25]]) for (const side of ["left","right"])
     assert(distance(samples[a].handContacts[side].target,samples[b].handContacts[side].target)<1e-9);
+});
+test("S deep crouch retains visible spine depth and uses only a same-frame wrist reference", () => {
+  const source = climbInputs(), south = climbInputs("S");
+  for (let i=0;i<south.length;i++) {
+    if (source[i].lean <= .28) assert.deepEqual(south[i],source[i]);
+    else {
+      assert.deepEqual(south[i].handSeedTorso, {hipZ:source[i].hipZ,lean:source[i].lean});
+      assert(source[i].hipZ-south[i].hipZ <= .040+1e-12);
+      assert(south[i].lean <= .36+1e-12);
+    }
+    assert.deepEqual(south[i].ankles,source[i].ankles);
+    assert.deepEqual(south[i].wrists,source[i].wrists);
+    assert.deepEqual(south[i].contacts,source[i].contacts);
+  }
+  for (const i of [24,25,50,65]) {
+    assert(Math.abs(south[i].hipZ-.14)<1e-12);
+    assert(Math.abs(south[i].lean-.36)<1e-12);
+  }
+  for (const name of ["NE","SW","N","NW","W","E","SE"])
+    assert(climbInputs(name).every(input => !input.handSeedTorso));
 });
