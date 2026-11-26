@@ -34,6 +34,7 @@ impl Session {
         );
         if heavy {
             self.events.last_mut().unwrap().tactical = Some(TacticalEvent {
+                target_position: None,
                 action: TacticalAction::Heavy,
                 actor_id: enemy_id.into(),
                 target_id: actor.id.clone(),
@@ -91,6 +92,7 @@ impl Session {
                 });
                 self.tactical_event(
                     TacticalEvent {
+                        target_position: None,
                         action: TacticalAction::Recovery,
                         actor_id: actor.id.clone(),
                         target_id: actor.id.clone(),

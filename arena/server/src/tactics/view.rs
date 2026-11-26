@@ -88,6 +88,8 @@ pub struct ControlPointSnapshot {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TacticalEvent {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub target_position: Option<crate::Position>,
     pub action: TacticalAction,
     pub actor_id: String,
     pub target_id: String,

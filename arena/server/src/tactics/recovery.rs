@@ -68,6 +68,7 @@ impl Session {
             if let Some(cast) = completed_cast {
                 self.tactical_event(
                     TacticalEvent {
+                        target_position: None,
                         action: TacticalAction::Cast,
                         actor_id: actor.id.clone(),
                         target_id: cast.target_id,
@@ -81,6 +82,7 @@ impl Session {
             if actor.hp > 0 && (rising || recovery_done) {
                 self.tactical_event(
                     TacticalEvent {
+                        target_position: None,
                         action: TacticalAction::Recovery,
                         actor_id: actor.id.clone(),
                         target_id: actor.id.clone(),

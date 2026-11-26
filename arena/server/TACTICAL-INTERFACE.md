@@ -43,7 +43,7 @@ Tick-derived phases (one existing 500ms clock):
 
 ## Results and the existing recording
 
-The existing Event carries an optional typed tactical result: action, actorId, exact targetId, phase, reasonCode and material/HP/energy/control before/after values. No private file or sourceHash appears there. The original operation owns that event; there is no independent tactical event log or clock.
+The existing Event carries an optional typed tactical result: action, actorId, exact targetId, phase, reasonCode and material/HP/energy/control before/after values. Successful cast release also carries targetPosition, the enemy world XY at damage settlement; other phases omit it. No private file or sourceHash appears there. The original operation owns that event; there is no independent tactical event log or clock.
 
 Unauthorized or malformed input uses the existing Err path without public state changes. Authorized, well-formed commands whose world judgment fails (target-gone, insufficient-materials, etc.) produce a structured domain result and typed event and are recorded through the same Command operation, so replay evaluates the same original command. Script rejection uses the existing owner script-rejected path once, without double counting. HTTP keeps the existing returned Snapshot, whose events carry the result.
 

@@ -82,6 +82,9 @@ impl Session {
                 .resolved = true;
             self.tactical_event(
                 TacticalEvent {
+                    target_position: reason
+                        .is_none()
+                        .then(|| self.enemies[index.unwrap()].world_position),
                     action: TacticalAction::Cast,
                     actor_id: id,
                     target_id: cast.target_id,
@@ -120,6 +123,7 @@ impl Session {
         {
             self.tactical_event(
                 TacticalEvent {
+                    target_position: None,
                     action: TacticalAction::Cast,
                     actor_id: actor.id.clone(),
                     target_id: cast.target_id,

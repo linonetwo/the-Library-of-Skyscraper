@@ -3,9 +3,10 @@ use std::collections::BTreeMap;
 impl Session {
     /// Official skill source is an immutable read-only archive, not a rule version.
     pub fn archive_official_chant(&mut self, owner: &str, hash: &str, source: &str) {
-        self.tactics
-            .as_mut()
-            .unwrap()
+        let Some(tactics) = self.tactics.as_mut() else {
+            return;
+        };
+        tactics
             .skill_sources
             .entry(owner.into())
             .or_default()

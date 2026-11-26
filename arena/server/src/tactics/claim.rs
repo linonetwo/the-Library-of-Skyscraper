@@ -103,6 +103,7 @@ impl Session {
                 if old.progress_ticks > 0 {
                     self.tactical_event(
                         TacticalEvent {
+                            target_position: None,
                             action: TacticalAction::Claim,
                             actor_id: old.last_actor_id.unwrap(),
                             target_id: room.clone(),
@@ -152,6 +153,7 @@ impl Session {
                 }
                 self.tactical_event(
                     TacticalEvent {
+                        target_position: None,
                         action: TacticalAction::Claim,
                         actor_id,
                         target_id: room.clone(),

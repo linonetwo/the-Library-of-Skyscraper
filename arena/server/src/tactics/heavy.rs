@@ -66,6 +66,7 @@ impl Session {
                     } else {
                         self.tactical_event(
                             TacticalEvent {
+                                target_position: None,
                                 action: TacticalAction::Heavy,
                                 actor_id: id,
                                 target_id: actor.id,
@@ -123,6 +124,7 @@ impl Session {
                     crate::ActionCue::new("heavy", self.tick, 1, Some(actor.world_position));
                 self.tactical_event(
                     TacticalEvent {
+                        target_position: None,
                         action: TacticalAction::Heavy,
                         actor_id: id,
                         target_id: actor.id.clone(),

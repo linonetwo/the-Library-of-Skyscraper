@@ -178,8 +178,58 @@ async fn actual_worker_manual_cast_archives_and_survives_restart() {
             .unwrap()
             .contains("skillSourceHash")
     );
+    let released = own
+        .final_snapshot
+        .events
+        .iter()
+        .find_map(|e| {
+            e.tactical
+                .as_ref()
+                .filter(|t| t.phase == skyscraper_arena_server::TacticalPhase::Released)
+        })
+        .unwrap();
+    assert_eq!(
+        released.target_position,
+        own.final_snapshot
+            .enemies
+            .iter()
+            .find(|e| e.id == target_id)
+            .map(|e| e.world_position)
+    );
     Session::from_replay(&own).unwrap();
     Session::from_replay(&public).unwrap();
     drop(restored);
     std::fs::remove_dir_all(directory).unwrap();
+}
+
+#[tokio::test]
+#[ignore = "requires installed toolchain and the actual T2 runner"]
+async fn actual_worker_old_sim7_cast_rejects_without_tactical_archive() {
+    let project = SourceProject {
+        entry: Some("main.ts".into()),
+        files: BTreeMap::from([("main.ts".into(), "export function decide(ctx:any){return {intents:[{type:'cast',actorId:'p1-guard',skillId:'ink-strike',targetId:'enemy-1',priority:100} as const]};}".into())]),
+    };
+    let compiled = compile_project(&project).await.unwrap();
+    assert!(compiled.get("bundle").is_some(), "{compiled}");
+    let mut session = Session::new("old-script-cast".into(), Mode::Training, 42);
+    session.join("old-owner".into()).unwrap();
+    session.publish_script(
+        "p1",
+        skyscraper_arena_server::PublishedScript {
+            project,
+            bundle: compiled["bundle"].clone(),
+        },
+    );
+    crate::script_driver::advance(&mut session, &ScriptWorkers::default()).await;
+    assert_eq!(session.tick, 1);
+    assert!(session.snapshot().tactics.is_none());
+    assert!(session.events.iter().any(|e| e.kind == "script-rejected"));
+    let replay = session.export_replay_for(Some("p1")).unwrap();
+    assert!(
+        serde_json::to_string(&replay)
+            .unwrap()
+            .contains("skillSourceHash"),
+        "actual worker invocation was recorded despite the old-version command rejection"
+    );
+    Session::from_replay(&replay).unwrap();
 }
