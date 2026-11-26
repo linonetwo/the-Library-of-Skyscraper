@@ -7,7 +7,7 @@ import {
   type BehaviorPlan,
 } from "../../behavior-modules";
 import { useScriptWorkbench } from "./useScriptWorkbench";
-import { draftKey, isStockDraft, type RuleDraft } from "./ruleDraft";
+import { draftKey, isStockDraft, projectDraft, type RuleDraft } from "./ruleDraft";
 import type { RuleSourceProject } from "./scriptTypes";
 
 export function useBehaviorWorkbench() {
@@ -33,9 +33,10 @@ export function useBehaviorWorkbench() {
     localStorage.setItem(historyKey, JSON.stringify(next));
     setHistory(next);
   };
-  const replaceProject = (project: RuleSourceProject) => {
+  const replaceProject = (project: RuleSourceProject, activeFile?: string) => {
     saveHistory([...history, workbench.draft]);
-    workbench.loadProject(project);
+    if (activeFile) workbench.restoreDraft({ ...projectDraft(project), activeFile });
+    else workbench.loadProject(project);
   };
   const createPlan = (template: "expedition" | "logistics" = "expedition") =>
     replaceProject(
