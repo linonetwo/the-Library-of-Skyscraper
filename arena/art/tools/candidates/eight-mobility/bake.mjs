@@ -1,7 +1,7 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { loadRig, here } from "./rig.mjs";
+import { loadRunJumpRig, here } from "./rig.mjs";
 import { runPoses, runStride } from "./run.mjs";
 import { jumpPoses } from "./jump.mjs";
 import { exportPoses } from "../../pose-export.mjs";
@@ -9,7 +9,7 @@ const action = process.argv[2],
   names = (process.argv[3] ?? "NE,SW").split(",");
 if (!["run", "jump"].includes(action))
   throw Error("Usage: bake.mjs run|jump NE,SW");
-const config = await loadRig(names);
+const config = await loadRunJumpRig(names);
 config.action = action;
 config.playback = action === "run" ? "loop" : "once";
 config.frameCount = action === "run" ? 16 : 8;
