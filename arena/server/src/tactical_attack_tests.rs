@@ -36,6 +36,16 @@ fn approach_has_one_budget_no_damage_and_no_automatic_retarget() {
     let mut s = game(Mode::Training);
     s.tick = 4;
     place(&mut s, "p1-guard", "room-3", -8., 5.1);
+    s.command(
+        "p1",
+        Command::Task {
+            actor_id: "p1-guard".into(),
+            kind: "guard".into(),
+            target: "room-3".into(),
+            building_kind: None,
+        },
+    )
+    .unwrap();
     let start = actor(&mut s, "p1-guard");
     let hp: Vec<_> = s.enemies.iter().map(|e| e.hp).collect();
     attack(&mut s, "p1-guard", "drill-guardian-b");
@@ -55,11 +65,33 @@ fn approach_has_one_budget_no_damage_and_no_automatic_retarget() {
             .as_deref(),
         Some("drill-guardian-b")
     );
+    for command in [
+        Command::Repair {
+            actor_id: "p1-guard".into(),
+            building_id: "p1-drill-warehouse".into(),
+        },
+        Command::Claim {
+            actor_id: "p1-guard".into(),
+            room_id: "room-2".into(),
+        },
+    ] {
+        s.command("p1", command).unwrap();
+        assert_eq!(
+            result(&s).reason_code.as_deref(),
+            Some("actor-already-acted")
+        );
+        assert_eq!(
+            s.tactics.as_ref().unwrap().actor_states["p1-guard"]
+                .attack_target_id
+                .as_deref(),
+            Some("drill-guardian-b")
+        );
+    }
     s.advance();
     assert_eq!(
         actor(&mut s, "p1-guard").world_position,
         after.world_position,
-        "a single explicit command is not a new pursuit clock"
+        "rejected repair/claim preserve explicit B and cannot reactivate guard pursuit of A"
     );
 }
 #[test]

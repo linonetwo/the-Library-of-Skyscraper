@@ -40,6 +40,13 @@ impl Session {
             );
             return Ok(());
         }
+        self.tactics
+            .as_mut()
+            .unwrap()
+            .actor_states
+            .get_mut(actor_id)
+            .unwrap()
+            .attack_target_id = None;
         let index = index.unwrap();
         let target = self.buildings[index].world_position;
         if crate::travel::distance(actor.world_position, target) > number("repair", "rangeMilli") {

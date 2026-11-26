@@ -91,8 +91,6 @@ impl Session {
                 | Command::Jump { actor_id, .. }
                 | Command::Climb { actor_id, .. }
                 | Command::Task { actor_id, .. }
-                | Command::Repair { actor_id, .. }
-                | Command::Claim { actor_id, .. }
                 | Command::Capture { actor_id }
                 | Command::Gather { actor_id }
                 | Command::Deliver { actor_id }

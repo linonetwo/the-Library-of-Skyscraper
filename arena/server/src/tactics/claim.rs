@@ -39,6 +39,13 @@ impl Session {
             );
             return Ok(());
         }
+        self.tactics
+            .as_mut()
+            .unwrap()
+            .actor_states
+            .get_mut(actor_id)
+            .unwrap()
+            .attack_target_id = None;
         crate::action_runtime::assign_task(
             &mut actor.task,
             ActorTask {
