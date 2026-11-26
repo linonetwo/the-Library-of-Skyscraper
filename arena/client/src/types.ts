@@ -1,3 +1,5 @@
+import type {ScenarioId,TacticalSnapshot,TacticalEvent,TacticalCommand} from "../../shared/tactical";
+export type {ScenarioId,TacticalSnapshot,TacticalEvent,TacticalCommand} from "../../shared/tactical";
 import type { Locomotion, MobilityEdge, TravelSegment } from './mobilityTypes';
 export interface Room {
   id: string;
@@ -73,6 +75,8 @@ export interface Player {
   } | null;
 }
 export interface Snapshot {
+  scenarioId?: ScenarioId;
+  tactics?: TacticalSnapshot;
   tickDurationMs?: number;
   mapVersion?: string;
   simulationVersion?: number;
@@ -90,6 +94,10 @@ export interface Snapshot {
     links: { from: string; to: string; points: WorldPoint[] }[];
   };
   scenarioConfig?: {
+    attack?: {rangeMilli:number};
+    repair?: {rangeMilli:number;intervalTicks:number;materialCost:number;healHp:number};
+    inkStrike?: {rangeMilli:number;energyCost:number;cooldownTicks:number;damage:number};
+    controlPoints?: {roomId:string;position:WorldPoint;radiusMilli:number;requiredTicks:number}[];
     durationTicks?: number;
     targetRoomId?: string;
     catalogGoal?: number;
@@ -143,6 +151,7 @@ export interface Snapshot {
     tick: number;
     kind: string;
     message: string;
+    tactical?: TacticalEvent;
     playerId: string | null;
   }[];
   result: null | { winner: string; reason: string };
@@ -153,6 +162,7 @@ export interface Session {
   token: string;
 }
 export type Command =
+  | TacticalCommand
   | {
       type: "task";
       actorId: string;
@@ -164,7 +174,7 @@ export type Command =
   | { type: "move"; actorId: string; roomId: string }
   | { type: "run"; actorId: string; viaRoomId: string; roomId: string }
   | { type: "jump" | "climb"; actorId: string; edgeId: string }
-  | { type: "gather" | "deliver" | "attack" | "capture"; actorId: string }
+  | { type: "gather" | "deliver" | "capture"; actorId: string }
   | { type: "build"; roomId: string; kind: "tower" | "catalog" }
   | {
       type: "rule";

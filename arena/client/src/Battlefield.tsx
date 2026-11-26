@@ -1,3 +1,4 @@
+import TacticalActionBar from "./TacticalActionBar";
 import ExpeditionResult from "./ExpeditionResult";
 import {
   Compass,
@@ -67,6 +68,7 @@ export default function Battlefield() {
           </small>
         </div>
       </div>
+      <TacticalActionBar />
       <div className="map-shell">
         <div className="map-topline">
           <span>
@@ -133,6 +135,7 @@ export default function Battlefield() {
               让规则引领行动，让知识成为力量。
             </p>
             <div className="entry-actions">
+              <button disabled={busy} onClick={() => void start("training", false, "map", "seal-contest")}>开启战术演练</button>
               <button
                 className="primary"
                 disabled={busy}
