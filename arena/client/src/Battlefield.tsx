@@ -16,10 +16,12 @@ import RuleEditor from "./RuleEditor";
 export default function Battlefield() {
   const {
     snapshot,
+    session,
     mobilityChoice,
     setMobilityChoice,
     busy,
     start,
+    openAiEditor,
     resume,
     expeditions,
     selected,
@@ -37,7 +39,6 @@ export default function Battlefield() {
     selectActor,
   } = useArena();
 
-  const savedTraining = expeditions.find((entry) => entry.mode === "training");
 
   return (
     <section className="battle-section">
@@ -144,16 +145,12 @@ export default function Battlefield() {
                 className="primary"
                 disabled={busy}
                 aria-describedby="ai-entry-description"
-                onClick={() =>
-                  void (savedTraining
-                    ? resume(savedTraining.session, "rules")
-                    : start("training", false, "rules"))
-                }
+                onClick={() => void openAiEditor()}
               >
-                编辑 AI 规则 <ArrowUpRight size={17} />
+                AI 模块编辑 <ArrowUpRight size={17} />
               </button>
             </div>
-            <p id="ai-entry-description">打开训练局，编辑行为模块或规则图</p>
+            <p id="ai-entry-description">调五种行为、连状态图，试跑后再发布 · <a href="?view=rules">编辑器直达链接</a></p>
             <button className="text-button" onClick={() => setLobby(true)}>
               或加入联机赛局 <ChevronRight size={13} />
             </button>
@@ -201,9 +198,9 @@ export default function Battlefield() {
             返回地图 ×
           </button>
         )}
-        {view === "rules" && (
+        {view === "rules" && session && (
           <div className="workspace-overlay">
-            <RuleEditor />
+            <RuleEditor key={`${session.sessionId}/${session.playerId}`} />
           </div>
         )}
         {view === "journal" && <JournalPanel />}

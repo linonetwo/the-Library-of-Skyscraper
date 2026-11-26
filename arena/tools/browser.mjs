@@ -129,7 +129,7 @@ export function registerBrowserTools(server) {
       case 'selectReplayTask': await active.getByLabel('回放任务队列').getByRole('button').nth(action.index).click(); break;
       case 'locateReplayTaskSource': await click('定位任务来源'); break;
       case 'openScripts':
-        await menu('编辑 AI 规则');
+        await menu('AI 模块编辑');
         await active.getByRole('tab', { name: 'TypeScript', exact: true }).click();
         await active.getByRole('textbox', { name: 'TypeScript规则源码' }).waitFor({ timeout: 20000 });
         break;
@@ -202,7 +202,7 @@ export function registerBrowserTools(server) {
       case 'resetTraining': await menu('训练控制'); await click('重置训练局'); await click('收起训练控制'); break;
       case 'openLobby': await menu('联机大厅'); break;
       case 'closeLobby': await click('关闭赛局入口'); break;
-      case 'openRules': await menu('编辑 AI 规则'); break;
+      case 'openRules': await menu('AI 模块编辑'); break;
       case 'selectActor':
         await click(`选择${{ scout: '巡书使', gatherer: '采撷师', guard: '守卷人' }[action.role]}`);
         break;
@@ -218,7 +218,7 @@ export function registerBrowserTools(server) {
         break;
       }
       case 'setRule': {
-        await menu('编辑 AI 规则');
+        await menu('AI 模块编辑');
         await active.getByRole('tab', { name: '行动预设', exact: true }).click();
         await active.locator('.presets button').nth(['gather', 'defend', 'explore'].indexOf(action.preset)).click();
         const range = active.getByRole('slider', { name: /生命值撤退阈值/ });

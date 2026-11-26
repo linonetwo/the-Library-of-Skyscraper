@@ -21,7 +21,15 @@ export function useArenaWorkspace() {
   const [selectedRoom, updateSelectedRoom] = useState<string | null>(null);
   const [zoom, setZoom] = useState(1);
   const [showRoutes, setShowRoutes] = useState(true);
-  const [view, setView] = useState<"map" | "rules" | "journal">("map");
+  const [view, setView] = useState<"map" | "rules" | "journal">(() =>
+    new URLSearchParams(window.location.search).get("view") === "rules" ? "rules" : "map",
+  );
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (view === "rules") url.searchParams.set("view", "rules");
+    else if (url.searchParams.get("view") === "rules") url.searchParams.delete("view");
+    window.history.replaceState(null, "", url);
+  }, [view]);
   const [journalFocus, setJournalFocus] = useState<import("./eventReplay").EventFocus | null>(null);
   const journalAttempt = useRef({ sessionId: snapshot?.sessionId, tick: snapshot?.tick ?? 0 });
   useEffect(() => {
@@ -125,8 +133,21 @@ export function useArenaWorkspace() {
     enter(await arena.start(mode, join ? joinId : undefined), destination);
   const resume = async (saved: Session, destination: "map" | "rules" = "map") =>
     enter(await arena.resume(saved), destination);
+  const openAiEditor = async () => {
+    if (session) { setView("rules"); return; }
+    const saved = arena.expeditions.find((entry) => entry.mode === "training");
+    if (saved) await resume(saved.session, "rules");
+    else await start("training", false, "rules");
+  };
+  const directEntry = useRef(false);
+  useEffect(() => {
+    if (directEntry.current || new URLSearchParams(window.location.search).get("view") !== "rules") return;
+    directEntry.current = true;
+    void openAiEditor();
+  }, []);
   return {
     ...arena,
+    openAiEditor,
     mobilityChoice,
     setMobilityChoice,
     focusActor,

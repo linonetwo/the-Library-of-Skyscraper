@@ -7,7 +7,7 @@ test('memory gather displays persistent counter, task queue and pure preview', a
   test.setTimeout(60000);
   await page.goto('/');
   await page.getByRole('button', { name: '开启训练远征' }).click();
-  await openMenu(page, '编辑 AI 规则');
+  await openMenu(page, 'AI 模块编辑');
   await page.getByRole('tab', { name: 'TypeScript', exact: true }).click();
   await page.getByLabel('载入规则模板').selectOption('memory-gather');
   await page.getByRole('button', { name: '发布到战场' }).click();
@@ -53,7 +53,7 @@ test('slow online state responses render and changing sessions clears old memory
   await page.goto('/');
   await openMenu(page, '联机大厅');
   await page.getByRole('button', { name: /创建联机/ }).click();
-  await openMenu(page, '编辑 AI 规则');
+  await openMenu(page, 'AI 模块编辑');
   await page.getByRole('tab', { name: 'TypeScript', exact: true }).click();
   await page.getByLabel('载入规则模板').selectOption('memory-gather');
   await page.getByRole('button', { name: '发布到战场' }).click();
@@ -64,7 +64,7 @@ test('slow online state responses render and changing sessions clears old memory
   holdNew = true;
   await openMenu(page, '联机大厅');
   await page.getByRole('dialog', { name: '赛局入口' }).getByRole('button', { name: /本地训练/ }).click();
-  await openMenu(page, '编辑 AI 规则');
+  await openMenu(page, 'AI 模块编辑');
   await page.getByRole('tab', { name: 'TypeScript', exact: true }).click();
   await expect(page.getByRole('region', { name: '规则运行状态' })).toContainText('正在展开策略笔记');
   await expect(page.getByLabel('规则记忆')).toHaveCount(0);

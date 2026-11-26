@@ -37,8 +37,8 @@ export default function NavigationRail() {
         <button
           className={view === "rules" ? "active" : ""}
           onClick={() => setView("rules")}
-          title="编辑 AI 规则"
-          aria-label="编辑 AI 规则"
+          title="AI 模块编辑"
+          aria-label="AI 模块编辑"
         >
           <Settings2 />
           <span>规则</span>
