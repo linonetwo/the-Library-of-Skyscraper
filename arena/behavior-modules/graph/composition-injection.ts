@@ -12,7 +12,7 @@ export function addCompositionRuntime(source:string):string {
      }
      modulePlan.modules=[module];`)
  .replace("     if(item && item.moduleId===module.moduleId)", `     const matched=item?.moduleId===module.moduleId;
-     const reasonCode=!module.enabled?'disabled':module.roleFilter&&!module.roleFilter.includes(actor.role)?'role-filtered':actor.travel?'travel-active':matched?'official-selected':'official-unavailable';
+     const reasonCode=item?.reason==='travel in progress'?'travel-active':!module.enabled?'disabled':module.roleFilter&&!module.roleFilter.includes(actor.role)?'role-filtered':matched?'official-selected':'official-unavailable';
      const visit={nodeId:id,moduleId:module.moduleId,outcome:matched?(result.intents[0]?'selected':'hold'):'fallback',reasonCode,...(!matched?{fallbackNodeId:node.fallback}:{})} as const;
      if(trace.moduleVisits!.length<8)trace.moduleVisits!.push(visit);else trace.moduleVisitsTruncated=true;
      if(item && item.moduleId===module.moduleId)`);

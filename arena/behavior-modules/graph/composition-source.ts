@@ -34,8 +34,8 @@ export function selectComposition(ctx:RuleContext,actor:ActorScriptView,module:C
  if(!module.enabled)return fallback('disabled');
  if(module.roleFilter&&!module.roleFilter.includes(actor.role))return fallback('role-filtered');
  if(module.kind==='scout'){
-  const ref=module.config.target;visit.ref=ref;visit.resolvedId=ref.roomId;
-  const room=ctx.world.rooms.find(r=>r.id===ref.roomId);if(!room)return fallback('room-missing');
+  const ref=module.config.target;visit.ref=ref;
+  const room=ctx.world.rooms.find(r=>r.id===ref.roomId);if(!room)return fallback('room-missing');visit.resolvedId=room.id;
   visit.observed={enemyHp:room.enemyHp,threshold:module.config.maxEnemyHp};
   if(room.enemyHp>module.config.maxEnemyHp)return fallback('risk-exceeded');
   if(actor.travel)return travel(ref);
@@ -44,8 +44,8 @@ export function selectComposition(ctx:RuleContext,actor:ActorScriptView,module:C
   state.reportedTick=ctx.tick;visit.observed={tick:ctx.tick,enemyHp:room.enemyHp};return selected('scout-reported');
  }
  if(module.kind==='patrol'){
-  const cursor=(state.cursor??0)%module.config.rooms.length;const ref=module.config.rooms[cursor];visit.ref=ref;visit.resolvedId=ref.roomId;visit.observed={cursor};
-  if(!ctx.world.rooms.some(r=>r.id===ref.roomId))return fallback('room-missing');
+  const cursor=(state.cursor??0)%module.config.rooms.length;const ref=module.config.rooms[cursor];visit.ref=ref;visit.observed={cursor};
+  if(!ctx.world.rooms.some(r=>r.id===ref.roomId))return fallback('room-missing');visit.resolvedId=ref.roomId;
   if(actor.travel){delete state.arrivedTick;return travel(ref);}
   if(actor.roomId!==ref.roomId){delete state.arrivedTick;return toward(ref.roomId);}
   if(state.arrivedTick===undefined)state.arrivedTick=ctx.tick;

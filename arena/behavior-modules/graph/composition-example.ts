@@ -9,7 +9,7 @@ export function createCompositionGraph():RuleGraph {
   {moduleId:'escort-cargo',kind:'escort',enabled:true,priority:30,config:{target:{type:'ownRole',role:'gatherer'},minCargo:8}},
  );
  graph.nodes.push(
-  {id:'scout-and-patrol',type:'priority',children:['scout-catalog-node','patrol-resource-node'],fallback:'build-first'},
+  {id:'scout-and-patrol',type:'priority',children:['build-node','scout-catalog-node','patrol-resource-node'],fallback:'build-first'},
   {id:'scout-catalog-node',type:'module',moduleId:'scout-catalog',fallback:'pass-node'},
   {id:'patrol-resource-node',type:'module',moduleId:'patrol-resource',fallback:'pass-node'},
   {id:'escort-cargo-node',type:'module',moduleId:'escort-cargo',fallback:'defend-node'},
