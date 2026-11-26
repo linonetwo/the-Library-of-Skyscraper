@@ -1,3 +1,5 @@
+import {customProjectFiles,referencedCustomDefinitions,archivedCustomBodyRef} from './custom-project';
+import {addCustomRuntime} from './custom-runtime';
 import {compositionRuntimeSource} from './composition-source';
 import {addCompositionRuntime} from './composition-injection';
 import type { RuleSourceProject } from '../types';
@@ -13,10 +15,13 @@ export function toGraphSourceProject(graph:RuleGraph):RuleSourceProject {
 }
 /** Save invalid drafts without granting publish/preview approval. */
 export function serializeGraphDraft(graph:RuleGraph):RuleSourceProject {
- const composition=graph.modules.some(m=>m.kind==='scout'||m.kind==='patrol'||m.kind==='escort');
- const baseRuntime=composition?addCompositionRuntime(graphRuntimeSource):graphRuntimeSource;
+ const custom=graph.modules.some(m=>m.kind==='custom');
+ if(graph.customDefinitions){const {customDefinitions,...rest}=graph;graph=custom?{...rest,customDefinitions:referencedCustomDefinitions(graph)}:rest;}
+ const composition=graph.modules.some(m=>m.kind==='scout'||m.kind==='patrol'||m.kind==='escort'||m.kind==='custom');
+ const composedRuntime=composition?addCompositionRuntime(graphRuntimeSource):graphRuntimeSource;
+ const baseRuntime=custom?addCustomRuntime(composedRuntime):composedRuntime;
  const mobility=graph.nodes.some(node=>node.type==='mobility');
- return {entry:'main.ts',files:{'main.ts':"export {decide} from './graph-runtime';\n",'graph-plan.ts':graphPlanSource(graph),'graph-runtime.ts':mobility?addMobilityRuntime(baseRuntime):baseRuntime,...(mobility?{'mobility-runtime.ts':mobilityRuntimeSource}:{}),...(composition?{'composition-runtime.ts':compositionRuntimeSource}:{}),'module-runtime.ts':(composition?runtimeSource.replace('function move(', 'export function move('):runtimeSource).replace("import { plan } from './ai-plan';","import { modulePlan as plan } from './graph-plan';")}};
+ return {entry:'main.ts',files:{'main.ts':"export {decide} from './graph-runtime';\n",'graph-plan.ts':graphPlanSource(graph),...(custom?customProjectFiles(graph):{}),'graph-runtime.ts':mobility?addMobilityRuntime(baseRuntime):baseRuntime,...(mobility?{'mobility-runtime.ts':mobilityRuntimeSource}:{}),...(composition?{'composition-runtime.ts':compositionRuntimeSource}:{}),'module-runtime.ts':(composition?runtimeSource.replace('function move(', 'export function move('):runtimeSource).replace("import { plan } from './ai-plan';","import { modulePlan as plan } from './graph-plan';")}};
 }
 export function recoverRuleGraph(project:RuleSourceProject):RuleGraph|null {
  try{const line=project.files['graph-plan.ts']?.split('\n')[0];if(!line?.startsWith(marker))return null;const graph=JSON.parse(line.slice(marker.length)) as RuleGraph;const generated=serializeGraphDraft(graph);return (project.entry??'main.ts')===generated.entry&&canonical(project.files)===canonical(generated.files)?graph:null;}catch{return null;}
@@ -39,4 +44,8 @@ export function getGraphSourceRef(project:RuleSourceProject,objectId:string):Gra
   for(const node of graph.nodes)if(node.type==='score'&&node.candidates.some(c=>c.id===objectId))return getGraphSourceRef(project,node.id);
   return null;
  }catch{return null;}
+}
+
+export function getCustomModuleSourceRef(project:RuleSourceProject,moduleId:string):GraphSourceRef|null {
+ const graph=readArchivedRuleGraph(project);return graph?archivedCustomBodyRef(project,graph,moduleId):null;
 }

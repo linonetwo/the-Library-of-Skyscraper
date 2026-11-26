@@ -1,3 +1,4 @@
+import {canonical} from './source';
 import type { RuleGraph, GraphPatch } from './types';
 export function applyGraphPatch(graph: RuleGraph, patch: GraphPatch): RuleGraph {
   if (graph.graphId!==patch.graphId || graph.revision!==patch.baseRevision) throw new Error('Graph patch baseline is stale');
@@ -6,7 +7,7 @@ export function applyGraphPatch(graph: RuleGraph, patch: GraphPatch): RuleGraph 
     if(operation.type==='putCustomDefinition'){
       const definitions=result.customDefinitions??(result.customDefinitions=[]);
       const before=definitions.find(d=>d.definitionId===operation.definition.definitionId&&d.revisionId===operation.definition.revisionId);
-      if(before&&JSON.stringify(before)!==JSON.stringify(operation.definition))throw new Error('A module revision is immutable');
+      if(before&&canonical(before)!==canonical(operation.definition))throw new Error('A module revision is immutable');
       if(!before)definitions.push(structuredClone(operation.definition));continue;
     }
     const collection=operation.type.endsWith('Node')?'nodes':operation.type.endsWith('State')?'states':operation.type.endsWith('Transition')?'transitions':operation.type.endsWith('Role')?'roles':'modules';

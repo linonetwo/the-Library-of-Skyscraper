@@ -1,4 +1,5 @@
 import {validCompositionConfig} from './composition-diagnostics';
+import {diagnoseCustomGraph} from './custom-diagnostics';
 import { graphDraftSourceRef } from './source';
 import type { GraphCondition, GraphDiagnostic, RuleGraph, RuleNode } from './types';
 export function nodeChildren(node: RuleNode): string[] {
@@ -11,7 +12,7 @@ export function nodeChildren(node: RuleNode): string[] {
   return [];
 }
 export function diagnoseGraph(graph: RuleGraph): GraphDiagnostic[] {
-  const diagnostics:GraphDiagnostic[]=[];
+  const diagnostics:GraphDiagnostic[]=diagnoseCustomGraph(graph);
   const add=(id:string,code:string,message:string,severity:'error'|'warning'='error')=>diagnostics.push({objectId:id,code,message,severity});
   if(graph.schemaVersion!==2)add(graph.graphId,'schema','Unsupported graph schema');
   const all=[...graph.roles,...graph.states,...graph.transitions,...graph.nodes,...graph.modules.map(m=>({id:m.moduleId})),...graph.nodes.flatMap(n=>n.type==='score'?n.candidates:[])];
@@ -33,7 +34,7 @@ export function diagnoseGraph(graph: RuleGraph): GraphDiagnostic[] {
   for(const m of graph.modules){
     if(!Number.isInteger(m.priority)||typeof m.enabled!=='boolean')add(m.moduleId,'module-config','Invalid module priority/enabled');
     const valid=m.kind==='scout'||m.kind==='patrol'||m.kind==='escort'?validCompositionConfig(m):m.kind==='gather'?(!m.config.targetRoomId||typeof m.config.targetRoomId==='string'):m.kind==='defend'?(!m.config.roomId||typeof m.config.roomId==='string'):m.kind==='haul'?Number.isFinite(m.config.minCargo)&&m.config.minCargo>=0:m.kind==='retreat'?Number.isFinite(m.config.hpThreshold)&&m.config.hpThreshold>=0:m.kind==='build'?!!m.config.roomId&&['tower','catalog'].includes(m.config.buildingKind)&&Number.isFinite(m.config.minMaterials)&&m.config.minMaterials>=0:false;
-    if(!valid)add(m.moduleId,'module-config','Unsupported module kind/config');
+    if(!valid&&m.kind!=='custom')add(m.moduleId,'module-config','Unsupported module kind/config');
   }
   for(const n of graph.nodes){
     if(!['check','condition','priority','sequence','score','log','module','mobility','hold','pass'].includes(n.type))add(n.id,'node-kind','Unsupported executable node kind');
