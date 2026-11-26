@@ -24,6 +24,7 @@ test('same resolver uses registered cast frames and preserves hit, death and mis
  const catalog={idle:{...spec,frameCount:4},cast:spec,hit:{...spec,frameCount:2},down:{...spec,frameCount:4}};
  const result=resolveAnimation(actor,6250,motion,catalog);
  assert.equal(result.clip,'cast');assert.equal(result.frame,4);assert.equal(result.direction,'SE');
+ assert.equal(resolveAnimation(actor,6250,{...motion,tacticalTargetPosition:{x:0,y:0}},catalog).direction,'SW');
  assert.equal(resolveAnimation({...actor,impactCue:{kind:'hit',startedTick:12,durationTicks:1}},6250,motion,catalog).clip,'hit');
  assert.equal(resolveAnimation({...actor,hp:0},6250,motion,catalog).clip,'down');
  assert.equal(resolveAnimation(actor,6250,motion,{idle:catalog.idle}).clip,'idle');

@@ -120,7 +120,7 @@ function selectAnimation(
   const cast=sampleCast(motion.tacticalState,simTimeMs,tickMs,castRegistration?.phaseFrames);
   if(cast){
     const target=motion.tacticalTargetPosition,position=motion.worldPosition??actor.worldPosition;
-    if(target&&position)direction=facing(project(position.x,position.y),project(target.x,target.y));
+    if(target&&position&&(target.x!==position.x||target.y!==position.y))direction=facing(project(position.x,position.y),project(target.x,target.y));
     return {...result("cast"),tacticalFrame:cast.frame};
   }
   if (actionActive && action?.kind === "attack") {
