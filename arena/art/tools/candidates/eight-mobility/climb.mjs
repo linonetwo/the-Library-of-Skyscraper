@@ -1,75 +1,57 @@
 import { articulate } from "./articulation.mjs";
-/** 250mm alternating contacts match the ladder's half-cycle rung spacing. */
 export const climbStride = 0.5;
-export function climbPoses(direction) {
-  const poses = [];
-  for (const descending of [false, true])
-    for (let frame = 0; frame < 8; frame++) {
-      const phase = frame / 8,
-        ankles = {},
-        wrists = {},
-        contacts = {};
-      for (const [side, offset] of [
-        ["left", 0],
-        ["right", 0.5],
-      ]) {
-        const p = (phase + offset) % 1,
-          support = p < 0.5,
-          swing = (p - 0.5) * 2;
-        const foot = descending
-          ? support
-            ? -0.15 + climbStride * p
-            : 0.1 - 0.25 * swing
-          : support
-            ? 0.1 - climbStride * p
-            : -0.15 + 0.25 * swing + 0.1 * Math.sin(Math.PI * swing);
-        const hand = descending
-          ? support
-            ? 0.85 + climbStride * p
-            : 1.1 - 0.25 * swing
-          : support
-            ? 1.1 - climbStride * p
-            : 0.85 + 0.25 * swing;
-        ankles[side] = [0.14, foot];
-        wrists[side] = [0.2, hand];
-        contacts[side] = {
-          support,
-          rootDistance: climbStride * phase,
-          rootHeight: (descending ? -1 : 1) * climbStride * phase,
-          footHeight: foot,
-          handHeight: hand,
-        };
-      }
-      poses.push(
-        articulate(direction, {
-          hipZ: 0.45,
-          lean: 0.04,
-          ankles,
-          wrists,
-          phase: descending ? "descend" : "grip",
-          contacts,
-          staffAngle: direction.stowedStaffAngle ?? 18,
-          durationMs: frame % 4 === 3 ? 70 : 60,
-        }),
-      );
+export const climbPhaseFrames = {
+  grip: { first: 0, last: 24 },
+  descend: { first: 25, last: 49 },
+  crestUp: { first: 50, last: 57 },
+  crestDown: { first: 58, last: 65 },
+};
+const smooth = u => u * u * (3 - 2 * u);
+const clamp = u => Math.max(0, Math.min(1, u));
+function rung(height, offset, base, lift = 0) {
+  const p = (height / climbStride + offset) % 1;
+  const support = p < 0.5;
+  const anchor = height - p * climbStride + offset * climbStride + base;
+  return { support, height: Math.min(1.5, anchor + (support ? 0 : climbStride * smooth((p - 0.5) * 2))) + (support ? 0 : lift * Math.sin(Math.PI * (p - 0.5) * 2)) };
+}
+/** Complete 1.5m ladder ranges: the 500mm gait never reaches above the top rung. */
+export function climbInputs() {
+  const inputs = [];
+  for (const descending of [false, true]) for (let frame = 0; frame <= 24; frame++) {
+    const u = frame / 24, rootHeight = 1.5 * (descending ? 1 - u : u);
+    const fold = clamp((rootHeight - 0.5) / 1);
+    const ankles = {}, wrists = {}, contacts = {};
+    for (const [side, offset] of [["left", 0], ["right", 0.5]]) {
+      const foot = rung(rootHeight, offset, 0, 0.04);
+      const hand = rung(rootHeight, offset, 1);
+      ankles[side] = [0, foot.height - rootHeight + 0.11];
+      wrists[side] = [0, hand.height - rootHeight];
+      contacts[side] = { support: foot.support, handSupport: hand.support || hand.height === 1.5, rootHeight, footHeight: foot.height, handHeight: hand.height, gesture: "grab" };
     }
-  for (let frame = 0; frame < 8; frame++) {
-    const u = frame / 7;
-    poses.push(
-      articulate(direction, {
-        hipZ: 0.45 + 0.18 * u,
-        lean: 0.14 * (1 - u),
-        ankles: {
-          left: [0.14 - 0.14 * u, -0.05 + 0.16 * u],
-          right: [-0.02, 0.11],
-        },
-        wrists: { left: [0.2, 0.9 - 0.12 * u], right: [0.18, 0.88 - 0.1 * u] },
-        phase: "crest",
-        contacts: { transferProgress: u },
-        staffAngle: direction.stowedStaffAngle ?? 18,
-        durationMs: frame % 4 === 3 ? 70 : 60,
-      }),
-    );
+    inputs.push({ hipZ: 0.44 - 0.26 * fold, lean: 0.04 + 0.44 * fold, bodyForward: -0.20,
+      ankles, wrists, wristWidth: { left: 0.22, right: 0.22 }, phase: descending ? "descend" : "grip",
+      contacts, durationMs: 60 });
   }
-  return poses;
+  for (const descending of [false, true]) for (let frame = 0; frame < 8; frame++) {
+    const u = frame / 7, v = descending ? 1-u : u;
+    const rise = smooth(clamp((v-3/7)/(4/7)));
+    const bodyForward = -.20 + .70*rise - .5*v;
+    const ankles = {}, wrists = {}, contacts = {};
+    for (const side of ["left", "right"]) {
+      const step = smooth(clamp(side === "left" ? v/(3/7) : (v-3/7)/(3/7)));
+      const handSupport = side === "left" ? v <= 1/7 : v <= 3/7;
+      ankles[side] = [-.5*v+(side === "left" ? .29 : .5)*step, .11+.08*Math.sin(Math.PI*step)];
+      wrists[side] = handSupport ? [-.5*v, 0] : [bodyForward+.12, .4+.45*rise];
+      contacts[side] = { support: step === 0 || step === 1, handSupport, rootHeight: 1.5,
+        footHeight: 1.5+ankles[side][1]-.11, handHeight: handSupport ? 1.5 : undefined,
+        rootForward: descending ? -.5*u : .5*u, gesture: side === "right" && handSupport ? "grab" : "brace" };
+    }
+    inputs.push({ hipZ: .18+.44*rise, lean: .48-.45*rise, bodyForward,
+      ankles, wrists, wristWidth: { left: .22, right: .22 }, phase: "crest", crestDescending: descending,
+      contacts, durationMs: frame % 4 === 3 ? 70 : 60 });
+  }
+  return inputs;
+}
+export function climbPoses(direction) {
+  return climbInputs().map(input => articulate(direction, { ...input, staffAngle: direction.stowedStaffAngle ?? 18 }));
 }

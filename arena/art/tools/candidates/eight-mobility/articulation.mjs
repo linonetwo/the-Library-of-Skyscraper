@@ -35,6 +35,11 @@ export function articulate(
     durationMs,
     ankleAngles = {},
     kneeSpread = 0,
+    bodyForward = 0,
+    wristWidth = { left: 0.22, right: 0.32 },
+    wristTargets = {},
+    ankleTargets = {},
+    mapTorso = false,
   },
 ) {
   const heading = direction.worldForward,
@@ -46,16 +51,36 @@ export function articulate(
     ];
   const south = heading[0] > 0.7 && heading[1] > 0.7;
   // The south rig's pelvic attachment pivot is below its anatomical hip joints.
-  const hipHeight = south ? -(direction.joints.leftHip.restOffset[1] + direction.joints.rightHip.restOffset[1]) / 2 / 78.38367177 : 0;
+  const torsoAxis = direction.joints.neck.restOffset;
+  const hipFraction = ["leftHip", "rightHip"].reduce((sum, id) => sum + direction.joints[id].restOffset.reduce((dot, v, i) => dot + v * torsoAxis[i], 0) / norm(torsoAxis) ** 2, 0) / 2;
+  const hipHeight = mapTorso ? hipFraction * Math.sqrt(.52 ** 2 - lean ** 2)
+    : south ? -(direction.joints.leftHip.restOffset[1] + direction.joints.rightHip.restOffset[1]) / 2 / 78.38367177 : 0;
   const pelvisZ = hipZ - hipHeight;
   const neckZ = pelvisZ + Math.sqrt(0.52 ** 2 - lean ** 2),
-    world = { pelvis: wp(0, 0, pelvisZ), neck: wp(lean, 0, neckZ) };
+    world = { pelvis: wp(bodyForward, 0, pelvisZ), neck: wp(bodyForward + lean, 0, neckZ) };
   for (const [s, sign] of [
     ["left", 1],
     ["right", -1],
   ]) {
-    world[s + "Hip"] = wp(0, sign * 0.09, hipZ);
-    world[s + "Ankle"] = wp(ankles[s][0], sign * 0.1, ankles[s][1]);
+    world[s + "Hip"] = wp(bodyForward, sign * 0.09, hipZ);
+    if (mapTorso) {
+      // Match the anatomical hip to the same registered torso transform used by
+      // the body/coat raster. Deep flexion exposes a gap with a generic hip width.
+      const axis = direction.joints.neck.restOffset;
+      const rest = direction.joints[s + "Hip"].restOffset;
+      const fraction = rest.reduce((sum, value, i) => sum + value * axis[i], 0) / norm(axis) ** 2;
+      const target = sub(project(world.neck), project(world.pelvis));
+      const scale = norm(target) / norm(axis);
+      const angle = Math.atan2(target[1], target[0]) - Math.atan2(axis[1], axis[0]);
+      const offset = rest.map((v, i) => v + axis[i] * fraction * (scale - 1));
+      const origin = project(world.pelvis);
+      const x = origin[0] + offset[0] * Math.cos(angle) - offset[1] * Math.sin(angle);
+      const y = origin[1] + offset[0] * Math.sin(angle) + offset[1] * Math.cos(angle);
+      const z = pelvisZ + fraction * (neckZ - pelvisZ);
+      const across = (x - 96) / 64, along = (y - 172.8 + 78.38367177 * z) / 32;
+      world[s + "Hip"] = [(along + across) / 2, (along - across) / 2, z];
+    }
+    world[s + "Ankle"] = ankleTargets[s] ?? wp(ankles[s][0], sign * 0.1, ankles[s][1]);
     world[s + "Knee"] = chain(
       world[s + "Hip"],
       world[s + "Ankle"],
@@ -63,7 +88,7 @@ export function articulate(
       0.3060520193,
       [heading[0] + side[0] * sign * kneeSpread, heading[1] + side[1] * sign * kneeSpread, 0],
     );
-    world[s + "Shoulder"] = wp(lean, sign * 0.19, neckZ - 0.065);
+    world[s + "Shoulder"] = wp(bodyForward + lean, sign * 0.19, neckZ - 0.065);
     // The accepted north raster has a narrower collar. Preserve its registered
     // shoulder contact instead of placing the independent arm outside the torso.
     if (south || (heading[0] < -0.7 && heading[1] < -0.7)) {
@@ -71,9 +96,9 @@ export function articulate(
       const across = dx / 64, along = (dy - 78.38367177 * 0.065) / 32;
       world[s + "Shoulder"] = add(world.neck, [(along + across) / 2, (along - across) / 2, -0.065]);
     }
-    world[s + "Wrist"] = wp(
+    world[s + "Wrist"] = wristTargets[s] ?? wp(
       wrists[s][0],
-      sign * (s === "right" ? 0.32 : 0.22),
+      sign * wristWidth[s],
       wrists[s][1],
     );
     world[s + "Elbow"] = chain(
@@ -122,7 +147,7 @@ export function articulate(
   jointAngles.pelvis =
     ((Math.atan2(torso[1], torso[0]) - Math.atan2(axis[1], axis[0])) * 180) /
     Math.PI;
-  if (south) for (const attachment of direction.attachments) {
+  if (south || mapTorso) for (const attachment of direction.attachments) {
     if (attachment.joint === "pelvis" && attachment.id !== "staff")
       attachmentMappings[attachment.id] = { axis, scale: norm(torso) / norm(axis) };
   }
