@@ -1,4 +1,6 @@
+import { sampleTravelInterval } from "./mobilityInterval.ts";
 import type { Actor } from "./types";
+import type { CrestFrameKey } from "./animationCatalog";
 import type { Locomotion } from "./mobilityTypes";
 import { project } from "./isoGeometry.ts";
 import { facing } from "./directions.ts";
@@ -50,7 +52,8 @@ export function sampleMobilityPose(
       previous.worldPosition.y !== current.worldPosition.y);
   const t = sameSegment || approaching ? Math.max(0, Math.min(1, fraction)) : 1;
   const lerp = (a: number, b: number) => a + (b - a) * t;
-  const worldPosition = {
+  const interval = !snap ? sampleTravelInterval(previous, current, fraction) : undefined;
+  const worldPosition = interval?.worldPosition ?? {
     x: lerp(
       previous?.worldPosition?.x ?? current.worldPosition.x,
       current.worldPosition.x,
@@ -60,15 +63,15 @@ export function sampleMobilityPose(
       current.worldPosition.y,
     ),
   };
-  const worldHeightMilli = lerp(
+  const worldHeightMilli = interval?.worldHeightMilli ?? lerp(
     previous?.worldHeightMilli ?? current.worldHeightMilli,
     current.worldHeightMilli,
   );
-  const motionDistanceMilli = lerp(
+  const motionDistanceMilli = interval?.motionDistanceMilli ?? lerp(
     previous?.motionDistanceMilli ?? current.motionDistanceMilli ?? 0,
     current.motionDistanceMilli ?? 0,
   );
-  const locomotion: Locomotion | undefined = current.locomotion
+  const locomotion: Locomotion | undefined = interval?.locomotion ?? (current.locomotion
     ? {
         ...current.locomotion,
         progress: lerp(
@@ -76,12 +79,23 @@ export function sampleMobilityPose(
           current.locomotion.progress,
         ),
       }
-    : undefined;
+    : undefined);
   const vector = current.lastMoveDirection;
   const direction: Direction = vector
     ? facing({ x: 0, y: 0 }, project(vector.x, vector.y))
     : "S";
-  const segment = current.travel?.segments?.[current.travel.segment];
+  const segmentIndex = interval?.segmentIndex ?? current.travel?.segment ?? 0;
+  const segment = current.travel?.segments?.[segmentIndex];
+  const segments = current.travel?.segments;
+  const before = segments?.[segmentIndex - 1]?.role;
+  const after = segments?.[segmentIndex + 1]?.role;
+  const crestFrameKey: CrestFrameKey | undefined = segment?.role === "transfer"
+    ? before === "ladder" && after === "traverse" ? "crestUp"
+      : before === "traverse" && after === "ladder" ? "crestDown" : undefined
+    : undefined;
+  const climbDirection = segment?.ladderFacing
+    ? facing({ x: 0, y: 0 }, project(segment.ladderFacing.x, segment.ladderFacing.y))
+    : undefined;
   // A ladder casts to its foot floor. Transfer and high walkway are bearing platforms.
   const supportHeightMilli =
     segment?.role === "transfer" || segment?.role === "traverse"
@@ -89,9 +103,9 @@ export function sampleMobilityPose(
       : 0;
   const prefixDistance =
     current.travel?.segments
-      ?.slice(0, current.travel.segment)
+      ?.slice(0, segmentIndex)
       .reduce((sum, part) => sum + part.lengthMilli, 0) ?? 0;
-  const locomotionDistanceMilli = Math.max(
+  const locomotionDistanceMilli = interval?.locomotionDistanceMilli ?? Math.max(
     0,
     lerp(
       previous?.travel?.distanceMilli ?? current.travel?.distanceMilli ?? 0,
@@ -106,6 +120,9 @@ export function sampleMobilityPose(
     motionDistanceMilli,
     locomotionDistanceMilli,
     locomotion,
+    crestFrameKey,
+    climbDirection,
+    segmentRole: segment?.role,
     direction,
     moving: !snap && (!!current.travel || (!!approaching && t < 1)),
     frame: 0,

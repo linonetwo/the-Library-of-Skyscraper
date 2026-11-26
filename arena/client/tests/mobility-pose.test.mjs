@@ -128,7 +128,7 @@ test("jump uses normalized segment progress and run uses distance, not a separat
   assert.equal(resolveAnimation(run, 99999, motion, catalog).frame, 4);
 });
 
-test("climb alternation uses canonical segment distance, independent of previous route distance", () => {
+test("climb retains segment mileage but samples its ladder range once", () => {
   const current = {
     ...sample(0.5, 750),
     locomotion: { kind: "climb", phase: "grip", progress: 0.5 },
@@ -171,7 +171,7 @@ test("climb alternation uses canonical segment distance, independent of previous
       { ...motion, locomotionDistanceMilli: 625 },
       catalog,
     ).frame,
-    5,
+    3,
   );
   assert.equal(
     resolveAnimation(
@@ -267,4 +267,156 @@ test("ordinary approach snaps on pause, seek, room changes or death and stationa
     assert.deepEqual(pose.worldPosition, after.worldPosition);
     assert.equal(pose.moving, false);
   }
+});
+
+const climbCatalog = {
+  idle: clip,
+  walk: { ...clip, playback: "loop", cycleWorldStride: 1.5 },
+  climb: { ...clip, frameCount: 16, phaseFrames: {
+    grip: { first: 0, last: 3, cycleDistanceMilli: 500 },
+    descend: { first: 4, last: 7, cycleDistanceMilli: 500 },
+    crestUp: { first: 8, last: 11 },
+    crestDown: { first: 12, last: 15 },
+  } },
+};
+function ladderSample(reverse, index, progress) {
+  const faces = reverse ? [{ x: 0, y: -1 }, { x: 0, y: 1 }] : [{ x: 0, y: 1 }, { x: 0, y: -1 }];
+  const roles = ["ladder", "transfer", "traverse", "transfer", "ladder"];
+  const segments = roles.map((role, i) => ({
+    role, kind: role === "traverse" ? "walk" : "climb",
+    from: { x: 0, y: 0, z: role === "ladder" ? 0 : 1500 },
+    to: { x: 0, y: 0, z: 1500 }, lengthMilli: 1500,
+    ladderFacing: role === "traverse" ? undefined : faces[i < 2 ? 0 : 1],
+  }));
+  return { ...actor, worldHeightMilli: 1500, motionDistanceMilli: 9000 + progress * 1500,
+    locomotion: { kind: segments[index].kind, phase: index === 0 ? "grip" : index === 4 ? "descend" : index === 2 ? "walk" : "crest", progress },
+    travel: { travelId: "ladder", segment: index, segments, distanceMilli: index * 1500 + progress * 1500 },
+  };
+}
+test("both directed routes use four closed frame ranges and the same physical ladder facing", () => {
+  for (const reverse of [false, true]) for (const index of [0, 1, 3, 4]) {
+    for (const [u, offset] of [[0, 0], [.5, 2], [1, 3]]) {
+      const current = ladderSample(reverse, index, u);
+      for (const snap of [false, true]) {
+        const pose = sampleMobilityPose(undefined, current, .1, snap);
+        const selected = resolveAnimation(current, 99999, { ...motion, ...pose }, climbCatalog);
+        const first = index === 0 ? 0 : index === 4 ? 4 : index === 1 ? 8 : 12;
+        assert.equal(selected.frame, first + offset);
+        assert.equal(selected.direction, (reverse === (index < 2)) ? "NE" : "SW");
+        assert.equal(current.locomotion.phase, index === 0 ? "grip" : index === 4 ? "descend" : "crest");
+        if (snap) assert.equal(pose.moving, false);
+      }
+    }
+  }
+});
+test("transfer key requires ordered neighbours and falls back to an old crest range", () => {
+  const current = ladderSample(false, 1, .5);
+  const previous = ladderSample(false, 1, 0);
+  const pose = sampleMobilityPose(previous, current, .5);
+  assert.equal(pose.crestFrameKey, "crestUp");
+  assert.equal(pose.locomotion.progress, .25);
+  assert.equal(resolveAnimation({ ...current, locomotion: pose.locomotion }, 0, { ...motion, ...pose }, climbCatalog).frame, 9);
+  const legacy = { ...climbCatalog, climb: { ...clip, phaseFrames: { crest: { first: 4, last: 7 } } } };
+  assert.equal(resolveAnimation(current, 0, { ...motion, ...pose }, legacy).frame, 6);
+  current.travel.segments[1].role = "ground";
+  assert.equal(sampleMobilityPose(undefined, current, 0).crestFrameKey, undefined);
+});
+test("paused committed high walkway keeps its mileage stride, while cue direction still wins", () => {
+  const current = ladderSample(false, 2, .5);
+  const running = sampleMobilityPose(undefined, current, 0);
+  const paused = sampleMobilityPose(undefined, current, 0, true);
+  assert.equal(paused.moving, false);
+  const active = resolveAnimation(current, 0, { ...motion, ...running }, climbCatalog);
+  const held = resolveAnimation(current, 99999, { ...motion, ...paused }, climbCatalog);
+  assert.equal(held.clip, "walk");
+  assert.equal(held.frame, active.frame);
+  assert.equal(held.motionDistanceMilli, active.motionDistanceMilli);
+  const climbing = ladderSample(false, 1, .5);
+  const pose = sampleMobilityPose(undefined, climbing, 0, true);
+  const hit = resolveAnimation({ ...climbing, impactCue: { kind: "hit", startedTick: 0, durationTicks: 2 } }, 0, { ...motion, ...pose }, { ...climbCatalog, hit: clip });
+  assert.equal(hit.clip, "hit");
+  assert.equal(hit.direction, "SE", "impact retains authority heading rather than ladder presentation heading");
+});
+
+function crossSample(reverse, index, elapsed) {
+  const current = ladderSample(reverse, index, 0);
+  current.travel.segments.forEach((segment, i) => {
+    segment.durationMicros = i === 1 || i === 3 ? 500000 : 1500000;
+    segment.from = { x: i * 1000, y: 1000, z: i === 0 ? 0 : 1500 };
+    segment.to = { x: (i + 1) * 1000, y: 1000, z: 1500 };
+  });
+  const segment = current.travel.segments[index];
+  const u = elapsed / segment.durationMicros;
+  current.travel.segmentElapsedMicros = elapsed;
+  current.travel.distanceMilli = index * 1500 + 1500 * u;
+  current.motionDistanceMilli = 9000 + current.travel.distanceMilli;
+  current.locomotion.progress = u;
+  current.worldPosition = { x: index + u, y: 1 };
+  current.worldHeightMilli = segment.from.z + (segment.to.z - segment.from.z) * u;
+  return current;
+}
+test("a real one-tick transfer remains visible between adjacent received snapshots in both routes", () => {
+  for (const reverse of [false, true]) for (const index of [1, 3]) {
+    const previous = crossSample(reverse, index, 0);
+    const current = crossSample(reverse, index + 1, 0);
+    for (const [fraction, frameOffset] of [[0, 0], [.5, 2]]) {
+      const pose = sampleMobilityPose(previous, current, fraction);
+      assert.equal(pose.locomotion.kind, "climb");
+      assert.equal(pose.locomotion.phase, "crest");
+      assert.equal(pose.crestFrameKey, index === 1 ? "crestUp" : "crestDown");
+      assert.equal(pose.locomotion.progress, fraction);
+      assert.equal(pose.worldPosition.x, index + fraction);
+      const selected = resolveAnimation({ ...current, locomotion: pose.locomotion }, 0, { ...motion, ...pose }, climbCatalog);
+      assert.equal(selected.frame, (index === 1 ? 8 : 12) + frameOffset);
+      assert.equal(pose.motionDistanceMilli, previous.motionDistanceMilli + 1500 * fraction);
+    }
+    for (const [fraction, snap] of [[1, false], [.5, true]]) {
+      const exact = sampleMobilityPose(previous, current, fraction, snap);
+      assert.deepEqual(exact.worldPosition, current.worldPosition);
+      assert.deepEqual(exact.locomotion, current.locomotion);
+      if (snap) assert.equal(exact.moving, false);
+    }
+    const changed = structuredClone(current);
+    changed.travel.travelId = "replacement";
+    assert.deepEqual(sampleMobilityPose(previous, changed, .5).worldPosition, changed.worldPosition);
+  }
+});
+test("the received ladder-to-transfer interval does not place the body on the platform early", () => {
+  const previous = crossSample(false, 0, 1125000);
+  const current = crossSample(false, 1, 0);
+  const pose = sampleMobilityPose(previous, current, .5);
+  assert.equal(pose.locomotion.phase, "grip");
+  assert.equal(pose.locomotion.progress, .875);
+  assert.equal(pose.worldHeightMilli, 1312.5);
+  assert.equal(pose.supportHeightMilli, 0);
+  assert.equal(pose.crestFrameKey, undefined);
+});
+test("crossed segments use their committed durations rather than blending unrelated progress values", () => {
+  const previous = crossSample(false, 0, 1125000);
+  const current = crossSample(false, 2, 250000);
+  const pose = sampleMobilityPose(previous, current, .5);
+  assert.equal(pose.segmentRole, "transfer");
+  assert.equal(pose.locomotion.progress, .375);
+  assert.equal(pose.worldPosition.x, 1.375);
+  assert.equal(pose.worldHeightMilli, 1500);
+});
+
+test("installed Travel without locomotion still samples its short ground entrance before the ladder", () => {
+  const segments = [
+    { kind: "walk", role: "ground", from: { x: 0, y: 0, z: 0 }, to: { x: 300, y: 0, z: 0 }, lengthMilli: 300, durationMicros: 200000 },
+    { kind: "climb", role: "ladder", from: { x: 300, y: 0, z: 0 }, to: { x: 300, y: 0, z: 1500 }, lengthMilli: 1500, durationMicros: 1500000, ladderFacing: { x: 0, y: 1 } },
+  ];
+  const previous = { ...actor, worldPosition: { x: 0, y: 0 }, worldHeightMilli: 0, motionDistanceMilli: 0,
+    travel: { travelId: "installed", segments, segment: 0, segmentElapsedMicros: 0, distanceMilli: 0 } };
+  const current = { ...previous, worldPosition: { x: .3, y: 0 }, worldHeightMilli: 300, motionDistanceMilli: 600,
+    locomotion: { kind: "climb", phase: "grip", progress: .2 },
+    travel: { ...previous.travel, segment: 1, segmentElapsedMicros: 300000, distanceMilli: 600 } };
+  const pose = sampleMobilityPose(previous, current, .2);
+  assert.equal(pose.locomotion.kind, "walk");
+  assert.equal(pose.locomotion.phase, "walk");
+  assert.equal(pose.locomotion.progress, .5);
+  assert.deepEqual(pose.worldPosition, { x: .15, y: 0 });
+  assert.equal(pose.worldHeightMilli, 0);
+  assert.equal(pose.motionDistanceMilli, 150);
+  assert.equal(resolveAnimation({ ...current, locomotion: pose.locomotion }, 0, { ...motion, ...pose }, climbCatalog).clip, "walk");
 });

@@ -5,6 +5,7 @@ import type { ActionCue, Actor, WorldPoint } from "./types";
 import {
   animationCatalog,
   type RegisteredClip,
+  type CrestFrameKey,
   type Clip,
 } from "./animationCatalog.ts";
 import { frameAt, clipDuration } from "./animationTiming.ts";
@@ -20,6 +21,9 @@ export type AnimationEntity = Pick<
 > &
   Partial<Pick<Actor, "cargo" | "task" | "locomotion">>;
 export type AnimationMotion = {
+  readonly crestFrameKey?: CrestFrameKey;
+  readonly climbDirection?: Direction;
+  readonly segmentRole?: import("./mobilityTypes").SegmentRole;
   moving: boolean;
   direction: Direction;
   tickDurationMs: number;
@@ -37,6 +41,7 @@ export type AnimationSelection = {
   locomotionDistanceMilli?: number;
   impact: boolean;
   locomotion?: Actor["locomotion"];
+  readonly crestFrameKey?: CrestFrameKey;
 };
 
 export function cueActive(
@@ -76,7 +81,7 @@ function selectAnimation(
     cue?: ActionCue | null,
   ): AnimationSelection => ({
     clip,
-    direction,
+    direction: clip === "climb" ? motion.climbDirection ?? direction : direction,
     elapsedMs: Math.max(0, simTimeMs - startMs),
     cueDurationMs:
       cue && cue.durationTicks > 0 ? cue.durationTicks * tickMs : undefined,
@@ -84,6 +89,7 @@ function selectAnimation(
     locomotionDistanceMilli: motion.locomotionDistanceMilli,
     impact: !!impactActive && impact?.kind === "hit",
     locomotion: actor.locomotion,
+    crestFrameKey: motion.crestFrameKey,
   });
   if (actor.hp <= 0 || actor.state === "downed") {
     const down = impact?.kind === "down" ? impact : undefined;
@@ -115,7 +121,7 @@ function selectAnimation(
     return result("unload", action.startedTick * tickMs, action);
   }
   if (actor.locomotion && ["run","jump","climb"].includes(actor.locomotion.kind)) return result(actor.locomotion.kind as Clip);
-  if (motion.moving) return result(actor.cargo ? "carry" : "walk");
+  if (motion.moving || (motion.segmentRole === "traverse" && actor.locomotion?.kind === "walk")) return result(actor.cargo ? "carry" : "walk");
   if (actionActive && action?.kind === "gather") {
     aim();
     return result("collect", action.startedTick * tickMs, action);
@@ -151,14 +157,21 @@ export function resolveAnimation(
     : selection.cueDurationMs
       ? (selection.elapsedMs / selection.cueDurationMs) * duration
       : selection.elapsedMs;
-  const phaseRange = selection.locomotion && spec.phaseFrames?.[selection.locomotion.phase];
+  const phase = selection.locomotion?.phase;
+  const phaseRange = phase && (phase === "crest" && selection.crestFrameKey
+    ? spec.phaseFrames?.[selection.crestFrameKey] ?? spec.phaseFrames?.crest
+    : spec.phaseFrames?.[phase]);
   const mobilityU = selection.locomotion?.progress;
-  const phaseFrame = phaseRange && selection.locomotion
-    ? phaseRange.first + Math.min(phaseRange.last-phaseRange.first, Math.floor((phaseRange.cycleDistanceMilli
-      ? ((selection.locomotionDistanceMilli ?? selection.motionDistanceMilli) % phaseRange.cycleDistanceMilli) / phaseRange.cycleDistanceMilli
-      : mobilityU ?? 0) * (phaseRange.last-phaseRange.first+1)))
+  // Ladder and transfer ranges are one pass over this segment, including its end.
+  const onePass = phase === "grip" || phase === "descend" || phase === "crest";
+  const phaseU = phaseRange?.cycleDistanceMilli && !onePass
+    ? ((selection.locomotionDistanceMilli ?? selection.motionDistanceMilli) % phaseRange.cycleDistanceMilli) / phaseRange.cycleDistanceMilli
+    : Math.max(0, Math.min(1, mobilityU ?? 0));
+  const phaseFrame = phaseRange
+    ? phaseRange.first + Math.min(phaseRange.last - phaseRange.first,
+        Math.floor(phaseU * (phaseRange.last - phaseRange.first + 1)))
     : clip === "jump" && mobilityU !== undefined
-      ? frameAt(spec,Math.max(0,Math.min(1,mobilityU))*duration) : undefined;
+      ? frameAt(spec, Math.max(0, Math.min(1, mobilityU)) * duration) : undefined;
   const frame = phaseFrame ?? (selection.holdLast
     ? spec.frameCount - 1
     : frameAt(spec, elapsed));
