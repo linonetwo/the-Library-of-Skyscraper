@@ -2,7 +2,7 @@ title: 竞技场开发日志2026-11-26
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261126055113000
-modified: 20261126082911000
+modified: 20261126091434000
 
 !! 今日正式AI编辑器回访
 
@@ -32,9 +32,9 @@ M3 NE／SW climb 66帧离线源fb48e92已进入独立视觉审，尚未注册到
 
 主代理实际打开工坊八向grid，守卫服／午夜发／法杖的run在同一第3显示帧（零基frame2）并列S、SW、W、NW、N、NE、E、SE；[[同帧空手对照|竞技场2026-11-26八向工坊空手对照.png]]保留为副图。workshop.json记录各方向分层texture、held与empty切换，以及loading=false、error=null；这是运行图集的实际同帧可见结果，不代替192组全帧序外观独立验收。
 
-[img[竞技场2026-11-26跃桥下落实机.png]]
+[[较早八向图集地图下落实机|竞技场2026-11-26跃桥下落实机.png]]
 
-地图继续沿可见控件、正常500ms时钟执行，手动暂停采样。T18实际run／SW／frame10、八独立衣发／身体／法杖层，恢复后T28到room2。上图文件名虽为jump-airborne-paused，真实T33为jump的landing下落阶段、u=0.75、世界高度900毫米、E向frame6、七层纹理；角色仍在gap段中，不能称已落地。随后恢复到T40才实际到room1地面，HP100、travel清除回idle，页面错误0。eight-runtime/map/normal-mobility.json保存呈现与权威读回；地图只证明这条合法路线实际经过的方向，八向展示由工坊另证。
+地图继续沿可见控件、正常500ms时钟执行，手动暂停采样。T18实际run／SW／frame10、八独立衣发／身体／法杖层，恢复后T28到room2。本节历史图文件名虽为jump-airborne-paused，真实T33为jump的landing下落阶段、u=0.75、世界高度900毫米、E向frame6、七层纹理；角色仍在gap段中，不能称已落地。随后恢复到T40才实际到room1地面，HP100、travel清除回idle，页面错误0。eight-runtime/map/normal-mobility.json保存呈现与权威读回；地图只证明这条合法路线实际经过的方向，八向展示由工坊另证。
 
 今天较早的正常500ms双向高廊另有19条DOM样本：crestUp SW／NE、crestDown NE／SW四类，采到0.2至0.8中间进度与1500毫米高廊高度。high-corridor/normal-mobility.json绑定前端52596a2／权威909ba41，errors[]；clip当时仍为idle占位，只证明PR141的相位／物理梯朝向采样，不能当作climb图集通过。
 
@@ -55,3 +55,19 @@ actual5191/flow.json记录实际可见UI：新用户只创建一个暂停训练�
 先前“climb仍未注册”为当时记录：两向66帧源PR148现已合170fd6a，正常index注册PR149已合41710468，phaseFrames实际层级修正PR150已合47245937；设施遮挡／梯段路线PR151已合ddf7f3d并独立通过。主代理正常500ms双向实跑faf8256／909ba41已记录四端climb动画与17条crest样本，T32到room3受旧地面战斗8伤、T50回room4 HP92，errors[]。
 
 这些证明实际两向动画播放与路线走通，不能记为手握接触已修：NE／SW握点可读性仍待设施640毫米小样裁决，失败实验不作通过证据；其余六向候选并行制作。完整三动作192组与M5整批仍待，详情待该轮接触修复明确后统一记录，不为未决试验增加内嵌图。
+
+!! 在AI编辑器改动作叶，实际角色由疾跑改为跃桥
+
+[img[竞技场2026-11-26AI改图发布后实际腾空.png]]
+
+本轮主代理通过候选5191的真实图编辑界面，在T15同一暂停状态选中run-support叶：A为run途经room0到room3，改同一稳定ID的叶为B的jump／jump-room-1-room-2。真实V8试跑分别给出run与jump意图，sourceHash由91cfbd484a92ae8fb196b48008881ddcb669089d5086893ec320530aae9c76e0改为2d84a7a7ffca22d901c8e9054d1b4ffb0e1b2ca354ea63e5ace37aeb8bcaba4e；不是只改图上文字。发布B后正常500ms时钟推进，T21实际airborne、高度1004毫米（图中暂停），T22接近顶点1189毫米；录制operation34／T26才到room2地面、高度0且travel=null。T27原图后继逻辑已开始普通返回room1，不能把T27的在途截图误称尚未完成跃桥。
+
+实玩前端195057c2a001e065154500fae0e2f54645410de2、权威909ba41faeb0a9181bff94a31f281ad5fc5384b0，report.json与timeline.json保存原试跑、发布元数据、逐操作快照；errors[]。首次driver使用exact label未匹配，first-label-miss保留；修正定位器后继续原会话、原暂停帧成功，没有修改产品或伪造快照，不将它写成产品错误或首轮全绿。这条证据说明已有AI编辑器能够改变实际游戏行动，仍不替代v0.5整包M5。
+
+!! 已合HUD与试跑摘要修正
+
+AI无task但活着在途时曾误报无人执行，PR154按最终4dd1949通过Astra6070974041与CI45786237977，已合0c1a9dad；run途经→终点、jump／climb edge的试跑空白同步修正。现5191候选组合710808e7744e8393a459742f7d40bd8982bf6b55，正式5173仍为v0.4.1。
+
+[[T27完成加载后的HUD与后继行进实机|竞技场2026-11-26AI后继行进HUD实机.png]]来自hud-fixed-rendered.png，固定同一T27暂停状态，三角色HP100、无task但各有真实在途目标；HUD区分“当前目标暂无执行者”与“队友在途”及实际目的地，未称已在场执行。守卷人walk14／NW／8层、采撷师walk1／E／7层、巡书使walk5／NW／7层。此为被动恢复与只读截图，noPOST／无V8／无推进／errors[]；不能与T21腾空图按同tick比较。首张冷加载过程图另留first-loading，不作为最终画面。
+
+设施宽度PR155已按精确cdde659c49cd2354706948b1643fa0364cb379c9获审及CI45788035206通过，合入d9f8de63aaaffb53f8f655a308e87e9ff85c1f41；梯侧轴间距由440增至640毫米，原高度／落点／时钟不变。通过范围仅设施尺寸与原四姿态可读空间，不等于抓握或背杖重叠问题已解决。N／NW／W离线候选源已产，N／W可供独立审；未宣称注册或完整通过。完整climb其余六向、接触收合、192组与M5整批仍待。
