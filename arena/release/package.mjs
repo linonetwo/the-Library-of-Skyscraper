@@ -17,6 +17,11 @@ export async function collectPackage({ source, destination, version, sourceCommi
   mkdirSync(dirname(resolve(payload,path)),{recursive:true});
   copy(resolve(source,path),resolve(payload,path));
  }
+ if(metadata.world) {
+  const path=metadata.world.map.path;
+  mkdirSync(dirname(resolve(payload,path)),{recursive:true});
+  copy(resolve(source,path),resolve(payload,path));
+ }
  for(const name of ['server','script-runner']) {
   const binary=`skyscraper-arena-${name}`;
   const target=process.env.CARGO_TARGET_DIR ? resolve(source,process.env.CARGO_TARGET_DIR) : resolve(source,`arena/${name}/target`);
