@@ -22,6 +22,7 @@ export default function GameHUD() {
     player,
     connection,
     setView,
+    openAiEditor,
     setLobby,
     setHelp,
     setInspecting,
@@ -121,12 +122,12 @@ export default function GameHUD() {
           onClick={() => {
             setInspecting(false);
             setSelectedRoom(null);
-            setView("rules");
+            void openAiEditor();
             setMenu(false);
             setTraining(false);
           }}
         >
-          编辑 AI 规则
+          AI 模块编辑
         </button>
         <button
           className="menu-trigger"
@@ -150,7 +151,7 @@ export default function GameHUD() {
                 setMenu(false);
               }}
             >
-              {["编辑 AI 规则", "赛局日志"][i]}
+              {["AI 模块编辑", "赛局日志"][i]}
             </button>
           ))}
           <button

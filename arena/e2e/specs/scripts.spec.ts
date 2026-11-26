@@ -7,7 +7,7 @@ test("Monaco compiles and V8 previews a rule against a paused authoritative snap
   await page.goto("/");
   await page.getByRole("button", { name: "开启训练远征" }).click();
   await stepTraining(page);
-  await openMenu(page, '编辑 AI 规则');
+  await openMenu(page, 'AI 模块编辑');
   await page.getByRole("tab", { name: "TypeScript", exact: true }).click();
   await expect(page.getByRole("textbox", { name: "TypeScript规则源码" })).toBeVisible({ timeout: 20000 });
   await page.getByLabel("载入规则模板").selectOption("gather");

@@ -164,7 +164,7 @@ export default function CharacterInspector() {
         <div>
           <ScrollText size={16} />
           <h3>当前行动规则</h3>
-          <button aria-label="编辑 AI 规则" onClick={() => setView("rules")}>
+          <button aria-label="AI 模块编辑" onClick={() => setView("rules")}>
             <ArrowUpRight size={15} />
           </button>
         </div>
