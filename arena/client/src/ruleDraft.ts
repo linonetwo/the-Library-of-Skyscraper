@@ -1,3 +1,5 @@
+import { recoverBehaviorPlan } from "../../behavior-modules";
+import { recoverRuleGraph } from "../../behavior-modules/graph";
 import type { Session } from "./types";
 import type { RuleSourceProject } from "./scriptTypes";
 import { recallSource } from "./scriptTemplates";
@@ -45,4 +47,9 @@ export function isStockDraft(draft: RuleDraft): boolean {
     Object.keys(draft.files).length === 1 &&
     draft.files["main.ts"] === recallSource
   );
+}
+
+export function draftEditorView(draft: RuleDraft): "modules" | "graph" | "source" {
+  if (recoverRuleGraph(draft)) return "graph";
+  return isStockDraft(draft) || recoverBehaviorPlan(draft) ? "modules" : "source";
 }

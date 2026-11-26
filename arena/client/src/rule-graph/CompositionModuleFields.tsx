@@ -3,7 +3,7 @@ import { roleNames } from "../types";
 import { GraphRoomSelect } from "./GraphRoomSelect";
 const names = { scout: "侦察", patrol: "巡逻", escort: "护送" };
 export function CompositionModuleFields({ module: m, onChange }: { module: CompositionModule; onChange: (module: CompositionModule) => void }) {
-  return <fieldset>
+  return <fieldset className="composition-module-fields">
     <legend>{names[m.kind]} · {m.moduleId}</legend>
     <label><input type="checkbox" checked={m.enabled} onChange={event => onChange({ ...m, enabled: event.target.checked })} />启用模块</label>
     <label>优先级<input aria-label="模块优先级" type="number" value={m.priority} onChange={event => onChange({ ...m, priority: Number(event.target.value) })} /></label>

@@ -1,3 +1,4 @@
+import { ModuleInstanceLinks } from "../rule-modules/ModuleInstanceLinks";
 import { CompositionModuleFields } from "./CompositionModuleFields";
 import { useState } from "react";
 import type {
@@ -13,11 +14,13 @@ export function GraphInspector({
   selection,
   onEdit,
   onLocate,
+  onSelect,
 }: {
   graph: RuleGraph;
   selection: GraphSelection;
   onEdit: (operations: GraphOperation[]) => void;
   onLocate: (id: string) => void;
+  onSelect: (selection: GraphSelection) => void;
 }) {
   const [moduleExpanded, setModuleExpanded] = useState(true);
   const save = (value: Parameters<typeof putObject>[1]) =>
@@ -26,7 +29,7 @@ export function GraphInspector({
   if (selection.kind === "nodes") {
     const node = graph.nodes.find((n) => n.id === selection.id);
     if (!node) return null;
-    body = <NodeFields graph={graph} node={node} onChange={save} />;
+    body = <><NodeFields graph={graph} node={node} onChange={save} />{node.type === "module" && <ModuleInstanceLinks key={node.moduleId} graph={graph} moduleId={node.moduleId} nodeId={node.id} onEdit={onEdit} onSelect={onSelect} />}</>;
   } else if (selection.kind === "states") {
     const state = graph.states.find((value) => value.id === selection.id);
     if (!state) return null;
@@ -81,6 +84,7 @@ export function GraphInspector({
         <button onClick={() => onLocate(selection.id)}>定位源码 ↗</button>
       </header>
       {body}
+      {selection.kind === "modules" && <ModuleInstanceLinks key={selection.id} graph={graph} moduleId={selection.id} onEdit={onEdit} onSelect={onSelect} />}
       <small>
         连接选择器只列出对应类型；选择「断开」会保留草稿并报告引用诊断。
       </small>

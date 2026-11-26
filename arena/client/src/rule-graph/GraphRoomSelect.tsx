@@ -26,7 +26,7 @@ export function GraphRoomSelect({
         )}
         {rooms.map((room) => (
           <option key={room.id} value={room.id}>
-            {room.name}
+            {room.name} · {room.id}
           </option>
         ))}
       </select>

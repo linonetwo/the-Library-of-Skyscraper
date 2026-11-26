@@ -1,3 +1,7 @@
+import { draftEditorView } from "./ruleDraft";
+import { ModuleCatalog } from "./rule-modules/ModuleCatalog";
+import { RuleGraphConversionPreview } from "./rule-modules/RuleGraphConversionPreview";
+import type { ModuleRequest } from "./rule-modules/moduleCatalog";
 import { WorkbenchRunPanel } from "./WorkbenchRunPanel";
 import { graphTrace } from "./rule-comparison/TraceView";
 import { RuleComparison } from "./rule-comparison/RuleComparison";
@@ -30,6 +34,7 @@ export default function BehaviorWorkbench({
 }) {
   const w = useBehaviorWorkbench();
   const g = useRuleGraphDraft(w);
+  const [moduleRequest, setModuleRequest] = useState<ModuleRequest | null>(null);
   const [graphSelection, setGraphSelection] = useState<GraphSelection | null>(
     null,
   );
@@ -77,6 +82,12 @@ export default function BehaviorWorkbench({
     setLocalTab(next);
     onViewChange?.(next);
   };
+  const restoreReplacement = () => {
+    const previous = w.backup;
+    w.restoreBackup();
+    setModuleRequest(null);
+    if (previous) setTab(draftEditorView(previous));
+  };
   const locate = (moduleId: string) => {
     const ref = getModuleSourceRef(
       { files: w.draft.files, entry: w.draft.entry },
@@ -113,7 +124,7 @@ export default function BehaviorWorkbench({
         </p>
       )}
       {tab !== "graph" && w.backup && (
-        <button onClick={w.restoreBackup}>撤销上次替换</button>
+        <button onClick={restoreReplacement}>撤销上次替换</button>
       )}
       {tab === "modules" && (
         <label className="behavior-template">
@@ -140,6 +151,9 @@ export default function BehaviorWorkbench({
           草图待修；模型诊断阻止编译、试跑与发布。源码与当前草图同步保存。
         </p>
       )}
+      {(tab === "modules" || tab === "graph") && <ModuleCatalog graph={g.graph} onChoose={request => { setModuleRequest(request); if (g.graph) setTab("graph"); }} />}
+      {moduleRequest && !g.graph && w.plan && <RuleGraphConversionPreview plan={w.plan} onConfirm={() => { g.replace("priority"); setTab("graph"); }} onCancel={() => setModuleRequest(null)} />}
+      {moduleRequest && !g.graph && !w.plan && <p>当前手写工程保持原样；可在规则图页显式载入图草稿后接入模块，替换可撤销。</p>}
       <ScriptVersion busy={w.busy} onDisable={() => void w.run("disable")} />
       {!view && (
         <div className="behavior-tabs" role="tablist" aria-label="AI 编辑视图">
@@ -161,7 +175,7 @@ export default function BehaviorWorkbench({
         <>
           <div className="graph-tools">
             {w.backup && (
-              <button onClick={w.restoreBackup}>撤销上次替换</button>
+              <button onClick={restoreReplacement}>撤销上次替换</button>
             )}
             <button onClick={() => g.replace("logistics")}>
               载入物流状态图
@@ -183,6 +197,8 @@ export default function BehaviorWorkbench({
           {g.graph && (
             <GraphEditor
               graph={g.graph}
+              moduleRequest={moduleRequest}
+              onModuleRequestChange={setModuleRequest}
               trace={currentGraphTrace}
               traceSourceHash={
                 currentGraphTrace ? w.preview?.sourceHash : undefined
