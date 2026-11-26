@@ -1,3 +1,4 @@
+import { CustomModuleFields } from "../rule-modules/custom/CustomModuleFields";
 import { ModuleInstanceLinks } from "../rule-modules/ModuleInstanceLinks";
 import { CompositionModuleFields } from "./CompositionModuleFields";
 import { useState } from "react";
@@ -65,7 +66,7 @@ export function GraphInspector({
   } else {
     const module = graph.modules.find((m) => m.moduleId === selection.id);
     if (!module) return null;
-    body = module.kind === "scout" || module.kind === "patrol" || module.kind === "escort" ? (
+    body = module.kind === "custom" ? <CustomModuleFields graph={graph} module={module} onChange={save} /> : module.kind === "scout" || module.kind === "patrol" || module.kind === "escort" ? (
       <CompositionModuleFields module={module} onChange={save} />
     ) : (
       <BehaviorModuleCard

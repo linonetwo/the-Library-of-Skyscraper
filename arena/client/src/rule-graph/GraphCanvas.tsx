@@ -1,4 +1,4 @@
-import { moduleNames } from "../BehaviorModuleCard";
+import { graphModuleName } from "../rule-modules/moduleCatalog";
 import { layoutStates } from "./stateLayout";
 import { routeStateTransitions } from "./stateRoutes";
 import { layoutDecisionNodes } from "./treeLayout";
@@ -41,7 +41,6 @@ export function GraphCanvas({
     mode === "states"
       ? routeStateTransitions(graph.states, graph.transitions, stateLayout)
       : new Map();
-  const moduleLabels = { ...moduleNames, scout: "侦察", patrol: "巡逻", escort: "护送" };
   const items =
     mode === "states"
       ? graph.states.map((s) => ({
@@ -55,7 +54,7 @@ export function GraphCanvas({
           const binding = n.type === "module" ? graph.modules.find(module => module.moduleId === n.moduleId) : undefined;
           return {
             id: n.id,
-            label: binding ? moduleLabels[binding.kind] : nodeNames[n.type],
+            label: binding ? graphModuleName(graph, binding) : nodeNames[n.type],
             detail: n.id,
             context: n.type === "module" ? `实例 ${n.moduleId}` : undefined,
           };

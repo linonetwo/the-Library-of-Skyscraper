@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { roleNames } from "../types";
 import type { RuleGraph } from "../../../behavior-modules/graph";
-import { moduleCatalog, moduleKinds, moduleTemplate, type ModuleRequest } from "./moduleCatalog";
+import { graphModuleName, moduleCatalog, moduleKinds, moduleTemplate, type ModuleRequest } from "./moduleCatalog";
 import "./modules.css";
 export function ModuleCatalog({ graph, onChoose }: { graph: RuleGraph | null; onChoose: (request: ModuleRequest) => void }) {
   const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ export function ModuleCatalog({ graph, onChoose }: { graph: RuleGraph | null; on
         <button aria-label={`选择模块 ${moduleCatalog[kind].name}`} onClick={() => { onChoose({ type: "new", module: moduleTemplate(kind) }); setOpen(false); }}>预览添加</button>
       </article>)}</div>
       {graph && <label>引用已有实例<select aria-label="引用已有模块实例" value="" onChange={event => { if (event.target.value) { onChoose({ type: "existing", moduleId: event.target.value }); setOpen(false); } }}>
-        <option value="">选择共享实例</option>{graph.modules.map(module => <option key={module.moduleId} value={module.moduleId}>{moduleCatalog[module.kind].name} · {module.moduleId} · {graph.nodes.filter(node => node.type === "module" && node.moduleId === module.moduleId).length} 个引用</option>)}
+        <option value="">选择共享实例</option>{graph.modules.map(module => <option key={module.moduleId} value={module.moduleId}>{graphModuleName(graph, module)} · {module.moduleId} · {graph.nodes.filter(node => node.type === "module" && node.moduleId === module.moduleId).length} 个引用</option>)}
       </select></label>}
       <button onClick={() => { setOpen(false); launch.current?.focus(); }}>返回编排</button>
     </div>}

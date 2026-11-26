@@ -1,10 +1,11 @@
+import { CustomModuleFields } from "./custom/CustomModuleFields";
 import { useEffect, useRef, useState } from "react";
 import { freshGraphId, type GraphPatch, type RuleGraph } from "../../../behavior-modules/graph";
 import { BehaviorModuleCard } from "../BehaviorModuleCard";
 import { CompositionModuleFields } from "../rule-graph/CompositionModuleFields";
 import type { GraphSelection } from "../rule-graph/graphObjects";
 import { roleNames } from "../types";
-import { moduleCatalog, type ModuleRequest } from "./moduleCatalog";
+import { graphModuleName, moduleCatalog, type ModuleRequest } from "./moduleCatalog";
 export function GraphModuleComposer({ graph, request, onChange, onApply, onSelect }: {
   graph: RuleGraph; request: ModuleRequest; onChange: (request: ModuleRequest | null) => void;
   onApply: (patch: GraphPatch) => void; onSelect: (selection: GraphSelection) => void;
@@ -33,10 +34,10 @@ export function GraphModuleComposer({ graph, request, onChange, onApply, onSelec
     requestAnimationFrame(() => document.querySelector<HTMLInputElement>(".graph-inspector input")?.focus());
   };
   return <section ref={preview} tabIndex={-1} className="module-composer" aria-label="模块接入预览">
-    <h3>{request.type === "new" ? "添加独立实例" : "引用共享实例"} · {moduleCatalog[module.kind].name}</h3>
-    <p>{moduleCatalog[module.kind].description}</p>
+    <h3>{request.type === "new" ? "添加独立实例" : "引用共享实例"} · {graphModuleName(graph, module)}</h3>
+    <p>{module.kind === "custom" ? "使用图中锁定的模块本体版本。" : moduleCatalog[module.kind].description}</p>
     <p>实例 {instanceId} · 当前 {references.length} 个引用。{request.type === "existing" ? "参数沿用当前实例；接入后修改参数会影响所有引用。" : "参数确认后与接入一并保存。"}</p>
-    {request.type === "new" && (module.kind === "scout" || module.kind === "patrol" || module.kind === "escort" ? <CompositionModuleFields module={module} onChange={module => onChange({ type: "new", module })} /> : <BehaviorModuleCard module={module} expanded={expanded} onToggle={() => setExpanded(!expanded)} onChange={module => onChange({ type: "new", module })} />)}
+    {request.type === "new" && (module.kind === "custom" ? <CustomModuleFields graph={graph} module={module} onChange={module => onChange({ type: "new", module })} /> : module.kind === "scout" || module.kind === "patrol" || module.kind === "escort" ? <CompositionModuleFields module={module} onChange={module => onChange({ type: "new", module })} /> : <BehaviorModuleCard module={module} expanded={expanded} onToggle={() => setExpanded(!expanded)} onChange={module => onChange({ type: "new", module })} />)}
     <label>接入状态<select aria-label="模块接入状态" value={target?.id ?? ""} onChange={event => setTargetId(event.target.value)}><option value="">选择状态入口</option>{graph.states.map(state => <option key={state.id} value={state.id}>{state.name} · {graph.roles.filter(role => role.initialStateId === state.id).map(role => roleNames[role.role]).join(" / ")} · {state.id}</option>)}</select></label>
     {target && <p>直接入口岗位：{graph.roles.filter(role => role.initialStateId === target.id || role.fallbackStateId === target.id).map(role => roleNames[role.role]).join(" / ") || "由状态转移进入"}；条件不足 → {target.treeId}（原持续树）。</p>}
     <div className="module-actions"><button disabled={!target} onClick={confirm}>确认接入模块</button><button onClick={cancel}>返回编排</button></div>

@@ -1,6 +1,6 @@
 import { createDefaultBehaviorPlan } from "../../../behavior-modules";
 import { createCompositionGraph, type GraphModule } from "../../../behavior-modules/graph";
-export type ModuleKind = GraphModule["kind"];
+export type ModuleKind = Exclude<GraphModule["kind"], "custom">;
 export const moduleKinds: ModuleKind[] = ["scout", "patrol", "escort", "gather", "haul", "build", "defend", "retreat"];
 export type ModuleRequest = { type: "new"; module: GraphModule } | { type: "existing"; moduleId: string };
 export const moduleCatalog: Record<ModuleKind, { name: string; description: string }> = {
@@ -17,4 +17,8 @@ export const moduleCatalog: Record<ModuleKind, { name: string; description: stri
 export function moduleTemplate(kind: ModuleKind): GraphModule {
   const templates: GraphModule[] = [...createDefaultBehaviorPlan().modules, ...createCompositionGraph().modules];
   return structuredClone(templates.find(module => module.kind === kind)!);
+}
+
+export function graphModuleName(graph: import("../../../behavior-modules/graph").RuleGraph, module: GraphModule): string {
+  return module.kind === "custom" ? graph.customDefinitions?.find(item => item.definitionId === module.definitionId && item.revisionId === module.revisionId)?.name ?? "自定义模块" : moduleCatalog[module.kind].name;
 }
