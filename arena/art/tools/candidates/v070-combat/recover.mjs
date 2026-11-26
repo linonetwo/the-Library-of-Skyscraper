@@ -26,14 +26,16 @@ export async function recoverConfig(){
   const idle=await read(path.join(here,'../ne-sw-idle/pose.json'));
   const poses=[{...final,durationMs:140,hiddenAttachments:[...final.hiddenAttachments,'recover-left-forearm','recover-support-palm',...bridgeIds]}];
   for(let frame=1;frame<8;frame++){
-   const world={pelvis:wp(0,0,hipZ[frame]),neck:wp(neckF[frame],0,neckZ[frame])};
+   const bodyShift=name==='NE'&&frame===4?[2/128,-2/128,0]:[0,0,0];
+   const world={pelvis:add(wp(0,0,hipZ[frame]),bodyShift),neck:add(wp(neckF[frame],0,neckZ[frame]),bodyShift)};
    for(const [s,sign] of [['left',1],['right',-1]]){
-    world[s+'Hip']=wp(0,sign*.09,hipZ[frame]);const tucked=s==='right'&&(frame===3||frame===4),footF=tucked?-.20:s==='left'&&frame>=3?.12:s==='right'&&frame>=5?-.06:ankleF[frame]+(s==='right'&&frame<3?.10:0);world[s+'Foot']=wp(footF+.08,sign*(tucked?.22:.12),tucked?.18:0);
+    world[s+'Hip']=add(wp(0,sign*.09,hipZ[frame]),bodyShift);const tucked=s==='right'&&(frame===3||frame===4),footF=tucked?-.20:s==='left'&&frame>=3?.12:s==='right'&&frame>=5?-.06:ankleF[frame]+(s==='right'&&frame<3?.10:0);world[s+'Foot']=wp(footF+.08,sign*(tucked?.22:.12),tucked?(name==='NE'?.35:.18):0);
+    if(name==='NE'&&s==='left'&&frame>=3&&frame<=5)world[s+'Foot']=add(world[s+'Foot'],[6/128,-6/128,0]);
     const planted=s==='left'?frame>=3:frame>=5,sole=d.feet[s].soleOffset,foot=world[s+'Foot'];
-    world[s+'Ankle']=planted?[foot[0]-sole[0]/128,foot[1]+sole[0]/128,sole[1]/78.38367177]:wp(footF,sign*(tucked?.22:.12),tucked?.28:.10);
+    world[s+'Ankle']=planted?[foot[0]-sole[0]/128,foot[1]+sole[0]/128,sole[1]/78.38367177]:wp(footF,sign*(tucked?.22:.12),tucked?(name==='NE'?.45:.28):.10);
     world[s+'Knee']=elbow(world[s+'Hip'],world[s+'Ankle'],.3187701178,.3060520193,[...h,0]);
-    world[s+'Shoulder']=wp(neckF[frame]-.06,sign*.19,neckZ[frame]-.06+(frame<=2?(s==='left'?-.04:.04):0));
-    world[s+'Wrist']=s==='left'&&frame<=3?wp(.31,.30,.025):wp(neckF[frame]+.08,sign*(s==='right'&&frame===6?.35:.27),Math.max(.22,neckZ[frame]-.35));
+    world[s+'Shoulder']=add(wp(neckF[frame]-.06,sign*.19,neckZ[frame]-.06+(frame<=2?(s==='left'?-.04:.04):0)),bodyShift);
+    world[s+'Wrist']=s==='left'&&frame<=3?wp(.31,.30,.025):add(wp(neckF[frame]+.08,sign*(s==='right'&&frame===6?.35:.27),Math.max(.22,neckZ[frame]-.35)),bodyShift);
     try{world[s+'Elbow']=elbow(world[s+'Shoulder'],world[s+'Wrist'],.252,.214,[side[0]*sign,side[1]*sign,-.1]);}catch(e){throw Error(name+'/'+frame+'/'+s+': '+e.message);}
    }
    const points=Object.fromEntries(Object.entries(world).map(([id,p])=>[id,project(p)])),jointAngles={},attachmentMappings={};
