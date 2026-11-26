@@ -50,5 +50,6 @@ These facts do not prove authority acceptance, later arrival, damage or delivery
 
 The additional v0.6 fixture is the genuine A1 independent V8 output, not a timeline:
 its provenance explicitly says no recording operation is available. Tests supply
-controlled operation envelopes to exercise the adapter; a real normal-clock owner
-timeline will be added when the coordinated live case is recorded.
+controlled operation envelopes to exercise the adapter; a separate normal-clock owner
+fixture now preserves exact per-actor facts from operations4,16,18,21. Its source
+commit, original-recording hash and omitted data are documented in provenance.

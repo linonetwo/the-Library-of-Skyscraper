@@ -1,0 +1,217 @@
+{
+  "provenance": {
+    "sourceCommit": "2a64ee528d0ff2fb663db1cd52e02acaa0857f25",
+    "evidence": "v060-normal-composition-first/owner-module-recording.json",
+    "originalSha256": "4a961a2071aee6dbd654e7383a9beb99df14202e8e212eba0b03e7e1a850661f",
+    "method": "Actual normal500ms authority recording. Exact owner/session/hash/op/tick and original per-actor traces from operations4,16,18,21; other actors, deltas and memory omitted. No credentials or injected world state.",
+    "approvedAncestor": "3dc047d602c88e584089fadeeb51c3971a19f68d"
+  },
+  "sessionId": "8e312fa2-c0be-43d1-8f74-66e4a4bba8fb",
+  "ruleHistory": {
+    "playerId": "p1",
+    "changes": [
+      {
+        "operationIndex": 4,
+        "tick": 0,
+        "sourceHash": "beb22fa4b3a30961130edd469f1ce8edce100d41c8fcddf6b907a09bcf7a0def",
+        "memoryPatch": {
+          "set": {
+            "aiTrace": {
+              "actors": [
+                {
+                  "actorId": "p1-guard",
+                  "endStateId": "state-guard",
+                  "moduleId": "patrol-base-resource",
+                  "moduleVisits": [
+                    {
+                      "fallbackNodeId": "patrol-node",
+                      "moduleId": "escort-cargo",
+                      "nodeId": "escort-node",
+                      "outcome": "fallback",
+                      "reasonCode": "escort-target-missing",
+                      "ref": {
+                        "role": "gatherer",
+                        "type": "ownRole"
+                      }
+                    },
+                    {
+                      "moduleId": "patrol-base-resource",
+                      "nodeId": "patrol-node",
+                      "observed": {
+                        "arrivedTick": 0,
+                        "cursor": 0
+                      },
+                      "outcome": "hold",
+                      "reasonCode": "patrol-dwelling",
+                      "ref": {
+                        "roomId": "room-0",
+                        "type": "room"
+                      },
+                      "resolvedId": "room-0"
+                    }
+                  ],
+                  "reason": "patrol-dwelling",
+                  "selectedNodeId": "patrol-node",
+                  "startStateId": "state-guard",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "escort-node"
+                    },
+                    {
+                      "nodeId": "patrol-node"
+                    }
+                  ]
+                }
+              ],
+              "graphId": "normal-scout-patrol-escort",
+              "tick": 0,
+              "v": 2
+            }
+          }
+        }
+      },
+      {
+        "operationIndex": 16,
+        "tick": 12,
+        "sourceHash": "beb22fa4b3a30961130edd469f1ce8edce100d41c8fcddf6b907a09bcf7a0def",
+        "memoryPatch": {
+          "set": {
+            "aiTrace": {
+              "actors": [
+                {
+                  "actorId": "p1-guard",
+                  "endStateId": "state-guard",
+                  "moduleId": "escort-cargo",
+                  "moduleVisits": [
+                    {
+                      "moduleId": "escort-cargo",
+                      "nodeId": "escort-node",
+                      "observed": {
+                        "cargo": 4,
+                        "threshold": 4
+                      },
+                      "outcome": "hold",
+                      "reasonCode": "travel-active",
+                      "ref": {
+                        "role": "gatherer",
+                        "type": "ownRole"
+                      },
+                      "resolvedId": "p1-gatherer"
+                    }
+                  ],
+                  "reason": "travel-active",
+                  "selectedNodeId": "escort-node",
+                  "startStateId": "state-guard",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "escort-node"
+                    }
+                  ]
+                }
+              ],
+              "graphId": "normal-scout-patrol-escort",
+              "tick": 12,
+              "v": 2
+            }
+          }
+        }
+      },
+      {
+        "operationIndex": 18,
+        "tick": 14,
+        "sourceHash": "beb22fa4b3a30961130edd469f1ce8edce100d41c8fcddf6b907a09bcf7a0def",
+        "memoryPatch": {
+          "set": {
+            "aiTrace": {
+              "actors": [
+                {
+                  "actorId": "p1-scout",
+                  "endStateId": "state-scout",
+                  "moduleId": "scout-resource",
+                  "moduleVisits": [
+                    {
+                      "moduleId": "scout-resource",
+                      "nodeId": "scout-node",
+                      "observed": {
+                        "enemyHp": 0,
+                        "tick": 14
+                      },
+                      "outcome": "hold",
+                      "reasonCode": "scout-reported",
+                      "ref": {
+                        "roomId": "room-1",
+                        "type": "room"
+                      },
+                      "resolvedId": "room-1"
+                    }
+                  ],
+                  "reason": "scout-reported",
+                  "selectedNodeId": "scout-node",
+                  "startStateId": "state-scout",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "scout-node"
+                    }
+                  ]
+                }
+              ],
+              "graphId": "normal-scout-patrol-escort",
+              "tick": 14,
+              "v": 2
+            }
+          }
+        }
+      },
+      {
+        "operationIndex": 21,
+        "tick": 17,
+        "sourceHash": "beb22fa4b3a30961130edd469f1ce8edce100d41c8fcddf6b907a09bcf7a0def",
+        "memoryPatch": {
+          "set": {
+            "aiTrace": {
+              "actors": [
+                {
+                  "actorId": "p1-guard",
+                  "endStateId": "state-guard",
+                  "moduleId": "escort-cargo",
+                  "moduleVisits": [
+                    {
+                      "moduleId": "escort-cargo",
+                      "nodeId": "escort-node",
+                      "observed": {
+                        "cargo": 8,
+                        "threshold": 4
+                      },
+                      "outcome": "selected",
+                      "reasonCode": "moving",
+                      "ref": {
+                        "role": "gatherer",
+                        "type": "ownRole"
+                      },
+                      "resolvedId": "p1-gatherer"
+                    }
+                  ],
+                  "reason": "moving",
+                  "selectedNodeId": "escort-node",
+                  "startStateId": "state-guard",
+                  "transitionId": null,
+                  "visited": [
+                    {
+                      "nodeId": "escort-node"
+                    }
+                  ]
+                }
+              ],
+              "graphId": "normal-scout-patrol-escort",
+              "tick": 17,
+              "v": 2
+            }
+          }
+        }
+      }
+    ]
+  }
+}

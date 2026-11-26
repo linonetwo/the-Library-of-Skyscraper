@@ -71,3 +71,19 @@ test('same-tick reset/version and named interval navigation stays on original op
   assert.throws(()=>moduleCoverage(index,{...range,ownerId:'another-owner'},{actorId:'s'}),/another/);
   assert.throws(()=>moduleCoverage(index,{...range,toOperation:1},{actorId:'s'}),/Invalid/);
 });
+
+test('normal-clock owner operations preserve actual escort fallback, travel hold, scout report and new escort selection',async()=>{
+  const r=JSON.parse(await readFile(new URL('./fixtures/recorded-modules-v6-normal.json',import.meta.url),'utf8'));
+  const index=indexRecording(r,'p1'),sourceHash=r.ruleHistory.changes[0].sourceHash;
+  const q={sourceHash,actorId:'p1-guard',moduleId:'escort-cargo',kind:'fallback'};
+  const fallback=nextModule(index,q,3);assert.equal(fallback.operationIndex,4);assert.equal(fallback.tick,0);
+  assert.equal(fallback.visit.fallbackNodeId,'patrol-node');assert.equal(fallback.visit.reasonCode,'escort-target-missing');
+  const hold=nextModule(index,{...q,kind:'hit'},4);assert.equal(hold.operationIndex,16);assert.equal(hold.visit.reasonCode,'travel-active');
+  assert.deepEqual(hold.visit.observed,{cargo:4,threshold:4});assert.equal(hold.visit.resolvedId,'p1-gatherer');
+  const moving=nextModule(index,{...q,kind:'hit'},16);assert.equal(moving.operationIndex,21);assert.equal(moving.visit.outcome,'selected');
+  assert.deepEqual(moving.visit.observed,{cargo:8,threshold:4});
+  const scout=nextModule(index,{sourceHash,actorId:'p1-scout',moduleId:'scout-resource',kind:'hit'},3);
+  assert.equal(scout.operationIndex,18);assert.equal(scout.tick,14);assert.equal(scout.visit.reasonCode,'scout-reported');assert.equal(scout.visit.resolvedId,'room-1');
+  const c=moduleCoverage(index,{sessionId:r.sessionId,ownerId:'p1',sourceHash,name:'真实护送原操作摘录',fromOperation:4,toOperation:21},{actorId:'p1-guard',moduleId:'escort-cargo'});
+  assert.deepEqual(c.visitOperations,[4,16,21]);assert.deepEqual(c.hitOperations,[16,21]);assert.deepEqual(c.fallbackOperations,[4]);
+});
