@@ -94,9 +94,33 @@ test('v0.5 mobility metadata follows shipped registration, partial directions, S
   assert.notEqual(updated.descriptor.sha256,registered.descriptor.sha256);
   assert.equal(updated.descriptor.sha256,hash(climb));
   const v6=buildMetadata(root,'0.6.0');assert.deepEqual(v6.assets.groups.player.clips,buildMetadata(root,'0.5.0').assets.groups.player.clips);assert.deepEqual(v6.world,initial.world);assert.deepEqual(v6.rules.sdk,initial.rules.sdk);assert.deepEqual(v6.dependencies,initial.dependencies);
+  put('arena/shared/first-expedition.json',{id:'first-expedition'});
+  put('arena/shared/seal-contest-v1.json',{id:'seal-contest',version:1});
+  put('arena/script-sdk/skills/ink-strike.js','export function chantInkStrike() {}');
+  const cast={directions:['NE'],clip:{phaseFrames:{chanting:{first:0,last:2},release:{first:3,last:4}}}};
+  put('arena/client/dist/assets/mobility/cast/atlas.json',cast);
+  put('arena/client/dist/assets/mobility/recover/atlas.json',{directions:['SW']});
+  put(indexPath,{assetSetId:'actual-v7',clips:[clip('run'),clip('jump'),clip('climb'),clip('cast'),clip('recover')]});
+  put('arena/client/dist/assets/iso-v070-combat-study/index.json',{effects:{inkFx:{root:'/assets/ink-fx',descriptor:'atlas.json'}}});
+  put('arena/client/dist/assets/ink-fx/atlas.json','actual FX descriptor');
+  const v7=buildMetadata(root,'0.7.0');
+  assert.equal(v7.world.simulationVersion,8);
+  assert.deepEqual(v7.world.map,v6.world.map);
+  assert.equal(v7.world.scenarios['seal-contest-v1'].sha256,hash({id:'seal-contest',version:1}));
+  assert.equal(v7.skills.inkStrike.sha256,hash('export function chantInkStrike() {}'));
+  assert.deepEqual(v7.rules.composition.moduleKinds.slice(-4),['attack','repair','claim','cast']);
+  assert.equal(v7.customModules.graphSchemaVersion,2);
+  assert.deepEqual(v7.rules.composition.moduleVisits,v6.rules.composition.moduleVisits);
+  assert.deepEqual(v7.assets.groups.player.clips[3].phaseFrames,cast.clip.phaseFrames);
+  assert.equal(v7.assets.effects.entries.inkFx.descriptor.sha256,hash('actual FX descriptor'));
+  assert.equal(v7.assets.provenance.scope,'inherited-baseline');
+  assert.deepEqual(v7.dependencies,v6.dependencies);
+  put('arena/client/dist/assets/ink-fx/atlas.json','updated FX descriptor');
+  assert.notEqual(buildMetadata(root,'0.7.0').assets.effects.entries.inkFx.descriptor.sha256,v7.assets.effects.entries.inkFx.descriptor.sha256);
+
  } finally {rmSync(root,{recursive:true,force:true});}
 });
 
 test('unknown external versions never fall through to a legacy recipe',()=>{
- for(const version of ['0.1.0','0.6.1','0.7.0','latest','__proto__'])assert.throws(()=>buildMetadata('/not-an-installation',version),/Unsupported release version/);
+ for(const version of ['0.1.0','0.6.1','0.7.1','latest','__proto__'])assert.throws(()=>buildMetadata('/not-an-installation',version),/Unsupported release version/);
 });

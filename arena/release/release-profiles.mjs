@@ -6,6 +6,7 @@ const profiles = {
  '0.4.0': { assets: 'current', rules: 'graph' },
  '0.4.1': { assets: 'current', rules: 'graph' },
  '0.5.0': { assets: 'mobility', rules: 'mobility' },
+ '0.7.0': { assets: 'mobility', rules: 'mobility', composition: true, tactics: true },
  '0.6.0': { assets: 'mobility', rules: 'mobility', composition: true },
 };
 export function releaseProfile(version) {
