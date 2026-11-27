@@ -1,3 +1,4 @@
+import {GroundInkEffects,loadGroundInk} from "./GroundInkEffects";
 import { paintMobilitySelection } from "./mapMobility";
 import { paintMobilityFacilities } from "./mobilityFacilities";
 import { loadLibraryTextures } from './libraryLayout';
@@ -35,6 +36,9 @@ export default function MapCanvas(props: MapProps) {
     let dynamics: WorldEntities;
     const actorTextures: import("./DollRenderer").DollTextures = {};
     let prepareActions: (() => void) | undefined;
+    let inkEffects:GroundInkEffects|undefined;
+    let inkLoading=false;
+    const inkLayer=new Container();
     let mainSet: import("./assetSetLoader").LoadedAssetSet | undefined;
     let readyAppearance = "";
     let pendingAppearance = "";
@@ -315,6 +319,10 @@ export default function MapCanvas(props: MapProps) {
       if (!appearanceKey) { applyCamera(); return; }
       prepareActions?.();
       const now = performance.now();
+      if((p.assetSet??mainSet)?.clips.cast&&!inkEffects&&!inkLoading){
+        inkLoading=true;
+        void loadGroundInk().then(assets=>{if(!disposed){inkEffects=new GroundInkEffects(inkLayer,assets);paint();}}).catch(cause=>{if(!disposed)setError(`墨印加载：${String(cause)}`);});
+      }
       actors.update(
         {
           ...p,
@@ -327,6 +335,7 @@ export default function MapCanvas(props: MapProps) {
       );
       if (p.snapshot) dynamics.update(p.snapshot, actors.simulationTime(now), now, p.tacticalPick && {...p.tacticalPick,onPick:(id)=>{if(!dragged)latest.current.tacticalPick?.onPick(id);}});
       poses = actors.render(now);
+      if(p.snapshot&&inkEffects)host.dataset.inkEffects=JSON.stringify(inkEffects.update(p.snapshot,actors.simulationTime(now),poses));
       setActorsLoading(false);
       host.dataset.enemies = JSON.stringify(dynamics.render(actors.simulationTime(now), now));
       host.dataset.actors = JSON.stringify(poses);
@@ -368,10 +377,11 @@ export default function MapCanvas(props: MapProps) {
         if (disposed) return;
         dynamics = new WorldEntities(entities, tiles, worldAssets);
         actors = new ActorScene(actorTextures, entities, worldAssets);
-        world.addChild(renderLayer, edgePickLayer, entities, mobilitySelection);
+        world.addChild(renderLayer, inkLayer, edgePickLayer, entities, mobilitySelection);
         app.ticker.add(() => {
           const now = performance.now();
           poses = actors.render(now);
+          if(latest.current.snapshot&&inkEffects)host.dataset.inkEffects=JSON.stringify(inkEffects.update(latest.current.snapshot,actors.simulationTime(now),poses));
           host.dataset.enemies = JSON.stringify(dynamics.render(actors.simulationTime(now), now));
           host.dataset.actors = JSON.stringify(poses);
           applyCamera();

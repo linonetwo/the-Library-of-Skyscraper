@@ -86,6 +86,10 @@ export class ActorScene {
       view.simulationTime = this.clock.sample(now);
       view.authoritativeAnimation = (snapshot.simulationVersion ?? 0) >= 4;
       view.tickDuration = snapshot.tickDurationMs || 500;
+      view.tacticalState=snapshot.tactics?.actorStates.find(state=>state.actorId===actor.id);
+      const cast=view.tacticalState?.cast;
+      const release=cast&&snapshot.events.find(event=>event.tick===cast.releaseTick&&event.tactical?.actorId===actor.id&&event.tactical.phase==='released'&&event.tactical.targetPosition);
+      view.tacticalTargetPosition=release?.tactical?.targetPosition??snapshot.enemies?.find(enemy=>enemy.id===cast?.targetId)?.worldPosition;
       view.gatherInterval =
         (snapshot.scenarioConfig?.gatherIntervalTicks ?? 4) * view.tickDuration;
       view.samplePose = props.samplePose;

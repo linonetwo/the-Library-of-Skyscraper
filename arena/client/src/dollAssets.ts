@@ -25,7 +25,7 @@ import { loadAssetSet, loadClipLayers, type AssetSetIndex, type LoadedAssetSet }
 import { animationLayers, type DollAppearance } from "./walkLayers";
 let mainDefinition: Promise<LoadedAssetSet> | undefined;
 export function loadMainDefinition() {
-  return mainDefinition ??= fetch("/assets/iso-v030-base/index.json")
+  return mainDefinition ??= fetch(new URLSearchParams(window.location.search).get("study")==="cast-recover"?"/assets/iso-v070-combat-study/index.json":"/assets/iso-v030-base/index.json")
     .then((response) => {
       if (!response.ok) throw new Error(`角色资源索引 ${response.status}`);
       return response.json() as Promise<AssetSetIndex>;

@@ -1,3 +1,4 @@
+import {sampleCast} from "./tacticalAnimation.ts";
 import { facing, type Direction } from "./directions.ts";
 import { project } from "./isoGeometry.ts";
 import type { ActionCue, Actor, WorldPoint } from "./types";
@@ -24,6 +25,8 @@ export type AnimationMotion = {
   readonly crestFrameKey?: CrestFrameKey;
   readonly climbDirection?: Direction;
   readonly segmentRole?: import("./mobilityTypes").SegmentRole;
+  tacticalState?: import("../../shared/tactical").TacticalActorSnapshot;
+  tacticalTargetPosition?: WorldPoint;
   moving: boolean;
   direction: Direction;
   tickDurationMs: number;
@@ -42,6 +45,7 @@ export type AnimationSelection = {
   impact: boolean;
   locomotion?: Actor["locomotion"];
   readonly crestFrameKey?: CrestFrameKey;
+  readonly tacticalFrame?: number;
 };
 
 export function cueActive(
@@ -63,6 +67,7 @@ function selectAnimation(
   actor: AnimationEntity,
   simTimeMs: number,
   motion: AnimationMotion,
+  castRegistration?: RegisteredClip,
 ): AnimationSelection {
   const tickMs = motion.tickDurationMs;
   const action = actor.actionCue;
@@ -112,6 +117,12 @@ function selectAnimation(
     if (actionActive && action?.kind === "attack") aim();
     return result("hit", impact.startedTick * tickMs, impact);
   }
+  const cast=sampleCast(motion.tacticalState,simTimeMs,tickMs,castRegistration?.phaseFrames);
+  if(cast){
+    const target=motion.tacticalTargetPosition,position=motion.worldPosition??actor.worldPosition;
+    if(target&&position&&(target.x!==position.x||target.y!==position.y))direction=facing(project(position.x,position.y),project(target.x,target.y));
+    return {...result("cast"),tacticalFrame:cast.frame};
+  }
   if (actionActive && action?.kind === "attack") {
     aim();
     return result("attack", action.startedTick * tickMs, action);
@@ -143,7 +154,7 @@ export function resolveAnimation(
   motion: AnimationMotion,
   catalog: Partial<Record<Clip, RegisteredClip>> = animationCatalog,
 ) {
-  const selection = selectAnimation(actor, simTimeMs, motion);
+  const selection = selectAnimation(actor, simTimeMs, motion, catalog.cast);
   const requested = catalog[selection.clip];
   const clip = requested && (!requested.directions || requested.directions.includes(selection.direction))
     ? selection.clip
@@ -172,7 +183,7 @@ export function resolveAnimation(
         Math.floor(phaseU * (phaseRange.last - phaseRange.first + 1)))
     : clip === "jump" && mobilityU !== undefined
       ? frameAt(spec, Math.max(0, Math.min(1, mobilityU)) * duration) : undefined;
-  const frame = phaseFrame ?? (selection.holdLast
+  const frame = (clip===selection.clip?selection.tacticalFrame:undefined) ?? phaseFrame ?? (selection.holdLast
     ? spec.frameCount - 1
     : frameAt(spec, elapsed));
   return { ...selection, requestedClip: selection.clip, clip, frame };

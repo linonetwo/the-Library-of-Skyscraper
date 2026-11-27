@@ -32,6 +32,8 @@ export class ActorView {
   simulationTime = 0;
   authoritativeAnimation = false;
   tickDuration = 500;
+  tacticalState?: import("../../shared/tactical").TacticalActorSnapshot;
+  tacticalTargetPosition?: import("./types").WorldPoint;
   gatherInterval = 2000;
   private attackAt = -10000;
   private actionTick = -1;
@@ -151,6 +153,7 @@ export class ActorView {
                 this.actor.task?.stage === "approaching",
             worldPosition: mobility?.worldPosition ?? inverse(pose.x, pose.y),
             tickDurationMs: this.tickDuration,
+            tacticalState:this.tacticalState,tacticalTargetPosition:this.tacticalTargetPosition,
           },
           this.assetSet?.catalog,
         )
@@ -233,7 +236,13 @@ export class ActorView {
       cargo,
       registration,
     );
+    const staffTip=registration&&this.dollRenderer.anchor(registration,selection?.direction??pose.direction,frame,"staffTip",pose,!!(this.dollAppearance??this.actor.appearance).weapon);
+    if(staffTip&&selection?.requestedClip==='cast'&&action==='cast')
+      this.activity.circle(staffTip.x-pose.x,staffTip.y-pose.y,3).fill({color:0xbcd8d7,alpha:.8});
     return {
+      staffTip,
+      castReleaseTip:registration&&action==="cast"?this.dollRenderer.anchor(registration,selection?.direction??pose.direction,3,"staffTip",pose,!!(this.dollAppearance??this.actor.appearance).weapon):undefined,
+      tacticalPhase:this.tacticalState?.cast?.phase,
       id: this.actor.id,
       ...pose,
       worldPosition: mobility?.worldPosition ?? this.actor.worldPosition,
