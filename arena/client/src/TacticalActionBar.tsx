@@ -9,7 +9,7 @@ const reasons:Record<string,string>={
  'attack-cooldown':'出手冷却后可再次攻击',
  'not-control-point':'请选择控制点房间',
  'point-outside-room':'请先前往控制点房间',
- 'actor-downed':'角色恢复后可继续行动',
+ 'actor-downed':'该角色已阵亡，请选择存活队员',
  'actor-travelling':'抵达后可继续行动',
  'actor-not-grounded':'落地后可继续行动',
  'actor-retreating':'撤退结束后可继续行动',
