@@ -1,3 +1,4 @@
+import {mapStudyIndex} from "./mapStudyIndex";
 import { Assets } from "pixi.js";
 import { animationActions } from "./animationCatalog";
 import { animationLayerNames } from "./walkLayers";
@@ -25,11 +26,18 @@ import { loadAssetSet, loadClipLayers, type AssetSetIndex, type LoadedAssetSet }
 import { animationLayers, type DollAppearance } from "./walkLayers";
 let mainDefinition: Promise<LoadedAssetSet> | undefined;
 export function loadMainDefinition() {
-  return mainDefinition ??= fetch(new URLSearchParams(window.location.search).get("study")==="cast-recover"?"/assets/iso-v070-combat-study/index.json":"/assets/iso-v030-base/index.json")
-    .then((response) => {
-      if (!response.ok) throw new Error(`角色资源索引 ${response.status}`);
+  return mainDefinition ??= (async () => {
+    const readIndex=(path:string)=>fetch(path).then(response=>{
+      if(!response.ok)throw new Error(`角色资源索引 ${response.status}`);
       return response.json() as Promise<AssetSetIndex>;
-    }).then(loadAssetSet).catch((cause) => { mainDefinition = undefined; throw cause; });
+    });
+    const study=new URLSearchParams(window.location.search).get("study")==="cast-recover";
+    const [main,preview]=await Promise.all([
+      readIndex("/assets/iso-v030-base/index.json"),
+      study?readIndex("/assets/iso-v070-combat-study/index.json"):Promise.resolve(undefined),
+    ]);
+    return loadAssetSet(preview?mapStudyIndex(main,preview):main);
+  })().catch((cause) => { mainDefinition = undefined; throw cause; });
 }
 /** Each map gets its own ready-only registration table; descriptors/textures stay cached. */
 export async function prepareMainLayers(set: LoadedAssetSet, appearances: DollAppearance[], idleOnly = false) {
