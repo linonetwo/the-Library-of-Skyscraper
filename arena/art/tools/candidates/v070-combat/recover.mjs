@@ -39,13 +39,13 @@ export async function recoverConfig(names=['NE','SW']){
     world[s+'Ankle']=planted?[foot[0]-sole[0]/128,foot[1]+sole[0]/128,sole[1]/78.38367177]:wp(footF,sign*(tucked?.22:.12),tucked?(name==='NE'?.45:.28):.10);
     world[s+'Knee']=elbow(world[s+'Hip'],world[s+'Ankle'],.3187701178,.3060520193,[...h,0]);
     world[s+'Shoulder']=add(wp(neckF[frame]-.06,sign*.19,neckZ[frame]-.06+(frame<=2?(s==='left'?-.04:.04):0)),bodyShift);
-    if((name==='N'&&frame>=4&&frame<=6)||(name==='N'&&s==='right'&&frame===3)||((name==='N'||name==='NW')&&frame===2)||(name==='NW'&&s==='left'&&(frame===3||frame===4))){
+    if((name==='N'&&frame>=4&&frame<=6)||(name==='N'&&s==='right'&&frame===3)||(hasBodyBridge&&frame===2)||(name==='NW'&&s==='left'&&(frame===3||frame===4))){
      // Follow the raster's actual pelvis rotation at its registered shoulder socket.
      // N's narrower collar cannot use the generic world shoulder width.
      const rig=frame===2?rollRig:d,axis=rig.joints.neck.restOffset,torso=sub(project(world.neck),project(world.pelvis)),angle=Math.atan2(torso[1],torso[0])-Math.atan2(axis[1],axis[0]),raw=sub(rig.joints[s+'Shoulder'].cell,rig.joints.pelvis.cell),fraction=raw.reduce((v,n,i)=>v+n*axis[i],0)/len(axis)**2,scale=frame===2?len(torso)/len(axis):1,rest=raw.map((v,i)=>v+axis[i]*fraction*(scale-1)),origin=project(world.pelvis),x=origin[0]+rest[0]*Math.cos(angle)-rest[1]*Math.sin(angle),y=origin[1]+rest[0]*Math.sin(angle)+rest[1]*Math.cos(angle),z=world[s+'Shoulder'][2],across=(x-128)/64,along=(y-204.8+78.38367177*z)/32;
      world[s+'Shoulder']=[(along+across)/2,(along-across)/2,z];
     }
-    world[s+'Wrist']=s==='left'&&frame<=3?wp(.31,name==='NW'?.19:.30,.025):add(wp(neckF[frame]+.08,sign*(s==='right'&&frame===6?.35:.27),Math.max(.22,neckZ[frame]-.35)),bodyShift);
+    world[s+'Wrist']=s==='left'&&frame<=3?wp(.31,name==='NW'?.19:name==='S'?.15:.30,.025):add(wp(neckF[frame]+.08,sign*(s==='right'&&frame===6?.35:.27),Math.max(.22,neckZ[frame]-.35)),bodyShift);
     try{world[s+'Elbow']=elbow(world[s+'Shoulder'],world[s+'Wrist'],.252,.214,[side[0]*sign,side[1]*sign,-.1]);}catch(e){throw Error(name+'/'+frame+'/'+s+': '+e.message);}
    }
    const points=Object.fromEntries(Object.entries(world).map(([id,p])=>[id,project(p)])),jointAngles={},attachmentMappings={};
