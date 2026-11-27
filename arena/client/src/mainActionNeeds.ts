@@ -6,8 +6,9 @@ export function neededMainActions(snapshot: Pick<Snapshot, "actors" | "enemies" 
   const needed = new Set<Clip>(), actors = snapshot.actors;
   const tickMs = snapshot.tickDurationMs || 500;
   const active = (cue: typeof actors[number]["actionCue"], kind: string) => cue?.kind === kind && cueActive(cue,snapshot.tick*tickMs,tickMs);
-  if (actors.some(a => a.hp <= 0 || a.state === "downed")) needed.add("down");
+  if (actors.some(a => a.hp <= 0 || a.state === "downed") || snapshot.tactics?.actorStates.some(state=>state.recovery)) needed.add("down");
   if (actors.some(a => active(a.impactCue,"hit") || active(a.actionCue,"hit"))) needed.add("hit");
+  if(snapshot.tactics?.actorStates.some(state=>state.recovery))needed.add("recover");
   if(snapshot.tactics?.actorStates.some(state=>state.cast))needed.add("cast");
   if (actors.some(a => active(a.actionCue,"attack") || a.state === "fighting")) needed.add("attack");
   if (actors.some(a => active(a.actionCue,"deliver"))) needed.add("unload");

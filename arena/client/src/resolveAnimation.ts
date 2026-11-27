@@ -1,4 +1,4 @@
-import {sampleCast} from "./tacticalAnimation.ts";
+import {sampleCast,sampleRecovery} from "./tacticalAnimation.ts";
 import { facing, type Direction } from "./directions.ts";
 import { project } from "./isoGeometry.ts";
 import type { ActionCue, Actor, WorldPoint } from "./types";
@@ -96,13 +96,16 @@ function selectAnimation(
     locomotion: actor.locomotion,
     crestFrameKey: motion.crestFrameKey,
   });
-  if (actor.hp <= 0 || actor.state === "downed") {
+  const recovery=sampleRecovery(motion.tacticalState,simTimeMs,tickMs);
+  if (actor.hp <= 0 || (actor.state === "downed"&&!recovery)) {
     const down = impact?.kind === "down" ? impact : undefined;
     return {
       ...result("down", (down?.startedTick ?? 0) * tickMs, down),
       holdLast: !down,
     };
   }
+  if(recovery?.phase==='downed')return result("down",recovery.startMs);
+  if(recovery?.phase==='rising')return {...result("recover",recovery.startMs),cueDurationMs:recovery.durationMs};
   const aim = () => {
     const position = motion.worldPosition ?? actor.worldPosition;
     if (action?.targetPosition && position &&
@@ -160,7 +163,9 @@ export function resolveAnimation(
     ? selection.clip
     : selection.clip === "carry"
       ? "walk"
-      : "idle";
+      : selection.clip === "recover" && catalog.down && (!catalog.down.directions||catalog.down.directions.includes(selection.direction))
+        ? "down"
+        : "idle";
   const spec = catalog[clip]!;
   const duration = clipDuration(spec);
   const elapsed = spec.cycleWorldStride
@@ -183,7 +188,7 @@ export function resolveAnimation(
         Math.floor(phaseU * (phaseRange.last - phaseRange.first + 1)))
     : clip === "jump" && mobilityU !== undefined
       ? frameAt(spec, Math.max(0, Math.min(1, mobilityU)) * duration) : undefined;
-  const frame = (clip===selection.clip?selection.tacticalFrame:undefined) ?? phaseFrame ?? (selection.holdLast
+  const frame = (clip===selection.clip?selection.tacticalFrame:undefined) ?? phaseFrame ?? (selection.holdLast || (selection.clip === "recover" && clip === "down")
     ? spec.frameCount - 1
     : frameAt(spec, elapsed));
   return { ...selection, requestedClip: selection.clip, clip, frame };
