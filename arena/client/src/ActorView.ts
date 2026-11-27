@@ -236,13 +236,18 @@ export class ActorView {
       cargo,
       registration,
     );
-    const staffTip=registration&&this.dollRenderer.anchor(registration,selection?.direction??pose.direction,frame,"staffTip",pose,!!(this.dollAppearance??this.actor.appearance).weapon);
+    const anchor=(name:import("./registeredAnchors").DollAnchorName,anchorFrame=frame)=>registration&&this.dollRenderer.anchor(
+      registration,selection?.direction??pose.direction,anchorFrame,name,pose,!!(this.dollAppearance??this.actor.appearance).weapon);
+    const staffTip=anchor("staffTip");
     if(staffTip&&selection?.requestedClip==='cast'&&action==='cast')
       this.activity.circle(staffTip.x-pose.x,staffTip.y-pose.y,3).fill({color:0xbcd8d7,alpha:.8});
     return {
       staffTip,
-      castReleaseTip:registration&&action==="cast"?this.dollRenderer.anchor(registration,selection?.direction??pose.direction,3,"staffTip",pose,!!(this.dollAppearance??this.actor.appearance).weapon):undefined,
-      tacticalPhase:this.tacticalState?.cast?.phase,
+      grip:anchor("grip"),
+      supportPalm:action==='recover'?anchor("supportPalm"):undefined,
+      supportFoot:action==='recover'?anchor("supportFoot"):undefined,
+      castReleaseTip:action==='cast'?anchor("staffTip",3):undefined,
+      tacticalPhase:this.tacticalState?.recovery?.phase??this.tacticalState?.cast?.phase,
       id: this.actor.id,
       ...pose,
       worldPosition: mobility?.worldPosition ?? this.actor.worldPosition,
