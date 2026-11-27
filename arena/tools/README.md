@@ -301,3 +301,16 @@ visible list and confirmation. `openTacticalDetails` expands its actual details;
 Tactical controls require the integrated sim8 UI/server; T0 authoring can be
 verified independently on the authoring candidate:
 `ARENA_CUSTOM_MODULE_BROWSER=1 ARENA_UI_URL=http://127.0.0.1:5202 ARENA_BASE_URL=http://127.0.0.1:8803 ARENA_EVIDENCE_DIR=/fresh/evidence node --test arena/tests/custom-module-browser.test.mjs`.
+
+### Cast/recovery animation study
+
+`openWorkshop {study: "cast-recover"}` opens the existing study at
+`/animation-lab?study=cast-recover` on the current UI origin. Omitting `study`
+keeps the normal workshop. `Page.getState.workshop.study` identifies that view;
+`actionChoices` returns the actual action options and their disabled state.
+Use the existing `setWorkshopAction`, direction, pause/step, speed and layer
+controls to inspect it. These sample the study clips; they do not execute a skill
+or change the live simulation.
+
+A targeted real-stdio study check runs only in its assigned browser window:
+`ARENA_WORKSHOP_STUDY=1 ARENA_UI_URL=http://127.0.0.1:5202 ARENA_BASE_URL=http://127.0.0.1:8803 node --test arena/tests/workshop-study.test.mjs`.

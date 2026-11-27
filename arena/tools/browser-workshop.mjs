@@ -1,7 +1,8 @@
 import { z } from 'zod';
 const directions = {S:'正面', SW:'左前', W:'左侧', NW:'左后', N:'背面', NE:'右后', E:'右侧', SE:'右前'};
-const empty = ['openWorkshop','returnToArena','playWorkshop','pauseWorkshop','stepWorkshop'];
+const empty = ['returnToArena','playWorkshop','pauseWorkshop','stepWorkshop'];
 const fields = {
+ openWorkshop:{study:z.literal('cast-recover').optional()},
  setWorkshopAction:{action:z.string().min(1).max(80)},
  selectWorkshopDirection:{direction:z.enum(Object.keys(directions))},
  setWorkshopFps:{fps:z.union([0,2,4,8,12].map(z.literal))},
@@ -18,7 +19,7 @@ function layerControl(page,layer) {
 }
 export async function performWorkshopAction(page, action) {
  if(!empty.includes(action.type) && !(action.type in fields)) return false;
- if(action.type==='openWorkshop') { await page.goto(new URL('/animation-lab', page.url()).href); await loaded(page); return true; }
+ if(action.type==='openWorkshop') { const url=new URL('/animation-lab',page.url()); if(action.study)url.searchParams.set('study',action.study); await page.goto(url.href); await loaded(page); return true; }
  if(action.type==='returnToArena') { await page.getByRole('link',{name:'← 返回竞技场',exact:true}).click(); return true; }
  const button=name=>page.getByRole('button',{name,exact:true});
  switch(action.type) {
@@ -44,7 +45,9 @@ export async function readWorkshopState(page) {
  const value=label=>page.getByLabel(label,{exact:true}).inputValue();
  const selection=gallery(page).locator('[aria-pressed=true]');
  const selected=await selection.count()?await selection.getAttribute('aria-label'):null;
- return {action:await value('动作'),direction:selected?.split(' ').at(-1) ?? null,
+ return {study:new URL(page.url()).searchParams.get('study')==='cast-recover'?'cast-recover':null,
+  actionChoices:await page.getByLabel('动作',{exact:true}).locator('option').evaluateAll(options=>options.map(option=>({value:option.value,label:option.label,disabled:option.disabled}))),
+  action:await value('动作'),direction:selected?.split(' ').at(-1) ?? null,
   frame:Number(frame)-1,frameCount:Number(frameCount),
   fps:Number(await value('播放速度')),playing:await page.getByRole('button',{name:'暂停动画',exact:true}).count()>0,
   appearance:{outfit:await value('动画衣装'),hair:await value('动画发型'),weapon:await layerControl(page,'weapon').isChecked()},
