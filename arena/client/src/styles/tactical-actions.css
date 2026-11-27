@@ -1,6 +1,25 @@
-.tactical-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px;border:1px solid #ae92564d;background:#142b30;color:#e6dfcb}
-.tactical-bar label{display:flex;gap:6px;align-items:center;min-width:0}.tactical-target{flex:1}.tactical-bar select{max-width:100%;min-width:0}.tactical-short{flex-basis:100%;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tactical-bar details{flex-basis:100%;min-width:0}.tactical-bar details p{overflow-wrap:anywhere}.tactical-bar summary{cursor:pointer;color:#d5bc83}
-@media(max-width:600px){.tactical-target{flex-basis:100%;width:100%}.tactical-target select{flex:1;width:0}.tactical-bar>button{width:100%}.tactical-bar{font-size:13px}.tactical-bar select{font-size:13px}}
-
+.tactical-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px;border:1px solid #ae92564d;background:#142b30;color:#e6dfcb}
+.tactical-bar>strong,.tactical-bar label,.tactical-bar button{white-space:nowrap;flex-shrink:0}
+.tactical-bar label{display:flex;gap:6px;align-items:center;min-width:0}
+.tactical-bar .tactical-target{flex:1 1 180px;min-width:0}
+.tactical-target select{flex:1 1 0;width:0;min-width:0}
+.tactical-bar select,.tactical-bar button{box-sizing:border-box;min-height:32px;max-width:100%;border:1px solid #ae92564d;border-radius:4px;background:#203c40;color:#e6dfcb;font:inherit;padding:4px 8px}
+.tactical-bar select{min-width:0;height:32px}
+.tactical-bar button{cursor:pointer}
+.tactical-bar button:disabled,.tactical-bar select:disabled{opacity:.5;cursor:default}
+.tactical-bar button[aria-pressed=true]{border-color:#d5bc83;background:#31484a}
+.tactical-bar :is(select,button,summary):focus-visible{outline:2px solid #d5bc83;outline-offset:2px}
+.tactical-bar>p{flex-basis:100%;margin:0;line-height:1.5;overflow-wrap:anywhere}
+.tactical-short{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tactical-bar details{flex-basis:100%;min-width:0}
+.tactical-bar details p{overflow-wrap:anywhere}
+.tactical-bar summary{cursor:pointer;color:#d5bc83}
 .game-hud>.tactical-bar{position:absolute;top:88px;left:12px;width:min(620px,calc(100vw - 24px));max-height:calc(100dvh - 220px);overflow:auto;box-sizing:border-box;pointer-events:auto;z-index:1}
-@media(max-width:600px){.game-hud>.tactical-bar{top:112px;left:8px;width:calc(100vw - 16px);max-height:calc(100dvh - 250px)}}
+@media(max-width:600px){
+ .tactical-bar{font-size:13px}
+ .tactical-bar>strong,.tactical-bar>label{order:0}
+ .tactical-bar .tactical-target{order:1;flex-basis:100%;width:100%}
+ .tactical-bar>button{order:2;flex:1 0 calc((100% - 8px)/2);min-width:max-content}
+ .tactical-bar>p,.tactical-bar>details{order:3}
+ .game-hud>.tactical-bar{top:112px;left:8px;width:calc(100vw - 16px);max-height:calc(100dvh - 250px)}
+}
