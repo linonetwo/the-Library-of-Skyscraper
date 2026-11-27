@@ -5,6 +5,7 @@ import {loadRig} from '../eight-mobility/rig.mjs';
 import {castPoses} from './cast.mjs';
 import {recoverConfig} from './recover.mjs';
 const read=async url=>JSON.parse(await readFile(url,'utf8'));
+const headings=['NE','SW','N','NW','W','E','SE','S'];
 test('cast is eight finite reachable stationary poses with one release interval',async()=>{
  const rig=await loadRig(['NE','SW','N','NW','W','E','SE','S']);
  for(const d of Object.values(rig.directions)){
@@ -15,7 +16,9 @@ test('cast is eight finite reachable stationary poses with one release interval'
  }
 });
 test('recover starts at exact down final geometry and joins the registered idle at the larger pivot',async()=>{
- const config=await recoverConfig(),down=await read(new URL('../eight-combat/candidates/eight/down/pose.json',import.meta.url)),idle=await read(new URL('../ne-sw-idle/pose.json',import.meta.url));
+ const config=await recoverConfig(headings),down=await read(new URL('../eight-combat/candidates/eight/down/pose.json',import.meta.url)),idle=await read(new URL('../ne-sw-idle/pose.json',import.meta.url));
+ for(const file of ['../eight-base/e-w/idle/pose.json','../eight-base/n-s-nw-se/idle/pose.json'])Object.assign(idle.directions,(await read(new URL(file,import.meta.url))).directions);
+ assert.equal(Object.keys(config.previewLooks).length,8);assert.equal(Object.keys(config.directions).length,8);
  assert.deepEqual(config.cell,[256,256]);assert.deepEqual(config.groundPivot,[128,204.8]);
  for(const [name,d] of Object.entries(config.directions)){
   assert.equal(d.poses.length,8);
@@ -25,7 +28,7 @@ test('recover starts at exact down final geometry and joins the registered idle 
  }
 });
 test('recover active load transfer keeps real limb lengths and world root fixed',async()=>{
- const config=await recoverConfig();
+ const config=await recoverConfig(headings);
  for(const d of Object.values(config.directions)){
   for(const i of [2,3])assert.deepEqual(d.poses[1].supportContacts.world.leftWrist,d.poses[i].supportContacts.world.leftWrist);
   for(const i of [4,5])assert.deepEqual(d.poses[3].supportContacts.world.leftFoot,d.poses[i].supportContacts.world.leftFoot);

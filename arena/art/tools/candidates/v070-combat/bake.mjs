@@ -12,9 +12,9 @@ const here=path.dirname(fileURLToPath(import.meta.url)),action=process.argv[2]??
 const out=path.resolve(process.argv[3]??'/var/lib/mwc/build-scratch/arena-v070-art/ne-sw/'+action);
 if(!['cast','recover'].includes(action))throw Error('Usage: bake.mjs cast|recover [output]');
 const names=(process.argv[4]??'NE,SW').split(',');
-const config=action==='recover'?await recoverConfig():await loadRunJumpRig(names);Object.assign(config,{action,frameCount:8,playback:'once',releaseApproved:false,status:`v070-${Object.keys(config.directions).length}-direction-unreviewed-pilot`,...(action==='cast'?{phaseFrames:{chanting:{first:0,last:2},release:{first:3,last:4},recovery:{first:5,last:7}}}:{})});
+const config=action==='recover'?await recoverConfig(names):await loadRunJumpRig(names);Object.assign(config,{action,frameCount:8,playback:'once',releaseApproved:false,status:`v070-${Object.keys(config.directions).length}-direction-unreviewed-pilot`,...(action==='cast'?{phaseFrames:{chanting:{first:0,last:2},release:{first:3,last:4},recovery:{first:5,last:7}}}:{})});
 delete config.cycleWorldStride;
-config.previewLooks=action==='cast'?Object.fromEntries(Object.entries(config.previewLooks).filter(([name])=>name.endsWith('-staff'))):{'warden-midnight-staff':config.previewLooks['warden-midnight-staff']};config.previewLayers=config.previewLooks['warden-midnight-staff'];
+config.previewLooks=action==='cast'?Object.fromEntries(Object.entries(config.previewLooks).filter(([name])=>name.endsWith('-staff'))):config.previewLooks;config.previewLayers=config.previewLooks['warden-midnight-staff'];
 if(action==='cast')for(const d of Object.values(config.directions))d.poses=castPoses(d);
 await mkdir(out,{recursive:true});
 for(const d of Object.values(config.directions))for(const a of d.attachments)a.image=path.relative(out,a.image);

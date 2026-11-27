@@ -7,23 +7,24 @@ const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,k)=
 const project=([x,y,z])=>[128+64*(x-y),204.8+32*(x+y)-78.38367177*z];
 function elbow(a,b,l1,l2,preferred){const delta=sub(b,a),d=len(delta),u=unit(delta);if(d>l1+l2||d<Math.abs(l1-l2))throw Error(`Recover unreachable ${d}/${l1}+${l2}`);const along=(l1*l1-l2*l2+d*d)/(2*d),v=unit(sub(preferred,mul(u,preferred.reduce((n,x,i)=>n+x*u[i],0))));return add(add(a,mul(u,along)),mul(v,Math.sqrt(Math.max(0,l1*l1-along*along))));}
 /** Keep the exact down final frame, then author independent palm/knee/foot load transfer. */
-export async function recoverConfig(){
+export async function recoverConfig(names=['NE','SW']){
  const source=path.join(here,'../eight-combat/candidates/eight/down/pose.json'),config=await read(source),carryFile=path.join(here,'../ne-sw-carry/pose.json'),carry=await read(carryFile),manifestFile=path.join(here,'../../../iso-v050-mobility/climb-hands/revised/manifest.json'),manifest=await read(manifestFile);
  const bridge=(await loadRig(['E'])).directions.E.attachments.filter(a=>a.id==='head'||a.id.startsWith('hair-'));
- config.directions=Object.fromEntries(['NE','SW'].map(n=>[n,config.directions[n]]));
+ config.directions=Object.fromEntries(names.map(n=>[n,config.directions[n]]));
+ const idleDirections={};for(const file of ['../ne-sw-idle/pose.json','../eight-base/e-w/idle/pose.json','../eight-base/n-s-nw-se/idle/pose.json'])Object.assign(idleDirections,(await read(path.join(here,file))).directions);
+ const sixManifestFile=path.join(here,'../../../iso-v050-mobility/climb-hands/six/manifest.json'),sixManifest=await read(sixManifestFile);
  Object.assign(config,{action:'recover',frameCount:8,playback:'once',releaseApproved:false,status:'v070-two-direction-unreviewed-pilot'});
  delete config.sourcePoseOnly;
  for(const [name,d] of Object.entries(config.directions)){
   for(const a of d.attachments)a.image=path.resolve(path.dirname(source),a.image);
-  const hand=manifest.directions[name].leftBrace;d.supportPalmRegistration=hand;
+  const handFile=manifest.directions[name]?manifestFile:sixManifestFile,hand=(manifest.directions[name]??sixManifest.directions[name]).leftBrace;d.supportPalmRegistration=hand;
   const bridgeIds=[];if(name==='NE')for(const a of bridge){const id='recover-bridge-'+a.id;bridgeIds.push(id);d.attachments.push({...a,id});}
-  const fore=structuredClone(carry.directions[name].attachments.find(a=>a.id==='left-forearm'));fore.image=path.resolve(path.dirname(carryFile),fore.image);fore.id='recover-left-forearm';
-  d.attachments.push(fore,{id:'recover-support-palm',joint:'leftWrist',layer:'hand-left-front',pivot:hand.wristPivot,image:path.resolve(path.dirname(manifestFile),hand.image),zOrder:30});
+  const fore=structuredClone(carry.directions[name]?.attachments.find(a=>a.id==='left-forearm')??d.attachments.find(a=>a.id==='left-forearm-hand'));fore.image=carry.directions[name]?path.resolve(path.dirname(carryFile),fore.image):path.join(here,'../eight-work/hands',name,'left-forearm.png');fore.id='recover-left-forearm';
+  d.attachments.push(fore,{id:'recover-support-palm',joint:'leftWrist',layer:'hand-left-front',pivot:hand.wristPivot,image:path.resolve(path.dirname(handFile),hand.image),zOrder:30});
   config.layerOrderByDirection[name]=[...config.layerOrderByDirection[name],'hand-left-front'];
   const final=structuredClone(d.poses[3]),groundIds=d.attachments.filter(a=>a.id.startsWith('grounded-')).map(a=>a.id),standing=final.hiddenAttachments;
   const h=d.worldForward,side=[h[1],-h[0]],wp=(f,l,z)=>[h[0]*f+side[0]*l,h[1]*f+side[1]*l,z];
   const hipZ=[.12,.15,.20,.29,.42,.55,.66,.70],neckZ=[.15,.26,.43,.50,.75,1.02,1.18,1.22],neckF=[.50,.44,.30,.24,.10,.06,.02,0],ankleF=[-.47,-.40,-.24,-.10,-.10,-.10,-.10,-.10];
-  const idle=await read(path.join(here,'../ne-sw-idle/pose.json'));
   const poses=[{...final,durationMs:140,hiddenAttachments:[...final.hiddenAttachments,'recover-left-forearm','recover-support-palm',...bridgeIds]}];
   for(let frame=1;frame<8;frame++){
    const bodyShift=name==='NE'&&frame===4?[2/128,-2/128,0]:[0,0,0];
@@ -53,11 +54,11 @@ export async function recoverConfig(){
    if(frame<=3){const normal=hand.wristTowardElbow,v=sub(points.leftElbow,points.leftWrist);attachmentAngles['recover-support-palm']=(Math.atan2(v[1],v[0])-Math.atan2(normal[1],normal[0]))*180/Math.PI;}
    poses.push(pose);
   }
-  poses[7]={...structuredClone(idle.directions[name].poses[0]),durationMs:140,hiddenAttachments:[...groundIds,'recover-left-forearm','recover-support-palm',...bridgeIds],supportContacts:{phase:'idle-join',feet:['left','right']}};
+  poses[7]={...structuredClone(idleDirections[name].poses[0]),durationMs:140,hiddenAttachments:[...groundIds,'recover-left-forearm','recover-support-palm',...bridgeIds],supportContacts:{phase:'idle-join',feet:['left','right']}};
   for(const target of Object.values(poses[7].wristTargets??{}))target.point=target.point.map(v=>v+32);
   d.poses=poses;
  }
  for(const layers of Object.values(config.previewLooks))layers.push('hand-left-front');
- config.previewLooks={'warden-midnight-staff':config.previewLooks['warden-midnight-staff']};config.previewLayers=config.previewLooks['warden-midnight-staff'];
+ config.previewLayers=config.previewLooks['warden-midnight-staff'];
  return config;
 }
