@@ -9,7 +9,8 @@ function elbow(a,b,l1,l2,preferred){const delta=sub(b,a),d=len(delta),u=unit(del
 /** Keep the exact down final frame, then author independent palm/knee/foot load transfer. */
 export async function recoverConfig(names=['NE','SW']){
  const source=path.join(here,'../eight-combat/candidates/eight/down/pose.json'),config=await read(source),carryFile=path.join(here,'../ne-sw-carry/pose.json'),carry=await read(carryFile),manifestFile=path.join(here,'../../../iso-v050-mobility/climb-hands/revised/manifest.json'),manifest=await read(manifestFile);
- const bridge=(await loadRig(['E'])).directions.E.attachments.filter(a=>a.id==='head'||a.id.startsWith('hair-'));
+ const sideRig=(await loadRig(['E'])).directions.E;
+ const bridge=sideRig.attachments.filter(a=>a.id==='head'||a.id.startsWith('hair-'));
  config.directions=Object.fromEntries(names.map(n=>[n,config.directions[n]]));
  const idleDirections={};for(const file of ['../ne-sw-idle/pose.json','../eight-base/e-w/idle/pose.json','../eight-base/n-s-nw-se/idle/pose.json'])Object.assign(idleDirections,(await read(path.join(here,file))).directions);
  const sixManifestFile=path.join(here,'../../../iso-v050-mobility/climb-hands/six/manifest.json'),sixManifest=await read(sixManifestFile);
@@ -18,7 +19,7 @@ export async function recoverConfig(names=['NE','SW']){
  for(const [name,d] of Object.entries(config.directions)){
   for(const a of d.attachments)a.image=path.resolve(path.dirname(source),a.image);
   const handFile=manifest.directions[name]?manifestFile:sixManifestFile,hand=(manifest.directions[name]??sixManifest.directions[name]).leftBrace;d.supportPalmRegistration=hand;
-  const bridgeIds=[];if(name==='NE')for(const a of bridge){const id='recover-bridge-'+a.id;bridgeIds.push(id);d.attachments.push({...a,id});}
+  const bridgeIds=[];if(name==='NE'||name==='N')for(const a of (name==='N'?sideRig.attachments.filter(a=>a.joint==='neck'||a.joint==='pelvis'):bridge)){const id='recover-bridge-'+a.id;bridgeIds.push(id);d.attachments.push({...a,id});}
   const fore=structuredClone(carry.directions[name]?.attachments.find(a=>a.id==='left-forearm')??d.attachments.find(a=>a.id==='left-forearm-hand'));fore.image=carry.directions[name]?path.resolve(path.dirname(carryFile),fore.image):path.join(here,'../eight-work/hands',name,'left-forearm.png');fore.id='recover-left-forearm';
   d.attachments.push(fore,{id:'recover-support-palm',joint:'leftWrist',layer:'hand-left-front',pivot:hand.wristPivot,image:path.resolve(path.dirname(handFile),hand.image),zOrder:30});
   config.layerOrderByDirection[name]=[...config.layerOrderByDirection[name],'hand-left-front'];
@@ -36,6 +37,12 @@ export async function recoverConfig(names=['NE','SW']){
     world[s+'Ankle']=planted?[foot[0]-sole[0]/128,foot[1]+sole[0]/128,sole[1]/78.38367177]:wp(footF,sign*(tucked?.22:.12),tucked?(name==='NE'?.45:.28):.10);
     world[s+'Knee']=elbow(world[s+'Hip'],world[s+'Ankle'],.3187701178,.3060520193,[...h,0]);
     world[s+'Shoulder']=add(wp(neckF[frame]-.06,sign*.19,neckZ[frame]-.06+(frame<=2?(s==='left'?-.04:.04):0)),bodyShift);
+    if(name==='N'&&frame>=4&&frame<=6){
+     // Follow the raster's actual pelvis rotation at its registered shoulder socket.
+     // N's narrower collar cannot use the generic world shoulder width.
+     const rig=frame===2?sideRig:d,axis=d.joints.neck.restOffset,torso=sub(project(world.neck),project(world.pelvis)),angle=Math.atan2(torso[1],torso[0])-Math.atan2(axis[1],axis[0]),rest=sub(rig.joints[s+'Shoulder'].cell,rig.joints.pelvis.cell),origin=project(world.pelvis),x=origin[0]+rest[0]*Math.cos(angle)-rest[1]*Math.sin(angle),y=origin[1]+rest[0]*Math.sin(angle)+rest[1]*Math.cos(angle),z=world[s+'Shoulder'][2],across=(x-128)/64,along=(y-204.8+78.38367177*z)/32;
+     world[s+'Shoulder']=[(along+across)/2,(along-across)/2,z];
+    }
     world[s+'Wrist']=s==='left'&&frame<=3?wp(.31,.30,.025):add(wp(neckF[frame]+.08,sign*(s==='right'&&frame===6?.35:.27),Math.max(.22,neckZ[frame]-.35)),bodyShift);
     try{world[s+'Elbow']=elbow(world[s+'Shoulder'],world[s+'Wrist'],.252,.214,[side[0]*sign,side[1]*sign,-.1]);}catch(e){throw Error(name+'/'+frame+'/'+s+': '+e.message);}
    }
@@ -49,7 +56,7 @@ export async function recoverConfig(names=['NE','SW']){
    for(const s of ['left','right']){const sole=d.feet[s].soleOffset,v=sub(points[s+'Foot'],points[s+'Ankle']);jointAngles[s+'Ankle']=(Math.atan2(v[1],v[0])-Math.atan2(sole[1],sole[0]))*180/Math.PI;attachmentMappings[s+'-boot']={axis:sole,scale:len(v)/len(sole)};jointAngles[s+'Wrist']=jointAngles[s+'Elbow'];}
    const g=await read(path.join(here,'../eight-combat/grounded/manifest.json')),ground=g.directions[name];
    for(const a of d.attachments.filter(a=>a.id.startsWith('grounded-'))){const head=a.joint==='neck',from=sub(head?ground.crown:ground.neck,head?ground.neck:ground.hip);if(!head){attachmentAngles[a.id]=(Math.atan2(target[1],target[0])-Math.atan2(from[1],from[0]))*180/Math.PI;attachmentMappings[a.id]={axis:from,scale:len(target)/len(from)};}else attachmentAngles[a.id]=0;}
-   const hidden=[...(landed?standing:groundIds),...(name==='NE'&&frame===2?d.attachments.filter(a=>a.id==='head'||a.id.startsWith('hair-')||a.id==='grounded-head'||a.id.startsWith('grounded-hair-')).map(a=>a.id):bridgeIds),...(frame<=3?['left-forearm-hand']:['recover-left-forearm','recover-support-palm'])];
+   const hidden=[...(landed?standing:groundIds),...((name==='NE'||name==='N')&&frame===2?d.attachments.filter(a=>name==='N'?(a.joint==='neck'||a.joint==='pelvis')&&!a.id.startsWith('recover-bridge-'):a.id==='head'||a.id.startsWith('hair-')||a.id==='grounded-head'||a.id.startsWith('grounded-hair-')).map(a=>a.id):bridgeIds),...(frame<=3?['left-forearm-hand']:['recover-left-forearm','recover-support-palm'])];
    const pose={durationMs:140,joints:{},jointPositions:points,jointAngles,attachmentMappings,attachmentAngles,hiddenAttachments:hidden,rootScreenDelta:[0,0],supportContacts:{phase:frame<=3?'support-palm':frame<=5?'load-feet':'stand',world,feet:frame>=5?['left','right']:frame>=3?['left']:[],supportPalm:frame<=3?'left':undefined}};
    if(frame<=3){const normal=hand.wristTowardElbow,v=sub(points.leftElbow,points.leftWrist);attachmentAngles['recover-support-palm']=(Math.atan2(v[1],v[0])-Math.atan2(normal[1],normal[0]))*180/Math.PI;}
    poses.push(pose);
