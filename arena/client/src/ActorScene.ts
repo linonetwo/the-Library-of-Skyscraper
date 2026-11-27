@@ -25,13 +25,13 @@ export class ActorScene {
   update(props: MapProps, now: number) {
     const snapshot = props.snapshot;
     if (!snapshot) return;
-    this.clock.update(snapshot, now);
+    this.clock.update(snapshot, now, props.presentationPaused);
     const isV3 = (snapshot.simulationVersion ?? 0) >= 3;
     const snap =
       snapshot.sessionId !== this.session ||
       snapshot.tick < this.tick ||
       snapshot.tick > this.tick + 1 ||
-      snapshot.paused;
+      snapshot.paused || props.presentationPaused === true;
     if (snapshot.sessionId !== this.session || snapshot.tick !== this.tick) this.previousActors = this.snapshotActors;
     this.snapshotActors = new Map(snapshot.actors.map((a) => [a.id, a]));
     if (snap) this.previousActors = this.snapshotActors;

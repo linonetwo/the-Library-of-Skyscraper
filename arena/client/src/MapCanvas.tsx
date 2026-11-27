@@ -206,7 +206,7 @@ export default function MapCanvas(props: MapProps) {
           players: p.snapshot.players.map(({ id, script }) => ({ id, script })),
         });
       }
-      if (p.suspended || p.snapshot?.paused) app.stop();
+      if (p.suspended || p.snapshot?.paused || p.presentationPaused) app.stop();
       else if (!document.hidden) app.start();
       host.dataset.roomTargets = JSON.stringify(
         (p.snapshot?.rooms ?? []).map((room) => ({
@@ -418,7 +418,7 @@ export default function MapCanvas(props: MapProps) {
       if (initialized && !disposed)
         document.hidden ||
         latest.current.suspended ||
-        latest.current.snapshot?.paused
+        latest.current.snapshot?.paused || latest.current.presentationPaused
           ? app.stop()
           : app.start();
       if (
@@ -426,7 +426,7 @@ export default function MapCanvas(props: MapProps) {
         !disposed &&
         !document.hidden &&
         !latest.current.suspended &&
-        latest.current.snapshot?.paused
+        (latest.current.snapshot?.paused || latest.current.presentationPaused)
       )
         applyCamera();
     };
@@ -452,6 +452,7 @@ export default function MapCanvas(props: MapProps) {
     redraw.current();
   }, [
     props.suspended,
+    props.presentationPaused,
     props.focusIntent,
     props.snapshot,
     props.selected,

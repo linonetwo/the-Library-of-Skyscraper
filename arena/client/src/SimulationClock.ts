@@ -8,17 +8,18 @@ export class SimulationClock {
   private received = 0;
   private duration = 500;
 
-  update(snapshot: Snapshot, now: number) {
+  update(snapshot: Snapshot, now: number, presentationPaused = false) {
+    const paused=snapshot.paused||presentationPaused;
     if (
       snapshot.sessionId !== this.session ||
       snapshot.tick !== this.tick ||
-      snapshot.paused !== this.paused
+      paused !== this.paused
     ) {
       this.received = now;
     }
     this.session = snapshot.sessionId;
     this.tick = snapshot.tick;
-    this.paused = snapshot.paused;
+    this.paused = paused;
     this.duration = snapshot.tickDurationMs || 500;
   }
 
