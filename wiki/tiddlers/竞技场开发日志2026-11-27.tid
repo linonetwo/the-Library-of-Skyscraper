@@ -2,13 +2,13 @@ title: 竞技场开发日志2026-11-27
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261127000346000
-modified: 20261127015613000
+modified: 20261127015952000
 
 !! AI模块编辑现在从哪里进入
 
 [[5202候选AI工作台|http://localhost:5202/?view=rules]]→「创建自定义模块」（或「我的模块」→「新建自定义模块」）→参数schema／命名出口／「行为 TypeScript」→「编译模块」→「保存到我的模块」→个人库「预览添加实例」→图内岗位和命名出口连接→编译／试算／发布。
 
-[[正式5173|http://localhost:5173/?view=rules]]与[[5175|http://localhost:5175/?view=rules]]继续已发布v0.6：八类官方模块、FSM／决策图、TS、个人片段和录制调试。玩家自定义模块本体属于v0.7候选；5202已运行source3fa36029的sim8／seal-contest候选，今天新增技能源码编辑及实际战术结算，见下文。完整需求见[[竞技场状态机决策树与行为模块编辑]]。
+[[正式5173|http://localhost:5173/?view=rules]]与[[5175|http://localhost:5175/?view=rules]]继续已发布v0.6：八类官方模块、FSM／决策图、TS、个人片段和录制调试。玩家自定义模块本体属于v0.7候选；5202候选前端现为25367cb18，authority8803仍沿3fa36029的sim8启动产物；今天先前源码／战术实录来自3fa36029组合，最新默认样式核验来自后续前端，分项见下文。完整需求见[[竞技场状态机决策树与行为模块编辑]]。
 
 !! 今日候选：编辑墨印TS并保留草稿
 
@@ -50,7 +50,7 @@ root在两独立浏览器、同一联机局按正常500ms时钟完整实玩。�
 
 此前单机键盘离场样例已在T21达到占领部分进度2，Move响应同为T21，下一tick的重置事件id15为T22，观察snapshot为T23。初driver把观测tick断言为22而失败，原失败保留；Work复用同一原局按重置事件T22＝派遣T21＋1修正判据，corrected-evidence.json completed=true、errors[]、原report摘要保持；[[补拍的同局后续T675暂停世界|竞技场2026-11-27单机原局后续暂停世界实机.png]]已等纹理完成。T22事实由保留录制核对，补图展示后续当前世界。补图driver首次「继续远征」按钮选择器超时与冷加载图同样保留，最终截图与事件判据分别完成。
 
-PR200已获Astra独立视觉及精确CI通过，合25367cb18。先前root在实际暂停修复演练注入该PR原样CSS做受控样式预览，style-preview.json明确addStyleTag方式；desktop／390图已审，390无横溢。该预览单独证明布局范围，候选实际部署随统一快进完成后记录。
+PR200已获Astra独立视觉及精确CI通过，合25367cb18。先前root在实际暂停修复演练注入该PR原样CSS做受控样式预览，style-preview.json明确addStyleTag方式；desktop／390图已审，390无横溢。候选随后已正常快进25367cb18（含198／200／201／202／203），Vite同PID2609000热载，authority2607890保持原3fa36029产物。root又在同局暂停世界用正常候选样式实拍desktop及[[390默认样式副图|竞技场2026-11-27候选战术默认样式390实机.png]]，tactical-current-style.json记录viewportFits=true、栏宽374、深青select背景；本次采用正常样式且仅只读拍图。
 
 !! v0.7短待办
 
