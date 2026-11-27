@@ -2,25 +2,47 @@ title: 竞技场开发日志2026-11-27
 tags: 竞技场开发日志 竞技场目录：日报
 type: text/vnd.tiddlywiki
 created: 20261127000346000
-modified: 20261127015952000
+modified: 20261127032418000
 
 !! AI模块编辑现在从哪里进入
 
 [[5202候选AI工作台|http://localhost:5202/?view=rules]]→「创建自定义模块」（或「我的模块」→「新建自定义模块」）→参数schema／命名出口／「行为 TypeScript」→「编译模块」→「保存到我的模块」→个人库「预览添加实例」→图内岗位和命名出口连接→编译／试算／发布。
 
-[[正式5173|http://localhost:5173/?view=rules]]与[[5175|http://localhost:5175/?view=rules]]继续已发布v0.6：八类官方模块、FSM／决策图、TS、个人片段和录制调试。玩家自定义模块本体属于v0.7候选；5202候选前端现为25367cb18，authority8803仍沿3fa36029的sim8启动产物；今天先前源码／战术实录来自3fa36029组合，最新默认样式核验来自后续前端，分项见下文。完整需求见[[竞技场状态机决策树与行为模块编辑]]。
+[[正式5173|http://localhost:5173/?view=rules]]与[[5175|http://localhost:5175/?view=rules]]继续已发布v0.6：八类官方模块、FSM／决策图、TS、个人片段和录制调试。玩家自定义模块本体属于v0.7候选；5202候选前端现为1bd7372b，authority8803仍沿3fa36029的sim8启动产物；今天先前源码／战术实录来自3fa36029组合，最新默认样式核验来自后续前端，分项见下文。完整需求见[[竞技场状态机决策树与行为模块编辑]]。
+
+!! 本体创作继续闭环：跨图复用与单实例升级
+
+[img[竞技场2026-11-27候选双修订本体源码实机.png]]
+
+UISol在5202／source25367cb18实际保存v1，先接物流图，再切撤退图从个人库添加同一definitionId的两个独立v1实例；编辑本体并保存v2后，只升级其中一实例，另一仍锁定v1。bagFull命名出口连接保留，一次undo恢复原两v1，redo回到混合版本。[[两个实例各自锁定修订|竞技场2026-11-27候选单实例版本升级实机.png]]为副图。
+
+author-upgrade/report.json completed=true、errors[]、compile diagnostics=[]；同一工程嵌入两个修订的body.ts。本图展示两修订文件条目与v2源码定位，完整源码及编译结果由实际工程／report核对。本项仅创建训练及编译，世界保持暂停；前一日自写模块的实际入库另有原实录。首次两次driver选择器错误报告／PNG／log原样保留。现有视觉核验由root与Astra承担；Kimi第二次前置调用仍返回503，本轮没有形成其签署。
+
+!! AI技能正文：编辑、试算、发布到真实命中
+
+UISol在独立AI施法局通过UI将cast模块指向敌方B、岗位设守卫，编辑skills/ink-strike.ts，用实际observe→channel→seal分步作者代码编译；T24暂停试算依据守卫真实受击状态返回recovery-active。[[作者技能正文与暂停试算|竞技场2026-11-27候选作者技能正文试算实机.png]]保留当时画面。随后显式发布版本62e69754…，正常500ms时钟T26实际started、能量3→2，T28 released、B生命80→64。[[命中后T30暂停结算|竞技场2026-11-27候选AI技能发布后命中结算.png]]显示后续结果，此时守卫已遭新重击。
+
+ai-cast-play/report.json completed=true、errors[]；该AI局本人归档op34的chant记录保留observe／channel／seal与skillSourceHash，完整hash与发布版本相同，技能正文归档逐字一致。source25367cb18下的这条故事已验证作者技能实际参与AI执行。最初两次driver问题留在first-report.json、publication-report.json及原日志，最终report续用原发布事实完成；同帧A/B仍沿原范围记录。
+
+!! 真实释放回放：暂停后角色与墨印同帧保持
+
+[img[竞技场2026-11-27候选真实墨印释放暂停回放.png]]
+
+root将此前手动施法局的真实操作34／T29定位到释放帧。首次回放暂停时呈现仍随500ms时钟漂移、墨印消失，原report与图片保留；PR207已合1bd7372b后，回放暂停1200ms前后均为SW cast frame3、墨印event25 frame0。原录制authority.paused=false与实际帧完整保留，回放暂停只控制呈现时钟。
+
+replay-release-framed-report.json completed=true、errors[]、candidateSource=1bd7372b；本图仅将可见地图向下拖120px构图，操作帧与实时世界保持原值。这次实际图证明该SW释放帧与效果的暂停读回；N／NW v4仍在独立复审，S单掌新方案推进，完整美术源及recover64尚待批准／注册。
 
 !! 今日候选：编辑墨印TS并保留草稿
 
-[img[竞技场2026-11-27候选墨印TS重开保留实机.png]]
+[[此前技能TS重开保留实机|竞技场2026-11-27候选墨印TS重开保留实机.png]]
 
 UISol在5202／source3fa36029独立新训练T0暂停，载物流图→「编辑墨印 TS」→Monaco加入真实注释→切规则图再重开，源码逐字保留；撤销后原图与完整files均恢复。ink-source-entry/report.json首轮completed=true、errors[]；唯一POST是创建赛局，世界仍暂停，本项范围是编辑／重开／撤销。拍图前已等三角色纹理完成。
 
 !! 今日候选：墨印实际释放与伤害结算
 
-[img[竞技场2026-11-27候选墨印释放后结算实机.png]]
+[[早先手动墨印释放后结算实机|竞技场2026-11-27候选墨印释放后结算实机.png]]
 
-root在sim8／seal-contest真实新候选正常实玩，T27启动定向墨印、能量3→2；权威T29释放命中drill-guardian-b，HP80→64，随后T39正常暂停。manual-ink-report.json记录completed=true、errors[]。本图采样于T33之后，64/80与能量2/3清楚可见，展示释放后的实际战斗结算。瞬时墨印像素尚待定点核验；同局真实重击／起身时序已有事件，recover尚未注册，动作像素审另待。新网页进程2609000／API2607890，正式5173仍为v0.6。
+root在sim8／seal-contest真实新候选正常实玩，T27启动定向墨印、能量3→2；权威T29释放命中drill-guardian-b，HP80→64，随后T39正常暂停。manual-ink-report.json记录completed=true、errors[]。本图采样于T33之后，64/80与能量2/3清楚可见，展示释放后的实际战斗结算。本节首次采图只呈现T33之后结算，后来已补真实T29释放暂停回放，见前节。同局真实重击／起身时序已有事件，recover尚未注册，完整动作像素审另待。新网页进程2609000／API2607890，正式5173仍为v0.6。
 
 !! 已完成的T0实机：11月26日成果回顾
 
@@ -44,17 +66,21 @@ root在同一sim8候选让三队员正常出发，经真实PVE损伤后，T41采
 
 !! 双端真实正常时钟：争夺、夺回到胜局
 
-[img[竞技场2026-11-27候选双端夺点胜局实机.png]]
+[img[竞技场2026-11-27候选据点中文结算实机.png]]
 
-root在两独立浏览器、同一联机局按正常500ms时钟完整实玩。双方争夺时进度保持0；P1在T122占领（首次snapshot T123读到），T125用已预选的真实UI键盘撤离，离场时分数4。P2随后重新进入并持续六拍，在T183夺回，权威事件明确previousOwner=p1、progressTicks=6；T202 P2累积20分胜出，P1为4分。online-full/report.json首轮completed=true、errors[]，截图为P2实际结算页面；T122事件与T123观测分别记录。
+root在两独立浏览器、同一联机局按正常500ms时钟完整实玩。双方争夺时进度保持0；P1在T122占领（首次snapshot T123读到），T125用已预选的真实UI键盘撤离，离场时分数4。P2随后重新进入并持续六拍，在T183夺回，权威事件明确previousOwner=p1、progressTicks=6；T202 P2累积20分胜出，P1为4分。online-full/report.json首轮completed=true、errors[]，最新截图为原P2身份在前端1bd7372b正常默认样式下只读重开同T202胜局，显示「据点争夺胜利」、20:4、比赛时长1:41与占领中文；tactical-result-capture.json保留winner=p2与无world命令模式。[[最初胜局截图|竞技场2026-11-27候选双端夺点胜局实机.png]]和其后25367cb18样式回访原件保留，比赛事件与后续呈现分别记录。
 
 此前单机键盘离场样例已在T21达到占领部分进度2，Move响应同为T21，下一tick的重置事件id15为T22，观察snapshot为T23。初driver把观测tick断言为22而失败，原失败保留；Work复用同一原局按重置事件T22＝派遣T21＋1修正判据，corrected-evidence.json completed=true、errors[]、原report摘要保持；[[补拍的同局后续T675暂停世界|竞技场2026-11-27单机原局后续暂停世界实机.png]]已等纹理完成。T22事实由保留录制核对，补图展示后续当前世界。补图driver首次「继续远征」按钮选择器超时与冷加载图同样保留，最终截图与事件判据分别完成。
 
 PR200已获Astra独立视觉及精确CI通过，合25367cb18。先前root在实际暂停修复演练注入该PR原样CSS做受控样式预览，style-preview.json明确addStyleTag方式；desktop／390图已审，390无横溢。候选随后已正常快进25367cb18（含198／200／201／202／203），Vite同PID2609000热载，authority2607890保持原3fa36029产物。root又在同局暂停世界用正常候选样式实拍desktop及[[390默认样式副图|竞技场2026-11-27候选战术默认样式390实机.png]]，tactical-current-style.json记录viewportFits=true、栏宽374、深青select背景；本次采用正常样式且仅只读拍图。
 
+!! 本轮已合与整版边界
+
+PR205据点结算已合7a32b428，PR206可移植集中验收已合76fe2de7，PR207回放暂停时钟已合1bd7372b，均经审查与精确CI通过；root候选已正常快进1bd7372b并HMR。前端与原authority产物继续分字段记录，正式5173／5175仍是v0.6。上述候选实玩与固定包集中六门分别收口，v0.7仍待全批冻结后统一MINOR发布。
+
 !! v0.7短待办
 
-* 候选已实证技能TS编辑、墨印伤害、花材修复与完整双端夺点胜局；继续同源技能发布／录制解释及其余整批门槛。
+* 候选已实证本体跨图复用／单实例换版、作者技能发布与归档、伤害／修复、双端夺点及暂停释放回放；固定包六门待集中。
 * 合入批准动作与工坊study控制，完成对应真实动作验证。
 * T0–T4齐备后固定一次source＝recipe，六门整包实玩与技术／视觉双签，再统一MINOR发布；当前正式版本仍v0.6。
 
