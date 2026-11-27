@@ -1,5 +1,5 @@
 {
-  "assetSetId": "iso-v050-player-mobility-eight-direction",
+  "assetSetId": "iso-v070-player-mobility-combat",
   "clips": [
     {
       "action": "idle",
@@ -64,6 +64,16 @@
     {
       "action": "climb",
       "root": "/assets/iso-v050-mobility/climb",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "cast",
+      "root": "/assets/iso-v070-combat-study/cast",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "recover",
+      "root": "/assets/iso-v070-combat-study/recover",
       "descriptor": "atlas-budget.json"
     }
   ]

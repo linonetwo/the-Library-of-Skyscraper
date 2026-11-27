@@ -29,3 +29,20 @@ test('ink remains one uniformly scaled already-projected four-phase effect',asyn
  const b=await read(path.join(here,'candidates/ink-fx/atlas-budget.json'));assert.equal(b.clip.frameCount,4);assert.equal(b.clip.playback,'once');assert.deepEqual(b.clip.frameDurationsMs,[125,125,125,125]);assert.deepEqual(b.groundPivot,[96,96]);assert.equal(b.registration.uniformScale,157/627);assert.equal(b.registration.sourceAlreadyProjected,true);
  const manifest=await read(path.join(here,'../../../iso-v070-combat/ink-fx/manifest.json')),raw=await readFile(path.join(here,'../../../iso-v070-combat/ink-fx/ink-raw.png'));assert.equal(createHash('sha256').update(raw).digest('hex'),manifest.sha256);
 });
+test('accepted recover64 has complete layered appearances, frozen pages and matching production registration',async()=>{
+ const freeze=await read(path.join(here,'freeze-recover.json')),root=path.join(here,freeze.path),b=await read(root+'/atlas-budget.json'),keys=new Map();
+ assert.equal(freeze.appearanceCount,64);assert.equal(freeze.reviewEquivalence.comparedFrames,896);
+ assert.equal(b.directions.length,8);assert.equal(b.clip.frameCount,8);assert.equal(b.clip.playback,'once');assert.deepEqual(b.sourceSize,[256,256]);assert.deepEqual(b.groundPivot,[128,204.8]);
+ for(const[file,expected]of Object.entries(freeze.files)){
+  const bytes=await readFile(path.join(root,file));assert.equal(createHash('sha256').update(bytes).digest('hex'),expected);
+  if(file.endsWith('.png'))assert((await sharp(bytes).raw().toBuffer()).length>0);
+ }
+ for(const layer of b.layers)keys.set(layer.layer,new Set((await Promise.all(layer.pages.map(page=>read(path.join(root,page.json))))).flatMap(atlas=>Object.keys(atlas.frames))));
+ const looks=(await import('./recover.mjs').then(m=>m.recoverConfig(b.directions))).previewLooks;assert.equal(Object.keys(looks).length,8);
+ for(const direction of b.directions)for(const layers of Object.values(looks))for(let frame=0;frame<8;frame++)for(const layer of b.layerOrderByDirection[direction].filter(layer=>layers.includes(layer)))assert(keys.get(layer)?.has(`recover/${layer}/${direction}/${String(frame).padStart(2,'0')}`),`${direction}/${layer}/${frame}`);
+ const publicRoot=path.resolve(here,'../../../../client/public/assets'),study=await read(path.join(publicRoot,'iso-v070-combat-study/index.json')),main=await read(path.join(publicRoot,'iso-v030-base/index.json'));
+ for(const action of ['cast','recover']){assert.equal(main.clips.filter(c=>c.action===action).length,1);assert.deepEqual(main.clips.find(c=>c.action===action),study.clips.find(c=>c.action===action));}
+ assert.deepEqual(study.effects.inkFx,{root:'/assets/iso-v070-combat-study/ink-fx',descriptor:'atlas-budget.json'});
+ const manifest=await read(path.join(publicRoot,'iso-v070-combat-study/manifest.json'));
+ for(const [name,set]of Object.entries(manifest.sets))for(const[file,expected]of Object.entries(set.files))assert.equal(createHash('sha256').update(await readFile(path.join(publicRoot,'iso-v070-combat-study',name,file))).digest('hex'),expected);
+});

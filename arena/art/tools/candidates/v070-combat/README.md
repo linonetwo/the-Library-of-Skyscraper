@@ -2,8 +2,8 @@
 
 Cast supports eight headings and four staff outfit/hair combinations (32
 sequences). Recover supports eight headings and eight outfit/hair/equipment combinations
-(64 sequences). The NE/SW warden/midnight/staff sample passed independent
-offline review; the remaining combinations are under full visual review. All source layers remain independent. Runtime uses the same descriptor and independent layers.
+(64 sequences). All 64 recover sequences passed independent offline review, including the
+N/NW/S side-roll increments. All source layers remain independent. Runtime uses the same descriptor and independent layers.
 
 - `cast.mjs`: 8 stationary authored chant/point/settle poses, not faster attack.
 - `recover.mjs`: exact accepted down final geometry; independently placed free
@@ -46,8 +46,16 @@ playback once. No weaponFX pixels are synthesized here.
 Independent Astra review accepted the complete 8-heading × 4-look staff cast
 and packed ink offline. The frozen runtime files and byte hashes are in
 `candidates/eight/cast`, `candidates/ink-fx` and `freeze-cast-ink.json`. This is
-not map gameplay approval. The complete recover64 export remains under independent visual review. The
-source brace hands were accepted for a ladder; the new
-floor use needs independent review. First palm projection is approximately
-0.7–1px above its z0 plane, and the first standing-raster transition is still
-visual-study material. Offline acceptance does not prove live world contact or gameplay timing.
+not map gameplay approval. Recover64 and all 896 registered layer frames are frozen in
+`freeze-recover.json`; its review-equivalence report verifies identical trim RGBA,
+layer order and anchors against the accepted five-direction and three-direction
+batches. Brace hands remain independent attachments. Live floor contact and
+authoritative gameplay timing are verified separately from this offline review.
+
+`register.mjs ACCEPTED_RECOVER_DIRECTORY SOURCE_COMMIT` copies only actual runtime
+pages with the existing copy tool. It adds cast/recover to the normal main index,
+creates the study index with `effects.inkFx`, and records page hashes in the public
+manifest. It changes no existing clip registration. `bake.mjs` accepts
+`--runtime-only` after the direction list to reuse already-reviewed sheets rather
+than duplicate large previews. `verify-reviewed.mjs FINAL BASE_FIVE UPDATED_THREE`
+checks restored trim pixels, layer order and actual anchors across atlas repacking.
