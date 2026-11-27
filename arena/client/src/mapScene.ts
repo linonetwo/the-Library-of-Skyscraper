@@ -10,6 +10,8 @@ export type MapProps = {
   focusIntent?: import("./cameraController").FocusIntent;
   snapshot: Snapshot | null;
   suspended?: boolean;
+  /** Local viewer pause only; the recorded authority snapshot stays unchanged. */
+  presentationPaused?: boolean;
   fixedCamera?: { center: { x: number; y: number }; scale: number };
   samplePose?: "NE" | "SW";
   assetSet?: import("./assetSetLoader").LoadedAssetSet;
