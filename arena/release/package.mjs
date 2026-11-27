@@ -21,6 +21,10 @@ export async function collectPackage({ source, destination, version, sourceCommi
   const path=metadata.world.map.path;
   mkdirSync(dirname(resolve(payload,path)),{recursive:true});
   copy(resolve(source,path),resolve(payload,path));
+  for(const scenario of Object.values(metadata.world.scenarios??{})) {
+   mkdirSync(dirname(resolve(payload,scenario.path)),{recursive:true});
+   copy(resolve(source,scenario.path),resolve(payload,scenario.path));
+  }
  }
  for(const name of ['server','script-runner']) {
   const binary=`skyscraper-arena-${name}`;

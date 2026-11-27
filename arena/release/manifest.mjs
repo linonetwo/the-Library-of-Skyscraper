@@ -24,6 +24,14 @@ export function buildMetadata(source, version) {
   return {
    provenance:{path:provenancePath,sha256:sha256(provenancePath),
     ...(mobility ? {version:'0.3.0',scope:'inherited-baseline',note:`Inherited art provenance; not v${version} approval.`} : {})},
+   ...(profile.tactics ? (()=>{
+    const path='iso-v070-combat-study/index.json';
+    const index=json(`arena/client/dist/assets/${path}`);
+    return {effects:{index:entry(path),entries:Object.fromEntries(Object.entries(index.effects).map(([name,effect])=>{
+     const path=`${effect.root.replace(/^\/assets\//,'')}/${effect.descriptor}`;
+     return [name,{descriptor:entry(path)}];
+    }))}};
+   })() : {}),
    groups:Object.fromEntries(Object.entries(provenance.groups).map(([name,group])=>[name,{
     entries:group.entries.map(entry),
     ...(group.index ? (()=>{
@@ -31,7 +39,7 @@ export function buildMetadata(source, version) {
      return {assetSetId:index.assetSetId,clips:index.clips.map(clip=>{
       const path=`${clip.root.replace(/^\/assets\//,'')}/${clip.descriptor}`;
       const descriptor=entry(path);
-      const details=mobility && name==='player' && ['run','jump','climb'].includes(clip.action)
+      const details=mobility && name==='player' && ['run','jump','climb',...(profile.tactics ? ['cast','recover'] : [])].includes(clip.action)
        ? json(descriptor.path) : undefined;
       return {action:clip.action,descriptor,
        ...(details?.clip?.phaseFrames!==undefined ? {phaseFrames:details.clip.phaseFrames} : {}),
@@ -53,10 +61,14 @@ export function buildMetadata(source, version) {
     sha256:sha256('arena/release/rule-provenance-v0.4.0.json'),version:'0.4.0',scope:'inherited-baseline',
     note:`Inherited rules provenance; not v${version} approval.`},
     sdk:{version:modules['script-sdk'],mobility:{path:'arena/script-sdk/src/mobility.ts',sha256:sha256('arena/script-sdk/src/mobility.ts')}},
-    ...(profile.composition ? {composition:{schemaVersion:2,moduleKinds:['gather','haul','build','defend','retreat','scout','patrol','escort'],
-     references:['room','ownRole'],moduleVisits:{traceVersion:2,perActorLimit:8,missing:'unrecorded',truncatedField:'moduleVisitsTruncated'}}} : {})},
-   world:{simulationVersion:7,version:json('arena/shared/world-map-v5.json').version,
-    map:{path:'arena/shared/world-map-v5.json',sha256:sha256('arena/shared/world-map-v5.json')}},
+    ...(profile.composition ? {composition:{schemaVersion:2,moduleKinds:['gather','haul','build','defend','retreat','scout','patrol','escort',...(profile.tactics ? ['attack','repair','claim','cast'] : [])],
+     references:['room','ownRole',...(profile.tactics ? ['enemy','enemyInRoom','ownBuilding','ownBuildingInRoom','controlPoint'] : [])],moduleVisits:{traceVersion:2,perActorLimit:8,missing:'unrecorded',truncatedField:'moduleVisitsTruncated'}}} : {})},
+   ...(profile.tactics ? {skills:{inkStrike:{path:'arena/script-sdk/skills/ink-strike.js',sha256:sha256('arena/script-sdk/skills/ink-strike.js')}},customModules:{graphSchemaVersion:2,immutableRevisions:true,namedExits:true,fixedFallback:true,execution:'same-rule-project-v8'}} : {}),
+   world:{simulationVersion:profile.tactics ? 8 : 7,version:json('arena/shared/world-map-v5.json').version,
+    map:{path:'arena/shared/world-map-v5.json',sha256:sha256('arena/shared/world-map-v5.json')},
+    ...(profile.tactics ? {scenarios:Object.fromEntries(['first-expedition','seal-contest-v1'].map(name=>{
+     const path=`arena/shared/${name}.json`;return [json(path).id,{path,sha256:sha256(path)}];
+    }))} : {})},
   } : {}),
   dependencies:Object.fromEntries(locks.map(path=>[`arena/${path}`,sha256(`arena/${path}`)])),
   toolchain:Object.fromEntries(['npm','rustc','cargo'].map(command=>[command,execFileSync(command,['--version'],{encoding:'utf8'}).trim()]))};

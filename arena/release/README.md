@@ -52,3 +52,22 @@ Pass `runtimeReuse` to `collectPackage` with the original source commit, archive
 SHA256 and the reused-files evidence hash; the manifest explicitly labels reused
 binaries. Record the per-file comparison outside the archive, and run targeted
 patch acceptance before release. This path does not run `build.mjs` or Cargo.
+
+For v0.7.0, freeze `sourceCommit` and `recipeCommit` to the same reviewed commit
+before collecting a package. The explicit profile retains the v0.5 map while
+recording simulationVersion8, both scenario JSON inputs, the official Ink Strike
+JavaScript source, twelve official module kinds and custom-module capabilities.
+Player cast/recover clips come from the existing runtime index; ink FX comes from
+`iso-v070-combat-study/index.json`. Descriptor hashes always use built dist bytes.
+Resource registration and whole-package acceptance remain separate approvals.
+
+A constrained fixed build may reuse previously compiled v0.7 native artifacts only
+when their recorded Rust crate/lock and `include_str!` inputs match the freeze.
+Keep per-binary source and SHA256 evidence; do not label v0.7 native artifacts as
+v0.6 runtime reuse. Reuse installed Node dependencies only after comparing all
+three dependency locks. Source dependency symlinks are build inputs;
+`collectPackage` copies independent payload dependencies and normalizes npm bin
+links. Build the client once, collect one empty-data package, verify archive and
+FILES.sha256, then extract independently before starting acceptance. Retain the
+first build failure and its log if one occurs. No compilation, service changes,
+tagging or publication is authorized by this recipe alone.
