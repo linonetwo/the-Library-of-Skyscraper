@@ -1,6 +1,11 @@
 import type { Actor, Snapshot } from "./types.ts";
 
+const tacticalStateNames: Record<string,string>={
+  claiming:"占领据点",repairing:"修复设施",casting:"蓄咏墨印",
+  "cast-recovery":"施法收势",rising:"正在起身",
+};
 const stateNames: Record<string, string> = {
+  ...tacticalStateNames,
   idle: "等待指令",
   queued: "待出发",
   construction: "施工中",
@@ -52,6 +57,6 @@ export function actorActivity(actor: Actor, snapshot: Snapshot) {
   const detail = travel
     ? `${[method, phase, title, destination?.name ?? targetRoomId].filter(Boolean).join(" · ")}`
     : actor.task ? `${destination?.name ?? targetRoomId} · ${stateName(actor.task.stage)}`
-    : "选择任务与目的地开始行动";
+    : tacticalStateNames[actor.state] ?? "选择任务与目的地开始行动";
   return { title, detail, method, phase, etaSeconds, targetRoomId, presentRoomId: travel ? undefined : actor.roomId, returning, atTarget, travelling: !!travel };
 }

@@ -1,0 +1,8 @@
+.tactical-result .tactical-scoreboard{list-style:none;padding:0;margin:16px 0;display:grid;gap:8px}
+.tactical-result .tactical-scoreboard li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;background:#1b3639;border:1px solid #71887955;border-radius:4px}
+.tactical-result .tactical-scoreboard .score-winner{border-color:#bd9c64}
+.tactical-scoreboard li>span{min-width:0;overflow-wrap:anywhere}
+.tactical-scoreboard small{display:inline-block;margin-left:6px;font-size:12px;color:#efcf8f;font-weight:normal}
+.tactical-scoreboard strong{flex-shrink:0;font-size:24px;color:#efcf8f}
+.tactical-result p{line-height:1.5;overflow-wrap:anywhere}
+.tactical-result .tactical-result-reason{border-left:2px solid #bd9c64;padding-left:10px}
