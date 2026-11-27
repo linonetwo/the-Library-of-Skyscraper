@@ -27,6 +27,7 @@ export async function recoverConfig(names=['NE','SW']){
   const final=structuredClone(d.poses[3]),groundIds=d.attachments.filter(a=>a.id.startsWith('grounded-')).map(a=>a.id),standing=final.hiddenAttachments;
   const h=d.worldForward,side=[h[1],-h[0]],wp=(f,l,z)=>[h[0]*f+side[0]*l,h[1]*f+side[1]*l,z];
   const hipZ=[.12,.15,.20,.29,.42,.55,.66,.70],neckZ=[.15,.26,.43,.50,.75,1.02,1.18,1.22],neckF=[.50,.44,.30,.24,.10,.06,.02,0],ankleF=[-.47,-.40,-.24,-.10,-.10,-.10,-.10,-.10];
+  if(name==='N')neckZ[2]=.36; // Keep the chest low over the planted palm during the side roll.
   const poses=[{...final,durationMs:140,hiddenAttachments:[...final.hiddenAttachments,'recover-left-forearm','recover-support-palm',...bridgeIds]}];
   for(let frame=1;frame<8;frame++){
    const bodyShift=name==='NE'&&frame===4?[2/128,-2/128,0]:[0,0,0];
@@ -38,7 +39,7 @@ export async function recoverConfig(names=['NE','SW']){
     world[s+'Ankle']=planted?[foot[0]-sole[0]/128,foot[1]+sole[0]/128,sole[1]/78.38367177]:wp(footF,sign*(tucked?.22:.12),tucked?(name==='NE'?.45:.28):.10);
     world[s+'Knee']=elbow(world[s+'Hip'],world[s+'Ankle'],.3187701178,.3060520193,[...h,0]);
     world[s+'Shoulder']=add(wp(neckF[frame]-.06,sign*.19,neckZ[frame]-.06+(frame<=2?(s==='left'?-.04:.04):0)),bodyShift);
-    if((name==='N'&&frame>=4&&frame<=6)||(name==='NW'&&s==='left'&&frame===4)){
+    if((name==='N'&&frame>=4&&frame<=6)||(name==='N'&&frame===2)||(name==='NW'&&s==='left'&&frame===4)){
      // Follow the raster's actual pelvis rotation at its registered shoulder socket.
      // N's narrower collar cannot use the generic world shoulder width.
      const rig=frame===2?rollRig:d,axis=rig.joints.neck.restOffset,torso=sub(project(world.neck),project(world.pelvis)),angle=Math.atan2(torso[1],torso[0])-Math.atan2(axis[1],axis[0]),raw=sub(rig.joints[s+'Shoulder'].cell,rig.joints.pelvis.cell),fraction=raw.reduce((v,n,i)=>v+n*axis[i],0)/len(axis)**2,scale=frame===2?len(torso)/len(axis):1,rest=raw.map((v,i)=>v+axis[i]*fraction*(scale-1)),origin=project(world.pelvis),x=origin[0]+rest[0]*Math.cos(angle)-rest[1]*Math.sin(angle),y=origin[1]+rest[0]*Math.sin(angle)+rest[1]*Math.cos(angle),z=world[s+'Shoulder'][2],across=(x-128)/64,along=(y-204.8+78.38367177*z)/32;
@@ -57,7 +58,7 @@ export async function recoverConfig(names=['NE','SW']){
    for(const s of ['left','right']){const sole=d.feet[s].soleOffset,v=sub(points[s+'Foot'],points[s+'Ankle']);jointAngles[s+'Ankle']=(Math.atan2(v[1],v[0])-Math.atan2(sole[1],sole[0]))*180/Math.PI;attachmentMappings[s+'-boot']={axis:sole,scale:len(v)/len(sole)};jointAngles[s+'Wrist']=jointAngles[s+'Elbow'];}
    const g=await read(path.join(here,'../eight-combat/grounded/manifest.json')),ground=g.directions[name];
    for(const a of d.attachments.filter(a=>a.id.startsWith('grounded-'))){const head=a.joint==='neck',from=sub(head?ground.crown:ground.neck,head?ground.neck:ground.hip);if(!head){attachmentAngles[a.id]=(Math.atan2(target[1],target[0])-Math.atan2(from[1],from[0]))*180/Math.PI;attachmentMappings[a.id]={axis:from,scale:len(target)/len(from)};}else attachmentAngles[a.id]=0;}
-   if(hasBodyBridge&&frame===2){const axis=rollRig.joints.neck.restOffset;for(const a of d.attachments.filter(a=>a.id.startsWith('recover-bridge-')&&a.joint==='pelvis')){attachmentMappings[a.id]={axis,scale:len(target)/len(axis)};attachmentAngles[a.id]=(Math.atan2(target[1],target[0])-Math.atan2(axis[1],axis[0]))*180/Math.PI;}}
+   if(name==='N'&&frame===2){const axis=rollRig.joints.neck.restOffset;for(const a of d.attachments.filter(a=>a.id.startsWith('recover-bridge-')&&a.joint==='pelvis')){attachmentMappings[a.id]={axis,scale:len(target)/len(axis)};attachmentAngles[a.id]=(Math.atan2(target[1],target[0])-Math.atan2(axis[1],axis[0]))*180/Math.PI;}}
    const hidden=[...(landed?standing:groundIds),...((name==='NE'||hasBodyBridge)&&frame===2?d.attachments.filter(a=>hasBodyBridge?(a.joint==='neck'||a.joint==='pelvis')&&!a.id.startsWith('recover-bridge-'):a.id==='head'||a.id.startsWith('hair-')||a.id==='grounded-head'||a.id.startsWith('grounded-hair-')).map(a=>a.id):bridgeIds),...(frame<=3?['left-forearm-hand']:['recover-left-forearm','recover-support-palm'])];
    const pose={durationMs:140,joints:{},jointPositions:points,jointAngles,attachmentMappings,attachmentAngles,hiddenAttachments:hidden,rootScreenDelta:[0,0],supportContacts:{phase:frame<=3?'support-palm':frame<=5?'load-feet':'stand',world,feet:frame>=5?['left','right']:frame>=3?['left']:[],supportPalm:frame<=3?'left':undefined}};
    if(frame<=3){const normal=hand.wristTowardElbow,v=sub(points.leftElbow,points.leftWrist);attachmentAngles['recover-support-palm']=(Math.atan2(v[1],v[0])-Math.atan2(normal[1],normal[0]))*180/Math.PI;}
