@@ -67,7 +67,7 @@ export function buildMetadata(source, version) {
    world:{simulationVersion:profile.tactics ? 8 : 7,version:json('arena/shared/world-map-v5.json').version,
     map:{path:'arena/shared/world-map-v5.json',sha256:sha256('arena/shared/world-map-v5.json')},
     ...(profile.tactics ? {scenarios:Object.fromEntries(['first-expedition','seal-contest-v1'].map(name=>{
-     const path=`arena/shared/${name}.json`;return [name,{path,sha256:sha256(path)}];
+     const path=`arena/shared/${name}.json`;return [json(path).id,{path,sha256:sha256(path)}];
     }))} : {})},
   } : {}),
   dependencies:Object.fromEntries(locks.map(path=>[`arena/${path}`,sha256(`arena/${path}`)])),
