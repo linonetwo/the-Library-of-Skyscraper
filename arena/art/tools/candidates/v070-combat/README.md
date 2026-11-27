@@ -1,8 +1,9 @@
 # v0.7 layered cast / recover studies
 
 Cast supports eight headings and four staff outfit/hair combinations (32
-sequences). Recover remains a NE/SW warden/midnight/staff study pending visual
-approval. All source layers remain independent. No public/index/runtime changes.
+sequences). Recover supports eight headings and eight outfit/hair/equipment combinations
+(64 sequences). The NE/SW warden/midnight/staff sample passed independent
+offline review; the remaining combinations are under full visual review. All source layers remain independent. Runtime uses the same descriptor and independent layers.
 
 - `cast.mjs`: 8 stationary authored chant/point/settle poses, not faster attack.
 - `recover.mjs`: exact accepted down final geometry; independently placed free
@@ -19,13 +20,13 @@ From repo root (existing art dependencies required):
 
 ```sh
 node arena/art/tools/candidates/v070-combat/bake.mjs cast /scratch/new-pilot/cast NE,SW,N,NW,W,E,SE,S
-node arena/art/tools/candidates/v070-combat/bake.mjs recover /scratch/new-pilot/recover
+node arena/art/tools/candidates/v070-combat/bake.mjs recover /scratch/new-pilot/recover NE,SW,N,NW,W,E,SE,S
 node arena/art/tools/candidates/v070-combat/pack-ink.mjs /source/manifest.json /scratch/new-pilot/ink-fx
 node --test arena/art/tools/candidates/v070-combat/combat.test.mjs
 ```
 
 Inputs: frozen ne-sw-idle / carry registrations, eight-combat down pose and
-its grounded source, plus iso-v050-mobility/climb-hands/revised leftBrace.
+its grounded source, plus iso-v050-mobility/climb-hands/{revised,six} leftBrace registrations.
 Original parts are not edited. NE recover frame2 borrows the accepted E head
 and hair at the same neck pivot as a side-roll bridge. Bearing boots use the
 original upright boot rotation/scale and registered sole contact; the ankle
@@ -45,9 +46,8 @@ playback once. No weaponFX pixels are synthesized here.
 Independent Astra review accepted the complete 8-heading × 4-look staff cast
 and packed ink offline. The frozen runtime files and byte hashes are in
 `candidates/eight/cast`, `candidates/ink-fx` and `freeze-cast-ink.json`. This is
-not map gameplay approval. Revised recover remains under two-heading review. The
+not map gameplay approval. The complete recover64 export remains under independent visual review. The
 source brace hands were accepted for a ladder; the new
 floor use needs independent review. First palm projection is approximately
 0.7–1px above its z0 plane, and the first standing-raster transition is still
-visual-study material. This pilot is not an accepted eight-direction action,
-world contact proof, or complete 32-cast/64-recover appearance verification.
+visual-study material. Offline acceptance does not prove live world contact or gameplay timing.
