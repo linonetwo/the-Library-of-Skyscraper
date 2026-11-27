@@ -38,3 +38,7 @@ test('recover active load transfer keeps real limb lengths and world root fixed'
   for(const s of p.supportContacts.feet)assert.equal(w[s+'Foot'][2],0);
  }}
 });
+
+test('approved free leg stays raised through both palm-to-foot transfer frames',async()=>{
+ const config=await recoverConfig();for(const [direction,height]of [['NE',.45],['SW',.28]])for(const frame of [3,4])assert.equal(config.directions[direction].poses[frame].supportContacts.world.rightAnkle[2],height);
+});
