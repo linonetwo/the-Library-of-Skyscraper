@@ -1,0 +1,82 @@
+{
+  "sourceCommit": "9e0cfc71bda556914c820f272dbed5a2ceb54115",
+  "scope": "Layered cast32, recover64 and four independent ink phases. Offline acceptance does not establish live world-contact or gameplay-timing validation.",
+  "sets": {
+    "cast": {
+      "descriptor": "cast/atlas-budget.json",
+      "files": {
+        "atlas-budget.json": "a88944273a79fbe7749e7b4c396ba7c621cbebefff8fcae2bbe87688b127b207",
+        "cast-body-0.png": "83a71f0084af65bd11ae5c0b4ecb281b40d20d666ed46fbd94233cdef4819a64",
+        "cast-body-0.json": "4d36f96d3fda1ffabf70b18edd11933ec19cfcd7ee680f4a9d52139ab567b292",
+        "cast-body-front-0.png": "88320cdfb422238230be682e407ab696ccd47f45a906e7379a9fddf99a71743b",
+        "cast-body-front-0.json": "8269ca59f9566cb32751bc70609205761ba355c66400f11ebcc4c2d0fa6688d1",
+        "cast-outfit-scholar-0.png": "b8fe22c35ffea9d7f95fbafc848f4790c8e130214544f017e6b8d88d77586b8a",
+        "cast-outfit-scholar-0.json": "50d138bd0c1eea325b33ba6e66cd3eea578ae8c4b3353e554c38eec4bfd0214a",
+        "cast-hair-ivory-back-0.png": "29bbde8342d9c572a167c10e942b69240efc295a3ab7a1920febb1d050b516ec",
+        "cast-hair-ivory-back-0.json": "af5fbc96db25a41b751bb34aaaeead6c42b81459c1a3c5cf5c692c4a7fd464a0",
+        "cast-hair-ivory-front-0.png": "968855728d9de6a5e05849d520b1419e4e6b8d4d4c554f17be45de281a10e6d9",
+        "cast-hair-ivory-front-0.json": "2d52acf19e5f3ebdb7a64a35d89ea6728aac68ddb88585d52bcf929e9fb891fa",
+        "cast-outfit-warden-0.png": "9e04d8e12ea38155e48e05fa76c7d9f14573920fd22e23579c6074a7ca5b67c4",
+        "cast-outfit-warden-0.json": "11d9b03c75799d6ff5a82873eb4468b1472f61a3e5590f6ca111a4d0177757e4",
+        "cast-outfit-warden-front-0.png": "f34272a02a1ebca20790578c9286031479cbc2578866d8c45b81161e0e52350e",
+        "cast-outfit-warden-front-0.json": "d260ae1f9d8a303f5f2da44a48f64a486fc8ea5b67cff24dbc890d3a60f31e1a",
+        "cast-hair-midnight-back-0.png": "488db5aef9f0de03cec39ee3fda9ffd5c50d9f7067c1ec5f2b15a2d8c689697d",
+        "cast-hair-midnight-back-0.json": "cbfe6b42497e0a242157f86381883280957eff286aec5ed04edaedcc6f8fe718",
+        "cast-hair-midnight-front-0.png": "a694c676ebea1c303d9084efed5e3981ee04a424431d487e5819d72242d2657c",
+        "cast-hair-midnight-front-0.json": "842eed4545e14c1b3ffde0be63437d8b09e947d578b9a041dc481df642812008",
+        "cast-hand-front-0.png": "8b0d49c9b357bcfdee906bf4ba18037693982162d69b00c0345ec48dcd217da4",
+        "cast-hand-front-0.json": "46913b91ea3a9b27edc4522ddab580c8d75d20f2c971ce0d5f0311c75cf351b7",
+        "cast-hand-grip-0.png": "b9c51dcc7a6ff8b7deed0f21de3dab61cb208aa2b8b175cdd1d515a9e9458b32",
+        "cast-hand-grip-0.json": "c75ab5ed362641b6d6ed06758e9699f93952a0893070e46e6f2f4e7783091af6",
+        "cast-weapon-staff-back-0.png": "43ea5debcc5b873ba0a58efc0194e4f1870cf049571330962dafd8ffea7161bc",
+        "cast-weapon-staff-back-0.json": "d562621776577aebaed498b24395d6b5deebc84eb494589b13f45cd48425af74",
+        "cast-weapon-staff-front-0.png": "8a629d7da6d20846009b363465d72ead91cbd542d34147ab9949bbeb4b41763c",
+        "cast-weapon-staff-front-0.json": "c56b9412d896922d8d606cc49e5d23ffee1a6c3ee4013037817fac94bef25a5b",
+        "cast-hand-left-front-0.png": "6112eedf837e849c5bdbf9ec1effb1b6751edbc683196cd006380e91a94f4667",
+        "cast-hand-left-front-0.json": "868772ce3690fdb0b9aceeafa731bae84d1c12bca45f6e188a84d2e3a2b61bf3"
+      }
+    },
+    "recover": {
+      "descriptor": "recover/atlas-budget.json",
+      "files": {
+        "atlas-budget.json": "a36026da3e7210cb4911b16c6dc492bfb13ec6c385ebb407980044b3fe8f618b",
+        "recover-body-0.png": "7be636c17e7c1b1b39b83564c4f9d594ff5e7e305777dd0343543ca168c090e3",
+        "recover-body-0.json": "0aa04276d77d1d44977003d7b496ebaebfb848a3362b8631dfae6e9a5270ecac",
+        "recover-body-front-0.png": "339734b25d293e9cfc5817fcd4b101552c3a22ff1a98adefed61305661709cf5",
+        "recover-body-front-0.json": "10a3032260b4e01b6025e6b38f14c9a50911c478ed231093e75405f1c5795890",
+        "recover-outfit-scholar-0.png": "43fa4025ead0f390c88aa20860c2bfbf793ec01af6ec3129b85c4a457d87b95e",
+        "recover-outfit-scholar-0.json": "3d563f2e89dd17ada7e65ce795e9900db41661e59a035d17814da52bc370ca11",
+        "recover-hair-ivory-back-0.png": "e0124b44ea0bce9d0197645c47177108d53a31a0b4ae2914bfbfe22974646387",
+        "recover-hair-ivory-back-0.json": "d46510184cf5594167bc473c728187a9d87357773321d9cff1ef3e5bf2f936bd",
+        "recover-hair-ivory-front-0.png": "fdf3d90528dfe889d0f856a3d5635677bd6267c89f671e1efa2d079661db4569",
+        "recover-hair-ivory-front-0.json": "da2f1d10639d28c1e47ec0319d88cc4e3a26df3ddf02f65dc210206dade9430a",
+        "recover-outfit-warden-0.png": "df175dacb64b86a6e3f7191c448adaa43944c11ef5db678bd0de0ed389f47d33",
+        "recover-outfit-warden-0.json": "306984422565d7c5c172573106a7b80831254fc85c98241da1ca0bd2f8ad3cc2",
+        "recover-outfit-warden-front-0.png": "662cb9a807cb6a7fb397703b7cff3c164529cf438cc52fbe83f6923c5e9c2935",
+        "recover-outfit-warden-front-0.json": "a34c4ef747c23e611be04718b0673fcb248b0aaeb4b05cc4c7cba52c19ca88d9",
+        "recover-hair-midnight-back-0.png": "8c054118d1774e1065a291756e1a239f412676497eca9d81dc5fe409b0ec9abd",
+        "recover-hair-midnight-back-0.json": "066ac8bee4efa6a06259c8c8fb13be48782db8d04fedb594b1a2acfb80d34db6",
+        "recover-hair-midnight-front-0.png": "554fde992ecc2a3c7a736693bb436da973f1bf73c15b61054093452f5cfb5f7b",
+        "recover-hair-midnight-front-0.json": "dc91667275f59add209264d255dd18725ea834ee31b78063d77149bb9515fedf",
+        "recover-hand-front-0.png": "30990ee816cbe9e0b85bea4c9b67f5407b7c769ff53a5f9a1a07e8fa8df59662",
+        "recover-hand-front-0.json": "4fd1bf58e587b1deb0d2eeb007bcfe5f98dd79f9b2b864955c437cf0ec9f1352",
+        "recover-hand-grip-0.png": "1eb8c2a49763c7f61b93a7c28475f9b900cab2d1c7354b5c63a338a691f43955",
+        "recover-hand-grip-0.json": "6c96b7aaf083983dd16448f04b4547a1bd0507dbb74facc8ab757af6b4f3ecd1",
+        "recover-weapon-staff-back-0.png": "a2838792c60116a13085a8e2bcc996c7e9329cf4cc4f91f09e41fc41aaa2e756",
+        "recover-weapon-staff-back-0.json": "f7f81a9387afa0d028632cbdc1a6453d3dcce0519d9284a441ff5a90e666943a",
+        "recover-hand-left-front-0.png": "212a3a6af02b96ff8817717813c082cc4b99f9683cf0de0dab31d11a30e3e6ab",
+        "recover-hand-left-front-0.json": "2afb023ec99e91d25de5015536a07ef2a3d04bf29a0e1cae01f9a0f37c3e4c2a",
+        "recover-weapon-staff-front-0.png": "166dc436d7b7c2482e2ecaae635c619c4e5c2ddecfbeea629d6284f49d63b33b",
+        "recover-weapon-staff-front-0.json": "970a2e5ea7f693f78db00994f03c35ca96e1f4799e0b866386eeb4b0c67feb32"
+      }
+    },
+    "ink-fx": {
+      "descriptor": "ink-fx/atlas-budget.json",
+      "files": {
+        "atlas-budget.json": "847eeb94431e4511dcfe4352a90a84c1f8798806257dfe94b71d11f44dc43ba4",
+        "inkFx-ink-0.png": "434517002ae7fd7604f6d40a2cd0bf7458bf8a1b9036fe4e1e666f4c036902af",
+        "inkFx-ink-0.json": "df3887dd9836f4e1da6ab73f4bdd0c3bfb8b4289d31bcf833e2b125085c480e1"
+      }
+    }
+  }
+}

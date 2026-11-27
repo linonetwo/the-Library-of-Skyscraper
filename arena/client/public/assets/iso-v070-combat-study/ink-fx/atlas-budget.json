@@ -1,0 +1,81 @@
+{
+  "clip": {
+    "action": "inkFx",
+    "frameCount": 4,
+    "frameDurationsMs": [
+      125,
+      125,
+      125,
+      125
+    ],
+    "playback": "once"
+  },
+  "sourceSize": [
+    192,
+    192
+  ],
+  "groundPivot": [
+    96,
+    96
+  ],
+  "renderScale": 1,
+  "directions": [
+    "ground"
+  ],
+  "layerOrderByDirection": {
+    "ground": [
+      "ink"
+    ]
+  },
+  "activeLayers": [
+    "ink"
+  ],
+  "inactiveLayers": [],
+  "layers": [
+    {
+      "layer": "ink",
+      "active": true,
+      "sourceFrames": 4,
+      "nonemptyFrames": 4,
+      "untrimmedPixels": 147456,
+      "trimmedPixels": 50589,
+      "pages": [
+        {
+          "image": "inkFx-ink-0.png",
+          "json": "inkFx-ink-0.json",
+          "width": 537,
+          "height": 131,
+          "decodedBytes": 281388,
+          "pngBytes": 29380
+        }
+      ],
+      "decodedBytes": 281388
+    }
+  ],
+  "decodedBytes": 281388,
+  "maxPageDimension": 2048,
+  "registration": {
+    "sourceSha256": "73e493ed3164461e597946fc9cf7785c24b0c1bad9489578a3fb89c2fff9352e",
+    "uniformScale": 0.2503987240829346,
+    "sourceCenters": [
+      [
+        313.5,
+        328
+      ],
+      [
+        313.5,
+        329
+      ],
+      [
+        313.5,
+        323
+      ],
+      [
+        313.5,
+        326
+      ]
+    ],
+    "sourceAlreadyProjected": true
+  },
+  "status": "unreviewed-packed-source-candidate"
+}

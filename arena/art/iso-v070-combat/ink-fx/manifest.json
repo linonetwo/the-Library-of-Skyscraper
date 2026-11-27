@@ -1,0 +1,15 @@
+{
+  "asset": "directional-ink-ground-fx",
+  "scope": "accepted four-phase raw source for deterministic atlas packing; pilot poses and final map playback reviewed separately",
+  "generator": "proxy-imagegen/scripts/generate.sh (gpt-image-2)",
+  "raw": "ink-raw.png",
+  "bytes": 348309,
+  "sha256": "73e493ed3164461e597946fc9cf7785c24b0c1bad9489578a3fb89c2fff9352e",
+  "prompt": "ink-prompt.txt",
+  "promptSha256": "56d4393be7e53f7796ff12e0633fa8a483f8801ab989f1549a2a7b7c296e1f38",
+  "sourceSize": [1254,1254],
+  "sourceFormat": "8-bit RGBA PNG",
+  "cellSize": [627,627],
+  "phasesInReadingOrder": ["bead","impact","spread","dissipate"],
+  "registration": "Ground-center anchor at the visual ellipse center in each crop, including the final two arcs. Keep a single uniform pixels-to-world scale for all four phases; preserve the tiny first bead and the expanded rim. Source already depicts a foreshortened ground ellipse; render without additional Y squash. No character pixels are part of this sheet."
+}

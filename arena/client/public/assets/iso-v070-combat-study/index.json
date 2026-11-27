@@ -1,0 +1,21 @@
+{
+  "assetSetId": "iso-v070-combat-study",
+  "clips": [
+    {
+      "action": "cast",
+      "root": "/assets/iso-v070-combat-study/cast",
+      "descriptor": "atlas-budget.json"
+    },
+    {
+      "action": "recover",
+      "root": "/assets/iso-v070-combat-study/recover",
+      "descriptor": "atlas-budget.json"
+    }
+  ],
+  "effects": {
+    "inkFx": {
+      "root": "/assets/iso-v070-combat-study/ink-fx",
+      "descriptor": "atlas-budget.json"
+    }
+  }
+}

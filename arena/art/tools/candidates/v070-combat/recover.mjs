@@ -1,0 +1,74 @@
+import {readFile} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {loadRig} from '../eight-mobility/rig.mjs';
+const here=path.dirname(fileURLToPath(import.meta.url)),read=async file=>JSON.parse(await readFile(file,'utf8'));
+const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,k)=>a.map(v=>v*k),len=a=>Math.hypot(...a),unit=a=>mul(a,1/len(a));
+const project=([x,y,z])=>[128+64*(x-y),204.8+32*(x+y)-78.38367177*z];
+function elbow(a,b,l1,l2,preferred){const delta=sub(b,a),d=len(delta),u=unit(delta);if(d>l1+l2||d<Math.abs(l1-l2))throw Error(`Recover unreachable ${d}/${l1}+${l2}`);const along=(l1*l1-l2*l2+d*d)/(2*d),v=unit(sub(preferred,mul(u,preferred.reduce((n,x,i)=>n+x*u[i],0))));return add(add(a,mul(u,along)),mul(v,Math.sqrt(Math.max(0,l1*l1-along*along))));}
+/** Keep the exact down final frame, then author independent palm/knee/foot load transfer. */
+export async function recoverConfig(names=['NE','SW']){
+ const source=path.join(here,'../eight-combat/candidates/eight/down/pose.json'),config=await read(source),carryFile=path.join(here,'../ne-sw-carry/pose.json'),carry=await read(carryFile),manifestFile=path.join(here,'../../../iso-v050-mobility/climb-hands/revised/manifest.json'),manifest=await read(manifestFile);
+ const sideRigs=(await loadRig(['E','W','SE'])).directions,sideRig=sideRigs.E;
+ const bridge=sideRig.attachments.filter(a=>a.id==='head'||a.id.startsWith('hair-'));
+ config.directions=Object.fromEntries(names.map(n=>[n,config.directions[n]]));
+ const idleDirections={};for(const file of ['../ne-sw-idle/pose.json','../eight-base/e-w/idle/pose.json','../eight-base/n-s-nw-se/idle/pose.json'])Object.assign(idleDirections,(await read(path.join(here,file))).directions);
+ const sixManifestFile=path.join(here,'../../../iso-v050-mobility/climb-hands/six/manifest.json'),sixManifest=await read(sixManifestFile);
+ Object.assign(config,{action:'recover',frameCount:8,playback:'once',releaseApproved:false,status:'v070-two-direction-unreviewed-pilot'});
+ delete config.sourcePoseOnly;
+ for(const [name,d] of Object.entries(config.directions)){
+  for(const a of d.attachments)a.image=path.resolve(path.dirname(source),a.image);
+  const handFile=manifest.directions[name]?manifestFile:sixManifestFile,hand=(manifest.directions[name]??sixManifest.directions[name]).leftBrace;d.supportPalmRegistration=hand;
+  const rollRig=name==='NW'?sideRigs.W:name==='S'?sideRigs.SE:sideRig,hasBodyBridge=['N','NW','S'].includes(name);
+  const bridgeIds=[];if(name==='NE'||hasBodyBridge)for(const a of (hasBodyBridge?rollRig.attachments.filter(a=>a.joint==='neck'||a.joint==='pelvis'):bridge)){const id='recover-bridge-'+a.id;bridgeIds.push(id);d.attachments.push({...a,id});}
+  const fore=structuredClone(carry.directions[name]?.attachments.find(a=>a.id==='left-forearm')??d.attachments.find(a=>a.id==='left-forearm-hand'));fore.image=carry.directions[name]?path.resolve(path.dirname(carryFile),fore.image):path.join(here,'../eight-work/hands',name,'left-forearm.png');fore.id='recover-left-forearm';
+  d.attachments.push(fore,{id:'recover-support-palm',joint:'leftWrist',layer:'hand-left-front',pivot:hand.wristPivot,image:path.resolve(path.dirname(handFile),hand.image),zOrder:30});
+  config.layerOrderByDirection[name]=[...config.layerOrderByDirection[name],'hand-left-front'];
+  const final=structuredClone(d.poses[3]),groundIds=d.attachments.filter(a=>a.id.startsWith('grounded-')).map(a=>a.id),standing=final.hiddenAttachments;
+  const h=d.worldForward,side=[h[1],-h[0]],wp=(f,l,z)=>[h[0]*f+side[0]*l,h[1]*f+side[1]*l,z];
+  const hipZ=[.12,.15,.20,.29,.42,.55,.66,.70],neckZ=[.15,.26,.43,.50,.75,1.02,1.18,1.22],neckF=[.50,.44,.30,.24,.10,.06,.02,0],ankleF=[-.47,-.40,-.24,-.10,-.10,-.10,-.10,-.10];
+  if(name==='N'||name==='NW')neckZ[2]=.36; // Keep the chest low over the planted palm during the side roll.
+  const poses=[{...final,durationMs:140,hiddenAttachments:[...final.hiddenAttachments,'recover-left-forearm','recover-support-palm',...bridgeIds]}];
+  for(let frame=1;frame<8;frame++){
+   const bodyShift=name==='NE'&&frame===4?[2/128,-2/128,0]:[0,0,0];
+   const world={pelvis:add(wp(0,0,hipZ[frame]),bodyShift),neck:add(wp(neckF[frame],0,neckZ[frame]),bodyShift)};
+   for(const [s,sign] of [['left',1],['right',-1]]){
+    world[s+'Hip']=add(wp(0,sign*.09,hipZ[frame]),bodyShift);const tucked=s==='right'&&(frame===4||(frame===3&&!['N','NW'].includes(name))),footF=tucked?-.20:s==='left'&&frame>=3?.12:s==='right'&&frame>=5?-.06:ankleF[frame]+(s==='right'&&frame<3?.10:0);world[s+'Foot']=wp(footF+.08,sign*(tucked?.22:.12),tucked?(name==='NE'?.35:.18):0);
+    if(name==='NE'&&s==='left'&&frame>=3&&frame<=5)world[s+'Foot']=add(world[s+'Foot'],[6/128,-6/128,0]);
+    const planted=s==='left'?frame>=3:frame>=5,sole=d.feet[s].soleOffset,foot=world[s+'Foot'];
+    world[s+'Ankle']=planted?[foot[0]-sole[0]/128,foot[1]+sole[0]/128,sole[1]/78.38367177]:wp(footF,sign*(tucked?.22:.12),tucked?(name==='NE'?.45:.28):.10);
+    world[s+'Knee']=elbow(world[s+'Hip'],world[s+'Ankle'],.3187701178,.3060520193,[...h,0]);
+    world[s+'Shoulder']=add(wp(neckF[frame]-.06,sign*.19,neckZ[frame]-.06+(frame<=2?(s==='left'?-.04:.04):0)),bodyShift);
+    if((name==='N'&&frame>=4&&frame<=6)||(name==='N'&&s==='right'&&frame===3)||(hasBodyBridge&&frame===2)||(name==='NW'&&s==='left'&&(frame===3||frame===4))){
+     // Follow the raster's actual pelvis rotation at its registered shoulder socket.
+     // N's narrower collar cannot use the generic world shoulder width.
+     const rig=frame===2?rollRig:d,axis=rig.joints.neck.restOffset,torso=sub(project(world.neck),project(world.pelvis)),angle=Math.atan2(torso[1],torso[0])-Math.atan2(axis[1],axis[0]),raw=sub(rig.joints[s+'Shoulder'].cell,rig.joints.pelvis.cell),fraction=raw.reduce((v,n,i)=>v+n*axis[i],0)/len(axis)**2,scale=frame===2?len(torso)/len(axis):1,rest=raw.map((v,i)=>v+axis[i]*fraction*(scale-1)),origin=project(world.pelvis),x=origin[0]+rest[0]*Math.cos(angle)-rest[1]*Math.sin(angle),y=origin[1]+rest[0]*Math.sin(angle)+rest[1]*Math.cos(angle),z=world[s+'Shoulder'][2],across=(x-128)/64,along=(y-204.8+78.38367177*z)/32;
+     world[s+'Shoulder']=[(along+across)/2,(along-across)/2,z];
+    }
+    world[s+'Wrist']=s==='left'&&frame<=3?wp(.31,name==='NW'?.19:name==='S'?.15:.30,.025):add(wp(neckF[frame]+.08,sign*(s==='right'&&frame===6?.35:.27),Math.max(.22,neckZ[frame]-.35)),bodyShift);
+    try{world[s+'Elbow']=elbow(world[s+'Shoulder'],world[s+'Wrist'],.252,.214,[side[0]*sign,side[1]*sign,-.1]);}catch(e){throw Error(name+'/'+frame+'/'+s+': '+e.message);}
+   }
+   const points=Object.fromEntries(Object.entries(world).map(([id,p])=>[id,project(p)])),jointAngles={},attachmentMappings={};
+   for(const s of ['left','right'])for(const [a,b,part] of [['Hip','Knee','thigh'],['Knee','Ankle','shin'],['Shoulder','Elbow','upper-arm'],['Elbow','Wrist','forearm']]){
+    const axis=d.joints[s+b].restOffset,target=sub(points[s+b],points[s+a]);jointAngles[s+a]=(Math.atan2(target[1],target[0])-Math.atan2(axis[1],axis[0]))*180/Math.PI;
+    const ids=part==='forearm'?[s+'-forearm-hand',s+'-forearm',s+'-fore-sleeve',...(s==='left'?['recover-left-forearm']:[])]:part==='upper-arm'?[s+'-upper-arm',s+'-upper-sleeve']:[s+'-'+part];for(const id of ids)attachmentMappings[id]={axis,scale:len(target)/len(axis)};
+   }
+   const axis=d.joints.neck.restOffset,target=sub(points.neck,points.pelvis);jointAngles.pelvis=(Math.atan2(target[1],target[0])-Math.atan2(axis[1],axis[0]))*180/Math.PI;jointAngles.neck=0;
+   const landed=frame<=2,staffAngle=name==='SW'?[80,65,10,-12,-10,-6,-2,0][frame]:[80,65,40,25,15,8,3,0][frame],attachmentAngles={staff:staffAngle,'right-hand-grip':staffAngle};
+   for(const s of ['left','right']){const sole=d.feet[s].soleOffset,v=sub(points[s+'Foot'],points[s+'Ankle']);jointAngles[s+'Ankle']=(Math.atan2(v[1],v[0])-Math.atan2(sole[1],sole[0]))*180/Math.PI;attachmentMappings[s+'-boot']={axis:sole,scale:len(v)/len(sole)};jointAngles[s+'Wrist']=jointAngles[s+'Elbow'];}
+   const g=await read(path.join(here,'../eight-combat/grounded/manifest.json')),ground=g.directions[name];
+   for(const a of d.attachments.filter(a=>a.id.startsWith('grounded-'))){const head=a.joint==='neck',from=sub(head?ground.crown:ground.neck,head?ground.neck:ground.hip);if(!head){attachmentAngles[a.id]=(Math.atan2(target[1],target[0])-Math.atan2(from[1],from[0]))*180/Math.PI;attachmentMappings[a.id]={axis:from,scale:len(target)/len(from)};}else attachmentAngles[a.id]=0;}
+   if(hasBodyBridge&&frame===2){const axis=rollRig.joints.neck.restOffset;for(const a of d.attachments.filter(a=>a.id.startsWith('recover-bridge-')&&a.joint==='pelvis')){attachmentMappings[a.id]={axis,scale:len(target)/len(axis)};attachmentAngles[a.id]=(Math.atan2(target[1],target[0])-Math.atan2(axis[1],axis[0]))*180/Math.PI;}}
+   const hidden=[...(landed?standing:groundIds),...((name==='NE'||hasBodyBridge)&&frame===2?d.attachments.filter(a=>hasBodyBridge?(a.joint==='neck'||a.joint==='pelvis')&&!a.id.startsWith('recover-bridge-'):a.id==='head'||a.id.startsWith('hair-')||a.id==='grounded-head'||a.id.startsWith('grounded-hair-')).map(a=>a.id):bridgeIds),...(frame<=3?['left-forearm-hand']:['recover-left-forearm','recover-support-palm'])];
+   const pose={durationMs:140,joints:{},jointPositions:points,jointAngles,attachmentMappings,attachmentAngles,hiddenAttachments:hidden,rootScreenDelta:[0,0],supportContacts:{phase:frame<=3?'support-palm':frame<=5?'load-feet':'stand',world,feet:frame>=5?['left','right']:frame>=3?['left']:[],supportPalm:frame<=3?'left':undefined}};
+   if(frame<=3){const normal=hand.wristTowardElbow,v=sub(points.leftElbow,points.leftWrist);attachmentAngles['recover-support-palm']=(Math.atan2(v[1],v[0])-Math.atan2(normal[1],normal[0]))*180/Math.PI;}
+   poses.push(pose);
+  }
+  poses[7]={...structuredClone(idleDirections[name].poses[0]),durationMs:140,hiddenAttachments:[...groundIds,'recover-left-forearm','recover-support-palm',...bridgeIds],supportContacts:{phase:'idle-join',feet:['left','right']}};
+  for(const target of Object.values(poses[7].wristTargets??{}))target.point=target.point.map(v=>v+32);
+  d.poses=poses;
+ }
+ for(const layers of Object.values(config.previewLooks))layers.push('hand-left-front');
+ config.previewLayers=config.previewLooks['warden-midnight-staff'];
+ return config;
+}

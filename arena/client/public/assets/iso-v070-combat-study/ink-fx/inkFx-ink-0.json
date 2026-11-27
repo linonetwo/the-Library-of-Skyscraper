@@ -1,0 +1,120 @@
+{
+  "frames": {
+    "inkFx/ink/ground/02": {
+      "frame": {
+        "x": 7,
+        "y": 2,
+        "w": 142,
+        "h": 127
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 32,
+        "w": 142,
+        "h": 127
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "inkFx/ink/ground/03": {
+      "frame": {
+        "x": 153,
+        "y": 2,
+        "w": 142,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 50,
+        "w": 142,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "inkFx/ink/ground/01": {
+      "frame": {
+        "x": 299,
+        "y": 2,
+        "w": 127,
+        "h": 85
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 51,
+        "w": 127,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "inkFx/ink/ground/00": {
+      "frame": {
+        "x": 430,
+        "y": 2,
+        "w": 105,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 56,
+        "y": 65,
+        "w": 105,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "animations": {
+    "inkFx/ink/ground": [
+      "inkFx/ink/ground/00",
+      "inkFx/ink/ground/01",
+      "inkFx/ink/ground/02",
+      "inkFx/ink/ground/03"
+    ]
+  },
+  "meta": {
+    "app": "arena-trimmed-pose-atlas",
+    "version": "1",
+    "image": "inkFx-ink-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 537,
+      "h": 131
+    },
+    "scale": "1",
+    "related_multi_packs": []
+  }
+}
