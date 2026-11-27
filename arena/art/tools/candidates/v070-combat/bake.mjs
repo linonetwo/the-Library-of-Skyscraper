@@ -1,4 +1,4 @@
-import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,rm} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
@@ -11,7 +11,7 @@ import {writeDirectionReviews} from './review.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url)),action=process.argv[2]??'cast';
 const out=path.resolve(process.argv[3]??'/var/lib/mwc/build-scratch/arena-v070-art/ne-sw/'+action);
 if(!['cast','recover'].includes(action))throw Error('Usage: bake.mjs cast|recover [output]');
-const names=(process.argv[4]??'NE,SW').split(',');
+const names=(process.argv[4]??'NE,SW').split(','),runtimeOnly=process.argv[5]==='--runtime-only';
 const config=action==='recover'?await recoverConfig(names):await loadRunJumpRig(names);Object.assign(config,{action,frameCount:8,playback:'once',releaseApproved:false,status:`v070-${Object.keys(config.directions).length}-direction-unreviewed-pilot`,...(action==='cast'?{phaseFrames:{chanting:{first:0,last:2},release:{first:3,last:4},recovery:{first:5,last:7}}}:{})});
 delete config.cycleWorldStride;
 config.previewLooks=action==='cast'?Object.fromEntries(Object.entries(config.previewLooks).filter(([name])=>name.endsWith('-staff'))):config.previewLooks;config.previewLayers=config.previewLooks['warden-midnight-staff'];
@@ -19,6 +19,12 @@ if(action==='cast')for(const d of Object.values(config.directions))d.poses=castP
 await mkdir(out,{recursive:true});
 for(const d of Object.values(config.directions))for(const a of d.attachments)a.image=path.relative(out,a.image);
 const pose=path.join(out,'pose.json');await writeFile(pose,JSON.stringify(config,null,2)+'\n');await exportPoses(pose,out);await writeAnchors(pose,out);
-execFileSync(process.execPath,[path.resolve(here,'../../preview-looks.mjs'),pose,out],{stdio:'inherit'});
-await writeDirectionReviews(config,out);
+if(runtimeOnly){
+ // Review sheets already exist for the accepted direction batches. Keep only
+ // runtime pages and the actual exported contact/anchor report in this final pass.
+ for(const file of ['contact-sheet.png','contact-debug.png','contact-loop.gif','skeleton-debug.png'])await rm(path.join(out,file),{force:true});
+}else{
+ execFileSync(process.execPath,[path.resolve(here,'../../preview-looks.mjs'),pose,out],{stdio:'inherit'});
+ await writeDirectionReviews(config,out);
+}
 console.log(JSON.stringify({action,out,status:config.status}));
